@@ -1,13 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 def hopalong(num, a, b, c, image_size=(1001, 1001)):
     x, y = 0, 0
     u, v = [], []
-    
+
     min_x, max_x = float('inf'), float('-inf')
     min_y, max_y = float('inf'), float('-inf')
-    
+
     for i in range(num):
         u.append(x)
         v.append(y)
@@ -15,7 +16,7 @@ def hopalong(num, a, b, c, image_size=(1001, 1001)):
         yy = a - x
         x = xx
         y = yy
-        
+
         min_x = min(min_x, x)
         max_x = max(max_x, x)
         min_y = min(min_y, y)
@@ -34,10 +35,10 @@ def hopalong(num, a, b, c, image_size=(1001, 1001)):
     plt.title(f"Hopalong Attractor\nParams: a={a}, b={b}, c={c}, num={num}")
     plt.show()
 
+
 print("Input the parameters a, b, c (e.g., -1.7 -0.3 0.7) and the number of iterations num (e.g., 1000000 or 1_000_000)")
 a = float(input('a? '))
 b = float(input('b? '))
 c = float(input('c? '))
 num = int(input('num? '))
 hopalong(num, a, b, c)
-

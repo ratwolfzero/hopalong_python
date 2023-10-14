@@ -30,7 +30,7 @@ def hopalong(num, a, b, c, image_size=(1001, 1001)):
         py = int((v[i] - min_y) / (min_y - max_y) * (img_height - 1))
         img[py, px] = 1
 
-    plt.figure(figsize=(8, 8))
+    plt.figure(figsize=(8, 9))
     plt.imshow(img, cmap='inferno')
     plt.title(f"Hopalong Attractor\nParams: a={a}, b={b}, c={c}, num={num}")
     plt.show()

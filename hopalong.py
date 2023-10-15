@@ -1,4 +1,6 @@
 import numpy as np
+import matplotlib
+matplotlib.use('TkAgg') # without Backend definition works fine with MacOs. However crashes when trying to manually resize the plot window.
 import matplotlib.pyplot as plt
 
 

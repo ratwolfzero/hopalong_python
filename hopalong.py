@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib
-matplotlib.use('TkAg') # without backend definition works fine with MacOS. However crashes when trying to manually resize the created plot window.
+matplotlib.use('TkAgg') # without backend definition works fine with MacOS. However crashes when trying to manually resize the created plot window.
 import matplotlib.pyplot as plt
 
 

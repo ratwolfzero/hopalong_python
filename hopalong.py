@@ -3,7 +3,6 @@ import numpy as np
 import matplotlib
 matplotlib.use('TkAgg')
 
-
 def hopalong(num, a, b, c, image_size=(1001, 1001)):
     x, y = 0, 0
     u = np.zeros(num)
@@ -31,7 +30,6 @@ def hopalong(num, a, b, c, image_size=(1001, 1001)):
     plt.imshow(img, cmap='inferno')
     plt.title(f"Hopalong Attractor\nParams: a={a}, b={b}, c={c}, num={num}")
     plt.show()
-
 
 print("Input the parameters a, b, c (e.g., -1.7 -0.3 0.7) and the number of iterations num (e.g., 1000000 or 1_000_000)")
 a = float(input('a? '))

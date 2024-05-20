@@ -39,11 +39,3 @@ b = float(input('b? '))
 c = float(input('c? '))
 num = int(input('num? '))
 hopalong(num, a, b, c)
-
-
-print("Input the parameters a, b, c (e.g., -1.7 -0.3 0.7) and the number of iterations num (e.g., 1000000 or 1_000_000)")
-a = float(input('a? '))
-b = float(input('b? '))
-c = float(input('c? '))
-num = int(input('num? '))
-hopalong(num, a, b, c)

@@ -3,10 +3,10 @@ import numpy as np
 import matplotlib
 matplotlib.use('TkAgg')
 
-image_size=(5000, 5000)
+image_size=(8001, 8001)
 
 def hopalong(num, a, b, c, image_size):
-    x, y = 0, 0
+    x, y = 0, 0  
     u = np.zeros(num)
     v = np.zeros(num)
     

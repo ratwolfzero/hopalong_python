@@ -4,7 +4,7 @@ from numba import jit
 import matplotlib; matplotlib.use('TkAgg') 
 #TKAgg at least required for MacOS and apple silicon chip to avoid crash of plot window during interaction
 
-image_size = 4000, 4000
+image_size = 8000, 8000
 
 
 @jit(nopython=True)  #enforce just-in-time compilation to machine code
@@ -40,7 +40,7 @@ def hopalong_plot(u, v, a, b, c, image_size):
 #call seperated hopalong functions
 def hopalong(num, a, b, c, image_size):
     points = hopalong_compute(num, a, b, c)
-    hopalong_plot(points[:, 0], points[:, 1], a, b, c, image_size) # variant for efficient use of memory
+    hopalong_plot(points[:, 0], points[:, 1], a, b, c, image_size) 
 
 
 print("Input the parameters a, b, c (e.g., -1.7 -0.3 0.7) and the number of iterations num (e.g., 1000000 or 1_000_000)")

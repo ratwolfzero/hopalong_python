@@ -4,33 +4,19 @@ from numba import jit
 import matplotlib
 matplotlib.use('TkAgg')
 
-image_size = 9000, 9000
-
-# @jit(nopython=True)
-# def hopalong_compute(num, a, b, c):
-#   x, y = np.float64(0), np.float64(0)
-#   u, v = np.zeros(num, dtype=np.float64), np.zeros(num, dtype=np.float64)
-
-#    for i in range(num):
-#        u[i], v[i] = x, y
-#       xx, yy = y - np.sign(x) * np.sqrt(abs(b * x - c)), a - x
-#       x, y = xx, yy
-#
-#   return u, v
-
-# split hopalong function in computational loop and plotting. Add the @jit decorator only for computational loop
+image_size = 4000, 4000
 
 
-@jit(nopython=True)  # just-in-time compilation to machine code
+@jit(nopython=True)  # enforce just-in-time compilation to machine code
 def hopalong_compute(num, a, b, c):
     # variant for efficient use of memory
     points = np.empty((num, 2), dtype=np.float64)
-    x, y = 0.0, 0.0
+    x, y = 0.0, 0.0 #python native float e.g. 0.0 is faster for scalar operation
 
     for i in range(num):
         points[i] = x, y
         xx, yy = y - np.sign(x) * np.sqrt(abs(b * x - c)), a - x
-        x, y = xx, yy
+        points[i] = xx, yy
 
     return points
 
@@ -52,21 +38,18 @@ def hopalong_plot(u, v, a, b, c, image_size):
     plt.title(f"Hopalong Attractor\nParams: a={a}, b={b}, c={c}, num={num}")
     plt.show()
 
-# Now the hopalong function will call the two separate functions
-
-# def hopalong(num, a, b, c, image_size):
-    # u, v = hopalong_compute(num, a, b, c)
-    # hopalong_plot(u, v, a, b, c, image_size)
-
 
 def hopalong(num, a, b, c, image_size):
     points = hopalong_compute(num, a, b, c)
-    hopalong_plot(points[:, 0], points[:, 1], a, b, c, image_size)
+    hopalong_plot(points[:, 0], points[:, 1], a, b, c, image_size) # variant for efficient use of memory
 
 
 print("Input the parameters a, b, c (e.g., -1.7 -0.3 0.7) and the number of iterations num (e.g., 1000000 or 1_000_000)")
+#use maximum 100_000_000 iterations to avoid memory overflow!
+
 a = float(input('a? '))
 b = float(input('b? '))
 c = float(input('c? '))
 num = int(input('num? '))
+
 hopalong(num, a, b, c, image_size)

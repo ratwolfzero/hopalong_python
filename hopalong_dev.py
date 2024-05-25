@@ -1,20 +1,19 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from numba import jit
-import matplotlib
-matplotlib.use('TkAgg')
+import matplotlib; matplotlib.use('TkAgg') 
+#TKAgg at least required for MacOS and apple silicon chip to avoid crash of plot window during interaction
 
 image_size = 4000, 4000
 
 
-@jit(nopython=True)  # enforce just-in-time compilation to machine code
-def hopalong_compute(num, a, b, c): #split hpalong in calculation and plot function
-    # variant for efficient use of memory
-    points = np.empty((num, 2), dtype=np.float64)
-    x, y = 0.0, 0.0 #python native float e.g. 0.0 is faster for scalar operation
+@jit(nopython=True)  #enforce just-in-time compilation to machine code
+def hopalong_compute(num, a, b, c): #split hpalong in calculation and plot function to make proper use of @jit
+    points = np.empty((num, 2), dtype=np.float64) #np.empty vs. np.zeros more efficient, if all array elements will be set!
+    x, y = 0.0, 0.0 #python native float i.e. 0.0 is faster for scalar operation than np.float
 
     for i in range(num):
-        points[i] = x, y
+        points[i] = x, y #points[i] = x, y versus u[i], v[i] = x, y is more memory efficient
         xx, yy = y - np.sign(x) * np.sqrt(abs(b * x - c)), a - x
         x, y = xx, yy
 

@@ -16,7 +16,7 @@ def hopalong_compute(num, a, b, c):
     for i in range(num):
         points[i] = x, y
         xx, yy = y - np.sign(x) * np.sqrt(abs(b * x - c)), a - x
-        points[i] = xx, yy
+        x, y = xx, yy
 
     return points
 

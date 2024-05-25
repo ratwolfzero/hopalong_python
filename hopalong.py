@@ -2,12 +2,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib;matplotlib.use('TkAgg')
 
-image_size = (8001, 8001)
+image_size = 8001, 8001
 
 
 def hopalong(num, a, b, c, image_size):
-    x, y = 0.0, 0.0
-    u, v = np.zeros(num), np.zeros(num)
+    x, y = np.float64(0), np.float64(0)
+    u, v = np.zeros(num,dtype=np.float64), np.zeros(num,dtype=np.float64)
 
     for i in range(num):
         u[i], v[i] = x, y
@@ -20,8 +20,9 @@ def hopalong(num, a, b, c, image_size):
     img_width, img_height = image_size
     img = np.zeros((img_height, img_width))
 
-    px = ((u - min_x) / (max_x - min_x) * (img_width-1)).astype(int)
-    py = ((v - min_y) / (min_y - max_y) * (img_height-1)).astype(int)
+    px = ((u - min_x) / (max_x - min_x) * (img_width-1)).astype(np.int64)
+    py = ((v - min_y) / (min_y - max_y) * (img_height-1)).astype(np.int64)
+
     img[py, px] = 1
 
     plt.figure(figsize=(8, 8))

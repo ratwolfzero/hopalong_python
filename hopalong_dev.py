@@ -8,7 +8,7 @@ image_size = 4000, 4000
 
 
 @jit(nopython=True)  # enforce just-in-time compilation to machine code
-def hopalong_compute(num, a, b, c):
+def hopalong_compute(num, a, b, c): #split hpalong in calculation and plot function
     # variant for efficient use of memory
     points = np.empty((num, 2), dtype=np.float64)
     x, y = 0.0, 0.0 #python native float e.g. 0.0 is faster for scalar operation
@@ -38,7 +38,7 @@ def hopalong_plot(u, v, a, b, c, image_size):
     plt.title(f"Hopalong Attractor\nParams: a={a}, b={b}, c={c}, num={num}")
     plt.show()
 
-
+#call seperated hopalong functions
 def hopalong(num, a, b, c, image_size):
     points = hopalong_compute(num, a, b, c)
     hopalong_plot(points[:, 0], points[:, 1], a, b, c, image_size) # variant for efficient use of memory

@@ -9,7 +9,7 @@ image_size = 8000, 8000
 
 @jit(nopython=True)  #enforce just-in-time compilation to machine code
 def hopalong_compute(num, a, b, c): #split hpalong in calculation and plot function to make proper use of @jit
-    points = np.empty((num, 2), dtype=np.float64) #np.empty vs. np.zeros more efficient, if all array elements will be set!
+    points = np.empty((num, 2), dtype=np.float64) #np.empty vs. np.zeros is more efficient, if all elements will be set!
     x, y = 0.0, 0.0 #python native float i.e. 0.0 is faster for scalar operation than np.float
 
     for i in range(num):

@@ -44,7 +44,7 @@ def hopalong(num, a, b, c, image_size):
 
 
 print("Input the parameters a, b, c (e.g., -1.7 -0.3 0.7) and the number of iterations num (e.g., 1000000 or 1_000_000)")
-#use maximum 100_000_000 iterations to avoid memory overflow!
+#use maximum 100_000_000 iterations to avoid memory overflow respectively swap! (8 GByte RAM)
 
 a = float(input('a? '))
 b = float(input('b? '))

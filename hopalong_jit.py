@@ -50,7 +50,7 @@ def hopalong(num, a, b, c, image_size):
 
 
 print("Input the parameters a, b, c (e.g., -1.7 -0.3 0.7) and the number of iterations num (e.g., 1000000 or 1_000_000)")
-# use maximum 100_000_000 iterations to avoid memory overflow respectively memory swap! (8 GByte RAM)
+# recommandation: use a maximum pf 100_000_000 iterations to avoid memory overflow respectively memory swap! (8 GByte RAM)
 
 
 def get_validated_input(prompt, input_type=float, check_non_zero=False):

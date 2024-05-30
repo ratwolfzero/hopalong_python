@@ -1,19 +1,23 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from numba import jit
-import matplotlib; matplotlib.use('TkAgg') 
-#TKAgg at least required for MacOS and apple silicon chip to avoid crash of plot window during interaction
+import matplotlib
+matplotlib.use('TkAgg')
+# TKAgg at least required for MacOS and apple silicon chip to avoid crash of plot window during interaction
 
 image_size = 8000, 8000
 
 
-@jit(nopython=True)  #enforce just-in-time compilation to machine code
-def hopalong_compute(num, a, b, c): #split hpalong in calculation and plot function to make proper use of @jit
-    points = np.empty((num, 2), dtype=np.float64) #np.empty vs. np.zeros is more efficient, if all elements will be set!
-    x, y = 0.0, 0.0 #python native float i.e. 0.0 is faster for scalar operation than np.float
+@jit(nopython=True)  # enforce just-in-time compilation to machine code
+# split hpalong in calculation and plot function to make proper use of @jit
+def hopalong_compute(num, a, b, c):
+    # np.empty vs. np.zeros is more efficient, if all elements will be set!
+    points = np.empty((num, 2), dtype=np.float64)
+    x, y = 0.0, 0.0  # python native float i.e. 0.0 is faster for scalar operation than np.float
 
     for i in range(num):
-        points[i] = x, y #points[i] = x, y versus u[i], v[i] = x, y is more memory efficient
+        # points[i] = x, y versus u[i], v[i] = x, y is more memory efficient
+        points[i] = x, y
         xx, yy = y - np.sign(x) * np.sqrt(abs(b * x - c)), a - x
         x, y = xx, yy
 
@@ -37,14 +41,17 @@ def hopalong_plot(u, v, a, b, c, image_size):
     plt.title(f"Hopalong Attractor\nParams: a={a}, b={b}, c={c}, num={(f"{num:_}")}")
     plt.show()
 
-#call seperated hopalong functions
+# call seperated hopalong functions
+
+
 def hopalong(num, a, b, c, image_size):
     points = hopalong_compute(num, a, b, c)
-    hopalong_plot(points[:, 0], points[:, 1], a, b, c, image_size) 
+    hopalong_plot(points[:, 0], points[:, 1], a, b, c, image_size)
 
 
 print("Input the parameters a, b, c (e.g., -1.7 -0.3 0.7) and the number of iterations num (e.g., 1000000 or 1_000_000)")
-#use maximum 100_000_000 iterations to avoid memory overflow respectively memory swap! (8 GByte RAM)
+# use maximum 100_000_000 iterations to avoid memory overflow respectively memory swap! (8 GByte RAM)
+
 
 def get_validated_input(prompt, input_type=float, check_non_zero=False):
     while True:
@@ -52,7 +59,8 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False):
         try:
             value = input_type(user_input)
         except ValueError:
-            print(f"Invalid input. Please enter a valid {input_type.__name__} value.")
+            print(f"Invalid input. Please enter a valid {
+                  input_type.__name__} value.")
             continue
 
         if check_non_zero and value == 0:
@@ -61,10 +69,10 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False):
             return value
 
 
-a = get_validated_input('Enter a non-zero float value for "a": ', float, check_non_zero=True)
+a = get_validated_input(
+    'Enter a non-zero float value for "a": ', float, check_non_zero=True)
 b = get_validated_input('Enter a float value for "b": ', float)
 c = get_validated_input('Enter a float value for "c": ', float)
 num = get_validated_input('Enter an integer value for "num": ', int)
 
 hopalong(num, a, b, c, image_size)
-

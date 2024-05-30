@@ -43,23 +43,28 @@ def hopalong(num, a, b, c, image_size):
     hopalong_plot(points[:, 0], points[:, 1], a, b, c, image_size) 
 
 
-print("Input the parameters a, b, c as float (e.g., -1.7 -0.3 0.7) and the number of iterations num as int (e.g., 1000000 or 1_000_000)")
+print("Input the parameters a, b, c (e.g., -1.7 -0.3 0.7) and the number of iterations num (e.g., 1000000 or 1_000_000)")
 #use maximum 100_000_000 iterations to avoid memory overflow respectively swap! (8 GByte RAM)
 
-def get_input(prompt, input_type=float, check_non_zero=False):
+def get_validated_input(prompt, input_type=float, check_non_zero=False):
     while True:
+        user_input = input(prompt)
         try:
-            value = input_type(input(prompt))
-            if check_non_zero and value == 0:
-                print("Invalid input. The value cannot be zero.")
-            else:
-                return value
+            value = input_type(user_input)
         except ValueError:
-            print(f"Invalid input. Please enter a valid {input_type.__name__} number.")
+            print(f"Invalid input. Please enter a valid {input_type.__name__} value.")
+            continue
 
-a = get_input('a? ', float, check_non_zero=True)
-b = get_input('b? ', float)
-c = get_input('c? ', float)
-num = get_input('num? ', int)
+        if check_non_zero and value == 0:
+            print("Invalid input. The value cannot be zero.")
+        else:
+            return value
+
+
+a = get_validated_input('Enter a non-zero float value for "a": ', float, check_non_zero=True)
+b = get_validated_input('Enter a float value for "b": ', float)
+c = get_validated_input('Enter a float value for "c": ', float)
+num = get_validated_input('Enter an integer value for "num": ', int)
 
 hopalong(num, a, b, c, image_size)
+

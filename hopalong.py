@@ -31,9 +31,24 @@ def hopalong(num, a, b, c, image_size):
     plt.show()
 
 
-print("Input the parameters a, b, c (e.g., -1.7 -0.3 0.7) and the number of iterations num (e.g., 1000000 or 1_000_000)")
-a = float(input('a? '))
-b = float(input('b? '))
-c = float(input('c? '))
-num = int(input('num? '))
+def get_validated_input(prompt, input_type=float, check_non_zero=False):
+    while True:
+        user_input = input(prompt)
+        try:
+            value = input_type(user_input)
+        except ValueError:
+            print(f"Invalid input. Please enter a valid {input_type.__name__} value.")
+            continue
+
+        if check_non_zero and value == 0:
+            print("Invalid input. The value cannot be zero.")
+        else:
+            return value
+
+
+a = get_validated_input('Enter a non-zero float value for "a": ', float, check_non_zero=True)
+b = get_validated_input('Enter a float value for "b": ', float)
+c = get_validated_input('Enter a float value for "c": ', float)
+num = get_validated_input('Enter an integer value for "num": ', int)
+
 hopalong(num, a, b, c, image_size)

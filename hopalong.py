@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib;matplotlib.use('TkAgg')
+#TKAgg at least required for MacOS and apple silicon chip to avoid crash of plot window during interaction
 
 image_size = 8001, 8001
 

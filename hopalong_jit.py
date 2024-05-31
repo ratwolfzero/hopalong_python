@@ -38,8 +38,7 @@ def hopalong_plot(u, v, a, b, c, image_size):
 
     plt.figure(figsize=(8, 8))
     plt.imshow(img, cmap='inferno')
-    plt.title(f"Hopalong Attractor\nParams: a={
-              a}, b={b}, c={c}, num={(f"{num:_}")}")
+    plt.title(f"Hopalong Attractor\nParams: a={a}, b={b}, c={c}, num={(f"{num:_}")}")
     plt.show()
 
 # call seperated hopalong functions
@@ -60,8 +59,7 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False):
         try:
             value = input_type(user_input)
         except ValueError:
-            print(f"Invalid input. Please enter a valid {
-                  input_type.__name__} value.")
+            print(f"Invalid input. Please enter a valid {input_type.__name__} value.")
             continue
 
         if check_non_zero and value == 0:

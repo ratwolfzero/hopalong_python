@@ -1,9 +1,9 @@
-import matplotlib.pyplot as plt
-import numpy as np
 from numba import jit
+import numpy as np
+import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.use('TkAgg')
-# TKAgg at least required for MacOS and apple silicon chip to avoid crash of plot window during interaction
+# Use TKAgg or Qt5Agg for MacOs to avoid crash of plot window during interaction
 
 image_size = 8000, 8000
 
@@ -38,7 +38,8 @@ def hopalong_plot(u, v, a, b, c, image_size):
 
     plt.figure(figsize=(8, 8))
     plt.imshow(img, cmap='inferno')
-    plt.title(f"Hopalong Attractor\nParams: a={a}, b={b}, c={c}, num={(f"{num:_}")}")
+    plt.title(f"Hopalong Attractor\nParams: a={
+              a}, b={b}, c={c}, num={(f"{num:_}")}")
     plt.show()
 
 # call seperated hopalong functions
@@ -50,7 +51,7 @@ def hopalong(num, a, b, c, image_size):
 
 
 print("Input the parameters a, b, c (e.g., -1.7 -0.3 0.7) and the number of iterations num (e.g., 1000000 or 1_000_000)")
-# recommandation: use a maximum pf 100_000_000 iterations to avoid memory overflow respectively memory swap! (8 GByte RAM)
+# recommandation: use a maximum of 100_000_000 iterations to avoid memory overflow respectively memory swap! (8 GByte RAM)
 
 
 def get_validated_input(prompt, input_type=float, check_non_zero=False):
@@ -59,7 +60,8 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False):
         try:
             value = input_type(user_input)
         except ValueError:
-            print(f"Invalid input. Please enter a valid {input_type.__name__} value.")
+            print(f"Invalid input. Please enter a valid {
+                  input_type.__name__} value.")
             continue
 
         if check_non_zero and value == 0:

@@ -8,15 +8,12 @@ matplotlib.use('TkAgg')
 image_size = 8000, 8000
 
 
-@jit(nopython=True)  # enforce just-in-time compilation to machine code
-# split hpalong in calculation and plot function to make proper use of @jit
+@jit(nopython=True)
 def hopalong_compute(num, a, b, c):
-    # np.empty vs. np.zeros is more efficient, if all elements will be set!
     points = np.empty((num, 2), dtype=np.float64)
-    x, y = 0.0, 0.0  # python native float i.e. 0.0 is faster for scalar operation than np.float
+    x, y = 0.0, 0.0
 
     for i in range(num):
-        # points[i] = x, y versus u[i], v[i] = x, y is more memory efficient
         points[i] = x, y
         xx, yy = y - np.sign(x) * np.sqrt(abs(b * x - c)), a - x
         x, y = xx, yy
@@ -41,8 +38,6 @@ def hopalong_plot(u, v, a, b, c, image_size):
     plt.title(f"Hopalong Attractor\nParams: a={
               a}, b={b}, c={c}, num={(f"{num:_}")}")
     plt.show()
-
-# call seperated hopalong functions
 
 
 def hopalong(num, a, b, c, image_size):

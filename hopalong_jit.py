@@ -70,6 +70,7 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False):
 
 
 a = get_validated_input(
+
     'Enter a non-zero float value for "a": ', float, check_non_zero=True)
 b = get_validated_input('Enter a float value for "b": ', float)
 c = get_validated_input('Enter a float value for "c": ', float)

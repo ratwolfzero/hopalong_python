@@ -13,7 +13,7 @@ image_size = 8000, 8000
 @jit(nopython=True)
 def hopalong_compute(num, a, b, c):
 
-    points = np.empty((num, 2), dtype=np.float64)
+    points = np.empty((num, 2), dtype=np.float32)
     x, y = 0.0, 0.0
 
     for i in range(num):
@@ -30,7 +30,7 @@ def hopalong_plot(u, v, a, b, c, image_size):
     min_y, max_y = np.min(v), np.max(v)
 
     img_width, img_height = image_size
-    img = np.empty((img_height, img_width))
+    img = np.empty((img_height, img_width), dtype=np.int16)
 
     px = ((u - min_x) / (max_x - min_x) * (img_width - 1)).astype(np.int16)
     py = ((v - min_y) / (min_y - max_y) * (img_height - 1)).astype(np.int16)
@@ -52,7 +52,7 @@ def hopalong(num, a, b, c, image_size):
 
 
 print("Input the parameters a, b, c (e.g., -1.7 -0.3 0.7) and the number of iterations num (e.g., 1000000 or 1_000_000)")
-# recommandation: use a maximum pf 100_000_000 iterations to avoid memory overflow respectively memory swap! (8 GByte RAM)
+# recommandation: use a maximum pf 100_000_000 iterations to avoid memory overflow respectively extensive swap of memory resulting in decrease of speed! (8 GByte RAM)
 
 
 def get_validated_input(prompt, input_type=float, check_non_zero=False):

@@ -4,7 +4,6 @@ from numba import jit
 import matplotlib
 matplotlib.use('TkAgg')
 
-
 # Use TKAgg or Qt5Agg for MacOs to avoid crash of plot window during interaction
 
 image_size = 8000, 8000
@@ -52,7 +51,7 @@ def hopalong(num, a, b, c, image_size):
 
 
 print("Input the parameters a, b, c (e.g., -1.7 -0.3 0.7) and the number of iterations num (e.g., 1000000 or 1_000_000)")
-# recommandation: use a maximum pf 100_000_000 iterations to avoid memory overflow respectively extensive swap of memory resulting in decrease of speed! (8 GByte RAM)
+# recommandation: use a maximum pf 300_000_000 iterations to avoid extensive swap of memory resulting in decrease of speed! (8 GByte RAM)
 
 
 def get_validated_input(prompt, input_type=float, check_non_zero=False):

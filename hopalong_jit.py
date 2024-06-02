@@ -25,6 +25,7 @@ def hopalong_compute(num, a, b, c):
 
 
 def hopalong_plot(u, v, a, b, c, image_size):
+
     min_x, max_x = np.min(u), np.max(u)
     min_y, max_y = np.min(v), np.max(v)
 

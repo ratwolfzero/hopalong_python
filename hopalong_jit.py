@@ -1,8 +1,10 @@
-from numba import jit
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
+from numba import jit
 import matplotlib
 matplotlib.use('TkAgg')
+
+
 # Use TKAgg or Qt5Agg for MacOs to avoid crash of plot window during interaction
 
 image_size = 8000, 8000
@@ -10,10 +12,12 @@ image_size = 8000, 8000
 
 @jit(nopython=True)
 def hopalong_compute(num, a, b, c):
+
     points = np.empty((num, 2), dtype=np.float64)
     x, y = 0.0, 0.0
 
     for i in range(num):
+
         points[i] = x, y
         xx, yy = y - np.sign(x) * np.sqrt(abs(b * x - c)), a - x
         x, y = xx, yy
@@ -39,6 +43,8 @@ def hopalong_plot(u, v, a, b, c, image_size):
               a}, b={b}, c={c}, num={(f"{num:_}")}")
     plt.show()
 
+# call seperated hopalong functions
+
 
 def hopalong(num, a, b, c, image_size):
     points = hopalong_compute(num, a, b, c)
@@ -46,7 +52,7 @@ def hopalong(num, a, b, c, image_size):
 
 
 print("Input the parameters a, b, c (e.g., -1.7 -0.3 0.7) and the number of iterations num (e.g., 1000000 or 1_000_000)")
-# recommandation: use a maximum of 100_000_000 iterations to avoid memory overflow respectively memory swap! (8 GByte RAM)
+# recommandation: use a maximum pf 100_000_000 iterations to avoid memory overflow respectively memory swap! (8 GByte RAM)
 
 
 def get_validated_input(prompt, input_type=float, check_non_zero=False):

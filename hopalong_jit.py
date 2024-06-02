@@ -42,8 +42,6 @@ def hopalong_plot(u, v, a, b, c, image_size):
               a}, b={b}, c={c}, num={(f"{num:_}")}")
     plt.show()
 
-# call seperated hopalong functions
-
 
 def hopalong(num, a, b, c, image_size):
     points = hopalong_compute(num, a, b, c)

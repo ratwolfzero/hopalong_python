@@ -13,7 +13,7 @@ image_size = 8000, 8000
 @jit(nopython=True)
 def hopalong_compute(num, a, b, c):
 
-    points = np.empty((num, 2), dtype=np.float64)
+    points = np.empty((num, 2), dtype=np.float32)
     x, y = 0.0, 0.0
 
     for i in range(num):
@@ -32,8 +32,8 @@ def hopalong_plot(u, v, a, b, c, image_size):
     img_width, img_height = image_size
     img = np.empty((img_height, img_width))
 
-    px = ((u - min_x) / (max_x - min_x) * (img_width - 1)).astype(np.int64)
-    py = ((v - min_y) / (min_y - max_y) * (img_height - 1)).astype(np.int64)
+    px = ((u - min_x) / (max_x - min_x) * (img_width - 1)).astype(np.int16)
+    py = ((v - min_y) / (min_y - max_y) * (img_height - 1)).astype(np.int16)
 
     img[py, px] = 1
 

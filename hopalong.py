@@ -4,7 +4,7 @@ import matplotlib
 matplotlib.use('TkAgg')
 
 
-image_size = 8001, 8001
+image_size = 8000, 8000
 
 
 def hopalong(num, a, b, c, image_size):

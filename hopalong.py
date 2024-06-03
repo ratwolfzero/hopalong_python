@@ -1,14 +1,15 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import matplotlib;matplotlib.use('TkAgg')
-#TKAgg at least required for MacOS and apple silicon chip to avoid crash of plot window during interaction
+import matplotlib
+matplotlib.use('TkAgg')
+
 
 image_size = 8001, 8001
 
 
 def hopalong(num, a, b, c, image_size):
     x, y = np.float64(0), np.float64(0)
-    u, v = np.zeros(num,dtype=np.float64), np.zeros(num,dtype=np.float64)
+    u, v = np.zeros(num, dtype=np.float64), np.zeros(num, dtype=np.float64)
 
     for i in range(num):
         u[i], v[i] = x, y
@@ -38,7 +39,8 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False):
         try:
             value = input_type(user_input)
         except ValueError:
-            print(f"Invalid input. Please enter a valid {input_type.__name__} value.")
+            print(f"Invalid input. Please enter a valid {
+                  input_type.__name__} value.")
             continue
 
         if check_non_zero and value == 0:
@@ -47,7 +49,8 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False):
             return value
 
 
-a = get_validated_input('Enter a non-zero float value for "a": ', float, check_non_zero=True)
+a = get_validated_input(
+    'Enter a non-zero float value for "a": ', float, check_non_zero=True)
 b = get_validated_input('Enter a float value for "b": ', float)
 c = get_validated_input('Enter a float value for "c": ', float)
 num = get_validated_input('Enter an integer value for "num": ', int)

@@ -19,5 +19,6 @@ The ".py" version is Considerable slower than my Rust version. If speed is essen
 
 The programm will ask for the parameters a, b, c and num (number of iterations). Num must be entered as integer 1000000 or 1_000_000. 
 The parameters a, b and c can be entered in floating point or integer format.
+'a' must be a non-zero value
 
 

@@ -8,22 +8,25 @@ image_size = 8000, 8000
 
 
 def hopalong(num, a, b, c, image_size):
-    x, y = np.float64(0), np.float64(0)
-    u, v = np.zeros(num, dtype=np.float64), np.zeros(num, dtype=np.float64)
+    x, y = 0.0, 0.0
+
+    points = np.empty((num, 2), dtype=np.float32)
+    x, y = 0.0, 0.0
 
     for i in range(num):
-        u[i], v[i] = x, y
+
+        points[i] = x, y
         xx, yy = y - np.sign(x) * np.sqrt(abs(b * x - c)), a - x
         x, y = xx, yy
-
-    min_x, max_x = np.min(u), np.max(u)
-    min_y, max_y = np.min(v), np.max(v)
+    
+    min_x, max_x = np.min(points[:, 0]), np.max(points[:, 0])
+    min_y, max_y = np.min(points[:, 1]), np.max(points[:, 1])
 
     img_width, img_height = image_size
-    img = np.zeros((img_height, img_width))
+    img = np.empty((img_height, img_width), dtype=np.int16)
 
-    px = ((u - min_x) / (max_x - min_x) * (img_width-1)).astype(np.int64)
-    py = ((v - min_y) / (min_y - max_y) * (img_height-1)).astype(np.int64)
+    px = ((points[:, 0] - min_x) / (max_x - min_x) * (img_width - 1)).astype(np.int16)
+    py = ((points[:, 1] - min_y) / (min_y - max_y) * (img_height - 1)).astype(np.int16)
 
     img[py, px] = 1
 

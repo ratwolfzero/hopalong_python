@@ -10,7 +10,7 @@ image_size = 10000, 10000
 @jit(nopython=True)
 def hopalong_compute(num, a, b, c):
 
-    points = np.empty((num, 2), dtype=np.float32)
+    points = np.empty((num, 2), dtype=np.float64)
     x, y = 0.0, 0.0
 
     for i in range(num):

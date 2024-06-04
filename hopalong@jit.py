@@ -64,7 +64,7 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False, check_nu
             print("Invalid input. The value cannot be zero.")
 
         if check_num and value < 1_000_000:
-            print("Invalid input. The value for num should be at least 1_000_000.")
+            print("inappropriate input. The value for num should be at least 1_000_000.")
         else:
             return value
 

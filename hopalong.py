@@ -36,7 +36,7 @@ def hopalong(num, a, b, c, image_size):
     plt.show()
 
 
-def get_validated_input(prompt, input_type=float, check_non_zero=False):
+def get_validated_input(prompt, input_type=float, check_non_zero=False, check_num=False):
     while True:
         user_input = input(prompt)
         try:
@@ -48,6 +48,9 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False):
 
         if check_non_zero and value == 0:
             print("Invalid input. The value cannot be zero.")
+
+        if check_num and value < 1_000_000:
+            print("Invalid input. The value for num should be at least 1_000_000.")
         else:
             return value
 

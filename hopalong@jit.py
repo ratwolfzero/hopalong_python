@@ -10,7 +10,7 @@ image_size = 10000, 10000
 @jit(nopython=True)
 def hopalong_compute(num, a, b, c):
 
-    points = np.empty((num, 2), dtype=np.float64)
+    points = np.empty((num, 2), dtype=np.float32)
     x, y = 0.0, 0.0
 
     for i in range(num):
@@ -35,7 +35,7 @@ def hopalong_plot(u, v, a, b, c, image_size):
 
     img[py, px] = 1
 
-    plt.figure(figsize=(8, 8))
+    plt.figure(figsize=(10, 10))
     plt.imshow(img, cmap='inferno')
     plt.title(f"Hopalong Attractor\nParams: a={
         a}, b={b}, c={c}, num={(f"{num:_}")}")

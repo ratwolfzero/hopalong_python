@@ -4,8 +4,6 @@ from numba import jit
 import matplotlib
 matplotlib.use('TkAgg')
 
-image_size = 10000, 10000
-
 
 @jit(nopython=True)
 def hopalong_compute(num, a, b, c):
@@ -22,7 +20,7 @@ def hopalong_compute(num, a, b, c):
     return points
 
 
-def hopalong_plot(u, v, a, b, c, image_size):
+def hopalong_plot(u, v, a, b, c, num, image_size):
 
     min_x, max_x = np.min(u), np.max(u)
     min_y, max_y = np.min(v), np.max(v)
@@ -44,7 +42,7 @@ def hopalong_plot(u, v, a, b, c, image_size):
 
 def hopalong(num, a, b, c, image_size):
     points = hopalong_compute(num, a, b, c)
-    hopalong_plot(points[:, 0], points[:, 1], a, b, c, image_size)
+    hopalong_plot(points[:, 0], points[:, 1], a, b, c, num, image_size)
 
 
 def get_validated_input(prompt, input_type=float, check_non_zero=False, check_num=False):
@@ -66,11 +64,17 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False, check_nu
             return value
 
 
-a = get_validated_input(
-    'Enter a non-zero float value for "a": ', float, check_non_zero=True)
-b = get_validated_input('Enter a float value for "b": ', float)
-c = get_validated_input('Enter a float value for "c": ', float)
-num = get_validated_input(
-    'Enter an integer value for "num": ', int, check_num=True)
+def main():
+    image_size = 10000, 10000
+    a = get_validated_input(
+        'Enter a non-zero float value for "a": ', float, check_non_zero=True)
+    b = get_validated_input('Enter a float value for "b": ', float)
+    c = get_validated_input('Enter a float value for "c": ', float)
+    num = get_validated_input(
+        'Enter an integer value for "num": ', int, check_num=True)
 
-hopalong(num, a, b, c, image_size)
+    hopalong(num, a, b, c, image_size)
+
+
+if __name__ == "__main__":
+    main()

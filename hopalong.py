@@ -18,15 +18,17 @@ def hopalong(num, a, b, c, image_size):
         points[i] = x, y
         xx, yy = y - np.sign(x) * np.sqrt(abs(b * x - c)), a - x
         x, y = xx, yy
-    
+
     min_x, max_x = np.min(points[:, 0]), np.max(points[:, 0])
     min_y, max_y = np.min(points[:, 1]), np.max(points[:, 1])
 
     img_width, img_height = image_size
     img = np.empty((img_height, img_width), dtype=np.int16)
 
-    px = ((points[:, 0] - min_x) / (max_x - min_x) * (img_width - 1)).astype(np.int16)
-    py = ((points[:, 1] - min_y) / (min_y - max_y) * (img_height - 1)).astype(np.int16)
+    px = ((points[:, 0] - min_x) / (max_x - min_x)
+          * (img_width - 1)).astype(np.int16)
+    py = ((points[:, 1] - min_y) / (min_y - max_y)
+          * (img_height - 1)).astype(np.int16)
 
     img[py, px] = 1
 

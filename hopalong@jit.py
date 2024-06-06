@@ -47,9 +47,6 @@ def hopalong(num, a, b, c, image_size):
     hopalong_plot(points[:, 0], points[:, 1], a, b, c, image_size)
 
 
-print("Input the parameters a, b, c (e.g., -1.7 -0.3 0.7) and the number of iterations num (e.g., 1000000 or 1_000_000)")
-
-
 def get_validated_input(prompt, input_type=float, check_non_zero=False, check_num=False):
     while True:
         user_input = input(prompt)
@@ -73,6 +70,7 @@ a = get_validated_input(
     'Enter a non-zero float value for "a": ', float, check_non_zero=True)
 b = get_validated_input('Enter a float value for "b": ', float)
 c = get_validated_input('Enter a float value for "c": ', float)
-num = get_validated_input('Enter an integer value for "num": ', int,check_num=True)
+num = get_validated_input(
+    'Enter an integer value for "num": ', int, check_num=True)
 
 hopalong(num, a, b, c, image_size)

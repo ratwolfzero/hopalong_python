@@ -4,7 +4,7 @@ import matplotlib
 matplotlib.use('TkAgg')
 
 
-image_size = 8000, 8000
+#image_size = 8000, 8000
 
 
 def hopalong(num, a, b, c, image_size):
@@ -56,11 +56,15 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False, check_nu
         else:
             return value
 
-
-a = get_validated_input(
+def main():
+    image_size = 10000, 10000
+    a = get_validated_input(
     'Enter a non-zero float value for "a": ', float, check_non_zero=True)
-b = get_validated_input('Enter a float value for "b": ', float)
-c = get_validated_input('Enter a float value for "c": ', float)
-num = get_validated_input('Enter an integer value for "num": ', int)
+    b = get_validated_input('Enter a float value for "b": ', float)
+    c = get_validated_input('Enter a float value for "c": ', float)
+    num = get_validated_input('Enter an integer value for "num": ', int)
 
-hopalong(num, a, b, c, image_size)
+    hopalong(num, a, b, c, image_size)
+
+if __name__ == "__main__":
+    main()

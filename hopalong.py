@@ -31,7 +31,8 @@ def hopalong(num, a, b, c, image_size):
 
     plt.figure(figsize=(8, 8))
     plt.imshow(img, cmap='inferno')
-    plt.title(f"Hopalong Attractor\nParams: a={a}, b={b}, c={c}, num={num}")
+    plt.title(f"Hopalong Attractor\nParams: a={
+        a}, b={b}, c={c}, num={(f"{num:_}")}")
     plt.show()
 
 

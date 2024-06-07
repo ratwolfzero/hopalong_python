@@ -15,7 +15,7 @@ Remark: With MacOs 14.x I had issues. The plot window and python crashed during 
 # matplotlib.use('TkAgg')
 
 The ".py" version is considerable slower than my Rust version. If speed is essential use the "@jit" version!!!
-@jit is used to compile the iterative calculation loop for the fractal. As @jit is not compatible with matplotlib the function hopalong has been splitted in the calculation and plotting part. However, the plot function is optimized by vectorization without a loop and @jit would not contribute significantly to the execution speed.
+@jit is used to compile the iterative calculation loop for the fractal. As @jit is not compatible with matplotlib the function hopalong has been splitted into the calculation and plotting part. However, the plot function is optimized by vectorization without a loop and @jit would not contribute significantly to the execution speed.
 
 Using @jit for the calculation loop is a revelation in terms of speed...
 

@@ -6,7 +6,7 @@ The inventor of Hopalong is Barry Martin from Aston University in Birmingham/Eng
 This Python program can calculate and display the “Hopalong” attractor
 
 You can run the Python script from the terminal --> e.g.
-python3 /path/to/my/file/hopalong.py or /hopalong@jit.py
+python3 /path/to/my/file/hopalong.py or python3 /path/to/my/file/hopalong@jit.py
 
 Requires the installation of numpy and matplotlib or numba for the @jit version.
 

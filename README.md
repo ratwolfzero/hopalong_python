@@ -1,26 +1,30 @@
 # hopalong_python
 Calculate and display the "Hopalong" attractor
 
-Hopalong attractors are fractals introduced by Barry Martin of Aston University in Birmingham, England.
-This program can calculate and display the "Hopalong attractor"
+Calculate and display the “Hopalong” attractor
 
-You can run the python script from the terminal --> python3 /path/to/my/file/hopalong.py
+The inventor of Hopalong is Barry Martin from Aston University in Birmingham/England. A. K. Dewdney described these fractals in September 1986 in the magazine Scientific American and made them famous. The German edition Spektrum der Wissenschaft distributed Hopalong in Germany in the November 1986 issue with a translation of this article in the Computer-Kurzweil section. “Hüpfer” is the German name for Hopalong (hop-along, keep hopping).
 
-Requires numpy and matplotlib respectively numba for the @jit version to be installed. 
+This Python program can calculate and display the “Hopalong” attractor
 
-Remark: With MacOs 14.x I had issues. The plot window and python crashed during interaction with the plot window.
-        Using the specific Backend TkAgg works perfect for me. Should not be needed for other operating systems.
+You can run the Python script from the terminal --> e.g.
+python3 /path/to/my/file/hopalong.py or hopalong@jit.py
 
-# import matplotlib
-# matplotlib.use('TkAgg')
+Requires the installation of numpy and matplotlib or numba for the @jit version.
 
-The ".py" version is considerable slower than my Rust version. If speed is essential use the "@jit" version!!!
-@jit is used to compile the iterative calculation loop for the fractal. As @jit is not compatible with matplotlib the function hopalong has been splitted into the calculation and plotting part. However, the plot function is optimized by vectorization without a loop and @jit would not contribute significantly to the execution speed.
+Note: I had problems with MacOs 14.x and Python 3.12.x. The plot window and Python crashed while interacting with the plot window. Using the special backend TkAgg works perfectly for me. Shouldn't normally be necessary for other operating systems.
+
+"# import matplotlib"
+"# matplotlib.use('TkAgg')"
+
+The ".hopalong.py" version is significantly slower than my Rust version. If speed is important, use the "@jit" version!!!
+
+@jit is used to compile the iterative calculation loop for the fractal. Since @jit is not compatible with matplotlib, the hopalong function was split into the calculation and plotting parts. However, the plotting function is optimized by vectorization without a loop and @jit would not significantly contribute to the execution speed.
 
 Using @jit for the calculation loop is a revelation in terms of speed...
 
-The programm will ask for the parameters a, b, c and num (number of iterations). Num must be entered as integer 1000000 or 1_000_000. 
-The parameters a, b and c can be entered in floating point or integer format.
-'a' must be a non-zero value
+The program asks for the parameters a, b, c and num (number of iterations). Num must be entered as an integer 1000000 or 1_000_000. The parameters a, b and c can be entered in floating point or integer format. 'a' must be a non-zero value.
 
+Since I am working with a MacMini with 8 GB RAM, I tried to optimize the memory usage by using np.empty, float32 and int16, since with a number of iterations > 100_00_000 the execution speed is significantly slowed down by swapping memory to the hard disk (swap RAM >> SSD).
+Initializing the vectors as np.empty should not be a problem, since all elements of the vectors should be overwritten and no random values ​​should remain. Float64 should theoretically be faster on a 64-bit machine, but I think it is negligible and as described, float32 is a bit more economical with memory. Ditto Int16. Float32 and Int16 should be sufficient in terms of code robustness, but you can also try float64, int32 or np.zero for vector initialization if you like.
 

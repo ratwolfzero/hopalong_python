@@ -20,29 +20,32 @@ def hopalong_compute(num, a, b, c):
     return points
 
 
-def hopalong_plot(u, v, a, b, c, num, image_size):
-
-    min_x, max_x = np.min(u), np.max(u)
-    min_y, max_y = np.min(v), np.max(v)
+def hopalong_plot(points, a, b, c, num, image_size):
+    min_x, max_x = np.min(points[:, 0]), np.max(points[:, 0])
+    min_y, max_y = np.min(points[:, 1]), np.max(points[:, 1])
 
     img_width, img_height = image_size
     img = np.empty((img_height, img_width), dtype=np.int16)
 
-    px = ((u - min_x) / (max_x - min_x) * (img_width - 1)).astype(np.int16)
-    py = ((v - min_y) / (min_y - max_y) * (img_height - 1)).astype(np.int16)
+    px = ((points[:, 0] - min_x) / (max_x - min_x)
+          * (img_width - 1)).astype(np.int16)
+    py = ((points[:, 1] - min_y) / (min_y - max_y)
+          * (img_height - 1)).astype(np.int16)
 
     img[py, px] = 1
 
     plt.figure(figsize=(10, 10))
     plt.imshow(img, cmap='inferno')
-    plt.title(f"Hopalong Attractor@ratwolf2024\nParams: a={
-        a}, b={b}, c={c}, num={(f"{num:_}")}")
+    plt.title(
+        f"Hopalong Attractor@ratwolf2024\nParams: a={a}, b={b}, c={c}, num={num:,}")
     plt.show()
 
 
 def hopalong(num, a, b, c, image_size):
     points = hopalong_compute(num, a, b, c)
-    hopalong_plot(points[:, 0], points[:, 1], a, b, c, num, image_size)
+    # Note: The points variable in the hopalong_compute function and the points variable in the hopalong function are different local variables. 
+    # They exist in different scopes and have their own lifetimes!
+    hopalong_plot(points, a, b, c, num, image_size)
 
 
 def get_validated_input(prompt, input_type=float, check_non_zero=False, check_num=False):

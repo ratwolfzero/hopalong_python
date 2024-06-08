@@ -21,7 +21,7 @@ The ".hopalong.py" version is significantly slower than my Rust version. If spee
 
 Using @jit for the calculation loop is a revelation in terms of speed...
 
-The program asks for the parameters a, b, c and num (number of iterations). Num must be entered as an integer 1000000 or 1_000_000. The parameters a, b and c can be entered in floating point or integer format. 'a' must be a non-zero value.
+The program asks for the parameters a, b, c and num (number of iterations). Num must be entered as an integer 1000000 or 1_000_000. The parameters a, b and c can be entered in floating point or integer format. 'a' must be a non-zero value to avoid division by zero during normalization of pixel data. You can enter a very small value e.g. 1e-10 instead.
 
 Since I am working with a MacMini with 8 GB RAM, I tried to optimize the memory usage by using np.empty, float32 and int16, since with a number of iterations > 100_000_000 the execution speed is significantly slowed down by swapping memory to the hard disk (swap RAM >> SSD).
 Initializing the vectors as np.empty should not be a problem, since all elements of the vectors should be overwritten and no random values ​​should remain. Float64 should theoretically be faster on a 64-bit machine, but I think it is negligible and as described, float32 is a bit more economical with memory. Ditto Int16. Float32 and Int16 should be sufficient in terms of code robustness, but you can also try float64, int32 or np.zero for vector initialization if you like.

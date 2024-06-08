@@ -50,7 +50,7 @@ def hopalong(num, a, b, c, image_size):
     # This function is split into compute and plot parts because the @jit
     # decorator does not support the plotting operations.
 
-    # The points variable in the hopalong_compute function and the points variable in the hopalong function are different local variables.
+    # The points variables in the functions "hopalong_compute" and "hopalong" are different local variables.
     # They exist in different scopes and have their own lifetimes!
     points = hopalong_compute(num, a, b, c).astype(np.float32)
     hopalong_plot(points, a, b, c, num, image_size)

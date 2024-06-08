@@ -1,8 +1,6 @@
 # hopalong_python
 Calculate and display the "Hopalong" attractor
 
-Calculate and display the “Hopalong” attractor
-
 The inventor of Hopalong is Barry Martin from Aston University in Birmingham/England. A. K. Dewdney described these fractals in September 1986 in the magazine Scientific American and made them famous. The German edition Spektrum der Wissenschaft distributed Hopalong in Germany in the November 1986 issue with a translation of this article in the Computer-Kurzweil section. “Hüpfer” is the German name for Hopalong (hop-along, keep hopping).
 
 This Python program can calculate and display the “Hopalong” attractor

@@ -42,9 +42,9 @@ def hopalong_plot(points, a, b, c, num, image_size):
 
 
 def hopalong(num, a, b, c, image_size):
-    points = hopalong_compute(num, a, b, c)
-    # Note: The points variable in the hopalong_compute function and the points variable in the hopalong function are different local variables. 
-    # They exist in different scopes and have their own lifetimes!
+    points = hopalong_compute(num, a, b, c)   
+    #Note: The points variable in the hopalong_compute function and the points variable in the hopalong function are different local variables. 
+    #They exist in different scopes and have their own lifetimes!
     hopalong_plot(points, a, b, c, num, image_size)
 
 

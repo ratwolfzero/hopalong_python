@@ -9,7 +9,7 @@ matplotlib.use('TkAgg')
 
 @jit(nopython=True)
 def hopalong_compute(num, a, b, c):
-   # Computes the points for the Hopalong attractor. 
+   # Computes the points for the Hopalong attractor.
     points = np.empty((num, 2), dtype=np.float32)
     x, y = 0.0, 0.0
 

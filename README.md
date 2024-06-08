@@ -10,7 +10,7 @@ python3 /path/to/my/file/hopalong.py
 
 Requires the installation of numpy and matplotlib or numba for the @jit version.
 
-Note: I had problems with MacOs 14.x and Python 3.12.x. The plot window and Python crashed while interacting with the plot window. Using the special backend TkAgg works perfectly for me. Shouldn't normally be necessary for other operating systems.
+Note: I had problems with MacOs 14.x and Python 3.12.x. The plot window and Python crashed while interacting with the plot window. Using the specific backend TkAgg works perfectly for me. Shouldn't be necessary for other operating systems.
 
 "# import matplotlib"
 "# matplotlib.use('TkAgg')"

@@ -1,12 +1,14 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from numba import jit
+
+# Use TkAgg backend for matplotlib
 import matplotlib
 matplotlib.use('TkAgg')
 
 
 def hopalong(num, a, b, c, image_size):
-    x, y = 0.0, 0.0
-
+    # Computes and plot the points for the Hopalong attractor.
     points = np.empty((num, 2), dtype=np.float32)
     x, y = 0.0, 0.0
 
@@ -30,32 +32,33 @@ def hopalong(num, a, b, c, image_size):
     img[py, px] = 1
 
     plt.figure(figsize=(8, 8))
-    plt.imshow(img, cmap='inferno')
-    plt.title(f"Hopalong Attractor\nParams: a={
-        a}, b={b}, c={c}, num={(f"{num:_}")}")
+    plt.imshow(img, cmap='inferno', extent=[min_x, max_x, min_y, max_y])
+    plt.title(
+        f"Hopalong Attractor@ratwolf2024\nParams: a={a}, b={b}, c={c}, num={num:,}")
     plt.show()
 
 
 def get_validated_input(prompt, input_type=float, check_non_zero=False, check_num=False):
+    # Prompts the user for input and validates it.
     while True:
         user_input = input(prompt)
         try:
             value = input_type(user_input)
+            if check_non_zero and value == 0:
+                print("Invalid input. The value cannot be zero.")
+                continue
+            if check_num and value < 1_000_000:
+                print(
+                    "Inappropriate input. The value for num should be at least 1,000,000.")
+                continue
+            return value
         except ValueError:
             print(f"Invalid input. Please enter a valid {
                   input_type.__name__} value.")
-            continue
-
-        if check_non_zero and value == 0:
-            print("Invalid input. The value cannot be zero.")
-
-        if check_num and value < 1_000_000:
-            print("inappropriate input. The value for num should be at least 1_000_000.")
-        else:
-            return value
 
 
 def main():
+    # Main function to run the Hopalong attractor generation and plotting.
     image_size = 10000, 10000
     a = get_validated_input(
         'Enter a non-zero float value for "a": ', float, check_non_zero=True)

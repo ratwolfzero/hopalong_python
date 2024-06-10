@@ -58,7 +58,7 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False, check_nu
 
 
 def main():
-    # Main function to run the Hopalong attractor generation and plotting.
+    # Main function to run the Hopalong attractor generation.
     image_size = 10000, 10000
     a = get_validated_input(
         'Enter a non-zero float value for "a": ', float, check_non_zero=True)

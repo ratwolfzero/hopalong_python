@@ -32,7 +32,7 @@ def hopalong_plot(points, a, b, c, num, image_size):
 
     px = ((points[:, 0] - min_x) / (max_x - min_x)
           * (img_width - 1)).astype(np.int16)
-    py = ((points[:, 1] - min_y) / (min_y - max_y)
+    py = ((points[:, 1] - min_y) / (max_y - min_y)
           * (img_height - 1)).astype(np.int16)
 
     img[py, px] = 1

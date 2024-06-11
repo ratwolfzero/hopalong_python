@@ -29,7 +29,7 @@ Of course you can experiment with different colormaps (cmap) but for the advance
 
 Have fun.
 
-Idea for statistics: Histogram to display How many pixels have been hit how many times? 0 = no hit
+Idea for statistics (advanced version): Histogram for pixel density (hits)
 
     ...
 

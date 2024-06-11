@@ -29,5 +29,19 @@ Of course you can experiment with different colormaps (cmap) but for the advance
 
 Have fun.
 
+Idea for statistics: Histogram to display How many pixels have been hit how many times? 0 = no hit
+
+    ...
+
+    plt.title(
+        f"Hopalong Attractor@ratwolf2024\nParams: a={a}, b={b}, c={c}, num={num:_}")
+    ------------------------------------------------------
+    uniques, counts = np.unique(img, return_counts=True)
+    plt.figure(figsize=(10, 10))
+    plt.bar(uniques, counts, log=True)
+    ------------------------------------------------------
+    plt.show()
+
+    ...
 
 

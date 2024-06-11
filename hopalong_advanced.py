@@ -24,7 +24,7 @@ def hopalong_compute(num, a, b, c):
 
 @jit(nopython=True)
 def pixels_and_hit_count(img, px, py):
-    #track the pixel density
+    #track the pixel density (used for color sheme cmap)
     for px_i, py_i in zip(px, py):
         img[py_i, px_i] += 1
     return img

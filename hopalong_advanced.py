@@ -65,7 +65,7 @@ def hopalong(num, a, b, c, image_size):
     hopalong_plot(points, a, b, c, num, image_size)
 
 
-def get_validated_input(prompt, input_type=float, check_non_zero=False, check_num=False):
+def get_validated_input(prompt, input_type=float, check_non_zero=False):
     # Prompts the user for input and validates it.
     while True:
         user_input = input(prompt)
@@ -73,10 +73,6 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False, check_nu
             value = input_type(user_input)
             if check_non_zero and value == 0:
                 print("Invalid input. The value cannot be zero.")
-                continue
-            if check_num and value < 10_000:
-                print(
-                    "Inappropriate input. The value for num should be at least 10_000.")
                 continue
             return value
         except ValueError:
@@ -92,7 +88,7 @@ def main():
     b = get_validated_input('Enter a float value for "b": ', float)
     c = get_validated_input('Enter a float value for "c": ', float)
     num = get_validated_input(
-        'Enter an integer value for "num": ', int, check_num=True)
+        'Enter an integer value for "num": ')
 
     hopalong(num, a, b, c, image_size)
 

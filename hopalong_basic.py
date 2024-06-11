@@ -26,7 +26,7 @@ def hopalong(num, a, b, c, image_size):
 
     px = ((points[:, 0] - min_x) / (max_x - min_x)
           * (img_width - 1)).astype(np.int16)
-    py = ((points[:, 1] - min_y) / (min_y - max_y)
+    py = ((points[:, 1] - min_y) / (max_y - min_y)
           * (img_height - 1)).astype(np.int16)
 
     img[py, px] = 1
@@ -38,7 +38,7 @@ def hopalong(num, a, b, c, image_size):
     plt.show()
 
 
-def get_validated_input(prompt, input_type=float, check_non_zero=False, check_num=False):
+def get_validated_input(prompt, input_type=float, check_non_zero=False):
     # Prompts the user for input and validates it.
     while True:
         user_input = input(prompt)
@@ -46,10 +46,6 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False, check_nu
             value = input_type(user_input)
             if check_non_zero and value == 0:
                 print("Invalid input. The value cannot be zero.")
-                continue
-            if check_num and value < 1_000_000:
-                print(
-                    "Inappropriate input. The value for num should be at least 1,000,000.")
                 continue
             return value
         except ValueError:
@@ -59,7 +55,7 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False, check_nu
 
 def main():
     # Main function to run the Hopalong attractor generation.
-    image_size = 10000, 10000
+    image_size = 1000, 1000
     a = get_validated_input(
         'Enter a non-zero float value for "a": ', float, check_non_zero=True)
     b = get_validated_input('Enter a float value for "b": ', float)

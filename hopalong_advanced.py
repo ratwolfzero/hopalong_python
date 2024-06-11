@@ -10,13 +10,13 @@ matplotlib.use('TkAgg')
 @jit(nopython=True)
 def hopalong_compute(num, a, b, c):
    # Computes the points for the Hopalong attractor.
-    points = np.empty((num, 2), dtype=np.float32)
+    points = np.empty((num, 2), dtype=np.float64)
     x, y = 0.0, 0.0
 
     for i in range(num):
 
         points[i] = x, y
-        xx, yy = y-np.sign(x)*np.sqrt(abs(b*x-c)), a-x
+        xx, yy = y - np.sign(x) * np.sqrt(abs(b * x -c )), a - x
         x, y = xx, yy
 
     return points
@@ -55,12 +55,6 @@ def hopalong_plot(points, a, b, c, num, image_size):
 
 def hopalong(num, a, b, c, image_size):
     # Computes and plots the Hopalong attractor.
-
-    # This function is split into compute and plot parts because the @jit
-    # decorator does not support the plotting operations.
-
-    # The points variables in the functions "hopalong_compute" and "hopalong" are different local variables.
-    # They exist in different scopes and have their own lifetimes!
     points = hopalong_compute(num, a, b, c).astype(np.float32)
     hopalong_plot(points, a, b, c, num, image_size)
 
@@ -83,12 +77,13 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False):
 def main():
    # Main function to run the Hopalong attractor generation.
     image_size = 1000, 1000
+    
     a = get_validated_input(
         'Enter a non-zero float value for "a": ', float, check_non_zero=True)
     b = get_validated_input('Enter a float value for "b": ', float)
     c = get_validated_input('Enter a float value for "c": ', float)
     num = get_validated_input(
-        'Enter an integer value for "num": ')
+        'Enter an integer value for "num": ',int)
 
     hopalong(num, a, b, c, image_size)
 

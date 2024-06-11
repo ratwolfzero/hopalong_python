@@ -16,7 +16,7 @@ def hopalong_compute(num, a, b, c):
     for i in range(num):
 
         points[i] = x, y
-        xx, yy = y - np.sign(x) * np.sqrt(abs(b * x -c )), a - x
+        xx, yy = y - np.sign(x) * np.sqrt(abs(b * x - c)), a - x
         x, y = xx, yy
 
     return points
@@ -24,7 +24,7 @@ def hopalong_compute(num, a, b, c):
 
 @jit(nopython=True)
 def pixels_and_hit_count(img, px, py):
-    #set pixels and track their density (used for color sheme cmap)
+    # set pixels and track their density (used for color sheme cmap)
     for px_i, py_i in zip(px, py):
         img[py_i, px_i] += 1
     return img
@@ -37,7 +37,7 @@ def hopalong_plot(points, a, b, c, num, image_size):
 
     img_width, img_height = image_size
     img = np.zeros((img_height, img_width), dtype=np.int64)
-    
+
     px = ((points[:, 0] - min_x) / (max_x - min_x)
           * (img_width - 1)).astype(np.int64)
     py = ((points[:, 1] - min_y) / (max_y - min_y)
@@ -77,13 +77,13 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False):
 def main():
    # Main function to run the Hopalong attractor generation.
     image_size = 1000, 1000
-    
+
     a = get_validated_input(
         'Enter a non-zero float value for "a": ', float, check_non_zero=True)
     b = get_validated_input('Enter a float value for "b": ', float)
     c = get_validated_input('Enter a float value for "c": ', float)
     num = get_validated_input(
-        'Enter an integer value for "num": ',int)
+        'Enter an integer value for "num": ', int)
 
     hopalong(num, a, b, c, image_size)
 

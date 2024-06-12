@@ -60,7 +60,7 @@ def hopalong_plot(points, a, b, c, num, image_size):
     
     plt.yscale('log')
     #plt.xscale('log')
-    plt.xlim(left=0) 
+    plt.xlim(left=1) 
     plt.ylim(bottom=1) 
 
     plt.show()

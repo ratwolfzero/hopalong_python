@@ -29,7 +29,7 @@ Of course you can experiment with different colormaps (cmap) but for the advance
 
 Have fun.
 
-Idea for statistics (advanced version): Histogram for pixel density
+Idea for statistics (advanced version): Bar graph for pixel hit count
 
     ...
 

@@ -36,9 +36,9 @@ Idea for statistics (advanced version): Bar graph for pixel hit count
     plt.title(
         f"Hopalong Attractor@ratwolf2024\nParams: a={a}, b={b}, c={c}, num={num:_}")
     ------------------------------------------------------
-    uniques, counts = np.unique(img, return_counts=True)
-    plt.figure(figsize=(10, 10))
-    plt.bar(uniques, counts, log=True)
+    uniques, counts = np.unique(img[img!=0], return_counts=True)
+    plt.figure(figsize=(12, 8))
+    plt.bar(uniques, counts, color='red')
     ------------------------------------------------------
     plt.show()
 

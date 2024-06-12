@@ -55,11 +55,11 @@ def hopalong_plot(points, a, b, c, num, image_size):
     plt.figure(figsize=(12, 8))
     plt.xlabel('number of hits (n)',fontsize=14)
     plt.ylabel('number of pixels hit n-times',fontsize=14)
-    plt.title('Distribution of pixel hit count',fontsize=18)
+    plt.title('Distribution of pixel hit count',fontsize=16)
     plt.bar(uniques, counts, color='red')
     
     plt.yscale('log')
-    plt.xlim(left=1) 
+    plt.xlim(left=0) 
     plt.ylim(bottom=1) 
 
     plt.show()

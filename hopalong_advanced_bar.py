@@ -53,7 +53,7 @@ def hopalong_plot(points, a, b, c, num, image_size):
     
     uniques, counts = np.unique(img[img!=0], return_counts=True)
     plt.figure(figsize=(12, 8))
-    plt.xlabel('number of hits (n',fontsize=14)
+    plt.xlabel('number of hits (n)',fontsize=14)
     plt.ylabel('number of pixels hit n-times',fontsize=14)
     plt.title('Distribution of pixel hit count',fontsize=18)
     plt.bar(uniques, counts, color='red')

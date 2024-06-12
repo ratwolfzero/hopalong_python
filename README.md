@@ -15,9 +15,9 @@ Note: I had problems with MacOs 14.x and Python 3.12.x. The plot window and Pyth
 "# import matplotlib"
 "# matplotlib.use('TkAgg')"
 
-There are 2 versions of the programm basic and advanced. The basic version is quite slow.
+There are 3 versions of the programm basic, advanced and advanced with statistics about hit count . The basic version is quite slow.
 
-In the advanced version @jit is used to compile the calculation for the hopalong attractor and the routine to set the pixels and their density (hit count) which is used for the color sheme in this case.
+In the advanced version @jit is used to compile the calculation for the hopalong attractor and the routine to set the pixels and their intensity (hit count) which is used for the color sheme in this case.
 
 Using @jit is a revelation in terms of speed...
 

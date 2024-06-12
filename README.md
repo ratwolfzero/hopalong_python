@@ -17,7 +17,7 @@ Note: I had problems with MacOs 14.x and Python 3.12.x. The plot window and Pyth
 
 There are 3 versions of the programm basic, advanced and advanced with statistics about hit count . The basic version is quite slow.
 
-In the advanced version @jit is used to compile the calculation for the hopalong attractor and the routine to set the pixels and their intensity (hit count) which is used for the color sheme in this case.
+In the advanced version @jit is used to compile the calculation for the hopalong attractor and the routine to set the pixels and their intensity (hit count) which is used for the colormap in this case.
 
 Using @jit is a revelation in terms of speed...
 
@@ -25,7 +25,7 @@ The program asks for the parameters a, b, c and num (number of iterations). Num 
 
 If you select a very high value for 'num' ,the number of iterations, then the performance might decrease additionally due to memory swap use (RAM>>SSD). To compensate this float32 was selected as data type for the pixel-array. Anyway 100_000_000 iterations are still easy with the advanced version.
 
-Of course you can experiment with different colormaps (cmap) but for the advanced version where the pixel density is considered you should use one of the sequential colormaps.
+Of course you can experiment with different colormaps (cmap) but for the advanced version where the pixel intensity is considered you should use one of the sequential colormaps.
 
 Have fun.
 

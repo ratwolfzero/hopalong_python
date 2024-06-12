@@ -59,6 +59,7 @@ def hopalong_plot(points, a, b, c, num, image_size):
     plt.plot(uniques, counts, color='red')
     
     #plt.yscale('log')
+    #plt.xscale('log')
     plt.xlim(left=0) 
     plt.ylim(bottom=1) 
 

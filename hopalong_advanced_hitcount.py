@@ -60,7 +60,7 @@ def hopalong_plot(points, a, b, c, num, image_size):
     plt.scatter(uniques, counts,s=counts/10, c=uniques,cmap='hot')
     plt.xscale('log')
     plt.yscale('log')
-    plt.xlim(left=0.9) 
+    plt.xlim(left=0.8) 
     plt.ylim(bottom=1) 
 
     plt.show()

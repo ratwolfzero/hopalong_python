@@ -45,8 +45,9 @@ def hopalong_plot(points, a, b, c, num, image_size):
 
     img = pixels_and_hit_count(img, px, py)
     
+    colormap='hot'
     plt.figure(figsize=(10, 10))
-    plt.imshow(img, origin="lower", cmap='hot',
+    plt.imshow(img, origin="lower", cmap=colormap,
                extent=[min_x, max_x, min_y, max_y])
     plt.title(
         f"Hopalong Attractor@ratwolf2024\nParams: a={a}, b={b}, c={c}, num={num:_}")
@@ -56,7 +57,7 @@ def hopalong_plot(points, a, b, c, num, image_size):
     plt.xlabel('number of hits (n)',fontsize=12)
     plt.ylabel('number of pixels hit n-times',fontsize=12)
     plt.title('Distribution of pixel hit count',fontsize=14)
-    plt.scatter(hit, count,s=count/10, c=hit,cmap='hot')
+    plt.scatter(hit, count,s=count/10, c=hit,cmap=colormap)
     plt.xscale('log')
     plt.yscale('log')
     plt.xlim(left=0.8) 

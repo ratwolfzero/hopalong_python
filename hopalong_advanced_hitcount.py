@@ -10,7 +10,7 @@ matplotlib.use('TkAgg')
 @jit(nopython=True)
 def hopalong_compute(num, a, b, c):
    # Computes the points for the Hopalong attractor.
-    points = np.empty((num, 2), dtype=np.float32)
+    points = np.zeros((num, 2), dtype=np.float32)
     x, y = 0.0, 0.0
 
     for i in range(num):
@@ -36,12 +36,12 @@ def hopalong_plot(points, a, b, c, num, image_size):
     min_y, max_y = np.min(points[:, 1]), np.max(points[:, 1])
 
     img_width, img_height = image_size
-    img = np.zeros((img_height, img_width), dtype=np.int64)
+    img = np.zeros((img_height, img_width), dtype=np.int16)
 
     px = ((points[:, 0] - min_x) / (max_x - min_x)
-          * (img_width - 1)).astype(np.int64)
+          * (img_width - 1)).astype(np.int16)
     py = ((points[:, 1] - min_y) / (max_y - min_y)
-          * (img_height - 1)).astype(np.int64)
+          * (img_height - 1)).astype(np.int16)
 
     img = pixels_and_hit_count(img, px, py)
     

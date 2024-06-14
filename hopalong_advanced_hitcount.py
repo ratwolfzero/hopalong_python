@@ -53,18 +53,21 @@ def hopalong_plot(points, a, b, c, num, image_size):
         f"Hopalong Attractor@ratwolf2024\nParams: a={a}, b={b}, c={c}, num={num:_}")
     
     hit, count = np.unique(img[img!=0], return_counts=True)
+    total = sum(j for i,j in zip(hit, count))
+    img_pixel = image_size[0]*image_size[1]
+    hit_ratio = total / img_pixel * 100
     plt.figure(figsize=(10, 8))
-    plt.xlabel('number of hits (n)',fontsize=10)
-    plt.ylabel('pixels hit n-times',fontsize=10)
-    plt.title('Distribution of pixel hit count',fontsize=12)
+    plt.xlabel('# of hits (n)',fontsize=10)
+    plt.ylabel('# of pixels hit n-times',fontsize=10)
+    plt.title(f'Distribution of pixel hit count. In total {total} pixels of {img_pixel} = {hit_ratio} % have been hit',fontsize=12)
     plt.scatter(hit, count,s=count/10, c=hit,cmap=colormap)
     plt.xscale('log')
     plt.yscale('log')
     plt.xlim(left=0.8) 
     plt.ylim(bottom=1) 
-
+    
     plt.show()
-
+    
 
 def hopalong(num, a, b, c, image_size):
     # Computes and plots the Hopalong attractor.

@@ -55,11 +55,11 @@ def hopalong_plot(points, a, b, c, num, image_size):
     hit, count = np.unique(img[img!=0], return_counts=True)
     total = sum(j for i,j in zip(hit, count))
     img_pixel = image_size[0]*image_size[1]
-    hit_ratio = total / img_pixel * 100
+    hit_ratio = '{:02.2f}'.format(total / img_pixel * 100)
     plt.figure(figsize=(10, 8))
     plt.xlabel('# of hits (n)',fontsize=10)
     plt.ylabel('# of pixels hit n-times',fontsize=10)
-    plt.title(f'Distribution of pixel hit count. In total {total} pixels of {img_pixel} = {hit_ratio} % have been hit',fontsize=12)
+    plt.title(f'Distribution of pixel hit count. In total {total} pixels of {img_pixel} = {hit_ratio}% have been hit',fontsize=12)
     plt.scatter(hit, count,s=count/10, c=hit,cmap=colormap)
     plt.xscale('log')
     plt.yscale('log')

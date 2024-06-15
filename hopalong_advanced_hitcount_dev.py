@@ -45,13 +45,13 @@ def plot_attractor_image(img, colormap, extents, params, size=(8,8)):
     
 def plot_intensity_distribution(img, colormap, size=(10,8), scale='log'):
     hit, count = np.unique(img[img!=0], return_counts=True)
-    total = sum(j for i, j in zip(hit, count))
+    hit_pixel = sum(j for i, j in zip(hit, count))
     img_pixel = np.prod(img.shape)
-    hit_ratio = '{:02.2f}'.format(total / img_pixel * 100)
+    hit_ratio = '{:02.4f}'.format(hit_pixel / img_pixel * 100)
     plt.figure(figsize=size)
     plt.xlabel('# of hits (n)',fontsize=10)
     plt.ylabel('# of pixels hit n-times',fontsize=10)
-    plt.title(f'Distribution of pixel intensity. In total {total} pixels of {img_pixel} = {hit_ratio}% have been hit',fontsize=12)
+    plt.title(f'Distribution of pixel intensity. In total {hit_pixel} pixels of {img_pixel} = {hit_ratio}% have been hit
     plt.scatter(hit, count, s=count/10, c=hit, cmap=colormap)
     plt.xscale(scale)
     plt.yscale(scale)

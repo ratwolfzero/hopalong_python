@@ -8,8 +8,8 @@ matplotlib.use('TkAgg')
 
 
 @jit(nopython=True)
-def generate_hopalong_points(num, a, b, c):
-   #The generated hopalong points array of shape (num, 2)
+def generate_hopalong_attractor_points(num, a, b, c):
+   # generatedhopalong points array of shape (num, 2)
     points = np.zeros((num, 2), dtype=np.float32)
     x, y = 0.0, 0.0
 
@@ -53,7 +53,7 @@ def plot_hopalong_attractor(img, colormap, extents, params, size=(8, 8)):
 
 
 def plot_hit_counts(img, size=(10, 8), scale='log'):
-    #Plot the hit counts distribution.
+    # Plot the hit counts distribution.
     hit, count = np.unique(img[img != 0], return_counts=True)
     hit_pixel = sum(j for i, j in zip(hit, count))
     img_points = np.prod(img.shape)
@@ -86,7 +86,7 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False):
                   input_type.__name__} value.")
 
 
-def plot_attractor_with_hit_distribution(points, a, b, c, num, image_size):
+def plot_attractor_with_hit_count_distribution(points, a, b, c, num, image_size):
     color_map = 'hot'
 
     min_x, max_x = np.min(points[:, 0]), np.max(points[:, 0])
@@ -108,8 +108,9 @@ def plot_attractor_with_hit_distribution(points, a, b, c, num, image_size):
 
 def generate_and_plot_hopalong(num, a, b, c, image_size):
     # Computes and plots the Hopalong attractor.
-    points = generate_hopalong_points(num, a, b, c).astype(np.float32)
-    plot_attractor_with_hit_distribution(
+    points = generate_hopalong_attractor_points(
+        num, a, b, c).astype(np.float32)
+    plot_attractor_with_hit_count_distribution(
         points, a, b, c, num, image_size)
 
 

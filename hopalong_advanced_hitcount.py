@@ -23,13 +23,13 @@ def compute_attractor_points(num, a, b, c):
 
 
 def calculate_image_pixels(points, image_size, min_x, max_x, min_y, max_y):
-    # calculate image pixels based on points for image size
+    # ccalculate image pixels based on image size
     img_width, img_height = image_size
 
     px = ((points[:, 0] - min_x) / (max_x - min_x)
-          * (img_width - 1)).astype(np.int16)
+          * (img_width - 1)).astype(np.int32)
     py = ((points[:, 1] - min_y) / (max_y - min_y)
-          * (img_height - 1)).astype(np.int16)
+          * (img_height - 1)).astype(np.int32)
 
     return px, py
 
@@ -49,7 +49,7 @@ def plot_attractor_image(img, colormap, extents, params, size=(8, 8)):
         "Hopalong Attractor @ratwolf2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
 
 
-def plot_intensity_distribution(img, colormap, size=(10, 8), scale='log'):
+def plot_intensity_distribution(img, size=(10, 8), scale='log'):
     hit, count = np.unique(img[img != 0], return_counts=True)
     hit_pixel = sum(j for i, j in zip(hit, count))
     img_points = np.prod(img.shape)
@@ -59,10 +59,10 @@ def plot_intensity_distribution(img, colormap, size=(10, 8), scale='log'):
     plt.ylabel('# of pixels hit n-times', fontsize=10)
     plt.title(f'Distribution of pixel intensity. In total {
               hit_pixel} pixels of {img_points} = {hit_ratio}% have been hit')
-    plt.scatter(hit, count, s=count/10, c=hit, cmap=colormap)
+    plt.plot(hit, count)
     plt.xscale(scale)
-    plt.yscale(scale)
-    plt.xlim(left=0.8)
+
+    plt.xlim(left=1)
     plt.ylim(bottom=1)
 
 
@@ -91,13 +91,13 @@ def hopalong_plot_all(points, a, b, c, num, image_size):
     px, py = calculate_image_pixels(
         points, image_size, min_x, max_x, min_y, max_y)
     img = image_pixels_and_intensity(
-        np.zeros(image_size, dtype=np.int16), px, py)
+        np.zeros(image_size, dtype=np.int32), px, py)
 
     extents = [min_x, max_x, min_y, max_y]
     params = {'a': a, 'b': b, 'c': c, 'num': num}
 
     plot_attractor_image(img, color_map, extents, params)
-    plot_intensity_distribution(img, color_map)
+    plot_intensity_distribution(img)
 
     plt.show()
 

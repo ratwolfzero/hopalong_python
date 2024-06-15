@@ -21,14 +21,6 @@ def compute_attractor_points(num, a, b, c):
 
     return points
 
-
-@jit(nopython=True)
-def image_pixels_and_hit_count(img, px, py):
-    # set image pixels and track their intensity (used for color sheme cmap)
-    for px_i, py_i in zip(px, py):
-        img[py_i, px_i] += 1
-    return img
-
 def calculate_image_pixels(points, image_size, min_x, max_x, min_y, max_y):
     # calculate pixels based on points for image size
     img_width, img_height = image_size
@@ -37,6 +29,14 @@ def calculate_image_pixels(points, image_size, min_x, max_x, min_y, max_y):
     py = ((points[:, 1] - min_y) / (max_y - min_y) * (img_height - 1)).astype(np.int16)
 
     return px, py
+
+@jit(nopython=True)
+def image_pixels_and_hit_count(img, px, py):
+    # set image pixels and track their intensity (used for color sheme cmap)
+    for px_i, py_i in zip(px, py):
+        img[py_i, px_i] += 1
+    return img
+
 
 def plot_attractor_image(img, colormap, extents, params, size=(8,8)):
     plt.figure(figsize=size)
@@ -47,7 +47,7 @@ def plot_intensity_distribution(img, colormap, size=(10,8), scale='log'):
     hit, count = np.unique(img[img!=0], return_counts=True)
     hit_pixel = sum(j for i, j in zip(hit, count))
     img_pixel = np.prod(img.shape)
-    hit_ratio = '{:02.4f}'.format(hit_pixel / img_pixel * 100)
+    hit_ratio = '{:02.3f}'.format(hit_pixel / img_pixel * 100)
     plt.figure(figsize=size)
     plt.xlabel('# of hits (n)',fontsize=10)
     plt.ylabel('# of pixels hit n-times',fontsize=10)

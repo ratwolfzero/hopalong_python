@@ -8,9 +8,8 @@ matplotlib.use('TkAgg')
 
 
 @jit(nopython=True)
-def calculate_attractor_coordinates(num, a, b, c):
-   # Computes the coordinates of the Hopalong attractor. 
-   # Returns a 2D numpy array of shape (num, 2) where each row is a coordinate on the attractor.
+def generate_hopalong_points(num, a, b, c):
+   #The generated hopalong points array of shape (num, 2)
     points = np.zeros((num, 2), dtype=np.float32)
     x, y = 0.0, 0.0
 
@@ -23,8 +22,8 @@ def calculate_attractor_coordinates(num, a, b, c):
     return points
 
 
-def convert_attractor_coords_to_pixels(points, image_size, min_x, max_x, min_y, max_y):
-    # ccalculate image pixels based on image size
+def map_points_to_pixels(points, image_size, min_x, max_x, min_y, max_y):
+    # Convert hopalong points to pixel locations
     img_width, img_height = image_size
 
     px = ((points[:, 0] - min_x) / (max_x - min_x)
@@ -36,14 +35,16 @@ def convert_attractor_coords_to_pixels(points, image_size, min_x, max_x, min_y, 
 
 
 @jit(nopython=True)
-def calculate_pixel_intensities_on_path(img, px, py):
-    # updates and returns the img array in-place where each element is the intensity count of hits at the corresponding pixel index.
+def count_pixel_hits(img, px, py):
+    # Calculate the hit counts for each pixel in the image
     for px_i, py_i in zip(px, py):
         img[py_i, px_i] += 1
     return img
 
 
-def plot_attractor_image(img, colormap, extents, params, size=(8, 8)):
+def plot_hopalong_attractor(img, colormap, extents, params, size=(8, 8)):
+    # Plot the Hopalong attractor image
+
     plt.style.use('dark_background')
     plt.figure(figsize=size)
     plt.imshow(img, cmap=colormap, origin='lower', extent=extents)
@@ -51,7 +52,8 @@ def plot_attractor_image(img, colormap, extents, params, size=(8, 8)):
         "Hopalong Attractor @ratwolf2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
 
 
-def plot_intensity_distribution(img, size=(10, 8), scale='log'):
+def plot_hit_counts(img, size=(10, 8), scale='log'):
+    #Plot the hit counts distribution.
     hit, count = np.unique(img[img != 0], return_counts=True)
     hit_pixel = sum(j for i, j in zip(hit, count))
     img_points = np.prod(img.shape)
@@ -60,7 +62,7 @@ def plot_intensity_distribution(img, size=(10, 8), scale='log'):
     plt.figure(figsize=size)
     plt.xlabel('# of hits (n)', fontsize=10)
     plt.ylabel('# of pixels hit n-times', fontsize=10)
-    plt.title(f'Distribution of pixel intensity. In total {
+    plt.title(f'Distribution of pixel hit count. In total {
               hit_pixel} pixels of {img_points} = {hit_ratio}% have been hit')
     plt.plot(hit, count, color="green")
     plt.xscale(scale)
@@ -84,30 +86,30 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False):
                   input_type.__name__} value.")
 
 
-def plot_hopalong_attractor_and_intensity_distribution(points, a, b, c, num, image_size):
+def plot_attractor_with_hit_distribution(points, a, b, c, num, image_size):
     color_map = 'hot'
 
     min_x, max_x = np.min(points[:, 0]), np.max(points[:, 0])
     min_y, max_y = np.min(points[:, 1]), np.max(points[:, 1])
 
-    px, py = convert_attractor_coords_to_pixels(
+    px, py = map_points_to_pixels(
         points, image_size, min_x, max_x, min_y, max_y)
-    img = calculate_pixel_intensities_on_path(
+    img = count_pixel_hits(
         np.zeros(image_size, dtype=np.int32), px, py)
 
     extents = [min_x, max_x, min_y, max_y]
     params = {'a': a, 'b': b, 'c': c, 'num': num}
 
-    plot_attractor_image(img, color_map, extents, params)
-    plot_intensity_distribution(img)
+    plot_hopalong_attractor(img, color_map, extents, params)
+    plot_hit_counts(img)
 
     plt.show()
 
 
-def compute_and_plot_hopalong(num, a, b, c, image_size):
+def generate_and_plot_hopalong(num, a, b, c, image_size):
     # Computes and plots the Hopalong attractor.
-    points = calculate_attractor_coordinates(num, a, b, c).astype(np.float32)
-    plot_hopalong_attractor_and_intensity_distribution(
+    points = generate_hopalong_points(num, a, b, c).astype(np.float32)
+    plot_attractor_with_hit_distribution(
         points, a, b, c, num, image_size)
 
 
@@ -122,7 +124,7 @@ def main():
     num = get_validated_input(
         'Enter an integer value for "num": ', int)
 
-    compute_and_plot_hopalong(num, a, b, c, image_size)
+    generate_and_plot_hopalong(num, a, b, c, image_size)
 
 
 if __name__ == "__main__":

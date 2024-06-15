@@ -16,6 +16,7 @@ Note: I had problems with MacOs 14.x and Python 3.12.x. The plot window and Pyth
 "# matplotlib.use('TkAgg')"
 
 If speed is essential use the advanced version. Using @jit is a revelation in terms of speed... under further development.
+The advanced version also generates some statistics.
 
 The program asks for the parameters a, b, c and num (number of iterations). Num must be entered as an integer e.g. 1000000 or 1_000_000. The parameters a, b and c can be entered in floating point or integer format. The value of 'a' should not be zero and the input validation returns a corresponding error. You can enter a very small value instead e.g. 1e-10 
 

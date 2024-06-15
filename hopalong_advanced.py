@@ -85,7 +85,6 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False):
 
 
 def plot_hopalong_attractor_and_intensity_distribution(points, a, b, c, num, image_size):
-    # Plots the points of the Hopalong attractor.
     color_map = 'hot'
 
     min_x, max_x = np.min(points[:, 0]), np.max(points[:, 0])

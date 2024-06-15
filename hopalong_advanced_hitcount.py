@@ -23,7 +23,7 @@ def compute_attractor_points(num, a, b, c):
 
 
 def calculate_image_pixels(points, image_size, min_x, max_x, min_y, max_y):
-    # calculate pixels based on points for image size
+    # calculate image pixels based on points for image size
     img_width, img_height = image_size
 
     px = ((points[:, 0] - min_x) / (max_x - min_x)
@@ -52,13 +52,13 @@ def plot_attractor_image(img, colormap, extents, params, size=(8, 8)):
 def plot_intensity_distribution(img, colormap, size=(10, 8), scale='log'):
     hit, count = np.unique(img[img != 0], return_counts=True)
     hit_pixel = sum(j for i, j in zip(hit, count))
-    img_pixel = np.prod(img.shape)
-    hit_ratio = '{:02.2f}'.format(hit_pixel / img_pixel * 100)
+    img_points = np.prod(img.shape)
+    hit_ratio = '{:02.2f}'.format(hit_pixel / img_points * 100)
     plt.figure(figsize=size)
     plt.xlabel('# of hits (n)', fontsize=10)
     plt.ylabel('# of pixels hit n-times', fontsize=10)
     plt.title(f'Distribution of pixel intensity. In total {
-              hit_pixel} pixels of {img_pixel} = {hit_ratio}% have been hit')
+              hit_pixel} pixels of {img_points} = {hit_ratio}% have been hit')
     plt.scatter(hit, count, s=count/10, c=hit, cmap=colormap)
     plt.xscale(scale)
     plt.yscale(scale)

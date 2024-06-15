@@ -29,11 +29,8 @@ def image_pixels_and_hit_count(img, px, py):
         img[py_i, px_i] += 1
     return img
 
-def calculate_image_pixels(points, image_size):
+def calculate_image_pixels(points, image_size, min_x, max_x, min_y, max_y):
     # calculate pixels based on points for image size
-    min_x, max_x = np.min(points[:, 0]), np.max(points[:, 0])
-    min_y, max_y = np.min(points[:, 1]), np.max(points[:, 1])
-
     img_width, img_height = image_size
 
     px = ((points[:, 0] - min_x) / (max_x - min_x) * (img_width - 1)).astype(np.int16)
@@ -78,14 +75,15 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False):
 
 def hopalong_plot_all(points, a, b, c, num, image_size):
     # Plots the points of the Hopalong attractor.
-    color_map='hot'
-    
-    px, py = calculate_image_pixels(points, image_size)
-    img = image_pixels_and_hit_count(np.zeros(image_size, dtype=np.int16), px, py)
-    
+    color_map='hot'    
+        
     min_x, max_x = np.min(points[:,0]), np.max(points[:,0])
     min_y, max_y = np.min(points[:,1]), np.max(points[:,1])
 
+    px, py = calculate_image_pixels(points, image_size, min_x, max_x, min_y, max_y)
+    img = image_pixels_and_hit_count(np.zeros(image_size, dtype=np.int16), px, py)
+    
+    
     extents=[min_x, max_x, min_y, max_y]
     params = {'a': a, 'b': b, 'c': c, 'num': num}
     

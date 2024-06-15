@@ -51,7 +51,7 @@ def plot_intensity_distribution(img, colormap, size=(10,8), scale='log'):
     plt.figure(figsize=size)
     plt.xlabel('# of hits (n)',fontsize=10)
     plt.ylabel('# of pixels hit n-times',fontsize=10)
-    plt.title(f'Distribution of pixel intensity. In total {hit_pixel} pixels of {img_pixel} = {hit_ratio}% have been hit
+    plt.title(f'Distribution of pixel intensity. In total {hit_pixel} pixels of {img_pixel} = {hit_ratio}% have been hit')
     plt.scatter(hit, count, s=count/10, c=hit, cmap=colormap)
     plt.xscale(scale)
     plt.yscale(scale)

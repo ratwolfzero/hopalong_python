@@ -15,11 +15,7 @@ Note: I had problems with MacOs 14.x and Python 3.12.x. The plot window and Pyth
 "# import matplotlib"
 "# matplotlib.use('TkAgg')"
 
-There are 3 versions of the programm basic, advanced and advanced with statistics about hit count . The basic version is quite slow.
-
-In the advanced version @jit is used to compile the calculation for the hopalong attractor and the routine to set the pixels and their intensity (hit count) which is used for the colormap in this case.
-
-Using @jit is a revelation in terms of speed...
+If speed is essential use the advanced version. Using @jit is a revelation in terms of speed...
 
 The program asks for the parameters a, b, c and num (number of iterations). Num must be entered as an integer e.g. 1000000 or 1_000_000. The parameters a, b and c can be entered in floating point or integer format. The value of 'a' should not be zero and the input validation returns a corresponding error. You can enter a very small value instead e.g. 1e-10 
 

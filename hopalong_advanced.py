@@ -46,7 +46,7 @@ def plot_hopalong_attractor(ax, img, colormap, extents, params):
     # plot the hopalong attractor image
     ax.imshow(img, cmap=colormap, origin='lower', extent=extents)
     ax.set_title(
-        "Hopalong Attractor\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
+        "Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
 
 
 def plot_hit_counts(ax, img, scale='log'):
@@ -60,16 +60,16 @@ def plot_hit_counts(ax, img, scale='log'):
     img_points = np.prod(img.shape)
     hit_ratio = '{:02.2f}'.format(hit_pixel / img_points * 100)
 
-    ax.plot(hit, count, color="red",linewidth = 0.6)
+    ax.plot(hit, count, color="navy", linewidth=0.6)
     ax.set_xlabel('# of hits (n)')
     ax.set_ylabel('# of pixels hit n-times')
     ax.set_title(f'Distribution of pixel hit count. \n {hit_pixel} pixels out of {img_points} image pixels = {hit_ratio}% have been hit. \n The highest number of pixels with the same number of hits is {
-                 np.max(count)} with {hit_for_max_count} hits  \n The highest number of hits is {np.max(hit)} with {count_for_max_hit} pixels hit', fontsize = 10)
+        np.max(count)} with {hit_for_max_count} hits  \n The highest number of hits is {np.max(hit)} with {count_for_max_hit} pixels hit', fontsize=10)
     ax.set_xscale(scale)
     ax.set_yscale(scale)
     ax.set_xlim(left=1)
     ax.set_ylim(bottom=1)
-    ax.set_facecolor("white")
+    ax.set_facecolor("lightgrey")
     ax.grid(True, which="both")
 
 

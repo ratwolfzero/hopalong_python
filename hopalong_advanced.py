@@ -49,8 +49,8 @@ def plot_hopalong_attractor(ax, img, colormap, extents, params):
         "Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
 
 
-def plot_hit_counts(ax, img, scale='log'):
-    # plot the hit counts distribution
+def calculate_hit_metrics(img):
+    # Calculate hit metrics
     hit, count = np.unique(img[img != 0], return_counts=True)
     max_count_index = np.argmax(count)
     hit_for_max_count = hit[max_count_index]
@@ -60,11 +60,33 @@ def plot_hit_counts(ax, img, scale='log'):
     img_points = np.prod(img.shape)
     hit_ratio = '{:02.2f}'.format(hit_pixel / img_points * 100)
 
-    ax.plot(hit, count, color="navy", linewidth=0.6)
+    hit_metrics = {
+        "hit": hit,
+        "count": count,
+        "hit_for_max_count": hit_for_max_count,
+        "count_for_max_hit": count_for_max_hit,
+        "hit_pixel": hit_pixel,
+        "img_points": img_points,
+        "hit_ratio": hit_ratio
+    }
+
+    return hit_metrics
+
+
+def plot_hit_counts(ax, hit_metrics, scale='log'):
+    # Plot the hit counts distribution
+    ax.plot(hit_metrics["hit"], hit_metrics["count"],
+            color="navy", linewidth=0.6)
     ax.set_xlabel('# of hits (n)')
     ax.set_ylabel('# of pixels hit n-times')
-    ax.set_title(f'Distribution of pixel hit count. \n {hit_pixel} pixels out of {img_points} image pixels = {hit_ratio}% have been hit. \n The highest number of pixels with the same number of hits is {
-        np.max(count)} with {hit_for_max_count} hits  \n The highest number of hits is {np.max(hit)} with {count_for_max_hit} pixels hit', fontsize=10)
+
+    title_text = (
+        f'Distribution of pixel hit count. \n'
+        f'{hit_metrics["hit_pixel"]} pixels out of {hit_metrics["img_points"]} image pixels = {hit_metrics["hit_ratio"]}% have been hit. \n'
+        f'The highest number of pixels with the same number of hits is {np.max(hit_metrics["count"])} with {hit_metrics["hit_for_max_count"]} hits. \n'
+        f'The highest number of hits is {np.max(hit_metrics["hit"])} with {hit_metrics["count_for_max_hit"]} pixels hit.')
+    
+    ax.set_title(title_text, fontsize=10)
     ax.set_xscale(scale)
     ax.set_yscale(scale)
     ax.set_xlim(left=1)
@@ -88,41 +110,42 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False):
                   input_type.__name__} value.")
 
 
-def plot_attractor_with_hit_count_distribution(points, a, b, c, num, image_size):
-    color_map = 'hot'
-
+def prepare_plot_data(points, a, b, c, num, image_size):
+    # It returns the data necessary for plotting
     min_x, max_x = np.min(points[:, 0]), np.max(points[:, 0])
     min_y, max_y = np.min(points[:, 1]), np.max(points[:, 1])
-
     px, py = map_points_to_pixels(
         points, image_size, min_x, max_x, min_y, max_y)
-    img = count_pixel_hits(
-        np.zeros(image_size, dtype=np.int32), px, py)
-
+    img = count_pixel_hits(np.zeros(image_size, dtype=np.int32), px, py)
     extents = [min_x, max_x, min_y, max_y]
     params = {'a': a, 'b': b, 'c': c, 'num': num}
+    return img, extents, params
 
+
+def create_plots(img, extents, params):
+    # generates the plots
+    color_map = 'hot'
     fig = plt.figure(figsize=(18, 8))
-
     ax1 = fig.add_subplot(1, 2, 1, aspect='auto')
     plot_hopalong_attractor(ax1, img, color_map, extents, params)
 
+    hit_metrics = calculate_hit_metrics(img)
     ax2 = fig.add_subplot(1, 2, 2, aspect='auto')
-    plot_hit_counts(ax2, img)
+    plot_hit_counts(ax2, hit_metrics)
 
     plt.show()
 
 
-def generate_and_plot_hopalong(num, a, b, c, image_size):
-    # Computes and plots the Hopalong attractor.
+def run_hopalong_analysis(num, a, b, c, image_size):
+    # It coordinates the process
     points = generate_hopalong_attractor_points(
         num, a, b, c).astype(np.float32)
-    plot_attractor_with_hit_count_distribution(
-        points, a, b, c, num, image_size)
+    img, extents, params = prepare_plot_data(points, a, b, c, num, image_size)
+    create_plots(img, extents, params)
 
 
 def main():
-   # Main function to run the Hopalong attractor generation.
+   # Main function to run the Hopalong analysis.
     image_size = 1000, 1000
 
     a = get_validated_input(
@@ -132,7 +155,7 @@ def main():
     num = get_validated_input(
         'Enter an integer value for "num": ', int)
 
-    generate_and_plot_hopalong(num, a, b, c, image_size)
+    run_hopalong_analysis(num, a, b, c, image_size)
 
 
 if __name__ == "__main__":

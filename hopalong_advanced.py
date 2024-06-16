@@ -45,25 +45,30 @@ def count_pixel_hits(img, px, py):
 def plot_hopalong_attractor(ax, img, colormap, extents, params):
     # plot the hopalong attractor image
     ax.imshow(img, cmap=colormap, origin='lower', extent=extents)
-    ax.set_title("Hopalong Attractor\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
+    ax.set_title(
+        "Hopalong Attractor\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
+
 
 def plot_hit_counts(ax, img, scale='log'):
     # plot the hit counts distribution
     hit, count = np.unique(img[img != 0], return_counts=True)
+    max_count_index = np.argmax(count)
+    hit_for_max_count = hit[max_count_index]
     hit_pixel = sum(j for i, j in zip(hit, count))
     img_points = np.prod(img.shape)
     hit_ratio = '{:02.2f}'.format(hit_pixel / img_points * 100)
-    
+
     ax.plot(hit, count, color="red")
 
     ax.set_xlabel('# of hits (n)')
     ax.set_ylabel('# of pixels hit n-times')
-    ax.set_title(f'Distribution of pixel hit count. In total { hit_pixel} pixels of {img_points} = {hit_ratio}% have been hit')
+    ax.set_title(f'Distribution of pixel hit count. \n {hit_pixel} pixels out of {img_points} image pixels = {
+                 hit_ratio}% have been hit. \n The highest number of pixels with the same number of hits is {np.max(count)} with {hit_for_max_count} hits')
     ax.set_xscale(scale)
     ax.set_xlim(left=1)
     ax.set_ylim(bottom=1)
     ax.set_facecolor("black")
-    
+
 
 def get_validated_input(prompt, input_type=float, check_non_zero=False):
     # Prompts the user for input and validates it.
@@ -97,11 +102,13 @@ def plot_attractor_with_hit_count_distribution(points, a, b, c, num, image_size)
     fig = plt.figure(figsize=(18, 8))  # change the size as needed
 
     # Create first subplot for the hopalong attractor plot
-    ax1 = fig.add_subplot(1, 2, 1, aspect='auto')  # 1 row, 2 columns, first plot
+    # 1 row, 2 columns, first plot
+    ax1 = fig.add_subplot(1, 2, 1, aspect='auto')
     plot_hopalong_attractor(ax1, img, color_map, extents, params)
 
     # Create second subplot for the hit counts distribution plot
-    ax2 = fig.add_subplot(1, 2, 2, aspect='auto')  # 1 row, 2 columns, second plot
+    # 1 row, 2 columns, second plot
+    ax2 = fig.add_subplot(1, 2, 2, aspect='auto')
     plot_hit_counts(ax2, img)
 
     plt.show()

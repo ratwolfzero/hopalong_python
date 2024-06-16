@@ -54,20 +54,23 @@ def plot_hit_counts(ax, img, scale='log'):
     hit, count = np.unique(img[img != 0], return_counts=True)
     max_count_index = np.argmax(count)
     hit_for_max_count = hit[max_count_index]
+    max_hit_index = np.argmax(hit)
+    count_for_max_hit = count[max_hit_index]
     hit_pixel = sum(j for i, j in zip(hit, count))
     img_points = np.prod(img.shape)
     hit_ratio = '{:02.2f}'.format(hit_pixel / img_points * 100)
 
-    ax.plot(hit, count, color="red")
-
+    ax.plot(hit, count, color="red",linewidth = 0.5)
     ax.set_xlabel('# of hits (n)')
     ax.set_ylabel('# of pixels hit n-times')
-    ax.set_title(f'Distribution of pixel hit count. \n {hit_pixel} pixels out of {img_points} image pixels = {
-                 hit_ratio}% have been hit. \n The highest number of pixels with the same number of hits is {np.max(count)} with {hit_for_max_count} hits')
+    ax.set_title(f'Distribution of pixel hit count. \n {hit_pixel} pixels out of {img_points} image pixels = {hit_ratio}% have been hit. \n The highest number of pixels with the same number of hits is {
+                 np.max(count)} with {hit_for_max_count} hits  \n The highest number of hits is {np.max(hit)} with {count_for_max_hit} pixels hit', fontsize = 10)
     ax.set_xscale(scale)
+    ax.set_yscale(scale)
     ax.set_xlim(left=1)
     ax.set_ylim(bottom=1)
-    ax.set_facecolor("black")
+    ax.set_facecolor("white")
+    ax.grid(True, which="both")
 
 
 def get_validated_input(prompt, input_type=float, check_non_zero=False):

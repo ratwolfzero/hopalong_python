@@ -20,7 +20,7 @@ The advanced version also generates some statistics.
 
 The program asks for the parameters a, b, c and num (number of iterations). Num must be entered as an integer e.g. 1000000 or 1_000_000. The parameters a, b and c can be entered in floating point or integer format. The value of 'a' should not be zero and the input validation returns a corresponding error. You can enter a very small value instead e.g. 1e-10 
 
-If you select a very high value for 'num' ,the number of iterations, then the performance might decrease additionally due to memory swap use (RAM>>SSD). To compensate this float32 was selected as data type for the pixel-array. Anyway 100_000_000 iterations are still easy with the advanced version.
+If you select a very high value for 'num' ,the number of iterations, then the performance might decrease additionally due to memory swap use (RAM>>SSD). To compensate this float32 was selected as data type for the pixel-array. Anyway 200_000_000 iterations are still easy with the advanced version.
 
 Of course you can experiment with different colormaps (cmap) but for the advanced version where the pixel intensity is considered you should use one of the sequential colormaps.
 

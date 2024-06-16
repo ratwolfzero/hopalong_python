@@ -60,7 +60,7 @@ def plot_hit_counts(ax, img, scale='log'):
     img_points = np.prod(img.shape)
     hit_ratio = '{:02.2f}'.format(hit_pixel / img_points * 100)
 
-    ax.plot(hit, count, color="red",linewidth = 0.5)
+    ax.plot(hit, count, color="red",linewidth = 0.6)
     ax.set_xlabel('# of hits (n)')
     ax.set_ylabel('# of pixels hit n-times')
     ax.set_title(f'Distribution of pixel hit count. \n {hit_pixel} pixels out of {img_points} image pixels = {hit_ratio}% have been hit. \n The highest number of pixels with the same number of hits is {

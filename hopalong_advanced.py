@@ -102,15 +102,11 @@ def plot_attractor_with_hit_count_distribution(points, a, b, c, num, image_size)
     extents = [min_x, max_x, min_y, max_y]
     params = {'a': a, 'b': b, 'c': c, 'num': num}
 
-    fig = plt.figure(figsize=(18, 8))  # change the size as needed
+    fig = plt.figure(figsize=(18, 8))
 
-    # Create first subplot for the hopalong attractor plot
-    # 1 row, 2 columns, first plot
     ax1 = fig.add_subplot(1, 2, 1, aspect='auto')
     plot_hopalong_attractor(ax1, img, color_map, extents, params)
 
-    # Create second subplot for the hit counts distribution plot
-    # 1 row, 2 columns, second plot
     ax2 = fig.add_subplot(1, 2, 2, aspect='auto')
     plot_hit_counts(ax2, img)
 

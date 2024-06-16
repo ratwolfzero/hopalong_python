@@ -47,20 +47,23 @@ def plot_hopalong_attractor(ax, img, colormap, extents, params):
     ax.imshow(img, cmap=colormap, origin='lower', extent=extents)
     ax.set_title("Hopalong Attractor\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
 
-def plot_hit_counts(ax, img, size=(10, 8), scale='log'):
+def plot_hit_counts(ax, img, scale='log'):
     # plot the hit counts distribution
     hit, count = np.unique(img[img != 0], return_counts=True)
     hit_pixel = sum(j for i, j in zip(hit, count))
     img_points = np.prod(img.shape)
     hit_ratio = '{:02.2f}'.format(hit_pixel / img_points * 100)
+    
+    ax.plot(hit, count, color="red")
+
     ax.set_xlabel('# of hits (n)')
     ax.set_ylabel('# of pixels hit n-times')
     ax.set_title(f'Distribution of pixel hit count. In total { hit_pixel} pixels of {img_points} = {hit_ratio}% have been hit')
-    ax.plot(hit, count)
     ax.set_xscale(scale)
     ax.set_xlim(left=1)
     ax.set_ylim(bottom=1)
-
+    ax.set_facecolor("black")
+    
 
 def get_validated_input(prompt, input_type=float, check_non_zero=False):
     # Prompts the user for input and validates it.
@@ -94,11 +97,11 @@ def plot_attractor_with_hit_count_distribution(points, a, b, c, num, image_size)
     fig = plt.figure(figsize=(18, 8))  # change the size as needed
 
     # Create first subplot for the hopalong attractor plot
-    ax1 = fig.add_subplot(1, 2, 1)  # 1 row, 2 columns, first plot
+    ax1 = fig.add_subplot(1, 2, 1, aspect='auto')  # 1 row, 2 columns, first plot
     plot_hopalong_attractor(ax1, img, color_map, extents, params)
 
     # Create second subplot for the hit counts distribution plot
-    ax2 = fig.add_subplot(1, 2, 2)  # 1 row, 2 columns, second plot
+    ax2 = fig.add_subplot(1, 2, 2, aspect='auto')  # 1 row, 2 columns, second plot
     plot_hit_counts(ax2, img)
 
     plt.show()

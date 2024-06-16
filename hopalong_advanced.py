@@ -9,7 +9,7 @@ matplotlib.use('TkAgg')
 
 @jit(nopython=True)
 def generate_hopalong_attractor_points(num, a, b, c):
-   # generatedhopalong points array of shape (num, 2)
+   # generate hopalong points array of shape (num, 2)
     points = np.zeros((num, 2), dtype=np.float32)
     x, y = 0.0, 0.0
 
@@ -111,7 +111,7 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False):
 
 
 def prepare_plot_data(points, a, b, c, num, image_size):
-    # It returns the data necessary for plotting
+    # returns the data necessary for plotting
     min_x, max_x = np.min(points[:, 0]), np.max(points[:, 0])
     min_y, max_y = np.min(points[:, 1]), np.max(points[:, 1])
     px, py = map_points_to_pixels(
@@ -137,7 +137,7 @@ def create_plots(img, extents, params):
 
 
 def run_hopalong_analysis(num, a, b, c, image_size):
-    # It coordinates the process
+    #coordinates the process
     points = generate_hopalong_attractor_points(
         num, a, b, c).astype(np.float32)
     img, extents, params = prepare_plot_data(points, a, b, c, num, image_size)

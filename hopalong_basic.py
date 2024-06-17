@@ -1,4 +1,4 @@
-# Use TkAgg backend for matplotlib
+# Use TkAgg backend
 import matplotlib
 matplotlib.use('TkAgg')
 import numpy as np

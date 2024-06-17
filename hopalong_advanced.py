@@ -134,6 +134,7 @@ def run_hopalong_analysis(num, a, b, c, image_size):
     points = generate_hopalong_attractor_points(num, a, b, c).astype(np.float32)
     img, extents, params, hit_metrics = prepare_plot_data(points, a, b, c, num, image_size)
     create_plots(img, extents, params, hit_metrics)
+    
 
 def main():
    # Main function to run the Hopalong analysis.

@@ -112,16 +112,16 @@ def prepare_plot_data(points, a, b, c, num, image_size):
     img = count_pixel_hits(np.zeros(image_size, dtype=np.int32), px, py)
     extents = [min_x, max_x, min_y, max_y]
     params = {'a': a, 'b': b, 'c': c, 'num': num}
-    return img, extents, params
+    hit_metrics = calculate_hit_metrics(img)  # Add this line here
+    return img, extents, params, hit_metrics  # Return hit_metrics
 
 
-def create_plots(img, extents, params):
+def create_plots(img, extents, params, hit_metrics):  # Pass hit_metrics as an argument
     # generates the plots
     color_map = 'hot'
     fig = plt.figure(figsize=(18, 8))
     ax1 = fig.add_subplot(1, 2, 1, aspect='auto')
     plot_hopalong_attractor(ax1, img, color_map, extents, params)
-    hit_metrics = calculate_hit_metrics(img)
     ax2 = fig.add_subplot(1, 2, 2, aspect='auto')
     plot_hit_counts(ax2, hit_metrics)
     plt.show()
@@ -130,9 +130,8 @@ def create_plots(img, extents, params):
 def run_hopalong_analysis(num, a, b, c, image_size):
     #coordinates the process
     points = generate_hopalong_attractor_points(num, a, b, c).astype(np.float32)
-    img, extents, params = prepare_plot_data(points, a, b, c, num, image_size)
-    create_plots(img, extents, params)
-
+    img, extents, params, hit_metrics = prepare_plot_data(points, a, b, c, num, image_size)
+    create_plots(img, extents, params, hit_metrics)
 
 def main():
    # Main function to run the Hopalong analysis.

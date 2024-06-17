@@ -108,11 +108,12 @@ def prepare_plot_data(points, a, b, c, num, image_size):
     # returns the data necessary for plotting
     min_x, max_x = np.min(points[:, 0]), np.max(points[:, 0])
     min_y, max_y = np.min(points[:, 1]), np.max(points[:, 1])
+    extents = [min_x, max_x, min_y, max_y]
+    params = {'a': a, 'b': b, 'c': c, 'num': num}
     px, py = map_points_to_pixels(points, image_size, min_x, max_x, min_y, max_y)
     img = generate_image_and_pixel_counts(np.zeros(image_size, dtype=np.int32), px, py)
     hit_metrics = calculate_hit_metrics(img)  
-    extents = [min_x, max_x, min_y, max_y]
-    params = {'a': a, 'b': b, 'c': c, 'num': num}
+    
     
     return img, extents, params, hit_metrics  
 

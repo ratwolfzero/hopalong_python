@@ -3,8 +3,6 @@ import matplotlib
 matplotlib.use('TkAgg')
 import numpy as np
 import matplotlib.pyplot as plt
-import numpy as np
-from numba import jit
 
 
 def hopalong(num, a, b, c, image_size):

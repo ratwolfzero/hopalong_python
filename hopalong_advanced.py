@@ -1,10 +1,9 @@
-import matplotlib.pyplot as plt
-import numpy as np
-from numba import jit
-
 # Use TkAgg backend for matplotlib
 import matplotlib
 matplotlib.use('TkAgg')
+import matplotlib.pyplot as plt
+import numpy as np
+from numba import jit
 
 
 @jit(nopython=True)

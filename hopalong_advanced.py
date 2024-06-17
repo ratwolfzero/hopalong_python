@@ -112,11 +112,11 @@ def prepare_plot_data(points, a, b, c, num, image_size):
     img = count_pixel_hits(np.zeros(image_size, dtype=np.int32), px, py)
     extents = [min_x, max_x, min_y, max_y]
     params = {'a': a, 'b': b, 'c': c, 'num': num}
-    hit_metrics = calculate_hit_metrics(img)  # Add this line here
-    return img, extents, params, hit_metrics  # Return hit_metrics
+    hit_metrics = calculate_hit_metrics(img)  
+    return img, extents, params, hit_metrics  
 
 
-def create_plots(img, extents, params, hit_metrics):  # Pass hit_metrics as an argument
+def create_plots(img, extents, params, hit_metrics):  
     # generates the plots
     color_map = 'hot'
     fig = plt.figure(figsize=(18, 8))

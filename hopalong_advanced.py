@@ -25,10 +25,8 @@ def map_points_to_pixels(points, image_size, min_x, max_x, min_y, max_y):
     # Convert hopalong points to pixel locations
     img_width, img_height = image_size
 
-    px = ((points[:, 0] - min_x) / (max_x - min_x)
-          * (img_width - 1)).astype(np.int32)
-    py = ((points[:, 1] - min_y) / (max_y - min_y)
-          * (img_height - 1)).astype(np.int32)
+    px = ((points[:, 0] - min_x) / (max_x - min_x)* (img_width - 1)).astype(np.int32)
+    py = ((points[:, 1] - min_y) / (max_y - min_y)* (img_height - 1)).astype(np.int32)
 
     return px, py
 

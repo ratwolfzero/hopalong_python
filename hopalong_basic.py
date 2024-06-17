@@ -47,8 +47,7 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False):
                 continue
             return value
         except ValueError:
-            print(f"Invalid input. Please enter a valid {
-                  input_type.__name__} value.")
+            print(f"Invalid input. Please enter a valid {input_type.__name__} value.")
 
 
 def main():

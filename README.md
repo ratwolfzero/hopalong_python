@@ -23,6 +23,6 @@ The program asks for the parameters a, b, c and num (number of iterations). Num 
 If you select a very high value for 'num' ,the number of iterations, then the performance might decrease additionally due to memory swap use (RAM>>SSD). To compensate this float32 was selected as data type for the points-array. However, this is depending on your available System and RAM.
 Anyway 200_000_000 iterations are still easy with the advanced version.
 
-Have fun.
+Have fun!
 
 

@@ -21,8 +21,8 @@ def generate_hopalong_attractor_points(num, a, b, c):
     return points
 
 
-def map_points_to_pixels(points, image_size, min_x, max_x, min_y, max_y):
-    # Convert hopalong points to pixel locations
+def map_attractor_points_to_image_pixels(points, image_size, min_x, max_x, min_y, max_y):
+    # Convert hopalong attractor points to image pixel locations
     img_width, img_height = image_size
 
     px = ((points[:, 0] - min_x) / (max_x - min_x)* (img_width - 1)).astype(np.int32)
@@ -53,8 +53,8 @@ def calculate_hit_metrics(img):
     max_hit_index = np.argmax(hit)
     count_for_max_hit = count[max_hit_index]
     hit_pixel = sum(j for i, j in zip(hit, count))
-    img_points = np.prod(img.shape)
-    hit_ratio = '{:02.2f}'.format(hit_pixel / img_points * 100)
+    img_pixels = np.prod(img.shape)
+    hit_ratio = '{:02.2f}'.format(hit_pixel / img_pixels * 100)
 
     hit_metrics = {
         "hit": hit,
@@ -62,7 +62,7 @@ def calculate_hit_metrics(img):
         "hit_for_max_count": hit_for_max_count,
         "count_for_max_hit": count_for_max_hit,
         "hit_pixel": hit_pixel,
-        "img_points": img_points,
+        "img_points": img_pixels,
         "hit_ratio": hit_ratio
     }
 
@@ -110,7 +110,7 @@ def prepare_plot_data(points, a, b, c, num, image_size):
     min_y, max_y = np.min(points[:, 1]), np.max(points[:, 1])
     extents = [min_x, max_x, min_y, max_y]
     params = {'a': a, 'b': b, 'c': c, 'num': num}
-    px, py = map_points_to_pixels(points, image_size, min_x, max_x, min_y, max_y)
+    px, py = map_attractor_points_to_image_pixels(points, image_size, min_x, max_x, min_y, max_y)
     img = generate_image_and_pixel_counts(np.zeros(image_size, dtype=np.int32), px, py)
     hit_metrics = calculate_hit_metrics(img)  
     

@@ -45,7 +45,7 @@ def plot_hopalong_attractor(ax, img, colormap, extents, params):
     ax.set_title("Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
 
 
-def calculate_hit_metrics(img):
+def calculate_pixel_hit_metrics(img):
     # Calculate hit metrics
     hit, count = np.unique(img[img != 0], return_counts=True)
     max_count_index = np.argmax(count)
@@ -69,7 +69,7 @@ def calculate_hit_metrics(img):
     return hit_metrics
 
 
-def plot_hit_counts(ax, hit_metrics, scale='log'):
+def plot_hit_metrics(ax, hit_metrics, scale='log'):
     # Plot the hit counts distribution
     ax.plot(hit_metrics["hit"], hit_metrics["count"],color="navy", linewidth=0.6)
     ax.set_xlabel('# of hits (n)')
@@ -112,7 +112,7 @@ def prepare_plot_data(points, a, b, c, num, image_size):
     params = {'a': a, 'b': b, 'c': c, 'num': num}
     px, py = map_attractor_points_to_image_pixels(points, image_size, min_x, max_x, min_y, max_y)
     img = generate_image_and_pixel_counts(np.zeros(image_size, dtype=np.int32), px, py)
-    hit_metrics = calculate_hit_metrics(img)  
+    hit_metrics = calculate_pixel_hit_metrics(img)  
     
     
     return img, extents, params, hit_metrics  
@@ -125,7 +125,7 @@ def create_plots(img, extents, params, hit_metrics):
     ax1 = fig.add_subplot(1, 2, 1, aspect='auto')
     plot_hopalong_attractor(ax1, img, color_map, extents, params)
     ax2 = fig.add_subplot(1, 2, 2, aspect='auto')
-    plot_hit_counts(ax2, hit_metrics)
+    plot_hit_metrics(ax2, hit_metrics)
     plt.show()
 
 

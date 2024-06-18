@@ -36,6 +36,7 @@ def generate_image_and_pixel_counts(img, px, py):
     # Calculate the hit counts for each pixel in the image
     for px_i, py_i in zip(px, py):
         img[py_i, px_i] += 1
+        
     return img
 
 
@@ -114,7 +115,6 @@ def prepare_plot_data(points, a, b, c, num, image_size):
     img = generate_image_and_pixel_counts(np.zeros(image_size, dtype=np.int32), px, py)
     hit_metrics = calculate_pixel_hit_metrics(img)  
     
-    
     return img, extents, params, hit_metrics  
 
 
@@ -126,6 +126,7 @@ def create_plots(img, extents, params, hit_metrics):
     plot_hopalong_attractor(ax1, img, color_map, extents, params)
     ax2 = fig.add_subplot(1, 2, 2, aspect='auto')
     plot_hit_metrics(ax2, hit_metrics)
+
     plt.show()
 
 

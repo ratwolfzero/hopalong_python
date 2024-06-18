@@ -8,7 +8,7 @@ from numba import jit
 
 @jit(nopython=True)
 def generate_hopalong_attractor_points(num, a, b, c):
-   """
+    """
     Generates Hopalong attractor points of given shape.
     
     Args:

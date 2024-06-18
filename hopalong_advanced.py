@@ -33,7 +33,7 @@ def map_attractor_points_to_image_pixels(points, image_size, min_x, max_x, min_y
 
 @jit(nopython=True)
 def generate_image_and_pixel_counts(img, px, py):
-    # Calculate the hit counts for each pixel in the image
+    # Populate the image array with hit counts for each pixel
     for px_i, py_i in zip(px, py):
         img[py_i, px_i] += 1
 
@@ -108,7 +108,7 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False):
 
 
 def prepare_plot_data(points, a, b, c, num, image_size):
-    # returns the data necessary for plotting
+    # Process the attractor points, hit metrics and prepare data for plotting
     min_x, max_x = np.min(points[:, 0]), np.max(points[:, 0])
     min_y, max_y = np.min(points[:, 1]), np.max(points[:, 1])
     extents = [min_x, max_x, min_y, max_y]
@@ -121,7 +121,7 @@ def prepare_plot_data(points, a, b, c, num, image_size):
 
 
 def create_plots(img, extents, params, hit_metrics):  
-    # generates the plots
+    # generates all plots
     color_map = 'hot'
     fig = plt.figure(figsize=(18, 8))
     ax1 = fig.add_subplot(1, 2, 1, aspect='auto')
@@ -133,14 +133,14 @@ def create_plots(img, extents, params, hit_metrics):
 
 
 def run_hopalong_analysis(num, a, b, c, image_size):
-    #coordinates the process
+    #coordinates the process execution
     points = generate_hopalong_attractor_points(num, a, b, c).astype(np.float32)
     img, extents, params, hit_metrics = prepare_plot_data(points, a, b, c, num, image_size)
     create_plots(img, extents, params, hit_metrics)
     
 
 def main():
-   # Main function to run the Hopalong analysis.
+   # Main function to trigger the program execution
     image_size = 1000, 1000
 
     a = get_validated_input('Enter a non-zero float value for "a": ', float, check_non_zero=True)

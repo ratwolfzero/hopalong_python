@@ -47,7 +47,7 @@ def plot_hopalong_attractor(ax, img, colormap, extents, params):
 
 
 def calculate_pixel_hit_metrics(img):
-    # Calculate hit metrics
+    # Calculate the hit metrics
     hit, count = np.unique(img[img != 0], return_counts=True)
     max_count_index = np.argmax(count)
     hit_for_max_count = hit[max_count_index]
@@ -92,7 +92,7 @@ def plot_hit_metrics(ax, hit_metrics, scale='log'):
 
 
 def get_validated_input(prompt, input_type=float, check_non_zero=False):
-    # Prompts the user for input and validates it.
+    # Validates the user input 
     while True:
         user_input = input(prompt)
         try:
@@ -138,7 +138,7 @@ def run_hopalong_analysis(num, a, b, c, image_size, color_map):
 
 
 def main():
-   # Main function: Define image_size and color_map and trigger the program execution
+   # Main function: Define image_size and color_map, prompt for user input and trigger the program execution
 
     image_size = 1000, 1000
     color_map = 'hot'
@@ -148,7 +148,6 @@ def main():
     c = get_validated_input('Enter a float value for "c": ', float)
     num = get_validated_input('Enter an integer value for "num": ', int)
 
-    
     run_hopalong_analysis(num, a, b, c, image_size, color_map) 
 
 if __name__ == "__main__":

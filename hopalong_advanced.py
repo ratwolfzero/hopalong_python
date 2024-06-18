@@ -120,36 +120,36 @@ def prepare_plot_data(points, a, b, c, num, image_size):
     return img, extents, params, hit_metrics  
 
 
-def create_plots(img, extents, params, hit_metrics):  
+def create_plots(img, extents, params, hit_metrics, color_map):  
     # generates all plots
-    color_map = 'hot'
     fig = plt.figure(figsize=(18, 8))
     ax1 = fig.add_subplot(1, 2, 1, aspect='auto')
     plot_hopalong_attractor(ax1, img, color_map, extents, params)
     ax2 = fig.add_subplot(1, 2, 2, aspect='auto')
     plot_hit_metrics(ax2, hit_metrics)
-
     plt.show()
 
 
-def run_hopalong_analysis(num, a, b, c, image_size):
+def run_hopalong_analysis(num, a, b, c, image_size, color_map):
     #coordinates the process execution
     points = generate_hopalong_attractor_points(num, a, b, c).astype(np.float32)
     img, extents, params, hit_metrics = prepare_plot_data(points, a, b, c, num, image_size)
-    create_plots(img, extents, params, hit_metrics)
-    
+    create_plots(img, extents, params, hit_metrics, color_map)
+
 
 def main():
-   # Main function to trigger the program execution
+   # Main function: Define image_size and color_map and trigger the program execution
+
     image_size = 1000, 1000
+    color_map = 'hot'
 
     a = get_validated_input('Enter a non-zero float value for "a": ', float, check_non_zero=True)
     b = get_validated_input('Enter a float value for "b": ', float)
     c = get_validated_input('Enter a float value for "c": ', float)
     num = get_validated_input('Enter an integer value for "num": ', int)
 
-    run_hopalong_analysis(num, a, b, c, image_size)
-
+    
+    run_hopalong_analysis(num, a, b, c, image_size, color_map) 
 
 if __name__ == "__main__":
     main()

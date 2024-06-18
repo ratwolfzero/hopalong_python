@@ -36,7 +36,7 @@ def generate_image_and_pixel_counts(img, px, py):
     # Calculate the hit counts for each pixel in the image
     for px_i, py_i in zip(px, py):
         img[py_i, px_i] += 1
-        
+
     return img
 
 
@@ -100,7 +100,9 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False):
             if check_non_zero and value == 0:
                 print("Invalid input. The value cannot be zero.")
                 continue
+            
             return value
+        
         except ValueError:
             print(f"Invalid input. Please enter a valid {input_type.__name__} value.")
 

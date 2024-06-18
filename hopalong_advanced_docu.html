@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module hopalong_advanced</title>
+</head>
+<body>
+
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="matplotlib.html">matplotlib</a><br>
+</td><td class="multicolumn"><a href="numpy.html">numpy</a><br>
+</td><td class="multicolumn"><a href="matplotlib.pyplot.html">matplotlib.pyplot</a><br>
+</td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn">
+<dl>
+<dt><a name="-generate_hopalong_attractor_points"><strong>generate_hopalong_attractor_points</strong></a>(num, a, b, c)</dt>
+<dd><span class="code">Generate&nbsp;hopalong&nbsp;attractor&nbsp;points&nbsp;array&nbsp;of&nbsp;shape&nbsp;(num,&nbsp;2).<br>
+&nbsp;<br>
+Parameters:<br>
+num&nbsp;(int):&nbsp;Number&nbsp;of&nbsp;points&nbsp;to&nbsp;generate.<br>
+a&nbsp;(float):&nbsp;Parameter&nbsp;'a'&nbsp;in&nbsp;the&nbsp;hopalong&nbsp;attractor&nbsp;equation.<br>
+b&nbsp;(float):&nbsp;Parameter&nbsp;'b'&nbsp;in&nbsp;the&nbsp;hopalong&nbsp;attractor&nbsp;equation.<br>
+c&nbsp;(float):&nbsp;Parameter&nbsp;'c'&nbsp;in&nbsp;the&nbsp;hopalong&nbsp;attractor&nbsp;equation.<br>
+&nbsp;<br>
+Returns:<br>
+points&nbsp;(ndarray):&nbsp;Array&nbsp;of&nbsp;shape&nbsp;(num,&nbsp;2)&nbsp;containing&nbsp;the&nbsp;generated&nbsp;points.</span></dd>
+</dl>
+
+<dl>
+<dt><a name="-map_attractor_points_to_image_pixels"><strong>map_attractor_points_to_image_pixels</strong></a>(points, image_size, min_x, max_x, min_y, max_y)</dt>
+<dd><span class="code">Convert&nbsp;hopalong&nbsp;attractor&nbsp;points&nbsp;to&nbsp;image&nbsp;pixel&nbsp;locations.<br>
+&nbsp;<br>
+Parameters:<br>
+points&nbsp;(ndarray):&nbsp;Array&nbsp;of&nbsp;generated&nbsp;attractor&nbsp;points.<br>
+image_size&nbsp;(tuple):&nbsp;Size&nbsp;of&nbsp;the&nbsp;image&nbsp;(width,&nbsp;height).<br>
+min_x&nbsp;(float):&nbsp;Minimum&nbsp;x-coordinate&nbsp;value&nbsp;of&nbsp;the&nbsp;points.<br>
+max_x&nbsp;(float):&nbsp;Maximum&nbsp;x-coordinate&nbsp;value&nbsp;of&nbsp;the&nbsp;points.<br>
+min_y&nbsp;(float):&nbsp;Minimum&nbsp;y-coordinate&nbsp;value&nbsp;of&nbsp;the&nbsp;points.<br>
+max_y&nbsp;(float):&nbsp;Maximum&nbsp;y-coordinate&nbsp;value&nbsp;of&nbsp;the&nbsp;points.<br>
+&nbsp;<br>
+Returns:<br>
+px&nbsp;(ndarray):&nbsp;Array&nbsp;of&nbsp;x-coordinates&nbsp;in&nbsp;pixel&nbsp;space.<br>
+py&nbsp;(ndarray):&nbsp;Array&nbsp;of&nbsp;y-coordinates&nbsp;in&nbsp;pixel&nbsp;space.</span></dd>
+</dl>
+
+<dl>
+<dt><a name="-generate_image_and_pixel_counts"><strong>generate_image_and_pixel_counts</strong></a>(img, px, py)</dt>
+<dd><span class="code">Populate&nbsp;the&nbsp;image&nbsp;array&nbsp;with&nbsp;hit&nbsp;counts&nbsp;for&nbsp;each&nbsp;pixel.<br>
+&nbsp;<br>
+Parameters:<br>
+img&nbsp;(ndarray):&nbsp;Empty&nbsp;image&nbsp;array&nbsp;to&nbsp;be&nbsp;populated.<br>
+px&nbsp;(ndarray):&nbsp;Array&nbsp;of&nbsp;x-coordinates&nbsp;in&nbsp;pixel&nbsp;space.<br>
+py&nbsp;(ndarray):&nbsp;Array&nbsp;of&nbsp;y-coordinates&nbsp;in&nbsp;pixel&nbsp;space.<br>
+&nbsp;<br>
+Returns:<br>
+img&nbsp;(ndarray):&nbsp;Image&nbsp;array&nbsp;with&nbsp;hit&nbsp;counts.</span></dd>
+</dl>
+
+<dl>
+<dt><a name="-plot_hopalong_attractor"><strong>plot_hopalong_attractor</strong></a>(ax, img, colormap, extents, params)</dt>
+<dd><span class="code">Plot&nbsp;the&nbsp;hopalong&nbsp;attractor&nbsp;image.<br>
+&nbsp;<br>
+Parameters:<br>
+ax&nbsp;(Axes):&nbsp;Matplotlib&nbsp;Axes&nbsp;object&nbsp;to&nbsp;plot&nbsp;on.<br>
+img&nbsp;(ndarray):&nbsp;Image&nbsp;array&nbsp;with&nbsp;hit&nbsp;counts.<br>
+colormap&nbsp;(str):&nbsp;Colormap&nbsp;to&nbsp;use&nbsp;for&nbsp;the&nbsp;image.<br>
+extents&nbsp;(list):&nbsp;List&nbsp;of&nbsp;[min_x,&nbsp;max_x,&nbsp;min_y,&nbsp;max_y]&nbsp;for&nbsp;the&nbsp;image.<br>
+params&nbsp;(dict):&nbsp;Dictionary&nbsp;of&nbsp;parameters&nbsp;a,&nbsp;b,&nbsp;c,&nbsp;and&nbsp;num.</span></dd>
+</dl>
+
+<dl>
+<dt><a name="-calculate_pixel_hit_metrics"><strong>calculate_pixel_hit_metrics</strong></a>(img)</dt>
+<dd><span class="code">Calculate&nbsp;the&nbsp;hit&nbsp;metrics&nbsp;of&nbsp;the&nbsp;image.<br>
+&nbsp;<br>
+Parameters:<br>
+img&nbsp;(ndarray):&nbsp;Image&nbsp;array&nbsp;with&nbsp;hit&nbsp;counts.<br>
+&nbsp;<br>
+Returns:<br>
+hit_metrics&nbsp;(dict):&nbsp;Dictionary&nbsp;containing&nbsp;various&nbsp;hit&nbsp;metrics.</span></dd>
+</dl>
+
+<dl>
+<dt><a name="-plot_hit_metrics"><strong>plot_hit_metrics</strong></a>(ax, hit_metrics, scale='log')</dt>
+<dd><span class="code">Plot&nbsp;the&nbsp;hit&nbsp;counts&nbsp;distribution.<br>
+&nbsp;<br>
+Parameters:<br>
+ax&nbsp;(Axes):&nbsp;Matplotlib&nbsp;Axes&nbsp;object&nbsp;to&nbsp;plot&nbsp;on.<br>
+hit_metrics&nbsp;(dict):&nbsp;Dictionary&nbsp;containing&nbsp;various&nbsp;hit&nbsp;metrics.<br>
+scale&nbsp;(str):&nbsp;Scale&nbsp;to&nbsp;use&nbsp;for&nbsp;the&nbsp;plot&nbsp;(default&nbsp;is&nbsp;'log').</span></dd>
+</dl>
+
+<dl>
+<dt><a name="-get_validated_input"><strong>get_validated_input</strong></a>(prompt, input_type=&lt;class 'float'&gt;, check_non_zero=False)</dt>
+<dd><span class="code">Validate&nbsp;the&nbsp;user&nbsp;input.<br>
+&nbsp;<br>
+Parameters:<br>
+prompt&nbsp;(str):&nbsp;Input&nbsp;prompt&nbsp;for&nbsp;the&nbsp;user.<br>
+input_type&nbsp;(type):&nbsp;Expected&nbsp;type&nbsp;of&nbsp;input&nbsp;(default&nbsp;is&nbsp;float).<br>
+check_non_zero&nbsp;(bool):&nbsp;Whether&nbsp;to&nbsp;check&nbsp;if&nbsp;the&nbsp;input&nbsp;is&nbsp;non-zero&nbsp;(default&nbsp;is&nbsp;False).<br>
+&nbsp;<br>
+Returns:<br>
+value:&nbsp;Validated&nbsp;user&nbsp;input&nbsp;of&nbsp;the&nbsp;specified&nbsp;type.</span></dd>
+</dl>
+
+<dl>
+<dt><a name="-prepare_plot_data"><strong>prepare_plot_data</strong></a>(points, a, b, c, num, image_size)</dt>
+<dd><span class="code">Process&nbsp;the&nbsp;attractor&nbsp;points,&nbsp;hit&nbsp;metrics,&nbsp;and&nbsp;prepare&nbsp;data&nbsp;for&nbsp;plotting.<br>
+&nbsp;<br>
+Parameters:<br>
+points&nbsp;(ndarray):&nbsp;Array&nbsp;of&nbsp;generated&nbsp;attractor&nbsp;points.<br>
+a&nbsp;(float):&nbsp;Parameter&nbsp;'a'&nbsp;in&nbsp;the&nbsp;hopalong&nbsp;attractor&nbsp;equation.<br>
+b&nbsp;(float):&nbsp;Parameter&nbsp;'b'&nbsp;in&nbsp;the&nbsp;hopalong&nbsp;attractor&nbsp;equation.<br>
+c&nbsp;(float):&nbsp;Parameter&nbsp;'c'&nbsp;in&nbsp;the&nbsp;hopalong&nbsp;attractor&nbsp;equation.<br>
+num&nbsp;(int):&nbsp;Number&nbsp;of&nbsp;points&nbsp;generated.<br>
+image_size&nbsp;(tuple):&nbsp;Size&nbsp;of&nbsp;the&nbsp;image&nbsp;(width,&nbsp;height).<br>
+&nbsp;<br>
+Returns:<br>
+plot_data&nbsp;(dict):&nbsp;Dictionary&nbsp;containing&nbsp;image&nbsp;array,&nbsp;pixel&nbsp;locations,&nbsp;and&nbsp;hit&nbsp;metrics.</span></dd>
+</dl>
+
+<dl>
+<dt><a name="-main"><strong>main</strong></a>()</dt>
+<dd><span class="code">Main&nbsp;function&nbsp;to&nbsp;generate&nbsp;and&nbsp;plot&nbsp;the&nbsp;hopalong&nbsp;attractor.</span></dd>
+</dl>
+
+</td></tr>
+</table></body></html>

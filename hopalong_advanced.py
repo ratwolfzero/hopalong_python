@@ -6,7 +6,7 @@ import numpy as np
 from numba import njit
 
 
-@njit(parallel=True)
+@njit
 def generate_hopalong_attractor_points(num, a, b, c):
    # generate hopalong points array of given shape
     points = np.zeros((num, 2), dtype=np.float32)

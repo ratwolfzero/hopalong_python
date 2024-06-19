@@ -25,6 +25,6 @@ Anyway 200_000_000 iterations are still easy with the advanced version.
 
 Have fun!!
 
-Remark: The hopalong_advanced_doc.py file in the documantation folder is the same as hopalong_advanced.py but with DocString documentation/comments used as a basis to create the HTML documentation with pdoc. Open the HTML file with your preferred application.
+Remark: The hopalong_advanced_doc.py file in the documantation folder is the same as hopalong_advanced.py but with DocString documentation/comments used as a basis to create the HTML documentation with pdoc. Open the HTML file with your preferred webbrowser.
 
 Example plots in .png format, created with the advanced version, are available in the examples folder.

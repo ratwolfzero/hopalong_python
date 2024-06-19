@@ -31,10 +31,10 @@ import matplotlib
 matplotlib.use(&#39;TkAgg&#39;)
 import matplotlib.pyplot as plt
 import numpy as np
-from numba import jit
+from numba import njit
 
 
-@jit(nopython=True)
+@njit(parallel=True)
 def generate_hopalong_attractor_points(num, a, b, c):
     &#34;&#34;&#34;
     Generates Hopalong attractor points of given shape.
@@ -85,7 +85,7 @@ def map_attractor_points_to_image_pixels(points, image_size, min_x, max_x, min_y
     return px, py
 
 
-@jit(nopython=True)
+@njit
 def generate_image_and_pixel_counts(img, px, py):
     &#34;&#34;&#34;
     Populates the image array with hit counts for each pixel.
@@ -423,7 +423,7 @@ if __name__ == &#34;__main__&#34;:
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">@jit(nopython=True)
+<pre><code class="python">@njit(parallel=True)
 def generate_hopalong_attractor_points(num, a, b, c):
     &#34;&#34;&#34;
     Generates Hopalong attractor points of given shape.
@@ -468,7 +468,7 @@ py (np.array<int>): Pixel locations along y-axis.</p>
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">@jit(nopython=True)
+<pre><code class="python">@njit
 def generate_image_and_pixel_counts(img, px, py):
     &#34;&#34;&#34;
     Populates the image array with hit counts for each pixel.

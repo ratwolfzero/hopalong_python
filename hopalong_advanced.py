@@ -3,20 +3,20 @@ import matplotlib
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 import numpy as np
-from numba import jit
+from numba import njit
 
 
-@jit(nopython=True)
+@njit(parallel=True)
 def generate_hopalong_attractor_points(num, a, b, c):
    # generate hopalong points array of given shape
     points = np.zeros((num, 2), dtype=np.float32)
     x, y = 0.0, 0.0
 
-    for i in range(num):
+    for i in prange(num):
 
         points[i] = x, y
         xx, yy = y - np.sign(x) * np.sqrt(abs(b * x - c)), a - x
-        x, y = xx, yy
+        z, y = xx, yy
 
     return points
 
@@ -31,7 +31,7 @@ def map_attractor_points_to_image_pixels(points, image_size, min_x, max_x, min_y
     return px, py
 
 
-@jit(nopython=True)
+@njit
 def generate_image_and_pixel_counts(img, px, py):
     # Populate the image array with hit counts for each pixel
     for px_i, py_i in zip(px, py):

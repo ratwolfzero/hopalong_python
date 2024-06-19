@@ -16,7 +16,7 @@ def generate_hopalong_attractor_points(num, a, b, c):
 
         points[i] = x, y
         xx, yy = y - np.sign(x) * np.sqrt(abs(b * x - c)), a - x
-        z, y = xx, yy
+        x, y = xx, yy
 
     return points
 

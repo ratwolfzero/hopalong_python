@@ -6,7 +6,7 @@ import numpy as np
 from numba import njit
 
 
-@njit(parallel=True)
+@njit
 def generate_hopalong_attractor_points(num, a, b, c):
     """
     Generates Hopalong attractor points of given shape.

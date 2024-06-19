@@ -8,7 +8,7 @@ from numba import jit
 
 @jit(nopython=True)
 def generate_hopalong_attractor_points(num, a, b, c):
-   # generate hopalong points array of shape (num, 2)
+   # generate hopalong points array of given shape
     points = np.zeros((num, 2), dtype=np.float32)
     x, y = 0.0, 0.0
 

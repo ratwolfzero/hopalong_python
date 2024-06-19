@@ -15,7 +15,7 @@ Note: I had problems with MacOs 14.x and Python 3.12.x. The plot window and Pyth
 "# import matplotlib"
 "# matplotlib.use('TkAgg')"
 
-If speed is essential use the advanced version. Using @jit for itarative loops is a revelation in terms of speed.
+If speed is essential use the advanced version. Using @njit for itarative loops is a revelation in terms of speed.
 The advanced version tracks the pixel 'hit count' (density) to control the colormap and generates some statistics about pixel hit-counts and their distribution.
 
 The program asks for the parameters a, b, c and num (number of iterations). Num must be entered as an integer e.g. 1000000 or 1_000_000. The parameters a, b and c can be entered in floating point or integer format. The value of 'a' should not be zero and the input validation returns a corresponding error. You can enter a very small value instead e.g. 1e-10 

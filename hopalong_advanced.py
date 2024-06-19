@@ -132,7 +132,7 @@ def create_plots(img, extents, params, hit_metrics, color_map):
 
 def run_hopalong_analysis(num, a, b, c, image_size, color_map):
     #coordinates the process execution
-    points = generate_hopalong_attractor_points(num, a, b, c).astype(np.float32)
+    points = generate_hopalong_attractor_points(num, a, b, c)
     img, extents, params, hit_metrics = prepare_plot_data(points, a, b, c, num, image_size)
     create_plots(img, extents, params, hit_metrics, color_map)
 

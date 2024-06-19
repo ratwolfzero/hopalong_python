@@ -12,7 +12,7 @@ def generate_hopalong_attractor_points(num, a, b, c):
     points = np.zeros((num, 2), dtype=np.float32)
     x, y = 0.0, 0.0
 
-    for i in prange(num):
+    for i in range(num):
 
         points[i] = x, y
         xx, yy = y - np.sign(x) * np.sqrt(abs(b * x - c)), a - x

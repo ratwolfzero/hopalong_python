@@ -34,7 +34,6 @@ Literature:
 John Lansdown Rae A. Earnshaw Editors
 Computers in Art, Design and Animation
 Springer-Verlag
-
 ISBN-13: 978-1-4612-8868-8,  e-ISBN-13: 978-1-4612-4538-4
 
 Chapter: 
@@ -44,5 +43,5 @@ by Barry Martin
 -----------------------------------------------------------------------------------
 
 Computer Kurzweil (German version of Scientific American),
-Spektrum der Wissenschaft: Verständliche Forschung, ISBN 3-922508-50-2
+Spektrum der Wissenschaft: Verständliche Forschung, ISBN 3-922508-50-2,
 Kapitel 1, Computergraphik by A. K. Dewdney

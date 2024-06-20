@@ -1,7 +1,7 @@
 # hopalong_python
 Calculate and display the "Hopalong" attractor
 
-The inventor of Hopalong is Barry Martin from Aston University in Birmingham/England. A. K. Dewdney described these fractals in September 1986 in the magazine Scientific American and made them famous. The German edition Spektrum der Wissenschaft distributed Hopalong in Germany in the November 1986 issue with a translation of this article in the Computer-Kurzweil section. “Hüpfer” is the German name for Hopalong (hop-along, keep hopping).
+The inventor of Hopalong is Barry Martin from Aston University in Birmingham/England. A. K. Dewdney described these fractals in September 1986 in the magazine Scientific American and made them famous. The German edition Spektrum der Wissenschaft distributed Hopalong in Germany with a translation of this article in the Computer-Kurzweil section. “Hüpfer” is the German name for Hopalong (hop-along, keep hopping).
 
 This Python programs can calculate and display the “Hopalong” attractor
 
@@ -33,7 +33,7 @@ Literature:
 
 John Lansdown Rae A. Earnshaw Editors
 Computers in Art, Design and Animation
-Springer-Verlag, 1989
+Springer-Verlag
 
 ISBN-13: 978-1-4612-8868-8,  e-ISBN-13: 978-1-4612-4538-4
 
@@ -43,6 +43,6 @@ by Barry Martin
 
 -----------------------------------------------------------------------------------
 
-Computer Kurzweil (German version of Scientific American), 1988,
+Computer Kurzweil (German version of Scientific American),
 Spektrum der Wissenschaft: Verständliche Forschung, ISBN 3-922508-50-2
 Kapitel 1, Computergraphik by A. K. Dewdney

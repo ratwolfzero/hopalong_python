@@ -28,3 +28,11 @@ Have fun!!
 Remark: The hopalong_advanced_doc.py file in the documantation folder is the same as hopalong_advanced.py but with DocString documentation/comments used as a basis to create the HTML documentation with pdoc. Open the HTML file with your preferred webbrowser.
 
 Example plots in .png format, created with the advanced version, are available in the examples folder.
+
+Literature:
+
+John Lansdown Rae A. Earnshaw Editors
+Computers in Art, Design and Animation
+Springer-Verlag
+
+ISBN-13: 978-1-4612-8868-8,  e-ISBN-13: 978-1-4612-4538-4

@@ -33,7 +33,7 @@ Literature:
 
 John Lansdown Rae A. Earnshaw Editors
 Computers in Art, Design and Animation
-Springer-Verlag
+Springer-Verlag, 1989
 
 ISBN-13: 978-1-4612-8868-8,  e-ISBN-13: 978-1-4612-4538-4
 

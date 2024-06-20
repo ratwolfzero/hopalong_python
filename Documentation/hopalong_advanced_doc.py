@@ -33,6 +33,7 @@ def generate_hopalong_attractor_points(num, a, b, c):
     return points
 
 
+@njit(parallel=True)
 def map_attractor_points_to_image_pixels(points, image_size, min_x, max_x, min_y, max_y):
     """
     Maps Hopalong attractor points to image pixel locations.

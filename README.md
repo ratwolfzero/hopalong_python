@@ -43,5 +43,6 @@ by Barry Martin
 -----------------------------------------------------------------------------------
 
 Computer Kurzweil (German version of Scientific American),
-Spektrum der Wissenschaft: Verständliche Forschung, ISBN 3-922508-50-2,
+Spektrum der Wissenschaft: 
+Verständliche Forschung, ISBN 3-922508-50-2, 
 Kapitel 1, Computergraphik by A. K. Dewdney

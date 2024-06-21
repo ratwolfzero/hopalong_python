@@ -1,7 +1,7 @@
 # hopalong_python
 Calculate and display the "Hopalong" attractor
 
-The inventor of "Hopalong" is Barry Martin from Aston University in Birmingham/England. A. K. Dewdney described these fractals in September 1986 in the magazine Scientific American and made them famous. The German edition Spektrum der Wissenschaft distributed "Hopalong" in Germany with a translation of this article in the Computer-Kurzweil section. “Hüpfer” is the German name for "Hopalong" (hop-along, keep hopping).
+The inventor is Barry Martin from Aston University in Birmingham/England. A. K. Dewdney described these fractals in September 1986 in the magazine Scientific American and made them famous. The German edition Spektrum der Wissenschaft distributed "Hopalong" in Germany with a translation of this article in the Computer-Kurzweil section. “Hüpfer” is the German name for "Hopalong" (hop-along, keep hopping).
 
 
 This Python programs can calculate and display the “Hopalong” attractor
@@ -22,6 +22,7 @@ The program asks for the parameters a, b, c and num (number of iterations). Num 
 
 
 Notes:
+------
 If you select a very high value for 'num' ,the number of iterations, then the performance might decrease additionally due to memory swap use (RAM>>SSD). To compensate this float32 was selected as data type for the points-array. However, this is depending on your available System and RAM.
 Anyway 200_000_000 iterations is still easy with the advanced version.
 

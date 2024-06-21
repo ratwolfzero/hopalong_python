@@ -36,18 +36,13 @@ Computers in Art, Design and Animation,
 Springer-Verlag 
 
 Chapter: 
-Graphic Potential of Recursive Functions, pages 109 - 129, 
-Barry Martin
+Graphic Potential of Recursive Functions, Barry Martin
 
 ISBN-13: 978-1-4612-8868-8,  e-ISBN-13: 978-1-4612-4538-4
 
-
-
------------------------------------------------------------------------------------
-
+-------------------------------------------------------------------
 
 Spektrum der Wissenschaft: (German version of Scientific American),
-Computer Kurzweil
-Kapitel 1, Computergraphik A. K. Dewdney
+Computer Kurzweil, Kapitel 1, Computergraphik A. K. Dewdney
 
 ISBN 3-922508-50-2

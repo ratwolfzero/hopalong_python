@@ -25,7 +25,7 @@ Anyway 200_000_000 iterations is still easy with the advanced version.
 
 Have fun!
 
-
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Literature:
 
@@ -38,7 +38,6 @@ Graphic Potential of Recursive Functions, Barry Martin
 
 ISBN-13: 978-1-4612-8868-8,  e-ISBN-13: 978-1-4612-4538-4
 
--------------------------------------------------------------------
 
 Spektrum der Wissenschaft: (German version of Scientific American), Computer Kurzweil, Kapitel 1, Computergraphik A. K. Dewdney
 

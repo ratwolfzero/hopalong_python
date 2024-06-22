@@ -86,8 +86,8 @@ def plot_hit_metrics(ax, hit_metrics, scale='log'):
     ax.set_title(title_text, fontsize=10)
     ax.set_xscale(scale)
     ax.set_yscale(scale)
-    ax.set_xlim(left=1)
-    ax.set_ylim(bottom=1)
+    ax.set_xlim(left=0.95)
+    ax.set_ylim(bottom=0.95)
     ax.set_facecolor("lightgrey")
     ax.grid(True, which="both")
 

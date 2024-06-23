@@ -167,7 +167,7 @@ def plot_hit_metrics(ax, hit_metrics, scale=&#39;log&#39;):
     Returns:
         None
     &#34;&#34;&#34;
-    ax.plot(hit_metrics[&#34;hit&#34;], hit_metrics[&#34;count&#34;],color=&#34;navy&#34;, linewidth=0.6)
+    ax.plot(hit_metrics[&#34;hit&#34;], hit_metrics[&#34;count&#34;], &#39;o-&#39;, color=&#34;navy&#34;, markersize=1,linewidth=0.6)
     ax.set_xlabel(&#39;# of hits (n)&#39;)
     ax.set_ylabel(&#39;# of pixels hit n-times&#39;)
 
@@ -650,7 +650,7 @@ def map_attractor_points_to_image_pixels(points, image_size, min_x, max_x, min_y
     Returns:
         None
     &#34;&#34;&#34;
-    ax.plot(hit_metrics[&#34;hit&#34;], hit_metrics[&#34;count&#34;],color=&#34;navy&#34;, linewidth=0.6)
+    ax.plot(hit_metrics[&#34;hit&#34;], hit_metrics[&#34;count&#34;], &#39;o-&#39;, color=&#34;navy&#34;, markersize=1,linewidth=0.6)
     ax.set_xlabel(&#39;# of hits (n)&#39;)
     ax.set_ylabel(&#39;# of pixels hit n-times&#39;)
 

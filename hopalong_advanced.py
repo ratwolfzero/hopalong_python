@@ -73,7 +73,7 @@ def calculate_pixel_hit_metrics(img):
 
 def plot_hit_metrics(ax, hit_metrics, scale='log'):
     # Plot the hit counts distribution
-    ax.plot(hit_metrics["hit"], hit_metrics["count"],color="navy", linewidth=0.6)
+    ax.plot(hit_metrics["hit"], hit_metrics["count"], 'o-', color="navy", markersize=1,linewidth=0.6)
     ax.set_xlabel('# of hits (n)')
     ax.set_ylabel('# of pixels hit n-times')
 

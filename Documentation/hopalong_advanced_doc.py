@@ -72,7 +72,7 @@ def generate_image_and_pixel_counts(img, px, py):
         img (np.array): Modified image array.
     """
     for px_i, py_i in zip(px, py):
-        img[py_i, px_i] += 1
+        img[px_i, py_i] += 1
 
     return img
 
@@ -266,7 +266,7 @@ def main():
     a = get_validated_input('Enter a non-zero float value for "a": ', float, check_non_zero=True)
     b = get_validated_input('Enter a float value for "b": ', float)
     c = get_validated_input('Enter a float value for "c": ', float)
-    num = get_validated_input('Enter an integer value for "num": ', int)
+    num = get_validated_input('Enter an integer value for "num": ', int, check_non_zero=True)
 
     run_hopalong_analysis(num, a, b, c, image_size, color_map) 
 

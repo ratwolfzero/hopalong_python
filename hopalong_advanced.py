@@ -3,7 +3,7 @@ import matplotlib
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 import numpy as np
-from numba import njit
+from numba import njit, prange
 
 
 @njit
@@ -31,7 +31,14 @@ def map_attractor_points_to_image_pixels(points, image_size, min_x, max_x, min_y
 
     return px, py
 
+@njit(parallel=True)
+def generate_image_and_pixel_counts(img, px, py):
+    for i in prange(len(px)):
+        img[py[i], px[i]] += 1
 
+    return img
+
+"""
 @njit
 def generate_image_and_pixel_counts(img, px, py):
     # Populate the image array with hit counts for each pixel
@@ -39,7 +46,7 @@ def generate_image_and_pixel_counts(img, px, py):
         img[px_i, py_i] += 1
 
     return img
-
+"""
 
 def plot_hopalong_attractor(ax, img, colormap, extents, params):
     # plot the hopalong attractor image

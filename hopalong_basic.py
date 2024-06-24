@@ -19,6 +19,7 @@ def hopalong(num, a, b, c, image_size):
     min_x, max_x = np.min(points[:, 0]), np.max(points[:, 0])
     min_y, max_y = np.min(points[:, 1]), np.max(points[:, 1])
 
+
     img_width, img_height = image_size
     img = np.zeros((img_height, img_width), dtype=np.int16)
 
@@ -53,7 +54,7 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False):
 def main():
     # Main function to run the Hopalong attractor generation.
     image_size = 1000, 1000
-    a = get_validated_input('Enter a non-zero float value for "a": ', float, check_non_zero=True)
+    a = get_validated_input('Enter a non-zero float value for "a": ')#, float, check_non_zero=True)
     b = get_validated_input('Enter a float value for "b": ', float)
     c = get_validated_input('Enter a float value for "c": ', float)
     num = get_validated_input('Enter an integer value for "num": ', int)

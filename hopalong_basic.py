@@ -28,6 +28,7 @@ def hopalong(num, a, b, c, image_size):
           * (img_height - 1)).astype(np.int16)
 
     img[py, px] = 1
+    
 
     plt.figure(figsize=(8, 8))
     plt.imshow(img, origin="lower", cmap='inferno', extent=[min_x, max_x, min_y, max_y])

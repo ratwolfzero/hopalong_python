@@ -57,7 +57,7 @@ def main():
     a = get_validated_input('Enter a non-zero float value for "a": ', float, check_non_zero=True)
     b = get_validated_input('Enter a float value for "b": ', float)
     c = get_validated_input('Enter a float value for "c": ', float)
-    num = get_validated_input('Enter an integer value for "num": ', int, float, check_non_zero=True)
+    num = get_validated_input('Enter an integer value for "num": ', int, check_non_zero=True)
 
     hopalong(num, a, b, c, image_size)
 

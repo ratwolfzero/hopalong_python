@@ -31,6 +31,7 @@ def map_attractor_points_to_image_pixels(points, image_size, min_x, max_x, min_y
 
     return px, py
 
+
 @njit(parallel=True)
 def generate_image_and_pixel_counts(img, px, py):
     for i in prange(len(px)):

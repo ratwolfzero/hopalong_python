@@ -9,7 +9,7 @@ def hopalong(num, a, b, c, image_size):
     # Computes and plot the points for the Hopalong attractor.
     points = np.empty((num, 2), dtype=np.float32)
     x, y = 0.0, 0.0
-
+    
     for i in range(num):
 
         points[i] = x, y
@@ -20,7 +20,7 @@ def hopalong(num, a, b, c, image_size):
     min_y, max_y = np.min(points[:, 1]), np.max(points[:, 1])
 
     img_width, img_height = image_size
-    img = np.empty((img_height, img_width), dtype=np.int16)
+    img = np.zeros((img_height, img_width), dtype=np.int16)
 
     px = ((points[:, 0] - min_x) / (max_x - min_x)
           * (img_width - 1)).astype(np.int16)

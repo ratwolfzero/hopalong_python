@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 def hopalong(num, a, b, c, image_size):
     # Computes and plot the points for the Hopalong attractor.
     points = np.empty((num, 2), dtype=np.float32)
-    x, y = 0.0, 0.0
+    x, y = 0.0, 1e-99
     
     for i in range(num):
 
@@ -54,7 +54,7 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False):
 def main():
     # Main function to run the Hopalong attractor generation.
     image_size = 1000, 1000
-    a = get_validated_input('Enter a non-zero float value for "a": ', float, check_non_zero=True)
+    a = get_validated_input('Enter a non-zero float value for "a": ', float)#, check_non_zero=True)
     b = get_validated_input('Enter a float value for "b": ', float)
     c = get_validated_input('Enter a float value for "c": ', float)
     num = get_validated_input('Enter an integer value for "num": ', int, check_non_zero=True)

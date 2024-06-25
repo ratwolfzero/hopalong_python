@@ -37,7 +37,7 @@ I had problems with MacOs 14.x and Python 3.12.x. The plot window and Python cra
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Literature:
+References:
 -----------
 
 John Lansdown Rae A. Earnshaw Editors,

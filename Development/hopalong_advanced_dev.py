@@ -10,7 +10,7 @@ from numba import njit, prange
 def generate_hopalong_attractor_points(num, a, b, c):
    # generate hopalong points array of given shape
     points = np.zeros((num, 2), dtype=np.float32)
-    x, y = 0.0, 0.0
+    x, y = 0.0, 1e-99
 
     for i in range(num):
 
@@ -32,6 +32,14 @@ def map_attractor_points_to_image_pixels(points, image_size, min_x, max_x, min_y
     return px, py
 
 
+@njit(parallel=True)
+def generate_image_and_pixel_counts(img, px, py):
+    for i in prange(len(px)):
+        img[px[i], py[i]] += 1
+
+    return img
+
+"""
 @njit
 def generate_image_and_pixel_counts(img, px, py):
     # Populate the image array with hit counts for each pixel
@@ -39,7 +47,7 @@ def generate_image_and_pixel_counts(img, px, py):
         img[px_i, py_i] += 1
 
     return img
-
+"""
 
 def plot_hopalong_attractor(ax, img, colormap, extents, params):
     # plot the hopalong attractor image
@@ -144,7 +152,7 @@ def main():
     image_size = 1000, 1000
     color_map = 'hot'
 
-    a = get_validated_input('Enter a non-zero float value for "a": ', float, check_non_zero=True)
+    a = get_validated_input('Enter a non-zero float value for "a": ', float)#, check_non_zero=True)
     b = get_validated_input('Enter a float value for "b": ', float)
     c = get_validated_input('Enter a float value for "c": ', float)
     num = get_validated_input('Enter an integer value for "num": ', int, check_non_zero=True)

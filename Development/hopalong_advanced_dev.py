@@ -132,7 +132,6 @@ def prepare_plot_data(points, a, b, c, num, image_size):
     return img, extents, params, hit_metrics  
     
 
-
 def create_plots(img, extents, params, hit_metrics, color_map):    
     # generates all plots
     fig = plt.figure(figsize=(18, 8))
@@ -144,7 +143,6 @@ def create_plots(img, extents, params, hit_metrics, color_map):
     plot_hit_metrics(ax2, hit_metrics)
 
     plt.show()
-
 
 def run_hopalong_analysis(num, a, b, c, image_size, color_map):
     #coordinates the process execution

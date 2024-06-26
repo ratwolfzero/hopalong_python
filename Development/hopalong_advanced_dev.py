@@ -10,7 +10,7 @@ from numba import njit, prange
 def generate_hopalong_attractor_points(num, a, b, c):
    # generate hopalong points array of given shape
     """
-    Remark: The "parallel=true" option for @njit cannot be used here due to the cross-iteration dependency
+    Remark: The "parallel=true" option for @njit respectively prange cannot be used here due to the cross-iteration dependency
     points[i+1] cannot be calculated without first computing points[i]
     """
     points = np.zeros((num, 2), dtype=np.float32)
@@ -40,7 +40,7 @@ def map_attractor_points_to_image_pixels(points, image_size):
 
 
 @njit(parallel=True)
-#this variant enables the use of paralle=true!
+#this variant enables the use of paralle=true & prange!
 def generate_image_and_pixel_counts(img, px, py):
     for i in prange(len(px)):
         img[px[i], py[i]] += 1

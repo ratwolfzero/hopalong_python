@@ -120,7 +120,7 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False):
             print(f"Invalid input. Please enter a valid {input_type.__name__} value.")
 
 
-def prepare_plot_data(points, a, b, c, num, image_size):
+def prepare_plots(points, a, b, c, num, image_size):
     # Process the attractor points, hit metrics and prepare data for plotting
     
     px, py, min_x, max_x, min_y, max_y = map_attractor_points_to_image_pixels(points, image_size)
@@ -160,7 +160,7 @@ def main():
 
     #coordinate and trigger the program execution
     points = generate_hopalong_attractor_points(num, a, b, c)
-    img, extents, params, hit_metrics = prepare_plot_data(points, a, b, c, num, image_size)
+    img, extents, params, hit_metrics = prepare_plots(points, a, b, c, num, image_size)
     create_plots(img, extents, params, hit_metrics, color_map)
 
 if __name__ == "__main__":

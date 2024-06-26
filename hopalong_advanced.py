@@ -9,8 +9,12 @@ from numba import njit, prange
 @njit
 def generate_hopalong_attractor_points(num, a, b, c):
    # generate hopalong points array of given shape
+    """
+    Remark: The "parallel=true" option for @njit respectively prange cannot be used here due to the cross-iteration dependency
+    points[i+1] cannot be calculated without first computing points[i]
+    """
     points = np.zeros((num, 2), dtype=np.float32)
-    x, y = 0.0, 0.0
+    x, y = 0.0, 1e-99
 
     for i in range(num):
 
@@ -22,21 +26,24 @@ def generate_hopalong_attractor_points(num, a, b, c):
 
 
 @njit(parallel=True)
-def map_attractor_points_to_image_pixels(points, image_size, min_x, max_x, min_y, max_y):
+def map_attractor_points_to_image_pixels(points, image_size):
     # Convert hopalong attractor points to image pixel locations
     img_width, img_height = image_size
 
-    px = ((points[:, 0] - min_x) / (max_x - min_x)* (img_width - 1)).astype(np.int32)
-    py = ((points[:, 1] - min_y) / (max_y - min_y)* (img_height - 1)).astype(np.int32)
+    min_x, max_x = np.min(points[:, 0]), np.max(points[:, 0])
+    min_y, max_y = np.min(points[:, 1]), np.max(points[:, 1])
 
-    return px, py
+    px = ((points[:, 0] - min_x) / (max_x - min_x) * (img_width - 1)).astype(np.int32) 
+    py = ((points[:, 1] - min_y) / (max_y - min_y) * (img_height - 1)).astype(np.int32)
+
+    return px, py, min_x, max_x, min_y, max_y
 
 
-@njit
+@njit(parallel=True)
+#this variant enables the use of paralle=true & prange!
 def generate_image_and_pixel_counts(img, px, py):
-    # Populate the image array with hit counts for each pixel
-    for px_i, py_i in zip(px, py):
-        img[px_i, py_i] += 1
+    for i in prange(len(px)):
+        img[px[i], py[i]] += 1
 
     return img
 
@@ -108,48 +115,48 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False):
             print(f"Invalid input. Please enter a valid {input_type.__name__} value.")
 
 
-def prepare_plot_data(points, a, b, c, num, image_size):
+def prepare_plots(points, a, b, c, num, image_size):
     # Process the attractor points, hit metrics and prepare data for plotting
-    min_x, max_x = np.min(points[:, 0]), np.max(points[:, 0])
-    min_y, max_y = np.min(points[:, 1]), np.max(points[:, 1])
+    
+    px, py, min_x, max_x, min_y, max_y = map_attractor_points_to_image_pixels(points, image_size)
+    img = generate_image_and_pixel_counts(np.zeros(image_size, dtype=np.int32), px, py)
+    hit_metrics = calculate_pixel_hit_metrics(img) 
+
     extents = [min_x, max_x, min_y, max_y]
     params = {'a': a, 'b': b, 'c': c, 'num': num}
-    px, py = map_attractor_points_to_image_pixels(points, image_size, min_x, max_x, min_y, max_y)
-    img = generate_image_and_pixel_counts(np.zeros(image_size, dtype=np.int32), px, py)
-    hit_metrics = calculate_pixel_hit_metrics(img)  
     
     return img, extents, params, hit_metrics  
+    
 
-
-def create_plots(img, extents, params, hit_metrics, color_map):  
+def create_plots(img, extents, params, hit_metrics, color_map):    
     # generates all plots
     fig = plt.figure(figsize=(18, 8))
+
     ax1 = fig.add_subplot(1, 2, 1, aspect='auto')
     plot_hopalong_attractor(ax1, img, color_map, extents, params)
+   
     ax2 = fig.add_subplot(1, 2, 2, aspect='auto')
     plot_hit_metrics(ax2, hit_metrics)
+
     plt.show()
 
 
-def run_hopalong_analysis(num, a, b, c, image_size, color_map):
-    #coordinates the process execution
-    points = generate_hopalong_attractor_points(num, a, b, c)
-    img, extents, params, hit_metrics = prepare_plot_data(points, a, b, c, num, image_size)
-    create_plots(img, extents, params, hit_metrics, color_map)
+def main():  
 
-
-def main():
-   # Main function: Define image_size and color_map, prompt for user input and trigger the program execution
-
+    #Define image_size and color_map
     image_size = 1000, 1000
     color_map = 'hot'
 
-    a = get_validated_input('Enter a non-zero float value for "a": ', float, check_non_zero=True)
+    #Prompt for user input
+    a = get_validated_input('Enter a non-zero float value for "a": ', float)
     b = get_validated_input('Enter a float value for "b": ', float)
     c = get_validated_input('Enter a float value for "c": ', float)
     num = get_validated_input('Enter an integer value for "num": ', int, check_non_zero=True)
 
-    run_hopalong_analysis(num, a, b, c, image_size, color_map) 
+    #coordinate and trigger the program execution
+    points = generate_hopalong_attractor_points(num, a, b, c)
+    img, extents, params, hit_metrics = prepare_plots(points, a, b, c, num, image_size)
+    create_plots(img, extents, params, hit_metrics, color_map)
 
 if __name__ == "__main__":
     main()

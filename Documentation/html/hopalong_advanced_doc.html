@@ -31,26 +31,18 @@ import matplotlib
 matplotlib.use(&#39;TkAgg&#39;)
 import matplotlib.pyplot as plt
 import numpy as np
-from numba import njit
+from numba import njit, prange
 
 
 @njit
 def generate_hopalong_attractor_points(num, a, b, c):
+   # generate hopalong points array of given shape
     &#34;&#34;&#34;
-    Generates Hopalong attractor points of given shape.
-    
-    Args:
-        num (int): The number of points to generate.
-        a (float): Parameter &#39;a&#39; as part of Hopalong sequence definition.
-        b (float): Parameter &#39;b&#39; as part of Hopalong sequence definition.
-        c (float): Parameter &#39;c&#39; as part of Hopalong sequence definition.
-        
-    Returns:
-        points (np.array): A NumPy array of Hopalong points with shape (num, 2).
+    Remark: The &#34;parallel=true&#34; option for @njit respectively prange cannot be used here due to the cross-iteration dependency
+    points[i+1] cannot be calculated without first computing points[i]
     &#34;&#34;&#34;
-   
     points = np.zeros((num, 2), dtype=np.float32)
-    x, y = 0.0, 0.0
+    x, y = 0.0, 1e-99
 
     for i in range(num):
 
@@ -62,77 +54,36 @@ def generate_hopalong_attractor_points(num, a, b, c):
 
 
 @njit(parallel=True)
-def map_attractor_points_to_image_pixels(points, image_size, min_x, max_x, min_y, max_y):
-    &#34;&#34;&#34;
-    Maps Hopalong attractor points to image pixel locations.
-    
-    Args:
-        points (np.array): A NumPy array of Hopalong points.
-        image_size (tuple&lt;int&gt;): A tuple which defines image width and height.
-        min_x (float): Minimum x coordinate of all points.
-        max_x (float): Maximum x coordinate of all points.
-        min_y (float): Minimum y coordinate of all points.
-        max_y (float): Maximum y coordinate of all points.
-        
-    Returns:
-        px (np.array&lt;int&gt;): Pixel locations along x-axis.
-        py (np.array&lt;int&gt;): Pixel locations along y-axis.
-    &#34;&#34;&#34;
+def map_attractor_points_to_image_pixels(points, image_size):
+    # Convert hopalong attractor points to image pixel locations
     img_width, img_height = image_size
 
-    px = ((points[:, 0] - min_x) / (max_x - min_x)* (img_width - 1)).astype(np.int32)
-    py = ((points[:, 1] - min_y) / (max_y - min_y)* (img_height - 1)).astype(np.int32)
+    min_x, max_x = np.min(points[:, 0]), np.max(points[:, 0])
+    min_y, max_y = np.min(points[:, 1]), np.max(points[:, 1])
 
-    return px, py
+    px = ((points[:, 0] - min_x) / (max_x - min_x) * (img_width - 1)).astype(np.int32) 
+    py = ((points[:, 1] - min_y) / (max_y - min_y) * (img_height - 1)).astype(np.int32)
+
+    return px, py, min_x, max_x, min_y, max_y
 
 
-@njit
+@njit(parallel=True)
+#this variant enables the use of paralle=true &amp; prange!
 def generate_image_and_pixel_counts(img, px, py):
-    &#34;&#34;&#34;
-    Populates the image array with hit counts for each pixel.
-    
-    Args:
-        img (np.array): A NumPy array representing the image.
-        px (np.array&lt;int&gt;): Pixel locations along x-axis.
-        py (np.array&lt;int&gt;): Pixel locations along y-axis.
-        
-    Returns:
-        img (np.array): Modified image array.
-    &#34;&#34;&#34;
-    for px_i, py_i in zip(px, py):
-        img[px_i, py_i] += 1
+    for i in prange(len(px)):
+        img[px[i], py[i]] += 1
 
     return img
 
 
 def plot_hopalong_attractor(ax, img, colormap, extents, params):
-    &#34;&#34;&#34;
-    Plots the Hopalong Attractor image.
-    
-    Args:
-        ax (axes object): Matplotlib Axes on which the image will be drawn.
-        img (np.array): A NumPy array representing the image.
-        colormap (str): A colormap recognized by matplotlib to use for the image.
-        extents (list&lt;float&gt;): List of scalar values (min_x, max_x, min_y, max_y).
-        params (dict): The parameters (&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;num&#39;) used in image.
-        
-    Returns:
-        None
-    &#34;&#34;&#34;
+    # plot the hopalong attractor image
     ax.imshow(img, cmap=colormap, origin=&#39;lower&#39;, extent=extents)
     ax.set_title(&#34;Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}&#34;.format(**params))
 
 
 def calculate_pixel_hit_metrics(img):
-    &#34;&#34;&#34;
-    Calculates the hit metrics.
-    
-    Args:
-        img (np.array): A NumPy array representing the image.
-        
-    Returns:
-        hit_metrics (dict): A dictionary containing various hit metrics.
-    &#34;&#34;&#34;
+    # Calculate the hit metrics
     hit, count = np.unique(img[img != 0], return_counts=True)
     max_count_index = np.argmax(count)
     hit_for_max_count = hit[max_count_index]
@@ -156,17 +107,7 @@ def calculate_pixel_hit_metrics(img):
 
 
 def plot_hit_metrics(ax, hit_metrics, scale=&#39;log&#39;):
-    &#34;&#34;&#34;
-    Plots the hit counts distribution.
-    
-    Args:
-        ax (axes object): Matplotlib Axes on which the plot will be drawn.
-        hit_metrics (dict): A dictionary containing various hit metrics.
-        scale (str): The scale to be used for the plot.
-        
-    Returns:
-        None
-    &#34;&#34;&#34;
+    # Plot the hit counts distribution
     ax.plot(hit_metrics[&#34;hit&#34;], hit_metrics[&#34;count&#34;], &#39;o-&#39;, color=&#34;navy&#34;, markersize=1,linewidth=0.6)
     ax.set_xlabel(&#39;# of hits (n)&#39;)
     ax.set_ylabel(&#39;# of pixels hit n-times&#39;)
@@ -187,17 +128,7 @@ def plot_hit_metrics(ax, hit_metrics, scale=&#39;log&#39;):
 
 
 def get_validated_input(prompt, input_type=float, check_non_zero=False):
-    &#34;&#34;&#34;
-    Validates user input.
-    
-    Args:
-        prompt (str): The prompt to display for user input.
-        input_type (type): The required type of user input. Default is float.
-        check_non_zero (bool): Whether to check if the value is non-zero. Default is False.
-        
-    Returns:
-        value: The validated user input value.
-    &#34;&#34;&#34; 
+    # Validates the user input 
     while True:
         user_input = input(prompt)
         try:
@@ -212,91 +143,48 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False):
             print(f&#34;Invalid input. Please enter a valid {input_type.__name__} value.&#34;)
 
 
-def prepare_plot_data(points, a, b, c, num, image_size):
-    &#34;&#34;&#34;
-    Processes the attractor points, calculates hit metrics, and prepares data for plotting.
+def prepare_plots(points, a, b, c, num, image_size):
+    # Process the attractor points, hit metrics and prepare data for plotting
     
-    Args:
-        points (np.array): A NumPy array of Hopalong points.
-        a (float): Parameter &#39;a&#39;.
-        b (float): Parameter &#39;b&#39;.
-        c (float): Parameter &#39;c&#39;.
-        num (int): The number of points.
-        image_size (tuple&lt;int&gt;): The size of the image.
-        
-    Returns:
-        tuple: A tuple containing processed image, extents, params, and hit metrics.
-    &#34;&#34;&#34;
-    min_x, max_x = np.min(points[:, 0]), np.max(points[:, 0])
-    min_y, max_y = np.min(points[:, 1]), np.max(points[:, 1])
+    px, py, min_x, max_x, min_y, max_y = map_attractor_points_to_image_pixels(points, image_size)
+    img = generate_image_and_pixel_counts(np.zeros(image_size, dtype=np.int32), px, py)
+    hit_metrics = calculate_pixel_hit_metrics(img) 
+
     extents = [min_x, max_x, min_y, max_y]
     params = {&#39;a&#39;: a, &#39;b&#39;: b, &#39;c&#39;: c, &#39;num&#39;: num}
-    px, py = map_attractor_points_to_image_pixels(points, image_size, min_x, max_x, min_y, max_y)
-    img = generate_image_and_pixel_counts(np.zeros(image_size, dtype=np.int32), px, py)
-    hit_metrics = calculate_pixel_hit_metrics(img)  
     
     return img, extents, params, hit_metrics  
-
-
-def create_plots(img, extents, params, hit_metrics, color_map):  
-    &#34;&#34;&#34;
-    Creates all the plots.
     
-    Args:
-        img (np.array): A NumPy array representing the image.
-        extents (list&lt;float&gt;): The extents of the plot.
-        params (dict): Parameters used in the plot.
-        hit_metrics (dict): Hit metrics for the plot.
-        color_map (str): Color map used in the plot.
-        
-    Returns:
-        None
-    &#34;&#34;&#34;
+
+def create_plots(img, extents, params, hit_metrics, color_map):    
+    # generates all plots
     fig = plt.figure(figsize=(18, 8))
+
     ax1 = fig.add_subplot(1, 2, 1, aspect=&#39;auto&#39;)
     plot_hopalong_attractor(ax1, img, color_map, extents, params)
+   
     ax2 = fig.add_subplot(1, 2, 2, aspect=&#39;auto&#39;)
     plot_hit_metrics(ax2, hit_metrics)
+
     plt.show()
 
 
-def run_hopalong_analysis(num, a, b, c, image_size, color_map):
-    &#34;&#34;&#34;
-    coordinates the process execution
-    
-    Args:
-        num (int): The number of points.
-        a (float): Parameter &#39;a&#39;.
-        b (float): Parameter &#39;b&#39;.
-        c (float): Parameter &#39;c&#39;.
-        image_size (tuple&lt;int&gt;): The size of the image.
-        color_map (str): The color map to use.
-        
-    Returns:
-        None
-    &#34;&#34;&#34;
-    points = generate_hopalong_attractor_points(num, a, b, c)
-    img, extents, params, hit_metrics = prepare_plot_data(points, a, b, c, num, image_size)
-    create_plots(img, extents, params, hit_metrics, color_map)
+def main():  
 
-
-def main():
-    &#34;&#34;&#34;
-    Main function to define image_size and color_map, prompt for user input, and trigger the program execution.
-    
-    Returns:
-        None
-    &#34;&#34;&#34;
-
+    #Define image_size and color_map
     image_size = 1000, 1000
     color_map = &#39;hot&#39;
 
-    a = get_validated_input(&#39;Enter a non-zero float value for &#34;a&#34;: &#39;, float, check_non_zero=True)
+    #Prompt for user input
+    a = get_validated_input(&#39;Enter a non-zero float value for &#34;a&#34;: &#39;, float)
     b = get_validated_input(&#39;Enter a float value for &#34;b&#34;: &#39;, float)
     c = get_validated_input(&#39;Enter a float value for &#34;c&#34;: &#39;, float)
     num = get_validated_input(&#39;Enter an integer value for &#34;num&#34;: &#39;, int, check_non_zero=True)
 
-    run_hopalong_analysis(num, a, b, c, image_size, color_map) 
+    #coordinate and trigger the program execution
+    points = generate_hopalong_attractor_points(num, a, b, c)
+    img, extents, params, hit_metrics = prepare_plots(points, a, b, c, num, image_size)
+    create_plots(img, extents, params, hit_metrics, color_map)
 
 if __name__ == &#34;__main__&#34;:
     main()</code></pre>
@@ -313,28 +201,13 @@ if __name__ == &#34;__main__&#34;:
 <span>def <span class="ident">calculate_pixel_hit_metrics</span></span>(<span>img)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Calculates the hit metrics.</p>
-<h2 id="args">Args</h2>
-<dl>
-<dt><strong><code>img</code></strong> :&ensp;<code>np.array</code></dt>
-<dd>A NumPy array representing the image.</dd>
-</dl>
-<h2 id="returns">Returns</h2>
-<p>hit_metrics (dict): A dictionary containing various hit metrics.</p></div>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def calculate_pixel_hit_metrics(img):
-    &#34;&#34;&#34;
-    Calculates the hit metrics.
-    
-    Args:
-        img (np.array): A NumPy array representing the image.
-        
-    Returns:
-        hit_metrics (dict): A dictionary containing various hit metrics.
-    &#34;&#34;&#34;
+    # Calculate the hit metrics
     hit, count = np.unique(img[img != 0], return_counts=True)
     max_count_index = np.argmax(count)
     hit_for_max_count = hit[max_count_index]
@@ -361,44 +234,21 @@ if __name__ == &#34;__main__&#34;:
 <span>def <span class="ident">create_plots</span></span>(<span>img, extents, params, hit_metrics, color_map)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Creates all the plots.</p>
-<h2 id="args">Args</h2>
-<dl>
-<dt><strong><code>img</code></strong> :&ensp;<code>np.array</code></dt>
-<dd>A NumPy array representing the image.</dd>
-<dt>extents (list<float>): The extents of the plot.</dt>
-<dt><strong><code>params</code></strong> :&ensp;<code>dict</code></dt>
-<dd>Parameters used in the plot.</dd>
-<dt><strong><code>hit_metrics</code></strong> :&ensp;<code>dict</code></dt>
-<dd>Hit metrics for the plot.</dd>
-<dt><strong><code>color_map</code></strong> :&ensp;<code>str</code></dt>
-<dd>Color map used in the plot.</dd>
-</dl>
-<h2 id="returns">Returns</h2>
-<p>None</p></div>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def create_plots(img, extents, params, hit_metrics, color_map):  
-    &#34;&#34;&#34;
-    Creates all the plots.
-    
-    Args:
-        img (np.array): A NumPy array representing the image.
-        extents (list&lt;float&gt;): The extents of the plot.
-        params (dict): Parameters used in the plot.
-        hit_metrics (dict): Hit metrics for the plot.
-        color_map (str): Color map used in the plot.
-        
-    Returns:
-        None
-    &#34;&#34;&#34;
+<pre><code class="python">def create_plots(img, extents, params, hit_metrics, color_map):    
+    # generates all plots
     fig = plt.figure(figsize=(18, 8))
+
     ax1 = fig.add_subplot(1, 2, 1, aspect=&#39;auto&#39;)
     plot_hopalong_attractor(ax1, img, color_map, extents, params)
+   
     ax2 = fig.add_subplot(1, 2, 2, aspect=&#39;auto&#39;)
     plot_hit_metrics(ax2, hit_metrics)
+
     plt.show()</code></pre>
 </details>
 </dd>
@@ -406,41 +256,21 @@ if __name__ == &#34;__main__&#34;:
 <span>def <span class="ident">generate_hopalong_attractor_points</span></span>(<span>num, a, b, c)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Generates Hopalong attractor points of given shape.</p>
-<h2 id="args">Args</h2>
-<dl>
-<dt><strong><code>num</code></strong> :&ensp;<code>int</code></dt>
-<dd>The number of points to generate.</dd>
-<dt><strong><code>a</code></strong> :&ensp;<code>float</code></dt>
-<dd>Parameter 'a' as part of Hopalong sequence definition.</dd>
-<dt><strong><code>b</code></strong> :&ensp;<code>float</code></dt>
-<dd>Parameter 'b' as part of Hopalong sequence definition.</dd>
-<dt><strong><code>c</code></strong> :&ensp;<code>float</code></dt>
-<dd>Parameter 'c' as part of Hopalong sequence definition.</dd>
-</dl>
-<h2 id="returns">Returns</h2>
-<p>points (np.array): A NumPy array of Hopalong points with shape (num, 2).</p></div>
+<div class="desc"><p>Remark: The "parallel=true" option for @njit respectively prange cannot be used here due to the cross-iteration dependency
+points[i+1] cannot be calculated without first computing points[i]</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@njit
 def generate_hopalong_attractor_points(num, a, b, c):
+   # generate hopalong points array of given shape
     &#34;&#34;&#34;
-    Generates Hopalong attractor points of given shape.
-    
-    Args:
-        num (int): The number of points to generate.
-        a (float): Parameter &#39;a&#39; as part of Hopalong sequence definition.
-        b (float): Parameter &#39;b&#39; as part of Hopalong sequence definition.
-        c (float): Parameter &#39;c&#39; as part of Hopalong sequence definition.
-        
-    Returns:
-        points (np.array): A NumPy array of Hopalong points with shape (num, 2).
+    Remark: The &#34;parallel=true&#34; option for @njit respectively prange cannot be used here due to the cross-iteration dependency
+    points[i+1] cannot be calculated without first computing points[i]
     &#34;&#34;&#34;
-   
     points = np.zeros((num, 2), dtype=np.float32)
-    x, y = 0.0, 0.0
+    x, y = 0.0, 1e-99
 
     for i in range(num):
 
@@ -455,35 +285,16 @@ def generate_hopalong_attractor_points(num, a, b, c):
 <span>def <span class="ident">generate_image_and_pixel_counts</span></span>(<span>img, px, py)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Populates the image array with hit counts for each pixel.</p>
-<h2 id="args">Args</h2>
-<dl>
-<dt><strong><code>img</code></strong> :&ensp;<code>np.array</code></dt>
-<dd>A NumPy array representing the image.</dd>
-</dl>
-<p>px (np.array<int>): Pixel locations along x-axis.
-py (np.array<int>): Pixel locations along y-axis.</p>
-<h2 id="returns">Returns</h2>
-<p>img (np.array): Modified image array.</p></div>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">@njit
+<pre><code class="python">@njit(parallel=True)
+#this variant enables the use of paralle=true &amp; prange!
 def generate_image_and_pixel_counts(img, px, py):
-    &#34;&#34;&#34;
-    Populates the image array with hit counts for each pixel.
-    
-    Args:
-        img (np.array): A NumPy array representing the image.
-        px (np.array&lt;int&gt;): Pixel locations along x-axis.
-        py (np.array&lt;int&gt;): Pixel locations along y-axis.
-        
-    Returns:
-        img (np.array): Modified image array.
-    &#34;&#34;&#34;
-    for px_i, py_i in zip(px, py):
-        img[px_i, py_i] += 1
+    for i in prange(len(px)):
+        img[px[i], py[i]] += 1
 
     return img</code></pre>
 </details>
@@ -492,37 +303,13 @@ def generate_image_and_pixel_counts(img, px, py):
 <span>def <span class="ident">get_validated_input</span></span>(<span>prompt, input_type=builtins.float, check_non_zero=False)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Validates user input.</p>
-<h2 id="args">Args</h2>
-<dl>
-<dt><strong><code>prompt</code></strong> :&ensp;<code>str</code></dt>
-<dd>The prompt to display for user input.</dd>
-<dt><strong><code>input_type</code></strong> :&ensp;<code>type</code></dt>
-<dd>The required type of user input. Default is float.</dd>
-<dt><strong><code>check_non_zero</code></strong> :&ensp;<code>bool</code></dt>
-<dd>Whether to check if the value is non-zero. Default is False.</dd>
-</dl>
-<h2 id="returns">Returns</h2>
-<dl>
-<dt><code>value</code></dt>
-<dd>The validated user input value.</dd>
-</dl></div>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def get_validated_input(prompt, input_type=float, check_non_zero=False):
-    &#34;&#34;&#34;
-    Validates user input.
-    
-    Args:
-        prompt (str): The prompt to display for user input.
-        input_type (type): The required type of user input. Default is float.
-        check_non_zero (bool): Whether to check if the value is non-zero. Default is False.
-        
-    Returns:
-        value: The validated user input value.
-    &#34;&#34;&#34; 
+    # Validates the user input 
     while True:
         user_input = input(prompt)
         try:
@@ -541,115 +328,63 @@ def generate_image_and_pixel_counts(img, px, py):
 <span>def <span class="ident">main</span></span>(<span>)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Main function to define image_size and color_map, prompt for user input, and trigger the program execution.</p>
-<h2 id="returns">Returns</h2>
-<p>None</p></div>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def main():
-    &#34;&#34;&#34;
-    Main function to define image_size and color_map, prompt for user input, and trigger the program execution.
-    
-    Returns:
-        None
-    &#34;&#34;&#34;
+<pre><code class="python">def main():  
 
+    #Define image_size and color_map
     image_size = 1000, 1000
     color_map = &#39;hot&#39;
 
-    a = get_validated_input(&#39;Enter a non-zero float value for &#34;a&#34;: &#39;, float, check_non_zero=True)
+    #Prompt for user input
+    a = get_validated_input(&#39;Enter a non-zero float value for &#34;a&#34;: &#39;, float)
     b = get_validated_input(&#39;Enter a float value for &#34;b&#34;: &#39;, float)
     c = get_validated_input(&#39;Enter a float value for &#34;c&#34;: &#39;, float)
     num = get_validated_input(&#39;Enter an integer value for &#34;num&#34;: &#39;, int, check_non_zero=True)
 
-    run_hopalong_analysis(num, a, b, c, image_size, color_map) </code></pre>
+    #coordinate and trigger the program execution
+    points = generate_hopalong_attractor_points(num, a, b, c)
+    img, extents, params, hit_metrics = prepare_plots(points, a, b, c, num, image_size)
+    create_plots(img, extents, params, hit_metrics, color_map)</code></pre>
 </details>
 </dd>
 <dt id="hopalong_advanced_doc.map_attractor_points_to_image_pixels"><code class="name flex">
-<span>def <span class="ident">map_attractor_points_to_image_pixels</span></span>(<span>points, image_size, min_x, max_x, min_y, max_y)</span>
+<span>def <span class="ident">map_attractor_points_to_image_pixels</span></span>(<span>points, image_size)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Maps Hopalong attractor points to image pixel locations.</p>
-<h2 id="args">Args</h2>
-<dl>
-<dt><strong><code>points</code></strong> :&ensp;<code>np.array</code></dt>
-<dd>A NumPy array of Hopalong points.</dd>
-<dt>image_size (tuple<int>): A tuple which defines image width and height.</dt>
-<dt><strong><code>min_x</code></strong> :&ensp;<code>float</code></dt>
-<dd>Minimum x coordinate of all points.</dd>
-<dt><strong><code>max_x</code></strong> :&ensp;<code>float</code></dt>
-<dd>Maximum x coordinate of all points.</dd>
-<dt><strong><code>min_y</code></strong> :&ensp;<code>float</code></dt>
-<dd>Minimum y coordinate of all points.</dd>
-<dt><strong><code>max_y</code></strong> :&ensp;<code>float</code></dt>
-<dd>Maximum y coordinate of all points.</dd>
-</dl>
-<h2 id="returns">Returns</h2>
-<p>px (np.array<int>): Pixel locations along x-axis.
-py (np.array<int>): Pixel locations along y-axis.</p></div>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@njit(parallel=True)
-def map_attractor_points_to_image_pixels(points, image_size, min_x, max_x, min_y, max_y):
-    &#34;&#34;&#34;
-    Maps Hopalong attractor points to image pixel locations.
-    
-    Args:
-        points (np.array): A NumPy array of Hopalong points.
-        image_size (tuple&lt;int&gt;): A tuple which defines image width and height.
-        min_x (float): Minimum x coordinate of all points.
-        max_x (float): Maximum x coordinate of all points.
-        min_y (float): Minimum y coordinate of all points.
-        max_y (float): Maximum y coordinate of all points.
-        
-    Returns:
-        px (np.array&lt;int&gt;): Pixel locations along x-axis.
-        py (np.array&lt;int&gt;): Pixel locations along y-axis.
-    &#34;&#34;&#34;
+def map_attractor_points_to_image_pixels(points, image_size):
+    # Convert hopalong attractor points to image pixel locations
     img_width, img_height = image_size
 
-    px = ((points[:, 0] - min_x) / (max_x - min_x)* (img_width - 1)).astype(np.int32)
-    py = ((points[:, 1] - min_y) / (max_y - min_y)* (img_height - 1)).astype(np.int32)
+    min_x, max_x = np.min(points[:, 0]), np.max(points[:, 0])
+    min_y, max_y = np.min(points[:, 1]), np.max(points[:, 1])
 
-    return px, py</code></pre>
+    px = ((points[:, 0] - min_x) / (max_x - min_x) * (img_width - 1)).astype(np.int32) 
+    py = ((points[:, 1] - min_y) / (max_y - min_y) * (img_height - 1)).astype(np.int32)
+
+    return px, py, min_x, max_x, min_y, max_y</code></pre>
 </details>
 </dd>
 <dt id="hopalong_advanced_doc.plot_hit_metrics"><code class="name flex">
 <span>def <span class="ident">plot_hit_metrics</span></span>(<span>ax, hit_metrics, scale='log')</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Plots the hit counts distribution.</p>
-<h2 id="args">Args</h2>
-<dl>
-<dt><strong><code>ax</code></strong> :&ensp;<code>axes object</code></dt>
-<dd>Matplotlib Axes on which the plot will be drawn.</dd>
-<dt><strong><code>hit_metrics</code></strong> :&ensp;<code>dict</code></dt>
-<dd>A dictionary containing various hit metrics.</dd>
-<dt><strong><code>scale</code></strong> :&ensp;<code>str</code></dt>
-<dd>The scale to be used for the plot.</dd>
-</dl>
-<h2 id="returns">Returns</h2>
-<p>None</p></div>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def plot_hit_metrics(ax, hit_metrics, scale=&#39;log&#39;):
-    &#34;&#34;&#34;
-    Plots the hit counts distribution.
-    
-    Args:
-        ax (axes object): Matplotlib Axes on which the plot will be drawn.
-        hit_metrics (dict): A dictionary containing various hit metrics.
-        scale (str): The scale to be used for the plot.
-        
-    Returns:
-        None
-    &#34;&#34;&#34;
+    # Plot the hit counts distribution
     ax.plot(hit_metrics[&#34;hit&#34;], hit_metrics[&#34;count&#34;], &#39;o-&#39;, color=&#34;navy&#34;, markersize=1,linewidth=0.6)
     ax.set_xlabel(&#39;# of hits (n)&#39;)
     ax.set_ylabel(&#39;# of pixels hit n-times&#39;)
@@ -673,140 +408,37 @@ def map_attractor_points_to_image_pixels(points, image_size, min_x, max_x, min_y
 <span>def <span class="ident">plot_hopalong_attractor</span></span>(<span>ax, img, colormap, extents, params)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Plots the Hopalong Attractor image.</p>
-<h2 id="args">Args</h2>
-<dl>
-<dt><strong><code>ax</code></strong> :&ensp;<code>axes object</code></dt>
-<dd>Matplotlib Axes on which the image will be drawn.</dd>
-<dt><strong><code>img</code></strong> :&ensp;<code>np.array</code></dt>
-<dd>A NumPy array representing the image.</dd>
-<dt><strong><code>colormap</code></strong> :&ensp;<code>str</code></dt>
-<dd>A colormap recognized by matplotlib to use for the image.</dd>
-<dt>extents (list<float>): List of scalar values (min_x, max_x, min_y, max_y).</dt>
-<dt><strong><code>params</code></strong> :&ensp;<code>dict</code></dt>
-<dd>The parameters ('a', 'b', 'c', 'num') used in image.</dd>
-</dl>
-<h2 id="returns">Returns</h2>
-<p>None</p></div>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def plot_hopalong_attractor(ax, img, colormap, extents, params):
-    &#34;&#34;&#34;
-    Plots the Hopalong Attractor image.
-    
-    Args:
-        ax (axes object): Matplotlib Axes on which the image will be drawn.
-        img (np.array): A NumPy array representing the image.
-        colormap (str): A colormap recognized by matplotlib to use for the image.
-        extents (list&lt;float&gt;): List of scalar values (min_x, max_x, min_y, max_y).
-        params (dict): The parameters (&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;num&#39;) used in image.
-        
-    Returns:
-        None
-    &#34;&#34;&#34;
+    # plot the hopalong attractor image
     ax.imshow(img, cmap=colormap, origin=&#39;lower&#39;, extent=extents)
     ax.set_title(&#34;Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}&#34;.format(**params))</code></pre>
 </details>
 </dd>
-<dt id="hopalong_advanced_doc.prepare_plot_data"><code class="name flex">
-<span>def <span class="ident">prepare_plot_data</span></span>(<span>points, a, b, c, num, image_size)</span>
+<dt id="hopalong_advanced_doc.prepare_plots"><code class="name flex">
+<span>def <span class="ident">prepare_plots</span></span>(<span>points, a, b, c, num, image_size)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Processes the attractor points, calculates hit metrics, and prepares data for plotting.</p>
-<h2 id="args">Args</h2>
-<dl>
-<dt><strong><code>points</code></strong> :&ensp;<code>np.array</code></dt>
-<dd>A NumPy array of Hopalong points.</dd>
-<dt><strong><code>a</code></strong> :&ensp;<code>float</code></dt>
-<dd>Parameter 'a'.</dd>
-<dt><strong><code>b</code></strong> :&ensp;<code>float</code></dt>
-<dd>Parameter 'b'.</dd>
-<dt><strong><code>c</code></strong> :&ensp;<code>float</code></dt>
-<dd>Parameter 'c'.</dd>
-<dt><strong><code>num</code></strong> :&ensp;<code>int</code></dt>
-<dd>The number of points.</dd>
-</dl>
-<p>image_size (tuple<int>): The size of the image.</p>
-<h2 id="returns">Returns</h2>
-<dl>
-<dt><code>tuple</code></dt>
-<dd>A tuple containing processed image, extents, params, and hit metrics.</dd>
-</dl></div>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def prepare_plot_data(points, a, b, c, num, image_size):
-    &#34;&#34;&#34;
-    Processes the attractor points, calculates hit metrics, and prepares data for plotting.
+<pre><code class="python">def prepare_plots(points, a, b, c, num, image_size):
+    # Process the attractor points, hit metrics and prepare data for plotting
     
-    Args:
-        points (np.array): A NumPy array of Hopalong points.
-        a (float): Parameter &#39;a&#39;.
-        b (float): Parameter &#39;b&#39;.
-        c (float): Parameter &#39;c&#39;.
-        num (int): The number of points.
-        image_size (tuple&lt;int&gt;): The size of the image.
-        
-    Returns:
-        tuple: A tuple containing processed image, extents, params, and hit metrics.
-    &#34;&#34;&#34;
-    min_x, max_x = np.min(points[:, 0]), np.max(points[:, 0])
-    min_y, max_y = np.min(points[:, 1]), np.max(points[:, 1])
+    px, py, min_x, max_x, min_y, max_y = map_attractor_points_to_image_pixels(points, image_size)
+    img = generate_image_and_pixel_counts(np.zeros(image_size, dtype=np.int32), px, py)
+    hit_metrics = calculate_pixel_hit_metrics(img) 
+
     extents = [min_x, max_x, min_y, max_y]
     params = {&#39;a&#39;: a, &#39;b&#39;: b, &#39;c&#39;: c, &#39;num&#39;: num}
-    px, py = map_attractor_points_to_image_pixels(points, image_size, min_x, max_x, min_y, max_y)
-    img = generate_image_and_pixel_counts(np.zeros(image_size, dtype=np.int32), px, py)
-    hit_metrics = calculate_pixel_hit_metrics(img)  
     
     return img, extents, params, hit_metrics  </code></pre>
-</details>
-</dd>
-<dt id="hopalong_advanced_doc.run_hopalong_analysis"><code class="name flex">
-<span>def <span class="ident">run_hopalong_analysis</span></span>(<span>num, a, b, c, image_size, color_map)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>coordinates the process execution</p>
-<h2 id="args">Args</h2>
-<dl>
-<dt><strong><code>num</code></strong> :&ensp;<code>int</code></dt>
-<dd>The number of points.</dd>
-<dt><strong><code>a</code></strong> :&ensp;<code>float</code></dt>
-<dd>Parameter 'a'.</dd>
-<dt><strong><code>b</code></strong> :&ensp;<code>float</code></dt>
-<dd>Parameter 'b'.</dd>
-<dt><strong><code>c</code></strong> :&ensp;<code>float</code></dt>
-<dd>Parameter 'c'.</dd>
-<dt>image_size (tuple<int>): The size of the image.</dt>
-<dt><strong><code>color_map</code></strong> :&ensp;<code>str</code></dt>
-<dd>The color map to use.</dd>
-</dl>
-<h2 id="returns">Returns</h2>
-<p>None</p></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def run_hopalong_analysis(num, a, b, c, image_size, color_map):
-    &#34;&#34;&#34;
-    coordinates the process execution
-    
-    Args:
-        num (int): The number of points.
-        a (float): Parameter &#39;a&#39;.
-        b (float): Parameter &#39;b&#39;.
-        c (float): Parameter &#39;c&#39;.
-        image_size (tuple&lt;int&gt;): The size of the image.
-        color_map (str): The color map to use.
-        
-    Returns:
-        None
-    &#34;&#34;&#34;
-    points = generate_hopalong_attractor_points(num, a, b, c)
-    img, extents, params, hit_metrics = prepare_plot_data(points, a, b, c, num, image_size)
-    create_plots(img, extents, params, hit_metrics, color_map)</code></pre>
 </details>
 </dd>
 </dl>
@@ -831,8 +463,7 @@ def map_attractor_points_to_image_pixels(points, image_size, min_x, max_x, min_y
 <li><code><a title="hopalong_advanced_doc.map_attractor_points_to_image_pixels" href="#hopalong_advanced_doc.map_attractor_points_to_image_pixels">map_attractor_points_to_image_pixels</a></code></li>
 <li><code><a title="hopalong_advanced_doc.plot_hit_metrics" href="#hopalong_advanced_doc.plot_hit_metrics">plot_hit_metrics</a></code></li>
 <li><code><a title="hopalong_advanced_doc.plot_hopalong_attractor" href="#hopalong_advanced_doc.plot_hopalong_attractor">plot_hopalong_attractor</a></code></li>
-<li><code><a title="hopalong_advanced_doc.prepare_plot_data" href="#hopalong_advanced_doc.prepare_plot_data">prepare_plot_data</a></code></li>
-<li><code><a title="hopalong_advanced_doc.run_hopalong_analysis" href="#hopalong_advanced_doc.run_hopalong_analysis">run_hopalong_analysis</a></code></li>
+<li><code><a title="hopalong_advanced_doc.prepare_plots" href="#hopalong_advanced_doc.prepare_plots">prepare_plots</a></code></li>
 </ul>
 </li>
 </ul>

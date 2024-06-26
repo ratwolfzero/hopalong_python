@@ -36,6 +36,7 @@ def map_attractor_points_to_image_pixels(points, image_size):
 
 
 @njit(parallel=True)
+#this variant enables the use of paralle=true!
 def generate_image_and_pixel_counts(img, px, py):
     for i in prange(len(px)):
         img[px[i], py[i]] += 1
@@ -144,15 +145,9 @@ def create_plots(img, extents, params, hit_metrics, color_map):
 
     plt.show()
 
-def run_hopalong_analysis(num, a, b, c, image_size, color_map):
-    #coordinates the process execution
-    points = generate_hopalong_attractor_points(num, a, b, c)
-    img, extents, params, hit_metrics = prepare_plot_data(points, a, b, c, num, image_size)
-    create_plots(img, extents, params, hit_metrics, color_map)
-
 
 def main():
-   # Main function: Define image_size and color_map, prompt for user input and trigger the program execution
+   # Main function: Define image_size and color_map, prompt for user input coordinate and trigger the program execution
 
     image_size = 1000, 1000
     color_map = 'hot'
@@ -162,7 +157,12 @@ def main():
     c = get_validated_input('Enter a float value for "c": ', float)
     num = get_validated_input('Enter an integer value for "num": ', int, check_non_zero=True)
 
-    run_hopalong_analysis(num, a, b, c, image_size, color_map) 
+    #run_hopalong_analysis(num, a, b, c, image_size, color_map) 
+
+    points = generate_hopalong_attractor_points(num, a, b, c)
+    img, extents, params, hit_metrics = prepare_plot_data(points, a, b, c, num, image_size)
+    create_plots(img, extents, params, hit_metrics, color_map)
+
 
 if __name__ == "__main__":
     main()

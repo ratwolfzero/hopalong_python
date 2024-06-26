@@ -10,8 +10,8 @@ from numba import njit, prange
 def generate_hopalong_attractor_points(num, a, b, c):
    # generate hopalong points array of given shape
     """
-    Remark: "parallel=true" cannot be used here due to the cross-iteration dependency
-    "points[i+1]" cannot be calculated without first computing "points[i]"
+    Remark: The "parallel=true" option for @njit cannot be used here due to the cross-iteration dependency
+    points[i+1] cannot be calculated without first computing points[i]
     """
     points = np.zeros((num, 2), dtype=np.float32)
     x, y = 0.0, 1e-99

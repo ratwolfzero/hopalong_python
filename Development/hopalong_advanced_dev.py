@@ -146,23 +146,22 @@ def create_plots(img, extents, params, hit_metrics, color_map):
     plt.show()
 
 
-def main():
-   # Main function: Define image_size and color_map, prompt for user input coordinate and trigger the program execution
+def main():  
 
+    #Define image_size and color_map
     image_size = 1000, 1000
     color_map = 'hot'
 
+    #Prompt for user input
     a = get_validated_input('Enter a non-zero float value for "a": ', float)#, check_non_zero=True)
     b = get_validated_input('Enter a float value for "b": ', float)
     c = get_validated_input('Enter a float value for "c": ', float)
     num = get_validated_input('Enter an integer value for "num": ', int, check_non_zero=True)
 
-    #run_hopalong_analysis(num, a, b, c, image_size, color_map) 
-
+    #coordinate and trigger the program execution
     points = generate_hopalong_attractor_points(num, a, b, c)
     img, extents, params, hit_metrics = prepare_plot_data(points, a, b, c, num, image_size)
     create_plots(img, extents, params, hit_metrics, color_map)
-
 
 if __name__ == "__main__":
     main()

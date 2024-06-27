@@ -70,7 +70,7 @@ def calculate_pixel_hit_metrics(img):
     hit_for_max_count = hit[max_count_index]
     max_hit_index = np.argmax(hit)
     count_for_max_hit = count[max_hit_index]
-    hit_pixel = sum(j for i, j in zip(hit, count))
+    hit_pixel = sum(j for i,j in zip(hit, count))
     img_pixels = np.prod(img.shape)
     hit_ratio = '{:02.2f}'.format(hit_pixel / img_pixels * 100)
 

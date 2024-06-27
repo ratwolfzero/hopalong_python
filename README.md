@@ -18,7 +18,7 @@ If speed is essential use the advanced version! Using @njit where possible is a 
 The advanced version also tracks the pixel 'hit count' (density) to control the colormap and generates some statistics about pixel hit-counts and their distribution.
 
 
-The program asks for the parameters a, b, c and num (number of iterations). Num must be entered as an integer e.g. 1000000 or 1_000_000. The parameters a, b and c can be entered in floating point or integer format. The value of 'a' should not be zero and the input validation returns a corresponding error. You can enter a very small value instead e.g. 1e-10 
+The program asks for the parameters a, b, c and num (number of iterations). Num must be entered as an integer e.g. 1000000 or 1_000_000. The parameters a, b and c can be entered in floating point or integer format. 
 
 Latest code improvements see Development Folder.
 

@@ -40,9 +40,9 @@ def map_attractor_points_to_image_pixels(points, image_size):
 
 
 @njit(parallel=True)
-# Populate the image array with hit counts for each pixel
-# this variant enables the use of paralle=true & prange!
 def generate_image_and_pixel_counts(img, px, py):
+    # Populate the image array with hit counts for each pixel
+    # this variant enables the use of parallel=true & prange!
     for i in prange(len(px)):
         img[px[i], py[i]] += 1
 

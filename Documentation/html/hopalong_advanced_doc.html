@@ -42,7 +42,7 @@ def generate_hopalong_attractor_points(num, a, b, c):
     points[i+1] cannot be calculated without first computing points[i]
     &#34;&#34;&#34;
     points = np.zeros((num, 2), dtype=np.float32)
-    x, y = 0.0, 1e-99
+    x = y = 0.0
 
     for i in range(num):
 
@@ -68,22 +68,14 @@ def map_attractor_points_to_image_pixels(points, image_size):
 
 
 @njit(parallel=True)
-#this variant enables the use of paralle=true &amp; prange!
 def generate_image_and_pixel_counts(img, px, py):
+    # Populate the image array with hit counts for each pixel
+    # this variant enables the use of parallel=true &amp; prange!
     for i in prange(len(px)):
         img[px[i], py[i]] += 1
 
     return img
 
-&#34;&#34;&#34;
-@njit
-def generate_image_and_pixel_counts(img, px, py):
-    # Populate the image array with hit counts for each pixel
-    for px_i, py_i in zip(px, py):
-        img[px_i, py_i] += 1
-
-    return img
-&#34;&#34;&#34;
 
 def plot_hopalong_attractor(ax, img, colormap, extents, params):
     # plot the hopalong attractor image
@@ -94,6 +86,7 @@ def plot_hopalong_attractor(ax, img, colormap, extents, params):
 def calculate_pixel_hit_metrics(img):
     # Calculate the hit metrics
     hit, count = np.unique(img[img != 0], return_counts=True)
+    #hit, count = np.unique(img[img &gt; 0], return_counts=True)
     max_count_index = np.argmax(count)
     hit_for_max_count = hit[max_count_index]
     max_hit_index = np.argmax(hit)
@@ -136,22 +129,6 @@ def plot_hit_metrics(ax, hit_metrics, scale=&#39;log&#39;):
     ax.grid(True, which=&#34;both&#34;)
 
 
-def get_validated_input(prompt, input_type=float, check_non_zero=False):
-    # Validates the user input 
-    while True:
-        user_input = input(prompt)
-        try:
-            value = input_type(user_input)
-            if check_non_zero and value == 0:
-                print(&#34;Invalid input. The value cannot be zero.&#34;)
-                continue
-            
-            return value
-        
-        except ValueError:
-            print(f&#34;Invalid input. Please enter a valid {input_type.__name__} value.&#34;)
-
-
 def prepare_plots(points, a, b, c, num, image_size):
     # Process the attractor points, hit metrics and prepare data for plotting
     
@@ -178,22 +155,50 @@ def create_plots(img, extents, params, hit_metrics, color_map):
     plt.show()
 
 
+def get_validated_input(prompt, input_type=float, check_non_zero=False):
+    # Validates the user input 
+    while True:
+        user_input = input(prompt)
+        try:
+            value = input_type(user_input)
+            if check_non_zero and value == 0:
+                print(&#34;Invalid input. The value cannot be zero.&#34;)
+                continue
+            
+            return value
+        
+        except ValueError:
+            print(f&#34;Invalid input. Please enter a valid {input_type.__name__} value.&#34;)
+
+
+def get_user_inputs():
+    #Prompt for user input
+    a = get_validated_input(&#39;Enter a non-zero float value for &#34;a&#34;: &#39;, float, check_non_zero=True)
+    b = get_validated_input(&#39;Enter a float value for &#34;b&#34;: &#39;, float)
+    c = get_validated_input(&#39;Enter a float value for &#34;c&#34;: &#39;, float)
+    num = get_validated_input(&#39;Enter an integer value for &#34;num&#34;: &#39;, int, check_non_zero=True)
+
+    return a, b, c, num
+
+
+def coordinate_process_execution(a, b, c , num, image_size, color_map):
+    points = generate_hopalong_attractor_points(num, a, b, c)
+    img, extents, params, hit_metrics = prepare_plots(points, a, b, c, num, image_size)
+    create_plots(img, extents, params, hit_metrics, color_map)
+
+
 def main():  
 
     #Define image_size and color_map
     image_size = 1000, 1000
     color_map = &#39;hot&#39;
 
-    #Prompt for user input
-    a = get_validated_input(&#39;Enter a non-zero float value for &#34;a&#34;: &#39;, float)#, check_non_zero=True)
-    b = get_validated_input(&#39;Enter a float value for &#34;b&#34;: &#39;, float)
-    c = get_validated_input(&#39;Enter a float value for &#34;c&#34;: &#39;, float)
-    num = get_validated_input(&#39;Enter an integer value for &#34;num&#34;: &#39;, int, check_non_zero=True)
+    #Prompt for user inputs
+    a, b, c, num = get_user_inputs()
 
     #coordinate and trigger the program execution
-    points = generate_hopalong_attractor_points(num, a, b, c)
-    img, extents, params, hit_metrics = prepare_plots(points, a, b, c, num, image_size)
-    create_plots(img, extents, params, hit_metrics, color_map)
+    coordinate_process_execution(a, b, c , num, image_size, color_map)
+
 
 if __name__ == &#34;__main__&#34;:
     main()</code></pre>
@@ -218,6 +223,7 @@ if __name__ == &#34;__main__&#34;:
 <pre><code class="python">def calculate_pixel_hit_metrics(img):
     # Calculate the hit metrics
     hit, count = np.unique(img[img != 0], return_counts=True)
+    #hit, count = np.unique(img[img &gt; 0], return_counts=True)
     max_count_index = np.argmax(count)
     hit_for_max_count = hit[max_count_index]
     max_hit_index = np.argmax(hit)
@@ -237,6 +243,21 @@ if __name__ == &#34;__main__&#34;:
     }
 
     return hit_metrics</code></pre>
+</details>
+</dd>
+<dt id="hopalong_advanced_doc.coordinate_process_execution"><code class="name flex">
+<span>def <span class="ident">coordinate_process_execution</span></span>(<span>a, b, c, num, image_size, color_map)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def coordinate_process_execution(a, b, c , num, image_size, color_map):
+    points = generate_hopalong_attractor_points(num, a, b, c)
+    img, extents, params, hit_metrics = prepare_plots(points, a, b, c, num, image_size)
+    create_plots(img, extents, params, hit_metrics, color_map)</code></pre>
 </details>
 </dd>
 <dt id="hopalong_advanced_doc.create_plots"><code class="name flex">
@@ -279,7 +300,7 @@ def generate_hopalong_attractor_points(num, a, b, c):
     points[i+1] cannot be calculated without first computing points[i]
     &#34;&#34;&#34;
     points = np.zeros((num, 2), dtype=np.float32)
-    x, y = 0.0, 1e-99
+    x = y = 0.0
 
     for i in range(num):
 
@@ -300,12 +321,32 @@ def generate_hopalong_attractor_points(num, a, b, c):
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@njit(parallel=True)
-#this variant enables the use of paralle=true &amp; prange!
 def generate_image_and_pixel_counts(img, px, py):
+    # Populate the image array with hit counts for each pixel
+    # this variant enables the use of parallel=true &amp; prange!
     for i in prange(len(px)):
         img[px[i], py[i]] += 1
 
     return img</code></pre>
+</details>
+</dd>
+<dt id="hopalong_advanced_doc.get_user_inputs"><code class="name flex">
+<span>def <span class="ident">get_user_inputs</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_user_inputs():
+    #Prompt for user input
+    a = get_validated_input(&#39;Enter a non-zero float value for &#34;a&#34;: &#39;, float, check_non_zero=True)
+    b = get_validated_input(&#39;Enter a float value for &#34;b&#34;: &#39;, float)
+    c = get_validated_input(&#39;Enter a float value for &#34;c&#34;: &#39;, float)
+    num = get_validated_input(&#39;Enter an integer value for &#34;num&#34;: &#39;, int, check_non_zero=True)
+
+    return a, b, c, num</code></pre>
 </details>
 </dd>
 <dt id="hopalong_advanced_doc.get_validated_input"><code class="name flex">
@@ -348,16 +389,11 @@ def generate_image_and_pixel_counts(img, px, py):
     image_size = 1000, 1000
     color_map = &#39;hot&#39;
 
-    #Prompt for user input
-    a = get_validated_input(&#39;Enter a non-zero float value for &#34;a&#34;: &#39;, float)#, check_non_zero=True)
-    b = get_validated_input(&#39;Enter a float value for &#34;b&#34;: &#39;, float)
-    c = get_validated_input(&#39;Enter a float value for &#34;c&#34;: &#39;, float)
-    num = get_validated_input(&#39;Enter an integer value for &#34;num&#34;: &#39;, int, check_non_zero=True)
+    #Prompt for user inputs
+    a, b, c, num = get_user_inputs()
 
     #coordinate and trigger the program execution
-    points = generate_hopalong_attractor_points(num, a, b, c)
-    img, extents, params, hit_metrics = prepare_plots(points, a, b, c, num, image_size)
-    create_plots(img, extents, params, hit_metrics, color_map)</code></pre>
+    coordinate_process_execution(a, b, c , num, image_size, color_map)</code></pre>
 </details>
 </dd>
 <dt id="hopalong_advanced_doc.map_attractor_points_to_image_pixels"><code class="name flex">
@@ -464,9 +500,11 @@ def map_attractor_points_to_image_pixels(points, image_size):
 <li><h3><a href="#header-functions">Functions</a></h3>
 <ul class="">
 <li><code><a title="hopalong_advanced_doc.calculate_pixel_hit_metrics" href="#hopalong_advanced_doc.calculate_pixel_hit_metrics">calculate_pixel_hit_metrics</a></code></li>
+<li><code><a title="hopalong_advanced_doc.coordinate_process_execution" href="#hopalong_advanced_doc.coordinate_process_execution">coordinate_process_execution</a></code></li>
 <li><code><a title="hopalong_advanced_doc.create_plots" href="#hopalong_advanced_doc.create_plots">create_plots</a></code></li>
 <li><code><a title="hopalong_advanced_doc.generate_hopalong_attractor_points" href="#hopalong_advanced_doc.generate_hopalong_attractor_points">generate_hopalong_attractor_points</a></code></li>
 <li><code><a title="hopalong_advanced_doc.generate_image_and_pixel_counts" href="#hopalong_advanced_doc.generate_image_and_pixel_counts">generate_image_and_pixel_counts</a></code></li>
+<li><code><a title="hopalong_advanced_doc.get_user_inputs" href="#hopalong_advanced_doc.get_user_inputs">get_user_inputs</a></code></li>
 <li><code><a title="hopalong_advanced_doc.get_validated_input" href="#hopalong_advanced_doc.get_validated_input">get_validated_input</a></code></li>
 <li><code><a title="hopalong_advanced_doc.main" href="#hopalong_advanced_doc.main">main</a></code></li>
 <li><code><a title="hopalong_advanced_doc.map_attractor_points_to_image_pixels" href="#hopalong_advanced_doc.map_attractor_points_to_image_pixels">map_attractor_points_to_image_pixels</a></code></li>

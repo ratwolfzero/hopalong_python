@@ -14,7 +14,7 @@ def generate_hopalong_attractor_points(num, a, b, c):
     points[i+1] cannot be calculated without first computing points[i]
     """
     points = np.zeros((num, 2), dtype=np.float32)
-    x, y = 0.0, 1e-99
+    x = y = 0.0
 
     for i in range(num):
 
@@ -58,6 +58,7 @@ def plot_hopalong_attractor(ax, img, colormap, extents, params):
 def calculate_pixel_hit_metrics(img):
     # Calculate the hit metrics
     hit, count = np.unique(img[img != 0], return_counts=True)
+    #hit, count = np.unique(img[img > 0], return_counts=True)
     max_count_index = np.argmax(count)
     hit_for_max_count = hit[max_count_index]
     max_hit_index = np.argmax(hit)
@@ -100,22 +101,6 @@ def plot_hit_metrics(ax, hit_metrics, scale='log'):
     ax.grid(True, which="both")
 
 
-def get_validated_input(prompt, input_type=float, check_non_zero=False):
-    # Validates the user input 
-    while True:
-        user_input = input(prompt)
-        try:
-            value = input_type(user_input)
-            if check_non_zero and value == 0:
-                print("Invalid input. The value cannot be zero.")
-                continue
-            
-            return value
-        
-        except ValueError:
-            print(f"Invalid input. Please enter a valid {input_type.__name__} value.")
-
-
 def prepare_plots(points, a, b, c, num, image_size):
     # Process the attractor points, hit metrics and prepare data for plotting
     
@@ -142,22 +127,52 @@ def create_plots(img, extents, params, hit_metrics, color_map):
     plt.show()
 
 
+def get_validated_input(prompt, input_type=float, check_non_zero=False):
+    # Validates the user input 
+    while True:
+        user_input = input(prompt)
+        try:
+            value = input_type(user_input)
+            if check_non_zero and value == 0:
+                print("Invalid input. The value cannot be zero.")
+                continue
+            
+            return value
+        
+        except ValueError:
+            print(f"Invalid input. Please enter a valid {input_type.__name__} value.")
+
+
+def get_user_inputs():
+    #Prompt for user input
+    a = get_validated_input('Enter a non-zero float value for "a": ', float, check_non_zero=True)
+    b = get_validated_input('Enter a float value for "b": ', float)
+    c = get_validated_input('Enter a float value for "c": ', float)
+    num = get_validated_input('Enter an integer value for "num": ', int, check_non_zero=True)
+
+    return a, b, c, num
+
+
+def coordinate_process_execution(a, b, c , num, image_size, color_map):
+    points = generate_hopalong_attractor_points(num, a, b, c)
+    img, extents, params, hit_metrics = prepare_plots(points, a, b, c, num, image_size)
+    create_plots(img, extents, params, hit_metrics, color_map)
+
+
 def main():  
 
     #Define image_size and color_map
     image_size = 1000, 1000
     color_map = 'hot'
 
-    #Prompt for user input
-    a = get_validated_input('Enter a non-zero float value for "a": ', float)#, check_non_zero=True)
-    b = get_validated_input('Enter a float value for "b": ', float)
-    c = get_validated_input('Enter a float value for "c": ', float)
-    num = get_validated_input('Enter an integer value for "num": ', int, check_non_zero=True)
+    #Prompt for user inputs
+    a, b, c, num = get_user_inputs()
 
     #coordinate and trigger the program execution
-    points = generate_hopalong_attractor_points(num, a, b, c)
-    img, extents, params, hit_metrics = prepare_plots(points, a, b, c, num, image_size)
-    create_plots(img, extents, params, hit_metrics, color_map)
+    coordinate_process_execution(a, b, c , num, image_size, color_map)
+
 
 if __name__ == "__main__":
     main()
+
+

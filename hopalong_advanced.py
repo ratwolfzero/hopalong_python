@@ -106,7 +106,6 @@ def plot_hit_metrics(ax, hit_metrics, scale='log'):
 
 def prepare_plots(points, a, b, c, num, image_size):
     # Process the attractor points, hit metrics and prepare data for plotting
-    
     px, py, min_x, max_x, min_y, max_y = map_attractor_points_to_image_pixels(points, image_size)
     img = generate_image_and_pixel_counts(np.zeros(image_size, dtype=np.int32), px, py)
     hit_metrics = calculate_pixel_hit_metrics(img) 

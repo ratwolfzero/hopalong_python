@@ -2,9 +2,9 @@
 import matplotlib
 matplotlib.use('TkAgg')
 
-from numba import njit, prange
 import matplotlib.pyplot as plt
 import numpy as np
+from numba import njit, prange
 
 
 @njit
@@ -14,12 +14,15 @@ def calculate_hopalong_attractor_points(a, b, c, num):
     Remark: The "parallel=true" option for @njit respectively prange cannot be used here due to the cross-iteration dependency
     points[i+1] cannot be calculated without first computing points[i]
     """
-    points = np.empty((num, 2), dtype=np.float32)
+    points = np.zeros((num, 2), dtype=np.float32)
     x = y = 0.0
+
     for i in range(num):
+
         points[i] = x, y
         xx, yy = y - np.sign(x) * np.sqrt(abs(b * x - c)), a - x
         x, y = xx, yy
+
     return points
 
 
@@ -31,10 +34,8 @@ def map_attractor_points_to_image_pixels(points, image_size):
     min_x, max_x = np.min(points[:, 0]), np.max(points[:, 0])
     min_y, max_y = np.min(points[:, 1]), np.max(points[:, 1])
 
-    px = ((points[:, 0] - min_x) / (max_x - min_x)
-          * (img_width - 1)).astype(np.int32)
-    py = ((points[:, 1] - min_y) / (max_y - min_y)
-          * (img_height - 1)).astype(np.int32)
+    px = ((points[:, 0] - min_x) / (max_x - min_x) * (img_width - 1)).astype(np.int32) 
+    py = ((points[:, 1] - min_y) / (max_y - min_y) * (img_height - 1)).astype(np.int32)
 
     return px, py, min_x, max_x, min_y, max_y
 
@@ -53,11 +54,8 @@ def generate_image_and_pixel_counts(img, px, py):
 
 def prepare_plot(points, a, b, c, num, image_size):
     # Process the attractor points and prepare data for plotting
-
-    px, py, min_x, max_x, min_y, max_y = map_attractor_points_to_image_pixels(
-        points, image_size)
-    img = generate_image_and_pixel_counts(
-        np.zeros(image_size, dtype=np.int32), px, py)
+    px, py, min_x, max_x, min_y, max_y = map_attractor_points_to_image_pixels(points, image_size)
+    img = generate_image_and_pixel_counts(np.zeros(image_size, dtype=np.int32), px, py)
 
     extents = [min_x, max_x, min_y, max_y]
     params = {'a': a, 'b': b, 'c': c, 'num': num}
@@ -90,15 +88,11 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False):
 
 
 def get_user_inputs():
-    # Prompt for user input
-    a = get_validated_input(
-        'Enter a non-zero float value for "a": ', float, check_non_zero=True)
+    #Prompt for user input
+    a = get_validated_input('Enter a non-zero float value for "a": ', float, check_non_zero=True)
     b = get_validated_input('Enter a float value for "b": ', float)
     c = get_validated_input('Enter a float value for "c": ', float)
-    num = get_validated_input(
-        'Enter an integer value for "num": ', int, check_non_zero=True)
-
-    return a, b, c, num
+    num = get_validated_input('Enter an integer value for "num": ', int, check_non_zero=True)
 
 
 def coordinate_process_execution(a, b, c, num, image_size, color_map):

@@ -47,9 +47,9 @@ def generate_image(img, px, py):
     """
     # use prange for parallel loop
     for i in prange(len(px)):
-        img[px[i], py[i]] = i +1
+       img[px[i], py[i]] = i + 1
 
-    return img
+    return img  
 
 
 def prepare_plot(points, a, b, c, num, image_size):

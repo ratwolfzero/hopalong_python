@@ -3,24 +3,18 @@ Calculate and display the "Hopalong" attractor
 
 The inventor is Barry Martin from Aston University in Birmingham/England. A. K. Dewdney described these fractals in September 1986 in the magazine Scientific American and made them famous. The German edition Spektrum der Wissenschaft distributed "Hopalong" in Germany with a translation of this article in the Computer-Kurzweil section. “Hüpfer” is the German name for "Hopalong" (hop-along, keep hopping).
 
-
 This Python programs can calculate and display the “Hopalong” attractor
-
 
 You can run the Python script from a terminal --> e.g.
 python3 /path/to/my/file/hopalong_advanced.py
 
+Requires the installation of numpy, matplotlib and numba.
 
-Requires the installation of numpy and matplotlib respectively numba for the advanced version.
-
-
-If speed is essential use the advanced version! Using @njit where possible is a revelation in terms of speed...
 The advanced version also tracks the pixel 'hit count' (density) to control the colormap and generates some statistics about pixel hit-counts and their distribution.
-
 
 The program asks for the parameters a, b, c and num (number of iterations). Num must be entered as an integer e.g. 1000000 or 1_000_000. The parameters a, b and c can be entered in floating point or integer format. 
 
-Latest code improvements see Development Folder.
+Latest code improvements see Development Folder, if any.
 
 Have fun!
 ---------

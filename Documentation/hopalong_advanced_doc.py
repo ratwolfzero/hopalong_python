@@ -41,8 +41,9 @@ def map_attractor_points_to_image_pixels(points, image_size):
 
 @njit(parallel=True)
 def generate_image_and_pixel_counts(img, px, py):
-    # Populate the image array with hit counts for each pixel
-    # this variant enables the use of parallel=true & prange!
+    """Populate the image array with hit counts for each pixel
+    this variant enables the use of parallel=true & prange!
+    """
     for i in prange(len(px)):
         img[px[i], py[i]] += 1
 
@@ -57,8 +58,7 @@ def plot_hopalong_attractor(ax, img, colormap, extents, params):
 
 def calculate_pixel_hit_metrics(img):
     # Calculate the hit metrics
-    hit, count = np.unique(img[img != 0], return_counts=True)
-    #hit, count = np.unique(img[img > 0], return_counts=True)
+    hit, count = np.unique(img[img > 0], return_counts=True)
     max_count_index = np.argmax(count)
     hit_for_max_count = hit[max_count_index]
     max_hit_index = np.argmax(hit)
@@ -174,5 +174,8 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
 
 

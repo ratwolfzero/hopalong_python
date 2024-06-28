@@ -94,6 +94,8 @@ def get_user_inputs():
     c = get_validated_input('Enter a float value for "c": ', float)
     num = get_validated_input('Enter an integer value for "num": ', int, check_non_zero=True)
 
+    return a, b, c, num
+
 
 def coordinate_process_execution(a, b, c, num, image_size, color_map):
     points = calculate_hopalong_attractor_points(a, b, c, num)
@@ -106,7 +108,7 @@ def main():
     image_size = 1000, 1000
     color_map = 'inferno'
 
-    # prompt for user inputs
+    #Prompt for user inputs
     a, b, c, num = get_user_inputs()
 
     # coordinate and trigger the program execution
@@ -115,3 +117,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

@@ -41,13 +41,13 @@ def map_attractor_points_to_image_pixels(points, image_size):
 
 
 @njit(parallel=True)
-def generate_image_and_pixel_counts(img, px, py):
+def generate_image(img, px, py):
     """
-    Populate the image array with hit counts for each pixel
-    this variant enables the use of parallel=true & prange!
+    Populate the image array. Each hit point gets a unique value based on the index and the pixel color is defined by color_map
     """
+    # use prange for parallel loop
     for i in prange(len(px)):
-        img[px[i], py[i]] += 1
+        img[px[i], py[i]] = i +1
 
     return img
 
@@ -55,7 +55,7 @@ def generate_image_and_pixel_counts(img, px, py):
 def prepare_plot(points, a, b, c, num, image_size):
     # Process the attractor points and prepare data for plotting
     px, py, min_x, max_x, min_y, max_y = map_attractor_points_to_image_pixels(points, image_size)
-    img = generate_image_and_pixel_counts(np.zeros(image_size, dtype=np.int32), px, py)
+    img = generate_image(np.zeros(image_size, dtype=np.int32), px, py)
 
     extents = [min_x, max_x, min_y, max_y]
     params = {'a': a, 'b': b, 'c': c, 'num': num}
@@ -117,4 +117,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

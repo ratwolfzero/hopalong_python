@@ -43,7 +43,7 @@ def map_attractor_points_to_image_pixels(points, image_size):
 @njit(parallel=True)
 def generate_image_and_pixel_counts(img, px, py):
     """
-    Populate the image array with hit counts for each pixel
+    Populate the image array with hit counts for each pixel The picel Color is based on the hit counts and defined by color_map
     this variant enables the use of parallel=true & prange!
     """
     for i in prange(len(px)):

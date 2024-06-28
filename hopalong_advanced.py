@@ -1,14 +1,15 @@
 # Use TkAgg backend for matplotlib
 import matplotlib
 matplotlib.use('TkAgg')
+
 import matplotlib.pyplot as plt
 import numpy as np
 from numba import njit, prange
 
 
 @njit
-def generate_hopalong_attractor_points(num, a, b, c):
-   # generate hopalong points array of given shape
+def generate_hopalong_attractor_points(a, b, c, num):
+    # generate hopalong points array of given shape
     """
     Remark: The "parallel=true" option for @njit respectively prange cannot be used here due to the cross-iteration dependency
     points[i+1] cannot be calculated without first computing points[i]
@@ -41,8 +42,10 @@ def map_attractor_points_to_image_pixels(points, image_size):
 
 @njit(parallel=True)
 def generate_image_and_pixel_counts(img, px, py):
-    # Populate the image array with hit counts for each pixel
-    # this variant enables the use of parallel=true & prange!
+    """
+    Populate the image array with hit counts for each pixel
+    this variant enables the use of parallel=true & prange!
+    """
     for i in prange(len(px)):
         img[px[i], py[i]] += 1
 
@@ -154,13 +157,12 @@ def get_user_inputs():
 
 
 def coordinate_process_execution(a, b, c , num, image_size, color_map):
-    points = generate_hopalong_attractor_points(num, a, b, c)
+    points = generate_hopalong_attractor_points(a, b, c, num)
     img, extents, params, hit_metrics = prepare_plots(points, a, b, c, num, image_size)
     create_plots(img, extents, params, hit_metrics, color_map)
 
 
 def main():  
-
     #Define image_size and color_map
     image_size = 1000, 1000
     color_map = 'hot'

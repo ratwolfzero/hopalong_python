@@ -5,10 +5,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def hopalong(num, a, b, c, image_size):
+def hopalong(num, a, b, c, image_size, color_map):
     # Computes and plot the points for the Hopalong attractor.
     points = np.empty((num, 2), dtype=np.float32)
-    x, y = 0.0, 1e-99
+    x = y = 0.0
     
     for i in range(num):
 
@@ -21,18 +21,18 @@ def hopalong(num, a, b, c, image_size):
 
 
     img_width, img_height = image_size
-    img = np.zeros((img_width, img_height), dtype=np.int16)
+    img = np.zeros((img_width, img_height), dtype=np.int32)
 
     px = ((points[:, 0] - min_x) / (max_x - min_x)
-          * (img_width - 1)).astype(np.int16)
+          * (img_width - 1)).astype(np.int32)
     py = ((points[:, 1] - min_y) / (max_y - min_y)
-          * (img_height - 1)).astype(np.int16)
+          * (img_height - 1)).astype(np.int32)
 
     img[px, py] = 1
     
 
     plt.figure(figsize=(8, 8))
-    plt.imshow(img, origin="lower", cmap='inferno', extent=[min_x, max_x, min_y, max_y])
+    plt.imshow(img, origin="lower", cmap = color_map, extent=[min_x, max_x, min_y, max_y])
     plt.title(f"Hopalong Attractor@ratwolf2024\nParams: a={a}, b={b}, c={c}, num={num:_}")
     plt.show()
 
@@ -51,15 +51,25 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False):
             print(f"Invalid input. Please enter a valid {input_type.__name__} value.")
 
 
-def main():
-    # Main function to run the Hopalong attractor generation.
-    image_size = 1000, 1000
-    a = get_validated_input('Enter a non-zero float value for "a": ', float)#, check_non_zero=True)
+def get_user_inputs():
+    #Prompt for user input
+    a = get_validated_input('Enter a non-zero float value for "a": ', float, check_non_zero=True)
     b = get_validated_input('Enter a float value for "b": ', float)
     c = get_validated_input('Enter a float value for "c": ', float)
     num = get_validated_input('Enter an integer value for "num": ', int, check_non_zero=True)
 
-    hopalong(num, a, b, c, image_size)
+    return a, b, c, num
+
+
+def main():
+    # Main function to run the Hopalong attractor generation.
+    
+    image_size = 1000, 1000
+    color_map ='inferno'
+    
+    a, b , c, num = get_user_inputs()
+    
+    hopalong(num, a, b, c, image_size, color_map)
 
 
 if __name__ == "__main__":

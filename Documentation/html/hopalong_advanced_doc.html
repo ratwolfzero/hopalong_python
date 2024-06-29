@@ -71,7 +71,7 @@ def map_attractor_points_to_image_pixels(points, image_size):
 @njit(parallel=True)
 def generate_image_and_pixel_counts(img, px, py):
     &#34;&#34;&#34;
-    Populate the image array with hit counts for each pixel. The pixel Color is defined by color_map
+    Populate the image array with hit counts for each pixel. The pixel color is defined by color_map
     &#34;&#34;&#34;
     # use prange for parallel loop
     for i in prange(len(px)):
@@ -316,7 +316,7 @@ def generate_hopalong_attractor_points(a, b, c, num):
 <span>def <span class="ident">generate_image_and_pixel_counts</span></span>(<span>img, px, py)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Populate the image array with hit counts for each pixel. The pixel Color is defined by color_map</p></div>
+<div class="desc"><p>Populate the image array with hit counts for each pixel. The pixel color is defined by color_map</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>

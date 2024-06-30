@@ -8,10 +8,10 @@ from numba import njit, prange
 
 
 @njit
-def calculate_hopalong_attractor_points(a, b, c, num):
+def calculate_attractor_points(a, b, c, num):
     # generate hopalong points array of given shape
     """
-    Remark: The "parallel=true" option for @njit respectively prange cannot be used here due to the cross-iteration dependency
+    Remark: Parallel options cannot be used here due to the cross-iteration dependency.
     points[i+1] cannot be calculated without first computing points[i]
     """
     points = np.zeros((num, 2), dtype=np.float32)
@@ -52,7 +52,7 @@ def generate_image(img, px, py):
     return img
 
 
-def prepare_plot(points, a, b, c, num, image_size):
+def prepare_plot_data(points, a, b, c, num, image_size):
     # Process the attractor points and prepare data for plotting
     px, py, min_x, max_x, min_y, max_y = map_attractor_points_to_image_pixels(points, image_size)
     img = generate_image(np.zeros(image_size, dtype=np.int32), px, py)
@@ -63,7 +63,7 @@ def prepare_plot(points, a, b, c, num, image_size):
     return img, extents, params
 
 
-def plot_hopalong_attractor(img, extents, params, color_map):
+def plot_attractor(img, extents, params, color_map):
     # plot the hopalong attractor image
     plt.figure(figsize=(8, 8))
     plt.imshow(img, origin="lower", cmap=color_map, extent=extents)
@@ -97,10 +97,10 @@ def get_user_inputs():
     return a, b, c, num
 
 
-def coordinate_process_execution(a, b, c, num, image_size, color_map):
-    points = calculate_hopalong_attractor_points(a, b, c, num)
-    img, extents, params = prepare_plot(points, a, b, c, num, image_size)
-    plot_hopalong_attractor(img, extents, params, color_map)
+def generate_and_plot_attractor(a, b, c, num, image_size, color_map):
+    points = calculate_attractor_points(a, b, c, num)
+    img, extents, params = prepare_plot_data(points, a, b, c, num, image_size)
+    plot_attractor(img, extents, params, color_map)
 
 
 def main():
@@ -112,7 +112,7 @@ def main():
     a, b, c, num = get_user_inputs()
 
     # coordinate and trigger the program execution
-    coordinate_process_execution(a, b, c, num, image_size, color_map)
+    generate_and_plot_attractor(a, b, c, num, image_size, color_map)
 
 
 if __name__ == "__main__":

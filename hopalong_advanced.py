@@ -8,10 +8,10 @@ from numba import njit, prange
 
 
 @njit
-def generate_hopalong_attractor_points(a, b, c, num):
+def calculate_attractor_points(a, b, c, num):
     # generate hopalong points array of given shape
     """
-    Remark: The "parallel=true" option for @njit respectively prange cannot be used here due to the cross-iteration dependency
+    Remark: Parallel options cannot be used here due to the cross-iteration dependency.
     points[i+1] cannot be calculated without first computing points[i]
     """
     points = np.zeros((num, 2), dtype=np.float32)
@@ -52,16 +52,15 @@ def generate_image_and_pixel_counts(img, px, py):
     return img
 
 
-def plot_hopalong_attractor(ax, img, colormap, extents, params):
+def plot_attractor(ax, img, colormap, extents, params):
     # plot the hopalong attractor image
     ax.imshow(img, cmap=colormap, origin='lower', extent=extents)
     ax.set_title("Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
 
 
-def calculate_pixel_hit_metrics(img):
+def calculate_hit_metrics(img):
     # Calculate the hit metrics
-    hit, count = np.unique(img[img != 0], return_counts=True)
-    #hit, count = np.unique(img[img > 0], return_counts=True)
+    hit, count = np.unique(img[img > 0], return_counts=True)
     max_count_index = np.argmax(count)
     hit_for_max_count = hit[max_count_index]
     max_hit_index = np.argmax(hit)
@@ -104,11 +103,11 @@ def plot_hit_metrics(ax, hit_metrics, scale='log'):
     ax.grid(True, which="both")
 
 
-def prepare_plots(points, a, b, c, num, image_size):
+def prepare_plot_data(points, a, b, c, num, image_size):
     # Process the attractor points, hit metrics and prepare data for plotting
     px, py, min_x, max_x, min_y, max_y = map_attractor_points_to_image_pixels(points, image_size)
     img = generate_image_and_pixel_counts(np.zeros(image_size, dtype=np.int32), px, py)
-    hit_metrics = calculate_pixel_hit_metrics(img) 
+    hit_metrics = calculate_hit_metrics(img) 
 
     extents = [min_x, max_x, min_y, max_y]
     params = {'a': a, 'b': b, 'c': c, 'num': num}
@@ -121,7 +120,7 @@ def create_plots(img, extents, params, hit_metrics, color_map):
     fig = plt.figure(figsize=(18, 8))
 
     ax1 = fig.add_subplot(1, 2, 1, aspect='auto')
-    plot_hopalong_attractor(ax1, img, color_map, extents, params)
+    plot_attractor(ax1, img, color_map, extents, params)
    
     ax2 = fig.add_subplot(1, 2, 2, aspect='auto')
     plot_hit_metrics(ax2, hit_metrics)
@@ -155,9 +154,9 @@ def get_user_inputs():
     return a, b, c, num
 
 
-def coordinate_process_execution(a, b, c , num, image_size, color_map):
-    points = generate_hopalong_attractor_points(a, b, c, num)
-    img, extents, params, hit_metrics = prepare_plots(points, a, b, c, num, image_size)
+def generate_and_plot_attractor_and_statistics(a, b, c , num, image_size, color_map):
+    points = calculate_attractor_points(a, b, c, num)
+    img, extents, params, hit_metrics = prepare_plot_data(points, a, b, c, num, image_size)
     create_plots(img, extents, params, hit_metrics, color_map)
 
 
@@ -170,7 +169,7 @@ def main():
     a, b, c, num = get_user_inputs()
 
     #coordinate and trigger the program execution
-    coordinate_process_execution(a, b, c , num, image_size, color_map)
+    generate_and_plot_attractor_and_statistics(a, b, c , num, image_size, color_map)
 
 
 if __name__ == "__main__":

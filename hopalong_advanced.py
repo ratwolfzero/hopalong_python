@@ -9,7 +9,7 @@ from numba import njit, prange
 
 @njit
 def calculate_attractor_points(a, b, c, num):
-    # generate hopalong points array of given shape
+    # # Compute points of the hopalong attractor
     """
     Remark: Parallel options cannot be used here due to the cross-iteration dependency.
     points[i+1] cannot be calculated without first computing points[i]
@@ -28,7 +28,7 @@ def calculate_attractor_points(a, b, c, num):
 
 @njit(parallel=True)
 def map_attractor_points_to_image_pixels(points, image_size):
-    # Convert hopalong attractor points to image pixel locations
+    # map attractor points to corresponding image pixel coordinates
     img_width, img_height = image_size
 
     min_x, max_x = np.min(points[:, 0]), np.max(points[:, 0])
@@ -42,9 +42,8 @@ def map_attractor_points_to_image_pixels(points, image_size):
 
 @njit(parallel=True)
 def generate_image_and_pixel_counts(img, px, py):
-    """
-    Populate the image array with hit counts for each pixel. The pixel color is defined by the color_map
-    """
+# Populate image array and aggregate hit counts per pixel from attractor points
+    
     # use prange for parallel loop
     for i in prange(len(px)):
         img[px[i], py[i]] += 1
@@ -53,13 +52,13 @@ def generate_image_and_pixel_counts(img, px, py):
 
 
 def plot_attractor(ax, img, colormap, extents, params):
-    # plot the hopalong attractor image
+    # plot image and render the hopalong attractor on a given axis with the specified colormap
     ax.imshow(img, cmap=colormap, origin='lower', extent=extents)
     ax.set_title("Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
 
 
 def calculate_hit_metrics(img):
-    # Calculate the hit metrics
+    # Analyze and summarize hit metrics from the attractor image
     hit, count = np.unique(img[img > 0], return_counts=True)
     max_count_index = np.argmax(count)
     hit_for_max_count = hit[max_count_index]
@@ -83,7 +82,7 @@ def calculate_hit_metrics(img):
 
 
 def plot_hit_metrics(ax, hit_metrics, scale='log'):
-    # Plot the hit counts distribution
+    # Visualize the distribution of hit counts on pixels in the attractor image
     ax.plot(hit_metrics["hit"], hit_metrics["count"], 'o-', color="navy", markersize=1,linewidth=0.6)
     ax.set_xlabel('# of hits (n)')
     ax.set_ylabel('# of pixels hit n-times')
@@ -116,7 +115,7 @@ def prepare_plot_data(points, a, b, c, num, image_size):
     
 
 def create_plots(img, extents, params, hit_metrics, color_map):    
-    # generates all plots
+    # Generate attractor and hit metrics plots
     fig = plt.figure(figsize=(18, 8))
 
     ax1 = fig.add_subplot(1, 2, 1, aspect='auto')
@@ -129,7 +128,7 @@ def create_plots(img, extents, params, hit_metrics, color_map):
 
 
 def get_validated_input(prompt, input_type=float, check_non_zero=False):
-    # Validates the user input 
+    # Request and validate user input with specified constraints
     while True:
         user_input = input(prompt)
         try:
@@ -145,7 +144,7 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False):
 
 
 def get_user_inputs():
-    #Prompt for user input
+    # Collect input parameters from the user for attractor generation
     a = get_validated_input('Enter a non-zero float value for "a": ', float, check_non_zero=True)
     b = get_validated_input('Enter a float value for "b": ', float)
     c = get_validated_input('Enter a float value for "c": ', float)
@@ -155,20 +154,19 @@ def get_user_inputs():
 
 
 def generate_and_plot_attractor_and_statistics(a, b, c , num, image_size, color_map):
+    # Generate and process attractor points, compute metrics, and create visualizations
     points = calculate_attractor_points(a, b, c, num)
     img, extents, params, hit_metrics = prepare_plot_data(points, a, b, c, num, image_size)
     create_plots(img, extents, params, hit_metrics, color_map)
 
 
 def main():  
-    #Define image_size and color_map
+    #Entry point: Coordinate user input, processing of attractor points and statistics and visualization generation
     image_size = 1000, 1000
     color_map = 'hot'
 
-    #Prompt for user inputs
     a, b, c, num = get_user_inputs()
 
-    #coordinate and trigger the program execution
     generate_and_plot_attractor_and_statistics(a, b, c , num, image_size, color_map)
 
 

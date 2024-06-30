@@ -9,7 +9,7 @@ from numba import njit, prange
 
 @njit
 def calculate_attractor_points(a, b, c, num):
-    # generate hopalong points array of given shape
+    # # Compute points of the hopalong attractor
     """
     Remark: Parallel options cannot be used here due to the cross-iteration dependency.
     points[i+1] cannot be calculated without first computing points[i]
@@ -28,7 +28,7 @@ def calculate_attractor_points(a, b, c, num):
 
 @njit(parallel=True)
 def map_attractor_points_to_image_pixels(points, image_size):
-    # Convert hopalong attractor points to image pixel locations
+    # map attractor points to corresponding image pixel coordinates
     img_width, img_height = image_size
 
     min_x, max_x = np.min(points[:, 0]), np.max(points[:, 0])
@@ -42,9 +42,8 @@ def map_attractor_points_to_image_pixels(points, image_size):
 
 @njit(parallel=True)
 def generate_image(img, px, py):
-    """
-    Populate the image array. Each hit point gets a unique value based on the index and the pixel color is defined by the color_map
-    """
+# Populate image array. Each hit point gets a unique value based on the index
+    
     # use prange for parallel loop
     for i in prange(len(px)):
         img[px[i], py[i]] = i + 1 
@@ -53,7 +52,7 @@ def generate_image(img, px, py):
 
 
 def prepare_plot_data(points, a, b, c, num, image_size):
-    # Process the attractor points and prepare data for plotting
+    # Process attractor points and prepare data for visualization
     px, py, min_x, max_x, min_y, max_y = map_attractor_points_to_image_pixels(points, image_size)
     img = generate_image(np.zeros(image_size, dtype=np.int32), px, py)
 
@@ -64,7 +63,7 @@ def prepare_plot_data(points, a, b, c, num, image_size):
 
 
 def plot_attractor(img, extents, params, color_map):
-    # plot the hopalong attractor image
+    # plot image and render the hopalong attractor on a given axis with the specified colormap
     plt.figure(figsize=(8, 8))
     plt.imshow(img, origin="lower", cmap=color_map, extent=extents)
     plt.title(
@@ -73,7 +72,7 @@ def plot_attractor(img, extents, params, color_map):
 
 
 def get_validated_input(prompt, input_type=float, check_non_zero=False):
-    # Prompts the user for input and validates it.
+    # Request and validate user input with specified constraints
     while True:
         user_input = input(prompt)
         try:
@@ -88,7 +87,7 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False):
 
 
 def get_user_inputs():
-    #Prompt for user input
+    # Collect input parameters from the user for attractor generation
     a = get_validated_input('Enter a non-zero float value for "a": ', float, check_non_zero=True)
     b = get_validated_input('Enter a float value for "b": ', float)
     c = get_validated_input('Enter a float value for "c": ', float)
@@ -98,20 +97,19 @@ def get_user_inputs():
 
 
 def generate_and_plot_attractor(a, b, c, num, image_size, color_map):
+    # Generate and process attractor points and create visualizations
     points = calculate_attractor_points(a, b, c, num)
     img, extents, params = prepare_plot_data(points, a, b, c, num, image_size)
     plot_attractor(img, extents, params, color_map)
 
 
 def main():
-    # define image size and colormap
+    #Entry point: Coordinate user input, processing of attractor points and visualization generation
     image_size = 1000, 1000
     color_map = 'inferno'
-
-    #Prompt for user inputs
+ 
     a, b, c, num = get_user_inputs()
 
-    # coordinate and trigger the program execution
     generate_and_plot_attractor(a, b, c, num, image_size, color_map)
 
 

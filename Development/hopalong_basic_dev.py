@@ -27,19 +27,25 @@ def calculate_attractor_points(a, b, c, num):
 
 
 @njit(parallel=True)
-def map_attractor_points_to_image_pixels(points, image_size):
+def map_points_and_generate_image(points, image_size):
     # map attractor points to corresponding image pixel coordinates
     img_width, img_height = image_size
 
     min_x, max_x = np.min(points[:, 0]), np.max(points[:, 0])
     min_y, max_y = np.min(points[:, 1]), np.max(points[:, 1])
 
+
     px = ((points[:, 0] - min_x) / (max_x - min_x) * (img_width - 1)).astype(np.int32) 
     py = ((points[:, 1] - min_y) / (max_y - min_y) * (img_height - 1)).astype(np.int32)
 
-    return px, py, min_x, max_x, min_y, max_y
+    img = np.zeros(image_size, dtype=np.int32)
 
+    for i in prange(len(px)):
+        img[px[i], py[i]] = i + 1 
 
+    return img, min_x, max_x, min_y, max_y
+
+"""
 @njit(parallel=True)
 def generate_image(img, px, py):
 # Populate image array. Each hit point gets a unique value based on the index
@@ -49,12 +55,12 @@ def generate_image(img, px, py):
         img[px[i], py[i]] = i + 1 
 
     return img
-
+"""
 
 def prepare_plot_data(points, a, b, c, num, image_size):
     # Process attractor points and prepare data for visualization
-    px, py, min_x, max_x, min_y, max_y = map_attractor_points_to_image_pixels(points, image_size)
-    img = generate_image(np.zeros(image_size, dtype=np.int32), px, py)
+    #px, py, min_x, max_x, min_y, max_y = map_attractor_points_to_image_pixels(points, image_size)
+    img, min_x, max_x, min_y, max_y = map_points_and_generate_image(points, image_size)
 
     extents = [min_x, max_x, min_y, max_y]
     params = {'a': a, 'b': b, 'c': c, 'num': num}

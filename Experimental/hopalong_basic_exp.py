@@ -50,13 +50,13 @@ def generate_image(img, px, py):
 
     return img
 
-
+#experimental
 def prepare_plot_data(points, a, b, c, num, image_size):
     # Process attractor points and prepare data for visualization
     px, py, min_x, max_x, min_y, max_y = map_attractor_points_to_image_pixels(points, image_size)
     img = generate_image(np.zeros(image_size, dtype=np.int32), px, py)
 
-    img = np.log(img + 1)
+    img = np.log(img + 1) #experimental
 
     extents = [min_x, max_x, min_y, max_y]
     params = {'a': a, 'b': b, 'c': c, 'num': num}

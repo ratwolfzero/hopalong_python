@@ -6,6 +6,20 @@ import matplotlib.pyplot as plt
 import numpy as np
 from numba import njit, prange
 
+@njit
+def custom_sign(x):
+    """
+    for floating point strictly according IEEE 754 (e.g. like implemented in Rust)
+    1.0 if the number is positive, +0.0 or INFINITY
+    -1.0 if the number is negative, -0.0 or NEG_INFINITY
+    NaN if the number is NaN
+    """
+    if np.isnan(x):
+        return np.nan
+    elif x > 0 or x == 0.0:
+        return 1.0
+    else:
+        return -1.0
 
 @njit
 def calculate_attractor_points(a, b, c, num):
@@ -20,7 +34,7 @@ def calculate_attractor_points(a, b, c, num):
     for i in range(num):
 
         points[i] = x, y
-        xx, yy = y - np.sign(x) * np.sqrt(abs(b * x - c)), a - x
+        xx, yy = y - custom_sign(x) * np.sqrt(abs(b * x - c)), a - x
         x, y = xx, yy
 
     return points
@@ -145,7 +159,7 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False):
 
 def get_user_inputs():
     # Collect input parameters from the user for attractor generation
-    a = get_validated_input('Enter a non-zero float value for "a": ', float, check_non_zero=True)
+    a = get_validated_input('Enter a non-zero float value for "a": ')#, float, check_non_zero=True)
     b = get_validated_input('Enter a float value for "b": ', float)
     c = get_validated_input('Enter a float value for "c": ', float)
     num = get_validated_input('Enter an integer value for "num": ', int, check_non_zero=True)

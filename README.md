@@ -15,7 +15,27 @@ The advanced version also tracks the pixel 'hit count' (density) to control the 
 
 The program asks for the parameters a, b, c and num (number of iterations). Num must be entered as an integer e.g. 1000000 or 1_000_000. The parameters a, b and c can be entered in floating point or integer format. 
 
-Latest code improvements see Development Folder, if any.
+Latest code improvements see Development Folder.
+
+@njit
+def custom_sign(x):
+    """
+    for floating point strictly according IEEE 754 (e.g. like implemented in Rust)
+    1.0 if the number is positive, +0.0 or INFINITY
+    -1.0 if the number is negative, -0.0 or NEG_INFINITY
+    NaN if the number is NaN
+    """
+    if np.isnan(x):
+        return np.nan
+    elif x > 0 or x == 0.0:
+        return 1.0
+    else:
+        return -1.0
+
+This will handle some edge cases differently: 
+For example a=1, b=2, c=3; a=0, b=1, c=1 
+but a=0, b=1, c=0  or a=1, b=0, c=1 will still end up in some kind of singularity
+
 
 Have fun!
 ---------

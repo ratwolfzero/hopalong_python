@@ -20,7 +20,7 @@ Latest code improvements see Development Folder.
 @njit
 def custom_sign(x):
     """
-    for floating point strictly according IEEE 754 (e.g. like implemented in Rust)
+    for floating point according IEEE 754 (e.g. like implemented in Rust)
     1.0 if the number is positive, +0.0 or INFINITY
     -1.0 if the number is negative, -0.0 or NEG_INFINITY
     NaN if the number is NaN

@@ -15,7 +15,7 @@ The advanced version also tracks the pixel 'hit count' (density) to control the 
 
 The program asks for the parameters a, b, c and num (number of iterations). Num must be entered as an integer e.g. 1000000 or 1_000_000. The parameters a, b and c can be entered in floating point or integer format. 
 
-Latest code improvements see Development Folder.
+Latest code changes see Development Folder xxx_dev.py
 
 @njit
 def custom_sign(x):
@@ -32,7 +32,7 @@ def custom_sign(x):
     else:
         return -1.0
 
-With this user-defined Signum function, some borderline cases regarding the input parameters a, b and c , 
+With this user-defined Signum function, some borderline cases regarding the input parameters a, b and c, 
 which otherwise do not lead to complex patterns, show a different behavior 
 For example a=1, b=2, c=3; a=0, b=1, c=1 
 but a=0, b=1, c=0  or a=1, b=0, c=1 will still lead to a kind of singularity

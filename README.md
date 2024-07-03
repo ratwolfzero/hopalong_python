@@ -29,24 +29,18 @@ for floating point according IEEE 754 (e.g. like implemented in Rust)
 <br />
 NaN if the number is NaN
 
-if np.isnan(x):
 
+if np.isnan(x):
 <br />
     return np.nan
-
 <br />
-
 elif x > 0 or x == 0.0:
 <br />
-
     return 1.0
-
 <br />
-
 else:
 <br />
-
-    return -1.0
+return -1.0
 
 
 With this user-defined Signum function, some borderline cases regarding the input parameters a, b and c ,

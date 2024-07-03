@@ -21,7 +21,6 @@ Latest code changes see Development Folder xxx_dev.py
 @njit
 def custom_sign(x):
 
-
 for floating point according IEEE 754 (e.g. like implemented in Rust)
 <br />
 1.0 if the number is positive, +0.0 or INFINITY
@@ -30,19 +29,23 @@ for floating point according IEEE 754 (e.g. like implemented in Rust)
 <br />
 NaN if the number is NaN
 
-
 if np.isnan(x):
+
 <br />
     return np.nan
 
 <br />
+
 elif x > 0 or x == 0.0:
 <br />
+
     return 1.0
 
 <br />
+
 else:
 <br />
+
     return -1.0
 
 

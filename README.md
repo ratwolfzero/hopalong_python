@@ -17,24 +17,31 @@ The program asks for the parameters a, b, c and num (number of iterations). Num 
 
 Latest code changes see Development Folder xxx_dev.py
 
-...
+
 @njit
 def custom_sign(x):
 
 
 for floating point according IEEE 754 (e.g. like implemented in Rust)
+<br />
 1.0 if the number is positive, +0.0 or INFINITY
+<br />
 -1.0 if the number is negative, -0.0 or NEG_INFINITY
+<br />
 NaN if the number is NaN
 
 
 if np.isnan(x):
-return np.nan
+<br />
+    return np.nan
+<br />
 elif x > 0 or x == 0.0:
-return 1.0
+<br />
+    return 1.0
+<br />
 else:
-return -1.0
-...
+    return -1.0
+
 
 With this user-defined Signum function, some borderline cases regarding the input parameters a, b and c ,
 which otherwise do not lead to complex patterns, show a different behavior.

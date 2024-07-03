@@ -19,20 +19,26 @@ Latest code changes see Development Folder xxx_dev.py
 
 @njit
 def custom_sign(x):
-    if np.isnan(x):
-        return np.nan
-    elif x > 0 or x == 0.0:
-        return 1.0
-    else:
-        return -1.0
 
-With this user-defined Signum function, some borderline cases regarding the input parameters a, b and c, 
+"""
+for floating point according IEEE 754 (e.g. like implemented in Rust)
+1.0 if the number is positive, +0.0 or INFINITY
+-1.0 if the number is negative, -0.0 or NEG_INFINITY
+NaN if the number is NaN
+"""
+
+if np.isnan(x):
+return np.nan
+elif x > 0 or x == 0.0:
+return 1.0
+else:
+return -1.0
+
+With this user-defined Signum function, some borderline cases regarding the input parameters a, b and c ,
 which otherwise do not lead to complex patterns, show a different behavior.
-For example a=1, b=2, c=3; a=0, b=1, c=1 
 
-but a=0, b=1, c=0  or a=1, b=0, c=1 will still lead to a kind of singularity
-See singularity.pdf in Documentation for more detailed explanations.
-
+For example a=1, b=2, c=3; a=0, b=1, c=1,
+but a=0, b=1, c=0 or a=1, b=0, c=1 will still end up in some kind of singularity
 
 Have fun!
 ---------

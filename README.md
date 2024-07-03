@@ -19,12 +19,6 @@ Latest code changes see Development Folder xxx_dev.py
 
 @njit
 def custom_sign(x):
-    """
-    for floating point according IEEE 754 (e.g. like implemented in Rust)
-    1.0 if the number is positive, +0.0 or INFINITY
-    -1.0 if the number is negative, -0.0 or NEG_INFINITY
-    NaN if the number is NaN
-    """
     if np.isnan(x):
         return np.nan
     elif x > 0 or x == 0.0:

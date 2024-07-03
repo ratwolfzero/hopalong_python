@@ -34,12 +34,15 @@ NaN if the number is NaN
 if np.isnan(x):
 <br />
     return np.nan
+
 <br />
 elif x > 0 or x == 0.0:
 <br />
     return 1.0
+
 <br />
 else:
+<br />
     return -1.0
 
 

@@ -46,7 +46,7 @@ else:
 With this user-defined Signum function, some borderline cases regarding the input parameters a, b and c ,
 which otherwise do not lead to complex patterns, show a different behavior.
 
-For example a=1, b=2, c=3; a=0, b=1, c=1,
+For example a=1, b=2, c=3 or a=0, b=1, c=1,
 
 but a=0, b=1, c=0 or a=1, b=0, c=1 will still end up in some kind of singularity
 

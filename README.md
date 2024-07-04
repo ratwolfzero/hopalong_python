@@ -49,7 +49,9 @@ return -1.0
 With this user-defined Signum function, some borderline cases regarding the input parameters a, b and c ,
 which otherwise do not lead to complex patterns, show a different behavior.
 
-For example a = 1, b = 2, c = 3 or
+For example
+<br />  
+a = 1, b = 2, c = 3 or
 <br /> 
 a = 0, b = 1, c = 1 or
 <br /> 

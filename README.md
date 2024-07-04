@@ -23,7 +23,7 @@ def custom_sign(x):
 
 """
 <br />
-for floating point according IEEE 754 (e.g. like implemented in Rust)
+Signum function for floating point numbers according to IEEE 754 (e.g. like implemented in Rust)
 <br />
 1.0 if the number is positive, +0.0 or INFINITY
 <br />

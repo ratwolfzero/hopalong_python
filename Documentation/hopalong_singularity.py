@@ -38,7 +38,8 @@ for n in range(iterations - 1):
 	
 	
 """
-# Iterate the Hopalong attractor equations
+#Iterate the Hopalong attractor equations using custom signum.
+#With this user-defined Signum function, some borderline cases regarding the input parameters a, b and c will behave differntly
 for n in range(iterations - 1):
 	x[n + 1] = y[n] - custom_sign(x[n]) * np.sqrt(abs(b * x[n] - c))
 	y[n + 1] = a - x[n]

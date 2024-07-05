@@ -9,7 +9,7 @@ from numba import njit, prange
 
 @njit
 def calculate_attractor_points(a, b, c, num):
-    # # Compute points of the hopalong attractor
+    # Compute points of the hopalong attractor
     """
     Remark: Parallel options cannot be used here due to the cross-iteration dependency.
     points[i+1] cannot be calculated without first computing points[i]

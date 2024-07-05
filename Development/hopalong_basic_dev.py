@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from numba import njit, prange
 
+
 @njit
 def custom_sign(x):
     """

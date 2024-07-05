@@ -127,7 +127,7 @@ def main():
 
     image_size = 1000, 1000
 
-    color_map = 'hot' # for variant each point gets a unique value based on the hit count
+    color_map = 'hot'     # for variant each point gets a unique value based on the hit count
     color_map = 'inferno' # for variant each point gets a unique value based on the index
  
     a, b, c, num = get_user_inputs()

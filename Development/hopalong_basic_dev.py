@@ -37,7 +37,8 @@ def hopalong_trajectory_simulation(a, b, c, num):
     for i in range(num):
 
         points[i] = x, y
-        xx, yy = y - custom_sign(x) * np.sqrt(abs(b * x - c)), a - x
+        xx, yy = y - custom_sign(x) * np.sqrt(abs(b * x - c)), a - x # Variant custom signum function
+        # xx, yy = y - np.sign(x) * np.sqrt(abs(b * x - c)), a - x   # Variant: Numpy standard signum function
         x, y = xx, yy
 
     return points
@@ -59,11 +60,12 @@ def map_points_to_image(points, image_size):
 
 @njit(parallel=True)
 def generate_image(img, px, py):
-# Populates an image array with trajectory points. Each point gets a unique value based on the index
+# Populates an image array with trajectory points. Each point gets a unique value based on the hit count
     
     # use prange for parallel loop
     for i in prange(len(px)):
-        img[px[i], py[i]] = i + 1 
+        img[px[i], py[i]] += 1     # Variant: Each point gets a unique value based on the hit count
+        #img[px[i], py[i]] = i + 1 # Variant: Each point gets a unique value based on the index
 
     return img
 
@@ -122,8 +124,11 @@ def simulate_trajectory_and_render_trajectory_image(a, b, c, num, image_size, co
 
 def main():
     #Entry point: Coordinate user input, processing of attractor trajectory and visualization generation
+
     image_size = 1000, 1000
-    color_map = 'inferno'
+
+    color_map = 'hot' # for variant each point gets a unique value based on the hit count
+    color_map = 'inferno' # for variant each point gets a unique value based on the index
  
     a, b, c, num = get_user_inputs()
 

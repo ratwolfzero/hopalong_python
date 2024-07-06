@@ -107,7 +107,7 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False):
 
 def get_user_inputs():
     # Collect input parameters from the user for hopalong attractor trajetory generation
-    a = get_validated_input('Enter a non-zero float value for "a": ')#, float, check_non_zero=True)
+    a = get_validated_input('Enter a non-zero float value for "a": ', float)
     b = get_validated_input('Enter a float value for "b": ', float)
     c = get_validated_input('Enter a float value for "c": ', float)
     num = get_validated_input('Enter an integer value for "num": ', int, check_non_zero=True)
@@ -127,8 +127,8 @@ def main():
 
     image_size = 1000, 1000
 
-    color_map = 'hot'     # for variant each point gets a unique value based on the hit count
-    color_map = 'inferno' # for variant each point gets a unique value based on the index
+    color_map = 'hot'      # for variant each point gets a unique value based on the hit count
+    #color_map = 'inferno' # for variant each point gets a unique value based on the index
  
     a, b, c, num = get_user_inputs()
 

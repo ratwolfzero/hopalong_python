@@ -1,19 +1,31 @@
-# hopalong_python
-Calculate and display the "Hopalong" attractor
+Calculate and Display the "Hopalong" Attractor
 
-The inventor is Barry Martin from Aston University in Birmingham/England. A. K. Dewdney described these fractals in September 1986 in the magazine Scientific American and made them famous. The German edition Spektrum der Wissenschaft distributed "Hopalong" in Germany with a translation of this article in the Computer-Kurzweil section. “Hüpfer” is the German name for "Hopalong" (hop-along, keep hopping).
+The "Hopalong" attractor, invented by Barry Martin from Aston University in Birmingham, England, gained fame through A.K. Dewdney's description in the September 1986 issue of Scientific American. The German edition, Spektrum der Wissenschaft, further popularized it in Germany with a translation titled "Hüpfer" in the Computer-Kurzweil section.
 
-This Python programs can calculate and display the “Hopalong” attractor
+Overview
+This Python program calculates and displays the "Hopalong" attractor. It can be executed from a terminal using the following command:
 
-You can run the Python script from a terminal --> e.g.
+sh
+Copy code
 python3 /path/to/my/file/hopalong_advanced.py
+Requirements
+To run this program, you need to have the following Python libraries installed:
 
-Requires the installation of numpy, matplotlib and numba.
+numpy
+matplotlib
+numba
+Features
+This program comes in two versions:
 
-There are 2 versions:
-The advanced version also tracks the pixel 'hit count' (density) to control the colormap and generates some statistics about pixel hit-counts and their distribution.
+Basic hopalong Version: Calculates and displays the Hopalong attractor.
+Advanced Version: Tracks the pixel 'hit count' (density) to control the colormap and generates statistics about pixel hit counts and their distribution.
+User Input
+The program prompts the user for the following parameters:
 
-The program asks for the parameters a, b, c and num (number of iterations). Num must be entered as an integer e.g. 1000000 or 1_000_000. The parameters a, b and c can be entered in floating point or integer format.
+a (float or integer): A parameter of the Hopalong equation.
+b (float or integer): A parameter of the Hopalong equation.
+c (float or integer): A parameter of the Hopalong equation.
+num (integer): The number of iterations (e.g., 1000000 or 1_000_000).
 
 <br />
 

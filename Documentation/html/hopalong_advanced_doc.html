@@ -37,10 +37,11 @@ from numba import njit, prange
 @njit
 def custom_sign(x):
     &#34;&#34;&#34;
-    for floating point according IEEE 754 (e.g. like implemented in Rust)
-    1.0 if the number is positive, +0.0 or INFINITY
-    -1.0 if the number is negative, -0.0 or NEG_INFINITY
-    NaN if the number is NaN
+    Custom sign function respecting the behavior of floating point numbers according to IEEE 754 (e.g. like implemented in Rust)
+    Returns:
+        1.0 if the number is positive, +0.0 or INFINITY
+        -1.0 if the number is negative, -0.0 or NEG_INFINITY
+        NaN if the number is NaN
     &#34;&#34;&#34;
     if np.isnan(x):
         return np.nan
@@ -282,8 +283,9 @@ if __name__ == &#34;__main__&#34;:
 <span>def <span class="ident">custom_sign</span></span>(<span>x)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>for floating point according IEEE 754 (e.g. like implemented in Rust)
-1.0 if the number is positive, +0.0 or INFINITY
+<div class="desc"><p>Custom sign function respecting the behavior of floating point numbers according to IEEE 754 (e.g. like implemented in Rust)</p>
+<h2 id="returns">Returns</h2>
+<p>1.0 if the number is positive, +0.0 or INFINITY
 -1.0 if the number is negative, -0.0 or NEG_INFINITY
 NaN if the number is NaN</p></div>
 <details class="source">
@@ -293,10 +295,11 @@ NaN if the number is NaN</p></div>
 <pre><code class="python">@njit
 def custom_sign(x):
     &#34;&#34;&#34;
-    for floating point according IEEE 754 (e.g. like implemented in Rust)
-    1.0 if the number is positive, +0.0 or INFINITY
-    -1.0 if the number is negative, -0.0 or NEG_INFINITY
-    NaN if the number is NaN
+    Custom sign function respecting the behavior of floating point numbers according to IEEE 754 (e.g. like implemented in Rust)
+    Returns:
+        1.0 if the number is positive, +0.0 or INFINITY
+        -1.0 if the number is negative, -0.0 or NEG_INFINITY
+        NaN if the number is NaN
     &#34;&#34;&#34;
     if np.isnan(x):
         return np.nan

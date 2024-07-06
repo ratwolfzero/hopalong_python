@@ -44,8 +44,11 @@ The program prompts the user for the following parameters:
 <br />
 
 a (float or integer): A parameter of the Hopalong equation.
+<br />
 b (float or integer): A parameter of the Hopalong equation.
+<br />
 c (float or integer): A parameter of the Hopalong equation.
+<br />
 num (integer): The number of iterations (e.g., 1000000 or 1_000_000).
 
 <br />

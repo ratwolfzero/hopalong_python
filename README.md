@@ -101,6 +101,7 @@ a = 1, b =1, c = 1
 <br />
 
 however, parameters such as
+
 <br />
 a =0 , b = 1, c = 0 or 
 <br />
@@ -111,7 +112,7 @@ a = 1, b = 1, c = 0,
 will end up in a kind of "singularity"
 <br /> 
 
-Using the math.copysign function [copysign(1.0, x)] has the same effect as described above
+By the way: Using the math.copysign function [copysign(1.0, x)] has the same effect as described above
 
 
 Have fun!

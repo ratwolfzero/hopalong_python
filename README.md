@@ -15,7 +15,7 @@ The advanced version also tracks the pixel 'hit count' (density) to control the 
 
 The program asks for the parameters a, b, c and num (number of iterations). Num must be entered as an integer e.g. 1000000 or 1_000_000. The parameters a, b and c can be entered in floating point or integer format. 
 
-Latest code changes see Development Folder xxx_dev.py
+Latest code changes
 
 
 @njit

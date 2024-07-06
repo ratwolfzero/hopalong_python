@@ -7,7 +7,8 @@ Overview
 <br />
 This Python program calculates and displays the "Hopalong" attractor. It can be executed from a terminal using the following command:
 <br />
-
+for example:
+<br />
 python3 /path/to/my/file/hopalong_advanced.py
 <br />
 
@@ -16,10 +17,14 @@ Requirements
 To run this program, you need to have the following Python libraries installed:
 
 numpy
+<br />
 matplotlib
+<br />
 numba
 <br />
+<br />
 Features
+<br />
 This program comes in two versions:
 
 Basic hopalong Version: Calculates and displays the Hopalong attractor.
@@ -27,6 +32,7 @@ Advanced Version: Tracks the pixel 'hit count' (density) to control the colormap
 <br />
 
 User Input
+<br />
 The program prompts the user for the following parameters:
 <br />
 

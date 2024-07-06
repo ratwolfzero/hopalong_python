@@ -109,6 +109,7 @@ a = 1, b = 0, c = 1 or
 <br /> 
 a = 1, b = 1, c = 0,
 <br />  
+
 will end up in a kind of "singularity"
 <br /> 
 

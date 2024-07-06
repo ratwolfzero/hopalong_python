@@ -5,6 +5,7 @@ The "Hopalong" attractor, invented by Barry Martin from Aston University in Birm
 
 Overview
 <br />
+<br />
 This Python program calculates and displays the "Hopalong" attractor. It can be executed from a terminal using the following command:
 <br />
 for example:
@@ -13,6 +14,7 @@ python3 /path/to/my/file/hopalong_advanced.py
 <br />
 
 Requirements
+<br />
 <br />
 To run this program, you need to have the following Python libraries installed:
 
@@ -25,13 +27,18 @@ numba
 <br />
 Features
 <br />
+<br />
 This program comes in two versions:
 
 Basic hopalong Version: Calculates and displays the Hopalong attractor.
-Advanced Version: Tracks the pixel 'hit count' (density) to control the colormap and generates statistics about pixel hit counts and their distribution.
+<br />
+Advanced Version: The advanced version additionally tracks the pixel hit count (density) to control the rendering via the colormap and
+<br /> 
+generates detailed statistics regarding pixel hit counts and their distribution.
 <br />
 
 User Input
+<br />
 <br />
 The program prompts the user for the following parameters:
 <br />

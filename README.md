@@ -61,7 +61,10 @@ def custom_sign(x):
 
 """
 <br />
-Custom sign function respecting the behavior of floating point numbers according to IEEE 754 (e.g. like implemented in Rust)
+Custom sign function respecting the behavior of floating point numbers according to IEEE 754
+<br />
+(e.g. like implemented in Rust)
+<br />
 <br />
 1.0 if the number is positive, +0.0 or INFINITY
 <br />

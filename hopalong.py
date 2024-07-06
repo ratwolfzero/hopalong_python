@@ -39,7 +39,7 @@ def hopalong_trajectory_simulation(a, b, c, num):
 
         points[i] = x, y
         xx, yy = y - copysign(1.0, x) * np.sqrt(abs(b * x - c)), a - x # Variant using math.copysign signum function
-        #xx, yy = y - custom_sign(x) * np.sqrt(abs(b * x - c)), a - x  # Variant using custom signum function
+        # xx, yy = y - custom_sign(x) * np.sqrt(abs(b * x - c)), a - x # Variant using custom signum function
         # xx, yy = y - np.sign(x) * np.sqrt(abs(b * x - c)), a - x     # Variant using Numpy standard signum function
         x, y = xx, yy
 

@@ -1,26 +1,34 @@
 Calculate and Display the "Hopalong" Attractor
 
 The "Hopalong" attractor, invented by Barry Martin from Aston University in Birmingham, England, gained fame through A.K. Dewdney's description in the September 1986 issue of Scientific American. The German edition, Spektrum der Wissenschaft, further popularized it in Germany with a translation titled "Hüpfer" in the Computer-Kurzweil section.
+<br />
 
 Overview
+<br />
 This Python program calculates and displays the "Hopalong" attractor. It can be executed from a terminal using the following command:
+<br />
 
-sh
-Copy code
 python3 /path/to/my/file/hopalong_advanced.py
+<br />
+
 Requirements
+<br />
 To run this program, you need to have the following Python libraries installed:
 
 numpy
 matplotlib
 numba
+<br />
 Features
 This program comes in two versions:
 
 Basic hopalong Version: Calculates and displays the Hopalong attractor.
 Advanced Version: Tracks the pixel 'hit count' (density) to control the colormap and generates statistics about pixel hit counts and their distribution.
+<br />
+
 User Input
 The program prompts the user for the following parameters:
+<br />
 
 a (float or integer): A parameter of the Hopalong equation.
 b (float or integer): A parameter of the Hopalong equation.

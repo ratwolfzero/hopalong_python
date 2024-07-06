@@ -33,7 +33,6 @@ This program comes in two versions:
 Basic hopalong Version: Calculates and displays the Hopalong attractor.
 <br />
 Advanced Version: The advanced version additionally tracks the pixel hit count (density) to control the rendering via the colormap and
-<br /> 
 generates detailed statistics regarding pixel hit counts and their distribution.
 <br />
 

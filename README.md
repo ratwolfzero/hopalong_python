@@ -114,6 +114,7 @@ will end up in a kind of "singularity"
 <br /> 
 
 By the way: Using the math.copysign function [copysign(1.0, x)] has the same effect as described above
+using additionally math.sqrt and math.fabs is also the fastest variant 
 
 
 Have fun!

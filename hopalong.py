@@ -11,7 +11,7 @@ from math import copysign
 @njit
 def custom_sign(x):
     """
-    Custom sign function for floating point according to IEEE 754 (e.g. like implemented in Rust)
+    Custom sign function respecting the behavior of floating point numbers according to IEEE 754 (e.g. like implemented in Rust)
     Returns:
         1.0 if the number is positive, +0.0 or INFINITY
         -1.0 if the number is negative, -0.0 or NEG_INFINITY

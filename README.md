@@ -54,13 +54,14 @@ num (integer): The number of iterations (e.g., 1000000 or 1_000_000).
 
 Latest code changes:
 
+<br />
 
 @njit
 def custom_sign(x):
 
 """
 <br />
-Signum function for floating point numbers according to IEEE 754 (e.g. like implemented in Rust)
+Custom sign function respecting the behavior of floating point numbers according to IEEE 754 (e.g. like implemented in Rust)
 <br />
 1.0 if the number is positive, +0.0 or INFINITY
 <br />
@@ -106,6 +107,9 @@ a = 1, b = 1, c = 0,
 <br />  
 will end up in a kind of "singularity"
 <br /> 
+
+Using the math.copysign function [copysign(1.0, x)] has the same effect as described above
+
 
 Have fun!
 ---------

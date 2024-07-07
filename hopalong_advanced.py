@@ -9,6 +9,23 @@ from math import copysign, sqrt, fabs
 
 
 @njit
+def custom_sign(x):
+    """
+    Custom sign function respecting the behavior of floating point numbers according to IEEE 754 (e.g. like implemented in Rust)
+    Returns:
+        1.0 if the number is positive, +0.0 or INFINITY
+        -1.0 if the number is negative, -0.0 or NEG_INFINITY
+        NaN if the number is NaN
+    """
+    if np.isnan(x):
+        return np.nan
+    elif x > 0 or x == 0.0:
+        return 1.0
+    else:
+        return -1.0
+    
+
+@njit
 def hopalong_trajectory_simulation(a, b, c, num):
     # Simulates the trajectory of the Hopalong Attractor
     """
@@ -22,6 +39,8 @@ def hopalong_trajectory_simulation(a, b, c, num):
 
         points[i] = x, y
         xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x   # Variant using math.copysign signum function, math.sqrt and math.fabs
+        # xx, yy = y - custom_sign(x) * np.sqrt(abs(b * x - c)), a - x # Variant using custom signum function
+        # xx, yy = y - np.sign(x) * np.sqrt(abs(b * x - c)), a - x     # Variant using Numpy standard signum function
         x, y = xx, yy
 
     return points

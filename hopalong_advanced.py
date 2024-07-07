@@ -53,8 +53,8 @@ def map_points_to_image(points, image_size):
     min_x, max_x = np.min(points[:, 0]), np.max(points[:, 0])
     min_y, max_y = np.min(points[:, 1]), np.max(points[:, 1])
 
-    px = ((points[:, 0] - min_x) / (max_x - min_x) * (img_width - 1)).astype(np.int32) 
-    py = ((points[:, 1] - min_y) / (max_y - min_y) * (img_height - 1)).astype(np.int32)
+    px = ((points[:, 0] - min_x) / (max_x - min_x) * (img_width - 1)).astype(np.uint16) 
+    py = ((points[:, 1] - min_y) / (max_y - min_y) * (img_height - 1)).astype(np.uint16)
 
     return px, py, min_x, max_x, min_y, max_y
 
@@ -73,7 +73,7 @@ def generate_image(img, px, py):
 def prepare_plot_data(points, a, b, c, num, image_size):
     # Processes trajectory points, hit metrics and prepares data for visualization
     px, py, min_x, max_x, min_y, max_y = map_points_to_image(points, image_size)
-    img = generate_image(np.zeros(image_size, dtype=np.int32), px, py)
+    img = generate_image(np.zeros(image_size, dtype=np.uint32), px, py)
     hit_metrics = calculate_hit_metrics(img) 
 
     extents = [min_x, max_x, min_y, max_y]

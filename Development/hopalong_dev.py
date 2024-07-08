@@ -49,9 +49,10 @@ def generate_trajectory_image(points, image_size):
 
 def render_trajectory_image(img, extents, params, color_map):
     # Renders the trajectory of the Hopalong Attractor as an image
-    plt.figure(figsize=(8, 8))
-    plt.imshow(img, origin="lower", cmap=color_map, extent=extents)
-    plt.title(
+    fig = plt.figure(figsize=(8, 8))
+    ax = fig.add_subplot(1, 1, 1, aspect='auto')
+    ax.imshow(img, origin="lower", cmap=color_map, extent=extents)
+    ax.set_title(
         "Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
     plt.show()
 
@@ -70,25 +71,26 @@ def get_user_inputs():
             except ValueError:
                 print(f"Invalid input. Please enter a valid {input_type.__name__} value.")
     
-    a = get_validated_input('Enter a non-zero float value for "a": ', float, check_non_zero=True)
+    a = get_validated_input('Enter a float value for "a": ', float)
     b = get_validated_input('Enter a float value for "b": ', float)
     c = get_validated_input('Enter a float value for "c": ', float)
     num = get_validated_input('Enter an integer value for "num": ', int, check_non_zero=True)
+    params = {'a': a, 'b': b, 'c': c, 'num': num}
 
-    return a, b, c, num
+    return a, b, c, num, params
+
     
-
 def main(image_size=(1000, 1000), color_map='hot'):
-    
-    # Generate Hopalong Attractor: Compute hopalong trajectory, generate and render trajectory image.
+    # Generate Hopalong Attractor: Get user inputs, compute hopalong trajectory, generate and render trajectory image.
 
-    a, b, c, num = get_user_inputs()
+    a, b, c, num, params = get_user_inputs()
+
     points = compute_hopalong_trajectory(a, b, c, num)
 
     img, extents = generate_trajectory_image(points, image_size)
 
-    params = {'a': a, 'b': b, 'c': c, 'num': num}
     render_trajectory_image(img, extents, params, color_map)
+
 
 if __name__ == "__main__":
     main()

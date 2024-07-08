@@ -73,10 +73,9 @@ def calculate_hit_metrics(img):
         "count_for_max_hit": count_for_max_hit,
         "hit_pixel": hit_pixel,
         "img_points": img_pixels,
-        "hit_ratio": hit_ratio
-    }
-
+        "hit_ratio": hit_ratio}
     return hit_metrics
+
 
 def plot_hit_metrics(ax, hit_metrics, scale='log'):
     # Visualize the distribution of hit counts on pixels in the hopalong trajectory image

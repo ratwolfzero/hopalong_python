@@ -72,7 +72,9 @@ def calculate_hit_metrics(img):
         "count_for_max_hit": count_for_max_hit,
         "hit_pixel": hit_pixel,
         "img_points": img_pixels,
-        "hit_ratio": hit_ratio}
+        "hit_ratio": hit_ratio
+        }
+    
     return hit_metrics
 
 

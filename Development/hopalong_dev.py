@@ -21,6 +21,7 @@ def compute_hopalong_trajectory(a, b, c, num):
     for i in range(num):
         points[i] = x, y
         xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x
+        # signum function respecting the behavior of floating point numbers according to IEEE 754 (signed zero)
         x, y = xx, yy
 
     return points

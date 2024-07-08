@@ -55,6 +55,7 @@ def render_trajectory_image(img, extents, params, color_map):
     ax.set_title(
         "Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
     plt.show()
+    
 
 def get_user_inputs():
     # Request and validate user input with specified constraints
@@ -75,7 +76,7 @@ def get_user_inputs():
     c = get_validated_input('Enter a float value for "c": ', float)
     num = get_validated_input('Enter an integer value for "num": ', int, check_non_zero=True)
     params = {'a': a, 'b': b, 'c': c, 'num': num}
-    
+
     return a, b, c, num, params
 
     

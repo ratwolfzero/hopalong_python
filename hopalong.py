@@ -71,7 +71,7 @@ def get_user_inputs():
             except ValueError:
                 print(f"Invalid input. Please enter a valid {input_type.__name__} value.")
     
-    a = get_validated_input('Enter a non-zero float value for "a": ', float, check_non_zero=True)
+    a = get_validated_input('Enter a float value for "a": ', float)
     b = get_validated_input('Enter a float value for "b": ', float)
     c = get_validated_input('Enter a float value for "c": ', float)
     num = get_validated_input('Enter an integer value for "num": ', int, check_non_zero=True)

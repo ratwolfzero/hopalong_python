@@ -1,6 +1,6 @@
 # Use TkAgg backend
-#import matplotlib
-#matplotlib.use('TkAgg')
+import matplotlib
+matplotlib.use('TkAgg')
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -55,7 +55,7 @@ def render_trajectory_image(img, extents, params, color_map):
     ax.set_title(
         "Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
     plt.show()
-    
+
 
 def get_user_inputs():
     # Request and validate user input with specified constraints

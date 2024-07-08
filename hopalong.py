@@ -54,7 +54,6 @@ def render_trajectory_image(ax, img, extents, params, color_map):
         "Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
     
 
-
 def get_user_inputs():
     # Request and validate user input with specified constraints
     def get_validated_input(prompt, input_type=float, check_non_zero=False):
@@ -77,7 +76,6 @@ def get_user_inputs():
     return a, b, c, num
 
     
-
 def main(image_size=(1000, 1000), color_map='hot'):
     # Generate Hopalong Attractor: Compute hopalong trajectory, generate and render trajectory image.
 

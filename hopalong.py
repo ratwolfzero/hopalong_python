@@ -6,28 +6,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 from numba import njit, prange
 from math import copysign, sqrt, fabs
-
-
-@njit
-def custom_sign(x):
-    """
-    Custom sign function respecting the behavior of floating point numbers according to IEEE 754 (e.g. like implemented in Rust)
-    Returns:
-        1.0 if the number is positive, +0.0 or INFINITY
-        -1.0 if the number is negative, -0.0 or NEG_INFINITY
-        NaN if the number is NaN
-    """
-    if np.isnan(x):
-        return np.nan
-    elif x > 0 or x == 0.0:
-        return 1.0
-    else:
-        return -1.0
     
 
 @njit
-def hopalong_trajectory_simulation(a, b, c, num):
-    # Simulates the trajectory of the Hopalong Attractor
+def compute_hopalong_trajectory(a, b, c, num):
+    # Computes the trajectory of the Hopalong Attractor
     """
     Remark: Parallel options cannot be used here due to the cross-iteration dependency.
     points[i+1] cannot be calculated without first computing points[i]
@@ -36,51 +19,32 @@ def hopalong_trajectory_simulation(a, b, c, num):
     x = y = 0.0
 
     for i in range(num):
-
         points[i] = x, y
-        xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x   # Variant using math.copysign signum function, math.sqrt and math.fabs
-        # xx, yy = y - custom_sign(x) * np.sqrt(abs(b * x - c)), a - x # Variant using custom signum function
-        # xx, yy = y - np.sign(x) * np.sqrt(abs(b * x - c)), a - x     # Variant using Numpy standard signum function
+        xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x
+        # signum function respecting the behavior of floating point numbers according to IEEE 754 (signed zero)
         x, y = xx, yy
 
     return points
 
 
 @njit(parallel=True)
-def map_points_to_image(points, image_size):
-    # Maps the trajectory points to an image grid
+def generate_trajectory_image(points, image_size):
+    # Generates an image array with the mapped trajectory points
     img_width, img_height = image_size
+    image = np.zeros((img_height, img_width), dtype=np.uint32)
 
     min_x, max_x = np.min(points[:, 0]), np.max(points[:, 0])
     min_y, max_y = np.min(points[:, 1]), np.max(points[:, 1])
 
-    px = ((points[:, 0] - min_x) / (max_x - min_x) * (img_width - 1)).astype(np.uint16) 
+    px = ((points[:, 0] - min_x) / (max_x - min_x) * (img_width - 1)).astype(np.uint16)
     py = ((points[:, 1] - min_y) / (max_y - min_y) * (img_height - 1)).astype(np.uint16)
 
-    return px, py, min_x, max_x, min_y, max_y
-
-
-@njit(parallel=True)
-def generate_image(img, px, py):
-# Populates an image array with trajectory points. Each point gets a unique value based on the hit count
-    
-    # use prange for parallel loop
     for i in prange(len(px)):
-        img[px[i], py[i]] += 1     # Variant: Each point gets a unique value based on the hit count
-        #img[px[i], py[i]] = i + 1 # Variant: Each point gets a unique value based on the index
-
-    return img
-
-
-def prepare_plot_data(points, a, b, c, num, image_size):
-    # Processes trajectory points and prepares data for visualization
-    px, py, min_x, max_x, min_y, max_y = map_points_to_image(points, image_size)
-    img = generate_image(np.zeros(image_size, dtype=np.uint32), px, py)
+        image[py[i], px[i]] += 1
 
     extents = [min_x, max_x, min_y, max_y]
-    params = {'a': a, 'b': b, 'c': c, 'num': num}
 
-    return img, extents, params
+    return image, extents
 
 
 def render_trajectory_image(img, extents, params, color_map):
@@ -103,39 +67,30 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False):
                 continue
             return value
         except ValueError:
-            print(f"Invalid input. Please enter a valid {
-                  input_type.__name__} value.")
+            print(f"Invalid input. Please enter a valid {input_type.__name__} value.")
 
 
 def get_user_inputs():
-    # Collect input parameters from the user for hopalong attractor trajetory generation
+    # Collect input parameters from the user for hopalong attractor trajectory generation
     a = get_validated_input('Enter a non-zero float value for "a": ', float)
     b = get_validated_input('Enter a float value for "b": ', float)
     c = get_validated_input('Enter a float value for "c": ', float)
     num = get_validated_input('Enter an integer value for "num": ', int, check_non_zero=True)
 
     return a, b, c, num
+    
 
+def main(image_size=(1000, 1000), color_map='hot'):
+    
+    # Generate Hopalong Attractor: Compute hopalong trajectory, generate and render trajectory image.
 
-def simulate_trajectory_and_render_trajectory_image(a, b, c, num, image_size, color_map):
-    # simulate hopalong attractor trajetory and create visualizations
-    points = hopalong_trajectory_simulation(a, b, c, num)
-    img, extents, params = prepare_plot_data(points, a, b, c, num, image_size)
-    render_trajectory_image(img, extents, params, color_map)
-
-
-def main():
-    #Entry point: Coordinate user input, processing of attractor trajectory and visualization generation
-
-    image_size = 1000, 1000
-
-    color_map = 'hot'     # for variant each point gets a unique value based on the hit count
-    #color_map = 'inferno' # for variant each point gets a unique value based on the index
- 
     a, b, c, num = get_user_inputs()
+    points = compute_hopalong_trajectory(a, b, c, num)
 
-    simulate_trajectory_and_render_trajectory_image(a, b, c, num, image_size, color_map)
+    img, extents = generate_trajectory_image(points, image_size)
 
+    params = {'a': a, 'b': b, 'c': c, 'num': num}
+    render_trajectory_image(img, extents, params, color_map)
 
 if __name__ == "__main__":
     main()

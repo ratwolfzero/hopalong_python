@@ -52,7 +52,6 @@ def render_trajectory_image(ax, img, extents, params, color_map):
     ax.imshow(img, origin="lower", cmap=color_map, extent=extents)
     plt.title(
         "Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
-    #plt.show()
 
 
 def calculate_hit_metrics(img):

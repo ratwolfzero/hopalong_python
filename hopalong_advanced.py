@@ -97,6 +97,19 @@ def plot_hit_metrics(ax, hit_metrics, scale='log'):
     ax.grid(True, which="both")
 
 
+def visualize_trajectory_image_and_hit_metrics(img, extents, params, color_map, hit_metrics):
+    
+    fig = plt.figure(figsize=(18, 8))
+
+    ax1 = fig.add_subplot(1, 2, 1, aspect='auto')
+    render_trajectory_image(ax1, img, extents, params, color_map)
+    
+    ax2 = fig.add_subplot(1, 2, 2, aspect='auto')
+    plot_hit_metrics(ax2, hit_metrics)
+
+    plt.show()
+
+
 def get_user_inputs():
     # Request and validate user input with specified constraints
     def get_validated_input(prompt, input_type=float, check_non_zero=False):
@@ -115,32 +128,26 @@ def get_user_inputs():
     b = get_validated_input('Enter a float value for "b": ', float)
     c = get_validated_input('Enter a float value for "c": ', float)
     num = get_validated_input('Enter an integer value for "num": ', int, check_non_zero=True)
+    params = {'a': a, 'b': b, 'c': c, 'num': num}
 
-    return a, b, c, num
+    return a, b, c, num, params
     
 
 def main(image_size=(1000, 1000), color_map='hot'):
     """
-    Generate Hopalong attractor and hit metrics: Compute hopalong trajectory, generate trajectory image.
-    render trajectory image and plot hit metrics
+    Generate Hopalong Attractor and hit metrics: Get user inputs, compute hopalong trajectory, generate trajectory image.
+    Calculate hit metrics, visualize trajectory image and hit metrics
     """
-    a, b, c, num = get_user_inputs()
+    a, b, c, num, params = get_user_inputs()
 
     points = compute_hopalong_trajectory(a, b, c, num)
+
     img, extents = generate_trajectory_image(points, image_size)
     
     hit_metrics = calculate_hit_metrics(img) 
 
-    fig = plt.figure(figsize=(18, 8))
+    visualize_trajectory_image_and_hit_metrics(img, extents, params, color_map, hit_metrics)
 
-    ax1 = fig.add_subplot(1, 2, 1, aspect='auto')
-    params = {'a': a, 'b': b, 'c': c, 'num': num}
-    render_trajectory_image(ax1, img, extents, params, color_map)
-
-    ax2 = fig.add_subplot(1, 2, 2, aspect='auto')
-    plot_hit_metrics(ax2, hit_metrics, scale='log')
-
-    plt.show()
 
 if __name__ == "__main__":
     main()

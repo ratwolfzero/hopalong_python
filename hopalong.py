@@ -75,6 +75,7 @@ def get_user_inputs():
     c = get_validated_input('Enter a float value for "c": ', float)
     num = get_validated_input('Enter an integer value for "num": ', int, check_non_zero=True)
     params = {'a': a, 'b': b, 'c': c, 'num': num}
+    
     return a, b, c, num, params
 
     

@@ -80,19 +80,21 @@ def get_user_inputs():
     return a, b, c, num
     
 
-def main():
-    # Entry point: Generate Hopalong Attractor: Compute hopalong trajectory, generate trajectory image and render trajectory imgae
- 
+def main(image_size=(1000, 1000), color_map='hot'):
+    
+    # Generate Hopalong Attractor: Compute hopalong trajectory, generate and render trajectory image.
+
+    Parameters:
+    image_size (tuple): Size of the image as (width, height).
+    color_map (str): Color map to use for rendering the image.
+    
     a, b, c, num = get_user_inputs()
     points = compute_hopalong_trajectory(a, b, c, num)
 
-    image_size = 1000, 1000 
     img, extents = generate_trajectory_image(points, image_size)
 
-    params = {'a': a, 'b': b, 'c': c, 'num': num} 
-    color_map = 'hot'    
+    params = {'a': a, 'b': b, 'c': c, 'num': num}
     render_trajectory_image(img, extents, params, color_map)
-
 
 if __name__ == "__main__":
     main()

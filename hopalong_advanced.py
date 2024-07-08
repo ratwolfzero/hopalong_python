@@ -50,7 +50,7 @@ def generate_trajectory_image(points, image_size):
 def render_trajectory_image(ax, img, extents, params, color_map):
     # Renders the trajectory of the Hopalong Attractor as an image
     ax.imshow(img, origin="lower", cmap=color_map, extent=extents)
-    plt.title(
+    ax.set_title(
         "Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
 
 
@@ -129,7 +129,6 @@ def main(image_size=(1000, 1000), color_map='hot'):
     a, b, c, num = get_user_inputs()
 
     points = compute_hopalong_trajectory(a, b, c, num)
-    params = {'a': a, 'b': b, 'c': c, 'num': num}
     img, extents = generate_trajectory_image(points, image_size)
     
     hit_metrics = calculate_hit_metrics(img) 
@@ -137,6 +136,7 @@ def main(image_size=(1000, 1000), color_map='hot'):
     fig = plt.figure(figsize=(18, 8))
 
     ax1 = fig.add_subplot(1, 2, 1, aspect='auto')
+    params = {'a': a, 'b': b, 'c': c, 'num': num}
     render_trajectory_image(ax1, img, extents, params, color_map)
 
     ax2 = fig.add_subplot(1, 2, 2, aspect='auto')

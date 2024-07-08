@@ -47,13 +47,13 @@ def generate_trajectory_image(points, image_size):
     return image, extents
 
 
-def render_trajectory_image(img, extents, params, color_map):
+def render_trajectory_image(ax, img, extents, params, color_map):
     # Renders the trajectory of the Hopalong Attractor as an image
-    plt.figure(figsize=(8, 8))
-    plt.imshow(img, origin="lower", cmap=color_map, extent=extents)
-    plt.title(
+    #plt.figure(figsize=(8, 8))
+    ax.imshow(img, origin="lower", cmap=color_map, extent=extents)
+    ax.set_title(
         "Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
-    plt.show()
+    
 
 
 def get_validated_input(prompt, input_type=float, check_non_zero=False):
@@ -85,12 +85,17 @@ def main(image_size=(1000, 1000), color_map='hot'):
     # Generate Hopalong Attractor: Compute hopalong trajectory, generate and render trajectory image.
 
     a, b, c, num = get_user_inputs()
-    points = compute_hopalong_trajectory(a, b, c, num)
 
+    points = compute_hopalong_trajectory(a, b, c, num)
     img, extents = generate_trajectory_image(points, image_size)
 
+    fig = plt.figure(figsize=(8, 8))
+
+    ax1 = fig.add_subplot(1, 1, 1, aspect='auto')
     params = {'a': a, 'b': b, 'c': c, 'num': num}
-    render_trajectory_image(img, extents, params, color_map)
+    render_trajectory_image(ax1, img, extents, params, color_map)
+
+    plt.show()
 
 if __name__ == "__main__":
     main()

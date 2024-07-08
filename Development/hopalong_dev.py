@@ -78,24 +78,20 @@ def get_user_inputs():
     num = get_validated_input('Enter an integer value for "num": ', int, check_non_zero=True)
 
     return a, b, c, num
-
-
-def compute_and_visualise_hopalong_attractor(a, b, c, num, image_size, color_map):
-    # compute hopalong attractor trajectory and create visualizations
-    points = compute_hopalong_trajectory(a, b, c, num)
-    img, extents = generate_trajectory_image(points, image_size)
-    params = {'a': a, 'b': b, 'c': c, 'num': num}
-    render_trajectory_image(img, extents, params, color_map)
-
+    
 
 def main():
-    # Entry point: define image size and colormap, get and validate user input, compute and visualize hopalong attractor
-    
-    image_size = 1000, 1000; color_map = 'hot'     
+    # Entry point: define image size, params for image title and colormap, get and validate user input, compute and visualize hopalong attractor
  
     a, b, c, num = get_user_inputs()
+    points = compute_hopalong_trajectory(a, b, c, num)
 
-    compute_and_visualise_hopalong_attractor(a, b, c, num, image_size, color_map)
+    image_size = 1000, 1000 
+    img, extents = generate_trajectory_image(points, image_size)
+
+    params = {'a': a, 'b': b, 'c': c, 'num': num} 
+    color_map = 'hot'    
+    render_trajectory_image(img, extents, params, color_map)
 
 
 if __name__ == "__main__":

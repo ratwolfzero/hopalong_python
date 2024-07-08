@@ -84,10 +84,6 @@ def main(image_size=(1000, 1000), color_map='hot'):
     
     # Generate Hopalong Attractor: Compute hopalong trajectory, generate and render trajectory image.
 
-    Parameters:
-    image_size (tuple): Size of the image as (width, height).
-    color_map (str): Color map to use for rendering the image.
-    
     a, b, c, num = get_user_inputs()
     points = compute_hopalong_trajectory(a, b, c, num)
 

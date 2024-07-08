@@ -80,7 +80,6 @@ def get_user_inputs():
     
 
 def main(image_size=(1000, 1000), color_map='hot'):
-    
     # Generate Hopalong Attractor: Compute hopalong trajectory, generate and render trajectory image.
 
     a, b, c, num = get_user_inputs()

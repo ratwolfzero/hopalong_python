@@ -65,9 +65,9 @@ Using the math.copysign function [copysign(1.0, x)]
 
 With this signum function, the behavior of floating point numbers according to IEEE 754 (signed zero) is respected
 <br />
-and some borderline cases regarding the input parameters a, b and c, which otherwise do not lead to complex patterns,
+and some borderline cases regarding the input parameters a, b and c,
 <br />
-show a different behavior.
+which otherwise do not lead to complex patterns, show a different behavior.
 <br />
 
 For example:

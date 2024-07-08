@@ -39,7 +39,7 @@ def generate_trajectory_image(points, image_size):
     px = ((points[:, 0] - min_x) / (max_x - min_x) * (img_width - 1)).astype(np.uint16)
     py = ((points[:, 1] - min_y) / (max_y - min_y) * (img_height - 1)).astype(np.uint16)
 
-    for i in prange(len(px)):
+    for i in prange(len(px)): # use of prange for prallel loop
         image[py[i], px[i]] += 1
 
     extents = [min_x, max_x, min_y, max_y]

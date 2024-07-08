@@ -2,16 +2,18 @@ Calculate and Display the "Hopalong" Attractor
 
 The "Hopalong" attractor, invented by Barry Martin from Aston University in Birmingham, England, gained fame through A.K. Dewdney's description in the September 1986 issue of Scientific American. The German edition, Spektrum der Wissenschaft, further popularized it in Germany with a translation titled "Hüpfer" in the Computer-Kurzweil section.
 <br />
+<br />
 
 Overview
 <br />
 <br />
-This Python program calculates and displays the "Hopalong" attractor. It can be executed from a terminal using the following command:
+This Python program calculates and displays the "Hopalong" attractor.
 <br />
-for example:
+It can be executed for example from a terminal using the following command:
 <br />
-python3 /path/to/my/file/hopalong_advanced.py
 <br />
+python3 /path/to/my/file/hopalong.py
+<br /><br />
 
 Requirements
 <br />
@@ -24,7 +26,10 @@ matplotlib
 <br />
 numba
 <br />
+(math is a standard library)
 <br />
+<br />
+
 Features
 <br />
 <br />
@@ -54,54 +59,28 @@ num (integer): The number of iterations (e.g., 1000000 or 1_000_000).
 
 Latest code changes:
 
+
+Using the math.copysign function [copysign(1.0, x)]
 <br />
 
-@njit
-def custom_sign(x):
+With this signum function, the behavior of floating point numbers according to IEEE 754 (signed zero) is respected and
+<br />
+some borderline cases regarding the input parameters a, b and c, which otherwise do not lead to complex patterns,
+<br />
+show a different behavior.
+<br />
 
-"""
-<br />
-Custom sign function respecting the behavior of floating point numbers according to IEEE 754
-<br />
-(e.g. like implemented in Rust)
-<br />
-<br />
-1.0 if the number is positive, +0.0 or INFINITY
-<br />
--1.0 if the number is negative, -0.0 or NEG_INFINITY
-<br />
-NaN if the number is NaN
-<br />
-"""
-
-if np.isnan(x):
-<br />
-    return np.nan
-<br />
-elif x > 0 or x == 0.0:
-<br />
-    return 1.0
-<br />
-else:
-<br />
-return -1.0
-
-
-With this user-defined Signum function, some borderline cases regarding the input parameters a, b and c ,
-which otherwise do not lead to complex patterns, show a different behavior.
-
-For example
+For example:
 <br />  
 a = 1, b = 2, c = 3 or
 <br /> 
 a = 0, b = 1, c = 1 or
 <br /> 
 a = 1, b =1, c = 1
-
 <br />
-
+<br />
 however, parameters such as
-
+<br />
 <br />
 a =0 , b = 1, c = 0 or 
 <br />
@@ -109,13 +88,9 @@ a = 1, b = 0, c = 1 or
 <br /> 
 a = 1, b = 1, c = 0,
 <br />  
-<br /> 
 will end up in a kind of "singularity"
 <br /> 
-
-By the way: Using the math.copysign function [copysign(1.0, x)] has the same effect as described above
 <br /> 
-using additionally math.sqrt and math.fabs is also the fastest variant 
 
 
 Have fun!

@@ -71,7 +71,7 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False):
 
 
 def get_user_inputs():
-    # Collect input parameters from the user for hopalong attractor trajectory generation
+    # Collect input parameters from the user for hopalong attractor generation
     a = get_validated_input('Enter a non-zero float value for "a": ', float)
     b = get_validated_input('Enter a float value for "b": ', float)
     c = get_validated_input('Enter a float value for "c": ', float)

@@ -81,7 +81,7 @@ def get_user_inputs():
     
 
 def main():
-    # Entry point: define image size, params for image title and colormap, get and validate user input, compute and visualize hopalong attractor
+    # Entry point: Generate Hopalong Attractor: Compute hopalong trajectory, generate trajectory image and render trajectory imgae
  
     a, b, c, num = get_user_inputs()
     points = compute_hopalong_trajectory(a, b, c, num)

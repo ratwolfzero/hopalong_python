@@ -97,23 +97,21 @@ def plot_hit_metrics(ax, hit_metrics, scale='log'):
     ax.grid(True, which="both")
 
 
-def get_validated_input(prompt, input_type=float, check_non_zero=False):
-    # Request and validate user input with specified constraints
-    while True:
-        user_input = input(prompt)
-        try:
-            value = input_type(user_input)
-            if check_non_zero and value == 0:
-                print("Invalid input. The value cannot be zero.")
-                continue
-            return value
-        except ValueError:
-            print(f"Invalid input. Please enter a valid {input_type.__name__} value.")
-
-
 def get_user_inputs():
-    # Collect input parameters from the user for hopalong attractor generation
-    a = get_validated_input('Enter a non-zero float value for "a": ', float)
+    # Request and validate user input with specified constraints
+    def get_validated_input(prompt, input_type=float, check_non_zero=False):
+        while True:
+            user_input = input(prompt)
+            try:
+                value = input_type(user_input)
+                if check_non_zero and value == 0:
+                    print("Invalid input. The value cannot be zero.")
+                    continue
+                return value
+            except ValueError:
+                print(f"Invalid input. Please enter a valid {input_type.__name__} value.")
+    
+    a = get_validated_input('Enter a non-zero float value for "a": ', float, check_non_zero=True)
     b = get_validated_input('Enter a float value for "b": ', float)
     c = get_validated_input('Enter a float value for "c": ', float)
     num = get_validated_input('Enter an integer value for "num": ', int, check_non_zero=True)

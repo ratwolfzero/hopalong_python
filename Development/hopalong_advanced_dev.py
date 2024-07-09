@@ -114,7 +114,7 @@ def visualize_trajectory_image_and_hit_metrics(img, extents, params, color_map, 
 
 def get_user_inputs():
     # Request and validate user input with specified constraints
-    def get_validated_input(prompt, input_type=float, check_non_zero=False):
+    def get_validated_input(prompt, input_type=float, check_non_zero=False, check_positive=False):
         while True:
             user_input = input(prompt)
             try:
@@ -122,19 +122,22 @@ def get_user_inputs():
                 if check_non_zero and value == 0:
                     print("Invalid input. The value cannot be zero.")
                     continue
+                if check_positive and value <= 0:
+                    print("Invalid input. The value must be a positive number.")
+                    continue
                 return value
             except ValueError:
                 print(f"Invalid input. Please enter a valid {input_type.__name__} value.")
     
-    a = get_validated_input('Enter a non-zero float value for "a": ', float, check_non_zero=True)
+    a = get_validated_input('Enter a float value for "a": ', float)
     b = get_validated_input('Enter a float value for "b": ', float)
     c = get_validated_input('Enter a float value for "c": ', float)
-    num = get_validated_input('Enter an integer value for "num": ', int, check_non_zero=True)
+    num = get_validated_input('Enter a non-zero positive integer value for "num": ', int, check_non_zero=True, check_positive=True)
     params = {'a': a, 'b': b, 'c': c, 'num': num}
 
     return a, b, c, num, params
-    
 
+    
 def main(image_size=(1000, 1000), color_map='hot'):
     """
     Generate Hopalong Attractor and hit metrics: Get user inputs, compute hopalong trajectory, generate trajectory image.

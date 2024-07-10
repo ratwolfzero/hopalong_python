@@ -67,7 +67,7 @@ def generate_trajectory_image(points, image_size):
     py = ((points[:, 1] - min_y) / (max_y - min_y) * (img_height - 1)).astype(np.uint16)
 
     for i in prange(len(px)): # use of prange for prallel loop
-        image[py[i], px[i]] += 1 # populate image array
+        image[py[i], px[i]] += 1 # populate image array, respect the row-column (y-x) indexing
 
     extents = [min_x, max_x, min_y, max_y]
 
@@ -78,7 +78,7 @@ def render_trajectory_image(img, extents, params, color_map):
     # Renders the trajectory of the Hopalong Attractor as an image
     fig = plt.figure(figsize=(8, 8))
     ax = fig.add_subplot(1, 1, 1, aspect='auto')
-    ax.imshow(img, origin="lower", cmap=color_map, extent=extents)
+    ax.imshow(img, origin="lower", cmap=color_map, extent=extents) # origin="lower" align figure according cartesian coordinates
     ax.set_title(
         "Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
     plt.show()

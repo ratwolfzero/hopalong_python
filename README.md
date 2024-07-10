@@ -40,9 +40,10 @@ Basic hopalong Version: Calculates and displays the Hopalong attractor.
 Advanced Version: The advanced version additionally tracks the pixel hit count (density) to control the rendering via the colormap and
 generates detailed statistics regarding pixel hit counts and their distribution.
 <br />
+<br />
 Performance optimization by using the Numba @njit (nopython=true) decorator for trajectory calculation and trajectory image generation
 <br />
-
+<br />
 User Input
 <br />
 <br />

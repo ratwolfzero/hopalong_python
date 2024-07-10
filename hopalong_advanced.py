@@ -76,7 +76,7 @@ def generate_trajectory_image(points, image_size):
 
 def render_trajectory_image(ax, img, extents, params, color_map):
     # Renders the trajectory of the Hopalong Attractor as an image
-    ax.imshow(img, origin="lower", cmap=color_map, extent=extents) # origin="lower" align figure according cartesian coordinates
+    ax.imshow(img, origin="lower", cmap=color_map, extent=extents) # origin="lower" align according cartesian coordinates
     ax.set_title(
         "Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
 

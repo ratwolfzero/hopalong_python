@@ -9,8 +9,8 @@ from math import copysign, sqrt, fabs
     
 
 @njit
-def compute_hopalong_trajectory(a, b, c, num):
-    # Computes the trajectory of the Hopalong Attractor
+def compute_trajectory(a, b, c, num):
+    # Computes the trajectory points of the Hopalong Attractor
     """
     Remark: Parallel options cannot be used here due to the cross-iteration dependency.
     points[i+1] cannot be calculated without first computing points[i]
@@ -36,6 +36,7 @@ def generate_trajectory_image(points, image_size):
     min_x, max_x = np.min(points[:, 0]), np.max(points[:, 0])
     min_y, max_y = np.min(points[:, 1]), np.max(points[:, 1])
 
+    # map trajectory points to image pixel coordinates
     px = ((points[:, 0] - min_x) / (max_x - min_x) * (img_width - 1)).astype(np.uint16)
     py = ((points[:, 1] - min_y) / (max_y - min_y) * (img_height - 1)).astype(np.uint16)
 
@@ -88,7 +89,7 @@ def main(image_size=(1000, 1000), color_map='hot'):
 
     a, b, c, num, params = get_user_inputs()
 
-    points = compute_hopalong_trajectory(a, b, c, num)
+    points = compute_trajectory(a, b, c, num)
 
     img, extents = generate_trajectory_image(points, image_size)
 

@@ -106,7 +106,7 @@ def calculate_hit_metrics(img, extents):
     cartesian_x = min_x + (max_x - min_x) * (max_hit_coords[:, 1] / img_width)
     cartesian_y = min_y + (max_y - min_y) * (max_hit_coords[:, 0] / img_height)
     cartesian_coords = ['({:.3f}, {:.3f})'.format(x, y) for x, y in zip(cartesian_x, cartesian_y)]
-        
+    
     hit_metrics = {
         "hit": hit,
         "count": count,

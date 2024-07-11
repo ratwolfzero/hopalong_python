@@ -94,7 +94,7 @@ def calculate_hit_metrics(img, extents):
     count_for_max_hit = count[max_hit_index]
     hit_pixel = np.sum(count)
     img_pixels = np.prod(img.shape)
-    hit_ratio = '{:02.2f}'.format(hit_pixel / img_pixels * 100)
+    hit_ratio = '{:.2f}'.format(hit_pixel / img_pixels * 100)
 
     # Find all pixels with the highest hit count
     max_hit_count = np.max(img)
@@ -107,7 +107,8 @@ def calculate_hit_metrics(img, extents):
     for coords in max_hit_coords:
         cartesian_x = min_x + (max_x - min_x) * (coords[1] / img_width)
         cartesian_y = min_y + (max_y - min_y) * (coords[0] / img_height)
-        cartesian_coords.append((cartesian_x, cartesian_y))
+        cartesian_coords.append(('{:.3f}'.format(cartesian_x), '{:.3f}'.format(cartesian_y)))
+        
 
     hit_metrics = {
         "hit": hit,
@@ -117,7 +118,7 @@ def calculate_hit_metrics(img, extents):
         "hit_pixel": hit_pixel,
         "img_points": img_pixels,
         "hit_ratio": hit_ratio,
-        "cartesian_coords": (cartesian_x, cartesian_y)
+        "cartesian_coords": cartesian_coords
         }
     
     return hit_metrics
@@ -134,7 +135,7 @@ def plot_hit_metrics(ax, hit_metrics, scale='log'):
         f'{hit_metrics["hit_pixel"]} pixels out of {hit_metrics["img_points"]} image pixels = {hit_metrics["hit_ratio"]}% have been hit. \n'
         f'The highest number of pixels with the same number of hits is {np.max(hit_metrics["count"])} with {hit_metrics["hit_for_max_count"]} hits. \n'
         f'The highest number of hits is {np.max(hit_metrics["hit"])} with {hit_metrics["count_for_max_hit"]} pixels hit\n'
-        f'Coordinates are:{hit_metrics["cartesian_coords"]}')
+        f'Cartesian coordinates for highest #of hits:{hit_metrics["cartesian_coords"]}')
         
     
     ax.set_title(title_text, fontsize=10)
@@ -170,11 +171,7 @@ def main(image_size=(1000, 1000), color_map='hot'):
 
     img, extents = generate_trajectory_image(points, image_size)
     
-    hit_metrics = calculate_hit_metrics(img, extents) 
-
-
-    for i in zip(hit_metrics["cartesian_coords"]):
-        print(i)
+    hit_metrics = calculate_hit_metrics(img, extents)
 
     visualize_trajectory_image_and_hit_metrics(img, extents, params, color_map, hit_metrics)
 

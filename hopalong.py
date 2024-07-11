@@ -81,6 +81,7 @@ def render_trajectory_image(img, extents, params, color_map):
     ax.imshow(img, origin="lower", cmap=color_map, extent=extents) # origin="lower" align according cartesian coordinates
     ax.set_title(
         "Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
+    
     plt.show()
 
 

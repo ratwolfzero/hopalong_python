@@ -81,8 +81,8 @@ def render_trajectory_image(ax, img, extents, params, color_map):
         "Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
     
     # Add Cartesian labels
-    ax.set_xlabel('X (Cartesian)')
-    ax.set_ylabel('Y (Cartesian)')
+    ax.set_xlabel('x (Cartesian)')
+    ax.set_ylabel('y (Cartesian)')
     
 
 def calculate_hit_metrics(img, extents):

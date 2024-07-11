@@ -96,18 +96,16 @@ def calculate_hit_metrics(img, extents):
     img_pixels = np.prod(img.shape)
     hit_ratio = '{:.2f}'.format(hit_pixel / img_pixels * 100)
 
-    # Find all pixels with the highest hit count
+     # Find all pixels with the highest hit count
     max_hit_count = np.max(img)
     max_hit_coords = np.argwhere(img == max_hit_count)
     
-    # Convert image coordinates to Cartesian coordinates
+    # Convert image coordinates pixels with the highest hit count to Cartesian coordinates
     img_height, img_width = img.shape
     min_x, max_x, min_y, max_y = extents
-    cartesian_coords = []
-    for coords in max_hit_coords:
-        cartesian_x = min_x + (max_x - min_x) * (coords[1] / img_width)
-        cartesian_y = min_y + (max_y - min_y) * (coords[0] / img_height)
-        cartesian_coords.append(('{:.3f}'.format(cartesian_x), '{:.3f}'.format(cartesian_y)))
+    cartesian_x = min_x + (max_x - min_x) * (max_hit_coords[:, 1] / img_width)
+    cartesian_y = min_y + (max_y - min_y) * (max_hit_coords[:, 0] / img_height)
+    cartesian_coords = ['({:.3f}, {:.3f})'.format(x, y) for x, y in zip(cartesian_x, cartesian_y)]
         
     hit_metrics = {
         "hit": hit,
@@ -135,7 +133,6 @@ def plot_hit_metrics(ax, hit_metrics, scale='log'):
         f'The highest number of pixels with the same number of hits is {np.max(hit_metrics["count"])} with {hit_metrics["hit_for_max_count"]} hits. \n'
         f'The highest number of hits is {np.max(hit_metrics["hit"])} with {hit_metrics["count_for_max_hit"]} pixels hit\n'
         f'Cartesian coordinates for highest #of hits:{hit_metrics["cartesian_coords"]}')
-        
     
     ax.set_title(title_text, fontsize=10)
     ax.set_xscale(scale)

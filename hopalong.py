@@ -2,10 +2,10 @@
 import matplotlib
 matplotlib.use('TkAgg')
 
-import matplotlib.pyplot as plt
-import numpy as np
-from numba import njit, prange
 from math import copysign, sqrt, fabs
+from numba import njit, prange
+import numpy as np
+import matplotlib.pyplot as plt
 
 
 def get_user_inputs():
@@ -23,12 +23,14 @@ def get_user_inputs():
                     continue
                 return value
             except ValueError:
-                print(f"Invalid input. Please enter a valid {input_type.__name__} value.")
-    
+                print(f"Invalid input. Please enter a valid {
+                      input_type.__name__} value.")
+
     a = get_validated_input('Enter a float value for "a": ', float)
     b = get_validated_input('Enter a float value for "b": ', float)
     c = get_validated_input('Enter a float value for "c": ', float)
-    num = get_validated_input('Enter a positive integer value for "num": ', int, check_non_zero=True, check_positive=True)
+    num = get_validated_input('Enter a positive integer value for "num": ',
+                              int, check_non_zero=True, check_positive=True)
     params = {'a': a, 'b': b, 'c': c, 'num': num}
 
     return a, b, c, num, params
@@ -63,11 +65,14 @@ def generate_trajectory_image(points, image_size):
     min_y, max_y = np.min(points[:, 1]), np.max(points[:, 1])
 
     # map trajectory points to image pixel coordinates
-    px = ((points[:, 0] - min_x) / (max_x - min_x) * (img_width - 1)).astype(np.uint16)
-    py = ((points[:, 1] - min_y) / (max_y - min_y) * (img_height - 1)).astype(np.uint16)
+    px = ((points[:, 0] - min_x) / (max_x - min_x)
+          * (img_width - 1)).astype(np.uint16)
+    py = ((points[:, 1] - min_y) / (max_y - min_y)
+          * (img_height - 1)).astype(np.uint16)
 
-    for i in prange(len(px)): # use of prange for prallel loop
-        image[py[i], px[i]] += 1 # populate image array, respect the row-column (y-x) indexing
+    for i in prange(len(px)):  # use of prange for prallel loop
+        # populate image array, respect the row-column (y-x) indexing
+        image[py[i], px[i]] += 1
 
     extents = [min_x, max_x, min_y, max_y]
 
@@ -78,10 +83,11 @@ def render_trajectory_image(img, extents, params, color_map):
     # Renders the trajectory of the Hopalong Attractor as an image
     fig = plt.figure(figsize=(8, 8))
     ax = fig.add_subplot(1, 1, 1, aspect='auto')
-    ax.imshow(img, origin="lower", cmap=color_map, extent=extents) # origin="lower" align according cartesian coordinates
+    # origin="lower" align according cartesian coordinates
+    ax.imshow(img, origin="lower", cmap=color_map, extent=extents)
     ax.set_title(
         "Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
-    
+
     plt.show()
 
 

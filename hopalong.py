@@ -81,7 +81,6 @@ def generate_trajectory_image(points, image_size):
     return image, extents
 
 
-
 def render_trajectory_image(img, extents, params, color_map):
     # Renders the trajectory of the Hopalong Attractor as an image
     fig = plt.figure(figsize=(8, 8))

@@ -66,16 +66,18 @@ def generate_trajectory_image(points, image_size):
     min_y, max_y = np.min(points[:, 1]), np.max(points[:, 1])
 
     # map trajectory points to image pixel coordinates
-    px = ((points[:, 0] - min_x) / (max_x - min_x) * (img_width - 1)).astype(np.uint16)
-    py = ((points[:, 1] - min_y) / (max_y - min_y) * (img_height - 1)).astype(np.uint16)
-
+    px = ((points[:, 0] - min_x) / (max_x - min_x)
+          * (img_width - 1)).astype(np.uint16)
+    py = ((points[:, 1] - min_y) / (max_y - min_y)
+          * (img_height - 1)).astype(np.uint16)
+    
     # use of prange for prallel loop 
     for i in prange(len(px)):
         # populate image array, respect the row-column (y-x) indexing
         image[py[i], px[i]] += 1
 
     extents = [min_x, max_x, min_y, max_y]
-    
+
     return image, extents
 
 

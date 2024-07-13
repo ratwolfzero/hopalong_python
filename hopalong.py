@@ -6,7 +6,6 @@ from math import copysign, sqrt, fabs
 from numba import njit, prange
 import numpy as np
 import matplotlib.pyplot as plt
-import gc
 
 
 def get_user_inputs():

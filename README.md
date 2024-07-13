@@ -42,7 +42,7 @@ Advanced Version: The advanced version additionally tracks the pixel hit count (
 generates detailed statistics regarding pixel hit counts and their distribution.
 <br />
 <br />
-Performance optimization by using the Numba @njit (nopython=true) decorator for trajectory calculation and trajectory image generation
+Performance optimization by using the Numba @njit (nopython=true) decorator for trajectory calculation and trajectory image generation,
 this is really a revelation in terms of speed!
 
 Faking performance by dummy (pre)-compiling @njit decorated functions before user input lol...

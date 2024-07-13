@@ -6,6 +6,7 @@ from math import copysign, sqrt, fabs
 from numba import njit, prange
 import numpy as np
 import matplotlib.pyplot as plt
+import gc
 
 
 def get_user_inputs():
@@ -71,13 +72,14 @@ def generate_trajectory_image(points, image_size):
     py = ((points[:, 1] - min_y) / (max_y - min_y)
           * (img_height - 1)).astype(np.uint16)
 
-    for i in prange(len(px)):  # use of prange for prallel loop
+    for i in prange(len(px)): # use of prange for prallel loop
         # populate image array, respect the row-column (y-x) indexing
         image[py[i], px[i]] += 1
 
     extents = [min_x, max_x, min_y, max_y]
 
     return image, extents
+
 
 
 def render_trajectory_image(img, extents, params, color_map):

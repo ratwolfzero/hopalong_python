@@ -65,6 +65,8 @@ c (float or integer): A parameter of the Hopalong equation.
 <br />
 num (integer): The number of iterations (e.g., 1000000 or 1_000_000).
 
+e.g. a = -2; b = -0.33; c = 0.01; num = 200_000_000
+
 <br />
 
 Latest code changes:

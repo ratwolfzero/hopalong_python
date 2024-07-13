@@ -36,7 +36,8 @@ def get_user_inputs():
     return a, b, c, num, params
 
 
-@njit
+@njit('float32[:,:](float32, float32, float32, int64)')
+# support numba by explicit function signature (expected types)
 def compute_trajectory(a, b, c, num):
     # Computes the trajectory points of the Hopalong Attractor
     """

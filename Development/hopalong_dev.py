@@ -89,7 +89,7 @@ def render_trajectory_image(img, extents, params, color_map):
     plt.show()
 
    
-def main(image_size=(uint32(1000),uint32(1000)), color_map='hot'):
+def main(image_size=(uint16(1000),uint16(1000)), color_map='hot'):
     # Generate Hopalong Attractor: Get user inputs, compute hopalong trajectory, generate and render trajectory image.
 
     # dummy (pre-)compilation of @njit decorated functions

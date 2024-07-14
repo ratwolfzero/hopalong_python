@@ -5,8 +5,8 @@ matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt                                                                      
 import numpy as np
 from math import copysign, sqrt, fabs
-from numba import njit, prange, float32, uint32, uint64
-from numba.types import Tuple
+from numba import njit, prange, float32, uint32
+
 
 def get_user_inputs():
     # Request and validate user input with specified constraints
@@ -55,7 +55,7 @@ def compute_trajectory(a, b, c, num):
     return points
 
 
-@njit(Tuple((uint32[:,:], float32[:]))(float32[:,:], Tuple((uint64,uint64))), parallel=True)
+@njit('Tuple((uint32[:,:], float32[:]))(float32[:,:], Tuple((uint64,uint64)))', parallel=True)
 def generate_trajectory_image(points, image_size):
     # Generates an image array with the mapped trajectory points
     img_width, img_height = image_size
@@ -89,7 +89,7 @@ def render_trajectory_image(img, extents, params, color_map):
     plt.show()
 
    
-def main(image_size=(1000, 1000), color_map='hot'):
+def main(image_size=(1000,1000), color_map='hot'):
     # Generate Hopalong Attractor: Get user inputs, compute hopalong trajectory, generate and render trajectory image.
 
     # dummy (pre-)compilation of @njit decorated functions

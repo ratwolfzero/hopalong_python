@@ -31,7 +31,7 @@ def get_user_inputs():
     num = get_validated_input('Enter a positive integer value for "num": ', int, check_non_zero=True, check_positive=True)
     params = {'a': a, 'b': b, 'c': c, 'num': num}
 
-    return a, b, c, num, params
+    return float(a), float(b), float(c), int(num), params
     
 
 @njit('float32[:,:](float32, float32, float32, uint32)')
@@ -43,7 +43,8 @@ def compute_trajectory(a, b, c, num):
     points[i+1] cannot be calculated without first computing points[i]
     """
     points = np.zeros((num, 2), dtype=np.float32)
-    x = y = 0.0
+    x = np.float32(0.0)
+    y = np.float32(0.0)
 
     for i in range(num):
         points[i] = x, y
@@ -54,7 +55,7 @@ def compute_trajectory(a, b, c, num):
     return points
 
 
-@njit(parallel=True)
+@njit('Tuple((uint32[:,:], float32[:]))(float32[:,:], Tuple((int64, int64)))', parallel=True)
 def generate_trajectory_image(points, image_size):
     # Generates an image array with the mapped trajectory points
     img_width, img_height = image_size
@@ -72,7 +73,8 @@ def generate_trajectory_image(points, image_size):
         # populate image array, respect the row-column (y-x) indexing
         image[py[i], px[i]] += 1
 
-    extents = [min_x, max_x, min_y, max_y]
+    #extents = [min_x, max_x, min_y, max_y]
+    extents = np.array([min_x, max_x, min_y, max_y], dtype=np.float32)
 
     return image, extents
 

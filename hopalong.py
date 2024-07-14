@@ -56,7 +56,6 @@ def compute_trajectory(a, b, c, num):
     return points
 
 
-#@njit(parallel=True)
 @njit('Tuple((uint32[:,:], float32[:]))(float32[:,:], Tuple((uint64, uint64)))', parallel=True)
 def generate_trajectory_image(points, image_size):
     # Generates an image array with the mapped trajectory points

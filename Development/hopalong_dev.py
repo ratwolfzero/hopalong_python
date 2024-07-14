@@ -73,8 +73,8 @@ def generate_trajectory_image(points, image_size):
         # populate image array, respect the row-column (y-x) indexing
         image[py[i], px[i]] += 1
 
-    extents = [min_x, max_x, min_y, max_y]
-    #extents = np.array([min_x, max_x, min_y, max_y], dtype=np.float32)
+    #extents = [min_x, max_x, min_y, max_y]
+    extents = np.array([min_x, max_x, min_y, max_y], dtype=np.float32)
 
     return image, extents
 

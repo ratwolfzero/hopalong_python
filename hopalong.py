@@ -77,8 +77,8 @@ def generate_trajectory_image(points, image_size):
         # populate image array, respect the row-column (y-x) indexing
         image[py[i], px[i]] += 1
 
-    
     extents = np.array([min_x, max_x, min_y, max_y], dtype=np.float32)
+
     return image, extents
 
 
@@ -96,10 +96,6 @@ def render_trajectory_image(img, extents, params, color_map):
 
 def main(image_size=(1000, 1000), color_map='hot'):
     # Generate Hopalong Attractor: Get user inputs, compute hopalong trajectory, generate and render trajectory image.
-
-    # dummy (pre-)compilation of @njit decorated functions
-    #_ = compute_trajectory(0.0, 0.0, 0.0, 1) 
-    #_ = generate_trajectory_image(np.zeros((1, 2), dtype=np.float32), (1, 1))
 
     a, b, c, num, params = get_user_inputs()
 

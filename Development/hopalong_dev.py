@@ -5,7 +5,8 @@ matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt                                                                      
 import numpy as np
 from math import copysign, sqrt, fabs
-from numba import njit, prange, float32, uint16, uint32
+from numba import njit, prange, float32, uint32
+from numba.types import Tuple
 
 
 def get_user_inputs():
@@ -42,7 +43,7 @@ def compute_trajectory(a, b, c, num):
     Remark: Parallel options cannot be used here due to the cross-iteration dependency.
     points[i+1] cannot be calculated without first computing points[i]
     """
-    points = np.zeros((num, 2), dtype=float32)
+    points = np.zeros((num, 2), dtype=np.float32)
     x = float32(0.0)
     y = float32(0.0)
 
@@ -55,18 +56,18 @@ def compute_trajectory(a, b, c, num):
     return points
 
 
-@njit('Tuple((uint32[:,:], float32[:]))(float32[:,:], Tuple((uint64,uint64)))', parallel=True)
-def generate_trajectory_image(points, image_size):
+@njit(Tuple((uint32[:,:], float32[:]))(float32[:,:], uint32, uint32), parallel=True)
+def generate_trajectory_image(points, img_width, img_height):
     # Generates an image array with the mapped trajectory points
-    img_width, img_height = image_size
-    image = np.zeros((img_height, img_width), dtype=uint32)
+    #img_width, img_height = image_size
+    image = np.zeros((img_height, img_width), dtype=np.uint32)
 
     min_x, max_x = np.min(points[:, 0]), np.max(points[:, 0])
     min_y, max_y = np.min(points[:, 1]), np.max(points[:, 1])
 
     # map trajectory points to image pixel coordinates
-    px = ((points[:, 0] - min_x) / (max_x - min_x) * (img_width - 1)).astype(uint16)
-    py = ((points[:, 1] - min_y) / (max_y - min_y) * (img_height - 1)).astype(uint16)
+    px = ((points[:, 0] - min_x) / (max_x - min_x) * (img_width - 1)).astype(np.uint32)
+    py = ((points[:, 1] - min_y) / (max_y - min_y) * (img_height - 1)).astype(np.uint32)
 
     # use of prange for prallel loop 
     for i in prange(len(px)):
@@ -74,7 +75,7 @@ def generate_trajectory_image(points, image_size):
         image[py[i], px[i]] += 1
 
     #extents = [min_x, max_x, min_y, max_y]
-    extents = np.array([min_x, max_x, min_y, max_y], dtype=float32)
+    extents = np.array([min_x, max_x, min_y, max_y], dtype=np.float32)
 
     return image, extents
 
@@ -89,7 +90,7 @@ def render_trajectory_image(img, extents, params, color_map):
     plt.show()
 
    
-def main(image_size=(uint16(1000),uint16(1000)), color_map='hot'):
+def main(image_width=uint32(1000), image_height=uint32(1000), color_map='hot'):
     # Generate Hopalong Attractor: Get user inputs, compute hopalong trajectory, generate and render trajectory image.
 
     # dummy (pre-)compilation of @njit decorated functions
@@ -100,7 +101,7 @@ def main(image_size=(uint16(1000),uint16(1000)), color_map='hot'):
 
     points = compute_trajectory(a, b, c, num)
     
-    img, extents = generate_trajectory_image(points, image_size)
+    img, extents = generate_trajectory_image(points, image_width, image_height)
 
     render_trajectory_image(img, extents, params, color_map)
 

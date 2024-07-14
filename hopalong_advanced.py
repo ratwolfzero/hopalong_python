@@ -2,10 +2,10 @@
 import matplotlib
 matplotlib.use('TkAgg')
 
-from math import copysign, sqrt, fabs
-from numba import njit, prange
 import numpy as np
 import matplotlib.pyplot as plt
+from math import copysign, sqrt, fabs
+from numba import njit, prange
 
 
 def get_user_inputs():

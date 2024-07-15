@@ -104,9 +104,6 @@ def main(image_size=(1000, 1000), color_map='hot'):
 
     img, extents = generate_trajectory_image(points, image_size)
 
-    generate_trajectory_image.inspect_types() 
-
-
     render_trajectory_image(img, extents, params, color_map)
 
 

@@ -54,7 +54,7 @@ def compute_trajectory(a, b, c, num):
         x, y = xx, yy
 
     return points
-_ = compute_trajectory(1, 1, 1, 1) # dummy compilation
+_ = compute_trajectory(0.0, 0.0, 0.0, 1) # dummy compilation
  
 
 @njit(parallel=True)

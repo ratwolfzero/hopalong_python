@@ -32,7 +32,7 @@ def get_user_inputs():
     num = get_validated_input('Enter a positive integer value for "num": ', uint32, check_non_zero=True, check_positive=True)
     params = {'a': a, 'b': b, 'c': c, 'num': num}
 
-    return float32(a), float32(b), float32(c), uint32(num), params
+    return float32(a), float32(b), float32(c), uint32(num), dict(params)
     
 
 @njit(float32[:,:](float32, float32, float32, uint32))

@@ -36,9 +36,8 @@ def get_user_inputs():
     return a, b, c, num, params
 
 
-@njit('float32[:,:](float32, float32, float32, uint32)')
+@njit
 # njit is an alias for nopython=True
-# explicit function signature in string form to enable eager compilation
 def compute_trajectory(a, b, c, num):
     # Computes the trajectory points of the Hopalong Attractor
     """
@@ -55,9 +54,10 @@ def compute_trajectory(a, b, c, num):
         x, y = xx, yy
 
     return points
+_ = compute_trajectory(1, 1, 1, 1) # dummy compilation
+ 
 
-
-@njit('Tuple((uint32[:,:], float32[:]))(float32[:,:], Tuple((uint64, uint64)))', parallel=True)
+@njit(parallel=True)
 def generate_trajectory_image(points, image_size):
     # Generates an image array with the mapped trajectory points
     img_width, img_height = image_size
@@ -77,9 +77,10 @@ def generate_trajectory_image(points, image_size):
         # populate image array, respect the row-column (y-x) indexing
         image[py[i], px[i]] += 1
 
-    extents = np.array([min_x, max_x, min_y, max_y], dtype=np.float32)
+    extents = [min_x, max_x, min_y, max_y]
 
     return image, extents
+_ = generate_trajectory_image(np.zeros((1, 2), dtype=np.float32), (1, 1)) # dummy compilation
 
 
 def render_trajectory_image(img, extents, params, color_map):
@@ -102,6 +103,9 @@ def main(image_size=(1000, 1000), color_map='hot'):
     points = compute_trajectory(a, b, c, num)
 
     img, extents = generate_trajectory_image(points, image_size)
+
+    generate_trajectory_image.inspect_types() 
+
 
     render_trajectory_image(img, extents, params, color_map)
 

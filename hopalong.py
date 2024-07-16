@@ -1,11 +1,10 @@
 # Use TkAgg backend
+from numba import njit, prange
+from math import copysign, sqrt, fabs
+import matplotlib.pyplot as plt
+import numpy as np
 import matplotlib
 matplotlib.use('TkAgg')
-
-import numpy as np
-import matplotlib.pyplot as plt
-from math import copysign, sqrt, fabs
-from numba import njit, prange
 
 
 def get_user_inputs():
@@ -54,7 +53,7 @@ def compute_trajectory(a, b, c, num):
         x, y = xx, yy
 
     return points
- 
+
 
 @njit(parallel=True)
 def generate_trajectory_image(points, image_size):
@@ -70,8 +69,8 @@ def generate_trajectory_image(points, image_size):
           * (img_width - 1)).astype(np.uint16)
     py = ((points[:, 1] - min_y) / (max_y - min_y)
           * (img_height - 1)).astype(np.uint16)
-    
-    # use of prange for parallel loop 
+
+    # use of prange for parallel loop
     for i in prange(len(px)):
         # populate image array, respect the row-column (y-x) indexing
         image[py[i], px[i]] += 1

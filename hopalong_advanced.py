@@ -2,10 +2,11 @@
 import matplotlib
 matplotlib.use('TkAgg')
 
-import numpy as np
-import matplotlib.pyplot as plt
-from math import copysign, sqrt, fabs
 from numba import njit, prange
+from math import copysign, sqrt, fabs
+import matplotlib.pyplot as plt
+import numpy as np
+
 
 
 def get_user_inputs():
@@ -71,7 +72,7 @@ def generate_trajectory_image(points, image_size):
     py = ((points[:, 1] - min_y) / (max_y - min_y)
           * (img_height - 1)).astype(np.uint16)
 
-    # use of prange for parallel loop 
+    # use of prange for parallel loop
     for i in prange(len(px)):
         # populate image array, respect the row-column (y-x) indexing
         image[py[i], px[i]] += 1
@@ -161,7 +162,7 @@ def main(image_size=(1000, 1000), color_map='hot'):
     Generate Hopalong Attractor and hit metrics: Get user inputs, compute hopalong trajectory, generate trajectory image.
     Calculate hit metrics, visualize trajectory image and hit metrics
     """
-    
+
     a, b, c, num, params = get_user_inputs()
 
     points = compute_trajectory(a, b, c, num)

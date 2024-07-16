@@ -1,10 +1,12 @@
 # Use TkAgg backend
+import matplotlib
+matplotlib.use('TkAgg')
+
 from numba import njit, prange
 from math import copysign, sqrt, fabs
 import matplotlib.pyplot as plt
 import numpy as np
-import matplotlib
-matplotlib.use('TkAgg')
+
 
 
 def get_user_inputs():

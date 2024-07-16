@@ -54,7 +54,6 @@ def compute_trajectory(a, b, c, num):
         x, y = xx, yy
 
     return points
-_ = compute_trajectory(0.0, 0.0, 0.0, 1) # dummy compilation
  
 
 @njit(parallel=True)
@@ -80,7 +79,6 @@ def generate_trajectory_image(points, image_size):
     extents = [min_x, max_x, min_y, max_y]
 
     return image, extents
-_ = generate_trajectory_image(np.zeros((1, 2), dtype=np.float32), (1, 1)) # dummy compilation
 
 
 def render_trajectory_image(img, extents, params, color_map):

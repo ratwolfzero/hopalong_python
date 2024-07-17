@@ -1,17 +1,16 @@
-## Use TkAgg backend
 import matplotlib
 matplotlib.use('TkAgg')
 
-import matplotlib.pyplot as plt                                                                      
-import numpy as np
+import matplotlib.pyplot as plt
+from numba import njit, prange
 from math import copysign, sqrt, fabs
-from numba import njit, prange, float32, uint32
-from numba.types import Tuple
+import numpy as np
+from typing import Tuple, Dict
 
 
-def get_user_inputs():
+def get_user_inputs() -> Tuple[float, float, float, int, Dict[str, float]]:
     # Request and validate user input with specified constraints
-    def get_validated_input(prompt, input_type=float, check_non_zero=False, check_positive=False):
+    def get_validated_input(prompt: str, input_type: type = float, check_non_zero: bool = False, check_positive: bool = False) -> float:
         while True:
             user_input = input(prompt)
             try:
@@ -25,28 +24,25 @@ def get_user_inputs():
                 return value
             except ValueError:
                 print(f"Invalid input. Please enter a valid {input_type.__name__} value.")
-    
-    a = get_validated_input('Enter a float value for "a": ', float32)
-    b = get_validated_input('Enter a float value for "b": ', float32)
-    c = get_validated_input('Enter a float value for "c": ', float32)
-    num = get_validated_input('Enter a positive integer value for "num": ', uint32, check_non_zero=True, check_positive=True)
+
+    a = get_validated_input('Enter a float value for "a": ', float)
+    b = get_validated_input('Enter a float value for "b": ', float)
+    c = get_validated_input('Enter a float value for "c": ', float)
+    num = get_validated_input('Enter a positive integer value for "num": ', int, check_non_zero=True, check_positive=True)
     params = {'a': a, 'b': b, 'c': c, 'num': num}
 
-    return float32(a), float32(b), float32(c), uint32(num), dict(params)
-    
+    return a, b, c, num, params
 
-@njit(float32[:,:](float32, float32, float32, uint32))
-# njit is an alias for nopython=True
-# explicit function signature in string form to enable eager compilation
-def compute_trajectory(a, b, c, num):
+
+@njit
+def compute_trajectory(a: float, b: float, c: float, num: int) -> np.ndarray:
     # Computes the trajectory points of the Hopalong Attractor
     """
     Remark: Parallel options cannot be used here due to the cross-iteration dependency.
     points[i+1] cannot be calculated without first computing points[i]
     """
     points = np.zeros((num, 2), dtype=np.float32)
-    x = float32(0.0)
-    y = float32(0.0)
+    x = y = 0.0
 
     for i in range(num):
         points[i] = x, y
@@ -57,52 +53,48 @@ def compute_trajectory(a, b, c, num):
     return points
 
 
-@njit(Tuple((uint32[:,:], float32[:]))(float32[:,:], uint32, uint32), parallel=True)
-def generate_trajectory_image(points, img_width, img_height):
+@njit(parallel=True)
+def generate_trajectory_image(points: np.ndarray, image_size: Tuple[int, int]) -> Tuple[np.ndarray, list]:
     # Generates an image array with the mapped trajectory points
-    #img_width, img_height = image_size
+    img_width, img_height = image_size
     image = np.zeros((img_height, img_width), dtype=np.uint32)
 
     min_x, max_x = np.min(points[:, 0]), np.max(points[:, 0])
     min_y, max_y = np.min(points[:, 1]), np.max(points[:, 1])
 
     # map trajectory points to image pixel coordinates
-    px = ((points[:, 0] - min_x) / (max_x - min_x) * (img_width - 1)).astype(np.uint32)
-    py = ((points[:, 1] - min_y) / (max_y - min_y) * (img_height - 1)).astype(np.uint32)
+    px = ((points[:, 0] - min_x) / (max_x - min_x) * (img_width - 1)).astype(np.uint16)
+    py = ((points[:, 1] - min_y) / (max_y - min_y) * (img_height - 1)).astype(np.uint16)
 
-    # use of prange for parallel loop 
+    # use of prange for parallel loop
     for i in prange(len(px)):
         # populate image array, respect the row-column (y-x) indexing
         image[py[i], px[i]] += 1
 
-    #extents = [min_x, max_x, min_y, max_y]
-    extents = np.array([min_x, max_x, min_y, max_y], dtype=np.float32)
+    extents = [min_x, max_x, min_y, max_y]
 
     return image, extents
 
 
-def render_trajectory_image(img, extents, params, color_map):
+def render_trajectory_image(img: np.ndarray, extents: list, params: Dict[str, float], color_map: str) -> None:
     # Renders the trajectory of the Hopalong Attractor as an image
     fig = plt.figure(figsize=(8, 8))
     ax = fig.add_subplot(1, 1, 1, aspect='auto')
-    ax.imshow(img, origin="lower", cmap=color_map, extent=extents) # origin="lower" align according cartesian coordinates
-    ax.set_title(
-        "Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
+    # origin="lower" align according cartesian coordinates
+    ax.imshow(img, origin="lower", cmap=color_map, extent=extents)
+    ax.set_title("Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
+
     plt.show()
 
-   
-def main(image_width=uint32(1000), image_height=uint32(1000), color_map='hot'):
-    # Generate Hopalong Attractor: Get user inputs, compute hopalong trajectory, generate and render trajectory image.
 
-    # dummy (pre-)compilation of @njit decorated functions
-    #_ = compute_trajectory(0.0, 0.0, 0.0, 1) 
-    #_ = generate_trajectory_image(np.zeros((1, 2), dtype=np.float32), (1, 1))
+def main(image_size: Tuple[int, int] = (1000, 1000), color_map: str = 'hot') -> None:
+    # Generate Hopalong Attractor: Get user inputs, compute hopalong trajectory, generate and render trajectory image.
 
     a, b, c, num, params = get_user_inputs()
 
     points = compute_trajectory(a, b, c, num)
-    
-    img, extents = generate_trajectory_image(points, image_width, image_height)
+
+    img, extents = generate_trajectory_image(points, image_size)
 
     render_trajectory_image(img, extents, params, color_map)
 

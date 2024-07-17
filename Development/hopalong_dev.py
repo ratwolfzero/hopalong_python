@@ -8,8 +8,6 @@ from math import copysign, sqrt, fabs
 from numba import njit, prange
 
 
-
-
 def get_user_inputs() -> Tuple[float, float, float, int, Dict[str, float]]:
     # Request and validate user input with specified constraints
     def get_validated_input(prompt: str, input_type: type = float, check_non_zero: bool = False, check_positive: bool = False) -> float:

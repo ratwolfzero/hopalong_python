@@ -3,9 +3,9 @@ matplotlib.use('TkAgg')
 
 import matplotlib.pyplot as plt
 import numpy as np
-from typing import Tuple, Dict
 from math import copysign, sqrt, fabs
 from numba import njit, prange
+from typing import Tuple, Dict
 
 
 def get_user_inputs() -> Tuple[float, float, float, int, Dict[str, float]]:

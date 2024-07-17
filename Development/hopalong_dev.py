@@ -5,12 +5,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 from math import copysign, sqrt, fabs
 from numba import njit, prange
-from typing import Tuple, Dict
+from typing import Tuple, Dict, List, Union
 
 
-def get_user_inputs() -> Tuple[float, float, float, int, Dict[str, float]]:
+def get_user_inputs() -> Tuple[float, float, float, int, Dict[str, Union[float, int]]]:
     # Request and validate user input with specified constraints
-    def get_validated_input(prompt: str, input_type: type = float, check_non_zero: bool = False, check_positive: bool = False) -> float:
+    def get_validated_input(prompt: str, input_type: type = float, check_non_zero: bool = False, check_positive: bool = False) -> Union[float, int]:
         while True:
             user_input = input(prompt)
             try:
@@ -23,14 +23,12 @@ def get_user_inputs() -> Tuple[float, float, float, int, Dict[str, float]]:
                     continue
                 return value
             except ValueError:
-                print(f"Invalid input. Please enter a valid {
-                      input_type.__name__} value.")
+                print(f"Invalid input. Please enter a valid {input_type.__name__} value.")
 
     a = get_validated_input('Enter a float value for "a": ', float)
     b = get_validated_input('Enter a float value for "b": ', float)
     c = get_validated_input('Enter a float value for "c": ', float)
-    num = get_validated_input('Enter a positive integer value for "num": ',
-                              int, check_non_zero=True, check_positive=True)
+    num = get_validated_input('Enter a positive integer value for "num": ', int, check_non_zero=True, check_positive=True)
     params = {'a': a, 'b': b, 'c': c, 'num': num}
 
     return a, b, c, num, params
@@ -56,7 +54,7 @@ def compute_trajectory(a: float, b: float, c: float, num: int) -> np.ndarray:
 
 
 @njit(parallel=True)
-def generate_trajectory_image(points: np.ndarray, image_size: Tuple[int, int]) -> Tuple[np.ndarray, list]:
+def generate_trajectory_image(points: np.ndarray, image_size: Tuple[int, int]) -> Tuple[np.ndarray, List[float]]:
     # Generates an image array with the mapped trajectory points
     img_width, img_height = image_size
     image = np.zeros((img_height, img_width), dtype=np.uint32)
@@ -65,10 +63,8 @@ def generate_trajectory_image(points: np.ndarray, image_size: Tuple[int, int]) -
     min_y, max_y = np.min(points[:, 1]), np.max(points[:, 1])
 
     # map trajectory points to image pixel coordinates
-    px = ((points[:, 0] - min_x) / (max_x - min_x)
-          * (img_width - 1)).astype(np.uint16)
-    py = ((points[:, 1] - min_y) / (max_y - min_y)
-          * (img_height - 1)).astype(np.uint16)
+    px = ((points[:, 0] - min_x) / (max_x - min_x) * (img_width - 1)).astype(np.uint16)
+    py = ((points[:, 1] - min_y) / (max_y - min_y) * (img_height - 1)).astype(np.uint16)
 
     # use of prange for parallel loop
     for i in prange(len(px)):
@@ -80,7 +76,7 @@ def generate_trajectory_image(points: np.ndarray, image_size: Tuple[int, int]) -
     return image, extents
 
 
-def render_trajectory_image(img: np.ndarray, extents: list, params: Dict[str, float], color_map: str) -> None:
+def render_trajectory_image(img: np.ndarray, extents: List[float], params: Dict[str, Union[float, int]], color_map: str) -> None:
     # Renders the trajectory of the Hopalong Attractor as an image
     fig = plt.figure(figsize=(8, 8))
     ax = fig.add_subplot(1, 1, 1, aspect='auto')

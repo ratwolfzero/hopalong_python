@@ -1,4 +1,3 @@
-# Use TkAgg backend
 import matplotlib
 matplotlib.use('TkAgg')
 
@@ -6,11 +5,12 @@ import matplotlib.pyplot as plt
 from numba import njit, prange
 from math import copysign, sqrt, fabs
 import numpy as np
+from typing import Tuple, Dict, List, Union
 
 
-def get_user_inputs():
+def get_user_inputs() -> Tuple[float, float, float, int, Dict[str, Union[float, int]]]:
     # Request and validate user input with specified constraints
-    def get_validated_input(prompt, input_type=float, check_non_zero=False, check_positive=False):
+    def get_validated_input(prompt: str, input_type: type = float, check_non_zero: bool = False, check_positive: bool = False) -> Union[float, int]:
         while True:
             user_input = input(prompt)
             try:
@@ -37,8 +37,7 @@ def get_user_inputs():
 
 
 @njit
-# njit is an alias for nopython=True
-def compute_trajectory(a, b, c, num):
+def compute_trajectory(a: float, b: float, c: float, num: int) -> np.ndarray:
     # Computes the trajectory points of the Hopalong Attractor
     """
     Remark: Parallel options cannot be used here due to the cross-iteration dependency.
@@ -57,7 +56,7 @@ def compute_trajectory(a, b, c, num):
 
 
 @njit(parallel=True)
-def generate_trajectory_image(points, image_size):
+def generate_trajectory_image(points: np.ndarray, image_size: Tuple[int, int]) -> Tuple[np.ndarray, List[float]]:
     # Generates an image array with the mapped trajectory points
     img_width, img_height = image_size
     image = np.zeros((img_height, img_width), dtype=np.uint32)
@@ -81,7 +80,7 @@ def generate_trajectory_image(points, image_size):
     return image, extents
 
 
-def render_trajectory_image(ax, img, extents, params, color_map):
+def render_trajectory_image(ax: plt.Axes, img: np.ndarray, extents: List[float], params: Dict[str, Union[float, int]], color_map: str) -> None:
     # Renders the trajectory of the Hopalong Attractor as an image
     # origin="lower" align according cartesian coordinates
     ax.imshow(img, origin="lower", cmap=color_map, extent=extents)
@@ -93,7 +92,7 @@ def render_trajectory_image(ax, img, extents, params, color_map):
     ax.set_ylabel('Y (Cartesian)')
 
 
-def calculate_hit_metrics(img):
+def calculate_hit_metrics(img: np.ndarray) -> Dict[str, Union[np.ndarray, int, str]]:
     # Analyze and summarize hit metrics from the hopalong trajectory image
     hit, count = np.unique(img[img > 0], return_counts=True)
     max_count_index = np.argmax(count)
@@ -117,7 +116,7 @@ def calculate_hit_metrics(img):
     return hit_metrics
 
 
-def plot_hit_metrics(ax, hit_metrics, scale='log'):
+def plot_hit_metrics(ax: plt.Axes, hit_metrics: Dict[str, Union[np.ndarray, int, str]], scale: str = 'log') -> None:
     # Visualize the distribution of hit counts on pixels in the hopalong trajectory image
     ax.plot(hit_metrics["hit"], hit_metrics["count"], 'o-',
             color="navy", markersize=1, linewidth=0.6)
@@ -143,8 +142,7 @@ def plot_hit_metrics(ax, hit_metrics, scale='log'):
     ax.grid(True, which="both")
 
 
-def visualize_trajectory_image_and_hit_metrics(img, extents, params, color_map, hit_metrics):
-
+def visualize_trajectory_image_and_hit_metrics(img: np.ndarray, extents: List[float], params: Dict[str, Union[float, int]], color_map: str, hit_metrics: Dict[str, Union[np.ndarray, int, str]]) -> None:
     fig = plt.figure(figsize=(18, 8))
 
     ax1 = fig.add_subplot(1, 2, 1, aspect='auto')
@@ -156,12 +154,11 @@ def visualize_trajectory_image_and_hit_metrics(img, extents, params, color_map, 
     plt.show()
 
 
-def main(image_size=(1000, 1000), color_map='hot'):
+def main(image_size: Tuple[int, int] = (1000, 1000), color_map: str = 'hot') -> None:
     """
     Generate Hopalong Attractor and hit metrics: Get user inputs, compute hopalong trajectory, generate trajectory image.
     Calculate hit metrics, visualize trajectory image and hit metrics
     """
-
     a, b, c, num, params = get_user_inputs()
 
     points = compute_trajectory(a, b, c, num)

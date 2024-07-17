@@ -93,7 +93,7 @@ def render_trajectory_image(ax, img, extents, params, color_map):
     ax.set_ylabel('Y (Cartesian)')
 
 
-def calculate_hit_metrics(img, extents):
+def calculate_hit_metrics(img):
     # Analyze and summarize hit metrics from the hopalong trajectory image
     hit, count = np.unique(img[img > 0], return_counts=True)
     max_count_index = np.argmax(count)
@@ -168,7 +168,7 @@ def main(image_size=(1000, 1000), color_map='hot'):
 
     img, extents = generate_trajectory_image(points, image_size)
 
-    hit_metrics = calculate_hit_metrics(img, extents)
+    hit_metrics = calculate_hit_metrics(img)
 
     visualize_trajectory_image_and_hit_metrics(
         img, extents, params, color_map, hit_metrics)

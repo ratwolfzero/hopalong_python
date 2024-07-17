@@ -1,11 +1,12 @@
 import matplotlib
 matplotlib.use('TkAgg')
 
-from typing import Tuple, Dict
+import matplotlib.pyplot as plt
 import numpy as np
+from typing import Tuple, Dict
 from math import copysign, sqrt, fabs
 from numba import njit, prange
-import matplotlib.pyplot as plt
+
 
 
 

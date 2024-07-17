@@ -2,9 +2,9 @@
 import matplotlib
 matplotlib.use('TkAgg')
 
+import matplotlib.pyplot as plt
 from numba import njit, prange
 from math import copysign, sqrt, fabs
-import matplotlib.pyplot as plt
 import numpy as np
 
 

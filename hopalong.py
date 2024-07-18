@@ -9,7 +9,8 @@ from math import copysign, sqrt, fabs
 
 def get_user_inputs():
     # Request and validate user input with specified constraints
-    def get_validated_input(prompt, input_type=float, check_non_zero=False, check_positive=False):
+    def get_validated_input(prompt, input_type=float, 
+                            check_non_zero=False, check_positive=False):
         while True:
             user_input = input(prompt)
             try:
@@ -93,7 +94,8 @@ def render_trajectory_image(img, extents, params, color_map):
 
 
 def main(image_size=(1000, 1000), color_map='hot'):
-    # Generate Hopalong Attractor: Get user inputs, compute hopalong trajectory, generate and render trajectory image.
+    # Generate Hopalong Attractor: 
+    # Get user inputs, compute hopalong trajectory, generate and render trajectory image.
 
     a, b, c, num, params = get_user_inputs()
     points = compute_trajectory(a, b, c, num)

@@ -157,18 +157,15 @@ def visualize_trajectory_image_and_hit_metrics(img, extents, params, color_map, 
 
 def main(image_size=(1000, 1000), color_map='hot'):
     """
-    Generate Hopalong Attractor and hit metrics: Get user inputs, compute hopalong trajectory, generate trajectory image.
+    Generate Hopalong Attractor and hit metrics: 
+    Get user inputs, compute hopalong trajectory, generate trajectory image
     Calculate hit metrics, visualize trajectory image and hit metrics
     """
 
     a, b, c, num, params = get_user_inputs()
-
     points = compute_trajectory(a, b, c, num)
-
     img, extents = generate_trajectory_image(points, image_size)
-
     hit_metrics = calculate_hit_metrics(img)
-
     visualize_trajectory_image_and_hit_metrics(
         img, extents, params, color_map, hit_metrics)
 

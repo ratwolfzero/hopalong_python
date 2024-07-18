@@ -7,7 +7,6 @@ from numba import njit, prange
 from math import copysign, sqrt, fabs
 
 
-
 def get_user_inputs():
     # Request and validate user input with specified constraints
     def get_validated_input(prompt, input_type=float, check_non_zero=False, check_positive=False):

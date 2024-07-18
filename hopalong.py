@@ -1,11 +1,10 @@
 # Use TkAgg backend
-import matplotlib
-matplotlib.use('TkAgg')
-
+import matplotlib; matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
+
+import numpy as np
 from numba import njit, prange
 from math import copysign, sqrt, fabs
-import numpy as np
 
 
 def get_user_inputs():
@@ -89,7 +88,7 @@ def render_trajectory_image(img, extents, params, color_map):
     ax.imshow(img, origin="lower", cmap=color_map, extent=extents)
     ax.set_title(
         "Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
-
+    
     plt.show()
 
 
@@ -97,11 +96,8 @@ def main(image_size=(1000, 1000), color_map='hot'):
     # Generate Hopalong Attractor: Get user inputs, compute hopalong trajectory, generate and render trajectory image.
 
     a, b, c, num, params = get_user_inputs()
-
     points = compute_trajectory(a, b, c, num)
-
     img, extents = generate_trajectory_image(points, image_size)
-
     render_trajectory_image(img, extents, params, color_map)
 
 

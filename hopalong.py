@@ -42,7 +42,7 @@ def compute_trajectory(a, b, c, num):
     # Computes the trajectory points of the Hopalong Attractor
     """
     Remark: Parallel options cannot be used here due to the cross-iteration dependency.
-    points[i+1] cannot be calculated without first computing points[i]
+    points[i+1] cannot be calculated without first computing points[i].
     """
     points = np.zeros((num, 2), dtype=np.float32)
     x = y = 0.0
@@ -94,8 +94,10 @@ def render_trajectory_image(img, extents, params, color_map):
 
 
 def main(image_size=(1000, 1000), color_map='hot'):
-    # Generate Hopalong Attractor: 
-    # Get user inputs, compute hopalong trajectory, generate and render trajectory image.
+    """
+    Generate Hopalong Attractor: 
+    Get user inputs, compute hopalong trajectory, generate and render trajectory image.
+    """
 
     a, b, c, num, params = get_user_inputs()
     points = compute_trajectory(a, b, c, num)

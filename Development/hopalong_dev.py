@@ -59,7 +59,7 @@ def compute_trajectory(a: float, b: float, c: float, num: int) -> np.ndarray:
 def generate_trajectory_image(points: np.ndarray, image_size: Tuple[int, int]) -> Tuple[np.ndarray, List[float]]:
     # Generates an image array with the mapped trajectory points
     img_width, img_height = image_size
-    image = np.zeros((img_height, img_width), dtype=np.uint32)
+    image = np.zeros((img_height, img_width), dtype=np.uint16)
 
     min_x, max_x = np.min(points[:, 0]), np.max(points[:, 0])
     min_y, max_y = np.min(points[:, 1]), np.max(points[:, 1])

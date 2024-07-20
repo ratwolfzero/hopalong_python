@@ -44,7 +44,7 @@ def compute_trajectory(a, b, c, num):
     points[i+1] cannot be calculated without first computing points[i]
     """
     points = np.zeros((num, 2), dtype=np.float32)
-    x = y = 0.0
+    x = y = np.float32(0)
 
     for i in range(num):
         points[i] = x, y

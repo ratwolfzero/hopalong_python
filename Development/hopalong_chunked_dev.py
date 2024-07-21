@@ -1,4 +1,3 @@
-# Use TkAgg backend
 import matplotlib; matplotlib.use('TkAgg')
 
 import matplotlib.pyplot as plt
@@ -35,19 +34,6 @@ def get_user_inputs():
 
 
 @njit
-def compute_trajectory_chunk(a, b, c, num, x0, y0):
-    """Compute a chunk of the Hopalong trajectory."""
-    points = np.empty((num, 2), dtype=np.float64)
-    x, y = x0, y0
-    for i in range(num):
-        points[i] = x, y
-        xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
-        yy = a - x
-        x, y = xx, yy
-    return points, x, y
-
-
-@njit
 def compute_extents(a, b, c, num):
     """Compute the extents of the trajectory."""
     x = y = np.float64(0)
@@ -64,6 +50,27 @@ def compute_extents(a, b, c, num):
     return min_x, max_x, min_y, max_y
 
 
+@njit
+def create_chunks(num, chunk_size):
+    """Generate indices for chunks."""
+    for i in range(0, num, chunk_size):
+        current_chunk_size = min(chunk_size, num - i)
+        yield i, current_chunk_size
+
+
+@njit
+def compute_trajectory_chunk(a, b, c, num, x0, y0):
+    """Compute a chunk of the Hopalong trajectory."""
+    points = np.empty((num, 2), dtype=np.float64)
+    x, y = x0, y0
+    for i in range(num):
+        points[i] = x, y
+        xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
+        yy = a - x
+        x, y = xx, yy
+    return points, x, y
+
+
 @njit(parallel=True)
 def update_image(image, points, min_x, max_x, min_y, max_y):
     """Update the image array with trajectory points."""
@@ -73,24 +80,6 @@ def update_image(image, points, min_x, max_x, min_y, max_y):
     for i in prange(len(px)):
         if 0 <= px[i] < img_width and 0 <= py[i] < img_height:
             image[py[i], px[i]] += 1
-
-
-def render_trajectory_image(image, extents, params, color_map):
-    """Render the trajectory image using matplotlib."""
-    fig = plt.figure(figsize=(8, 8))                                                        
-    ax = fig.add_subplot(1, 1, 1, aspect='auto')
-    ax.imshow(image, origin="lower", cmap=color_map, extent=extents)
-    ax.set_title(
-        "Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
-    plt.show()
-
-
-@njit
-def create_chunks(num, chunk_size):
-    """Generate indices for chunks."""
-    for i in range(0, num, chunk_size):
-        current_chunk_size = min(chunk_size, num - i)
-        yield i, current_chunk_size
 
 
 @njit
@@ -104,10 +93,19 @@ def calculate_image(a, b, c, num, chunk_size, min_x, max_x, min_y, max_y, img_he
     return image
 
 
-def main(image_size=(1000, 1000), color_map='hot', chunk_size=1000000):
+def render_trajectory_image(image, extents, params, color_map):
+    """Render the trajectory image using matplotlib."""
+    fig = plt.figure(figsize=(8, 8))                                                        
+    ax = fig.add_subplot(1, 1, 1, aspect='auto')
+    ax.imshow(image, origin="lower", cmap=color_map, extent=extents)
+    ax.set_title(
+        "Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
+    plt.show()
+
+
+def main():
     """Generate the Hopalong Attractor image."""
     a, b, c, num, params = get_user_inputs()
-    img_width, img_height = image_size
     min_x, max_x, min_y, max_y = compute_extents(a, b, c, num)
     image = calculate_image(a, b, c, num, chunk_size, min_x, max_x, min_y, max_y, img_height, img_width)
     render_trajectory_image(image, [min_x, max_x, min_y, max_y], params, color_map)
@@ -115,4 +113,8 @@ def main(image_size=(1000, 1000), color_map='hot', chunk_size=1000000):
 
 # Main execution
 if __name__ == "__main__":
+    image_size = (1000, 1000)
+    color_map = 'hot'
+    chunk_size = 1000000
+    img_width, img_height = image_size
     main()

@@ -104,7 +104,7 @@ def render_trajectory_image(image, extents, params, color_map):
     plt.show()
 
 
-def main(image_size=(1000, 1000), color_map='hot', chunk_size=1000000):
+def main(image_size=(1000, 1000), color_map='hot', chunk_size=100000):
     """Generate the Hopalong Attractor image."""
     a, b, c, num, params = get_user_inputs()
     min_x, max_x, min_y, max_y = compute_extents(a, b, c, num)

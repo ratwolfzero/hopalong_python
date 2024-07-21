@@ -119,11 +119,3 @@ def main(image_size=(1000, 1000), color_map='hot', chunk_size=1000000):
 # Main execution
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
-

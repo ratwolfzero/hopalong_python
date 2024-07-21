@@ -74,8 +74,7 @@ def generate_trajectory_image(points, image_size):
     # use of prange for parallel loop
     for i in prange(len(px)):
         # populate image array, respect the row-column (y-x) indexing
-        if 0 <= px[i] < img_width and 0 <= py[i] < img_height:
-            image[py[i], px[i]] += 1
+        image[py[i], px[i]] += 1
 
     extents = [min_x, max_x, min_y, max_y]
 

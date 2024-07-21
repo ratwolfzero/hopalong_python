@@ -63,8 +63,8 @@ def compute_extents(a, b, c, num):
 def update_image(image, points, min_x, max_x, min_y, max_y):
     img_width, img_height = image.shape[1], image.shape[0]
 
-    px = ((points[:, 0] - min_x) / (max_x - min_x) * (img_width - 1)).astype(np.uint16)
-    py = ((points[:, 1] - min_y) / (max_y - min_y) * (img_height - 1)).astype(np.uint16)
+    px = ((points[:, 0] - min_x) / (max_x - min_x) * (img_width - 1)).astype(np.uint64)
+    py = ((points[:, 1] - min_y) / (max_y - min_y) * (img_height - 1)).astype(np.uint64)
 
     for i in prange(len(px)):
         if 0 <= px[i] < img_width and 0 <= py[i] < img_height:
@@ -92,8 +92,8 @@ def calculate_image(a, b, c, num, chunk_size, min_x, max_x, min_y, max_y, img_he
     """
     Calculate image from chunks.
     """
-    image = np.zeros((img_height, img_width), dtype=np.uint16)
-    x0 = y0 = np.float32(0)
+    image = np.zeros((img_height, img_width), dtype=np.uint64)
+    x0 = y0 = np.float64(0)
 
     for i, current_chunk_size in create_chunks(num, chunk_size):
         points, x0, y0 = compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0)
@@ -101,7 +101,7 @@ def calculate_image(a, b, c, num, chunk_size, min_x, max_x, min_y, max_y, img_he
 
     return image
 
-def main(image_size=(1000, 1000), color_map='hot', chunk_size=1000000):
+def main(image_size=(8000, 8000), color_map='hot', chunk_size=1000000):
     """
     Generate Hopalong Attractor: 
     Get user inputs, compute hopalong trajectory, generate and render trajectory image.

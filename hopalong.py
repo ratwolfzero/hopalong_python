@@ -45,7 +45,7 @@ def compute_trajectory(a, b, c, num):
     points[i+1] cannot be calculated without first computing points[i].
     """
     points = np.zeros((num, 2), dtype=np.float32)
-    x = y = np.float32(0)
+    x = y = 0.0
 
     for i in range(num):
         points[i] = x, y
@@ -74,7 +74,8 @@ def generate_trajectory_image(points, image_size):
     # use of prange for parallel loop
     for i in prange(len(px)):
         # populate image array, respect the row-column (y-x) indexing
-        image[py[i], px[i]] += 1
+        if 0 <= px[i] < img_width and 0 <= py[i] < img_height:
+            image[py[i], px[i]] += 1
 
     extents = [min_x, max_x, min_y, max_y]
 

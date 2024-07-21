@@ -101,7 +101,7 @@ def calculate_image(a, b, c, num, chunk_size, min_x, max_x, min_y, max_y, img_he
 
     return image
 
-def main(image_size=(8000, 8000), color_map='hot', chunk_size=1000000):
+def main(image_size=(1000, 1000), color_map='hot', chunk_size=1000000):
     """
     Generate Hopalong Attractor: 
     Get user inputs, compute hopalong trajectory, generate and render trajectory image.

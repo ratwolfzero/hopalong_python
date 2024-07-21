@@ -1,7 +1,7 @@
-import matplotlib
-matplotlib.use('TkAgg')
-
+"""Use TkAgg backend"""
+import matplotlib; matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
+
 import numpy as np
 from numba import njit, prange
 from math import copysign, sqrt, fabs

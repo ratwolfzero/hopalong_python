@@ -1,4 +1,4 @@
-# Use TkAgg backend
+"""Use TkAgg backend"""
 import matplotlib; matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 
@@ -8,7 +8,7 @@ from math import copysign, sqrt, fabs
 
 
 def get_user_inputs():
-    # Request and validate user input with specified constraints
+    """Request and validate user input with specified constraints"""
     def get_validated_input(prompt, input_type=float, 
                             check_non_zero=False, check_positive=False):
         while True:
@@ -37,10 +37,11 @@ def get_user_inputs():
 
 
 @njit
-# njit is an alias for nopython=True
 def compute_trajectory(a, b, c, num):
-    # Computes the trajectory points of the Hopalong Attractor
     """
+    njit is an alias for nopython=True
+    Computes the trajectory points of the Hopalong Attractor
+    
     Remark: Parallel options cannot be used here due to the cross-iteration dependency.
     points[i+1] cannot be calculated without first computing points[i].
     """
@@ -50,7 +51,7 @@ def compute_trajectory(a, b, c, num):
     for i in range(num):
         points[i] = x, y
         xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x
-        # signum function respecting the behavior of floating point numbers according to IEEE 754 (signed zero)
+        """signum function respecting the behavior of floating point numbers according to IEEE 754 (signed zero)"""
         x, y = xx, yy
 
     return points
@@ -58,22 +59,22 @@ def compute_trajectory(a, b, c, num):
 
 @njit(parallel=True)
 def generate_trajectory_image(points, image_size):
-    # Generates an image array with the mapped trajectory points
+    """Generates an image array with the mapped trajectory points"""
     img_width, img_height = image_size
     image = np.zeros((img_height, img_width), dtype=np.uint16)
 
     min_x, max_x = np.min(points[:, 0]), np.max(points[:, 0])
     min_y, max_y = np.min(points[:, 1]), np.max(points[:, 1])
 
-    # map trajectory points to image pixel coordinates
+    """map trajectory points to image pixel coordinates"""
     px = ((points[:, 0] - min_x) / (max_x - min_x)
           * (img_width - 1)).astype(np.uint16)
     py = ((points[:, 1] - min_y) / (max_y - min_y)
           * (img_height - 1)).astype(np.uint16)
 
-    # use of prange for parallel loop
+    """use of prange for parallel loop"""
     for i in prange(len(px)):
-        # populate image array, respect the row-column (y-x) indexing
+        """populate image array, respect the row-column (y-x) indexing"""
         image[py[i], px[i]] += 1
 
     extents = [min_x, max_x, min_y, max_y]
@@ -82,10 +83,10 @@ def generate_trajectory_image(points, image_size):
 
 
 def render_trajectory_image(img, extents, params, color_map):
-    # Renders the trajectory of the Hopalong Attractor as an image
+    """Renders the trajectory of the Hopalong Attractor as an image"""
     fig = plt.figure(figsize=(8, 8))
     ax = fig.add_subplot(1, 1, 1, aspect='auto')
-    # origin="lower" align according cartesian coordinates
+    """origin="lower" align according cartesian coordinates"""
     ax.imshow(img, origin="lower", cmap=color_map, extent=extents)
     ax.set_title(
         "Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
@@ -98,12 +99,16 @@ def main(image_size=(1000, 1000), color_map='hot'):
     Generate Hopalong Attractor: 
     Get user inputs, compute hopalong trajectory, generate and render trajectory image.
     """
+    try:
 
-    a, b, c, num, params = get_user_inputs()
-    points = compute_trajectory(a, b, c, num)
-    img, extents = generate_trajectory_image(points, image_size)
-    render_trajectory_image(img, extents, params, color_map)
+        a, b, c, num, params = get_user_inputs()
+        points = compute_trajectory(a, b, c, num)
+        img, extents = generate_trajectory_image(points, image_size)
+        render_trajectory_image(img, extents, params, color_map)
 
+    except Exception as e:
+        print(f"An error occurred: {e}")
 
+"""Main excecution"""
 if __name__ == "__main__":
     main()

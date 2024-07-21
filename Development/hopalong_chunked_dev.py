@@ -106,11 +106,15 @@ def render_trajectory_image(image, extents, params, color_map):
 
 def main(image_size=(1000, 1000), color_map='hot', chunk_size=100000):
     """Generate the Hopalong Attractor image."""
-    a, b, c, num, params = get_user_inputs()
-    min_x, max_x, min_y, max_y = compute_extents(a, b, c, num)
-    image = calculate_image(a, b, c, num, chunk_size, min_x, max_x, min_y, max_y, image_size)
-    render_trajectory_image(image, [min_x, max_x, min_y, max_y], params, color_map)
+    try:
+    
+        a, b, c, num, params = get_user_inputs()
+        min_x, max_x, min_y, max_y = compute_extents(a, b, c, num)
+        image = calculate_image(a, b, c, num, chunk_size, min_x, max_x, min_y, max_y, image_size)
+        render_trajectory_image(image, [min_x, max_x, min_y, max_y], params, color_map)
 
+    except Exception as e:
+        print(f"An error occurred: {e}")
 
 # Main execution
 if __name__ == "__main__":

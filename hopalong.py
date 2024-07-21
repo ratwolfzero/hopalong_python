@@ -109,6 +109,6 @@ def main(image_size=(1000, 1000), color_map='hot'):
     except Exception as e:
         print(f"An error occurred: {e}")
 
-"""Main excecution"""
+"""Main execution"""
 if __name__ == "__main__":
     main()

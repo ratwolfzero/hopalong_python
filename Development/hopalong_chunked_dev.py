@@ -1,6 +1,7 @@
+"""Use TkAgg backend"""
 import matplotlib; matplotlib.use('TkAgg')
-
 import matplotlib.pyplot as plt
+
 import numpy as np
 from numba import njit, prange
 from math import copysign, sqrt, fabs
@@ -116,6 +117,6 @@ def main(image_size=(1000, 1000), color_map='hot', chunk_size=100000):
     except Exception as e:
         print(f"An error occurred: {e}")
 
-# Main execution
+"""Main execution"""
 if __name__ == "__main__":
     main()

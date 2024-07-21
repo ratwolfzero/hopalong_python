@@ -83,8 +83,9 @@ def update_image(image, points, min_x, max_x, min_y, max_y):
 
 
 @njit
-def calculate_image(a, b, c, num, chunk_size, min_x, max_x, min_y, max_y, img_height, img_width):
+def calculate_image(a, b, c, num, chunk_size, min_x, max_x, min_y, max_y, image_size):
     """Calculate the image from trajectory chunks."""
+    img_width, img_height = image_size
     image = np.zeros((img_height, img_width), dtype=np.uint64)
     x0 = y0 = np.float64(0)
     for i, current_chunk_size in create_chunks(num, chunk_size):
@@ -103,18 +104,14 @@ def render_trajectory_image(image, extents, params, color_map):
     plt.show()
 
 
-def main():
+def main(image_size=(1000, 1000), color_map='hot', chunk_size=1000000):
     """Generate the Hopalong Attractor image."""
     a, b, c, num, params = get_user_inputs()
     min_x, max_x, min_y, max_y = compute_extents(a, b, c, num)
-    image = calculate_image(a, b, c, num, chunk_size, min_x, max_x, min_y, max_y, img_height, img_width)
+    image = calculate_image(a, b, c, num, chunk_size, min_x, max_x, min_y, max_y, image_size)
     render_trajectory_image(image, [min_x, max_x, min_y, max_y], params, color_map)
 
 
 # Main execution
 if __name__ == "__main__":
-    image_size = (1000, 1000)
-    color_map = 'hot'
-    chunk_size = 1000000
-    img_width, img_height = image_size
     main()

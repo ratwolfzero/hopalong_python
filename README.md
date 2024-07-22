@@ -104,11 +104,13 @@ will end up in a kind of "singularity"
 <br /> 
 <br /> 
 
-Current development
+Current development 
 <br /> 
-Version with splitting calculation into chunks to optimize memory managment, avoid momory swap RAM--SSD.
-<br /> 
-As a result: Increase in speed. Computation time with a high number of iterations (num) increases proportionally to the number of iterations.
+Version with breaking computations into chunks to optimize memory management, thus avoiding memory swapping RAM--SSD.
+<br />
+Increase in speed. The computing time with high number of iterations (num) now increases proportionally to the number of iterations
+<br />
+Which corresponds to the expected behavior <br />
 <br /> 
 <br /> 
 

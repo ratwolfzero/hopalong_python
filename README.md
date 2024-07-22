@@ -106,9 +106,11 @@ will end up in a kind of "singularity"
 
 Current development 
 <br /> 
-Version with breaking computations into chunks to optimize memory management, thus avoiding memory swapping RAM--SSD.
+Version with breaking computations into chunks to optimize memory management, 
+thus avoiding memory swapping RAM--SSD.
 <br />
-Increase in speed. The computing time with high number of iterations (num) now increases proportionally to the number of iterations
+Increase in speed. 
+The computing time with high number of iterations (num) now increases proportionally to the number of iterations
 <br />
 Which corresponds to the expected behavior <br />
 <br /> 

@@ -83,7 +83,6 @@ def update_image(image, points, min_x, max_x, min_y, max_y):
             image[py[i], px[i]] += 1
 
 
-
 @njit
 def calculate_image(a, b, c, num, chunk_size, min_x, max_x, min_y, max_y, image_size):
     #Calculate the image from trajectory chunks.

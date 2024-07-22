@@ -6,8 +6,6 @@ import numpy as np
 from numba import njit, prange
 from math import copysign, sqrt, fabs
 
-from concurrent.futures import ThreadPoolExecutor
-
 
 def get_validated_input(prompt, input_type=float, check_non_zero=False, check_positive=False):
     """Get validated user input."""
@@ -84,7 +82,8 @@ def update_image(image, points, min_x, max_x, min_y, max_y):
         if 0 <= px[i] < img_width and 0 <= py[i] < img_height:
             image[py[i], px[i]] += 1
 
-"""
+
+
 @njit
 def calculate_image(a, b, c, num, chunk_size, min_x, max_x, min_y, max_y, image_size):
     #Calculate the image from trajectory chunks.
@@ -94,30 +93,6 @@ def calculate_image(a, b, c, num, chunk_size, min_x, max_x, min_y, max_y, image_
     for i, current_chunk_size in create_chunks(num, chunk_size):
         points, x0, y0 = compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0)
         update_image(image, points, min_x, max_x, min_y, max_y)
-    return image
-"""
-
-#@njit
-def calculate_image(a, b, c, num, chunk_size, min_x, max_x, min_y, max_y, image_size):
-    img_width, img_height = image_size
-    image = np.zeros((img_height, img_width), dtype=np.uint64)
-    x0 = y0 = np.float64(0)
-
-    # Helper function to process each chunk
-    def process_chunk(start, size, x0, y0):
-        points, x0, y0 = compute_trajectory_chunk(a, b, c, size, x0, y0)
-        return points, x0, y0
-
-    chunks = list(create_chunks(num, chunk_size))
-
-    # Process chunks in parallel
-    with ThreadPoolExecutor() as executor:
-        futures = [executor.submit(process_chunk, i, size, x0, y0) for i, size in chunks]
-
-        for future in futures:
-            points, x0, y0 = future.result()
-            update_image(image, points, min_x, max_x, min_y, max_y)
-
     return image
 
 

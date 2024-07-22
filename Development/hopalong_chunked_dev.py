@@ -85,7 +85,7 @@ def update_image(image, points, min_x, max_x, min_y, max_y):
 
 @njit
 def calculate_image(a, b, c, num, chunk_size, min_x, max_x, min_y, max_y, image_size):
-    #Calculate the image from trajectory chunks.
+    """Calculate the image from trajectory chunks."""
     img_width, img_height = image_size
     image = np.zeros((img_height, img_width), dtype=np.uint64)
     x0 = y0 = np.float64(0)
@@ -106,7 +106,7 @@ def render_trajectory_image(image, extents, params, color_map):
 
 
 def main(image_size=(1000, 1000), color_map='hot', chunk_size=148576):
-    """Generate the Hopalong Attractor image."""
+    """Generate the Hopalong Attractor image"""
     try:
     
         a, b, c, num, params = get_user_inputs()
@@ -116,6 +116,7 @@ def main(image_size=(1000, 1000), color_map='hot', chunk_size=148576):
 
     except Exception as e:
         print(f"An error occurred: {e}")
+
 
 """Main execution"""
 if __name__ == "__main__":

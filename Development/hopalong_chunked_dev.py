@@ -48,6 +48,7 @@ def compute_extents(a, b, c, num):
         xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
         yy = a - x
         x, y = xx, yy
+    
     return min_x, max_x, min_y, max_y
 
 

@@ -49,7 +49,8 @@ def compute_extents(a, b, c, num):
         yy = a - x
         x, y = xx, yy
     
-    return min_x, max_x, min_y, max_y
+    extents = [min_x, max_x, min_y, max_y]
+    return extents
 
 
 @njit
@@ -74,8 +75,9 @@ def compute_trajectory_chunk(a, b, c, num, x0, y0):
 
 
 @njit(parallel=True)
-def update_image(image, points, min_x, max_x, min_y, max_y):
+def update_image(image, points, extents):
     """Update the image array with trajectory points."""
+    min_x, max_x, min_y, max_y = extents
     img_width, img_height = image.shape[1], image.shape[0]
     px = ((points[:, 0] - min_x) / (max_x - min_x) * (img_width - 1)).astype(np.uint64)
     py = ((points[:, 1] - min_y) / (max_y - min_y) * (img_height - 1)).astype(np.uint64)
@@ -85,14 +87,14 @@ def update_image(image, points, min_x, max_x, min_y, max_y):
 
 
 @njit
-def calculate_image(a, b, c, num, chunk_size, min_x, max_x, min_y, max_y, image_size):
+def calculate_image(a, b, c, num, chunk_size, extents, image_size):
     """Calculate the image from trajectory chunks."""
     img_width, img_height = image_size
     image = np.zeros((img_height, img_width), dtype=np.uint64)
     x0 = y0 = np.float64(0)
     for i, current_chunk_size in create_chunks(num, chunk_size):
         points, x0, y0 = compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0)
-        update_image(image, points, min_x, max_x, min_y, max_y)
+        update_image(image, points, extents)
     return image
 
 
@@ -109,11 +111,10 @@ def render_trajectory_image(image, extents, params, color_map):
 def main(image_size=(1000, 1000), color_map='hot', chunk_size=148576):
     """Generate the Hopalong Attractor image"""
     try:
-    
         a, b, c, num, params = get_user_inputs()
-        min_x, max_x, min_y, max_y = compute_extents(a, b, c, num)
-        image = calculate_image(a, b, c, num, chunk_size, min_x, max_x, min_y, max_y, image_size)
-        render_trajectory_image(image, [min_x, max_x, min_y, max_y], params, color_map)
+        extents = compute_extents(a, b, c, num)
+        image = calculate_image(a, b, c, num, chunk_size, extents, image_size)
+        render_trajectory_image(image, extents, params, color_map)
 
     except Exception as e:
         print(f"An error occurred: {e}")
@@ -122,3 +123,4 @@ def main(image_size=(1000, 1000), color_map='hot', chunk_size=148576):
 """Main execution"""
 if __name__ == "__main__":
     main()
+

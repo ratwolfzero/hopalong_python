@@ -41,7 +41,7 @@ def compute_extents(a, b, c, num):
     """
     The initial values of min_x and min_y are set to np.inf to ensure that any 
     computed x or y value will be smaller in the first comparison, correctly 
-    initializing the minimum values. Similarly, max_x and max_y are set to -np.inf.
+    initializing the minimum values. Accordingly, max_x and max_y are set to -np.inf.
     """
     min_x = min_y = np.inf
     max_x = max_y = -np.inf

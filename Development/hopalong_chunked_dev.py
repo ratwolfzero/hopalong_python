@@ -38,6 +38,11 @@ def get_user_inputs():
 def compute_extents(a, b, c, num):
     """Compute the extents of the trajectory."""
     x = y = np.float64(0)
+    """
+    The initial values of min_x and min_y are set to np.inf to ensure that any 
+    computed x or y value will be smaller in the first comparison, correctly 
+    initializing the minimum values. Similarly, max_x and max_y are set to -np.inf.
+    """
     min_x = min_y = np.inf
     max_x = max_y = -np.inf
     for i in range(num):

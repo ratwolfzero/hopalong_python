@@ -69,7 +69,7 @@ def create_chunks(num, chunk_size):
 @njit
 def compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0):
     """Compute a chunk of the Hopalong trajectory."""
-    points = np.empty((current_chunk_size, 2), dtype=np.float64)
+    points = np.zeros((current_chunk_size, 2), dtype=np.float64)
     x, y = x0, y0
     for i in range(current_chunk_size):
         points[i] = x, y

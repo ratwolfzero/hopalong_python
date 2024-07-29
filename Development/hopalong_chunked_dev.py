@@ -55,7 +55,7 @@ def compute_extents(a, b, c, num):
         x, y = xx, yy
     
     extents = [min_x, max_x, min_y, max_y]
-    return extents
+    return extents 
 
 
 @njit
@@ -113,7 +113,7 @@ def render_trajectory_image(image, extents, params, color_map):
     plt.show()
 
 
-def main(image_size=(1000, 1000), color_map='hot', chunk_size=148576):
+def main(image_size=(1000, 1000), color_map='hot', chunk_size=1048576):
     """Generate the Hopalong Attractor image"""
     try:
         a, b, c, num, params = get_user_inputs()
@@ -128,4 +128,3 @@ def main(image_size=(1000, 1000), color_map='hot', chunk_size=148576):
 """Main execution"""
 if __name__ == "__main__":
     main()
-

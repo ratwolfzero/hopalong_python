@@ -63,7 +63,7 @@ def create_chunks(num, chunk_size):
     """Generate indices for chunks."""
     for i in range(0, num, chunk_size):
         current_chunk_size = min(chunk_size, num - i)
-        yield i, current_chunk_size
+        yield current_chunk_size
 
 
 @njit
@@ -91,13 +91,13 @@ def update_image(image, points, extents):
             image[py[i], px[i]] += 1
 
 
-@njit
+@njit(parallel=True)
 def calculate_image(a, b, c, num, chunk_size, extents, image_size):
     """Calculate the image from trajectory chunks."""
     img_width, img_height = image_size
     image = np.zeros((img_height, img_width), dtype=np.uint64)
     x0 = y0 = np.float64(0)
-    for i, current_chunk_size in create_chunks(num, chunk_size):
+    for current_chunk_size in create_chunks(num, chunk_size):
         points, x0, y0 = compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0)
         update_image(image, points, extents)
     return image

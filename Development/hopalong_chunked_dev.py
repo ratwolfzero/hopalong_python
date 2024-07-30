@@ -106,7 +106,7 @@ def compute_full_trajectory_image(a, b, c, num, chunk_size, extents, image_size)
 
 
 def render_full_trajectory_image(image, extents, params, color_map):
-    """Render the trajectory image using matplotlib."""
+    """Render the full trajectory image using matplotlib."""
     fig = plt.figure(figsize=(8, 8))
     ax = fig.add_subplot(1, 1, 1, aspect='auto')
     ax.imshow(image, origin="lower", cmap=color_map, extent=extents)

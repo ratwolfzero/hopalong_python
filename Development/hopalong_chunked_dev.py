@@ -80,7 +80,7 @@ def compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0):
 
 @njit(parallel=True)
 def map_trajectory_chunk_to_image(image, points, extents):
-    """Map trajectory chunk points to image pixel locations and populates the image."""
+    """Map trajectory chunk points to image pixel locations and populate the image."""
     min_x, max_x, min_y, max_y = extents
     img_width, img_height = image.shape[1], image.shape[0]
     px = ((points[:, 0] - min_x) / (max_x - min_x)

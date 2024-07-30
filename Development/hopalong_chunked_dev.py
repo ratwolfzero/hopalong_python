@@ -116,7 +116,7 @@ def render_full_trajectory_image(image, extents, params, color_map):
 
 
 def main(image_size=(1000, 1000), color_map='hot', chunk_size=1048576):
-    """Generate the Hopalong Attractor image"""
+    """Excecute processes to generate and render the Hopalong Attractor"""
     try:
         a, b, c, num, params = get_user_inputs()
         extents = compute_trajectory_extents(a, b, c, num)

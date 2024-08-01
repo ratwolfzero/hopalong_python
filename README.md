@@ -8,6 +8,8 @@ This Python program calculates and displays the "Hopalong" attractor.
 It can be executed from a terminal using the following command:
 ```sh
 python3 /path/to/my/file/hopalong.py
+
+
 Requirements
 
 To run this program, you need to have the following Python libraries installed:

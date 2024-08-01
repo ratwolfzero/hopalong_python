@@ -36,10 +36,23 @@ def get_attractor_parameters():
 
 @njit
 def compute_full_trajectory_extents(a, b, c, num):
-    """Compute and return the minimum and maximum x and y values for the full attractor trajectory."""
+    """
+    njit is an alias for nopython=True
+    Compute and return the minimum and maximum x and y values for the full attractor trajectory.
+    Note:
+    Parallel options cannot be used here due to the cross-iteration dependency.
+    Specifically, the values of x and y at iteration i+1 cannot be calculated without 
+    first computing the values of x and y at iteration i.
+    """
+    
     x = y = np.float64(0)
     min_x = min_y = np.inf
     max_x = max_y = -np.inf
+    """
+    np.inf (positive infinity): This is used to initialize min_x and min_y. 
+    Any real number x or y will be less than np.inf, so min_x and min_y will be set to the first computed x and y values, 
+    respectively, in the first iteration. -np-inf for max_x and max_y accordingly
+    """
     for i in range(num):
         min_x = min(min_x, x)
         max_x = max(max_x, x)
@@ -68,6 +81,7 @@ def compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0):
     for i in range(current_chunk_size):
         points[i] = x, y
         xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
+        """signum function respecting the behavior of floating point numbers according to IEEE 754 (signed zero)"""
         yy = a - x
         x, y = xx, yy
     return points, x, y
@@ -80,9 +94,11 @@ def map_trajectory_chunk_to_image(image, points, extents):
     img_width, img_height = image.shape[1], image.shape[0]
     px = ((points[:, 0] - min_x) / (max_x - min_x) * (img_width - 1)).astype(np.uint64)
     py = ((points[:, 1] - min_y) / (max_y - min_y) * (img_height - 1)).astype(np.uint64)
-    for i in prange(len(px)):
+    for i in prange(len(px)): 
+        """use of prange for parallel loop"""
         if 0 <= px[i] < img_width and 0 <= py[i] < img_height:
             image[py[i], px[i]] += 1
+        """populate image array, respect the row-column (y-x) indexing"""    
 
 
 @njit(parallel=True)
@@ -101,6 +117,7 @@ def render_full_trajectory_image(image, extents, params, color_map):
     """Render the full trajectory image using matplotlib."""
     fig = plt.figure(figsize=(8, 8))
     ax = fig.add_subplot(1, 1, 1, aspect='auto')
+    """origin="lower" align according cartesian coordinates"""
     ax.imshow(image, origin="lower", cmap=color_map, extent=extents)
     ax.set_title("Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
     plt.show()

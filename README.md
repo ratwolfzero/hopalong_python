@@ -3,12 +3,12 @@
 The "Hopalong" attractor, invented by Barry Martin from Aston University in Birmingham, England, gained fame through A.K. Dewdney's description in the September 1986 issue of Scientific American. The German edition, Spektrum der Wissenschaft, further popularized it in Germany with a translation titled "Hüpfer" in the Computer-Kurzweil section.
 
 ## Overview
+
 This Python program calculates and displays the "Hopalong" attractor.
 
 It can be executed from a terminal using the following command:
 
 python3 /path/to/my/file/hopalong.py
-
 
 Requirements
 
@@ -62,8 +62,8 @@ If you select a very high value for num (the number of iterations), performance 
 Users on macOS 14.x with Python 3.12.x might experience crashes while interacting with the plot window. Using the specific backend TkAgg works perfectly. This should not be necessary for other operating systems.
 
 # import matplotlib
-# matplotlib.use('TkAgg')
 
+# matplotlib.use('TkAgg')
 
 References
 

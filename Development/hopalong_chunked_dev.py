@@ -91,7 +91,7 @@ def compute_full_trajectory_image(a, b, c, num, chunk_size, extents, image_size)
     img_width, img_height = image_size
     image = np.zeros((img_height, img_width), dtype=np.uint64)
     x0 = y0 = np.float64(0)
-    for current_chunk_size in create_chunks(num, chunk_size):
+    for current_chunk_size in generate_chunk_sizes(num, chunk_size):
         points, x0, y0 = compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0)
         map_trajectory_chunk_to_image(image, points, extents)
     return image
@@ -110,12 +110,12 @@ def main(image_size=(1000, 1000), color_map='hot', chunk_size=1048576):
     """Execute processes to generate and render the Hopalong Attractor."""
     try:
         a, b, c, num, params = get_user_inputs()
-        extents = compute_trajectory_extents(a, b, c, num)
+        extents = compute_full_trajectory_extents(a, b, c, num)
         image = compute_full_trajectory_image(a, b, c, num, chunk_size, extents, image_size)
         render_full_trajectory_image(image, extents, params, color_map)
     except Exception as e:
         print(f"An error occurred: {e}")
-        
+
 
 """Main execution"""
 if __name__ == "__main__":

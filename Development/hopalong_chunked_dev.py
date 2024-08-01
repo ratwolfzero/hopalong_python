@@ -37,7 +37,7 @@ def get_user_inputs():
 
 @njit
 def compute_trajectory_extents(a, b, c, num):
-    """Compute the extents of the entire trajectory."""
+    """Compute the extents of the entire attractor trajectory."""
     x = y = np.float64(0)
     min_x = min_y = np.inf
     max_x = max_y = -np.inf

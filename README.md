@@ -6,7 +6,7 @@ The "Hopalong" attractor, invented by Barry Martin from Aston University in Birm
 This Python program calculates and displays the "Hopalong" attractor.
 
 It can be executed from a terminal using the following command:
-```sh
+
 python3 /path/to/my/file/hopalong.py
 
 

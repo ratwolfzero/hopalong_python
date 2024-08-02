@@ -54,6 +54,7 @@ def compute_full_trajectory_extents(a, b, c, num):
         x, y = xx, yy
     return [min_x, max_x, min_y, max_y]
 
+
 @njit
 def generate_chunk_sizes(num, chunk_size):
     #Yield sizes of chunks to process in each iteration until covering the entire range

@@ -84,10 +84,12 @@ def map_trajectory_chunk_to_image(image, points, extents):
     px = ((points[:, 0] - min_x) / (max_x - min_x) * (img_width - 1)).astype(np.uint64)
     py = ((points[:, 1] - min_y) / (max_y - min_y) * (img_height - 1)).astype(np.uint64)
     for i in prange(len(px)): 
-        #use of prange for parallel loop
+        """
+        use of prange for parallel loop
+        populate image array, respect the row-column (y-x) indexing
+        """   
         if 0 <= px[i] < img_width and 0 <= py[i] < img_height:
             image[py[i], px[i]] += 1
-        #populate image array, respect the row-column (y-x) indexing   
 
 
 @njit(parallel=True)

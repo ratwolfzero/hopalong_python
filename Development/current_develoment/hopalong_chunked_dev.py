@@ -37,22 +37,13 @@ def get_attractor_parameters():
 @njit
 def compute_full_trajectory_extents(a, b, c, num):
     """
-    njit is an alias for nopython=True
-    Compute and return the minimum and maximum x and y values for the full attractor trajectory.
-    Note:
-    Parallel options cannot be used here due to the cross-iteration dependency.
-    Specifically, the values of x and y at iteration i+1 cannot be calculated without 
-    first computing the values of x and y at iteration i.
+    Compute the x and y extents of the Hopalong attractor trajectory. 
+    Note: This function cannot be parallelized due to cross-iteration dependencies. 
     """
-    
     x = y = np.float64(0)
+    # Initialize minimums to positive infinity and maximums to negative infinity
     min_x = min_y = np.inf
     max_x = max_y = -np.inf
-    """
-    np.inf (positive infinity): This is used to initialize min_x and min_y. 
-    Any real number x or y will be less than np.inf, so min_x and min_y will be set to the first computed x and y values, 
-    respectively, in the first iteration. -np-inf for max_x and max_y accordingly
-    """
     for i in range(num):
         min_x = min(min_x, x)
         max_x = max(max_x, x)
@@ -61,9 +52,7 @@ def compute_full_trajectory_extents(a, b, c, num):
         xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
         yy = a - x
         x, y = xx, yy
-    extents = [min_x, max_x, min_y, max_y]
-    return extents
-
+    return [min_x, max_x, min_y, max_y]
 
 @njit
 def generate_chunk_sizes(num, chunk_size):

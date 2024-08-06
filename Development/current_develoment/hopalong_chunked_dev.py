@@ -61,8 +61,8 @@ def generate_chunk_sizes(num, chunk_size):
     for i in range(0, num, chunk_size):
         current_chunk_size = min(chunk_size, num - i)
         yield current_chunk_size
-
-
+        
+        
 @njit
 def compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0):
     #Compute a chunk of the Hopalong trajectory
@@ -101,8 +101,7 @@ def compute_full_trajectory_image(a, b, c, num, chunk_size, extents, image_size)
     x0 = y0 = np.float64(0)
     for current_chunk_size in generate_chunk_sizes(num, chunk_size):
         points, x0, y0 = compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0)
-        map_trajectory_chunk_to_image(image, points[:current_chunk_size], extents)
-        # Ensure only the relevant portion of points is used for the current chunk
+        map_trajectory_chunk_to_image(image, points, extents)
     return image
 
 

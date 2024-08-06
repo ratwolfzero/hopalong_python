@@ -102,6 +102,7 @@ def compute_full_trajectory_image(a, b, c, num, chunk_size, extents, image_size)
     for current_chunk_size in generate_chunk_sizes(num, chunk_size):
         points, x0, y0 = compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0)
         map_trajectory_chunk_to_image(image, points[:current_chunk_size], extents)
+        # Ensure only the relevant portion of points is used for the current chunk
     return image
 
 

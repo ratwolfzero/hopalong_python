@@ -14,13 +14,13 @@ python3 /path/to/my/file/hopalong.py
 
 To run this program, you need to have the following Python libraries installed:
 
-numpy  
+- numpy  
 
-matplotlib  
+- matplotlib  
 
-numba  
+- numba  
 
-(math is a standard library)  
+- (math is a standard library)  
 
 ## Features  
 
@@ -40,13 +40,13 @@ Using similar algorithms my Rust version is still at least twice as fast and the
 
 The program prompts the user for the following parameters:  
 
-a (float or integer): A parameter of the Hopalong equation.  
+- a (float or integer): A parameter of the Hopalong equation.  
 
-b (float or integer): A parameter of the Hopalong equation.  
+- b (float or integer): A parameter of the Hopalong equation.  
 
-c (float or integer): A parameter of the Hopalong equation.  
+- c (float or integer): A parameter of the Hopalong equation.  
 
-num (integer): The number of iterations (e.g., 1000000 or 1_000_000).
+- num (integer): The number of iterations (e.g., 1000000 or 1_000_000).
 
 try: a = -2; b = -0.33; c = 0.01; num = 200_000_000  
 

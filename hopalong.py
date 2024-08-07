@@ -87,7 +87,6 @@ def render_trajectory_image(img, extents, params, color_map):
     ax.imshow(img, origin="lower", cmap=color_map, extent=extents)
     ax.set_title(
         "Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
-    
     plt.show()
 
 
@@ -97,12 +96,10 @@ def main(image_size=(1000, 1000), color_map='hot'):
     Get user inputs, compute hopalong trajectory, generate and render trajectory image.
     """
     try:
-
-        a, b, c, num, params = get_user_inputs()
+        a, b, c, num, params = get_attractor_parameters()
         points = compute_trajectory(a, b, c, num)
         img, extents = generate_trajectory_image(points, image_size)
         render_trajectory_image(img, extents, params, color_map)
-
     except Exception as e:
         print(f"An error occurred: {e}")
 

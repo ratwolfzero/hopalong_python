@@ -77,9 +77,9 @@ def generate_trajectory_image(points, image_size):
     py = ((points[:, 1] - min_y) / (max_y - min_y)
           * (img_height - 1)).astype(np.uint16)
 
-    populate_image(image, px, py)
-
     extents = [min_x, max_x, min_y, max_y]
+
+    populate_image(image, px, py)
 
     return image, extents
 
@@ -168,16 +168,15 @@ def main(image_size=(1000, 1000), color_map='hot'):
     Calculate hit metrics, visualize trajectory image and hit metrics
     """
     try:
-
         a, b, c, num, params = get_attractor_parameters()
         points = compute_trajectory(a, b, c, num)
         img, extents = generate_trajectory_image(points, image_size)
         hit_metrics = calculate_hit_metrics(img)
         visualize_trajectory_image_and_hit_metrics(
             img, extents, params, color_map, hit_metrics)
-
     except Exception as e:
         print(f"An error occurred: {e}")
+
 
 """Main execution"""
 if __name__ == "__main__":

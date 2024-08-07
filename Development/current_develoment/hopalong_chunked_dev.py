@@ -87,7 +87,7 @@ def generate_chunk_sizes(num, chunk_size): #generator function
     #Yield sizes of chunks to process in each iteration until covering the entire range
     for i in range(0, num, chunk_size):
         current_chunk_size = min(chunk_size, num - i)
-        yield current_chunk_size # yield has to be part of for loop
+        yield current_chunk_size # yield has to be part of the for loop
 
 
 def compute_full_trajectory_image(a, b, c, num, chunk_size, extents, image_size):

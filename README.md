@@ -117,3 +117,9 @@ Spektrum der Wissenschaft: (German version of Scientific American), Computer Kur
 Computergraphik A. K. Dewdney
 
 ISBN 3-922508-50-2
+  
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+Maple help:
+
+<https://de.maplesoft.com/support/help/maple/view.aspx?path=MathApps%2FHopalongAttractor>

@@ -1,47 +1,44 @@
-import matplotlib
-matplotlib.use('TkAgg')
-
+"""Use TkAgg backend"""
+import matplotlib; matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
+
 import numpy as np
-from math import copysign, sqrt, fabs
 from numba import njit, prange
-from typing import Tuple, Dict, List, Union
+from math import copysign, sqrt, fabs
 
 
-def get_user_inputs() -> Tuple[float, float, float, int, Dict[str, Union[float, int]]]:
-    # Request and validate user input with specified constraints
-    def get_validated_input(prompt: str, input_type: type = float, check_non_zero: bool = False, check_positive: bool = False) -> Union[float, int]:
-        while True:
-            user_input = input(prompt)
-            try:
-                value = input_type(user_input)
-                if check_non_zero and value == 0:
-                    print("Invalid input. The value cannot be zero.")
-                    continue
-                if check_positive and value <= 0:
-                    print("Invalid input. The value must be a positive number.")
-                    continue
-                return value
-            except ValueError:
-                print(f"Invalid input. Please enter a valid {
-                      input_type.__name__} value.")
+def get_validated_input(prompt, input_type=float, check_non_zero=False, check_positive=False):
+    #Prompt for and return user input validated by type and positive/non-zero checks
+    while True:
+        user_input = input(prompt)
+        try:
+            value = input_type(user_input)
+            if check_non_zero and value == 0:
+                print("Invalid input. The value cannot be zero.")
+                continue
+            if check_positive and value <= 0:
+                print("Invalid input. The value must be a positive number.")
+                continue
+            return value
+        except ValueError:
+            print(f"Invalid input. Please enter a valid {input_type.__name__} value.")
 
+
+def get_attractor_parameters():
+    #Prompt user to input parameters for the Hopalong Attractor
     a = get_validated_input('Enter a float value for "a": ', float)
     b = get_validated_input('Enter a float value for "b": ', float)
     c = get_validated_input('Enter a float value for "c": ', float)
-    num = get_validated_input('Enter a positive integer value for "num": ',
-                              int, check_non_zero=True, check_positive=True)
+    num = get_validated_input('Enter a positive integer value for "num": ', int, check_non_zero=True, check_positive=True)
     params = {'a': a, 'b': b, 'c': c, 'num': num}
-
     return a, b, c, num, params
 
 
 @njit
-def compute_trajectory(a: float, b: float, c: float, num: int) -> np.ndarray:
-    # Computes the trajectory points of the Hopalong Attractor
+def compute_trajectory(a, b, c, num):
     """
-    Remark: Parallel options cannot be used here due to the cross-iteration dependency.
-    points[i+1] cannot be calculated without first computing points[i]
+    njit is an alias for nopython=True
+    Computes the trajectory points of the Hopalong Attractor
     """
     points = np.zeros((num, 2), dtype=np.float32)
     x = y = 0.0
@@ -54,9 +51,14 @@ def compute_trajectory(a: float, b: float, c: float, num: int) -> np.ndarray:
 
     return points
 
+@njit
+def populate_image(image, px, py):
+    for i in range(len(px)):
+        # populate image array, respect the row-column (y-x) indexing
+        image[py[i], px[i]] += 1
 
-@njit(parallel=True)
-def generate_trajectory_image(points: np.ndarray, image_size: Tuple[int, int]) -> Tuple[np.ndarray, List[float]]:
+
+def generate_trajectory_image(points, image_size):
     # Generates an image array with the mapped trajectory points
     img_width, img_height = image_size
     image = np.zeros((img_height, img_width), dtype=np.uint16)
@@ -70,17 +72,14 @@ def generate_trajectory_image(points: np.ndarray, image_size: Tuple[int, int]) -
     py = ((points[:, 1] - min_y) / (max_y - min_y)
           * (img_height - 1)).astype(np.uint16)
 
-    # use of prange for parallel loop
-    for i in prange(len(px)):
-        # populate image array, respect the row-column (y-x) indexing
-        image[py[i], px[i]] += 1
-
     extents = [min_x, max_x, min_y, max_y]
+    
+    populate_image(image, px, py)
 
     return image, extents
 
 
-def render_trajectory_image(img: np.ndarray, extents: List[float], params: Dict[str, Union[float, int]], color_map: str) -> None:
+def render_trajectory_image(img, extents, params, color_map):
     # Renders the trajectory of the Hopalong Attractor as an image
     fig = plt.figure(figsize=(8, 8))
     ax = fig.add_subplot(1, 1, 1, aspect='auto')
@@ -88,21 +87,22 @@ def render_trajectory_image(img: np.ndarray, extents: List[float], params: Dict[
     ax.imshow(img, origin="lower", cmap=color_map, extent=extents)
     ax.set_title(
         "Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
-
     plt.show()
 
 
-def main(image_size: Tuple[int, int] = (1000, 1000), color_map: str = 'hot') -> None:
-    # Generate Hopalong Attractor: Get user inputs, compute hopalong trajectory, generate and render trajectory image.
+def main(image_size=(1000, 1000), color_map='hot'):
+    """
+    Generate Hopalong Attractor: 
+    Get user inputs, compute hopalong trajectory, generate and render trajectory image.
+    """
+    try:
+        a, b, c, num, params = get_attractor_parameters()
+        points = compute_trajectory(a, b, c, num)
+        img, extents = generate_trajectory_image(points, image_size)
+        render_trajectory_image(img, extents, params, color_map)
+    except Exception as e:
+        print(f"An error occurred: {e}")
 
-    a, b, c, num, params = get_user_inputs()
-
-    points = compute_trajectory(a, b, c, num)
-
-    img, extents = generate_trajectory_image(points, image_size)
-
-    render_trajectory_image(img, extents, params, color_map)
-
-
+"""Main execution"""
 if __name__ == "__main__":
     main()

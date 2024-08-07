@@ -50,7 +50,7 @@ num (integer): The number of iterations (e.g., 1000000 or 1_000_000).
 
 try: a = -2; b = -0.33; c = 0.01; num = 200_000_000  
 
-## Latest code changes:
+## Latest code changes
 
 Using the math.copysign function [copysign(1.0, x)]  
 

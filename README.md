@@ -22,7 +22,7 @@ numba
 
 (math is a standard library)  
 
-Features  
+## Features  
 
 This program comes in two versions:
 
@@ -87,7 +87,7 @@ Increase in speed.
 The computing time with high number of iterations (num) now increases proportionally to the number of iterations, which corresponds to the expected behavior  
 
 ## Have fun  
-  
+
 ## Notes  
   
 If you select a very high value for 'num' ,the number of iterations, then the performance might decrease additionally due to memory swap use (RAM>>SSD). To compensate this float32 was selected as data type for the points-array. However, this is depending on your available System and RAM.

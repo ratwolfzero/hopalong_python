@@ -86,14 +86,10 @@ thus avoiding memory swapping RAM--SSD.
 Increase in speed.
 The computing time with high number of iterations (num) now increases proportionally to the number of iterations, which corresponds to the expected behavior  
 
-## Have fun
-
----------;
-
-## Notes
-
-------;
-
+## Have fun  
+  
+## Notes  
+  
 If you select a very high value for 'num' ,the number of iterations, then the performance might decrease additionally due to memory swap use (RAM>>SSD). To compensate this float32 was selected as data type for the points-array. However, this is depending on your available System and RAM.
 Anyway 200_000_000 iterations is still easy...
 
@@ -105,8 +101,6 @@ I had problems with MacOs 14.x and Python 3.12.x. The plot window and Python cra
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## References
-
------------;
 
 John Lansdown Rae A. Earnshaw Editors,
 Computers in Art, Design and Animation,

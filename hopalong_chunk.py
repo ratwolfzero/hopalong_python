@@ -79,7 +79,6 @@ def map_trajectory_chunk_to_image(image, points, extents):
     img_width, img_height = image.shape[1], image.shape[0]
     px = ((points[:, 0] - min_x) / (max_x - min_x) * (img_width - 1)).astype(np.uint64)
     py = ((points[:, 1] - min_y) / (max_y - min_y) * (img_height - 1)).astype(np.uint64)
-    #use of prange for parallel loop
     populate_image(image, points, px, py)
 
 
@@ -113,7 +112,7 @@ def render_full_trajectory_image(image, extents, params, color_map):
     plt.show()
 
 
-def main(image_size=(1000, 1000), color_map='hot', chunk_size=1500000):
+def main(image_size=(1000, 1000), color_map='hot', chunk_size=1750000):
     #Execute processes to generate and render the Hopalong Attractor
     try:
         a, b, c, num, params = get_attractor_parameters()

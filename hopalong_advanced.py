@@ -7,31 +7,30 @@ from numba import njit, prange
 from math import copysign, sqrt, fabs
 
 
-def get_user_inputs():
-    """Request and validate user input with specified constraints"""
-    def get_validated_input(prompt, input_type=float, check_non_zero=False, check_positive=False):
-        while True:
-            user_input = input(prompt)
-            try:
-                value = input_type(user_input)
-                if check_non_zero and value == 0:
-                    print("Invalid input. The value cannot be zero.")
-                    continue
-                if check_positive and value <= 0:
-                    print("Invalid input. The value must be a positive number.")
-                    continue
-                return value
-            except ValueError:
-                print(f"Invalid input. Please enter a valid {
-                      input_type.__name__} value.")
+def get_validated_input(prompt, input_type=float, check_non_zero=False, check_positive=False):
+    #Prompt for and return user input validated by type and positive/non-zero checks
+    while True:
+        user_input = input(prompt)
+        try:
+            value = input_type(user_input)
+            if check_non_zero and value == 0:
+                print("Invalid input. The value cannot be zero.")
+                continue
+            if check_positive and value <= 0:
+                print("Invalid input. The value must be a positive number.")
+                continue
+            return value
+        except ValueError:
+            print(f"Invalid input. Please enter a valid {input_type.__name__} value.")
 
+
+def get_attractor_parameters():
+    #Prompt user to input parameters for the Hopalong Attractor
     a = get_validated_input('Enter a float value for "a": ', float)
     b = get_validated_input('Enter a float value for "b": ', float)
     c = get_validated_input('Enter a float value for "c": ', float)
-    num = get_validated_input('Enter a positive integer value for "num": ',
-                              int, check_non_zero=True, check_positive=True)
+    num = get_validated_input('Enter a positive integer value for "num": ', int, check_non_zero=True, check_positive=True)
     params = {'a': a, 'b': b, 'c': c, 'num': num}
-
     return a, b, c, num, params
 
 
@@ -55,8 +54,15 @@ def compute_trajectory(a, b, c, num):
 
     return points
 
+@njit
+def populate_image(image, px, py):
+    """use of prange for parallel loop"""
+    for i in prange(len(px)):
+        """populate image array, respect the row-column (y-x) indexing"""
+        image[py[i], px[i]] += 1
 
-@njit(parallel=True)
+
+@njit
 def generate_trajectory_image(points, image_size):
     """Generates an image array with the mapped trajectory points"""
     img_width, img_height = image_size
@@ -71,10 +77,7 @@ def generate_trajectory_image(points, image_size):
     py = ((points[:, 1] - min_y) / (max_y - min_y)
           * (img_height - 1)).astype(np.uint16)
 
-    """use of prange for parallel loop"""
-    for i in prange(len(px)):
-        """populate image array, respect the row-column (y-x) indexing"""
-        image[py[i], px[i]] += 1
+    populate_image(image, px, py)
 
     extents = [min_x, max_x, min_y, max_y]
 
@@ -166,7 +169,7 @@ def main(image_size=(1000, 1000), color_map='hot'):
     """
     try:
 
-        a, b, c, num, params = get_user_inputs()
+        a, b, c, num, params = get_attractor_parameters()
         points = compute_trajectory(a, b, c, num)
         img, extents = generate_trajectory_image(points, image_size)
         hit_metrics = calculate_hit_metrics(img)

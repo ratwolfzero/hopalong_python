@@ -81,7 +81,7 @@ will end up in a kind of "singularity"
 ## Current development  
 
 Version with breaking computations into chunks to optimize memory management,
-thus avoiding memory swapping RAM--SSD.  
+thus avoiding memory swap RAM--SSD.  
 
 Increase in speed.
 The computing time with high number of iterations (num) now increases proportionally to the number of iterations, which corresponds to the expected behavior  
@@ -117,7 +117,7 @@ Spektrum der Wissenschaft: (German version of Scientific American), Computer Kur
 Computergraphik A. K. Dewdney
 
 ISBN 3-922508-50-2
-  
+
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 
 Maple help:

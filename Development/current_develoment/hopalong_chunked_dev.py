@@ -45,12 +45,9 @@ def compute_full_trajectory_extents(a, b, c, num):
     min_x = min_y = np.inf
     max_x = max_y = -np.inf
     for i in range(num):
-        min_x = min(min_x, x)
-        max_x = max(max_x, x)
-        min_y = min(min_y, y)
-        max_y = max(max_y, y)
-        xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
-        yy = a - x
+        min_x = min(min_x, x); max_x = max(max_x, x)
+        min_y = min(min_y, y); max_y = max(max_y, y)
+        xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x
         x, y = xx, yy
     return [min_x, max_x, min_y, max_y]
 

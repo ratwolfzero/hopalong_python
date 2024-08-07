@@ -57,7 +57,7 @@ def compute_trajectory(a, b, c, num):
     return points
 
 
-@njit(parallel=True)
+@njit#(parallel=True)
 def generate_trajectory_image(points, image_size):
     """Generates an image array with the mapped trajectory points"""
     img_width, img_height = image_size
@@ -73,7 +73,7 @@ def generate_trajectory_image(points, image_size):
           * (img_height - 1)).astype(np.uint16)
 
     """use of prange for parallel loop"""
-    for i in prange(len(px)):
+    for i in range(len(px)):
         """populate image array, respect the row-column (y-x) indexing"""
         image[py[i], px[i]] += 1
 

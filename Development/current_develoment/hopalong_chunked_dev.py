@@ -50,15 +50,7 @@ def compute_full_trajectory_extents(a, b, c, num):
         xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x
         x, y = xx, yy
     return [min_x, max_x, min_y, max_y]
-
-
-@njit
-def generate_chunk_sizes(num, chunk_size):
-    #Yield sizes of chunks to process in each iteration until covering the entire range
-    for i in range(0, num, chunk_size):
-        current_chunk_size = min(chunk_size, num - i)
-        yield current_chunk_size
-        
+       
 
 @njit
 def compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0):
@@ -74,7 +66,13 @@ def compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0):
     return points, x, y
 
 
-@njit(parallel=True)
+@njit
+def populate_image(image, points, px, py):
+    for i in range(len(points)): 
+        # populate image array, respect the row-column (y-x) indexing 
+        image[py[i], px[i]] += 1
+
+
 def map_trajectory_chunk_to_image(image, points, extents):
     #Map trajectory chunk points to image pixel locations and populate the image accordingly
     min_x, max_x, min_y, max_y = extents
@@ -82,12 +80,16 @@ def map_trajectory_chunk_to_image(image, points, extents):
     px = ((points[:, 0] - min_x) / (max_x - min_x) * (img_width - 1)).astype(np.uint64)
     py = ((points[:, 1] - min_y) / (max_y - min_y) * (img_height - 1)).astype(np.uint64)
     #use of prange for parallel loop
-    for i in prange(len(points)): 
-        # populate image array, respect the row-column (y-x) indexing 
-        image[py[i], px[i]] += 1
-            
+    populate_image(image, points, px, py)
 
-@njit(parallel=True)
+
+def generate_chunk_sizes(num, chunk_size):
+    #Yield sizes of chunks to process in each iteration until covering the entire range
+    for i in range(0, num, chunk_size):
+        current_chunk_size = min(chunk_size, num - i)
+        yield current_chunk_size
+
+
 def compute_full_trajectory_image(a, b, c, num, chunk_size, extents, image_size):
     #Calculate the full trajectory image from chunks
     img_width, img_height = image_size

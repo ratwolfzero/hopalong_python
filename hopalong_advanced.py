@@ -50,12 +50,6 @@ def compute_trajectory(a, b, c, num):
 
     return points
 
-@njit
-def populate_image(image, px, py):
-        for i in range(len(px)):
-        # populate image array, respect the row-column (y-x) indexing
-            image[py[i], px[i]] += 1
-
 
 @njit
 def generate_trajectory_image(points, image_size):
@@ -74,7 +68,8 @@ def generate_trajectory_image(points, image_size):
 
     extents = [min_x, max_x, min_y, max_y]
 
-    populate_image(image, px, py)
+    for x, y in zip(px, py):
+        image[y, x] += 1
 
     return image, extents
 

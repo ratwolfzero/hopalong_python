@@ -3,7 +3,7 @@ matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 
 import numpy as np
-from numba import njit
+from numba import njit, prange
 from math import copysign, sqrt, fabs
 
 
@@ -67,22 +67,18 @@ def compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0):
 
 
 @njit
-def populate_image(image, points, px, py):
-    for i in range(len(points)): 
-        # populate image array, respect the row-column (y-x) indexing 
-        image[py[i], px[i]] += 1
-
-
 def map_trajectory_chunk_to_image(image, points, extents):
     #Map trajectory chunk points to image pixel locations and populate the image accordingly
     min_x, max_x, min_y, max_y = extents
     img_width, img_height = image.shape[1], image.shape[0]
+    # map trajectory points to image pixel coordinates
     px = ((points[:, 0] - min_x) / (max_x - min_x) * (img_width - 1)).astype(np.uint64)
     py = ((points[:, 1] - min_y) / (max_y - min_y) * (img_height - 1)).astype(np.uint64)
 
-    populate_image(image, points, px, py)
+    for x, y in zip(px, py):
+        image[y, x] += 1
 
-
+    
 def generate_chunk_sizes(num, chunk_size): #generator function
     #Yield sizes of chunks to process in each iteration until covering the entire range
     for i in range(0, num, chunk_size):

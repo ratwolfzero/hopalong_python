@@ -69,7 +69,7 @@ def generate_trajectory_image(points, image_size):
     extents = [min_x, max_x, min_y, max_y]
     
     for x, y in zip(px, py):
-        image[y, x] += 1
+        image[y, x] += 1 # following the row/column convention
 
     return image, extents
 

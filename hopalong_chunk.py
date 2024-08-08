@@ -75,7 +75,7 @@ def map_trajectory_chunk_to_image(image, points, extents):
     px = ((points[:, 0] - min_x) / (max_x - min_x) * (img_width - 1)).astype(np.uint64)
     py = ((points[:, 1] - min_y) / (max_y - min_y) * (img_height - 1)).astype(np.uint64)
 
-    for x, y in zip(px, py):
+    for x, y in zip(px, py): # can be parallelized using prange but leads to certain race conditions
         image[y, x] += 1
 
     

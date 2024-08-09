@@ -85,7 +85,7 @@ def map_trajectory_chunk_to_image(image, points,scale_x,scale_y, min_x,  min_y, 
     
     return image
 
-    
+  
 def generate_chunk_sizes(num, chunk_size): #generator function"
     #Yield sizes of chunks to process in each iteration until covering the entire range
     for i in range(0, num, chunk_size):
@@ -104,14 +104,10 @@ def compute_full_trajectory_image(a, b, c, num, chunk_size, extents, image_size)
     scale_x = (img_width - 1) / (max_x - min_x)
     scale_y = (img_height - 1) / (max_y - min_y)
     
-
     for current_chunk_size in generate_chunk_sizes(num, chunk_size):
         points, x0, y0 = compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0)
-        npoints = len(points)
         # The map_trajectory_chunk_to_image function modifies the image array in place
-        map_trajectory_chunk_to_image(image, points,scale_x,scale_y, min_x,  min_y, npoints)
-
-        
+        map_trajectory_chunk_to_image(image, points,scale_x,scale_y, min_x,  min_y, npoints = len(points))
 
     # Return the modified image array, now populated with trajectory data
     return image

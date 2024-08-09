@@ -86,11 +86,11 @@ def map_trajectory_chunk_to_image(image, points, img_width, img_height, min_x, m
     
     # Calculate px and py in a single loop
     for i in range(points.shape[0]):
-        px[i] = (points[i, 0] - min_x) * scale_x
-        py[i] = (points[i, 1] - min_y) * scale_y
+        px[i] = ((points[i, 0] - min_x) * scale_x)
+        py[i] = ((points[i, 1] - min_y) * scale_y)
     
     for x, y in zip(px, py):
-        image[y, x] += 1
+       image[y, x] += 1
 
     return image
 

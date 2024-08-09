@@ -36,10 +36,7 @@ def get_attractor_parameters():
 
 @njit
 def compute_full_trajectory_extents(a, b, c, num):
-    """
-    Compute the x and y extents of the Hopalong attractor trajectory. 
-    Note: This function cannot be parallelized due to cross-iteration dependencies. 
-    """
+    # Compute the x and y extents of the Hopalong attractor trajectory. 
     x = y = np.float64(0)
     # Initialize minimums to positive infinity and maximums to negative infinity
     min_x = min_y = np.inf
@@ -120,6 +117,6 @@ def main(image_size=(1000, 1000), color_map='hot', chunk_size=1750000):
         print(f"An error occurred: {e}")
 
 
-"""Main execution"""
+# Main execution
 if __name__ == "__main__":
     main()

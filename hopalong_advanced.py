@@ -35,10 +35,7 @@ def get_attractor_parameters():
 
 @njit
 def compute_trajectory(a, b, c, num):
-    """
-    njit is an alias for nopython=True
-    Computes the trajectory points of the Hopalong Attractor
-    """
+    # Computes the trajectory points of the Hopalong Attractor
     points = np.zeros((num, 2), dtype=np.float32)
     x = y = np.float32(0)
 
@@ -167,6 +164,6 @@ def main(image_size=(1000, 1000), color_map='hot'):
         print(f"An error occurred: {e}")
 
 
-"""Main execution"""
+# Main execution
 if __name__ == "__main__":
     main()

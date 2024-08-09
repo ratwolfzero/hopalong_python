@@ -63,7 +63,7 @@ def compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0):
 
 
 @njit
-def map_trajectory_chunk_to_image(image, points,scale_x,scale_y, min_x,  min_y):
+def map_trajectory_chunk_to_image(image, points, scale_x, scale_y, min_x, min_y):
     #Map trajectory chunk points to image pixel locations and populate the image accordingly
     """
     When using the @njit decorator, applying "traditional loops" seems to be faster 
@@ -93,13 +93,15 @@ def generate_chunk_sizes(num, chunk_size): #generator function"
 def compute_full_trajectory_image(a, b, c, num, chunk_size, extents, image_size):
     #Calculate the full trajectory image from chunks
     min_x, max_x, min_y, max_y = extents
+
     img_width, img_height = image_size
     image = np.zeros((img_height, img_width), dtype=np.uint64)
-    x0 = y0 = np.float64(0)
 
     # Precompute scaling factors
     scale_x = (img_width - 1) / (max_x - min_x)
     scale_y = (img_height - 1) / (max_y - min_y)
+
+    x0 = y0 = np.float64(0)
     
     for current_chunk_size in generate_chunk_sizes(num, chunk_size):
         points, x0, y0 = compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0)
@@ -117,6 +119,7 @@ def render_full_trajectory_image(image, extents, params, color_map):
     #origin="lower" align according cartesian coordinates
     ax.imshow(image, origin="lower", cmap=color_map, extent=extents)
     ax.set_title("Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
+
     plt.show()
 
 

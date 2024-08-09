@@ -62,17 +62,6 @@ def compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0):
         x, y = xx, yy
     return points, x, y
 
-"""
-@njit
-def map_trajectory_chunk_to_image(image, points, img_width, img_height, min_x, max_x, min_y, max_y):
-    #Map trajectory chunk points to image pixel locations and populate the image accordingly
-    px = ((points[:, 0] - min_x) / (max_x - min_x) * (img_width - 1)).astype(np.uint64)
-    py = ((points[:, 1] - min_y) / (max_y - min_y) * (img_height - 1)).astype(np.uint64)
-    
-    for x, y in zip(px, py): # can be parallelized using prange but leads to certain race conditions
-        image[y, x] += 1 # respecting row/column convention
-"""
-
 
 @njit
 def map_trajectory_chunk_to_image(image, points, img_width, img_height, min_x, max_x, min_y, max_y):
@@ -138,10 +127,12 @@ def render_full_trajectory_image(image, extents, params, color_map):
 def main(image_size=(1000, 1000), color_map='hot', chunk_size=1750000):
     #Execute processes to generate and render the Hopalong Attractor
     try:
+        
         a, b, c, num, params = get_attractor_parameters()
         extents = compute_full_trajectory_extents(a, b, c, num)
         image = compute_full_trajectory_image(a, b, c, num, chunk_size, extents, image_size)
         render_full_trajectory_image(image, extents, params, color_map)
+
     except Exception as e:
         print(f"An error occurred: {e}")
 

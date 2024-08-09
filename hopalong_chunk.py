@@ -62,7 +62,7 @@ def compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0):
         x, y = xx, yy
     return points, x, y
 
-
+"""
 @njit
 def map_trajectory_chunk_to_image(image, points, img_width, img_height, min_x, max_x, min_y, max_y):
     #Map trajectory chunk points to image pixel locations and populate the image accordingly
@@ -71,6 +71,28 @@ def map_trajectory_chunk_to_image(image, points, img_width, img_height, min_x, m
     
     for x, y in zip(px, py): # can be parallelized using prange but leads to certain race conditions
         image[y, x] += 1 # respecting row/column convention
+"""
+
+
+@njit
+def map_trajectory_chunk_to_image(image, points, img_width, img_height, min_x, max_x, min_y, max_y):
+    # Precompute scaling factors
+    scale_x = (img_width - 1) / (max_x - min_x)
+    scale_y = (img_height - 1) / (max_y - min_y)
+    
+    # Initialize px and py arrays
+    px = np.empty(points.shape[0], dtype=np.uint64)
+    py = np.empty(points.shape[0], dtype=np.uint64)
+    
+    # Calculate px and py in a single loop
+    for i in range(points.shape[0]):
+        px[i] = (points[i, 0] - min_x) * scale_x
+        py[i] = (points[i, 1] - min_y) * scale_y
+    
+    for x, y in zip(px, py):
+        image[y, x] += 1
+
+    return image
 
     
 def generate_chunk_sizes(num, chunk_size): #generator function

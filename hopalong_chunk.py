@@ -47,7 +47,14 @@ def compute_full_trajectory_extents(a, b, c, num):
         xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x
         x, y = xx, yy
     return [min_x, max_x, min_y, max_y]
-       
+
+     
+def generate_chunk_sizes(num, chunk_size): #generator function"
+    #Yield sizes of chunks to process in each iteration until covering the entire range
+    for i in range(0, num, chunk_size):
+        current_chunk_size = min(chunk_size, num - i)
+        yield current_chunk_size # yield has to be part of the for loop
+
 
 @njit
 def compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0):
@@ -83,13 +90,6 @@ def map_trajectory_chunk_to_image(image, points, scale_x, scale_y, min_x, min_y)
         image[py[i], px[i]] += 1
 
   
-def generate_chunk_sizes(num, chunk_size): #generator function"
-    #Yield sizes of chunks to process in each iteration until covering the entire range
-    for i in range(0, num, chunk_size):
-        current_chunk_size = min(chunk_size, num - i)
-        yield current_chunk_size # yield has to be part of the for loop
-
-
 def compute_full_trajectory_image(a, b, c, num, chunk_size, extents, image_size):
     #Calculate the full trajectory image from chunks
     min_x, max_x, min_y, max_y = extents

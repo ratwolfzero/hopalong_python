@@ -3,7 +3,7 @@ matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 
 import numpy as np
-from numba import njit, prange
+from numba import njit
 from math import copysign, sqrt, fabs
 
 
@@ -56,23 +56,22 @@ def compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0):
     x, y = x0, y0
     for i in range(current_chunk_size):
         points[i] = x, y
-        xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
+        xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x
         #signum function respecting the behavior of floating point numbers according to IEEE 754 (signed zero)
-        yy = a - x
         x, y = xx, yy
     return points, x, y
 
 
 @njit
-def map_trajectory_chunk_to_image(image, points,scale_x,scale_y, min_x,  min_y, npoints):
+def map_trajectory_chunk_to_image(image, points,scale_x,scale_y, min_x,  min_y):
     #Map trajectory chunk points to image pixel locations and populate the image accordingly
     """
     When using the @njit decorator, applying "traditional loops" seems to be faster 
     than additionally using numpy vectorization and Python parallel iteration zip
     """
     # Initialize px and py arrays
-    px = np.empty(points.shape[0], dtype=np.uint64)
-    py = np.empty(points.shape[0], dtype=np.uint64)
+    px = np.zeros(points.shape[0], dtype=np.uint64)
+    py = np.zeros(points.shape[0], dtype=np.uint64)
     
     # Calculate px and py in a single loop
     for i in range(points.shape[0]):
@@ -80,7 +79,7 @@ def map_trajectory_chunk_to_image(image, points,scale_x,scale_y, min_x,  min_y, 
         py[i] = ((points[i, 1] - min_y) * scale_y)
         
     # populate image respecting row/column convention
-    for i in range(npoints):
+    for i in range(points.shape[0]):
         image[py[i], px[i]] += 1
     
     return image
@@ -107,7 +106,7 @@ def compute_full_trajectory_image(a, b, c, num, chunk_size, extents, image_size)
     for current_chunk_size in generate_chunk_sizes(num, chunk_size):
         points, x0, y0 = compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0)
         # The map_trajectory_chunk_to_image function modifies the image array in place
-        map_trajectory_chunk_to_image(image, points,scale_x,scale_y, min_x,  min_y, npoints = len(points))
+        map_trajectory_chunk_to_image(image, points,scale_x,scale_y, min_x,  min_y)
 
     # Return the modified image array, now populated with trajectory data
     return image

@@ -81,8 +81,6 @@ def map_trajectory_chunk_to_image(image, points,scale_x,scale_y, min_x,  min_y):
     # populate image respecting row/column convention
     for i in range(points.shape[0]):
         image[py[i], px[i]] += 1
-    
-    return image
 
   
 def generate_chunk_sizes(num, chunk_size): #generator function"

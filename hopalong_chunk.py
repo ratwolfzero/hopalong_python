@@ -64,14 +64,11 @@ def compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0):
 
 
 @njit
-def map_trajectory_chunk_to_image(image, points, extents):
+def map_trajectory_chunk_to_image(image, points, img_width, img_height, min_x, max_x, min_y, max_y):
     #Map trajectory chunk points to image pixel locations and populate the image accordingly
-    min_x, max_x, min_y, max_y = extents
-    img_width, img_height = image.shape[1], image.shape[0]
-    # map trajectory points to image pixel coordinates
     px = ((points[:, 0] - min_x) / (max_x - min_x) * (img_width - 1)).astype(np.uint64)
     py = ((points[:, 1] - min_y) / (max_y - min_y) * (img_height - 1)).astype(np.uint64)
-
+    
     for x, y in zip(px, py): # can be parallelized using prange but leads to certain race conditions
         image[y, x] += 1 # respecting row/column convention
 
@@ -85,13 +82,16 @@ def generate_chunk_sizes(num, chunk_size): #generator function
 
 def compute_full_trajectory_image(a, b, c, num, chunk_size, extents, image_size):
     #Calculate the full trajectory image from chunks
+    min_x, max_x, min_y, max_y = extents
     img_width, img_height = image_size
     image = np.zeros((img_height, img_width), dtype=np.uint64)
     x0 = y0 = np.float64(0)
+
     for current_chunk_size in generate_chunk_sizes(num, chunk_size):
         points, x0, y0 = compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0)
         # The map_trajectory_chunk_to_image function modifies the image array in place
-        map_trajectory_chunk_to_image(image, points, extents)
+        map_trajectory_chunk_to_image(image, points,img_width, img_height, min_x, max_x, min_y, max_y)
+
     # Return the modified image array, now populated with trajectory data
     return image
 

@@ -64,17 +64,12 @@ def compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0):
 
 
 @njit
-def map_trajectory_chunk_to_image(image, points, img_width, img_height, min_x, max_x, min_y, max_y):
+def map_trajectory_chunk_to_image(image, points,scale_x,scale_y, min_x,  min_y, npoints):
     #Map trajectory chunk points to image pixel locations and populate the image accordingly
     """
     When using the @njit decorator, applying "traditional loops" seems to be faster 
     than additionally using numpy vectorization and Python parallel iteration zip
     """
-    # Precompute scaling factors
-    scale_x = (img_width - 1) / (max_x - min_x)
-    scale_y = (img_height - 1) / (max_y - min_y)
-    npoints = len(points)
-    
     # Initialize px and py arrays
     px = np.empty(points.shape[0], dtype=np.uint64)
     py = np.empty(points.shape[0], dtype=np.uint64)
@@ -105,10 +100,18 @@ def compute_full_trajectory_image(a, b, c, num, chunk_size, extents, image_size)
     image = np.zeros((img_height, img_width), dtype=np.uint64)
     x0 = y0 = np.float64(0)
 
+    # Precompute scaling factors
+    scale_x = (img_width - 1) / (max_x - min_x)
+    scale_y = (img_height - 1) / (max_y - min_y)
+    
+
     for current_chunk_size in generate_chunk_sizes(num, chunk_size):
         points, x0, y0 = compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0)
+        npoints = len(points)
         # The map_trajectory_chunk_to_image function modifies the image array in place
-        map_trajectory_chunk_to_image(image, points,img_width, img_height, min_x, max_x, min_y, max_y)
+        map_trajectory_chunk_to_image(image, points,scale_x,scale_y, min_x,  min_y, npoints)
+
+        
 
     # Return the modified image array, now populated with trajectory data
     return image

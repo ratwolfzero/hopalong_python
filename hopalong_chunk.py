@@ -65,6 +65,7 @@ def compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0):
     x, y = x0, y0
     for i in range(current_chunk_size):
         points[i] = x, y
+        # signum function respecting the behavior of floating point numbers according to IEEE 754 (signed zero)
         xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x
         x, y = xx, yy
     return points, x, y
@@ -72,10 +73,11 @@ def compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0):
 
 @njit
 def map_trajectory_chunk_to_image(image, points, scale_x, scale_y, min_x, min_y):
+    # map trajectory chunk points to image pixel locations
     n_points = points.shape[0]
     for i in range(n_points):
         px, py = np.uint64((points[i, 0] - min_x) * scale_x), np.uint64((points[i, 1] - min_y) * scale_y)
-        image[py, px] += 1
+        image[py, px] += 1 # respecting row/column convention
 
 
 def compute_full_trajectory_image(a, b, c, num, chunk_size, extents, image_size):
@@ -88,7 +90,8 @@ def compute_full_trajectory_image(a, b, c, num, chunk_size, extents, image_size)
     x0 = y0 = np.float64(0)
 
     for current_chunk_size in generate_chunk_sizes(num, chunk_size):
-        points, x0, y0 = compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0)
+        # x0 and y0 track the current trajectory state and are updated after each chunk to maintain continuity.
+        points, x0 ,y0  = compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0)
         map_trajectory_chunk_to_image(image, points, scale_x, scale_y, min_x, min_y)
 
     return image
@@ -98,6 +101,7 @@ def render_full_trajectory_image(image, extents, params, color_map):
     # Render the full trajectory image
     fig = plt.figure(figsize=(8, 8))
     ax = fig.add_subplot(1, 1, 1, aspect='auto')
+    # origin="lower" align according cartesian coordinates
     ax.imshow(image, origin="lower", cmap=color_map, extent=extents)
     ax.set_title("Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
 

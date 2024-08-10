@@ -75,12 +75,13 @@ def compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0):
 def map_trajectory_chunk_to_image(image, points, scale_x, scale_y, min_x, min_y):
     # map trajectory chunk points to image pixel locations
     n_points = points.shape[0]
-    """Avoiding Numpy vectorization, parallelization with Python zip and Numba prange
-       is obviously the fastest solution with @njit decorator and avoids race conditions caused by prange"""
     for i in range(n_points):
         px, py = np.uint64((points[i, 0] - min_x) * scale_x), np.uint64((points[i, 1] - min_y) * scale_y)
         image[py, px] += 1 # respecting row/column convention
-
+"""
+Avoiding Numpy vectorization, parallelization with Python zip and Numba prange
+is obviously the fastest solution with @njit decorator and avoids race conditions caused by prange
+"""
 
 def compute_full_trajectory_image(a, b, c, num, chunk_size, extents, image_size):
     # Calculate the full trajectory image from chunks

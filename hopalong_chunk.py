@@ -39,7 +39,7 @@ def get_attractor_parameters():
 
 @njit
 def compute_full_trajectory_extents(a, b, c, num):
-    # Compute the x and y extents of the Hopalong attractor trajectory.
+    # Compute the x and y extents of the Hopalong attractor trajectory. Cross iteration dependency cannot be parallelized
     x = y = np.float64(0)
     min_x = min_y = np.inf
     max_x = max_y = -np.inf
@@ -60,7 +60,7 @@ def generate_chunk_sizes(num, chunk_size):
 
 @njit
 def compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0):
-    # Compute a chunk of the Hopalong trajectory
+    # Compute a chunk of the Hopalong trajectory. Cross iteration dependency cannot be parallelized
     points = np.zeros((current_chunk_size, 2), dtype=np.float64)
     x, y = x0, y0
     for i in range(current_chunk_size):
@@ -75,6 +75,8 @@ def compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0):
 def map_trajectory_chunk_to_image(image, points, scale_x, scale_y, min_x, min_y):
     # map trajectory chunk points to image pixel locations
     n_points = points.shape[0]
+    """Avoiding Numpy vectorization, parallelization with Python zip and Numba prange
+       is obviously the fastest solution with @njit decorator and avoids race conditions caused by prange"""
     for i in range(n_points):
         px, py = np.uint64((points[i, 0] - min_x) * scale_x), np.uint64((points[i, 1] - min_y) * scale_y)
         image[py, px] += 1 # respecting row/column convention

@@ -41,12 +41,12 @@ def compute_full_trajectory_extents(a, b, c, num):
     x = y = np.float64(0)
     min_x = min_y = np.inf
     max_x = max_y = -np.inf
-    for i in range(num):
+    for _ in range(num):
         min_x = min(min_x, x); max_x = max(max_x, x)
         min_y = min(min_y, y); max_y = max(max_y, y)
         xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x
         x, y = xx, yy
-    return [min_x, max_x, min_y, max_y]
+    return min_x, max_x, min_y, max_y
 
 
 def generate_chunk_sizes(num, chunk_size):
@@ -82,7 +82,6 @@ def compute_full_trajectory_image(a, b, c, num, chunk_size, extents, image_size)
     image = np.zeros(image_size, dtype=np.uint64)
 
     min_x, max_x, min_y, max_y = extents
-
     scale_x = (image_size[0] - 1) / (max_x - min_x)
     scale_y = (image_size[1] - 1) / (max_y - min_y)
 

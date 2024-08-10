@@ -52,7 +52,7 @@ def compute_full_trajectory_extents(a, b, c, num):
 
 
 def generate_chunk_sizes(num, chunk_size):
-    # Yield sizes of chunks to process in each iteration until covering the entire range
+    # generator function yield sizes of chunks to process in each iteration until covering the entire range
     for i in range(0, num, chunk_size):
         current_chunk_size = min(chunk_size, num - i)
         yield current_chunk_size

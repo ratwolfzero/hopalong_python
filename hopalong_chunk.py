@@ -8,7 +8,7 @@ from math import copysign, sqrt, fabs
 
 
 def get_validated_input(prompt, input_type=float, check_non_zero=False, check_positive=False):
-    #Prompt for and return user input validated by type and positive/non-zero checks
+    # Prompt for and return user input validated by type and positive/non-zero checks
     while True:
         user_input = input(prompt)
         try:
@@ -25,20 +25,20 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False, check_po
 
 
 def get_attractor_parameters():
-    #Prompt user to input parameters for the Hopalong Attractor
-    a = get_validated_input('Enter a float value for "a": ', float)
-    b = get_validated_input('Enter a float value for "b": ', float)
-    c = get_validated_input('Enter a float value for "c": ', float)
-    num = get_validated_input('Enter a positive integer value for "num": ', int, check_non_zero=True, check_positive=True)
-    params = {'a': a, 'b': b, 'c': c, 'num': num}
-    return a, b, c, num, params
+    # Prompt user to input parameters for the Hopalong Attractor
+    params = {
+        'a': get_validated_input('Enter a float value for "a": ', float),
+        'b': get_validated_input('Enter a float value for "b": ', float),
+        'c': get_validated_input('Enter a float value for "c": ', float),
+        'num': get_validated_input('Enter a positive integer value for "num": ', int, check_non_zero=True, check_positive=True)
+    }
+    return params
 
 
 @njit
 def compute_full_trajectory_extents(a, b, c, num):
-    # Compute the x and y extents of the Hopalong attractor trajectory. 
+    # Compute the x and y extents of the Hopalong attractor trajectory.
     x = y = np.float64(0)
-    # Initialize minimums to positive infinity and maximums to negative infinity
     min_x = min_y = np.inf
     max_x = max_y = -np.inf
     for i in range(num):
@@ -48,75 +48,57 @@ def compute_full_trajectory_extents(a, b, c, num):
         x, y = xx, yy
     return [min_x, max_x, min_y, max_y]
 
-     
-def generate_chunk_sizes(num, chunk_size): #generator function"
-    #Yield sizes of chunks to process in each iteration until covering the entire range
+
+def generate_chunk_sizes(num, chunk_size):
+    # Yield sizes of chunks to process in each iteration until covering the entire range
     for i in range(0, num, chunk_size):
         current_chunk_size = min(chunk_size, num - i)
-        yield current_chunk_size # yield has to be part of the for loop
+        yield current_chunk_size
 
 
 @njit
 def compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0):
-    #Compute a chunk of the Hopalong trajectory
+    # Compute a chunk of the Hopalong trajectory
     points = np.zeros((current_chunk_size, 2), dtype=np.float64)
     x, y = x0, y0
     for i in range(current_chunk_size):
         points[i] = x, y
         xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x
-        #signum function respecting the behavior of floating point numbers according to IEEE 754 (signed zero)
         x, y = xx, yy
     return points, x, y
 
 
 @njit
 def map_trajectory_chunk_to_image(image, points, scale_x, scale_y, min_x, min_y):
-    #Map trajectory chunk points to image pixel locations and populate the image accordingly
-    """
-    When using the @njit decorator, applying "traditional loops" seems to be faster 
-    than additionally using numpy vectorization and Python parallel iteration zip
-    """
-    # Initialize px and py arrays
-    px = np.zeros(points.shape[0], dtype=np.uint64)
-    py = np.zeros(points.shape[0], dtype=np.uint64)
-    
-    # Calculate px and py in a single loop
-    for i in range(points.shape[0]):
-        px[i] = ((points[i, 0] - min_x) * scale_x)
-        py[i] = ((points[i, 1] - min_y) * scale_y)
-        
-    # populate image respecting row/column convention
-    for i in range(points.shape[0]):
-        image[py[i], px[i]] += 1
+    n_points = points.shape[0]
+    for i in range(n_points):
+        px = np.uint64((points[i, 0] - min_x) * scale_x)
+        py = np.uint64((points[i, 1] - min_y) * scale_y)
+        image[py, px] += 1
 
-  
+
 def compute_full_trajectory_image(a, b, c, num, chunk_size, extents, image_size):
-    #Calculate the full trajectory image from chunks
+    # Calculate the full trajectory image from chunks
+    image = np.zeros(image_size, dtype=np.uint64)
+
     min_x, max_x, min_y, max_y = extents
 
-    img_width, img_height = image_size
-    image = np.zeros((img_height, img_width), dtype=np.uint64)
-
-    # Precompute scaling factors
-    scale_x = (img_width - 1) / (max_x - min_x)
-    scale_y = (img_height - 1) / (max_y - min_y)
+    scale_x = (image_size[0] - 1) / (max_x - min_x)
+    scale_y = (image_size[1] - 1) / (max_y - min_y)
 
     x0 = y0 = np.float64(0)
-    
+
     for current_chunk_size in generate_chunk_sizes(num, chunk_size):
         points, x0, y0 = compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0)
-        # The map_trajectory_chunk_to_image function modifies the image array in place
         map_trajectory_chunk_to_image(image, points, scale_x, scale_y, min_x, min_y)
 
-    # Return the modified image array, now populated with trajectory data
     return image
 
 
 def render_full_trajectory_image(image, extents, params, color_map):
-    #Render the full trajectory image
+    # Render the full trajectory image
     fig = plt.figure(figsize=(8, 8))
     ax = fig.add_subplot(1, 1, 1, aspect='auto')
-    #origin="lower" align according cartesian coordinates
     ax.imshow(image, origin="lower", cmap=color_map, extent=extents)
     ax.set_title("Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
 
@@ -124,14 +106,12 @@ def render_full_trajectory_image(image, extents, params, color_map):
 
 
 def main(image_size=(1000, 1000), color_map='hot', chunk_size=1750000):
-    #Execute processes to generate and render the Hopalong Attractor
+    # Execute processes to generate and render the Hopalong Attractor
     try:
-        
-        a, b, c, num, params = get_attractor_parameters()
-        extents = compute_full_trajectory_extents(a, b, c, num)
-        image = compute_full_trajectory_image(a, b, c, num, chunk_size, extents, image_size)
+        params = get_attractor_parameters()
+        extents = compute_full_trajectory_extents(params['a'], params['b'], params['c'], params['num'])
+        image = compute_full_trajectory_image(params['a'], params['b'], params['c'], params['num'], chunk_size, extents, image_size)
         render_full_trajectory_image(image, extents, params, color_map)
-
     except Exception as e:
         print(f"An error occurred: {e}")
 
@@ -139,3 +119,4 @@ def main(image_size=(1000, 1000), color_map='hot', chunk_size=1750000):
 # Main execution
 if __name__ == "__main__":
     main()
+

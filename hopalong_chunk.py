@@ -72,8 +72,7 @@ def compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0):
 def map_trajectory_chunk_to_image(image, points, scale_x, scale_y, min_x, min_y):
     n_points = points.shape[0]
     for i in range(n_points):
-        px = np.uint64((points[i, 0] - min_x) * scale_x)
-        py = np.uint64((points[i, 1] - min_y) * scale_y)
+        px, py = np.uint64((points[i, 0] - min_x) * scale_x), np.uint64((points[i, 1] - min_y) * scale_y)
         image[py, px] += 1
 
 
@@ -82,8 +81,7 @@ def compute_full_trajectory_image(a, b, c, num, chunk_size, extents, image_size)
     image = np.zeros(image_size, dtype=np.uint64)
 
     min_x, max_x, min_y, max_y = extents
-    scale_x = (image_size[0] - 1) / (max_x - min_x)
-    scale_y = (image_size[1] - 1) / (max_y - min_y)
+    scale_x, scale_y = (image_size[0] - 1) / (max_x - min_x), (image_size[1] - 1) / (max_y - min_y)
 
     x0 = y0 = np.float64(0)
 

@@ -116,7 +116,7 @@ def main(image_size=(1000, 1000), color_map='hot', chunk_size=1750000):
         extents = compute_full_trajectory_extents(params['a'], params['b'], params['c'], params['num'])
         image = compute_full_trajectory_image(params['a'], params['b'], params['c'], params['num'], chunk_size, extents, image_size)
         end_time = time.time()
-        print(f"Execution time: {end_time - start_time} seconds")
+        print(f"Execution time: {end_time - start_time} seconds") # excecution time after user input w/o rendering of image
         render_full_trajectory_image(image, extents, params, color_map)
         
     except Exception as e:

@@ -6,6 +6,8 @@ import numpy as np
 from numba import njit
 from math import copysign, sqrt, fabs
 
+import time 
+
 
 def get_validated_input(prompt, input_type=float, check_non_zero=False, check_positive=False):
     # Prompt for and return user input validated by type and positive/non-zero checks
@@ -106,9 +108,13 @@ def main(image_size=(1000, 1000), color_map='hot', chunk_size=1750000):
     # Execute processes to generate and render the Hopalong Attractor
     try:
         params = get_attractor_parameters()
+        start_time = time.time() 
         extents = compute_full_trajectory_extents(params['a'], params['b'], params['c'], params['num'])
         image = compute_full_trajectory_image(params['a'], params['b'], params['c'], params['num'], chunk_size, extents, image_size)
+        end_time = time.time()
+        print(f"Execution time: {end_time - start_time} seconds")
         render_full_trajectory_image(image, extents, params, color_map)
+        
     except Exception as e:
         print(f"An error occurred: {e}")
 

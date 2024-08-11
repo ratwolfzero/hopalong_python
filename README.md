@@ -24,17 +24,22 @@ To run this program, you need to have the following Python libraries installed:
 
 ## Features  
 
-This program comes in two versions:
+This program comes in three versions:
 
-Basic hopalong Version: Calculates and displays the Hopalong attractor.  
+Basic hopalong 
+Version: Calculates and displays the Hopalong attractor.  
 
-Advanced Version: The advanced version additionally tracks the pixel hit count (density) to control the rendering via the colormap and
-generates detailed statistics regarding pixel hit counts and their distribution.  
+Advanced Version: 
+The advanced version additionally tracks the pixel hit count (density) to control the rendering via the colormap andgenerates detailed statistics regarding pixel hit counts and their distribution.  
 
-Performance optimization by using the Numba @njit (nopython=true) decorator for trajectory calculation and trajectory image generation,
-this is really a revelation in terms of speed!  
+Chunked version:
+Version with breaking computations into chunks to optimize memory management, thus avoiding memory swap RAM--SSD.
+Increase in speed. The computing time with high number of iterations (num) now increases proportionally to the number of iterations, which corresponds to the expected behavior
 
-Using similar algorithms my Rust version is still at least twice as fast and the memory management is a dream...but still not bad for Python...  
+Performance optimization by using the Numba @njit (nopython=true) decorator for trajectory calculation, trajectory image population etc.
+
+Avoiding Numpy vectorization, parallelization with Python zip and Numba prange
+is obviously the fastest solution with @njit decorator and avoids race conditions caused by prange
 
 ## User Input  
 
@@ -77,14 +82,6 @@ a = 1, b = 0, c = 1 or
 a = 1, b = 1, c = 0,  
 
 will end up in a kind of "singularity"  
-
-## Current development  
-
-Version with breaking computations into chunks to optimize memory management,
-thus avoiding memory swap RAM--SSD.  
-
-Increase in speed.
-The computing time with high number of iterations (num) now increases proportionally to the number of iterations, which corresponds to the expected behavior  
 
 ## Have fun  
 

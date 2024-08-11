@@ -1,1 +1,4 @@
 .DS_Store
+_pycache_
+.nbc
+.nbi

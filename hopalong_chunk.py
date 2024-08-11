@@ -37,7 +37,7 @@ def get_attractor_parameters():
     return params
 
 
-@njit
+@njit(cache=True)
 def compute_full_trajectory_extents(a, b, c, num):
     # Compute the x and y extents of the Hopalong attractor trajectory. Cross iteration dependency cannot be parallelized
     x = y = np.float64(0)
@@ -49,8 +49,7 @@ def compute_full_trajectory_extents(a, b, c, num):
         xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x
         x, y = xx, yy
     return min_x, max_x, min_y, max_y
-# Dummy execution to trigger JIT compilation
-_ =compute_full_trajectory_extents(0.1, 0.1, 0.1, 1)
+
 
 
 def generate_chunk_sizes(num, chunk_size):
@@ -60,7 +59,7 @@ def generate_chunk_sizes(num, chunk_size):
         yield current_chunk_size
 
 
-@njit
+@njit(cache=True)
 def compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0):
     # Compute a chunk of the Hopalong trajectory. Cross iteration dependency cannot be parallelized
     points = np.zeros((current_chunk_size, 2), dtype=np.float64)
@@ -71,11 +70,9 @@ def compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0):
         xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x
         x, y = xx, yy
     return points, x, y
-# Dummy execution to trigger JIT compilation
-_ = compute_trajectory_chunk(0.1, 0.1, 0.1, 1, 0.0, 0.0)
 
 
-@njit
+@njit(cache=True)
 def map_trajectory_chunk_to_image(image, points, scale_x, scale_y, min_x, min_y):
     # map trajectory chunk points to image pixel locations
     n_points = points.shape[0]
@@ -86,8 +83,6 @@ def map_trajectory_chunk_to_image(image, points, scale_x, scale_y, min_x, min_y)
 Avoiding Numpy vectorization, parallelization with Python zip and Numba prange
 is obviously the fastest solution with @njit decorator and avoids race conditions caused by prange
 """
-# Dummy execution to trigger JIT compilation
-_ =map_trajectory_chunk_to_image(np.zeros((1, 1), dtype=np.uint64), np.array([[0.0, 0.0]], dtype=np.float64), 1.0, 1.0, 0.0, 0.0)
 
 
 def compute_full_trajectory_image(a, b, c, num, chunk_size, extents, image_size):

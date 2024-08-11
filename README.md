@@ -85,12 +85,14 @@ will end up in a kind of "singularity"
 
 ## Have fun  
 
-## Notes  
+## Notes regarding basic and advanced version
   
 If you select a very high value for 'num' ,the number of iterations, then the performance might decrease additionally due to memory swap use (RAM>>SSD). To compensate this float32 was selected as data type for the points-array. However, this is depending on your available System and RAM.
-Anyway 200_000_000 iterations is still easy...
 
-I had problems with MacOs 14.x and Python 3.12.x. The plot window and Python crashed while interacting with the plot window. Using the specific backend TkAgg works perfectly for me. Shouldn't be necessary for other operating systems.
+Anyway 200_000_000 iterations is still easy...
+On the other hand the "chunked version" is suitable for any number of iterations, so better use "hopalong_chunk-py"
+
+On my system with MacOs 14.x and Python 3.12.x the plot window and Python crashed while interacting with the plot window. Using the specific backend TkAgg  (or Qt5Agg) solved this issue. Shouldn't be necessary for other operating systems.
 
 "# import matplotlib"
 "# matplotlib.use('TkAgg')"

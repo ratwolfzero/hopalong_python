@@ -34,7 +34,7 @@ The advanced version additionally tracks the pixel hit count (density) to contro
 
 Chunked version:
 Version with breaking computations into chunks to optimize memory management, thus avoiding memory swap RAM--SSD.
-Increase in speed. The computing time with high number of iterations (num) now increases proportionally to the number of iterations, which corresponds to the expected behavior
+Increase in speed. The computing time with very high number of iterations (num) now increases proportionally to the number of iterations, which corresponds to the expected behavior. However this version works also fine with less iterations.
 
 Performance optimization by using the Numba @njit (nopython=true) decorator for trajectory calculation, trajectory image population etc.
 

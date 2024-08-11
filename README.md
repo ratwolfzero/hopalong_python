@@ -26,20 +26,20 @@ To run this program, you need to have the following Python libraries installed:
 
 This program comes in three versions:
 
-Basic hopalong 
+Basic hopalong
 Version: Calculates and displays the Hopalong attractor.  
 
-Advanced Version: 
+Advanced Version:
 The advanced version additionally tracks the pixel hit count (density) to control the rendering via the colormap andgenerates detailed statistics regarding pixel hit counts and their distribution.  
 
 Chunked version:
-Version with breaking computations into chunks to optimize memory management, thus avoiding memory swap RAM--SSD.
-Increase in speed. The computing time with very high number of iterations (num) now increases proportionally to the number of iterations, which corresponds to the expected behavior. However this version works also fine with less iterations.
+Version with calculations divided into chunks to optimize memory management, thus avoiding memory swapping between RAM and SSD.
+Speed ​​increase. The calculation time with very high iteration number (num) now increases proportionally to the iteration number, which is the expected behavior. However, this version also works perfectly with few iterations.
 
 Performance optimization by using the Numba @njit (nopython=true) decorator for trajectory calculation, trajectory image population etc.
 
-Avoiding Numpy vectorization, parallelization with Python zip and Numba prange
-is obviously the fastest solution with @njit decorator and avoids race conditions caused by prange
+Avoiding Numpy vectorization, parallelization with Numba / Numna prange, parallel iteration with Python zip
+is obviously the fastest solution using the @njit decorator and avoids race conditions caused by prange
 
 ## User Input  
 

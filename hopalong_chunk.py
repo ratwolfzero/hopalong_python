@@ -51,7 +51,6 @@ def compute_full_trajectory_extents(a, b, c, num):
     return min_x, max_x, min_y, max_y
 
 
-
 def generate_chunk_sizes(num, chunk_size):
     # generator function yield sizes of chunks to process in each iteration until covering the entire range
     for i in range(0, num, chunk_size):
@@ -80,8 +79,8 @@ def map_trajectory_chunk_to_image(image, points, scale_x, scale_y, min_x, min_y)
         px, py = np.uint64((points[i, 0] - min_x) * scale_x), np.uint64((points[i, 1] - min_y) * scale_y)
         image[py, px] += 1 # respecting row/column convention
 """
-Avoiding Numpy vectorization, parallelization with Python zip and Numba prange
-is obviously the fastest solution with @njit decorator and avoids race conditions caused by prange
+Avoiding Numpy vectorization, parallelization with Numba / Numna prange, parallel iteration with Python zip 
+is obviously the fastest solution using the @njit decorator and avoids race conditions caused by prange
 """
 
 

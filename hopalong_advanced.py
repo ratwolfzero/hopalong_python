@@ -28,10 +28,17 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False, check_po
 def get_attractor_parameters():
     a = get_validated_input('Enter a float value for "a": ', float)
     b = get_validated_input('Enter a float value for "b": ', float)
-    c = get_validated_input('Enter a float value for "c": ', float)
+    while True:
+        c = get_validated_input('Enter a float value for "c": ', float)
+        if a == 0 and b == 0 and c == 0:
+            print("Invalid combination of parameters (a = 0, b = 0, c = 0). Please enter different values.")
+        else:
+            break
     num = get_validated_input('Enter a positive integer value for "num": ', int, check_non_zero=True, check_positive=True)
-    params = {'a': a, 'b': b, 'c': c, 'num': num}
-    return a, b, c, num, params
+
+    # Return the parameters as a dictionary
+    return {'a': a, 'b': b, 'c': c, 'num': num}
+
 
 
 @njit
@@ -144,14 +151,14 @@ def visualize_trajectory_image_and_hit_metrics(img, extents, params, color_map, 
 def main(image_size=(1000, 1000), color_map='hot'):
     # Main execution process
     try:
-        a, b, c, num, params = get_attractor_parameters()
+        params = get_attractor_parameters()
         start_time = time.time()  # Start the timer
-        extents = compute_trajectory_extents(a, b, c, num)
-        img = compute_trajectory_and_image(a, b, c, num, extents, image_size)
-        hit_metrics = calculate_hit_metrics(img)
+        extents = compute_trajectory_extents(params['a'], params['b'], params['c'], params['num'])
+        image = compute_trajectory_and_image(params['a'], params['b'], params['c'], params['num'], extents, image_size)
+        hit_metrics = calculate_hit_metrics(image)
         end_time = time.time()  # End the timer
         print(f"Execution time: {end_time - start_time} seconds")  # Print the execution time
-        visualize_trajectory_image_and_hit_metrics(img, extents, params, color_map, hit_metrics)
+        visualize_trajectory_image_and_hit_metrics(image, extents, params, color_map, hit_metrics)
     except Exception as e:
         print(f"An error occurred: {e}")
 

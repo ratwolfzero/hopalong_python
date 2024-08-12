@@ -27,14 +27,18 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False, check_po
 
 
 def get_attractor_parameters():
-    # Prompt user to input parameters for the Hopalong Attractor
-    params = {
-        'a': get_validated_input('Enter a float value for "a": ', float),
-        'b': get_validated_input('Enter a float value for "b": ', float),
-        'c': get_validated_input('Enter a float value for "c": ', float),
-        'num': get_validated_input('Enter a positive integer value for "num": ', int, check_non_zero=True, check_positive=True)
-    }
-    return params
+    a = get_validated_input('Enter a float value for "a": ', float)
+    b = get_validated_input('Enter a float value for "b": ', float)
+    while True:
+        c = get_validated_input('Enter a float value for "c": ', float)
+        if a == 0 and b == 0 and c == 0:
+            print("Invalid combination of parameters (a = 0, b = 0, c = 0). Please enter different values.")
+        else:
+            break
+    num = get_validated_input('Enter a positive integer value for "num": ', int, check_non_zero=True, check_positive=True)
+
+    # Return the parameters as a dictionary
+    return {'a': a, 'b': b, 'c': c, 'num': num}
 
 
 @njit(cache=True)

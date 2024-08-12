@@ -1,13 +1,15 @@
-import matplotlib; matplotlib.use('TkAgg')
+import matplotlib
+matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 
 import numpy as np
 from numba import njit
 from math import copysign, sqrt, fabs
 
+import time
+
 
 def get_validated_input(prompt, input_type=float, check_non_zero=False, check_positive=False):
-    #Prompt for and return user input validated by type and positive/non-zero checks
     while True:
         user_input = input(prompt)
         try:
@@ -24,7 +26,6 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False, check_po
 
 
 def get_attractor_parameters():
-    #Prompt user to input parameters for the Hopalong Attractor
     a = get_validated_input('Enter a float value for "a": ', float)
     b = get_validated_input('Enter a float value for "b": ', float)
     c = get_validated_input('Enter a float value for "c": ', float)
@@ -34,58 +35,50 @@ def get_attractor_parameters():
 
 
 @njit
-def compute_trajectory(a, b, c, num):
-    # Computes the trajectory points of the Hopalong Attractor
-    points = np.zeros((num, 2), dtype=np.float32)
-    x = y = np.float32(0)
-
-    for i in range(num):
-        points[i] = x, y
-        xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x
+def compute_trajectory_extents(a, b, c, num):
+    # Compute the x and y extents of the Hopalong attractor trajectory.
+    x = y = np.float64(0)
+    min_x = min_y = np.inf
+    max_x = max_y = -np.inf
+    for _ in range(num):
+        min_x = min(min_x, x)
+        max_x = max(max_x, x)
+        min_y = min(min_y, y)
+        max_y = max(max_y, y)
         # signum function respecting the behavior of floating point numbers according to IEEE 754 (signed zero)
+        xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x
         x, y = xx, yy
-
-    return points
+    return min_x, max_x, min_y, max_y
 
 
 @njit
-def generate_trajectory_image(points, image_size):
-    # Generates an image array with the mapped trajectory points
+def compute_trajectory_and_image(a, b, c, num, extents, image_size):
+    # Compute the trajectory and populate the image with trajectory points
     img_width, img_height = image_size
-    image = np.zeros((img_height, img_width), dtype=np.uint16)
+    image = np.zeros((img_height, img_width), dtype=np.uint64)
+    
+    # pre-compute imsge scale factors
+    min_x, max_x, min_y, max_y = extents
+    scale_x = (img_width - 1) / (max_x - min_x)
+    scale_y = (img_height - 1) / (max_y - min_y)
+    
+    x = y = np.float64(0)
+    
+    for _ in range(num):
+        # map trajectory points to image pixel coordinates
+        px = np.uint64((x - min_x) * scale_x)
+        py = np.uint64((y - min_y) * scale_y)
+        #populate the image
+        image[py, px] += 1 # respecting row/column convention
 
-    min_x, max_x = np.min(points[:, 0]), np.max(points[:, 0])
-    min_y, max_y = np.min(points[:, 1]), np.max(points[:, 1])
+        # update the trajectory
+        xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x
+        x, y = xx, yy
 
-    # map trajectory points to image pixel coordinates
-    px = ((points[:, 0] - min_x) / (max_x - min_x)
-          * (img_width - 1)).astype(np.uint16)
-    py = ((points[:, 1] - min_y) / (max_y - min_y)
-          * (img_height - 1)).astype(np.uint16)
-
-    extents = [min_x, max_x, min_y, max_y]
-
-    for x, y in zip(px, py):
-        image[y, x] += 1 # respecting row/column convention
-    return image, extents
-
-
-def render_trajectory_image(ax, img, extents, params, color_map):
-    """
-    Renders the trajectory of the Hopalong Attractor as an image
-    origin="lower" align according cartesian coordinates
-    """
-    ax.imshow(img, origin="lower", cmap=color_map, extent=extents)
-    ax.set_title(
-        "Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
-
-    # Add Cartesian labels
-    ax.set_xlabel('X (Cartesian)')
-    ax.set_ylabel('Y (Cartesian)')
+    return image
 
 
 def calculate_hit_metrics(img):
-    # Analyze and summarize hit metrics from the hopalong trajectory image
     hit, count = np.unique(img[img > 0], return_counts=True)
     max_count_index = np.argmax(count)
     hit_for_max_count = hit[max_count_index]
@@ -108,34 +101,35 @@ def calculate_hit_metrics(img):
     return hit_metrics
 
 
+def render_trajectory_image(ax, img, extents, params, color_map):
+    ax.imshow(img, origin="lower", cmap=color_map, extent=extents)
+    ax.set_title(
+        "Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
+    ax.set_xlabel('X (Cartesian)')
+    ax.set_ylabel('Y (Cartesian)')
+
+
 def plot_hit_metrics(ax, hit_metrics, scale='log'):
-    # Visualize the distribution of hit counts on pixels in the hopalong trajectory image
-    ax.plot(hit_metrics["hit"], hit_metrics["count"], 'o-',
-            color="navy", markersize=1, linewidth=0.6)
+    ax.plot(hit_metrics["hit"], hit_metrics["count"], 'o-', color="navy", markersize=1, linewidth=0.6)
     ax.set_xlabel('# of hits (n)')
     ax.set_ylabel('# of pixels hit n-times')
 
     title_text = (
         f'Distribution of pixel hit count. \n'
-        f'{hit_metrics["hit_pixel"]} pixels out of {hit_metrics["img_points"]} image pixels = {
-            hit_metrics["hit_ratio"]}% have been hit. \n'
-        f'The highest number of pixels with the same number of hits is {
-            np.max(hit_metrics["count"])} with {hit_metrics["hit_for_max_count"]} hits. \n'
+        f'{hit_metrics["hit_pixel"]} pixels out of {hit_metrics["img_points"]} image pixels = {hit_metrics["hit_ratio"]}% have been hit. \n'
+        f'The highest number of pixels with the same number of hits is {np.max(hit_metrics["count"])} with {hit_metrics["hit_for_max_count"]} hits. \n'
         f'The highest number of hits is {np.max(hit_metrics["hit"])} with {hit_metrics["count_for_max_hit"]} pixels hit')
 
     ax.set_title(title_text, fontsize=10)
     ax.set_xscale(scale)
     ax.set_yscale(scale)
-    # x coordinate: Better resolution and display of values at the left end of the scale
     ax.set_xlim(left=0.9)
-    # y coordinate: Better resolution and display of values at the bottom end of the scale
     ax.set_ylim(bottom=0.9)
     ax.set_facecolor("lightgrey")
     ax.grid(True, which="both")
 
 
 def visualize_trajectory_image_and_hit_metrics(img, extents, params, color_map, hit_metrics):
-
     fig = plt.figure(figsize=(18, 8))
 
     ax1 = fig.add_subplot(1, 2, 1, aspect='auto')
@@ -148,18 +142,16 @@ def visualize_trajectory_image_and_hit_metrics(img, extents, params, color_map, 
 
 
 def main(image_size=(1000, 1000), color_map='hot'):
-    """
-    Generate Hopalong Attractor and hit metrics: 
-    Get user inputs, compute hopalong trajectory, generate trajectory image
-    Calculate hit metrics, visualize trajectory image and hit metrics
-    """
+    # Main execution process
     try:
         a, b, c, num, params = get_attractor_parameters()
-        points = compute_trajectory(a, b, c, num)
-        img, extents = generate_trajectory_image(points, image_size)
+        start_time = time.time()  # Start the timer
+        extents = compute_trajectory_extents(a, b, c, num)
+        img = compute_trajectory_and_image(a, b, c, num, extents, image_size)
         hit_metrics = calculate_hit_metrics(img)
-        visualize_trajectory_image_and_hit_metrics(
-            img, extents, params, color_map, hit_metrics)
+        end_time = time.time()  # End the timer
+        print(f"Execution time: {end_time - start_time} seconds")  # Print the execution time
+        visualize_trajectory_image_and_hit_metrics(img, extents, params, color_map, hit_metrics)
     except Exception as e:
         print(f"An error occurred: {e}")
 
@@ -167,3 +159,4 @@ def main(image_size=(1000, 1000), color_map='hot'):
 # Main execution
 if __name__ == "__main__":
     main()
+

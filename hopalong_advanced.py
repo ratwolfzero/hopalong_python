@@ -40,7 +40,6 @@ def get_attractor_parameters():
     return {'a': a, 'b': b, 'c': c, 'num': num}
 
 
-
 @njit
 def compute_trajectory_extents(a, b, c, num):
     # Compute the x and y extents of the Hopalong attractor trajectory.

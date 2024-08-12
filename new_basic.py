@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from numba import njit
 from math import copysign, sqrt, fabs
+
 import time
 
 
@@ -47,16 +48,18 @@ def compute_trajectory_extents(a, b, c, num):
         max_x = max(max_x, x)
         min_y = min(min_y, y)
         max_y = max(max_y, y)
-        xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x
+        # signum function (copysign)respecting the behavior of floating point numbers according to IEEE 754 (signed zero)
+        xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x 
         x, y = xx, yy
     return min_x, max_x, min_y, max_y
 
 
 @njit(cache=True)
 def compute_trajectory_and_image(a, b, c, num, extents, image_size):
-    # Compute the full trajectory and populate the image with trajectory points
+    # Compute the trajectory and populate the image with trajectory points
     image = np.zeros(image_size, dtype=np.uint64)
     
+    # pre-compute imsge scale factors
     min_x, max_x, min_y, max_y = extents
     scale_x = (image_size[0] - 1) / (max_x - min_x)
     scale_y = (image_size[1] - 1) / (max_y - min_y)
@@ -67,6 +70,7 @@ def compute_trajectory_and_image(a, b, c, num, extents, image_size):
         # map trajectory points to image pixel coordinates
         px = np.uint64((x - min_x) * scale_x)
         py = np.uint64((y - min_y) * scale_y)
+        # populate the image
         image[py, px] += 1  # respecting row/column convention
 
         # Update the trajectory
@@ -77,7 +81,7 @@ def compute_trajectory_and_image(a, b, c, num, extents, image_size):
 
 
 def render_trajectory_image(image, extents, params, color_map):
-    # Render the full trajectory image
+    # Render the trajectory image
     fig = plt.figure(figsize=(8, 8))
     ax = fig.add_subplot(1, 1, 1, aspect='auto')
     # origin="lower" align according cartesian coordinates

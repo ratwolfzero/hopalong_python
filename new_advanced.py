@@ -1,9 +1,11 @@
 import matplotlib
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
+
 import numpy as np
 from numba import njit
 from math import copysign, sqrt, fabs
+
 import time
 
 
@@ -43,6 +45,7 @@ def compute_trajectory_extents(a, b, c, num):
         max_x = max(max_x, x)
         min_y = min(min_y, y)
         max_y = max(max_y, y)
+        # signum function respecting the behavior of floating point numbers according to IEEE 754 (signed zero)
         xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x
         x, y = xx, yy
     return min_x, max_x, min_y, max_y
@@ -54,6 +57,7 @@ def compute_trajectory_and_image(a, b, c, num, extents, image_size):
     img_width, img_height = image_size
     image = np.zeros((img_height, img_width), dtype=np.uint64)
     
+    # pre-compute imsge scale factors
     min_x, max_x, min_y, max_y = extents
     scale_x = (img_width - 1) / (max_x - min_x)
     scale_y = (img_height - 1) / (max_y - min_y)
@@ -61,10 +65,13 @@ def compute_trajectory_and_image(a, b, c, num, extents, image_size):
     x = y = np.float64(0)
     
     for _ in range(num):
+        # map trajectory points to image pixel coordinates
         px = np.uint64((x - min_x) * scale_x)
         py = np.uint64((y - min_y) * scale_y)
-        image[py, px] += 1
+        #populate the image
+        image[py, px] += 1 # respecting row/column convention
 
+        # update the trajectory
         xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x
         x, y = xx, yy
 
@@ -135,6 +142,7 @@ def visualize_trajectory_image_and_hit_metrics(img, extents, params, color_map, 
 
 
 def main(image_size=(1000, 1000), color_map='hot'):
+    # Main execution process
     try:
         a, b, c, num, params = get_attractor_parameters()
         start_time = time.time()  # Start the timer

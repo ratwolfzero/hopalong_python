@@ -24,7 +24,7 @@ To run this program, you need to have the following Python libraries installed:
 
 ## Features  
 
-This program comes in three versions:
+This program comes in two versions:
 
 Basic hopalong
 Version: Calculates and displays the Hopalong attractor.  
@@ -32,11 +32,7 @@ Version: Calculates and displays the Hopalong attractor.
 Advanced Version:
 The advanced version additionally tracks the pixel hit count (density) to control the rendering via the colormap andgenerates detailed statistics regarding pixel hit counts and their distribution.  
 
-Chunked version:
-Version with calculations divided into chunks to optimize memory management, thus avoiding memory swapping between RAM and SSD.
-Speed ​​increase. The calculation time with very high iteration number (num) now increases proportionally to the iteration number, which is the expected behavior. However, this version also works perfectly with few iterations.
-
-Performance optimization by using the Numba @njit (nopython=true) decorator for trajectory calculation, trajectory image population etc.
+Performance optimization by using the Numba @njit (nopython=true)
 
 Avoiding Numpy vectorization, parallelization with Numba / Numna prange, parallel iteration with Python zip
 is obviously the fastest solution using the @njit decorator and avoids race conditions caused by prange
@@ -86,11 +82,6 @@ will end up in a kind of "singularity"
 ## Have fun  
 
 ## Notes regarding basic and advanced version
-  
-If you select a very high value for 'num' ,the number of iterations, then the performance might decrease additionally due to memory swap use (RAM>>SSD). To compensate this float32 was selected as data type for the points-array. However, this is depending on your available System and RAM.
-
-Anyway 200_000_000 iterations is still easy...
-On the other hand the "chunked version" is suitable for any number of iterations, so better use "hopalong_chunk-py"
 
 On my system with MacOs 14.x and Python 3.12.x the plot window and Python crashed while interacting with the plot window. Using the specific backend TkAgg  (or Qt5Agg) solved this issue. Shouldn't be necessary for other operating systems.
 

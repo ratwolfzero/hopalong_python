@@ -8,7 +8,7 @@ This Python program calculates and displays the "Hopalong" attractor.
 
 It can be executed for example from a terminal using the following command:  
 
-python3 /path/to/my/file/hopalong.py  
+python3 /path/to/my/file/hopalong_basic.py  
 
 ## Requirements  
 
@@ -26,13 +26,12 @@ To run this program, you need to have the following Python libraries installed:
 
 This program comes in two versions:
 
-Basic hopalong
-Version: Calculates and displays the Hopalong attractor.  
+Basic Version: Calculates and displays the Hopalong attractor.  
 
 Advanced Version:
-The advanced version additionally tracks the pixel hit count (density) to control the rendering via the colormap andgenerates detailed statistics regarding pixel hit counts and their distribution.  
+The advanced version additionally tracks the pixel hit count (density) and generates detailed statistics regarding pixel hit counts and their distribution.  
 
-Performance optimization by using the Numba @njit (nopython=true)
+Performance optimization by using the Numba @njit (nopython=true) decorator
 
 Avoiding Numpy vectorization, parallelization with Numba / Numba prange, parallel iteration with Python zip
 is obviously the fastest solution using the @njit decorator and avoids race conditions caused by prange

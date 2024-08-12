@@ -31,6 +31,8 @@ Basic Version: Calculates and displays the Hopalong attractor.
 Advanced Version:
 The advanced version additionally tracks the pixel hit count (density) and generates detailed statistics regarding pixel hit counts and their distribution.  
 
+The coloring of the image pixels using a color map depends on the pixel density (number of hits)
+
 Performance optimization by using the Numba @njit (nopython=true) decorator
 
 Avoiding Numpy vectorization, parallelization with Numba / Numba prange, parallel iteration with Python zip

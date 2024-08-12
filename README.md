@@ -34,7 +34,7 @@ The advanced version additionally tracks the pixel hit count (density) to contro
 
 Performance optimization by using the Numba @njit (nopython=true)
 
-Avoiding Numpy vectorization, parallelization with Numba / Numna prange, parallel iteration with Python zip
+Avoiding Numpy vectorization, parallelization with Numba / Numba prange, parallel iteration with Python zip
 is obviously the fastest solution using the @njit decorator and avoids race conditions caused by prange
 
 ## User Input  

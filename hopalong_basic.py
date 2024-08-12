@@ -41,7 +41,7 @@ def get_attractor_parameters():
     return {'a': a, 'b': b, 'c': c, 'num': num}
 
 
-@njit(cache=True)
+@njit
 def compute_trajectory_extents(a, b, c, num):
     # Compute the x and y extents of the Hopalong attractor trajectory.
     x = y = np.float64(0)
@@ -56,9 +56,11 @@ def compute_trajectory_extents(a, b, c, num):
         xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x 
         x, y = xx, yy
     return min_x, max_x, min_y, max_y
+# Dummy compilation call for compute_trajectory_extents
+_ = compute_trajectory_extents(1.0, 1.0, 1.0, 1)
 
 
-@njit(cache=True)
+@njit
 def compute_trajectory_and_image(a, b, c, num, extents, image_size):
     # Compute the trajectory and populate the image with trajectory points
     image = np.zeros(image_size, dtype=np.uint64)
@@ -82,6 +84,8 @@ def compute_trajectory_and_image(a, b, c, num, extents, image_size):
         x, y = xx, yy
 
     return image
+# Dummy compilation call for compute_trajectory_and_image
+_ = compute_trajectory_and_image(1.0, 1.0, 1.0, 1, (0, 1, 0, 1), (1, 1))
 
 
 def render_trajectory_image(image, extents, params, color_map):

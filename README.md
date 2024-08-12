@@ -51,7 +51,7 @@ The program prompts the user for the following parameters:
 
 try: a = -2; b = -0.33; c = 0.01; num = 200_000_000  
 
-## Latest code changes
+## Recent code changes
 
 Using the math.copysign function [copysign(1.0, x)]  
 
@@ -81,9 +81,9 @@ will end up in a kind of "singularity"
 
 ## Have fun  
 
-## Notes regarding basic and advanced version
+## Note for Basic and Advanced Versions
 
-On my system with MacOs 14.x and Python 3.12.x the plot window and Python crashed while interacting with the plot window. Using the specific backend TkAgg  (or Qt5Agg) solved this issue. Shouldn't be necessary for other operating systems.
+On my macOS 14.x and Python 3.12.x system, both the plot window and Python crashed during interactions with the plot window. Using the specific TkAgg or Qt5Agg backend resolved this issue. This workaround should not be necessary for other operating systems.
 
 "# import matplotlib"
 "# matplotlib.use('TkAgg')"

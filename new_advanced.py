@@ -49,7 +49,7 @@ def compute_trajectory_extents(a, b, c, num):
 
 
 @njit
-def compute_trajectory_image(a, b, c, num, extents, image_size):
+def compute_trajectory_and_image(a, b, c, num, extents, image_size):
     # Compute the trajectory and populate the image with trajectory points
     img_width, img_height = image_size
     image = np.zeros((img_height, img_width), dtype=np.uint64)
@@ -139,7 +139,7 @@ def main(image_size=(1000, 1000), color_map='hot'):
         a, b, c, num, params = get_attractor_parameters()
         start_time = time.time()  # Start the timer
         extents = compute_trajectory_extents(a, b, c, num)
-        img = compute_trajectory_image(a, b, c, num, extents, image_size)
+        img = compute_trajectory_and_image(a, b, c, num, extents, image_size)
         hit_metrics = calculate_hit_metrics(img)
         end_time = time.time()  # End the timer
         print(f"Execution time: {end_time - start_time} seconds")  # Print the execution time

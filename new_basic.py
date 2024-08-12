@@ -37,7 +37,7 @@ def get_attractor_parameters():
 
 
 @njit(cache=True)
-def compute_full_trajectory_extents(a, b, c, num):
+def compute_trajectory_extents(a, b, c, num):
     # Compute the x and y extents of the Hopalong attractor trajectory.
     x = y = np.float64(0)
     min_x = min_y = np.inf
@@ -76,7 +76,7 @@ def compute_trajectory_and_image(a, b, c, num, extents, image_size):
     return image
 
 
-def render_full_trajectory_image(image, extents, params, color_map):
+def render_trajectory_image(image, extents, params, color_map):
     # Render the full trajectory image
     fig = plt.figure(figsize=(8, 8))
     ax = fig.add_subplot(1, 1, 1, aspect='auto')
@@ -92,11 +92,11 @@ def main(image_size=(1000, 1000), color_map='hot'):
     try:
         params = get_attractor_parameters()
         start_time = time.time()  # Start the timer
-        extents = compute_full_trajectory_extents(params['a'], params['b'], params['c'], params['num'])
+        extents = compute_trajectory_extents(params['a'], params['b'], params['c'], params['num'])
         image = compute_trajectory_and_image(params['a'], params['b'], params['c'], params['num'], extents, image_size)
         end_time = time.time()  # End the timer
         print(f"Execution time: {end_time - start_time} seconds")  # Print the execution time
-        render_full_trajectory_image(image, extents, params, color_map)
+        render_trajectory_image(image, extents, params, color_map)
     except Exception as e:
         print(f"An error occurred: {e}")
 

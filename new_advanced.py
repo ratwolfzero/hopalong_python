@@ -1,6 +1,6 @@
-import matplotlib; matplotlib.use('TkAgg')
+import matplotlib
+matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
-
 import numpy as np
 from numba import njit
 from math import copysign, sqrt, fabs
@@ -33,50 +33,42 @@ def get_attractor_parameters():
 
 
 @njit
-def compute_image_and_extents(a, b, c, num, image_size):
-    img_width, img_height = image_size
-    image = np.zeros((img_height, img_width), dtype=np.uint16)
-
-    x = y = np.float32(0)
+def compute_trajectory_extents(a, b, c, num):
+    # Compute the x and y extents of the Hopalong attractor trajectory.
+    x = y = np.float64(0)
     min_x = min_y = np.inf
     max_x = max_y = -np.inf
-
     for _ in range(num):
-        # Update extents
-        if x < min_x: min_x = x
-        if x > max_x: max_x = x
-        if y < min_y: min_y = y
-        if y > max_y: max_y = y
-
-        # Compute next point
+        min_x = min(min_x, x)
+        max_x = max(max_x, x)
+        min_y = min(min_y, y)
+        max_y = max(max_y, y)
         xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x
         x, y = xx, yy
+    return min_x, max_x, min_y, max_y
 
-    # After computing the entire trajectory, map the points to the image
+
+@njit
+def compute_trajectory_image(a, b, c, num, extents, image_size):
+    # Compute the trajectory and populate the image with trajectory points
+    img_width, img_height = image_size
+    image = np.zeros((img_height, img_width), dtype=np.uint64)
+    
+    min_x, max_x, min_y, max_y = extents
     scale_x = (img_width - 1) / (max_x - min_x)
     scale_y = (img_height - 1) / (max_y - min_y)
-    x = y = np.float32(0)
-
+    
+    x = y = np.float64(0)
+    
     for _ in range(num):
-        # Map x, y to pixel coordinates
-        px = np.uint16((x - min_x) * scale_x)
-        py = np.uint16((y - min_y) * scale_y)
+        px = np.uint64((x - min_x) * scale_x)
+        py = np.uint64((y - min_y) * scale_y)
         image[py, px] += 1
 
-        # Compute next point
         xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x
         x, y = xx, yy
 
-    extents = [min_x, max_x, min_y, max_y]
-    return image, extents
-
-
-def render_trajectory_image(ax, img, extents, params, color_map):
-    ax.imshow(img, origin="lower", cmap=color_map, extent=extents)
-    ax.set_title(
-        "Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
-    ax.set_xlabel('X (Cartesian)')
-    ax.set_ylabel('Y (Cartesian)')
+    return image
 
 
 def calculate_hit_metrics(img):
@@ -100,6 +92,14 @@ def calculate_hit_metrics(img):
     }
 
     return hit_metrics
+
+
+def render_trajectory_image(ax, img, extents, params, color_map):
+    ax.imshow(img, origin="lower", cmap=color_map, extent=extents)
+    ax.set_title(
+        "Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
+    ax.set_xlabel('X (Cartesian)')
+    ax.set_ylabel('Y (Cartesian)')
 
 
 def plot_hit_metrics(ax, hit_metrics, scale='log'):
@@ -138,7 +138,8 @@ def main(image_size=(1000, 1000), color_map='hot'):
     try:
         a, b, c, num, params = get_attractor_parameters()
         start_time = time.time()  # Start the timer
-        img, extents = compute_image_and_extents(a, b, c, num, image_size)
+        extents = compute_trajectory_extents(a, b, c, num)
+        img = compute_trajectory_image(a, b, c, num, extents, image_size)
         hit_metrics = calculate_hit_metrics(img)
         end_time = time.time()  # End the timer
         print(f"Execution time: {end_time - start_time} seconds")  # Print the execution time

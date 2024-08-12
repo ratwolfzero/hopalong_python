@@ -6,8 +6,6 @@ import numpy as np
 from numba import njit
 from math import copysign, sqrt, fabs
 
-import time
-
 
 def get_validated_input(prompt, input_type=float, check_non_zero=False, check_positive=False):
     # Prompt for and return user input validated by type and positive/non-zero checks
@@ -36,7 +34,6 @@ def get_attractor_parameters():
         else:
             break
     num = get_validated_input('Enter a positive integer value for "num": ', int, check_non_zero=True, check_positive=True)
-
     # Return the parameters as a dictionary
     return {'a': a, 'b': b, 'c': c, 'num': num}
 
@@ -82,7 +79,6 @@ def compute_trajectory_and_image(a, b, c, num, extents, image_size):
         # Update the trajectory
         xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x
         x, y = xx, yy
-
     return image
 # Dummy compilation call for compute_trajectory_and_image
 _ = compute_trajectory_and_image(1.0, 1.0, 1.0, 1, (0, 1, 0, 1), (1, 1))
@@ -103,11 +99,8 @@ def main(image_size=(1000, 1000), color_map='hot'):
     # Main execution process
     try:
         params = get_attractor_parameters()
-        start_time = time.time()  # Start the timer
         extents = compute_trajectory_extents(params['a'], params['b'], params['c'], params['num'])
         image = compute_trajectory_and_image(params['a'], params['b'], params['c'], params['num'], extents, image_size)
-        end_time = time.time()  # End the timer
-        print(f"Execution time: {end_time - start_time} seconds")  # Print the execution time
         render_trajectory_image(image, extents, params, color_map)
     except Exception as e:
         print(f"An error occurred: {e}")

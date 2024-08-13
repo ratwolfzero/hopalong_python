@@ -52,7 +52,7 @@ def compute_trajectory_extents(a, b, c, num):
         xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x 
         x, y = xx, yy
     return min_x, max_x, min_y, max_y
-# Dummy compilation call for compute_trajectory_extents
+# Dummy call to trigger "Just-In-Time" (JIT) compilation 
 _ = compute_trajectory_extents(1.0, 1.0, 1.0, 5)
 
 
@@ -72,14 +72,14 @@ def compute_trajectory_and_image(a, b, c, num, extents, image_size):
         # map trajectory points to image pixel coordinates
         px = np.uint64((x - min_x) * scale_x)
         py = np.uint64((y - min_y) * scale_y)
-        # populate the image
+        # populate the image "on the fly" with each computed point
         image[py, px] += 1  # respecting row/column convention
 
-        # Update the trajectory
+        # Update the trajectory "on the fly"
         xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x
         x, y = xx, yy
     return image
-# Dummy compilation call for compute_trajectory_and_image
+# Dummy call to trigger "Just-In-Time" (JIT) compilation 
 _ = compute_trajectory_and_image(1.0, 1.0, 1.0, 5, (0, 1, 0, 1), (1, 1))
 
 

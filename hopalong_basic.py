@@ -20,7 +20,7 @@ def get_validated_input(prompt, input_type=float, check_non_zero=False, check_po
                 print("Invalid input. The value must be a positive number.")
                 continue
             if min_value is not None and value < min_value:
-                print(f"Invalid input. The value must be at least {min_value}.")
+                print(f"Invalid input. The value should be at least {min_value}.")
                 continue
             return value
         except ValueError:
@@ -37,7 +37,7 @@ def get_attractor_parameters():
         else:
             break
     num = get_validated_input('Enter a positive integer value for "num": ',
-                              int, check_non_zero=True, check_positive=True, min_value=10)
+                              int, check_non_zero=True, check_positive=True, min_value=1000)
     return {'a': a, 'b': b, 'c': c, 'num': num}
 
 

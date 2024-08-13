@@ -33,7 +33,7 @@ def get_attractor_parameters():
             print("Invalid combination of parameters (a = 0, b = 0, c = 0). Please enter different values.")
         else:
             break
-    num = get_validated_input('Enter a positive integer value for "num": ', int, check_positive_non_zero=True, min_value=1)
+    num = get_validated_input('Enter a positive integer value for "num": ', int, check_positive_non_zero=True, min_value=1000)
     return {'a': a, 'b': b, 'c': c, 'num': num}
 
 

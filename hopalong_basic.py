@@ -33,7 +33,7 @@ def get_attractor_parameters():
             print("Invalid combination of parameters (a = 0, b = 0, c = 0). Please enter different values.")
         else:
             break
-    num = get_validated_input('Enter a positive integer value for "num": ', int, check_positive_non_zero=True, min_value=1000)
+    num = get_validated_input('Enter a positive integer value for "num": ', int, check_positive_non_zero=True, min_value=1)
     return {'a': a, 'b': b, 'c': c, 'num': num}
 
 
@@ -53,7 +53,7 @@ def compute_trajectory_extents(a, b, c, num):
         x, y = xx, yy
     return min_x, max_x, min_y, max_y
 # Dummy call to trigger "Just-In-Time" (JIT) compilation 
-_ = compute_trajectory_extents(1.0, 1.0, 1.0, 3)
+_ = compute_trajectory_extents(1.0, 1.0, 1.0, 2)
 
 
 @njit
@@ -80,7 +80,7 @@ def compute_trajectory_and_image(a, b, c, num, extents, image_size):
         x, y = xx, yy
     return image
 # Dummy call to trigger "Just-In-Time" (JIT) compilation 
-_ = compute_trajectory_and_image(1.0, 1.0, 1.0, 3, (0, 1, 0, 1), (1, 1))
+_ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (1, 1))
 
 
 def render_trajectory_image(image, extents, params, color_map):

@@ -7,17 +7,14 @@ from numba import njit
 from math import copysign, sqrt, fabs
 
 
-def get_validated_input(prompt, input_type=float, check_non_zero=False, check_positive=False, min_value=None):
+def get_validated_input(prompt, input_type=float, check_positive_non_zero=False, min_value=None):
     # Prompt for and return user input validated by type and positive/non-zero checks
     while True:
         user_input = input(prompt)
         try:
             value = input_type(user_input)
-            if check_non_zero and value == 0:
-                print("Invalid input. The value cannot be zero.")
-                continue
-            if check_positive and value <= 0:
-                print("Invalid input. The value must be a positive number.")
+            if check_positive_non_zero and value <= 0:
+                print("Invalid input. The value must be a positive non-zero number.")
                 continue
             if min_value is not None and value < min_value:
                 print(f"Invalid input. The value should be at least {min_value}.")
@@ -36,8 +33,7 @@ def get_attractor_parameters():
             print("Invalid combination of parameters (a = 0, b = 0, c = 0). Please enter different values.")
         else:
             break
-    num = get_validated_input('Enter a positive integer value for "num": ',
-                              int, check_non_zero=True, check_positive=True, min_value=1000)
+    num = get_validated_input('Enter a positive integer value for "num": ', int, check_positive_non_zero=True, min_value=1000)
     return {'a': a, 'b': b, 'c': c, 'num': num}
 
 

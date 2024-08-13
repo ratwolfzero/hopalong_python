@@ -161,4 +161,3 @@ def main(image_size=(1000, 1000), color_map='hot'):
 # Main execution
 if __name__ == "__main__":
     main()
-

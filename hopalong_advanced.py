@@ -57,7 +57,7 @@ def compute_trajectory_extents(a, b, c, num):
         x, y = xx, yy
     return min_x, max_x, min_y, max_y
 # Dummy compilation call for compute_trajectory_extents
-_ = compute_trajectory_extents(1.0, 1.0, 1.0, 10)
+_ = compute_trajectory_extents(1.0, 1.0, 1.0, 5)
 
 
 @njit
@@ -85,7 +85,7 @@ def compute_trajectory_and_image(a, b, c, num, extents, image_size):
         x, y = xx, yy
     return image
 # Dummy compilation call for compute_trajectory_and_image
-_ = compute_trajectory_and_image(1.0, 1.0, 1.0, 10, (0, 1, 0, 1), (1, 1))
+_ = compute_trajectory_and_image(1.0, 1.0, 1.0, 5, (0, 1, 0, 1), (1, 1))
 
 
 def calculate_hit_metrics(img):

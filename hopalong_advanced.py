@@ -29,8 +29,11 @@ def get_attractor_parameters():
     b = get_validated_input('Enter a float value for "b": ', float)
     while True:
         c = get_validated_input('Enter a float value for "c": ', float)
-        if a == 0 and b == 0 and c == 0:
-            print("Invalid combination of parameters (a = 0, b = 0, c = 0). Please enter different values.")
+        if (a == 0 and b == 0 and c == 0) or (a == 0 and c == 0):
+            print("Invalid combination of parameters. The following combinations are not allowed:\n"
+                  "- a = 0, b = 0, c = 0\n"
+                  "- a = 0, b = any value, c = 0\n"
+                  "Please enter different values.")
         else:
             break
     num = get_validated_input('Enter a positive integer value for "num": ', int, check_positive_non_zero=True, min_value=1000)
@@ -86,13 +89,26 @@ _ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (1, 1))
 
 def calculate_hit_metrics(img):
     hit, count = np.unique(img[img > 0], return_counts=True)
+
+    if len(hit) == 0:
+        return {
+            "hit": np.array([]),
+            "count": np.array([]),
+            "hit_for_max_count": None,
+            "count_for_max_hit": None,
+            "hit_pixel": 0,
+            "img_points": img.size,
+            "hit_ratio": 0.0,
+        }
+
     max_count_index = np.argmax(count)
     hit_for_max_count = hit[max_count_index]
     max_hit_index = np.argmax(hit)
     count_for_max_hit = count[max_hit_index]
-    hit_pixel = np.sum(count)
-    img_pixels = np.prod(img.shape)
-    hit_ratio = '{:.2f}'.format(hit_pixel / img_pixels * 100)
+
+    hit_pixel = count.sum()
+    img_pixels = img.size
+    hit_ratio = hit_pixel / img_pixels * 100
 
     hit_metrics = {
         "hit": hit,
@@ -101,10 +117,9 @@ def calculate_hit_metrics(img):
         "count_for_max_hit": count_for_max_hit,
         "hit_pixel": hit_pixel,
         "img_points": img_pixels,
-        "hit_ratio": hit_ratio,
+        "hit_ratio": round(hit_ratio, 2),
     }
     return hit_metrics
-
 
 def render_trajectory_image(ax, img, extents, params, color_map):
     ax.imshow(img, origin="lower", cmap=color_map, extent=extents)

@@ -29,8 +29,11 @@ def get_attractor_parameters():
     b = get_validated_input('Enter a float value for "b": ', float)
     while True:
         c = get_validated_input('Enter a float value for "c": ', float)
-        if a == 0 and b == 0 and c == 0:
-            print("Invalid combination of parameters (a = 0, b = 0, c = 0). Please enter different values.")
+        if (a == 0 and b == 0 and c == 0) or (a == 0 and c == 0):
+            print("Invalid combination of parameters. The following combinations are not allowed:\n"
+                  "- a = 0, b = 0, c = 0\n"
+                  "- a = 0, b = any value, c = 0\n"
+                  "Please enter different values.")
         else:
             break
     num = get_validated_input('Enter a positive integer value for "num": ', int, check_positive_non_zero=True, min_value=1000)

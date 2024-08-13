@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 # Parameters for the Hopalong attractor
 a = 1
 b = 2
-c = 3.000001
+c = 3
 
 # Number of iterations
 iterations = 100

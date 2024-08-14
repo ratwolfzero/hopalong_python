@@ -1,18 +1,18 @@
 # Calculate & Display the "Hopalong" Attractor with Python
 
-The "Hopalong" attractor, invented by Barry Martin from Aston University in Birmingham, England, gained fame through A.K. Dewdney's description in the September 1986 issue of Scientific American. The German edition, Spektrum der Wissenschaft, further popularized it in Germany with a translation titled "Hüpfer" in the Computer-Kurzweil section.  
+This attractor, invented by Barry Martin of Aston University in Birmingham, England, was made famous by A.K. Dewdney's description in the September 1986 issue of Scientific American as the "Hopalong attractor." The German edition, Spektrum der Wissenschaft, made it even more popular in Germany with a translation entitled "Hüpfer" in the Computer-Kurzweil section.  
 
 ## Overview  
 
-This Python program calculates and displays the "Hopalong" attractor.  
+This Python program calculates and displays the hopalong attractor.
 
-It can be executed for example from a terminal using the following command:  
+It can be run, for example, from a terminal with the following command:
 
-python3 /path/to/my/file/hopalong_basic.py  
+python3 /path/to/my/file/hopalong_basic.py
 
 ## Requirements  
 
-To run this program, you need to have the following Python libraries installed:
+To run this program, the following Python libraries must be installed:
 
 - numpy  
 
@@ -26,17 +26,18 @@ To run this program, you need to have the following Python libraries installed:
 
 This program comes in two versions:
 
-Basic Version: Calculates and displays the Hopalong attractor.  
+Basic version: Calculates and displays the hopalong attractor.
 
-Advanced Version:
-The advanced version additionally tracks the pixel hit count (density) and generates detailed statistics regarding pixel hit counts and their distribution.  
+Extended version:
+The extended version additionally tracks the pixel hit count (“density”) and generates detailed statistics on the pixel hit count and its distribution.
 
-The coloring of the image pixels using a color map depends on the pixel density (number of hits)
+Rendering of the image pixels is done for both versions using a color map that depends on the pixel density (number of hits).
 
-Performance optimization by using the Numba @njit (nopython=true) decorator
+Performance optimization by using the Numba @njit decorator*
 
-Avoiding Numpy vectorization, parallelization with Numba / Numba prange, parallel iteration with Python zip
-is obviously the fastest solution using the @njit decorator and avoids race conditions caused by prange
+*Alias ​​for nopython=true
+
+By avoiding Numpy vectorization, parallelization with Numba/Numba prange (prange is not applicable for cross-iteration dependencies), parallel iteration with Python zip, the @njit decorator obviously gives the fastest results. In addition, race conditions caused by prange are avoided.
 
 ## User Input  
 
@@ -50,7 +51,7 @@ The program prompts the user for the following parameters:
 
 - num (integer): The number of iterations (e.g., 1000000 or 1_000_000).
 
-try: a = -2; b = -0.33; c = 0.01; num = 200_000_000  
+for example try: a = -2; b = -0.33; c = 0.01; num = 200_000_000  
 
 ## Recent code changes
 

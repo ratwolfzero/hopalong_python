@@ -6,32 +6,38 @@ import numpy as np
 from numba import njit
 from math import copysign, sqrt, fabs
 
-import time
 
-
-def get_validated_input(prompt, input_type=float, check_non_zero=False, check_positive=False):
+def get_validated_input(prompt, input_type=float, check_positive_non_zero=False, min_value=None):
+    # Prompt for and return user input validated by type and positive/non-zero checks
     while True:
         user_input = input(prompt)
         try:
             value = input_type(user_input)
-            if check_non_zero and value == 0:
-                print("Invalid input. The value cannot be zero.")
+            if check_positive_non_zero and value <= 0:
+                print("Invalid input. The value must be a positive non-zero number.")
                 continue
-            if check_positive and value <= 0:
-                print("Invalid input. The value must be a positive number.")
+            if min_value is not None and value < min_value:
+                print(f"Invalid input. The value should be at least {min_value}.")
                 continue
             return value
         except ValueError:
             print(f"Invalid input. Please enter a valid {input_type.__name__} value.")
-
+            
 
 def get_attractor_parameters():
     a = get_validated_input('Enter a float value for "a": ', float)
     b = get_validated_input('Enter a float value for "b": ', float)
-    c = get_validated_input('Enter a float value for "c": ', float)
-    num = get_validated_input('Enter a positive integer value for "num": ', int, check_non_zero=True, check_positive=True)
-    params = {'a': a, 'b': b, 'c': c, 'num': num}
-    return a, b, c, num, params
+    while True:
+        c = get_validated_input('Enter a float value for "c": ', float)
+        if (a == 0 and b == 0 and c == 0) or (a == 0 and c == 0):
+            print("Invalid combination of parameters. The following combinations are not allowed:\n"
+                  "- a = 0, b = 0, c = 0\n"
+                  "- a = 0, b = any value, c = 0\n"
+                  "Please enter different values.")
+        else:
+            break
+    num = get_validated_input('Enter a positive integer value for "num": ', int, check_positive_non_zero=True, min_value=1000)
+    return {'a': a, 'b': b, 'c': c, 'num': num}
 
 
 @njit
@@ -49,6 +55,8 @@ def compute_trajectory_extents(a, b, c, num):
         xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x
         x, y = xx, yy
     return min_x, max_x, min_y, max_y
+# Dummy call to trigger "Just-In-Time" (JIT) compilation 
+_ = compute_trajectory_extents(1.0, 1.0, 1.0, 2)
 
 
 @njit
@@ -68,25 +76,39 @@ def compute_trajectory_and_image(a, b, c, num, extents, image_size):
         # map trajectory points to image pixel coordinates
         px = np.uint64((x - min_x) * scale_x)
         py = np.uint64((y - min_y) * scale_y)
-        #populate the image
-        image[py, px] += 1 # respecting row/column convention
+        # populate the image "on the fly" with each computed point
+        image[py, px] += 1  # respecting row/column convention
 
-        # update the trajectory
+        # Update the trajectory "on the fly"
         xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x
         x, y = xx, yy
-
     return image
+# Dummy call to trigger "Just-In-Time" (JIT) compilation 
+_ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (1, 1))
 
 
 def calculate_hit_metrics(img):
     hit, count = np.unique(img[img > 0], return_counts=True)
+
+    if len(hit) == 0:
+        return {
+            "hit": np.array([]),
+            "count": np.array([]),
+            "hit_for_max_count": None,
+            "count_for_max_hit": None,
+            "hit_pixel": 0,
+            "img_points": img.size,
+            "hit_ratio": 0.0,
+        }
+
     max_count_index = np.argmax(count)
     hit_for_max_count = hit[max_count_index]
     max_hit_index = np.argmax(hit)
     count_for_max_hit = count[max_hit_index]
-    hit_pixel = np.sum(count)
-    img_pixels = np.prod(img.shape)
-    hit_ratio = '{:.2f}'.format(hit_pixel / img_pixels * 100)
+
+    hit_pixel = count.sum()
+    img_pixels = img.size
+    hit_ratio = hit_pixel / img_pixels * 100
 
     hit_metrics = {
         "hit": hit,
@@ -95,11 +117,9 @@ def calculate_hit_metrics(img):
         "count_for_max_hit": count_for_max_hit,
         "hit_pixel": hit_pixel,
         "img_points": img_pixels,
-        "hit_ratio": hit_ratio,
+        "hit_ratio": round(hit_ratio, 2),
     }
-
     return hit_metrics
-
 
 def render_trajectory_image(ax, img, extents, params, color_map):
     ax.imshow(img, origin="lower", cmap=color_map, extent=extents)
@@ -116,7 +136,7 @@ def plot_hit_metrics(ax, hit_metrics, scale='log'):
 
     title_text = (
         f'Distribution of pixel hit count. \n'
-        f'{hit_metrics["hit_pixel"]} pixels out of {hit_metrics["img_points"]} image pixels = {hit_metrics["hit_ratio"]}% have been hit. \n'
+        f'{hit_metrics["hit_pixel"]} pixels out of {hit_metrics["img_points"]} image pixels = {hit_metrics["hit_ratio"]}% have been hit at least one time. \n'
         f'The highest number of pixels with the same number of hits is {np.max(hit_metrics["count"])} with {hit_metrics["hit_for_max_count"]} hits. \n'
         f'The highest number of hits is {np.max(hit_metrics["hit"])} with {hit_metrics["count_for_max_hit"]} pixels hit')
 
@@ -144,14 +164,11 @@ def visualize_trajectory_image_and_hit_metrics(img, extents, params, color_map, 
 def main(image_size=(1000, 1000), color_map='hot'):
     # Main execution process
     try:
-        a, b, c, num, params = get_attractor_parameters()
-        start_time = time.time()  # Start the timer
-        extents = compute_trajectory_extents(a, b, c, num)
-        img = compute_trajectory_and_image(a, b, c, num, extents, image_size)
-        hit_metrics = calculate_hit_metrics(img)
-        end_time = time.time()  # End the timer
-        print(f"Execution time: {end_time - start_time} seconds")  # Print the execution time
-        visualize_trajectory_image_and_hit_metrics(img, extents, params, color_map, hit_metrics)
+        params = get_attractor_parameters()
+        extents = compute_trajectory_extents(params['a'], params['b'], params['c'], params['num'])
+        image = compute_trajectory_and_image(params['a'], params['b'], params['c'], params['num'], extents, image_size)
+        hit_metrics = calculate_hit_metrics(image)
+        visualize_trajectory_image_and_hit_metrics(image, extents, params, color_map, hit_metrics)
     except Exception as e:
         print(f"An error occurred: {e}")
 
@@ -159,4 +176,3 @@ def main(image_size=(1000, 1000), color_map='hot'):
 # Main execution
 if __name__ == "__main__":
     main()
-

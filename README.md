@@ -39,10 +39,12 @@ The program leverages the Numba @njit decorator for performance optimization by 
 
 Key optimizations include:
 
-Avoiding NumPy vectorization in favor of direct iteration.
-Avoiding parallel iteration with Python’s zip.
-Avoiding race conditions typically associated with parallelization techniques like prange, which is generally not applicable for cross-iteration dependencies.  
+Avoiding NumPy vectorization in favor of direct iteration.  
 
+Avoiding parallel iteration with Python’s zip.  
+
+Avoiding race conditions typically associated with parallelization techniques like prange, which is generally not applicable for cross-iteration dependencies.  
+  
 These optimizations make the program as efficient as possible when using @njit.  
 
 ## User Input  

@@ -44,7 +44,7 @@ Avoiding NumPy vectorization in favor of direct iteration.
 Avoiding parallel iteration with Python’s zip.  
 
 Avoiding race conditions typically associated with parallelization techniques like prange, which is generally not applicable for cross-iteration dependencies.  
-  
+
 These optimizations make the program as efficient as possible when using @njit.  
 
 ## User Input  
@@ -80,7 +80,7 @@ a = 1, b =1, c = 1
 
 However, certain parameter combinations like:
 
-a =1 , b = 9, c = 0 or  
+a =1 , b = 0, c = 0 or  
 
 a = 1, b = 0, c = 1 or  
 

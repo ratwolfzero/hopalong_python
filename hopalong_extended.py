@@ -7,7 +7,7 @@ from numba import njit
 from math import copysign, sqrt, fabs
 
 
-def get_validated_input(prompt, input_type=float, check_positive_non_zero=False, min_value=None):
+def validate_input(prompt, input_type=float, check_positive_non_zero=False, min_value=None):
     # Prompt for and return user input validated by type and positive/non-zero checks
     while True:
         user_input = input(prompt)
@@ -25,10 +25,10 @@ def get_validated_input(prompt, input_type=float, check_positive_non_zero=False,
             
 
 def get_attractor_parameters():
-    a = get_validated_input('Enter a float value for "a": ', float)
-    b = get_validated_input('Enter a float value for "b": ', float)
+    a = validate_input('Enter a float value for "a": ', float)
+    b = validate_input('Enter a float value for "b": ', float)
     while True:
-        c = get_validated_input('Enter a float value for "c": ', float)
+        c = validate_input('Enter a float value for "c": ', float)
         if (a == 0 and b == 0 and c == 0) or (a == 0 and c == 0):
             print("Invalid combination of parameters. The following combinations are not allowed:\n"
                   "- a = 0, b = 0, c = 0\n"
@@ -36,7 +36,7 @@ def get_attractor_parameters():
                   "Please enter different values.")
         else:
             break
-    num = get_validated_input('Enter a positive integer value for "num": ', int, check_positive_non_zero=True, min_value=1000)
+    num = validate_input('Enter a positive integer value for "num": ', int, check_positive_non_zero=True, min_value=1000)
     return {'a': a, 'b': b, 'c': c, 'num': num}
 
 

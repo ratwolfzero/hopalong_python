@@ -39,11 +39,11 @@ The program leverages the Numba @njit decorator for performance optimization by 
 
 Key optimizations include:
 
-Avoiding NumPy vectorization in favor of direct iteration.  
-
-Avoiding parallel iteration with Python’s zip.  
+Avoiding NumPy vectorization and parallel iteration with Python’s zip in favor of direct iteration.  
 
 Avoiding race conditions typically associated with parallelization techniques like prange, which is generally not applicable for cross-iteration dependencies.  
+
+Dummy calls are made to JIT-compiled functions. This step ensures that the function is pre-compiled by the JIT compiler before it's called by the interpreter, eliminating the initial compilation overhead while executing the code.
 
 These optimizations make the program as efficient as possible when using @njit.  
 

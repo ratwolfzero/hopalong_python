@@ -55,7 +55,7 @@ def compute_trajectory_extents(a, b, c, num):
         xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x
         x, y = xx, yy
     return min_x, max_x, min_y, max_y
-# Dummy call to trigger "Just-In-Time" (JIT) compilation 
+# # Dummy call to ensures the function is pre-compiled by the JIT compiler before it's called by the interpreter.
 _ = compute_trajectory_extents(1.0, 1.0, 1.0, 2)
 
 
@@ -83,7 +83,7 @@ def compute_trajectory_and_image(a, b, c, num, extents, image_size):
         xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x
         x, y = xx, yy
     return image
-# Dummy call to trigger "Just-In-Time" (JIT) compilation 
+# # Dummy call to ensures the function is pre-compiled by the JIT compiler before it's called by the interpreter.
 _ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (1, 1))
 
 

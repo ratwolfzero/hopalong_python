@@ -42,7 +42,7 @@ def get_attractor_parameters():
 
 @njit
 def compute_trajectory_extents(a, b, c, num):
-    ## Compute the extents of the attractor trajectory by dynamically tracking the minima and maxima during the iteration.
+    # Compute the extents of the attractor trajectory by dynamically tracking the minima and maxima during the iteration.
     x = y = np.float64(0)
     min_x = min_y = np.inf   # ensure that the initial minimum is determined correctly
     max_x = max_y = -np.inf  # ensure that the initial maximum is determined correctly
@@ -82,7 +82,7 @@ def compute_trajectory_and_image(a, b, c, num, extents, image_size):
         xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x
         x, y = xx, yy
     return image
-# # Dummy call to ensures the function is pre-compiled by the JIT compiler before it's called by the interpreter.
+# Dummy call to ensures the function is pre-compiled by the JIT compiler before it's called by the interpreter.
 _ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (1, 1))
 
 

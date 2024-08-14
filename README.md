@@ -64,7 +64,7 @@ Example parameters:
 a = -2
 b = -0.33
 c = 0.01
-num = 200.000.000
+num = 200_000_000
 
 ## Recent code changes
 

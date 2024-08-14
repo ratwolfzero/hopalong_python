@@ -42,10 +42,10 @@ def get_attractor_parameters():
 
 @njit
 def compute_trajectory_extents(a, b, c, num):
-    # Compute the x and y extents of the Hopalong attractor trajectory.
+    # Compute the extents of the attractor trajectory by dynamically tracking the minima and maxima during the iteration.
     x = y = np.float64(0)
-    min_x = min_y = np.inf
-    max_x = max_y = -np.inf
+    min_x = min_y = np.inf   # ensure that the initial minimum is determined correctly
+    max_x = max_y = -np.inf  # ensure that the initial maximum is determined correctly
     for _ in range(num):
         min_x = min(min_x, x)
         max_x = max(max_x, x)

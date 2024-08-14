@@ -1,5 +1,6 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
+from math import copysign
 
 
 # Parameters for the Hopalong attractor
@@ -14,16 +15,11 @@ x = np.zeros(iterations)
 y = np.zeros(iterations)
 
 # Initial values
-x[0] = 0
-y[0] = 0
+x[0] = 0.0
+y[0] = 0.0
 
 def custom_sign(x):
-    """
-    for floating point according IEEE 754 (e.g. like implemented in Rust)
-    1.0 if the number is positive, +0.0 or INFINITY
-    -1.0 if the number is negative, -0.0 or NEG_INFINITY
-    NaN if the number is NaN
-    """
+    
     if np.isnan(x):
         return np.nan
     elif x > 0 or x == 0.0:
@@ -33,18 +29,11 @@ def custom_sign(x):
 
 # Iterate the Hopalong attractor equations
 for n in range(iterations - 1):
-	# x[n + 1] = y[n] - np.sign(x[n]) * np.sqrt(abs(b * x[n] - c))
+    x[n + 1] = y[n] - np.sign(x[n]) * np.sqrt(abs(b * x[n] - c))
     x[n + 1] = y[n] - custom_sign(x[n]) * np.sqrt(abs(b * x[n] - c))
+    x[n + 1] = y[n] - copysign(1.0, x[n])  * np.sqrt(abs(b * x[n] - c))
     y[n + 1] = a - x[n]
 	
-	
-"""
-#Iterate the Hopalong attractor equations using custom signum.
-#With this user-defined Signum function, some borderline cases regarding the input parameters a, b and c will behave differntly
-for n in range(iterations - 1):
-	x[n + 1] = y[n] - custom_sign(x[n]) * np.sqrt(abs(b * x[n] - c))
-	y[n + 1] = a - x[n]
-"""
 	
 print(x)
 print(y)

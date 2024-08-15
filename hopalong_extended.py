@@ -39,7 +39,7 @@ def get_attractor_parameters():
 
 @njit
 def compute_trajectory_extents(a, b, c, num):
-    # Dynamically compute and track the minimum and maximum extents of the attractor trajectory over 'num' iterations.
+    # Dynamically compute and track the minimum and maximum extents of the trajectory over 'num' iterations.
     x = y = np.float64(0)
     min_x = min_y = np.inf   # ensure that the initial minimum is determined correctly
     max_x = max_y = -np.inf  # ensure that the initial maximum is determined correctly

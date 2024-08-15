@@ -93,13 +93,6 @@ may result in a kind of "singularity" where the attractor does not produce compl
 
 ## Enjoy the Exploration
 
-## Note for MacOS Users
-
-On macOS 14.x with Python 3.12.x, interactions with the plot window may cause the plot window and Python to crash. Using the TkAgg or Qt5Agg backend can resolve this issue. This workaround should not be necessary on other operating systems.  
-
-"# import matplotlib"
-"# matplotlib.use('TkAgg')"
-
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## References

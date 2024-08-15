@@ -1,7 +1,4 @@
-import matplotlib
-matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
-
 import numpy as np
 from numba import njit
 from math import copysign, sqrt, fabs

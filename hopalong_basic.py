@@ -56,8 +56,6 @@ def compute_trajectory_extents(a, b, c, num):
 _ = compute_trajectory_extents(1.0, 1.0, 1.0, 2)
 
 
-
-
 @njit
 def compute_trajectory_and_image(a, b, c, num, extents, image_size):
     # Compute the trajectory and populate the image with trajectory points

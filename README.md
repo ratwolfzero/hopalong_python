@@ -47,7 +47,7 @@ Avoiding race conditions typically associated with parallelization techniques li
 
 Dummy calls are made to JIT-compiled functions. This step ensures that the function is pre-compiled by the JIT compiler before it's called by the interpreter, eliminating the initial compilation overhead while executing the code.  
 
-You are invited to browse the development folder to understand and try out different approaches.
+You are invited to browse the development folder in the github repository to understand and try out different approaches.
 
 ## User Input  
 

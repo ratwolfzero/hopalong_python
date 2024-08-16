@@ -63,7 +63,7 @@ def compute_trajectory_and_image(a, b, c, num, extents, image_size):
     img_width, img_height = image_size
     image = np.zeros((img_height, img_width), dtype=np.uint64)
     
-    # pre-compute imsge scale factors
+    # pre-compute image scale factors
     min_x, max_x, min_y, max_y = extents
     scale_x = (img_width - 1) / (max_x - min_x)
     scale_y = (img_height - 1) / (max_y - min_y)

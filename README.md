@@ -39,11 +39,11 @@ The program leverages the Numba @njit decorator for performance optimization by 
 
 Key optimizations include:
 
-Avoiding NumPy vectorization and parallel iteration with Python’s zip in favor of direct iteration.  
+Avoiding NumPy vectorization* and parallel iteration with Python’s zip in favor of direct iteration.  
 
 Avoiding race conditions typically associated with parallelization techniques like prange, which is generally not applicable for cross-iteration dependencies.  
 
-Regarding the basic approach, a two-pass method is preferred over array caching of the trajectory points because it ensures accurate and consistent scaling across the entire dataset while maintaining low memory usage. This approach is especially advantageous in large-scale computations, where memory efficiency and stability are crucial. By separating the extents calculation from the image mapping, the two-pass method provides reliable and scalable performance without risking the memory overflow (swap RAM-->SSD) or performance degradation that can occur with caching methods.  
+*In terms of the basic approach, a two-pass method is preferable to array caching of the trajectory points because it ensures accurate and consistent scaling across the entire dataset while using little memory. This approach is particularly beneficial in large-scale computations where memory efficiency and stability are crucial. By separating the extents computation from the image mapping, the two-pass method provides reliable and scalable performance without risking the memory overflow (swap RAM-->SSD) or performance degradation that can occur with caching methods.
 
 Dummy calls are made to JIT-compiled functions. This step ensures that the function is pre-compiled by the JIT compiler before it's called by the interpreter, eliminating the initial compilation overhead while executing the code.  
 

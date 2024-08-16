@@ -1,13 +1,10 @@
-import matplotlib
-matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
-
 import numpy as np
 from numba import njit
 from math import copysign, sqrt, fabs
 
 
-def get_validated_input(prompt, input_type=float, check_positive_non_zero=False, min_value=None):
+def validate_input(prompt, input_type=float, check_positive_non_zero=False, min_value=None):
     # Prompt for and return user input validated by type and positive/non-zero checks
     while True:
         user_input = input(prompt)
@@ -25,10 +22,10 @@ def get_validated_input(prompt, input_type=float, check_positive_non_zero=False,
             
 
 def get_attractor_parameters():
-    a = get_validated_input('Enter a float value for "a": ', float)
-    b = get_validated_input('Enter a float value for "b": ', float)
+    a = validate_input('Enter a float value for "a": ', float)
+    b = validate_input('Enter a float value for "b": ', float)
     while True:
-        c = get_validated_input('Enter a float value for "c": ', float)
+        c = validate_input('Enter a float value for "c": ', float)
         if (a == 0 and b == 0 and c == 0) or (a == 0 and c == 0):
             print("Invalid combination of parameters. The following combinations are not allowed:\n"
                   "- a = 0, b = 0, c = 0\n"
@@ -36,17 +33,18 @@ def get_attractor_parameters():
                   "Please enter different values.")
         else:
             break
-    num = get_validated_input('Enter a positive integer value for "num": ', int, check_positive_non_zero=True, min_value=1000)
+    num = validate_input('Enter a positive integer value for "num": ', int, check_positive_non_zero=True, min_value=1000)
     return {'a': a, 'b': b, 'c': c, 'num': num}
 
 
 @njit
 def compute_trajectory_extents(a, b, c, num):
-    # Compute the x and y extents of the Hopalong attractor trajectory.
+    # Dynamically compute and track the minimum and maximum extents of the trajectory over 'num' iterations.
     x = y = np.float64(0)
-    min_x = min_y = np.inf
-    max_x = max_y = -np.inf
+    min_x = min_y = np.inf   # ensure that the initial minimum is determined correctly
+    max_x = max_y = -np.inf  # ensure that the initial maximum is determined correctly
     for _ in range(num):
+        # non-selective min/max update 
         min_x = min(min_x, x)
         max_x = max(max_x, x)
         min_y = min(min_y, y)
@@ -55,7 +53,7 @@ def compute_trajectory_extents(a, b, c, num):
         xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x
         x, y = xx, yy
     return min_x, max_x, min_y, max_y
-# Dummy call to trigger "Just-In-Time" (JIT) compilation 
+# Dummy call to ensures the function is pre-compiled by the JIT compiler before it's called by the interpreter.
 _ = compute_trajectory_extents(1.0, 1.0, 1.0, 2)
 
 
@@ -65,7 +63,7 @@ def compute_trajectory_and_image(a, b, c, num, extents, image_size):
     img_width, img_height = image_size
     image = np.zeros((img_height, img_width), dtype=np.uint64)
     
-    # pre-compute imsge scale factors
+    # pre-compute image scale factors
     min_x, max_x, min_y, max_y = extents
     scale_x = (img_width - 1) / (max_x - min_x)
     scale_y = (img_height - 1) / (max_y - min_y)
@@ -83,7 +81,7 @@ def compute_trajectory_and_image(a, b, c, num, extents, image_size):
         xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x
         x, y = xx, yy
     return image
-# Dummy call to trigger "Just-In-Time" (JIT) compilation 
+# Dummy call to ensures the function is pre-compiled by the JIT compiler before it's called by the interpreter.
 _ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (1, 1))
 
 
@@ -122,7 +120,7 @@ def calculate_hit_metrics(img):
     return hit_metrics
 
 def render_trajectory_image(ax, img, extents, params, color_map):
-    ax.imshow(img, origin="lower", cmap=color_map, extent=extents)
+    ax.imshow(img, origin="lower", cmap=color_map, extent=extents,interpolation=None)
     ax.set_title(
         "Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
     ax.set_xlabel('X (Cartesian)')

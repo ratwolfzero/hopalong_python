@@ -44,11 +44,15 @@ def compute_trajectory_extents(a, b, c, num):
     min_x = min_y = np.inf   # ensure that the initial minimum is determined correctly
     max_x = max_y = -np.inf  # ensure that the initial maximum is determined correctly
     for _ in range(num):
-        # non-selective min/max update 
-        min_x = min(min_x, x)
-        max_x = max(max_x, x)
-        min_y = min(min_y, y)
-        max_y = max(max_y, y)
+    # selective min/max update using direct comparisons
+        if x < min_x:
+            min_x = x
+        if x > max_x:
+            max_x = x
+        if y < min_y:
+            min_y = y
+        if y > max_y:
+            max_y = y
         # signum function respecting the behavior of floating point numbers according to IEEE 754 (signed zero)
         xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x
         x, y = xx, yy

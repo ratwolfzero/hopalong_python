@@ -120,7 +120,7 @@ def calculate_hit_metrics(img):
     return hit_metrics
 
 def render_trajectory_image(ax, img, extents, params, color_map):
-    ax.imshow(img, origin="lower", cmap=color_map, extent=extents)
+    ax.imshow(img, origin="lower", cmap=color_map, extent=extents,interpolation=None)
     ax.set_title(
         "Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
     ax.set_xlabel('X (Cartesian)')

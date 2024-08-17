@@ -2,7 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from numba import njit
 from math import copysign, sqrt, fabs
-
+import time
+import resource
 
 def validate_input(prompt, input_type=float, check_positive_non_zero=False, min_value=None):
     # Prompt for and return user input validated by type and positive/non-zero checks
@@ -100,9 +101,21 @@ def main(image_size=(1000, 1000), color_map='hot'):
     # Main execution process
     try:
         params = get_attractor_parameters()
-        #extents = compute_trajectory_extents(params['a'], params['b'], params['c'], params['num'])
+
+        # Start the CPU time measurement
+        start_time = time.process_time()
+
         image, extents = compute_trajectory_and_image_cached(params['a'], params['b'], params['c'], params['num'], image_size)
         render_trajectory_image(image, extents, params, color_map)
+
+        # End the CPU time measurement
+        end_time = time.process_time()
+        # Calculate the CPU time used
+        cpu_time_used = end_time - start_time
+        memMb=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024.0/1024.0
+        print(f"CPU time used (including rendering): {cpu_time_used:.2f} seconds")
+        print ("%5.1f MByte used" % (memMb))
+
     except Exception as e:
         print(f"An error occurred: {e}")
 

@@ -41,7 +41,8 @@ def get_attractor_parameters():
 @njit(nogil=True)
 def compute_trajectory_extents(a, b, c, num):
     # Dynamically compute and track the minimum and maximum extents of the trajectory over 'num' iterations.
-    x = y = np.float64(0)
+    x = np.float64(0.0)
+    y = np.float64(0.0)
     min_x = min_y = np.inf   # ensure that the initial minimum is determined correctly
     max_x = max_y = -np.inf  # ensure that the initial maximum is determined correctly
     for _ in range(num):
@@ -55,8 +56,10 @@ def compute_trajectory_extents(a, b, c, num):
         if y > max_y:
             max_y = y
         # signum function respecting the behavior of floating point numbers according to IEEE 754 (signed zero)
-        xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x
-        x, y = xx, yy
+        xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
+        yy = a-x
+        x = xx
+        y = yy
     return min_x, max_x, min_y, max_y
 # Dummy call to ensures the function is pre-compiled by the JIT compiler before it's called by the interpreter.
 _ = compute_trajectory_extents(1.0, 1.0, 1.0, 2)
@@ -72,7 +75,8 @@ def compute_trajectory_and_image(a, b, c, num, extents, image_size):
     scale_x = (image_size[0] - 1) / (max_x - min_x)
     scale_y = (image_size[1] - 1) / (max_y - min_y)
     
-    x = y = np.float64(0)
+    x = np.float64(0.0)
+    y = np.float64(0.0)
     
     for _ in range(num):
         # map trajectory points to image pixel coordinates
@@ -82,8 +86,10 @@ def compute_trajectory_and_image(a, b, c, num, extents, image_size):
         image[py, px] += 1  # respecting row/column convention
 
         # Update the trajectory "on the fly"
-        xx, yy = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a - x
-        x, y = xx, yy
+        xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
+        yy = a-x
+        x = xx
+        y = yy
     return image
 # Dummy call to ensures the function is pre-compiled by the JIT compiler before it's called by the interpreter.
 _ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (1, 1))

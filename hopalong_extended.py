@@ -44,7 +44,7 @@ def compute_trajectory_extents(a, b, c, num):
     min_x = min_y = np.inf   # ensure that the initial minimum is determined correctly
     max_x = max_y = -np.inf  # ensure that the initial maximum is determined correctly
     for _ in range(num):
-    # selective min/max update using direct comparisons
+    # selective min/max update using direct comparisons avoiding min/max function
         if x < min_x:
             min_x = x
         if x > max_x:

@@ -97,8 +97,9 @@ def render_trajectory_image(image, extents, params, color_map):
     ax.set_title("Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
     ax.set_xlabel('X (Cartesian)')
     ax.set_ylabel('Y (Cartesian)')
-
+    #plt.savefig("hopalong.svg", format="svg", dpi=1200)
     plt.show()
+    
 
 
 def main(image_size=(1000, 1000), color_map='hot'):

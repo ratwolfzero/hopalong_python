@@ -182,9 +182,9 @@ def main(image_size=(1000, 1000), color_map='hot'):
         # Calculate the CPU time used
         cpu_time_used = end_time - start_time
         memMb=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024.0/1024.0
-        print(f"CPU time used (including rendering): {cpu_time_used:.2f} seconds")
-        print ("%5.1f MByte used" % (memMb))
-        
+        print(f"CPU & System time used: {cpu_time_used:.2f} seconds")
+        print (f"Memory (RAM): {memMb:.2f} MByte used")
+
     except Exception as e:
         print(f"An error occurred: {e}")
 

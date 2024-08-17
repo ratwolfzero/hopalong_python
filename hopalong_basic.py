@@ -37,7 +37,7 @@ def get_attractor_parameters():
     return {'a': a, 'b': b, 'c': c, 'num': num}
 
 
-@njit
+@njit(nogil=True)
 def compute_trajectory_extents(a, b, c, num):
     # Dynamically compute and track the minimum and maximum extents of the trajectory over 'num' iterations.
     x = y = np.float64(0)
@@ -61,7 +61,7 @@ def compute_trajectory_extents(a, b, c, num):
 _ = compute_trajectory_extents(1.0, 1.0, 1.0, 2)
 
 
-@njit
+@njit(nogil=True)
 def compute_trajectory_and_image(a, b, c, num, extents, image_size):
     # Compute the trajectory and populate the image with trajectory points
     image = np.zeros(image_size, dtype=np.uint64)

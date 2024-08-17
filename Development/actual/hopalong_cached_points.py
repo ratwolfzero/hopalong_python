@@ -111,15 +111,15 @@ def main(image_size=(1000, 1000), color_map='hot'):
         # End the CPU time measurement
         end_time = time.process_time()
         # Calculate the CPU time used
-        cpu_time_used = end_time - start_time
+        cpu_sys_time_used = end_time - start_time
         memMb=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024.0/1024.0
-        print(f"CPU & System time used: {cpu_time_used:.2f} seconds")
+        print(f"CPU & System time used: {cpu_sys_time_used:.2f} seconds")
         print (f"Memory (RAM): {memMb:.2f} MByte used")
 
     except Exception as e:
         print(f"An error occurred: {e}")
 
 
-# Main execution
+# Main execution––
 if __name__ == "__main__":
     main()

@@ -12,7 +12,8 @@ python3 /path/to/my/file/hopalong_basic.py
 
 ## Requirements  
 
-To run this program, the following Python libraries must be installed:
+To run this program, the following Python libraries must be installed:  
+(time and recource only if you want to track process time and memory used, if not please also comment out the related code snippets in main() )
 
 - numpy  
 

@@ -5,6 +5,7 @@ from math import copysign, sqrt, fabs
 import time
 import resource
 
+
 def validate_input(prompt, input_type=float, check_positive_non_zero=False, min_value=None):
     # Prompt for and return user input validated by type and positive/non-zero checks
     while True:

@@ -193,6 +193,7 @@ def main(image_size=(1000, 1000), color_map='hot'):
 
         # End the CPU&System time measurement
         end_time = time.process_time()
+        
         # Calculate the CPU&System time and memory used
         cpu_sys_time_used = end_time - start_time
         memMb=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024.0/1024.0

@@ -38,7 +38,7 @@ def get_attractor_parameters():
     return {'a': a, 'b': b, 'c': c, 'num': num}
 
 
-@njit(nogil=True)
+@njit
 def compute_trajectory_and_image_cached(a, b, c, num, image_size):
     # Initialize extents
     min_x = min_y = np.inf

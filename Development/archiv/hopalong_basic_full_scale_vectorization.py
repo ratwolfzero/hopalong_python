@@ -51,6 +51,7 @@ def compute_trajectory(a, b, c, num):
 
     return points
 
+
 @njit
 def populate_image(image, px, py):
     for i in range(len(px)):

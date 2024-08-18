@@ -39,13 +39,17 @@ def get_attractor_parameters():
     return {'a': a, 'b': b, 'c': c, 'num': num}
 
 
-@njit(nogil=True)
+@njit
 def compute_trajectory_extents(a, b, c, num):
     # Dynamically compute and track the minimum and maximum extents of the trajectory over 'num' iterations.
     x = np.float64(0.0)
     y = np.float64(0.0)
-    min_x = min_y = np.inf   # ensure that the initial minimum is determined correctly
-    max_x = max_y = -np.inf  # ensure that the initial maximum is determined correctly
+
+    min_x = np.inf  # ensure that the initial minimum is determined correctly
+    max_x = -np.inf # ensure that the initial maximum is determined correctly
+    min_y = np.inf
+    max_y = -np.inf
+
     for _ in range(num):
     # selective min/max update using direct comparisons avoiding min/max function
         if x < min_x:
@@ -61,12 +65,13 @@ def compute_trajectory_extents(a, b, c, num):
         yy = a-x
         x = xx
         y = yy
+
     return min_x, max_x, min_y, max_y
 # Dummy call to ensures the function is pre-compiled by the JIT compiler before it's called by the interpreter.
 _ = compute_trajectory_extents(1.0, 1.0, 1.0, 2)
 
 
-@njit(nogil=True)
+@njit
 def compute_trajectory_and_image(a, b, c, num, extents, image_size):
     # Compute the trajectory and populate the image with trajectory points
     img_width, img_height = image_size
@@ -92,6 +97,7 @@ def compute_trajectory_and_image(a, b, c, num, extents, image_size):
         yy = a-x
         x = xx
         y = yy
+
     return image
 # Dummy call to ensures the function is pre-compiled by the JIT compiler before it's called by the interpreter.
 _ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (1, 1))
@@ -130,6 +136,7 @@ def calculate_hit_metrics(img):
         "hit_ratio": round(hit_ratio, 2),
     }
     return hit_metrics
+
 
 def render_trajectory_image(ax, img, extents, params, color_map):
     ax.imshow(img, origin="lower", cmap=color_map, extent=extents,interpolation=None)

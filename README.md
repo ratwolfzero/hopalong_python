@@ -98,7 +98,38 @@ Dummy calls are made to JIT-compiled functions. This step ensures that the funct
     return min_x, max_x, min_y, max_y  
 
     # Dummy call to ensures the function is pre-compiled by the JIT compiler before it's called by the interpreter.
-    _ = compute_trajectory_extents(1.0, 1.0, 1.0, 2)  
+    _ = compute_trajectory_extents(1.0, 1.0, 1.0, 2) 
+     
+
+    @njit
+    def compute_trajectory_and_image(a, b, c, num, extents, image_size):
+    # Compute the trajectory and populate the image with trajectory points
+    image = np.zeros(image_size, dtype=np.uint64)
+    
+    # pre-compute image scale factors
+    min_x, max_x, min_y, max_y = extents
+    scale_x = (image_size[0] - 1) / (max_x - min_x)
+    scale_y = (image_size[1] - 1) / (max_y - min_y)
+    
+    x = np.float64(0.0)
+    y = np.float64(0.0)
+    
+    for _ in range(num):
+        # map trajectory points to image pixel coordinates
+        px = np.uint64((x - min_x) * scale_x)
+        py = np.uint64((y - min_y) * scale_y)
+        # populate the image "on the fly" with each computed point
+        image[py, px] += 1  # respecting row/column convention
+
+        # Update the trajectory "on the fly"
+        xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
+        yy = a-x
+        x = xx
+        y = yy
+        
+    return image
+    # Dummy call to ensures the function is pre-compiled by the JIT compiler before it's called by the interpreter.
+    _ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (1, 1))  
 
 You are invited to browse the development folder in the github repository to understand and try out different approaches.
 

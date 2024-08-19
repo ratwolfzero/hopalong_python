@@ -120,20 +120,21 @@ def main(image_size=(1000, 1000), color_map='hot'):
     try:
         params = get_attractor_parameters()
         
-        # Start the CPU&System time measurement
+        # Start the time measurement
         start_time = time.process_time()
 
         extents = compute_trajectory_extents(params['a'], params['b'], params['c'], params['num'])
         image = compute_trajectory_and_image(params['a'], params['b'], params['c'], params['num'], extents, image_size)
         render_trajectory_image(image, extents, params, color_map)
 
-        # End the CPU&System time measurement
+        # End the time measurement
         end_time = time.process_time()
 
-        # Calculate the CPU&System time and memory used
+        # Calculate the CPU user and system time
         cpu_sys_time_used = end_time - start_time
+        # Calculate the memory resources used
         memMb=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024.0/1024.0
-        print(f'CPU & System time used: {cpu_sys_time_used:.2f} seconds')
+        print(f'CPU User&System time used: {cpu_sys_time_used:.2f} seconds')
         print (f'Memory (RAM): {memMb:.2f} MByte used')
         
     except Exception as e:

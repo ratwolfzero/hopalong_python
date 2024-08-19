@@ -13,6 +13,7 @@ python3 /path/to/my/file/hopalong_basic.py
 ## Requirements  
 
 To run this program, the following Python libraries must be installed:  
+
 (time and recource only if you want to track process time and memory used, if not please also comment out the related code snippets in main() )
 
   matplotlib
@@ -67,6 +68,37 @@ Avoiding race conditions typically associated with parallelization techniques li
 *In terms of the basic approach, a two-pass method is preferable to array caching of the trajectory points because it ensures accurate and consistent scaling across the entire dataset while consuming little memory. This approach is particularly beneficial in large-scale computations where memory efficiency and stability are critical. By separating the extents computation from the image mapping, the two-pass method provides reliable and scalable performance without risking the memory overflow (swap RAM-->SSD) or performance degradation that can occur with caching methods. The performance loss in small-scale computations is marginal because point arrays increase system utilization and time.
 
 Dummy calls are made to JIT-compiled functions. This step ensures that the function is pre-compiled by the JIT compiler before it's called by the interpreter, eliminating the initial compilation overhead while executing the code.  
+
+    @njit #njit is an alias for nopython=True
+    def compute_trajectory_extents(a, b, c, num):
+    # Dynamically compute and track the minimum and maximum extents of the trajectory over 'num' iterations.
+    x = np.float64(0.0)
+    y = np.float64(0.0)
+
+    min_x = np.inf  # ensure that the initial minimum is determined correctly
+    max_x = -np.inf # ensure that the initial maximum is determined correctly
+    min_y = np.inf
+    max_y = -np.inf
+
+    for _ in range(num):
+    # selective min/max update using direct comparisons avoiding min/max function
+        if x < min_x:
+            min_x = x
+        if x > max_x:
+            max_x = x
+        if y < min_y:
+            min_y = y
+        if y > max_y:
+            max_y = y
+        # signum function respecting the behavior of floating point numbers according to IEEE 754 (signed zero)
+        xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
+        yy = a-x
+        x = xx
+        y = yy
+    return min_x, max_x, min_y, max_y  
+
+    # Dummy call to ensures the function is pre-compiled by the JIT compiler before it's called by the interpreter.
+    _ = compute_trajectory_extents(1.0, 1.0, 1.0, 2)  
 
 You are invited to browse the development folder in the github repository to understand and try out different approaches.
 

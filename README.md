@@ -36,6 +36,11 @@ To run this program, the following Python libraries must be installed:
     #import resource  
 
 
+    def main(image_size=(1000, 1000), color_map='hot'):
+    # Main execution process
+    try:
+    params = get_attractor_parameters()
+        
     # Start the time measurement
     #start_time = time.process_time()
 
@@ -51,7 +56,10 @@ To run this program, the following Python libraries must be installed:
     # Calculate the memory resources used
     #memMb=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024.0/1024.0
     #print(f'CPU User&System time used: {cpu_sys_time_used:.2f} seconds')
-    #print (f'Memory (RAM): {memMb:.2f} MByte used')  
+    #print (f'Memory (RAM): {memMb:.2f} MByte used')
+        
+    except Exception as e:
+        print(f'An error occurred: {e}')
 
 ## Features  
 

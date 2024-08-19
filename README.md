@@ -21,14 +21,16 @@ To run this program, the following Python libraries must be installed:
 
 - numba  
 
-- (math is a standard library)
+- (math is a standard library)  
 
+'''
     import matplotlib.pyplot as plt
     import numpy as np
     from numba import njit
     from math import copysign, sqrt, fabs
     import time
     import resource
+'''  
 
 ## Features  
 

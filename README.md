@@ -81,7 +81,7 @@ Measure execution time using time.process_time(), which captures CPU user plus s
 The time the plot window remains open is only recorded if an interaction occurs, such as zooming or panning. The measured time is displayed once the plot window is closed. For precise measurement, it's recommended to automatically close the window since pause() is not recorded.
 
 Note: Using "time.perf_counter()" instead of "time.process_time()" and subtracting 1 second at  
-"cpu_sys_time_used = end_time - start_time - 1 " yields very similar results.
+"cpu_sys_time_used = end_time - start_time - 1 " yields to comparable results.
 
     #plt.show()
     plt.pause(1)

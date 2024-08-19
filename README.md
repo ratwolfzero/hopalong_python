@@ -24,9 +24,9 @@ To run this program, the following Python libraries must be installed:
 
   (math is a standard library)
 
-  #time
+  (time)
 
-  #resource  
+  (resource)  
 
     import matplotlib.pyplot as plt
     import numpy as np
@@ -34,7 +34,7 @@ To run this program, the following Python libraries must be installed:
     from math import copysign, sqrt, fabs
     #import time
     #import resource  
-      
+
 
     # Start the time measurement
     #start_time = time.process_time()

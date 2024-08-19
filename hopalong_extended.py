@@ -13,14 +13,14 @@ def validate_input(prompt, input_type=float, check_positive_non_zero=False, min_
         try:
             value = input_type(user_input)
             if check_positive_non_zero and value <= 0:
-                print("Invalid input. The value must be a positive non-zero number.")
+                print('Invalid input. The value must be a positive non-zero number.')
                 continue
             if min_value is not None and value < min_value:
-                print(f"Invalid input. The value should be at least {min_value}.")
+                print(f'Invalid input. The value should be at least {min_value}.')
                 continue
             return value
         except ValueError:
-            print(f"Invalid input. Please enter a valid {input_type.__name__} value.")
+            print(f'Invalid input. Please enter a valid {input_type.__name__} value.')
             
 
 def get_attractor_parameters():
@@ -29,10 +29,10 @@ def get_attractor_parameters():
     while True:
         c = validate_input('Enter a float value for "c": ', float)
         if (a == 0 and b == 0 and c == 0) or (a == 0 and c == 0):
-            print("Invalid combination of parameters. The following combinations are not allowed:\n"
-                  "- a = 0, b = 0, c = 0\n"
-                  "- a = 0, b = any value, c = 0\n"
-                  "Please enter different values.")
+            print('Invalid combination of parameters. The following combinations are not allowed:\n'
+                  '- a = 0, b = 0, c = 0\n'
+                  '- a = 0, b = any value, c = 0\n'
+                  'Please enter different values.')
         else:
             break
     num = validate_input('Enter a positive integer value for "num": ', int, check_positive_non_zero=True, min_value=1000)
@@ -108,13 +108,13 @@ def calculate_hit_metrics(img):
 
     if len(hit) == 0:
         return {
-            "hit": np.array([]),
-            "count": np.array([]),
-            "hit_for_max_count": None,
-            "count_for_max_hit": None,
-            "hit_pixel": 0,
-            "img_points": img.size,
-            "hit_ratio": 0.0,
+            'hit': np.array([]),
+            'count': np.array([]),
+            'hit_for_max_count': None,
+            'count_for_max_hit': None,
+            'hit_pixel': 0,
+            'img_points': img.size,
+            'hit_ratio': 0.0,
         }
 
     max_count_index = np.argmax(count)
@@ -127,43 +127,43 @@ def calculate_hit_metrics(img):
     hit_ratio = hit_pixel / img_pixels * 100
 
     hit_metrics = {
-        "hit": hit,
-        "count": count,
-        "hit_for_max_count": hit_for_max_count,
-        "count_for_max_hit": count_for_max_hit,
-        "hit_pixel": hit_pixel,
-        "img_points": img_pixels,
-        "hit_ratio": round(hit_ratio, 2),
+        'hit': hit,
+        'count': count,
+        'hit_for_max_count': hit_for_max_count,
+        'count_for_max_hit': count_for_max_hit,
+        'hit_pixel': hit_pixel,
+        'img_points': img_pixels,
+        'hit_ratio': round(hit_ratio, 2),
     }
     return hit_metrics
 
 
 def render_trajectory_image(ax, img, extents, params, color_map):
-    ax.imshow(img, origin="lower", cmap=color_map, extent=extents,interpolation=None)
+    ax.imshow(img, origin='lower', cmap=color_map, extent=extents,interpolation='none')
     ax.set_title(
-        "Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
+        'Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}'.format(**params))
     ax.set_xlabel('X (Cartesian)')
     ax.set_ylabel('Y (Cartesian)')
 
 
 def plot_hit_metrics(ax, hit_metrics, scale='log'):
-    ax.plot(hit_metrics["hit"], hit_metrics["count"], 'o-', color="navy", markersize=1, linewidth=0.6)
+    ax.plot(hit_metrics['hit'], hit_metrics['count'], 'o-', color='navy', markersize=1, linewidth=0.6)
     ax.set_xlabel('# of hits (n)')
     ax.set_ylabel('# of pixels hit n-times')
 
     title_text = (
         f'Distribution of pixel hit count. \n'
-        f'{hit_metrics["hit_pixel"]} pixels out of {hit_metrics["img_points"]} image pixels = {hit_metrics["hit_ratio"]}% have been hit at least one time. \n'
-        f'The highest number of pixels with the same number of hits is {np.max(hit_metrics["count"])} with {hit_metrics["hit_for_max_count"]} hits. \n'
-        f'The highest number of hits is {np.max(hit_metrics["hit"])} with {hit_metrics["count_for_max_hit"]} pixels hit')
+        f'{hit_metrics['hit_pixel']} pixels out of {hit_metrics['img_points']} image pixels = {hit_metrics['hit_ratio']}% have been hit at least one time. \n'
+        f'The highest number of pixels with the same number of hits is {np.max(hit_metrics['count'])} with {hit_metrics['hit_for_max_count']} hits. \n'
+        f'The highest number of hits is {np.max(hit_metrics['hit'])} with {hit_metrics['count_for_max_hit']} pixels hit')
 
     ax.set_title(title_text, fontsize=10)
     ax.set_xscale(scale)
     ax.set_yscale(scale)
     ax.set_xlim(left=0.9)
     ax.set_ylim(bottom=0.9)
-    ax.set_facecolor("lightgrey")
-    ax.grid(True, which="both")
+    ax.set_facecolor('lightgrey')
+    ax.grid(True, which='both')
 
 
 def visualize_trajectory_image_and_hit_metrics(img, extents, params, color_map, hit_metrics):
@@ -174,7 +174,7 @@ def visualize_trajectory_image_and_hit_metrics(img, extents, params, color_map, 
 
     ax2 = fig.add_subplot(1, 2, 2, aspect='auto')
     plot_hit_metrics(ax2, hit_metrics)
-    #plt.savefig("hopalong.svg", format="svg", dpi=1200)
+    #plt.savefig('hopalong.svg', format='svg', dpi=1200)
     plt.show()
 
 
@@ -197,13 +197,13 @@ def main(image_size=(1000, 1000), color_map='hot'):
         # Calculate the CPU&System time and memory used
         cpu_sys_time_used = end_time - start_time
         memMb=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024.0/1024.0
-        print(f"CPU & System time used: {cpu_sys_time_used:.2f} seconds")
-        print (f"Memory (RAM): {memMb:.2f} MByte used")
+        print(f'CPU & System time used: {cpu_sys_time_used:.2f} seconds')
+        print (f'Memory (RAM): {memMb:.2f} MByte used')
 
     except Exception as e:
-        print(f"An error occurred: {e}")
+        print(f'An error occurred: {e}')
 
 
 # Main execution
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

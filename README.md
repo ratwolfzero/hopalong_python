@@ -16,6 +16,21 @@ To run this program, the following Python libraries must be installed:
 
 "time" and "recource" only if you want to track process time and memory used, if not please also comment out the related code snippets in main()  
 
+  matplotlib
+
+  numpy  
+
+  numba  
+
+  (math is a standard library)  
+
+    import matplotlib.pyplot as plt
+    import numpy as np
+    from numba import njit
+    from math import copysign, sqrt, fabs
+    #import time
+    #import resource  
+
     # Start the time measurement
     #start_time = time.process_time()
 
@@ -31,22 +46,7 @@ To run this program, the following Python libraries must be installed:
     # Calculate the memory resources used
     #memMb=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024.0/1024.0
     #print(f'CPU User&System time used: {cpu_sys_time_used:.2f} seconds')
-    #print (f'Memory (RAM): {memMb:.2f} MByte used')
-
-  matplotlib
-
-  numpy  
-
-  numba  
-
-  (math is a standard library)  
-
-    import matplotlib.pyplot as plt
-    import numpy as np
-    from numba import njit
-    from math import copysign, sqrt, fabs
-    #import time
-    #import resource  
+    #print (f'Memory (RAM): {memMb:.2f} MByte used')  
 
 ## Features  
 

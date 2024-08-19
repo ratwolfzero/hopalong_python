@@ -36,8 +36,14 @@ Performance optimization by using the Numba @njit decorator
 
 Using Matplotlib allows the display of an interactive plot window.  
 
-Measuring the execution time with "time.process_time()". This measures the CPU user and system time including rendering the image.
-The time after rendering, during which the plot window remains open, is not recorded. The measured time is displayed after the plot window is closed.
+Measuring the execution time with "time.process_time()". The CPU user plus system time is measured. The time measurement starts after the user has entered the parameters and includes the rendering of the image.
+
+The time that the plot window remains open after rendering is only recorded if an interaction takes place. Interactions with the window, such as zooming and panning, mouse-over etc., are recorded. The measured time is displayed after the plot window is closed.  
+For exact time measurement you should close the plor window automatically, pause() is not recorded.
+
+    #plt.show()
+    plt.pause(1)
+    plt.close(fig)
 
 ## Performance Optimization  
 

@@ -176,6 +176,8 @@ def visualize_trajectory_image_and_hit_metrics(img, extents, params, color_map, 
     plot_hit_metrics(ax2, hit_metrics)
     #plt.savefig('hopalong.svg', format='svg', dpi=1200)
     plt.show()
+    #plt.pause(1)
+    #plt.close(fig)
 
 
 def main(image_size=(1000, 1000), color_map='hot'):

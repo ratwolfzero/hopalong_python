@@ -14,7 +14,24 @@ python3 /path/to/my/file/hopalong_basic.py
 
 To run this program, the following Python libraries must be installed:  
 
-(time and recource only if you want to track process time and memory used, if not please also comment out the related code snippets in main() )
+"time" and "recource" only if you want to track process time and memory used, if not please also comment out the related code snippets in main()  
+
+    # Start the time measurement
+    #start_time = time.process_time()
+
+    extents = compute_trajectory_extents(params['a'], params['b'], params['c'], params['num'])
+    image = compute_trajectory_and_image(params['a'], params['b'], params['c'], params['num'], extents, image_size)
+    render_trajectory_image(image, extents, params, color_map)
+
+    # End the time measurement
+    #end_time = time.process_time()
+
+    # Calculate the CPU user and system time
+    #cpu_sys_time_used = end_time - start_time
+    # Calculate the memory resources used
+    #memMb=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024.0/1024.0
+    #print(f'CPU User&System time used: {cpu_sys_time_used:.2f} seconds')
+    #print (f'Memory (RAM): {memMb:.2f} MByte used')
 
   matplotlib
 
@@ -28,8 +45,8 @@ To run this program, the following Python libraries must be installed:
     import numpy as np
     from numba import njit
     from math import copysign, sqrt, fabs
-    import time
-    import resource  
+    #import time
+    #import resource  
 
 ## Features  
 
@@ -99,7 +116,7 @@ Dummy calls are made to JIT-compiled functions. This step ensures that the funct
 
     # Dummy call to ensures the function is pre-compiled by the JIT compiler before it's called by the interpreter.
     _ = compute_trajectory_extents(1.0, 1.0, 1.0, 2) 
-     
+
 
     @njit
     def compute_trajectory_and_image(a, b, c, num, extents, image_size):

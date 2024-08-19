@@ -34,7 +34,10 @@ Extended Version: In addition to calculating and displaying the Hopalong attract
 For both versions, the rendered image pixels are color-mapped based on pixel density (number of hits).
 Performance optimization by using the Numba @njit decorator  
 
-Using Matplotlib allows the display of an interactive plot window.
+Using Matplotlib allows the display of an interactive plot window.  
+
+Measuring the execution time with "time.process_time()". This measures the CPU user and system time including rendering the image.
+The time after rendering, during which the plot window remains open, is not recorded. The measured time is displayed after the plot window is closed.
 
 ## Performance Optimization  
 

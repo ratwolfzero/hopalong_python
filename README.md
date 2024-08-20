@@ -28,14 +28,15 @@ To run this program, the following Python libraries must be installed:
 
 - (resource)  
   
----------------------------------
+-----------------------------------------
 
     import matplotlib.pyplot as plt
     import numpy as np
     from numba import njit
     from math import copysign, sqrt, fabs
     #import time
-    #import resource  
+    #import resource 
+
 
     def main(image_size=(1000, 1000), color_map='hot'):
     # Main execution process

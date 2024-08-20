@@ -16,15 +16,10 @@ python3 /path/to/my/file/hopalong_basic.py
 To run this program, the following Python libraries* must be installed:  
 
 - *matplotlib
-
 - *numpy  
-
 - *numba  
-
 - (math is a standard library)
-
 - (time)
-
 - (resource)  
   
 "time" and "recource" only if you want to track time and memory used,  

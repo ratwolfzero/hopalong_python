@@ -197,19 +197,19 @@ The program now uses the math.copysign function to respect the behavior of float
 
 For example:  
 
-a = 1, b = 2, c = 3 or  
+- a = 1, b = 2, c = 3 or  
 
-a = 0, b = 1, c = 1 or  
+- a = 0, b = 1, c = 1 or  
 
-a = 1, b =1, c = 1  
+- a = 1, b =1, c = 1  
 
 However, certain parameter combinations like:
 
-a =1 , b = 0, c = 0 or  
+- a =1 , b = 0, c = 0 or  
 
-a = 1, b = 0, c = 1 or  
+- a = 1, b = 0, c = 1 or  
 
-a = 1, b = 1, c = 0,  
+- a = 1, b = 1, c = 0,  
 
 may result in a kind of "singularity" where the attractor does not produce complex patterns.
 

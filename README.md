@@ -71,7 +71,7 @@ This program is available in two versions:
 
 - Basic Version: Calculates and displays the Hopalong attractor.  
 
-- Extended Version: In addition to calculating and displaying the Hopalong attractor, this version tracks the pixel hit count ("density") and generates   detailed statistics on the pixel hit count and its distribution.    
+- Extended Version: In addition to calculating and displaying the Hopalong attractor, this version tracks the pixel hit count ("density") and generates   detailed statistics on the pixel hit count and its distribution.
 For both versions, the rendered image pixels are color-mapped based on pixel density (number of hits).  
 
 - Performance optimization by using the Numba @njit decorator.  
@@ -79,9 +79,10 @@ For both versions, the rendered image pixels are color-mapped based on pixel den
 - Using Matplotlib allows the display of an interactive plot window.  
 
 - Measure execution time using time.process_time(), which captures CPU user plus system time. Timing begins after parameter entry and includes image   rendering.  
+
 The time the plot window remains open is only recorded if an interaction occurs, such as zooming or panning.  
 The measured time is displayed once the plot window is closed.  
-For precise measurement, it's recommended to automatically close the window since pause() is not recorded by “time.process_time()”.
+For precise measurement, it's recommended to automatically close the window since pause() is not recorded by “time.process_time()”.  
 
 Note: If you use “time.perf_counter()” instead of “time.process_time()” and subtract 1 second from  
 “cpu_sys_time_used = end_time – start_time – 1”, you will get similar results.

@@ -83,8 +83,7 @@ For both versions, the rendered image pixels are color-mapped based on pixel den
 The time the plot window remains open is only recorded if an interaction occurs, such as zooming or panning.  
 The measured time is displayed once the plot window is closed. For precise measurement, it's recommended to automatically close the window since pause() is not recorded by “time.process_time()”.  
 
-Note: Using "time.perf_counter()" instead of "time.process_time()" and then subtract 1 second from "cpu_sys_time_used = end_time – start_time"  
-yield to similar results.  
+Note: Using "time.perf_counter()" instead of "time.process_time()" and then subtract 1 second from "cpu_sys_time_used = end_time – start_time" yield to similar results.  
 
     #plt.show()
     plt.pause(1)

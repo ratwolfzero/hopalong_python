@@ -82,7 +82,7 @@ For both versions, the rendered image pixels are color-mapped based on pixel den
 
 The time the plot window remains open is only recorded if an interaction occurs, such as zooming or panning.  
 The measured time is displayed once the plot window is closed. For precise measurement, it's recommended to automatically close the window since pause() is not recorded by “time.process_time()”.  
-  
+
 Note: If you use “time.perf_counter()” instead of “time.process_time()” and subtract 1 second from  
 “cpu_sys_time_used = end_time – start_time – 1”, you will get similar results.
 
@@ -96,11 +96,13 @@ The program leverages the Numba @njit decorator for performance optimization by 
 
 Key optimizations include:
 
-Avoiding NumPy vectorization* and parallel iteration with Python’s zip in favor of direct iteration.  
+- Two -pass aproach with straight forward loops with direct ieration
 
-Avoiding race conditions typically associated with parallelization techniques like prange, which is generally not applicable for cross-iteration dependencies.  
+- Avoiding NumPy vectorization and parallel iteration with Python’s zip in favor of direct iteration.  
 
-*In terms of the basic approach, a two-pass method is preferable to array caching of the trajectory points because it ensures accurate and consistent scaling across the entire dataset while consuming little memory. This approach is particularly beneficial in large-scale computations where memory efficiency and stability are critical. By separating the extents computation from the image mapping, the two-pass method provides reliable and scalable performance without risking the memory overflow or performance degradation (swap RAM-->SSD) that can occur with caching methods. The performance loss in small-scale computations is marginal because point arrays increase system utilization and time.
+- Avoiding race conditions typically associated with parallelization techniques like prange, which is generally not applicable for cross-iteration   dependencies.
+
+A two-pass method is preferable to array caching of trajectory points because it ensures accurate and consistent scaling across the dataset while using minimal memory. This approach is especially beneficial for large-scale computations, where memory efficiency and stability are critical. By separating the extents computation from image mapping, the two-pass method offers reliable, scalable performance without the risk of memory overflow or performance degradation. In small-scale computations, any performance loss is marginal, as point arrays increase system utilization and processing time.
 
 Dummy calls are made to JIT-compiled functions. This step ensures that the function is pre-compiled by the JIT compiler before it's called by the interpreter, eliminating the initial compilation overhead while executing the code.  
 

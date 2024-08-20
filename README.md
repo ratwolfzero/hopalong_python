@@ -183,13 +183,13 @@ The program prompts the user for the following parameters:
 
 Example parameters:
 
-a = -2  
+- a = -2  
 
-b = -0.33  
+- b = -0.33  
 
-c = 0.01  
+- c = 0.01  
 
-num = 200_000_000
+- num = 200_000_000
 
 ## Recent code changes
 

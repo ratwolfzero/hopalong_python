@@ -15,7 +15,6 @@ python3 /path/to/my/file/hopalong_basic.py
 
 To run this program, the following Python libraries* must be installed:  
 
-
 - *matplotlib
 
 - *numpy  

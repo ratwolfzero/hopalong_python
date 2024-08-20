@@ -14,7 +14,6 @@ python3 /path/to/my/file/hopalong_basic.py
 
 To run this program, the following Python libraries* must be installed:  
 
-"time" and "recource" only if you want to track time and memory used, if not please also comment out the related code snippets in main().  
 
 - *matplotlib
 
@@ -28,7 +27,8 @@ To run this program, the following Python libraries* must be installed:
 
 - (resource)  
   
-.
+"time" and "recource" only if you want to track time and memory used,  
+ if not please also comment out the related code snippets in main().
   
     import matplotlib.pyplot as plt
     import numpy as np

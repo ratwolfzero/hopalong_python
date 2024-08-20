@@ -28,6 +28,8 @@ To run this program, the following Python libraries must be installed:
 
    (resource)  
 
+    <b></b>  
+
     import matplotlib.pyplot as plt
     import numpy as np
     from numba import njit

@@ -92,7 +92,7 @@ Note: If you use “time.perf_counter()” instead of “time.process_time()” 
 
 ## Performance Optimization  
 
-The program leverages the Numba @njit decorator for performance optimization by enabling nopython mode (nopython=True). This avoids the overhead of Python's interpreter, providing a significant speedup over standard Python loops.  
+The program leverages the Numba @njit decorator for performance optimization by enabling nopython mode. This avoids the overhead of Python's interpreter, providing a significant speedup over standard Python loops.  
 
 Key optimizations include:
 

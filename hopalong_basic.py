@@ -99,7 +99,7 @@ def compute_trajectory_and_image(a, b, c, num, extents, image_size):
         
     return image
 # Dummy call to ensures the function is pre-compiled by the JIT compiler before it's called by the interpreter.
-_ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (1, 1))
+_ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (2, 2))
 
 
 def render_trajectory_image(image, extents, params, color_map):

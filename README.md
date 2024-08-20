@@ -96,7 +96,7 @@ The program leverages the Numba @njit decorator for performance optimization by 
 
 Key optimizations include:
 
-- Two -pass aproach with straight forward loops with direct ieration
+- Two -pass aproach with straight forward loops and direct ieration
 
 - Avoiding NumPy vectorization and parallel iteration with Python’s zip in favor of direct iteration.  
 

@@ -8,8 +8,10 @@ The "Hopalong *" attractor, invented by Barry Martin at Aston University in Birm
 This Python program calculates and displays the "Hopalong" Attractor by iterating the following equations:  
 
 $$
-x_{n+1}  = y_n-sgn(x_n)\times\sqrt{∣b\times x_n−c∣} \\
-y_{n+1}  = a-x_n
+\begin{align}
+x_n+1 & = y_n-sgn(x_n)\times\sqrt{∣b\times x_n−c∣} \\
+y_n+1 & = a-x_n
+\end{align}
 $$
 
 ## Requirements  

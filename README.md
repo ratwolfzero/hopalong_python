@@ -208,19 +208,13 @@ may result in a kind of "singularity" where the attractor does not produce compl
 
 ## References
 
-John Lansdown Rae A. Earnshaw Editors,
-Computers in Art, Design and Animation,
-Springer-Verlag
-
-Chapter:
-Graphic Potential of Recursive Functions, Barry Martin
+Barry Martin, "Graphic Potential of Recursive Functions," in Computers in Art, Design and Animation (J. Landsdown and R. A. Earnshaw, eds.), New York: Springer–Verlag, 1989 pp. 109–129.
 
 ISBN-13: 978-1-4612-8868-8,  e-ISBN-13: 978-1-4612-4538-4
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 
-Spektrum der Wissenschaft: (German version of Scientific American), Computer Kurzweil (September 1988),
-Computergraphik A. K. Dewdney
+A.K. Dewdney in Spektrum der Wissenschaft "Computer Kurzweil" 1988, (German version of Scientific American)
 
 ISBN 3-922508-50-2
 

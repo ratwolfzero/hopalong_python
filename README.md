@@ -14,11 +14,13 @@ y_n+1 & = a-x_n
 \end{align}
 $$  
 
-$$
+$$  
+\begin{align}
 Initial Conditions: \\  
 
 x_0 = 0 \\
 y_0 = 0  
+\begin{align}  
 $$
 
 ## Requirements  

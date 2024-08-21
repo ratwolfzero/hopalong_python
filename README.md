@@ -14,10 +14,6 @@ y_n+1 & = a-x_n
 \end{align}
 $$
 
-You can run the program from a terminal using the following command:
-
-python3 /path/to/my/file/hopalong_basic.py
-
 ## Requirements  
 
 To run this program, the following Python libraries* must be installed:  

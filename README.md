@@ -183,7 +183,7 @@ Example parameters:
 - c = 0.01  
 - num = 200_000_000 
 
-![Example Attractor Image](./examples/figure_ex.png)
+![Example Attractor Image](./examples/Figure_ex.png)
 
 ## Recent code changes
 

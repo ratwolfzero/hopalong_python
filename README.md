@@ -181,7 +181,9 @@ Example parameters:
 - a = -2  
 - b = -0.33  
 - c = 0.01  
-- num = 200_000_000
+- num = 200_000_000 
+
+![Example Attractor Image](./examples/figure_ex.png)
 
 ## Recent code changes
 

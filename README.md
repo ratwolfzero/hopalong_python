@@ -5,7 +5,7 @@ The "Hopalong *" attractor, invented by Barry Martin at Aston University in Birm
 
 ## Overview  
 
-This Python program calculates and displays the "Hopalong" Attractor by iterating the following equations:  
+This Python program calculates and displays the "Hopalong" Attractor by iterating the following equations with the initial conditions x0 and yo =0 :  
 
 $$
 \begin{align}

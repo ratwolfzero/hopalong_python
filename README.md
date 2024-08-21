@@ -16,8 +16,7 @@ $$
 
 $$  
 \begin{align}
-& Initial Conditions: \\  
-
+Initial Conditions:  
 x_0 & = 0 \\
 y_0 & = 0  
 \begin{align}  

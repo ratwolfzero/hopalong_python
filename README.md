@@ -13,9 +13,9 @@ x_n+1 & = y_n-sgn(x_n)\times\sqrt{∣b\times x_n−c∣} \\
 y_n+1 & = a-x_n
 \end{align}
 $$  
-  
+
 $$
-Initial Conditions:  
+Initial Conditions: \\  
 
 x_0 = 0 \\
 y_0 = 0  

@@ -12,13 +12,6 @@ x_{n+1}  = y_n-sgn(x_n)\times\sqrt{∣b\times x_n−c∣} \\
 y_{n+1}  = a-x_n
 $$
 
-$$
-Initial \space Conditions \\
-x_0 = 0 \\
-y_0 = 0
-$$
-
-
 ## Requirements  
 
 To run this program, the following Python libraries* must be installed:  

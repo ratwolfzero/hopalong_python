@@ -97,9 +97,9 @@ The program leverages the Numba JIT just-in-time compilation for performance opt
 
 Key optimizations include:
 
-- Two-pass aproach with straight forward loops and direct ieration
-
-- Avoiding NumPy vectorization and parallel iteration with Python’s zip in favor of direct iteration.  
+- Two-pass approach with straightforward loops and direct iteration. This straightforward structure optimizes JIT compilation, allowing for efficient translation into machine code and minimizing overhead from complex control flows  
+  
+- The design intentionally refrains from using NumPy's vectorization features and parallel iteration with Python’s zip() function in favor of direct iteration.  
 
 - Avoiding race conditions typically associated with parallelization techniques like prange, which is generally not applicable for cross-iteration   dependencies.
 

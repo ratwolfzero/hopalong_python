@@ -169,7 +169,7 @@ For JIT-compiled functions, dummy calls are made. This step ensures that the fun
     # Dummy call to ensures the function is pre-compiled by the JIT compiler before it's called by the interpreter.
     _ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (2, 2))  
 
-You can browse the development folder in the GitHub repository to explore different approaches that have already been tried.
+You can browse the development folder in the repository to explore different approaches that have already been tried.
 
 ## User Input  
 

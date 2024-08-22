@@ -189,7 +189,12 @@ Example parameters:
 
 ## Recent code changes
 
-The program now uses the math.copysign function to respect the behavior of floating point numbers according to the IEEE 754 standard, particularly signed zero. This modification handles borderline cases more effectively, allowing different behavior with inputs like:  
+The program now uses the math.copysign function "copysign(1.0,x) which will return the sign of x
+
+- 1.0 if x is positive, +0.0 or INFINITY  
+- -1.0 if x is negative, -0.0 or NEG_INFINITY  
+  
+This modification handles borderline cases more effectively, allowing different behavior with inputs like:  
 
 For example:  
 

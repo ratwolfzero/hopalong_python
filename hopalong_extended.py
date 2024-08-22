@@ -90,7 +90,7 @@ def compute_trajectory_and_image(a, b, c, num, extents, image_size):
         px = np.uint64((x - min_x) * scale_x)
         py = np.uint64((y - min_y) * scale_y)
         # populate the image "on the fly" with each computed point
-        image[py, px] += 1  # respecting row/column convention, , track # of hits
+        image[py, px] += 1  # respecting row/column convention, , update # of hits
 
         # Update the trajectory "on the fly"
         xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))

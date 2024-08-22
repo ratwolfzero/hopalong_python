@@ -3,7 +3,7 @@
 The "Hopalong *" attractor, invented by Barry Martin at Aston University in Birmingham, England, was popularized by A.K. Dewdney in the September 1986 issue of Scientific American. In Germany, it gained further recognition through a translation titled "Hüpfer" in Spektrum der Wissenschaft.  
 *Nicknamed by A.K. Dewdney.
 
-## Overview  
+## Abstract  
 
 This Python program calculates and displays the "Hopalong" Attractor by iterating the following interrelated equations:  
   
@@ -16,12 +16,7 @@ $$
 
 The series of x, y coordinates is specified by an initial point xo, yo and three constants a, b, and c.  
 
-Key Points:  
-
-- Two-Pass Approach: The program first pre-calculates the trajectory extents (min/max values).
-- On-the-Fly Updates: As the trajectory is computed, the corresponding image pixels are scaled by extents and updated dynamically.
-- Interactive Display: The final attractor image is rendered using Matplotlib, allowing for interactive visualization in a pop-up window.
-- Performance Optimization: Utilizes Numba for Just-In-Time (JIT) compilation to enhance the speed of computations.
+A two-step approach is employed to compute the Hopalong attractor. The first pass determines the full trajectory extents (minimum and maximum values)in advance. In the second pass, trajectory points are generated dynamically, without caching, while simultaneously scaling and updating the image pixels. The final attractor image is rendered using Matplotlib.
 
 ## Requirements  
 

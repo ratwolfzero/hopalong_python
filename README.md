@@ -195,7 +195,7 @@ The program now utilizes the math.copysign function "copysign(1.0,x)" to determi
 - 1.0 if x is positive, +0.0 or INFINITY
 - -1.0 if x is negative, -0.0 or NEG_INFINITY  
   
-TThis adjustment improves handling of edge cases, allowing for different behavior. For example:
+This adjustment improves handling of edge cases, allowing for different behavior. For example:
 
 - a = 1, b = 2, c = 3 or  
 

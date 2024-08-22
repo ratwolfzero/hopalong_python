@@ -191,7 +191,7 @@ Example parameters:
 
 The program now utilizes the math.copysign function "copysign(1.0,x)" to determine the sign of x which provides:
 
-- 1.0 if x is positive, +0.0 or INFINITY
+- \1.0 if x is positive, +0.0 or INFINITY
 - -1.0 if x is negative, -0.0 or NEG_INFINITY  
   
 This adjustment improves handling of edge cases, allowing for different behaviors depending on the parameters. For example:  

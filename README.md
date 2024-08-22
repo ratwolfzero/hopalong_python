@@ -101,7 +101,7 @@ Key optimizations include:
   
 - The design intentionally refrains from using NumPy's vectorization features and parallel iteration with Python’s zip() function in favor of direct iteration.  
 
-- Avoiding race conditions typically associated with parallelization techniques like prange, which is generally not applicable for cross-iteration   dependencies.
+- Avoiding race conditions typically associated with parallelization techniques like prange, which is generally not applicable for cross-iteration dependencies.
 
 A two-pass method is preferable to array caching of trajectory points because it ensures accurate and consistent scaling across the entire dataset with minimal memory requirements. This approach is particularly advantageous for large-scale computations where memory efficiency and stability are critical. By separating the extent computation from the image mapping, the two-pass method provides reliable, scalable performance without the risk of memory overflow or performance degradation (swap RAM to SSD). For small-scale computations, any performance loss is marginal because point arrays increase system utilization and processing time.
 

@@ -14,7 +14,15 @@ y_n+1 & = a-x_n
 \end{align}
 $$  
 
-The series of x, y coordinates is specified by an initial point xo, yo and three constants a, b, and c.
+The series of x, y coordinates is specified by an initial point xo, yo and three constants a, b, and c.  
+
+Key Points:  
+
+- Two-Pass Approach: The program first pre-calculates the trajectory extents (min/max values).
+- On-the-Fly Updates:  
+  As the trajectory is computed, the corresponding image pixels are scaled by extents and updated dynamically, ensuring efficient memory and processing.
+- Interactive Display: The final attractor image is rendered using Matplotlib, allowing for interactive visualization in a pop-up window.
+- Performance Optimization: Utilizes Numba for Just-In-Time (JIT) compilation to enhance the speed of computations.
 
 ## Requirements  
 

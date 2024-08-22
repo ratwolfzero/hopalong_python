@@ -189,9 +189,9 @@ Example parameters:
 
 ## Recent code changes
 
-The program now uses the math.copysign function "copysign(1.0,x) which will return the sign of x
+The program now uses the math.copysign function "copysign(1.0, x) which will return the sign of x
 
-- 1.0 if x is positive, +0.0 or INFINITY  
+- 1.0 if x is positive, +0.0 or +∞  
 - -1.0 if x is negative, -0.0 or NEG_INFINITY  
   
 This modification handles borderline cases more effectively, allowing different behavior with inputs like:  
@@ -215,6 +215,8 @@ However, certain parameter combinations like:
 may result in a kind of "singularity" where the attractor does not produce complex patterns.
 
 ## Enjoy the Exploration
+
+Feel free to use diferrent color maps and/or algorithms to calculate the value for populate the image
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 

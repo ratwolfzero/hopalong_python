@@ -71,7 +71,7 @@ This program is available in two versions:
 
 - Basic Version: Calculates and displays the Hopalong attractor.  
 
-- Extended Version: In addition to calculating and displaying the Hopalong attractor, this version tracks the pixel hit count ("density") and generates   detailed statistics on the pixel hit count and its distribution.
+- Extended Version: In addition to calculating and displaying the Hopalong attractor, this version tracks the pixel hit count ("density") and generates   detailed statistics on the pixel hit count and its distribution.  
 For both versions, the rendered image pixels are color-mapped based on pixel density (number of hits).  
 
 - Performance optimization by using the Numba @njit decorator.  

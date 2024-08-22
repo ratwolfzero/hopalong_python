@@ -189,14 +189,12 @@ Example parameters:
 
 ## Recent code changes
 
-The program now uses the math.copysign function "copysign(1.0, x) which will return the sign of x
+The program now utilizes the math.copysign function "copysign(1.0,x)" to determine the sign of x which provides:
 
-- 1.0 if x is positive, +0.0 or +∞  
+- 1.0 if x is positive, +0.0 or INFINITY
 - -1.0 if x is negative, -0.0 or NEG_INFINITY  
   
-This modification handles borderline cases more effectively, allowing different behavior with inputs like:  
-
-For example:  
+This adjustment improves handling of edge cases, allowing for different behaviors depending on the parameters. For example:  
 
 - a = 1, b = 2, c = 3 or  
 
@@ -204,7 +202,7 @@ For example:
 
 - a = 1, b =1, c = 1  
 
-However, certain parameter combinations like:
+However, certain parameter combinations such as:
 
 - a =1 , b = 0, c = 0 or  
 
@@ -212,7 +210,7 @@ However, certain parameter combinations like:
 
 - a = 1, b = 1, c = 0,  
 
-may result in a kind of "singularity" where the attractor does not produce complex patterns.
+may lead to "singularities" where the attractor doesn't produce complex patterns.
 
 ## Enjoy the Exploration
 

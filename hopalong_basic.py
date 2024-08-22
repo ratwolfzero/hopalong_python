@@ -3,7 +3,7 @@ import numpy as np
 from numba import njit
 from math import copysign, sqrt, fabs
 import time
-#import resource 
+import resource 
 
 
 def validate_input(prompt, input_type=float, check_positive_non_zero=False, min_value=None):

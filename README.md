@@ -16,7 +16,7 @@ $$
 
 The series of x, y coordinates is specified by an initial point xo, yo and three constants a, b, and c.  
 
-A two-step approach is employed to compute the Hopalong attractor. The first pass determines the full trajectory extents (minimum and maximum values)in advance. In the second pass, trajectory points are generated dynamically, without caching, while simultaneously scaling and updating the image pixels. The final attractor image is rendered using Matplotlib.
+A two-step approach is employed to compute the Hopalong attractor. The first pass determines the full trajectory extents (minimum and maximum values) in advance. In the second pass, trajectory points are generated dynamically, without caching, while simultaneously scaling and updating the image pixels. The final attractor image is rendered using Matplotlib.
 
 ## Requirements  
 

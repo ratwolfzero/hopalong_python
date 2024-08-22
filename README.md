@@ -215,7 +215,7 @@ may lead to "singularities" where the attractor doesn't produce complex patterns
 
 ## Enjoy the Exploration
 
-Feel free to use diferrent color maps and/or algorithms to calculate the value for populate the image
+Feel free to experiment with different color maps or algorithms to populate the image and explore new visual patterns.
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 

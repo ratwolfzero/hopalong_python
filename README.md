@@ -80,12 +80,12 @@ For both versions, the rendered image pixels are color-mapped based on pixel den
 
 - Using Matplotlib allows the display of an interactive plot window.  
 
-- Measure of execution time using time.process_time(), which captures CPU user plus system time. Timing begins after parameter entry and includes image   rendering.  
+- Measuring the execution time with the time.process_time() function. The CPU user and system time is measured. The time measurement starts after the parameter input and includes the  image rendering. The total time is displayed as soon as the plot window is closed.
 
-The time the plot window remains open is only recorded if an interaction occurs, such as zooming, panning or mouse movemnets.  
-The measured time is displayed once the plot window is closed. For precise measurement, it's recommended to automatically close the plot window by implementing the proposed code appyimg plt.pause(1) and plt.close(fig). The time for plt.pause() is not recorded by “time.process_time()”.  
+Since interactions with the plot window, e.g. zooming, panning, mouse movements, are also measured, it is recommended to close the plot window automatically, e.g. by using plt.pause(1) followed by plt.close(fig).
+As long as there is no interaction with the plot window, the plt.pause() time is not recorded.
 
-Note: Using "time.perf_counter()" instead of "time.process_time()" and then subtract 1 second (as in the example) from "cpu_sys_time_used = end_time – start_time" yield to similar results.
+Alternatively, using time.perf_counter() and subtracting 1 second from cpu_sys_time_used = end_time – start_time leads to similar results.
 
     #plt.show()
     plt.pause(1)

@@ -156,7 +156,7 @@ For JIT-compiled functions, dummy calls are made. This step ensures that the fun
         # map trajectory points to image pixel coordinates
         px = np.uint64((x - min_x) * scale_x)
         py = np.uint64((y - min_y) * scale_y)
-        # populate the image "on the fly" with each computed point
+        # populate the image array "on the fly" with each computed point
         image[py, px] += 1  # respecting row/column convention, update # of hits
 
         # Update the trajectory "on the fly"

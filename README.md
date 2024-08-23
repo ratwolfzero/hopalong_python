@@ -71,23 +71,27 @@ To run this program, the following Python libraries* must be installed:
     except Exception as e:
         print(f'An error occurred: {e}')
 
-## Features  
+Features
 
-This program is available in two versions:  
+This program is available in two versions:
 
-- Basic Version: Calculates and displays the Hopalong attractor.  
+Basic Version: Calculates and displays the Hopalong attractor.
+Extended Version: Tracks and visualizes pixel hit counts ("density") and generates statistics on the distribution of these counts.  
 
-- Extended Version: In addition to calculating and displaying the Hopalong attractor, this version tracks the pixel hit count ("density") and generates   detailed statistics on the pixel hit count and its distribution.  
-For both versions, the rendered image pixels are color-mapped based on pixel density (number of hits).  
+## Color Mapping  
 
-- Performance optimization by using the Numba @njit decorator.  
+For both versions, pixels are color-coded based on the number of hits they receive:
 
-- Using Matplotlib allows the display of an interactive plot window.  
+Multiple Hits: Pixels that are hit multiple times are assigned colors according to their density, with a gradient showing the intensity—from no hits to maximum density.  
 
-- Measuring the execution time with the time.process_time() function. The CPU user and system time is measured. The time measurement starts after the parameter input and includes the  image rendering. The total time is displayed as soon as the plot window is closed.
+## Additional Features  
+
+- Performance Boost: Optimized with Numba's @njit for faster computation.
+- Interactive Display: Matplotlib provides an interactive plot window.
+- Execution Timing: Measures and displays CPU time for the entire process, including rendering using the "time.process_time()" function
 
 Since interactions with the plot window, e.g. zooming, panning, mouse movements, are also measured, it is recommended to close the plot window automatically, e.g. by using plt.pause(1) followed by plt.close(fig).
-As long as there is no interaction with the plot window, the plt.pause() time is not recorded.
+As long as there is no interaction with the plot window, the plt.pause() time is not recorded by "time.process_time()".
 
 Alternatively, using time.perf_counter() and subtracting 1 second from cpu_sys_time_used = end_time – start_time leads to similar results.
 

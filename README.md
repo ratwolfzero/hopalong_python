@@ -16,7 +16,7 @@ $$
 
 The sequence of (x<sub>1</sub>, y<sub>1</sub>), (x<sub>2</sub>, y<sub>2</sub>), ..., (x<sub>n</sub>, y<sub>n</sub>)  coordinates is specified by an initial point (x<sub>0</sub>, y<sub>0</sub>) and three constants a, b, and c.
   
-A two-pass approach is used to compute the hopalong attractor. The first pass determines the full trajectory extents (minimum and maximum values) in advance. In the second pass, the trajectory points are generated dynamically and without caching, while simultaneously scaling and updating the pixels of the image array. The final attractor image is rendered using Matplotlib.
+A two-pass algorithm is used to compute the hopalong attractor and process it sequentially through straightforward loops. The first pass determines the full trajectory extents (minimum and maximum values). In the second pass, the trajectory points are generated dynamically without caching, scaled immediately, mapped to image pixel coordinates, and used to update the image array. The final attractor image is then rendered using Matplotlib.
 
 ## Requirements  
 

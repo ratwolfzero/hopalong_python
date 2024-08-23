@@ -192,17 +192,17 @@ Example parameters:
 ## Recent code changes
 
 Signum Function:  
-The program now utilizes the math.copysign function "copysign(1.0,x)" to determine the sign of x which provides:
+The program now utilizes the math.copysign function "copysign(x,y)"  
+Return a float with the magnitude (absolute value) of x but the sign of y.  
+On platforms that support signed zeros, copysign(1.0, -0.0) returns -1.0.
 
 $$
-X =\begin{cases}
+copysign(1.0,x) =\begin{cases}
 &1.0  & if & x & is &positive, & +0.0 & or &INFINITY \\
 &-1.0 & if & x & is &negative, & -0.0 & or &NEG. INFINITY
 \end{cases}
 $$
-
-
-  
+ 
 This adjustment improves handling of edge cases, allowing for different behavior. For example:
 
 - a = 1, b = 2, c = 3 or  

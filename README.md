@@ -9,8 +9,8 @@ This Python program calculates and displays the "Hopalong" Attractor by iteratin
 
 $$
 \begin{align}
-x_n+1 & = y_n-sgn(x_n)\times\sqrt{∣b\times x_n−c∣} \space\space\space & (1) \\
-y_n+1 & = a-x_n & \space\space\space (2)
+x_n+1 & = y_n-sgn(x_n)\times\sqrt{∣b\times x_n−c∣} &(1) \\
+y_n+1 & = a-x_n &(2)
 \end{align}
 $$
 
@@ -194,8 +194,12 @@ Example parameters:
 Signum Function:  
 The program now utilizes the math.copysign function "copysign(1.0,x)" to determine the sign of x which provides:
 
-- 1.0 if x is positive, +0.0 or INFINITY
-- -1.0 if x is negative, -0.0 or NEG_INFINITY  
+$$
+X =\begin{cases}
+&\space \space 1.0 \space\space if \space\space x \space is \space positive, &+0.0 \space or\space INFINITY \\
+&-1.0\space\space if\space\space x\space is\space negative, &-0.0\space or \space NEG. INFINITY
+\end{cases}
+$$
   
 This adjustment improves handling of edge cases, allowing for different behavior. For example:
 

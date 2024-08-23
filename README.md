@@ -5,16 +5,16 @@ The "Hopalong *" attractor, invented by Barry Martin at Aston University in Birm
 
 ## Abstract  
 
-This Python program calculates and displays the "Hopalong" Attractor by iterating the following interrelated equations:  
-  
+This Python program calculates and displays the "Hopalong" Attractor by iterating the following system of interrelated equations (1) and (2):
+
 $$
 \begin{align}
-x_n+1 & = y_n-sgn(x_n)\times\sqrt{∣b\times x_n−c∣} \\
-y_n+1 & = a-x_n
+x_n+1 & = y_n-sgn(x_n)\times\sqrt{∣b\times x_n−c∣} & (1) \\
+y_n+1 & = a-x_n & (2)
 \end{align}
-$$  
+$$
 
-The series of x, y coordinates is specified by an initial point xo, yo and three constants a, b, and c.  
+The series of x, y coordinates is specified by an initial point xo, yo and three constants a, b, and c.
 
 A two-pass approach is used to compute the hopalong attractor. The first pass determines the full trajectory extents (minimum and maximum values) in advance. In the second pass, the trajectory points are generated dynamically and without caching, while simultaneously scaling and updating the pixels of the image array. The final attractor image is rendered using Matplotlib.
 

@@ -71,7 +71,7 @@ To run this program, the following Python libraries* must be installed:
     except Exception as e:
         print(f'An error occurred: {e}')
 
-Features
+## Features
 
 This program is available in two versions:
 

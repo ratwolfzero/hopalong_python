@@ -196,10 +196,11 @@ The program now utilizes the math.copysign function "copysign(1.0,x)" to determi
 
 $$
 X =\begin{cases}
-&\space \space 1.0 \space\space if \space\space x \space is \space positive, &+0.0 \space or\space INFINITY \\
+&1.0 \space\space if \space\space x \space is \space positive, &+0.0 \space or\space INFINITY \\
 &-1.0\space\space if\space\space x\space is\space negative, &-0.0\space or \space NEG. INFINITY
 \end{cases}
 $$
+
   
 This adjustment improves handling of edge cases, allowing for different behavior. For example:
 

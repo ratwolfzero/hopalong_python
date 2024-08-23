@@ -8,4 +8,4 @@ y_n+1 & = a-x_n &(2)
 \end{align}
 $$
 
-The series of x, y coordinates is specified by an initial point xo, yo and three constants a, b, and c 
+The series of x, y coordinates is specified by an initial point x<sub>0</sub>, y<sub>0</sub> and three constants a, b, and c. 

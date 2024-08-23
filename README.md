@@ -75,7 +75,7 @@ To run this program, the following Python libraries* must be installed:
 
 This program is available in two versions:
 
-Basic Version: Calculates and displays the Hopalong attractor.
+Basic Version: Calculates and displays the Hopalong attractor.  
 Extended Version: Tracks and visualizes pixel hit counts ("density") and generates statistics on the distribution of these counts.  
 
 ## Color Mapping  

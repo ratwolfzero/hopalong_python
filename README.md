@@ -196,7 +196,7 @@ The program now utilizes the math.copysign function "copysign(1.0,x)" to determi
 
 $$
 X =\begin{cases}
-&\space\space 1.0  & if & x & is &positive, & +0.0 & or &INFINITY \\
+&1.0  & if & x & is &positive, & +0.0 & or &INFINITY \\
 &-1.0 & if & x & is &negative, & -0.0 & or &NEG. INFINITY
 \end{cases}
 $$

@@ -14,7 +14,7 @@ y_n+1 & = a-x_n & \space\space\space (2)
 \end{align}
 $$
 
-The series of x, y coordinates is specified by an initial point x<sub>0</sub>, y<sub>0</sub> and three constants a, b, and c.
+The series of x, y coordinates \(\{(x_i, y_i)\}_{i=1}^n\) is specified by an initial point x<sub>0</sub>, y<sub>0</sub> and three constants a, b, and c.
   
 A two-pass approach is used to compute the hopalong attractor. The first pass determines the full trajectory extents (minimum and maximum values) in advance. In the second pass, the trajectory points are generated dynamically and without caching, while simultaneously scaling and updating the pixels of the image array. The final attractor image is rendered using Matplotlib.
 

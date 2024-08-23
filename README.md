@@ -82,10 +82,10 @@ For both versions, the rendered image pixels are color-mapped based on pixel den
 
 - Measure of execution time using time.process_time(), which captures CPU user plus system time. Timing begins after parameter entry and includes image   rendering.  
 
-The time the plot window remains open is only recorded if an interaction occurs, such as zooming or panning.  
-The measured time is displayed once the plot window is closed. For precise measurement, it's recommended to automatically close the window since pause() is not recorded by “time.process_time()”.  
+The time the plot window remains open is only recorded if an interaction occurs, such as zooming, panning or mouse movemnets.  
+The measured time is displayed once the plot window is closed. For precise measurement, it's recommended to automatically close the plot window by implementing the proposed code appyimg plt.pause(1) and plt.close(fig). The time for plt.pause() is not recorded by “time.process_time()”.  
 
-Note: Using "time.perf_counter()" instead of "time.process_time()" and then subtract 1 second from "cpu_sys_time_used = end_time – start_time" yield to similar results.  
+Note: Using "time.perf_counter()" instead of "time.process_time()" and then subtract 1 second (as in the example) from "cpu_sys_time_used = end_time – start_time" yield to similar results.
 
     #plt.show()
     plt.pause(1)
@@ -202,7 +202,7 @@ copysign(1.0,x) =\begin{cases}
 &-1.0 & if & x & is &negative, & -0.0 & or &NEG. INFINITY
 \end{cases}
 $$
- 
+
 This adjustment improves handling of edge cases, allowing for different behavior. For example:
 
 - a = 1, b = 2, c = 3 or  

@@ -77,8 +77,8 @@ Otherwise, please comment out the relevant code snippets.
 
 This program is available in two versions:
 
-- Basic Version: Calculates and displays the Hopalong Attractor.  
-- Extended Version: Tracks and visualizes pixel hit counts ("density") and generates statistics on the distribution of these counts.  
+- Basic version: Calculation and display of the hopalong attractor.
+- Advanced version: Like the basic version plus statistics and visualization of the pixel hit counts
 
 ### Color Mapping  
 

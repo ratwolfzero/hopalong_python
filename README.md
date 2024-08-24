@@ -122,8 +122,7 @@ The design intentionally refrains from using NumPy's vectorization features and 
   
 ### Dummy Calls
 
-For JIT-compiled functions, dummy calls are made. This step ensures that the function is precompiled before it is called by the interpreter,  
-thus avoidingcompilation overhead the first time the code is executed.  
+For JIT-compiled functions, dummy calls are made. This step ensures that the function is precompiled before it is called by the interpreter, thus avoidingcompilation overhead the first time the code is executed.  
 
 ### Race Conditions  
 

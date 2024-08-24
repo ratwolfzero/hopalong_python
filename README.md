@@ -126,7 +126,7 @@ For JIT-compiled functions dummy calls are made. This step ensures that the func
 
 ### Race Conditions  
 
-Avoiding race conditions typically associated withparallelization techniques like prange, which is generally not applicable for cross-iteration dependencies.
+Avoiding race conditions typically associated with parallelization techniques like prange, which is generally not applicable for cross-iteration dependencies.
 
 ### Two-Pass Approach  
 

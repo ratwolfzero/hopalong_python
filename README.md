@@ -20,9 +20,10 @@ A two-pass algorithm is used to compute the hopalong attractor and process it se
 
 - The first pass determines the full trajectory extents (minimum and maximum values).
 
-- The second pass generates the sequence of trajectory points, mapping them directly to image pixel coordinates that represent the information of the attractor hit pattern (where the pixel value > 0). Only this information is updated and stored in the image array, which was initialized with zero values.
+- The second pass generates the sequence of trajectory points and maps them directly to image pixel coordinates representing the attractor hit pattern information (where the pixel value is > 0). Only this information is updated and stored in an image array initialized with zero values.
 
 This is the general basic principle, and the handling or interpretation of ptxels with multiple hits is briefly explained in the 'Features' section
+
 
 ## Requirements  
 

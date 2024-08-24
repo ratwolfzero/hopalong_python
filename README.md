@@ -83,9 +83,19 @@ This program is available in two versions:
 
 ## Color Mapping  
 
-For both versions, pixels are color-coded based on the number of hits they receive:
+In both versions of the programm (basic or extended), pixels are color-coded based on the number of times they are "hit" by trajectory points, referred to as the "pixel hit count." However, trajectory points are floating-point values and do not directly correspond to pixel coordinates. Instead, they are mapped to integer pixel coordinates on the image.
 
-Multiple Hits: Pixels that are hit multiple times are assigned colors according to their "density", with a gradient showing the intensity—from no hits to maximum density.  
+### Pixel Hit Counts  
+
+As each trajectory point is generated, it is mapped to a corresponding pixel by converting its floating-point coordinates to integer values. This mapping results in certain pixels being "hit" multiple times, creating areas of varying density within the image.  
+
+### ultiple Hits  
+
+Pixels with higher hit counts are color-coded to reflect their density. The program uses Matplotlib's 'hot' colormap, which applies a gradient that transitions from dark (low hit count) to bright (high hit count), effectively visualizing areas of higher activity within the attractor.  
+
+### Handling High Density  
+
+Matplotlib scales the hit counts to fit within the colormap's finite range of colors using normalization. If a pixel's hit count exceeds the maximum value set for the colormap, it is mapped to the highest color available in the colormap. This means that extremely high-density pixels will all appear in the brightest color, ensuring the full range of densities is represented, but without repeating colors.
 
 ## Additional Features  
 

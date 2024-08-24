@@ -81,7 +81,7 @@ This program is available in two versions:
 - Basic Version: Calculates and displays the Hopalong Attractor.  
 - Extended Version: Tracks and visualizes pixel hit counts ("density") and generates statistics on the distribution of these counts.  
 
-## Color Mapping  
+### Color Mapping  
 
 In both versions of the programm (basic or extended), pixels are color-coded based on the number of times they are "hit" by trajectory points, referred to as the "pixel hit count." However, trajectory points are floating-point values and do not directly correspond to pixel coordinates. Instead, they are mapped to integer pixel coordinates on the image.
 
@@ -89,7 +89,7 @@ In both versions of the programm (basic or extended), pixels are color-coded bas
 
 As each trajectory point is generated, it is mapped to a corresponding pixel by converting its floating-point coordinates to integer values. This mapping results in certain pixels being "hit" multiple times, creating areas of varying density within the image.  
 
-### ultiple Hits  
+### Multiple Hits  
 
 Pixels with higher hit counts are color-coded to reflect their density. The program uses Matplotlib's 'hot' colormap, which applies a gradient that transitions from dark (low hit count) to bright (high hit count), effectively visualizing areas of higher activity within the attractor.  
 
@@ -97,7 +97,7 @@ Pixels with higher hit counts are color-coded to reflect their density. The prog
 
 Matplotlib scales the hit counts to fit within the colormap's finite range of colors using normalization. If a pixel's hit count exceeds the maximum value set for the colormap, it is mapped to the highest color available in the colormap. This means that extremely high-density pixels will all appear in the brightest color, ensuring the full range of densities is represented, but without repeating colors.
 
-## Additional Features  
+### Additional Features  
 
 - Performance Boost: Optimized with Numba's @njit for faster computation.
 - Interactive Display: Matplotlib provides an interactive plot window.

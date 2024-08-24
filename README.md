@@ -27,17 +27,16 @@ Benefits of two-pass aproach,  see "Performance Optimization" section.
 
 ## Requirements  
 
-To run this program, the following Python libraries must be installed * / imported **:
+To run this program, the following Python libraries must* be installed and imported:
 
 - matplotlib *
 - numpy *  
 - numba *  
-- math (standard Python library) **
-- time **
-- resource **  
+- time, resource (optional)
+- math (standard Python library)
   
-"time" and "resource" only if you want to track time and memory used,  
- if not please also comment out the related code snippets in main().
+Time and Resource libraries if you want to track process time and system memory used.
+Otherwise, please comment out the relevant code snippets.
   
     import matplotlib.pyplot as plt
     import numpy as np

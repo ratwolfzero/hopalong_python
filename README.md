@@ -14,7 +14,7 @@ y_n+1 & = a-x_n &(2)
 \end{align}
 $$
 
-The sequence of (x<sub>1</sub>, y<sub>1</sub>), (x<sub>2</sub>, y<sub>2</sub>), ..., (x<sub>n</sub>, y<sub>n</sub>)  coordinates is specified by an initial point (x<sub>0</sub>, y<sub>0</sub>) and three constants a, b, and c.
+The sequence of (x<sub>1</sub>, y<sub>1</sub>), (x<sub>2</sub>, y<sub>2</sub>), ... (x<sub>n</sub>, y<sub>n</sub>)  coordinates is specified by an initial point (x<sub>0</sub>, y<sub>0</sub>) and three constants a, b, and c.
   
 A two-pass algorithm is used to compute the Hopalong Attractor and process it sequentially through straightforward loops.  
 

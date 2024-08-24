@@ -22,8 +22,8 @@ A two-pass algorithm is used to compute the Hopalong Attractor and process it se
 
 - The second pass generates the sequence of trajectory points and maps them directly to image pixel coordinates representing the attractor hit pattern information (where the pixel value is > 0). Only this information is updated and stored in an image array initialized with zero values.
 
-This is the general principle, and the handling or interpretation of ptxels with multiple hits is briefly explained in the 'Features' section.  
-Brief explanations regarding benefits of two-pass aproach can be found in the "Performance Optimization" section.  
+Handling or interpretation of ptxels with multiple hits is explained in the 'Features' section.  
+Further explanitions regarding benefits of two-pass aproach can be found in the "Performance Optimization" section.  
 
 ## Requirements  
 

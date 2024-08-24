@@ -124,7 +124,11 @@ Key optimizations include:
 
 - Avoiding race conditions typically associated with parallelization techniques like prange, which is generally not applicable for cross-iteration dependencies.
 
-A two-pass approach is preferable to array caching of trajectory points because it minimizes memory requirements and ensures accurate, consistent scaling of image pixels across the dataset through pre-calculated trajectory extents. This method is especially beneficial for large-scale computations where memory efficiency and stability are crucial. By separating the extent calculation from the image mapping, the two-pass approach offers reliable and scalable performance, avoiding memory overflow and performance issues associated with swapping RAM to SSD.
+A two-pass approach with sequential process is preferable to array caching all trajectory points for further, e.g. vectorized processing, as it minimizes memory requirements and, by pre-determining the trajectory extents, ensures accurate, consistent scaling of image pixels throughout the entire computation.
+
+This method is particularly advantageous for large-scale computations with a very or extremely high number of iterations, where memory efficiency and stability are critical.
+
+By separating the extent computation from the image mapping, the two-pass approach provides reliable and scalable performance and avoids memory overflows and performance issues associated with swapping RAM to SSD, which can happen with array caching when the memory size of the trajectory array becomes too large to fit in the system memory. However, this also depends on the available system environment.
 
 For JIT-compiled functions, dummy calls are made. This step ensures that the function is precompiled before it is called by the interpreter, thus avoiding compilation overhead the first time the code is executed.
 

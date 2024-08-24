@@ -22,8 +22,8 @@ A two-pass algorithm is used to compute the hopalong attractor and process it se
 
 - The second pass generates the sequence of trajectory points and maps them directly to image pixel coordinates representing the attractor hit pattern information (where the pixel value is > 0). Only this information is updated and stored in an image array initialized with zero values.
 
-This is the general basic principle, and the handling or interpretation of ptxels with multiple hits is briefly explained in the 'Features' section
-
+This is the general basic principle, and the handling or interpretation of ptxels with multiple hits is briefly explained in the 'Features' section.
+Brief explanations regarding benefits of two-pass aproach can be found in the "Performance Optimization" section.  
 
 ## Requirements  
 
@@ -114,7 +114,7 @@ Key optimizations include:
 
 - Avoiding race conditions typically associated with parallelization techniques like prange, which is generally not applicable for cross-iteration dependencies.
 
-A two-pass method is preferable to array caching of trajectory points because it ensures accurate and consistent scaling across the entire dataset with minimal memory requirements. This approach is particularly advantageous for large-scale computations where memory efficiency and stability are critical. By separating the extent computation from the image mapping, the two-pass method provides reliable, scalable performance without the risk of memory overflow or performance degradation due to swap of RAM to SSD.
+A two-pass method is preferable to array caching of trajectory points because it minimizes memory requirements and ensures accurate, consistent scaling of image pixels across the dataset through pre-calculated trajectory extents. This method is especially beneficial for large-scale computations where memory efficiency and stability are crucial. By separating the extent calculation from the image mapping, the two-pass approach offers reliable and scalable performance, avoiding memory overflow and performance issues associated with swapping RAM to SSD.
 
 For JIT-compiled functions, dummy calls are made. This step ensures that the function is precompiled before it is called by the interpreter, thus avoiding compilation overhead the first time the code is executed.
 

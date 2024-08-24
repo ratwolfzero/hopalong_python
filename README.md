@@ -130,7 +130,7 @@ Avoiding race conditions typically associated with parallelization techniques li
 
 ### Two-Pass Approach  
 
-A two-pass approach with a sequential process is preferable to array caching all trajectory points, as it minimizes memory requirements and ensures consistent image scaling by pre-determining trajectory extents. This method is particularly advantageous for large-scale computations with a high number of iterations, where memory efficiency and stability are critical. By separating extent computation from image mapping, the two-pass approach provides reliable, scalable performance and avoids memory overflows and performance degradation associated with virtual memory (swapping RAM to SSD). This issue can occur with array caching when the array size exceeds available system memory. However, this also depends on the available system environment.
+A two-pass approach with a sequential process is preferable to array caching all trajectory points, as it minimizes memory requirements and ensures consistent image scaling by pre-determining trajectory extents. This method is particularly advantageous for large-scale computations with a high number of iterations, where memory efficiency and stability are critical. By separating extent computation from image mapping, the two-pass approach provides reliable, scalable performance and avoids memory overflows and performance degradation associated with virtual memory (swapping RAM to SSD). This issue can occur with array caching when the array size exceeds available system memory. However, this depends on the system environment used.
 
     @njit #njit is an alias for nopython=True
     def compute_trajectory_extents(a, b, c, num):

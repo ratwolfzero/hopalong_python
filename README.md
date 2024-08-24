@@ -16,13 +16,13 @@ $$
 
 The sequence of (x<sub>1</sub>, y<sub>1</sub>), (x<sub>2</sub>, y<sub>2</sub>), ..., (x<sub>n</sub>, y<sub>n</sub>)  coordinates is specified by an initial point (x<sub>0</sub>, y<sub>0</sub>) and three constants a, b, and c.
   
-A two-pass algorithm is used to compute the hopalong attractor and process it sequentially through straightforward loops.  
+A two-pass algorithm is used to compute the Hopalong Attractor and process it sequentially through straightforward loops.  
 
 - The first pass determines the full trajectory extents (minimum and maximum values).
 
 - The second pass generates the sequence of trajectory points and maps them directly to image pixel coordinates representing the attractor hit pattern information (where the pixel value is > 0). Only this information is updated and stored in an image array initialized with zero values.
 
-This is the general basic principle, and the handling or interpretation of ptxels with multiple hits is briefly explained in the 'Features' section.
+This is the general principle, and the handling or interpretation of ptxels with multiple hits is briefly explained in the 'Features' section.
 Brief explanations regarding benefits of two-pass aproach can be found in the "Performance Optimization" section.  
 
 ## Requirements  
@@ -36,7 +36,7 @@ To run this program, the following Python libraries* must be installed:
 - (time)
 - (resource)  
   
-"time" and "recource" only if you want to track time and memory used,  
+"time" and "resource" only if you want to track time and memory used,  
  if not please also comment out the related code snippets in main().
   
     import matplotlib.pyplot as plt
@@ -78,7 +78,7 @@ To run this program, the following Python libraries* must be installed:
 
 This program is available in two versions:
 
-- Basic Version: Calculates and displays the Hopalong attractor.  
+- Basic Version: Calculates and displays the Hopalong Attractor.  
 - Extended Version: Tracks and visualizes pixel hit counts ("density") and generates statistics on the distribution of these counts.  
 
 ## Color Mapping  
@@ -114,7 +114,7 @@ Key optimizations include:
 
 - Avoiding race conditions typically associated with parallelization techniques like prange, which is generally not applicable for cross-iteration dependencies.
 
-A two-pass method is preferable to array caching of trajectory points because it minimizes memory requirements and ensures accurate, consistent scaling of image pixels across the dataset through pre-calculated trajectory extents. This method is especially beneficial for large-scale computations where memory efficiency and stability are crucial. By separating the extent calculation from the image mapping, the two-pass approach offers reliable and scalable performance, avoiding memory overflow and performance issues associated with swapping RAM to SSD.
+A two-pass approach is preferable to array caching of trajectory points because it minimizes memory requirements and ensures accurate, consistent scaling of image pixels across the dataset through pre-calculated trajectory extents. This method is especially beneficial for large-scale computations where memory efficiency and stability are crucial. By separating the extent calculation from the image mapping, the two-pass approach offers reliable and scalable performance, avoiding memory overflow and performance issues associated with swapping RAM to SSD.
 
 For JIT-compiled functions, dummy calls are made. This step ensures that the function is precompiled before it is called by the interpreter, thus avoiding compilation overhead the first time the code is executed.
 

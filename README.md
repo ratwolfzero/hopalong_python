@@ -116,7 +116,7 @@ Alternatively, using time.perf_counter() and subtracting 1 second from cpu_sys_t
 
 The program leverages the Numba JIT just-in-time compilation for performance optimization. This avoids the overhead of Python's interpreter, providing a significant speedup over standard Python loops.  
 
-### Straightforward loops and direct iteration  
+### Straightforward Loops and Direct Iteration  
 
 The design intentionally refrains from using NumPy's vectorization features and parallel iteration with  Python’s zip() function in favor of direct iteration.This straightforward structure optimizes JIT compilation, allowing for efficient translation into machine code and minimizing overhead from complex control flows.  
   

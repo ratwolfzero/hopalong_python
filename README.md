@@ -116,21 +116,22 @@ Alternatively, using time.perf_counter() and subtracting 1 second from cpu_sys_t
 
 The program leverages the Numba JIT just-in-time compilation for performance optimization. This avoids the overhead of Python's interpreter, providing a significant speedup over standard Python loops.  
 
-Key optimizations include:
+### Straightforward loops and direct iteration  
 
-- Two-pass approach with straightforward loops and direct iteration. This straightforward structure optimizes JIT compilation, allowing for efficient translation into machine code and minimizing overhead from complex control flows  
+The design intentionally refrains from using NumPy's vectorization features and parallel iteration with  Python’s zip() function in favor of direct iteration.This straightforward structure optimizes JIT compilation, allowing for efficient translation into machine code and minimizing overhead from complex control flows.  
   
-- The design intentionally refrains from using NumPy's vectorization features and parallel iteration with Python’s zip() function in favor of direct iteration.  
+### Dummy Calls
 
-- Avoiding race conditions typically associated with parallelization techniques like prange, which is generally not applicable for cross-iteration dependencies.
+For JIT-compiled functions, dummy calls are made. This step ensures that the function is precompiled before it is called by the interpreter,  
+thus avoidingcompilation overhead the first time the code is executed.  
 
-A two-pass approach with sequential process is preferable to array caching all trajectory points for further, e.g. vectorized processing, as it minimizes memory requirements and, by pre-determining the trajectory extents, ensures accurate, consistent scaling of image pixels throughout the entire computation.
+### Race Conditions  
 
-This method is particularly advantageous for large-scale computations with a very or extremely high number of iterations, where memory efficiency and stability are critical.
+Avoiding race conditions typically associated withparallelization techniques like prange, which is generally not applicable for cross-iteration dependencies.
 
-By separating the extent computation from the image mapping, the two-pass approach provides reliable and scalable performance and avoids memory overflows and performance issues associated with swapping RAM to SSD, which can happen with array caching when the memory size of the trajectory array becomes too large to fit in the system memory. However, this also depends on the available system environment.
+### Two-Pass Approach  
 
-For JIT-compiled functions, dummy calls are made. This step ensures that the function is precompiled before it is called by the interpreter, thus avoiding compilation overhead the first time the code is executed.
+A two-pass approach with sequential process is preferable to array caching all trajectory points for further, e.g. vectorized processing, as it minimizes memory requirements and, by pre-determining the trajectory extents, ensures accurate, consistent scaling of image pixels throughout the entire computation.This method is particularly advantageous for large-scale computations with a very or extremely high number of iterations, where memory efficiency and stability are critical.By separating the extent computation from the image mapping, the two-pass approach provides reliable and scalable performance and avoids memory overflows and performance issues associated with swapping RAM to SSD, which can happen with array caching when the memory size of the trajectory array becomes too large to fit in the system memory. However, this also depends on the available system environment.  
 
     @njit #njit is an alias for nopython=True
     def compute_trajectory_extents(a, b, c, num):

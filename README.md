@@ -84,7 +84,7 @@ This program is available in two versions:
 
 For both versions, pixels are color-coded based on the number of hits they receive:
 
-Multiple Hits: Pixels that are hit multiple times are assigned colors according to their density, with a gradient showing the intensity—from no hits to maximum density.  
+Multiple Hits: Pixels that are hit multiple times are assigned colors according to their "density", with a gradient showing the intensity—from no hits to maximum density.  
 
 ## Additional Features  
 

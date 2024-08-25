@@ -276,7 +276,7 @@ Maple help:
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 
-Python
+### References for Python Libraries and Modules
 
 1. [NumPy Documentation](https://numpy.org/doc/stable/): NumPy is a fundamental package for scientific computing in Python.
 2. [Matplotlib Documentation](https://matplotlib.org/stable/contents.html): A library for creating static, interactive, and animated visualizations.

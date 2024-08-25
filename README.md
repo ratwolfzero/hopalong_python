@@ -16,14 +16,14 @@ $$
 
 The sequence of (x<sub>1</sub>, y<sub>1</sub>), (x<sub>2</sub>, y<sub>2</sub>), ... (x<sub>n</sub>, y<sub>n</sub>)  coordinates is specified by an initial point (x<sub>0</sub>, y<sub>0</sub>) and three constants a, b, and c.
   
-A two-pass algorithm is used to compute the Hopalong Attractor and process it sequentially through straightforward loops.  
+A two-pass algorithm is employed to compute the Hopalong Attractor, processing it sequentially through straightforward loops.
 
-- The first pass determines the full trajectory extents (minimum and maximum values).
+- In the first pass, the algorithm determines the full trajectory extents, which consist of the minimum and maximum values of the trajectory.
 
-- The second pass generates the sequence of trajectory points and maps them directly to image pixel coordinates representing the attractor hit pattern information (where the pixel value is > 0). Only this information is updated and stored in an image array initialized with zero values.
+- In the second pass, the algorithm generates the sequence of trajectory points and maps them directly to image pixel coordinates, representing the attractor hit pattern information (where the pixel value is > 0). Only this hit information is updated and stored in an image array, which is initialized with zero values.
 
-Handling of ptxels with multiple hits, see 'Features' section.  
-Benefits of two-pass aproach,  see "Performance Optimization" section.
+For details on handling pixels with multiple hits, see the 'Features' section. To learn about the benefits of the two-pass approach, refer to the "Performance Optimization" section.
+
 
 ## Requirements  
 

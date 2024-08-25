@@ -82,7 +82,7 @@ This program is available in two versions:
 
 ### Color Mapping  
 
-In both versions of the programm (basic or extended), pixels are color-coded based on the number of times they are "hit" by trajectory points, referred to as the "pixel hit count." However, trajectory points are floating-point values and do not directly correspond to pixel coordinates. Instead, they are mapped to integer pixel coordinates on the image. The mapping is handled by scale factors using the image size and trajectory extents (min, max values).For the very details you can consult the function "compute_trajectory_and_image" in the code.
+In both versions of the programm (basic or extended), pixels are color-coded based on the number of times they are "hit" by trajectory points, referred to as the "pixel hit count." However, trajectory points are floating-point values and do not directly correspond to pixel coordinates. Instead, they are mapped to integer pixel coordinates on the image. The mapping is handled by scale factors using the image size and trajectory extents (min, max values). For the very details you can consult the function "compute_trajectory_and_image" in the code.
 
 ### Pixel Hit Counts  
 
@@ -279,7 +279,7 @@ Maple help:
 Python
 
 1. [NumPy Documentation](https://numpy.org/doc/stable/): NumPy is a fundamental package for scientific computing in Python.
-2. [Matplotlib Documentation](https://matplotlib.org/stable/contents.html): Matplotlib is a plotting library for creating static, interactive, and animated visualizations.
+2. [Matplotlib Documentation](https://matplotlib.org/stable/contents.html): A library for creating static, interactive, and animated visualizations.
 3. [Numba Documentation](https://numba.pydata.org/numba-doc/latest/index.html): Numba is a just-in-time compiler for optimizing numerical computations.
 4. [Python Built-in Functions](https://docs.python.org/3/library/functions.html): Overview of built-in functions available in Python.
 5. [Python Math Module](https://docs.python.org/3/library/math.html): Access mathematical functions defined by the C standard.

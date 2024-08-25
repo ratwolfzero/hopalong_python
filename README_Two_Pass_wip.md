@@ -25,20 +25,21 @@ The two-pass approach involves sequential processing using simple loops, ensurin
 ### Main Benefit
 
 By separating the extension calculation (first pass) from trajectory point mapping (second pass), the approach allows efficient sequential processing. Knowing the trajectory boundaries in advance enables direct and efficient mapping of points to image pixels, optimizing memory usage and maintaining consistent performance.
-Comparison with Single-Pass and Trajectory Points Caching Approaches
 
-## Single-Pass with Caching
+## Comparison with Single-Pass and Trajectory Points Caching Approaches
+
+### Single-Pass with Caching
 
 - Process: Both calculation and mapping occur within a single loop, with all trajectory points stored in an array to avoid recalculation.
 - Memory Usage: Storing all points requires significant memory, which can lead to overflow or performance issues as iterations increase.
 - Performance: Although caching saves recalculation time, the high memory overhead can degrade performance, especially in memory-constrained systems.
   
-## Single-Pass with Direct Mapping
+### Single-Pass with Direct Mapping
 
 - Process: Trajectory points are calculated and mapped directly to image pixels within a single loop, without caching.
 - Efficiency: This method is inefficient and computationally expensive, as it involves repeated remapping of already processed pixels, making it impractical for large iterations.
   
-## Single-Pass with Chunked Caching
+### Single-Pass with Chunked Caching
 
 Approach: The idea here is to divide the computation into chunks, where each chunk of trajectory points is processed and cached temporarily, then mapped to image coordinates before moving on to the next chunk. This could, in theory, reduce the memory load compared to caching all trajectory points at once.
 

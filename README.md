@@ -131,9 +131,17 @@ For JIT-compiled functions dummy calls are made. This step ensures that the func
 
 Avoiding race conditions typically associated with parallelization techniques like prange, which is generally not applicable for cross-iteration dependencies.
 
-### Two-Pass Approach  
+### Two-Pass Approach
 
-A two-pass approach with a sequential process is preferable to array caching all trajectory points, as it minimizes memory requirements and ensures consistent image scaling by pre-determining trajectory extents. This method is particularly advantageous for large-scale computations with a high number of iterations, where memory efficiency and stability are critical. By separating extent computation from image mapping, the two-pass approach provides reliable, scalable performance and avoids memory overflows and performance degradation associated with virtual memory (swapping RAM to SSD). This issue can occur with array caching when the array size exceeds available system memory. However, this depends on the system environment used.
+The two-pass approach is preferred over caching all trajectory points in an array, as it minimizes memory requirements and ensures consistent image scaling through pre-determined trajectory extents. This method is particularly beneficial for large-scale computations with a high number of iterations, where memory efficiency and stability are critical.
+
+#### Key Benefits of the Two-Pass Approach
+
+- Memory Efficiency: By avoiding the need to cache all trajectory points in an array, the approach significantly reduces overall memory usage.
+
+- Stable Performance: The separation of extent computation from trajectory point mapping allows for sequential processing in the second pass. With the trajectory extents already known, the algorithm can directly map trajectory points to image pixels without the overhead of array caching. This reduces the risk of memory overflow and mitigates performance degradation associated with virtual memory, such as swapping RAM to SSD.
+
+Given that the two-pass methodology can have different targtes, it was chosen for this program primarily to enhance memory efficiency and maintain stable performance during the computation of the Hopalong Attractor with high number of iterations.
 
     @njit #njit is an alias for nopython=True
     def compute_trajectory_extents(a, b, c, num):

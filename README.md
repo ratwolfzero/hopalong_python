@@ -291,4 +291,5 @@ Maple help:
 3. [Numba Documentation](https://numba.readthedocs.io/): Numba is a just-in-time compiler for optimizing numerical computations.
 4. [Python Built-in Functions](https://docs.python.org/3/library/functions.html): Overview of built-in functions available in Python.
 5. [Python Math Module](https://docs.python.org/3/library/math.html): Access mathematical functions defined by the C standard.
-6. [Python Resource Module](https://docs.python.org/3/library/resource.html): Interface for getting and setting resource limits.
+6. [Python Time Module](https://docs.python.org/3/library/time.html#module-time): Time access and conversions.
+7. [Python Resource Module](https://docs.python.org/3/library/resource.html): Interface for getting and setting resource limits.

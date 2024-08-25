@@ -107,7 +107,7 @@ Execution time* and resources: Starts after user input and measures the CPU time
 This can be done, for example, by using the commands plt.pause(1) followed by plt.close(fig).
 As long as there is no interaction with the plot window, the "plt.pause() time" is not recorded by the "time.process_time()" function used.
 
-Alternatively, the "time.perf_counter()" function can be used. In this case, the "plt.pause() time" must be subtracted from the cpu_sys_time_used variable.
+Alternatively, the function “time.perf_counter()” can be used. In this case, the “plt.pause() time” is included and can be deducted.
 
     #plt.show()
     plt.pause(1)

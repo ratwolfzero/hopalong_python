@@ -1,137 +1,5 @@
-# Calculate & Display the "Hopalong" Attractor with Python
 
-The "Hopalong *" attractor, invented by Barry Martin at Aston University in Birmingham, England, was popularized by A.K. Dewdney in the September 1986 issue of Scientific American. In Germany, it gained further recognition through a translation titled "Hüpfer" in Spektrum der Wissenschaft.  
-<sub>*Nicknamed by A.K. Dewdney.</sub>
-
-## Abstract  
-
-This Python program calculates and displays the "Hopalong" Attractor by iterating the following system of interrelated equations (1) and (2):
-
-$$
-\begin{align}
-x_n+1 & = y_n-sgn(x_n)\times\sqrt{∣b\times x_n−c∣} &(1) \\
-y_n+1 & = a-x_n &(2)
-\end{align}
-$$
-
-The sequence of (x<sub>1</sub>, y<sub>1</sub>), (x<sub>2</sub>, y<sub>2</sub>), ... (x<sub>n</sub>, y<sub>n</sub>)  coordinates is specified by an initial point (x<sub>0</sub>, y<sub>0</sub>) and three constants a, b, and c.
-  
-A two-pass algorithm is employed to compute the Hopalong Attractor, sequentially processing in both passes through straightforward loops.
-
-- In the first pass, the algorithm determines the full trajectory extents, which consist of the minimum and maximum values of the aatractor trajectory.
-
-- In the second pass, the algorithm generates the sequence of trajectory points and maps them directly to image pixel coordinates, representing the attractor hit pattern information (where the pixel value is > 0). Only this hit information is updated and stored in an image array, which is initialized with zero values.
-
-For details on handling pixels with multiple hits, see the 'Features' section. To learn about the motivation to use the two-pass approach and it's beefits, refer to the "Performance Optimization" section.
-
-
-## Requirements  
-
-To run this program, the following Python libraries or Modules must be installed / imported (* mandatory):
-
-- matplotlib *
-- numpy *  
-- numba *  
-- math *
-- time, resource (optional)
-  
-Time and Resource libraries if you want to track process time and system memory used.
-Otherwise, please comment out the relevant code snippets.
-  
-    import matplotlib.pyplot as plt
-    import numpy as np
-    from numba import njit
-    from math import copysign, sqrt, fabs
-    #import time
-    #import resource 
-
-
-    def main(image_size=(1000, 1000), color_map='hot'):
-    # Main execution process
-    try:
-    params = get_attractor_parameters()
-        
-    # Start the time measurement
-    # start_time = time.process_time()
-
-    extents = compute_trajectory_extents(params['a'], params['b'], params['c'], params['num'])
-    image = compute_trajectory_and_image(params['a'], params['b'], params['c'], params['num'], extents, image_size)
-    render_trajectory_image(image, extents, params, color_map)
-
-    # End the time measurement
-    # end_time = time.process_time()
-
-    """
-    # Calculate the CPU user and system time
-    cpu_sys_time_used = end_time - start_time
-    # Calculate the memory resources used
-    memMb=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024.0/1024.0
-    print(f'CPU User&System time used: {cpu_sys_time_used:.2f} seconds')
-    print (f'Memory (RAM): {memMb:.2f} MByte used')
-    """
-        
-    except Exception as e:
-        print(f'An error occurred: {e}')
-
-## Features
-
-This program is available in two versions:
-
-- Basic version: Calculation and display of the hopalong attractor.
-- Advanced version: Like the basic version plus statistics and visualization of the pixel hit counts
-
-### Image Pixel and Color Mapping  
-
-In both versions of the programm (basic or extended), pixels are color-coded based on the number of times they are "hit" by trajectory points, referred to as the "pixel hit count." However, trajectory points are floating-point values and do not directly correspond to pixel coordinates. Instead, they are mapped to integer pixel coordinates on the image. The mapping is handled by scale factors using the image size and trajectory extents (min, max values). For the very details you can consult the function "compute_trajectory_and_image" in the code.
-
-### Pixel Hit Counts  
-
-As each trajectory point is generated, it is mapped to a corresponding pixel by converting its floating-point coordinates to integer values. This mapping results in certain pixels being "hit" multiple times, creating areas of varying density within the image.  
-Note: While defining the corresponding image array it is initialized by zero values. For details see above mentioned code section.  
-
-### Multiple Hits  
-
-Pixels with higher hit counts are color-coded to reflect their density. The program uses Matplotlib's 'hot' colormap, which applies a gradient that transitions from dark (low hit count) to bright (high hit count), effectively visualizing areas of higher activity within the attractor.  
-The visualization of density may help in understanding the attractors behavior.
-
-### Handling High Density  
-
-Matplotlib applies normalization to scale the hit counts to fit within the finite range of colors provided by the colormap. Pixels with hit counts that exceed the defined maximum for the colormap are mapped to the highest color in the colormap. This ensures that extremely high-density pixels are represented in the brightest color, effectively conveying the density information for all pixels while maintaining a clear and distinct color gradient across varying densities.
-
-### Additional Features  
-
-- Interactive display: Matplotlib provides an interactive plot window.
-
-- Optional:
-Execution time* and resources: Starts after user input and measures the CPU time for the entire process including image rendering and shows the system memory used.
-
-*Since interactions with the plot window, e.g. zooming, panning, mouse movements, are measured, it is recommended to close the plot window automatically.
-This can be done, for example, by using the commands plt.pause(1) followed by plt.close(fig).
-As long as there is no interaction with the plot window, the "plt.pause() time" is not recorded by the "time.process_time()" function used.
-
-Alternatively, the function “time.perf_counter()” can be used. In this case, the “plt.pause() time” is included and can be deducted.
-
-    #plt.show()
-    plt.pause(1)
-    plt.close(fig)
-
-## Performance Optimization  
-
-The program leverages the Numba JIT just-in-time compilation for performance optimization. This avoids the overhead of Python's interpreter, providing a significant speedup over standard Python loops.  
-
-### Straightforward Loops and Direct Iteration  
-
-The design intentionally refrains from using NumPy's vectorization features and parallel iteration with  Python’s zip() function in favor of direct iteration.This straightforward structure optimizes JIT compilation, allowing for efficient translation into machine code and minimizing overhead from complex control flows.  
-  
-### Dummy Calls
-
-For JIT-compiled functions dummy calls are made. This step ensures that the function is precompiled before it is called by the interpreter, thus avoiding compilation overhead the first time the code is executed.  
-
-### Race Conditions  
-
-Avoiding race conditions typically associated with parallelization techniques like prange, which is generally not applicable for cross-iteration dependencies.
-
-### Two-Pass Approach
+# xxx
 
 Motivation
 
@@ -139,16 +7,16 @@ Motivation
 - Requirements: Support a very high number of iterations with optimal processing speed and accurate image representation.
 - Approach: Implement a straightforward, efficient program with minimal complexity.
   
-#### The Two-Pass Approach: A Chosen Solution
+## The Two-Pass Approach: A Chosen Solution
 
 The two-pass approach involves sequential processing using simple loops, ensuring optimal memory efficiency and stable performance.
 
-#### First Pass
+### First Pass
 
 - Purpose: Calculate the trajectory's spatial boundaries (minimum and maximum x and y coordinates).
 - Outcome: Determines the extent of the trajectory, which is crucial for accurately mapping points in the second pass.
   
-#### Second Pass
+### Second Pass
 
 - Purpose:
 - Compute the sequence of trajectory points.
@@ -161,18 +29,18 @@ The two-pass approach involves sequential processing using simple loops, ensurin
 By separating the extension calculation (first pass) from trajectory point mapping (second pass), the approach allows efficient sequential processing. Knowing the trajectory boundaries in advance enables direct and efficient mapping of points to image pixels, optimizing memory usage and maintaining consistent performance.
 Comparison with Single-Pass and Trajectory Points Caching Approaches
 
-### Single-Pass with Caching
+## Single-Pass with Caching
 
 - Process: Both calculation and mapping occur within a single loop, with all trajectory points stored in an array to avoid recalculation.
 - Memory Usage: Storing all points requires significant memory, which can lead to overflow or performance issues as iterations increase.
 - Performance: Although caching saves recalculation time, the high memory overhead can degrade performance, especially in memory-constrained systems.
   
-### Single-Pass with Direct Mapping
+## Single-Pass with Direct Mapping
 
 - Process: Trajectory points are calculated and mapped directly to image pixels within a single loop, without caching.
 - Efficiency: This method is inefficient and computationally expensive, as it involves repeated remapping of already processed pixels, making it impractical for large iterations.
   
-### Single-Pass with Chunked Caching
+## Single-Pass with Chunked Caching
 
 Approach: The idea here is to divide the computation into chunks, where each chunk of trajectory points is processed and cached temporarily, then mapped to image coordinates before moving on to the next chunk. This could, in theory, reduce the memory load compared to caching all trajectory points at once.
 
@@ -181,7 +49,7 @@ Approach: The idea here is to divide the computation into chunks, where each ch
 - Two-Pass Chunked Caching: In this variant, the first pass would calculate the global extents of the trajectory, and the second pass would process the trajectory in chunks, mapping each chunk accurately to image coordinates based on the global extents. This method is memory efficient since it doesn't require storing all trajectory points at once, but it involves the complexity of managing chunks and the overhead of recalculating extents, making it slightly slower than the standard two-pass approach.
 - Performance and Complexity: While chunking can help manage memory, the additional complexity in implementation (handling multiple chunks and recalculating extents) and the overhead from function calls at the end of each chunk generally make it less efficient overall. Tt's typically a bit slower than the straightforward two-pass approach.
 
-### Advantages of the Two-Pass Approach
+## Advantages of the Two-Pass Approach
 
 - Memory Efficiency: The two-pass approach eliminates the need for large-scale caching by recalculating trajectory points, thus reducing memory requirements.
 - JIT Compatibility: The simple, sequential structure is well-suited for Just-In-Time (JIT) compilation, enhancing execution speed.
@@ -189,156 +57,6 @@ Approach: The idea here is to divide the computation into chunks, where each ch
 Disadvantage
 - Recalculation: Trajectory points are recalculated in both passes, but this trade-off is preferable to the high memory demands and complexity of alternative methods.
   
-### Conclusion
+## Conclusion
 
 The two-pass approach was chosen for its balance of performance, memory efficiency, and simplicity. Despite the need to recalculate trajectory points, it avoids the pitfalls of high memory consumption, complex implementation, and inefficient mapping found in single-pass approaches, making it the most robust and effective solution for calculating the Hopalong attractor with a high number of iterations.
-
-    @njit #njit is an alias for nopython=True
-    def compute_trajectory_extents(a, b, c, num):
-    # Dynamically compute and track the minimum and maximum extents of the trajectory over 'num' iterations.
-    x = np.float64(0.0)
-    y = np.float64(0.0)
-
-    min_x = np.inf  # ensure that the initial minimum is determined correctly
-    max_x = -np.inf # ensure that the initial maximum is determined correctly
-    min_y = np.inf
-    max_y = -np.inf
-
-    for _ in range(num):
-    # selective min/max update using direct comparisons avoiding min/max function
-        if x < min_x:
-            min_x = x
-        if x > max_x:
-            max_x = x
-        if y < min_y:
-            min_y = y
-        if y > max_y:
-            max_y = y
-        # signum function respecting the behavior of floating point numbers according to IEEE 754 (signed zero)
-        xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
-        yy = a-x
-        x = xx
-        y = yy
-    return min_x, max_x, min_y, max_y  
-
-    # Dummy call to ensure the function is pre-compiled by the JIT compiler before it's called by the interpreter.
-    _ = compute_trajectory_extents(1.0, 1.0, 1.0, 2) 
-
-
-    @njit
-    def compute_trajectory_and_image(a, b, c, num, extents, image_size):
-    # Compute the trajectory and populate the image with trajectory points
-    image = np.zeros(image_size, dtype=np.uint64)
-    
-    # pre-compute image scale factors
-    min_x, max_x, min_y, max_y = extents
-    scale_x = (image_size[0] - 1) / (max_x - min_x)
-    scale_y = (image_size[1] - 1) / (max_y - min_y)
-    
-    x = np.float64(0.0)
-    y = np.float64(0.0)
-    
-    for _ in range(num):
-        # map trajectory points to image pixel coordinates
-        px = np.uint64((x - min_x) * scale_x)
-        py = np.uint64((y - min_y) * scale_y)
-        # populate the image array "on the fly" with each computed point
-        image[py, px] += 1  # respecting row/column convention, update # of hits
-
-        # Update the trajectory "on the fly"
-        xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
-        yy = a-x
-        x = xx
-        y = yy
-        
-    return image
-    # Dummy call to ensure the function is pre-compiled by the JIT compiler before it's called by the interpreter.
-    _ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (2, 2))  
-
-You can browse the development folder in the repository to explore different approaches that have already been tried.
-
-## User Input  
-
-The program prompts the user for the following parameters:  
-
-- a (float or integer): Parameter 'a' of the Hopalong equation.  
-- b (float or integer): Parameter 'b' of the Hopalong equation.  
-- c (float or integer): Parameter 'c' of the Hopalong equation.  
-- num (integer): The number of iterations (e.g., 1000000 or 1_000_000).
-
-Example parameters:
-
-- a = -2  
-- b = -0.33  
-- c = 0.01  
-- num = 200_000_000
-
-![Example Attractor Image](./examples/Figure_ex_1.png)  
-![Example Attractor Image](./examples/Figure_ex_2.png)
-
-## Recent code changes
-
-Signum Function:  
-The program now utilizes the math.copysign function "copysign(x,y)"  
-Return a float with the magnitude (absolute value) of x but the sign of y.  
-On platforms that support signed zeros, copysign(1.0, -0.0) returns -1.0.
-
-$$
-copysign(1.0,x) =\begin{cases}
-1.0  & if & x & is &positive, & +0.0 & or &INFINITY \\
--1.0 & if & x & is &negative, & -0.0 & or &NEG. INFINITY
-\end{cases}
-$$
-
-This adjustment improves handling of edge cases, allowing for different behavior. For example:
-
-- a = 1, b = 2, c = 3 or  
-
-- a = 0, b = 1, c = 1 or  
-
-- a = 1, b =1, c = 1  
-
-However, certain parameter combinations such as:
-
-- a =1 , b = 0, c = 0 or  
-
-- a = 1, b = 0, c = 1 or  
-
-- a = 1, b = 1, c = 0,  
-
-may lead to "singularities" where the attractor doesn't produce complex patterns.
-
-## Enjoy the Exploration
-
-Experiment with different color maps or populate the image array differently than based on the hit count and explore new visual views.
-
-----------------------------------------------------------------------------------------------------------------------------------------------------
-
-## References
-
-Barry Martin, "Graphic Potential of Recursive Functions," in Computers in Art, Design and Animation (J. Landsdown and R. A. Earnshaw, eds.), New York: Springer–Verlag, 1989 pp. 109–129.
-
-ISBN-13: 978-1-4612-8868-8,  e-ISBN-13: 978-1-4612-4538-4
-
-----------------------------------------------------------------------------------------------------------------------------------------------------
-
-A.K. Dewdney in Spektrum der Wissenschaft "Computer Kurzweil" 1988, (German version of Scientific American)
-
-ISBN-10: 3922508502, ISBN-13: 978-3922508502
-
-----------------------------------------------------------------------------------------------------------------------------------------------------
-
-Maple help:
-
-<https://de.maplesoft.com/support/help/maple/view.aspx?path=MathApps%2FHopalongAttractor>
-
-----------------------------------------------------------------------------------------------------------------------------------------------------
-
-### References for Python Libraries and Modules
-
-1. [NumPy Documentation](https://numpy.org/doc/stable/): NumPy is a fundamental package for scientific computing in Python.
-2. [Matplotlib Documentation](https://matplotlib.org/stable/contents.html): A library for creating static, interactive, and animated visualizations.
-3. [Numba Documentation](https://numba.readthedocs.io/): Numba is a just-in-time compiler for optimizing numerical computations.
-4. [Python Built-in Functions](https://docs.python.org/3/library/functions.html): Overview of built-in functions available in Python.
-5. [Python Math Module](https://docs.python.org/3/library/math.html): Access mathematical functions defined by the C standard.
-6. [Python Resource Module](https://docs.python.org/3/library/resource.html): Interface for getting and setting resource limits.

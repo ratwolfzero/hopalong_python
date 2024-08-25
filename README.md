@@ -52,14 +52,14 @@ Otherwise, please comment out the relevant code snippets.
     params = get_attractor_parameters()
         
     # Start the time measurement
-    #start_time = time.process_time()
+    # start_time = time.process_time()
 
     extents = compute_trajectory_extents(params['a'], params['b'], params['c'], params['num'])
     image = compute_trajectory_and_image(params['a'], params['b'], params['c'], params['num'], extents, image_size)
     render_trajectory_image(image, extents, params, color_map)
 
     # End the time measurement
-    #end_time = time.process_time()
+    # end_time = time.process_time()
 
     """
     # Calculate the CPU user and system time
@@ -98,14 +98,16 @@ Matplotlib scales the hit counts to fit within the colormap's finite range of co
 
 ### Additional Features  
 
-- Performance Boost: Optimized with Numba's @njit for faster computation.
-- Interactive Display: Matplotlib provides an interactive plot window.
-- Execution Timing: Measures and displays CPU time for the entire process, including rendering using the "time.process_time()" function
+- Interactive display: Matplotlib provides an interactive plot window.
 
-Since interactions with the plot window, e.g. zooming, panning, mouse movements, are also measured, it is recommended to close the plot window automatically, e.g. by using plt.pause(1) followed by plt.close(fig).
-As long as there is no interaction with the plot window, the plt.pause() time is not recorded by "time.process_time()".
+- Optional:
+Execution time* and resources: Starts after user input and measures the CPU time for the entire process including image rendering and shows the system memory used.
 
-Alternatively, using time.perf_counter() and subtracting 1 second from cpu_sys_time_used = end_time – start_time leads to similar results.
+*Since interactions with the plot window, e.g. zooming, panning, mouse movements, are measured, it is recommended to close the plot window automatically.
+This can be done, for example, by using the commands plt.pause(1) followed by plt.close(fig).
+As long as there is no interaction with the plot window, the "plt.pause() time" is not recorded by the "time.process_time()" function used.
+
+Alternatively, the "time.perf_counter()" function can be used. In this case, the "plt.pause() time" must be subtracted from the cpu_sys_time_used variable.
 
     #plt.show()
     plt.pause(1)

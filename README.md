@@ -280,7 +280,7 @@ Python
 
 1. [NumPy Documentation](https://numpy.org/doc/stable/): NumPy is a fundamental package for scientific computing in Python.
 2. [Matplotlib Documentation](https://matplotlib.org/stable/contents.html): A library for creating static, interactive, and animated visualizations.
-3. [Numba Documentation](https://numba.pydata.org/numba-doc/latest/index.html): Numba is a just-in-time compiler for optimizing numerical computations.
+3. [Numba Documentation](https://numba.readthedocs.io/): Numba is a just-in-time compiler for optimizing numerical computations.
 4. [Python Built-in Functions](https://docs.python.org/3/library/functions.html): Overview of built-in functions available in Python.
 5. [Python Math Module](https://docs.python.org/3/library/math.html): Access mathematical functions defined by the C standard.
 6. [Python Resource Module](https://docs.python.org/3/library/resource.html): Interface for getting and setting resource limits.

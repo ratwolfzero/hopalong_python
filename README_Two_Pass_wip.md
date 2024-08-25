@@ -1,7 +1,5 @@
 
-# xxx
-
-Motivation
+# Motivation
 
 - Goal: Efficiently display the Hopalong attractor as an image in an interactive plot window.
 - Requirements: Support a very high number of iterations with optimal processing speed and accurate image representation.

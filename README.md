@@ -82,19 +82,21 @@ This program is available in two versions:
 
 ### Color Mapping  
 
-In both versions of the programm (basic or extended), pixels are color-coded based on the number of times they are "hit" by trajectory points, referred to as the "pixel hit count." However, trajectory points are floating-point values and do not directly correspond to pixel coordinates. Instead, they are mapped to integer pixel coordinates on the image.
+In both versions of the programm (basic or extended), pixels are color-coded based on the number of times they are "hit" by trajectory points, referred to as the "pixel hit count." However, trajectory points are floating-point values and do not directly correspond to pixel coordinates. Instead, they are mapped to integer pixel coordinates on the image. The mapping is handled by scale factors using the image size and trajectory extents (min, max values).For the very details you can consult the function "compute_trajectory_and_image" in the code.
 
 ### Pixel Hit Counts  
 
 As each trajectory point is generated, it is mapped to a corresponding pixel by converting its floating-point coordinates to integer values. This mapping results in certain pixels being "hit" multiple times, creating areas of varying density within the image.  
+Note: While defining the corresponding image array it is initialized by zero values. For details see above mentioned code section.  
 
 ### Multiple Hits  
 
 Pixels with higher hit counts are color-coded to reflect their density. The program uses Matplotlib's 'hot' colormap, which applies a gradient that transitions from dark (low hit count) to bright (high hit count), effectively visualizing areas of higher activity within the attractor.  
+The visualization of density may help in understanding the attractors behavior.
 
 ### Handling High Density  
 
-Matplotlib scales the hit counts to fit within the colormap's finite range of colors using normalization. If a pixel's hit count exceeds the maximum value set for the colormap, it is mapped to the highest color available in the colormap. This means that extremely high-density pixels will all appear in the brightest color, ensuring the full range of densities is represented, but without repeating colors.
+Matplotlib applies normalization to scale the hit counts to fit within the finite range of colors provided by the colormap. Pixels with hit counts that exceed the defined maximum for the colormap are mapped to the highest color in the colormap. This ensures that extremely high-density pixels are represented in the brightest color, effectively conveying the density information for all pixels while maintaining a clear and distinct color gradient across varying densities.
 
 ### Additional Features  
 

@@ -74,6 +74,25 @@ Otherwise, please comment out the relevant code snippets.
     except Exception as e:
         print(f'An error occurred: {e}')
 
+## User Input  
+
+The program prompts the user for the following parameters:  
+
+- a (float or integer): Parameter 'a' of the Hopalong equation.  
+- b (float or integer): Parameter 'b' of the Hopalong equation.  
+- c (float or integer): Parameter 'c' of the Hopalong equation.  
+- num (integer): The number of iterations (e.g., 1000000 or 1_000_000).
+
+Example parameters:
+
+- a = -2  
+- b = -0.33  
+- c = 0.01  
+- num = 200_000_000
+
+![Example Attractor Image](./examples/Figure_ex_1.png)  
+![Example Attractor Image](./examples/Figure_ex_2.png)
+
 ## Features
 
 This program is available in two versions:
@@ -174,11 +193,21 @@ By separating the extent calculation (first pass) from trajectory point mapping 
 
 - Recalculation: Trajectory points are recalculated in both passes, but this trade-off which is quite marginal and only present at lower number of iterations which do not have a long execution time anyway and as already mentioned with growing number of iterations, the two-pass approach’s efficiency in memory usage and processing speed becomes more advantageous
 
-preferable to the high memory demands and complexity of alternative methods.
+#### suitable alternatives
+
+#### One-Pass Approach with Caching
+
+- Description: Attractor points are calculated only once, stored in an array and available for further processing such as mapping poibts to pixels.
+- Disadvantages: Requires large memory resources depending on the number of iterations and can lead to performance degradation due to system memory swapping.
+
+#### Chunked One-Pass Approach
+
+- Description: Attractor points are processed in smaller segments (chunks) while caching points to manage memory usage.
+- Disadvantages: While it keeps memory consumption low, this method adds complexity and overhead, often resulting in performance that is similar to or slower than the two-pass method.
 
 ### Conclusion
 
-The two-pass approach was chosen for its balance of performance, memory efficiency, and simplicity. Despite the need to recalculate trajectory points, it avoids the pitfalls of high memory consumption with caching, complex implementation and inefficient mapping found in single-pass approaches without caching, making it the most robust and effective solution for calculating the Hopalong attractor with a high number of iterations.
+The two-pass approach was chosen for its balance of performance, memory efficiency, and simplicity. Despite the need to recalculate trajectory points, it avoids the pitfalls of alternative solutions, making it a robust and effective solution for calculating the Hopalong attractor with very high number of iterations.  
 
     @njit #njit is an alias for nopython=True
     def compute_trajectory_extents(a, b, c, num):
@@ -241,27 +270,6 @@ The two-pass approach was chosen for its balance of performance, memory efficien
     return image
     # Dummy call to ensure the function is pre-compiled by the JIT compiler before it's called by the interpreter.
     _ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (2, 2))  
-
-You can browse the development folder in the repository to explore different approaches that have already been tried.
-
-## User Input  
-
-The program prompts the user for the following parameters:  
-
-- a (float or integer): Parameter 'a' of the Hopalong equation.  
-- b (float or integer): Parameter 'b' of the Hopalong equation.  
-- c (float or integer): Parameter 'c' of the Hopalong equation.  
-- num (integer): The number of iterations (e.g., 1000000 or 1_000_000).
-
-Example parameters:
-
-- a = -2  
-- b = -0.33  
-- c = 0.01  
-- num = 200_000_000
-
-![Example Attractor Image](./examples/Figure_ex_1.png)  
-![Example Attractor Image](./examples/Figure_ex_2.png)
 
 ## Recent code changes
 

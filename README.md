@@ -142,7 +142,7 @@ Avoiding race conditions typically associated with parallelization techniques li
   
 - Approach: Implement a straightforward, efficient program with minimal complexity.
 
-#### The Two-Pass Approach: A Chosen Solution
+#### The Two-Pass Process
 
 - The two-pass approach involves sequential processing using simple loops, ensuring optimal memory efficiency and stable performance.
 

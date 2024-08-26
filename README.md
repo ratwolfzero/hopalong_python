@@ -92,11 +92,11 @@ Example parameters:
 
 ### Output
 
-### Basic Version
+#### Basic Version
 
 ![Example Attractor Image](./examples/Figure_ex_1.png)
 
-### Extended Version
+#### Extended Version
 
 ![Example Attractor Image](./examples/Figure_ex_2.png)
 

@@ -42,7 +42,11 @@ To run this program, the following Python libraries or Modules must be installed
 - numpy *  
 - numba *  
 - math *
-- time, resource (optional)
+
+Optional (for performance tracking):
+
+- time
+- resource
   
 Time and Resource libraries if you want to track process time and system memory used.
 Otherwise, please comment out the relevant code snippets.

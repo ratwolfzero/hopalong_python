@@ -122,7 +122,7 @@ The program leverages the Numba JIT just-in-time compilation for performance opt
 
 ### Straightforward Loops and Direct Iteration  
 
-The design intentionally refrains from using NumPy's vectorization features and parallel iteration with  Python’s zip() function in favor of direct iteration.This straightforward structure optimizes JIT compilation, allowing for efficient translation into machine code and minimizing overhead from complex control flows.  
+This straightforward structure optimizes JIT compilation, allowing for efficient translation into machine code and minimizing overhead from complex control flows.  
   
 ### Dummy Calls
 
@@ -130,7 +130,7 @@ For JIT-compiled functions dummy calls are made. This step ensures that the func
 
 ### Race Conditions  
 
-Avoiding race conditions typically associated with parallelization techniques like prange, which is generally not applicable for cross-iteration dependencies.
+ Prange, is generally not applicable for cross-iteration dependencies as is the case when calculating the trajectory points. A seperate funktion to populate the image array in a parallel loop using prange is possible but leads to race coditions resuklting in incosusten pixel hit rated 
 
 ### Two-Pass Approach
 

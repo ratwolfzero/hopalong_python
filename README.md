@@ -151,13 +151,7 @@ For JIT-compiled functions dummy calls are made. This step ensures that the func
 
 #### Second Pass: Trajectory Point Calculation and Mapping
 
-##### Purpose
-
-- Compute the sequence of trajectory points.  
-  
-- Map these points directly to image pixel coordinates.  
-  
-- Update the corresponding pixels in the image array based on the hit rate of each coordinate.  
+- Purpose: Compute the sequence of trajectory points. Map these points directly to image pixel coordinates. Update the corresponding pixels in the image array based on the hit rate of each coordinate.  
   
 - Outcome: The image array is populated with an accurate visual representation of the trajectory.
 

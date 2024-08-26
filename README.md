@@ -25,7 +25,6 @@ A two-pass algorithm is employed to compute the Hopalong Attractor by sequential
 For details on handling pixels with multiple hits, see the 'Features' section.  
 Foe further comments regarding the Two-Pass-Aproch, see the section "Performance Optimization" section.
 
-
 ## Requirements  
 
 To run this program, the following Python libraries or Modules must be installed / imported (* mandatory):

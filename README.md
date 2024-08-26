@@ -239,7 +239,7 @@ Possible other, more sophisticated solutions were not taken into consideration
 
 ### Conclusion
 
-Overall, the two-pass approach strikes the best balance of speed, efficiency, and simplicity, making it ideal for high-iteration calculations of the Hopalong Attractor. Despite the need to recalculate trajectory points, it avoids the pitfalls of alternative solutions, see lternatives.
+Overall, the two-pass approach strikes the best balance of speed, efficiency, and simplicity, making it ideal for high-iteration calculations of the Hopalong Attractor. Despite the need to recalculate trajectory points, it avoids the pitfalls of alternative solutions.
 
 ### Two-Pass Code Section
 

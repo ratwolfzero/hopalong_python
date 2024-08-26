@@ -31,7 +31,7 @@ A two-pass algorithm is employed to compute the Hopalong Attractor by sequential
 - Performance Optimization: Employs Numba for Just-In-Time (JIT) compilation, speeding up computation.
 
 For details on handling pixels with multiple hits, see the 'Features' section.  
-Foe further comments regarding the Two-Pass-Aproch, see the section "Performance Optimization" section.
+Foe further comments regarding the Two-Pass-Aproch, see the section "Performance Optimization".
 
 
 ## Requirements  

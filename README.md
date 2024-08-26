@@ -19,7 +19,9 @@ Where:
 - x<sub>n</sub> and y<sub>n</sub> represent the coordinates at the nth iteration.
 - a, b, c are user defined parameters that shape the attractor
 - The sequence starts from an initial point (x<sub>0</sub>, y<sub>0</sub>)
-  
+
+## Key Features
+
 A two-pass algorithm is employed to compute the Hopalong Attractor by sequential processing in both passes through straightforward loops.
 
 - In the first pass, the algorithm determines the overall trajectory extents, which consist of the minimum and maximum values of the attractor trajectory.
@@ -28,6 +30,10 @@ A two-pass algorithm is employed to compute the Hopalong Attractor by sequential
 
 For details on handling pixels with multiple hits, see the 'Features' section.  
 Foe further comments regarding the Two-Pass-Aproch, see the section "Performance Optimization" section.
+
+- Interactive Visualization: Uses Matplotlib to render the attractor, allowing for interactive exploration.
+- Performance Optimization: Employs Numba for Just-In-Time (JIT) compilation, speeding up computation.
+
 
 ## Requirements  
 

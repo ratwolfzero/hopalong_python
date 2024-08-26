@@ -46,9 +46,11 @@ By separating the extent calculation (first pass) from trajectory point mapping 
 - Common Issue with Single-Pass Methods: Just like the non-chunked single-pass approach, this method suffers from the inefficiency that already processed pixels need to be remapped. The chunked approach may help manage memory, but it does not resolve the fundamental issue of inaccurate and inefficient pixel mapping.
 - Performance and Complexity: While chunking can reduce memory load, it does not improve the efficiency of the mapping process and adds complexity in managing chunks. The remapping issues remain unchanged, making this approach no more efficient than a straightforward single-pass method.
 
-### Two-Pass Chunked Caching
+### Two-Pass with Chunked Caching
 
-In this variant, the first pass calculates the global extents of the trajectory, and the second pass processes the trajectory in chunks, mapping each chunk accurately to image coordinates based on the global extents. While memory-efficient, this method involves complexity in managing chunks and still faces the inefficiency of repeated remapping within each chunk. Additionally, the overhead of recalculating extents adds to the overall computational cost, making it slightly slower than the standard two-pass approach.
+Two-Pass Chunked Caching
+
+In this variant, the first pass calculates the global extents of the trajectory, and the second pass processes the trajectory in chunks, mapping each chunk accurately to image coordinates based on the global extents. While memory-efficient, this method involves complexity in managing chunks and the overhead of processing each chunk separately, which can make it slightly slower than the standard two-pass approach.
 
 ## Advantages of the Two-Pass Approach
 

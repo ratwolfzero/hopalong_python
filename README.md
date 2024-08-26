@@ -177,7 +177,7 @@ For JIT-compiled functions dummy calls are made. This step ensures that the func
 
 ### Race Conditions  
 
- Prange, is generally not applicable for cross-iteration dependencies as is the case when calculating the trajectory points. A seperate funktion to populate the image array in a parallel loop using prange is possible but leads to race coditions resuklting in incosusten pixel hit rated 
+ Prange, is generally not applicable for cross-iteration dependencies as it is the case when calculating the trajectory points. A seperate funktion to populate the image array in a parallel loop using prange is possible but leads to race coditions resuklting in inconsistent pixel hit rate
 
 ### Two-Pass Approach Motivation and process
 

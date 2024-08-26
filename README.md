@@ -141,7 +141,7 @@ The two-pass approach is preferred over caching all trajectory points in an arra
 
 - Stable Performance: The separation of extent computation from trajectory point mapping allows for sequential processing in the second pass. With the trajectory extents already known, the algorithm can directly map trajectory points to image pixels without the overhead of array caching. This reduces the risk of memory overflow and mitigates performance degradation associated with virtual memory, such as swapping RAM to SSD.
 
-Given that the two-pass methodology can have different targtes, it was chosen for this program primarily to enhance memory efficiency and maintain stable performance during the computation of the Hopalong Attractor with high number of iterations.
+The two-pass approach was chosen for its balance of performance, memory efficiency, and simplicity. Despite the need to recalculate trajectory points, it avoids the pitfalls of high memory consumption with caching, complex implementation, and inefficient mapping found in single-pass approaches without caching, making it the most robust and effective solution for calculating the Hopalong attractor with a high number of iterations.
 
     @njit #njit is an alias for nopython=True
     def compute_trajectory_extents(a, b, c, num):

@@ -14,8 +14,6 @@ y_n+1 & = a-x_n &(2)
 \end{align}
 $$
 
-The sequence of (x<sub>1</sub>, y<sub>1</sub>), (x<sub>2</sub>, y<sub>2</sub>), ... (x<sub>n</sub>, y<sub>n</sub>)  coordinates is specified by an initial point (x<sub>0</sub>, y<sub>0</sub>) and three constants a, b, and c.
-
 Where:
 
 - x<sub>n</sub> and y<sub>n</sub> represent the coordinates at the nth iteration.

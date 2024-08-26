@@ -90,13 +90,13 @@ Example parameters:
 - c = 0.01  
 - num = 200_000_000
 
-Output:
+### Output
 
-## Basic Version
+### Basic Version
 
 ![Example Attractor Image](./examples/Figure_ex_1.png)
 
-## Extended Version
+### Extended Version
 
 ![Example Attractor Image](./examples/Figure_ex_2.png)
 

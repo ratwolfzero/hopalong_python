@@ -90,6 +90,8 @@ Example parameters:
 - c = 0.01  
 - num = 200_000_000
 
+Output:
+
 ![Example Attractor Image](./examples/Figure_ex_1.png)  
 ![Example Attractor Image](./examples/Figure_ex_2.png)
 
@@ -100,7 +102,7 @@ This program is available in two versions:
 - Basic version: Calculation and display of the hopalong attractor.
 - Advanced version: Like the basic version plus statistics and visualization of the pixel hit counts.
 
-Example of output see section User Input above.
+Example of outputs,  see section User Input above.
 
 ### Image Pixel and Color Mapping  
 

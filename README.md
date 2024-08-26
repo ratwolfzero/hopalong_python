@@ -204,11 +204,9 @@ For JIT-compiled functions dummy calls are made. This step ensures that the func
   
 - Outcome: The image array is populated with an accurate visual representation of the trajectory.
 
-### Main Benefit
+### Main Benefit and Advantages of the Two-Pass Approach
 
 By separating the extent calculation (first pass) from trajectory point mapping (second pass), this approach allows for efficient sequential processing. Knowing the trajectory extents in advance enables direct and efficient mapping of points to image pixels, optimizing memory usage and maintaining consistent performance.
-
-### Advantages of the Two-Pass Approach
 
 - Memory Efficiency: The two-pass approach reduces memory requirements by recalculating trajectory points, eliminating the need for large-scale caching.  
   

@@ -91,8 +91,9 @@ Example parameters:
 - num = 200_000_000
 
 Output:
-
-![Example Attractor Image](./examples/Figure_ex_1.png)  
+Basic Version
+![Example Attractor Image](./examples/Figure_ex_1.png) 
+Extended Version 
 ![Example Attractor Image](./examples/Figure_ex_2.png)
 
 ## Features

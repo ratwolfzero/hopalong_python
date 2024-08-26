@@ -16,7 +16,7 @@ $$
 
 The sequence of (x<sub>1</sub>, y<sub>1</sub>), (x<sub>2</sub>, y<sub>2</sub>), ... (x<sub>n</sub>, y<sub>n</sub>)  coordinates is specified by an initial point (x<sub>0</sub>, y<sub>0</sub>) and three constants a, b, and c.
   
-A two-pass algorithm is employed to compute the Hopalong Attractor by sequentially processing in both passes through straightforward loops.
+A two-pass algorithm is employed to compute the Hopalong Attractor by sequential processing in both passes through straightforward loops.
 
 - In the first pass, the algorithm determines the overall trajectory extents, which consist of the minimum and maximum values of the attractor trajectory.
 
@@ -133,7 +133,7 @@ For JIT-compiled functions dummy calls are made. This step ensures that the func
 
  Prange, is generally not applicable for cross-iteration dependencies as is the case when calculating the trajectory points. A seperate funktion to populate the image array in a parallel loop using prange is possible but leads to race coditions resuklting in incosusten pixel hit rated 
 
-### Two-Pass Approach
+### Two-Pass Approach Motivation and process
 
 #### Motivation
 
@@ -142,8 +142,6 @@ For JIT-compiled functions dummy calls are made. This step ensures that the func
 - Requirements: Support a very high number of iterations with optimal processing speed and accurate image representation.  
   
 - Approach: Implement a straightforward, efficient program with minimal complexity.
-
-### The Two-Pass Process
 
 #### First Pass: Calculating Trajectory Extents
 

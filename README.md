@@ -193,7 +193,7 @@ By separating the extent calculation (first pass) from trajectory point mapping 
 
 - Recalculation: Trajectory points are recalculated in both passes, but this trade-off which is quite marginal and only present at lower number of iterations which do not have a long execution time anyway and as already mentioned with growing number of iterations, the two-pass approach’s efficiency in memory usage and processing speed becomes more advantageous
 
-#### suitable alternatives
+### suitable alternatives
 
 #### One-Pass Approach with Caching
 

@@ -124,7 +124,7 @@ The program generates a visual representation of the Hopalong Attractor. The res
 This program is available in two versions:
 
 - Basic version: Calculation and display of the hopalong attractor.
-- Advanced version: Like the basic version plus statistics and visualization of the pixel hit counts.
+- Advanced version: Like the basic version plus statistics and visualization of the pixel hit counts distribution.
 
 Example of outputs,  see section User Usage.
 

@@ -108,6 +108,8 @@ These parameters directly influence the appearance of the attractor, with differ
 
 ### Output
 
+The program generates a visual representation of the Hopalong Attractor. The resulting image displays the trajectory where colors represent the density of hits (i.e., how often a particular point was visited).
+
 #### Basic Version
 
 ![Example Attractor Image](./examples/Figure_ex_1.png)

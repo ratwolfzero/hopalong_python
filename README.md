@@ -130,7 +130,7 @@ Example of outputs,  see section Usage above.
 
 ### Image Pixel and Color Mapping  
 
-In both versions of the programm (basic or extended), pixels are color-coded based on the number of times they are "hit" by trajectory points, referred to as the "pixel hit count." However, trajectory points are floating-point values and do not directly correspond to pixel coordinates. Instead, they are mapped to integer pixel coordinates on the image. The mapping is handled by scale factors using the image size and trajectory extents (min, max values). For the very details you can consult the function "compute_trajectory_and_image" in the code.
+In both versions of the program (basic or extended), pixels are color-coded based on the number of times they are "hit" by trajectory points, referred to as the "pixel hit count." However, trajectory points are floating-point values and do not directly correspond to pixel coordinates. Instead, they are mapped to integer pixel coordinates on the image. The mapping is handled by scale factors using the image size and trajectory extents (min, max values). For the very details you can consult the function "compute_trajectory_and_image" in the code.
 
 ### Pixel Hit Counts  
 
@@ -169,7 +169,7 @@ The program leverages the Numba JIT just-in-time compilation for performance opt
 
 ### Two-Pass approach, Straightforward Loops and Direct Iteration  
 
-The two-pass approach involves sequential processing using simple loops with direct iterazion, ensuring optimal memory efficiency and stable performance.
+The two-pass approach involves sequential processing using simple loops with direct iteration, ensuring optimal memory efficiency and stable performance.
 This straightforward structure also optimizes JIT compilation, allowing for efficient translation into machine code and minimizing overhead from complex control flows.  
   
 ### Dummy Calls
@@ -178,7 +178,7 @@ For JIT-compiled functions dummy calls are made. This step ensures that the func
 
 ### Race Conditions  
 
- Prange, is generally not applicable for cross-iteration dependencies as it is the case when calculating the trajectory points. A seperate funktion to populate the image array in a parallel loop using prange is possible but leads to race coditions resuklting in inconsistent pixel hit rate
+ Prange, is generally not applicable for cross-iteration dependencies as it is the case when calculating the trajectory points. A separate function to populate the image array in a parallel loop using prange is possible but leads to race conditions resulting in inconsistent pixel hit rate
 
 ### Two-Pass Approach Motivation and process
 
@@ -223,7 +223,7 @@ By separating the extent calculation (first pass) from trajectory point mapping 
 
 #### One-Pass Approach with Caching
 
-- Description: Attractor points are calculated only once, stored in an array and available for further processing such as mapping poibts to pixels.
+- Description: Attractor points are calculated only once, stored in an array and available for further processing such as mapping points to pixels.
 - Disadvantages: Requires large memory resources depending on the number of iterations and can lead to performance degradation due to system memory swapping.
 
 #### Chunked One-Pass Approach

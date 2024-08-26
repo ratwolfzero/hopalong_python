@@ -22,7 +22,7 @@ The two-pass approach involves sequential processing using simple loops, ensurin
 - Update the corresponding pixels in the image array based on the hit rate of each coordinate.
 - Outcome: The image array is populated with an accurate visual representation of the trajectory.
 
-Main Benefit
+## Main Benefit
 
 By separating the extent calculation (first pass) from trajectory point mapping (second pass), this approach allows for efficient sequential processing. Knowing the trajectory extents in advance enables direct and efficient mapping of points to image pixels, optimizing memory usage and maintaining consistent performance.
 
@@ -60,6 +60,6 @@ In this variant, the first pass calculates the global extents of the trajectory,
 
 - Recalculation: Trajectory points are recalculated in both passes, but this trade-off is preferable to the high memory demands and complexity of alternative methods.
 
-Conclusion
+## Conclusion
 
 The two-pass approach was chosen for its balance of performance, memory efficiency, and simplicity. Despite the need to recalculate trajectory points, it avoids the pitfalls of high memory consumption, complex implementation, and inefficient mapping found in single-pass approaches, making it the most robust and effective solution for calculating the Hopalong attractor with a high number of iterations.

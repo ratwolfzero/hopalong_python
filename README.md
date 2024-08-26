@@ -136,8 +136,10 @@ Avoiding race conditions typically associated with parallelization techniques li
 
 #### Motivation
 
-- Goal: Efficiently display the Hopalong attractor as an image in an interactive plot window.
-- Requirements: Support a very high number of iterations with optimal processing speed and accurate image representation.
+- Goal: Efficiently display the Hopalong attractor as an image in an interactive plot window.  
+  
+- Requirements: Support a very high number of iterations with optimal processing speed and accurate image representation.  
+  
 - Approach: Implement a straightforward, efficient program with minimal complexity.
 
 #### The Two-Pass Approach: A Chosen Solution
@@ -146,17 +148,20 @@ Avoiding race conditions typically associated with parallelization techniques li
 
 #### First Pass: Calculating Trajectory Extents
 
-##### Purpose: Calculate the extents (minimum and maximum x and y coordinates) of the trajectory.
-
+- Purpose: Calculate the extents (minimum and maximum x and y coordinates) of the trajectory.  
+  
 - Outcome: Determines the extents of the trajectory, which is crucial for accurately mapping points in the second pass.
 
 #### Second Pass: Trajectory Point Calculation and Mapping
 
-##### Purpose:
+##### Purpose
 
-- Compute the sequence of trajectory points.
-- Map these points directly to image pixel coordinates.
-- Update the corresponding pixels in the image array based on the hit rate of each coordinate.
+- Compute the sequence of trajectory points.  
+  
+- Map these points directly to image pixel coordinates.  
+  
+- Update the corresponding pixels in the image array based on the hit rate of each coordinate.  
+  
 - Outcome: The image array is populated with an accurate visual representation of the trajectory.
 
 ### Main Benefit
@@ -165,8 +170,10 @@ By separating the extent calculation (first pass) from trajectory point mapping 
 
 ### Advantages of the Two-Pass Approach
 
-- Memory Efficiency: The two-pass approach reduces memory requirements by recalculating trajectory points, eliminating the need for large-scale caching.
-- JIT Compatibility: The simple, sequential structure is well-suited for Just-In-Time (JIT) compilation, enhancing execution speed.
+- Memory Efficiency: The two-pass approach reduces memory requirements by recalculating trajectory points, eliminating the need for large-scale caching.  
+  
+- JIT Compatibility: The simple, sequential structure is well-suited for Just-In-Time (JIT) compilation, enhancing execution speed.  
+  
 - Scalability: As the number of iterations grows, the two-pass approach’s efficiency in memory usage and processing speed becomes more advantageous.
 
 ### Disadvantage

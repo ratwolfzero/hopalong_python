@@ -18,7 +18,7 @@ The sequence of (x<sub>1</sub>, y<sub>1</sub>), (x<sub>2</sub>, y<sub>2</sub>), 
   
 A two-pass algorithm is employed to compute the Hopalong Attractor, sequentially processing in both passes through straightforward loops.
 
-- In the first pass, the algorithm determines the full trajectory extents, which consist of the minimum and maximum values of the aatractor trajectory.
+- In the first pass, the algorithm determines the full trajectory extents, which consist of the minimum and maximum values of the attractor trajectory.
 
 - In the second pass, the algorithm generates the sequence of trajectory points and maps them directly to image pixel coordinates, representing the attractor hit pattern information (where the pixel value is > 0). Only this hit information is updated and stored in an image array, which is initialized with zero values.
 

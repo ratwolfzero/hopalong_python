@@ -120,9 +120,10 @@ Alternatively, the function “time.perf_counter()” can be used. In this case,
 
 The program leverages the Numba JIT just-in-time compilation for performance optimization. This avoids the overhead of Python's interpreter, providing a significant speedup over standard Python loops.  
 
-### Straightforward Loops and Direct Iteration  
+### Two-Pass approach, Straightforward Loops and Direct Iteration  
 
-This straightforward structure optimizes JIT compilation, allowing for efficient translation into machine code and minimizing overhead from complex control flows.  
+The two-pass approach involves sequential processing using simple loops with direct iterazion, ensuring optimal memory efficiency and stable performance.
+This straightforward structure also optimizes JIT compilation, allowing for efficient translation into machine code and minimizing overhead from complex control flows.  
   
 ### Dummy Calls
 
@@ -142,9 +143,7 @@ For JIT-compiled functions dummy calls are made. This step ensures that the func
   
 - Approach: Implement a straightforward, efficient program with minimal complexity.
 
-#### The Two-Pass Process
-
-- The two-pass approach involves sequential processing using simple loops, ensuring optimal memory efficiency and stable performance.
+### The Two-Pass Process
 
 #### First Pass: Calculating Trajectory Extents
 

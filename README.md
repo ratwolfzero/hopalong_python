@@ -193,7 +193,7 @@ By separating the extent calculation (first pass) from trajectory point mapping 
 
 - Recalculation: Trajectory points are recalculated in both passes, but this trade-off which is quite marginal and only present at lower number of iterations which do not have a long execution time anyway and as already mentioned with growing number of iterations, the two-pass approach’s efficiency in memory usage and processing speed becomes more advantageous
 
-### suitable alternatives
+### Alternatives
 
 #### One-Pass Approach with Caching
 
@@ -205,9 +205,18 @@ By separating the extent calculation (first pass) from trajectory point mapping 
 - Description: Attractor points are processed in smaller segments (chunks) while caching points to manage memory usage.
 - Disadvantages: While it keeps memory consumption low, this method adds complexity and overhead, often resulting in performance that is similar to or slower than the two-pass method.
 
+#### One-Pass Approach without Caching
+
+- Description: This method attempts to calculate and map points in a single loop without storing previous points.
+- Disadvantages: Requires continuously recalculating the mapping of attractor points to image pixels every time the trajectory extent changesIt making it complicated and ineffective and difficult to ensure accurate pixel mapping
+
+Possible other, more sophisticated solutions were not taken into consideration
+
+sohisticated
+
 ### Conclusion
 
-The two-pass approach was chosen for its balance of performance, memory efficiency, and simplicity. Despite the need to recalculate trajectory points, it avoids the pitfalls of alternative solutions, making it a robust and effective solution for calculating the Hopalong attractor with very high number of iterations.  
+Overall, the two-pass approach strikes the best balance of speed, efficiency, and simplicity, making it ideal for high-iteration calculations of the Hopalong Attractor. Despite the need to recalculate trajectory points, it avoids the pitfalls of alternative solutions, see lternatives.
 
     @njit #njit is an alias for nopython=True
     def compute_trajectory_extents(a, b, c, num):

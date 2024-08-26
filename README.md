@@ -216,7 +216,7 @@ By separating the extent calculation (first pass) from trajectory point mapping 
 
 #### One-Pass Approach without Caching
 
-- Description: This method attempts to calculate and map points in a single loop without storing previous points.
+- Description: This method attempts to calculate and map points in a single loop (pass) without storing previous points.
 - Disadvantages: Requires continuously recalculating the mapping of attractor points to image pixels every time the trajectory extent changesIt making it complicated and ineffective and difficult to ensure accurate pixel mapping
 
 Possible other, more sophisticated solutions were not taken into consideration

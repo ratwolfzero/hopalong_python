@@ -20,7 +20,7 @@ Where:
 - a, b, c are user defined parameters that shape the attractor
 - The sequence starts from an initial point (x<sub>0</sub>, y<sub>0</sub>)
 
-### Key Features
+Key Features
 
 A two-pass algorithm is employed to compute the Hopalong Attractor by sequential processing in both passes through straightforward loops.
 

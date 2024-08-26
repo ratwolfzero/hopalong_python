@@ -11,7 +11,7 @@ The two-pass approach involves sequential processing using simple loops, ensurin
 
 ### First Pass: Calculating Trajectory Extents
 
-- Purpose: Calculate the spatial extents (minimum and maximum x and y coordinates) of the trajectory.
+- Purpose: Calculate the extents (minimum and maximum x and y coordinates) of the trajectory.
 - Outcome: Determines the extents of the trajectory, which is crucial for accurately  mapping points in the second pass.
 
 ### Second Pass: Trajectory Point Calculation and Mapping
@@ -42,7 +42,7 @@ By separating the extent calculation (first pass) from trajectory point mapping 
 ### Single-Pass with Chunked Caching
 
 - Approach: The trajectory is divided into chunks, with each chunk of points computed and temporarily cached before being mapped to image coordinates.
-- Mapping Issues: Since the global extents of the trajectory are not known in advance, each chunk must be mapped to pixel coordinates based on incomplete information. This leads to mapping errors and the need to remap pixels as new points are processed.
+- Mapping Issues: Since the extents of the trajectory are not known in advance, each chunk must be mapped to pixel coordinates based on incomplete information. This leads to mapping errors and the need to remap pixels as new points are processed.
 - Common Issue with Single-Pass Methods: Just like the non-chunked single-pass approach, this method suffers from the inefficiency that already processed pixels need to be remapped. The chunked approach may help manage memory, but it does not resolve the fundamental issue of inaccurate and inefficient pixel mapping.
 - Performance and Complexity: While chunking can reduce memory load, it does not improve the efficiency of the mapping process and adds complexity in managing chunks. The remapping issues remain unchanged, making this approach no more efficient than a straightforward single-pass method.
 
@@ -50,7 +50,7 @@ By separating the extent calculation (first pass) from trajectory point mapping 
 
 Two-Pass Chunked Caching
 
-In this variant, the first pass calculates the global extents of the trajectory, and the second pass processes the trajectory in chunks, mapping each chunk accurately to image coordinates based on the global extents. While memory-efficient, this method involves complexity in managing chunks and the overhead of processing each chunk separately, which can make it slightly slower than the standard two-pass approach.
+In this variant, the first pass calculates the extents of the trajectory, and the second pass processes the trajectory in chunks, mapping each chunk accurately to image coordinates based on the extents. While memory-efficient, this method involves complexity in managing chunks and the overhead of processing each chunk separately, which can make it slightly slower than the standard two-pass approach.
 
 ## Advantages of the Two-Pass Approach
 

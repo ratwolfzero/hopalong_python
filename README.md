@@ -125,7 +125,7 @@ This program is available in two versions:
 - Basic version: Calculation and display of the hopalong attractor.
 - Advanced version: Like the basic version plus statistics and visualization of the pixel hit counts.
 
-Example of outputs,  see section User Input above.
+Example of outputs,  see section User Usage.
 
 ### Image Pixel and Color Mapping  
 

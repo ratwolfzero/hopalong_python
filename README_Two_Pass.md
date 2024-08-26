@@ -52,6 +52,8 @@ Two-Pass Chunked Caching
 
 In this variant, the first pass calculates the extents of the trajectory, and the second pass processes the trajectory in chunks, mapping each chunk accurately to image coordinates based on the extents. While memory-efficient, this method involves complexity in managing chunks and the overhead of processing each chunk separately, which can make it slightly slower than the standard two-pass approach.
 
+[Link](Development/archiv/hopalong_chunk.py)
+
 ## Advantages of the Two-Pass Approach
 
 - Memory Efficiency: The two-pass approach reduces memory requirements by recalculating trajectory points, eliminating the need for large-scale caching.
@@ -64,4 +66,4 @@ In this variant, the first pass calculates the extents of the trajectory, and th
 
 ## Conclusion
 
-The two-pass approach was chosen for its balance of performance, memory efficiency, and simplicity. Despite the need to recalculate trajectory points, it avoids the pitfalls of high memory consumption, complex implementation, and inefficient mapping found in single-pass approaches, making it the most robust and effective solution for calculating the Hopalong attractor with a high number of iterations.
+The two-pass approach was chosen for its balance of performance, memory efficiency, and simplicity. Despite the need to recalculate trajectory points, it avoids the pitfalls of high memory consumption with caching, complex implementation and inefficient mapping found in single-pass approaches without caching, making it the most robust and effective solution for calculating the Hopalong attractor with a high number of iterations.

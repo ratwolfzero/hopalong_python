@@ -86,9 +86,11 @@ Otherwise, please comment out the relevant code snippets.
     except Exception as e:
         print(f'An error occurred: {e}')
 
-## User Input  
+## Usage
 
-The program prompts the user for the following parameters:  
+### Input Parameters
+
+Upon running the program, you'll be prompted to enter the following parameters:
 
 - a (float or integer): Parameter 'a' of the Hopalong equation.  
 - b (float or integer): Parameter 'b' of the Hopalong equation.  
@@ -101,6 +103,8 @@ Example parameters:
 - b = -0.33  
 - c = 0.01  
 - num = 200_000_000
+
+These parameters directly influence the appearance of the attractor, with different values yielding different patterns.
 
 ### Output
 

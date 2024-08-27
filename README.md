@@ -47,7 +47,7 @@ Optional (for performance tracking):
 - time
 - resource
   
-Time and Resource libraries if you want to track process time and system memory used.
+Import the "Time" and "Resource" libraries if you want to track process time and system memory used.
 Otherwise, please comment out the relevant code snippets.
   
     import matplotlib.pyplot as plt

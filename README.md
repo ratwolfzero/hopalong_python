@@ -286,6 +286,7 @@ Overall, the two-pass approach strikes the best balance of speed, efficiency, an
 ## Recent Code Changes
 
 Utilize a 'Color Bar' to indicate the Pixel Density
+
     #...
     img=ax.imshow(image, origin='lower', cmap=color_map, extent=extents, interpolation='none')  # modification 'img=ax.imshow' to apply 'colorbar'
     #...

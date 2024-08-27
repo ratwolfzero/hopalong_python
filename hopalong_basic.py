@@ -121,7 +121,7 @@ def render_trajectory_image(image, extents, params, color_map):
     #plt.close(fig)
     
 
-def main(image_size=(1000, 1000), color_map='hot'):
+def main(image_size=(10000, 10000), color_map='hot'):
     # Main execution process
     try:
         params = get_attractor_parameters()

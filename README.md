@@ -32,6 +32,8 @@ A two-pass algorithm is employed to compute the Hopalong Attractor by sequential
 
 The program uses Matplotlib to represent the attractor as an image in order to take advantage of its extensive image processing and manipulation capabilities. It supports a very high number of iterations with a low memory footprint, ensuring optimal, consistent processing speed even at the highest iteration numbers required for higher image resolutions. Since the number of pixels increases quadratically with the image edge length, more iterations are required at higher resolutions to maintain the density gradient and detail (but there are practical limits...). The program is designed with minimal complexity to allow the effective use of Just-In-Time (JIT) compilation, thus further improving execution speed.
 
+For further hints regarding two-pass approach, see "Performance Optimization" section.
+
 ## Requirements  
 
 To run this program, the following Python libraries or Modules must be installed / imported (* mandatory):

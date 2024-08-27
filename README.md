@@ -48,27 +48,16 @@ Optional (for performance tracking):
 - resource
   
 Import the "Time" and "Resource" libraries if you want to track process time and system memory used.
-Otherwise, please comment out the relevant code snippets.
+Otherwise, please comment out the relevant code snippets at import section and main() function.
   
-    import matplotlib.pyplot as plt
-    import numpy as np
-    from numba import njit
-    from math import copysign, sqrt, fabs
+    #...
     #import time
     #import resource 
 
-
-    def main(image_size=(1000, 1000), color_map='hot'):
-    # Main execution process
-    try:
-    params = get_attractor_parameters()
-        
     # Start the time measurement
     # start_time = time.process_time()
 
-    extents = compute_trajectory_extents(params['a'], params['b'], params['c'], params['num'])
-    image = compute_trajectory_and_image(params['a'], params['b'], params['c'], params['num'], extents, image_size)
-    render_trajectory_image(image, extents, params, color_map)
+    #...
 
     # End the time measurement
     # end_time = time.process_time()
@@ -81,9 +70,6 @@ Otherwise, please comment out the relevant code snippets.
     print(f'CPU User&System time used: {cpu_sys_time_used:.2f} seconds')
     print (f'Memory (RAM): {memMb:.2f} MByte used')
     """
-        
-    except Exception as e:
-        print(f'An error occurred: {e}')
 
 ## Usage
 

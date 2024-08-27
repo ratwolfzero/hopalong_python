@@ -9,8 +9,8 @@ This Python program calculates and displays the "Hopalong" Attractor by iteratin
 
 $$
 \begin{align}
-x_n+1\space=&y_n-sgn(x_n)\times\sqrt{∣b\times x_n−c∣}&(1) \\
-y_n+1\space=&a-x_n&(2)
+x_n+1\space=&y_n&-sgn(x_n)\times\sqrt{∣b\times x_n−c∣}&(1) \\
+y_n+1\space=&a&-x_n&(2)
 \end{align}
 $$
 

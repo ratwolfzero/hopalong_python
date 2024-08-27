@@ -165,12 +165,9 @@ Alternatively, the function “time.perf_counter()” can be used. In this case,
 
 ## Performance Optimization  
 
+### Just-In-Time Compilation (JIT)
+
 The program leverages the Numba JIT just-in-time compilation for performance optimization. This avoids the overhead of Python's interpreter, providing a significant speedup over standard Python loops.  
-
-### Two-Pass approach, Straightforward Loops and Direct Iteration  
-
-The two-pass approach involves sequential processing using simple loops with direct iteration, ensuring optimal memory efficiency and stable performance.
-This straightforward structure also optimizes JIT compilation, allowing for efficient translation into machine code and minimizing overhead from complex control flows.  
   
 ### Dummy Calls
 
@@ -180,32 +177,9 @@ For JIT-compiled functions dummy calls are made. This step ensures that the func
 
  Prange, is generally not applicable for cross-iteration dependencies as it is the case when calculating the trajectory points. A separate function to populate the image array in a parallel loop using prange is possible but leads to race conditions resulting in inconsistent pixel hit rate
 
-### Two-Pass Approach Motivation and process
+### Two-Pass Approach
 
-#### Motivation
-
-- Goal: Efficiently display the Hopalong attractor as an image in an interactive plot window.  
-  
-- Requirements: Support a very high number of iterations with optimal processing speed and accurate image representation.  
-  
-- Approach: Implement a straightforward, efficient program with minimal complexity.
-
-#### First Pass: Calculating Trajectory Extents
-
-- Purpose: Calculate the extents (minimum and maximum x and y coordinates) of the trajectory.  
-  
-- Outcome: Determines the extents of the trajectory, which is crucial for accurately mapping points in the second pass.
-
-#### Second Pass: Trajectory Point Calculation and Mapping
-
-- Purpose:  
-  Compute the sequence of trajectory points.  
-  Map these points directly to image pixel coordinates.  
-  Update the corresponding pixels in the image array based on the hit rate of each coordinate.  
-  
-- Outcome: The image array is populated with an accurate visual representation of the trajectory.
-
-### Main Benefit and Advantages of the Two-Pass Approach
+Main Benefit and Advantages of the Two-Pass Approach
 
 By separating the extent calculation (first pass) from trajectory point mapping (second pass), this approach allows for efficient sequential processing. Knowing the trajectory extents in advance enables direct and efficient mapping of points to image pixels, optimizing memory usage and maintaining consistent performance.
 

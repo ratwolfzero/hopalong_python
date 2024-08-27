@@ -104,7 +104,7 @@ _ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (2, 2))
 
 def render_trajectory_image(image, extents, params, color_map):
     # Render the trajectory image
-    fig = plt.figure(figsize=(8, 8))
+    fig = plt.figure(figsize=(9, 9))
     ax = fig.add_subplot(1, 1, 1) #aspect='auto')
     # origin='lower' align according cartesian coordinates
     img=ax.imshow(image, origin='lower', cmap=color_map, extent=extents, interpolation='none')  # modification 'img=ax.imshow' to apply 'colorbar'

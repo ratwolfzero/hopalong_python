@@ -285,12 +285,13 @@ Overall, the two-pass approach strikes the best balance of speed, efficiency, an
 
 ## Recent Code Changes
 
-Preparation to utilize a 'Color Bar'' to indicate the Pixel Density
-
+Utilize a 'Color Bar' to indicate the Pixel Density
+    #...
     img=ax.imshow(image, origin='lower', cmap=color_map, extent=extents, interpolation='none')  # modification 'img=ax.imshow' to apply 'colorbar'
     #...
-    #cbar = fig.colorbar(img, ax=ax, extend='both') # prepared to apply 'colorbar'
-    #cbar.set_label('Pixel Density')
+    cbar = fig.colorbar(img, ax=ax,location='bottom') #'colorbar'
+    cbar.set_label('Pixel Density')  # title 'colorbar'
+    ä...
 
 ## Enjoy the Exploration
 

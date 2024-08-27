@@ -183,10 +183,10 @@ By separating the extent calculation (first pass) from trajectory point mapping 
   
 - JIT Compatibility: The simple, sequential structure is well-suited for Just-In-Time (JIT) compilation, enhancing execution speed.  
   
-- Scalability: As the number of iterations grows, the two-pass approach’s efficiency in memory usage and processing speed becomes more advantageous.
+- Scalability: As the number of iterations grows, the two-pass approach’s efficiency in memory usage and processing speed becomes much more advantageous.
 
 Disadvantage:  
-Trajectory points are recalculated in both passes, but this trade-off which is quite marginal and only present at lower number of iterations which do not have a long execution time anyway and as already mentioned with growing number of iterations, the two-pass approach’s efficiency in memory usage and processing speed becomes more advantageous
+Trajectory points must be recomputed in both passes, but the impact of this trade-off is quite small and only occurs for a smaller number of iterations. As mentioned above, as the number of iterations increases, the efficiency of the two-pass approach becomes much more advantageous in terms of memory usage and processing speed.
 
 ### Alternatives
 

@@ -173,7 +173,7 @@ For JIT-compiled functions dummy calls are made. This step ensures that the func
 
 ### Race Conditions  
 
- Prange, is generally not applicable for cross-iteration dependencies as it is the case when calculating the trajectory points. A separate function to populate the image array in a parallel loop using prange is possible but leads to race conditions resulting in inconsistent pixel hit rate
+ Prange, is generally not applicable for cross-iteration dependencies as it is the case when calculating the trajectory points. A separate function to populate the image array in a parallel loop using prange is possible but leads to race conditions resulting in inconsistent pixel hit rate and was therefore not implemented.
 
 ### Two-Pass Approach
 
@@ -192,18 +192,18 @@ Trajectory points must be recomputed in both passes, but the impact of this trad
 
 #### One-Pass Approach with Caching
 
-- Description: Attractor points are calculated only once, stored in an array and available for further processing such as mapping points to pixels.
+- Description: Trajectory points are calculated only once, stored in an array and available for further processing such as mapping points to pixels.
 - Disadvantages: Requires large memory resources depending on the number of iterations and can lead to performance degradation due to system memory swapping.
 
 #### Chunked One-Pass Approach
 
-- Description: Attractor points are processed in smaller segments (chunks) while caching points to manage memory usage.
+- Description: Trajectory points are processed in smaller segments (chunks) while caching points to manage memory usage.
 - Disadvantages: While it keeps memory consumption low, this method adds complexity and overhead, often resulting in performance that is similar to or slower than the two-pass method.
 
 #### One-Pass Approach without Caching
 
 - Description: This method attempts to calculate and map points in a single loop (pass) without storing previous points.
-- Disadvantages: Requires continuously recalculating the mapping of attractor points to image pixels every time the trajectory extent changes making it complicated and ineffective and difficult to ensure accurate pixel mapping
+- Disadvantages: Requires continuously recalculating the mapping of trajectory points to image pixels every time the trajectory extent changes making it complicated and ineffective and difficult to ensure accurate pixel mapping
 
 Possible other, more sophisticated solutions were not taken into consideration
 

@@ -22,7 +22,7 @@ Where:
 
 ...........................................................................................................................................................
 
-### Chosen Solution and Motivation
+### The chosen solution and its motivation
 
 A two-pass algorithm is employed to compute the Hopalong Attractor by sequential processing in both passes through straightforward loops.
 
@@ -30,8 +30,7 @@ A two-pass algorithm is employed to compute the Hopalong Attractor by sequential
 
 - In the second pass, the algorithm generates the sequence of trajectory points and maps them directly to image pixel coordinates, representing the attractor hit pattern (pixel value > 0). This hit information is updated and stored in an image array, which was initialized with zero values.
 
-The program uses Matplotlib to render the attractor, allowing interactive exploration. Supporting a very high number of iterations with low memory footprint and optimal, consistent processing speed to enable higher image resolutions. Implementing a simple program with minimal complexity, allowing optimal use of Just-In-Time (JIT) compilation
-  
+The program uses Matplotlib to render the attractor as an image, fully leveraging its extensive features for image processing and manipulation. It supports a very high number of iterations while maintaining a low memory footprint and ensuring optimal, consistent processing speed, independent of the iteration count, even at higher image resolutions. The program is designed with minimal complexity to enable the effective use of Just-In-Time (JIT) compilation, further enhancing execution speed.
 
 ## Requirements  
 
@@ -202,14 +201,14 @@ Trajectory points must be recomputed in both passes, but the impact of this trad
 - Description: Trajectory points are calculated only once, stored in an array and available for further processing such as mapping points to pixels.
 - Disadvantages: Requires large memory resources depending on the number of iterations and can lead to performance degradation due to system memory swapping.
 
-#### Chunked One-Pass Approach
+#### Chunked One-Pass Approach with caching
 
 - Description: Trajectory points are processed in smaller segments (chunks) while caching points to manage memory usage.
 - Disadvantages: While it keeps memory consumption low, this method adds complexity and overhead, often resulting in performance that is similar to or slower than the two-pass method.
 
 #### One-Pass Approach without Caching
 
-- Description: This method attempts to calculate and map points in a single loop (pass) without storing previous points.
+- Description: This method attempts to calculate and map points in a single pass without storing previous calculated points.
 - Disadvantages: Requires continuously recalculating the mapping of trajectory points to image pixels every time the trajectory extent changes making it complicated and ineffective and difficult to ensure accurate pixel mapping
 
 Possible other, more sophisticated solutions were not taken into consideration

@@ -30,7 +30,7 @@ A two-pass algorithm is employed to compute the Hopalong Attractor by sequential
 
 - In the second pass, the algorithm generates the sequence of trajectory points and maps them directly to image pixel coordinates, representing the attractor hit pattern (pixel value > 0). This hit information is updated and stored in an image array, which was initialized with zero values.
 
-Using of Matplotlib to render the attractor, allowing interactive exploration. Supporting a very high number of iterations with low memory footprint and optimal, consistent processing speed to enable higher image resolutions. Implementing a simple program with minimal complexity, allowing optimal use of Just-In-Time (JIT) compilation
+The program uses Matplotlib to render the attractor, allowing interactive exploration. Supporting a very high number of iterations with low memory footprint and optimal, consistent processing speed to enable higher image resolutions. Implementing a simple program with minimal complexity, allowing optimal use of Just-In-Time (JIT) compilation
   
 
 ## Requirements  
@@ -130,19 +130,13 @@ Example of outputs,  see section Usage above.
 
 In both versions of the program (basic or extended), pixels are color-coded based on the number of times they are "hit" by trajectory points, referred to as the "pixel hit count." However, trajectory points are floating-point values and do not directly correspond to pixel coordinates. Instead, they are mapped to integer pixel coordinates on the image. The mapping is handled by scale factors using the image size and trajectory extents (min, max values). For the very details you can consult the function "compute_trajectory_and_image" in the code.
 
-### Pixel Hit Counts  
+### Pixel Hit Counts and Handling High Density
 
-As each trajectory point is generated, it is mapped to a corresponding pixel by converting its floating-point coordinates to integer values. This mapping results in certain pixels being "hit" multiple times, creating areas of varying density within the image.  
-Note: While defining the corresponding image array it is initialized by zero values. For details see above mentioned code section.  
+As each trajectory point is generated, it is mapped to corresponding pixel coordinates by converting its floating-point values into integers. This mapping process often results in certain pixels being "hit" multiple times, creating areas of varying density within the image. Initially, the image array is set to zero, and each time a pixel is hit, its value is incremented, reflecting the number of trajectory points that correspond to that pixel.
 
-### Multiple Hits  
+Pixels with higher hit counts are color-coded to represent their density, with the program utilizing Matplotlib's 'hot' colormap. This colormap creates a gradient that transitions from dark (indicating low hit counts) to bright (indicating high hit counts), effectively visualizing areas of higher activity within the attractor.
 
-Pixels with higher hit counts are color-coded to reflect their density. The program uses Matplotlib's 'hot' colormap, which applies a gradient that transitions from dark (low hit count) to bright (high hit count), effectively visualizing areas of higher activity within the attractor.  
-The visualization of density may help in understanding the attractors behavior.
-
-### Handling High Density  
-
-Matplotlib applies normalization to scale the hit counts to fit within the finite range of colors provided by the colormap. Pixels with hit counts that exceed the defined maximum for the colormap are mapped to the highest color in the colormap. This ensures that extremely high-density pixels are represented in the brightest color, effectively conveying the density information for all pixels while maintaining a clear and distinct color gradient across varying densities.
+To ensure effective visualization, Matplotlib applies normalization to scale hit counts within the finite range of colors provided by the colormap. Pixels exceeding the defined maximum are mapped to the brightest color, guaranteeing that regions of extreme density are distinctly represented. This clear color gradient allows users to easily discern patterns of activity and better understand the Hopalong attractor's behavior.
 
 ### Additional Features  
 

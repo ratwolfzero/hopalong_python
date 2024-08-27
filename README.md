@@ -138,7 +138,7 @@ Pixels with higher hit counts are color-coded to represent their density, with t
 
 To ensure effective visualization, Matplotlib applies normalization to scale hit counts within the finite range of colors provided by the colormap. Pixels exceeding the defined maximum are mapped to the brightest color, guaranteeing that regions of extreme density are distinctly represented. This clear color gradient allows users to easily discern patterns of activity and better understand the Hopalong attractor's behavior.
 
-## Application of Copysign (Math Module) as Signum function
+### Application of Copysign (Math Module) as Signum function
 
 Signum Function:  
 The program now utilizes the math.copysign function "copysign(x,y)"  

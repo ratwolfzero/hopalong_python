@@ -30,8 +30,8 @@ A two-pass algorithm is employed to compute the Hopalong Attractor by sequential
 
 - In the second pass, the algorithm generates the sequence of trajectory points and maps them directly to image pixel coordinates, representing the attractor hit pattern (pixel value > 0). This hit information is updated and stored in an image array, which was initialized with zero values.
 
-Use of Matplotlib to render the attractor, allowing interactive exploration.
-Supports a very high number of iterations with optimal processing speed to use higher image resolutions
+Use of Matplotlib to render the attractor, allowing interactive exploration.  
+Supports a very high number of iterations with optimal processing speed to use higher image resolutions.  
 A simple program with minimal complexity that allows optimal use of Just-In-Time (JIT) compilation
   
 

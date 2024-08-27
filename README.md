@@ -138,18 +138,45 @@ Pixels with higher hit counts are color-coded to represent their density, with t
 
 To ensure effective visualization, Matplotlib applies normalization to scale hit counts within the finite range of colors provided by the colormap. Pixels exceeding the defined maximum are mapped to the brightest color, guaranteeing that regions of extreme density are distinctly represented. This clear color gradient allows users to easily discern patterns of activity and better understand the Hopalong attractor's behavior.
 
-### Additional Features  
+## Application of Copysign (Math Module) as Signum function
 
-- Interactive display: Matplotlib provides an interactive plot window.
+Signum Function:  
+The program now utilizes the math.copysign function "copysign(x,y)"  
+Return a float with the magnitude (absolute value) of x but the sign of y.  
+On platforms that support signed zeros, copysign(1.0, -0.0) returns -1.0.
 
-- Optional:
+$$
+copysign(1.0,x) =\begin{cases}
+1.0  & if & x & is &positive, & +0.0 & or &INFINITY \\
+-1.0 & if & x & is &negative, & -0.0 & or &NEG. INFINITY
+\end{cases}
+$$
+
+This adjustment improves handling of edge cases, allowing for different behavior. For example:
+
+- a = 1, b = 2, c = 3 or  
+
+- a = 0, b = 1, c = 1 or  
+
+- a = 1, b =1, c = 1  
+
+However, certain parameter combinations such as:
+
+- a =1 , b = 0, c = 0 or  
+
+- a = 1, b = 0, c = 1 or  
+
+- a = 1, b = 1, c = 0,  
+
+may lead to "singularities" where the attractor doesn't produce complex patterns.
+
+### Optional Features  
+
 Execution time* and resources: Starts after user input and measures the CPU time for the entire process including image rendering and shows the system memory used.
 
 *Since interactions with the plot window, e.g. zooming, panning, mouse movements, are measured, it is recommended to close the plot window automatically.
 This can be done, for example, by using the commands plt.pause(1) followed by plt.close(fig).
 As long as there is no interaction with the plot window, the "plt.pause() time" is not recorded by the "time.process_time()" function used.
-
-Alternatively, the function “time.perf_counter()” can be used. In this case, the “plt.pause() time” is included and can be deducted.
 
     #plt.show()
     plt.pause(1)
@@ -267,39 +294,16 @@ Overall, the two-pass approach strikes the best balance of speed, efficiency, an
         
     return image
     # Dummy call to ensure the function is pre-compiled by the JIT compiler before it's called by the interpreter.
-    _ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (2, 2))  
+    _ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (2, 2)) 
 
-## Recent code changes
+## Recent Code Changes
 
-Signum Function:  
-The program now utilizes the math.copysign function "copysign(x,y)"  
-Return a float with the magnitude (absolute value) of x but the sign of y.  
-On platforms that support signed zeros, copysign(1.0, -0.0) returns -1.0.
+Preparation to utilize a Color Bar to indicate the Pixel Density
 
-$$
-copysign(1.0,x) =\begin{cases}
-1.0  & if & x & is &positive, & +0.0 & or &INFINITY \\
--1.0 & if & x & is &negative, & -0.0 & or &NEG. INFINITY
-\end{cases}
-$$
-
-This adjustment improves handling of edge cases, allowing for different behavior. For example:
-
-- a = 1, b = 2, c = 3 or  
-
-- a = 0, b = 1, c = 1 or  
-
-- a = 1, b =1, c = 1  
-
-However, certain parameter combinations such as:
-
-- a =1 , b = 0, c = 0 or  
-
-- a = 1, b = 0, c = 1 or  
-
-- a = 1, b = 1, c = 0,  
-
-may lead to "singularities" where the attractor doesn't produce complex patterns.
+    img=ax.imshow(image, origin='lower', cmap=color_map, extent=extents, interpolation='none')  # modification 'img=ax.imshow' to apply 'colorbar'
+    #...
+    #cbar = fig.colorbar(img, ax=ax, extend='both') # prepared to apply 'colorbar'
+    #cbar.set_label('Pixel Density')
 
 ## Enjoy the Exploration
 

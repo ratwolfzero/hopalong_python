@@ -107,7 +107,7 @@ def render_trajectory_image(image, extents, params, color_map):
     fig = plt.figure(figsize=(8, 8))
     ax = fig.add_subplot(1, 1, 1, aspect='auto')
     # origin='lower' align according cartesian coordinates
-    img=ax.imshow(image, origin='lower', cmap=color_map, extent=extents, interpolation='none')  # prepared to apply 'colorbar'
+    img=ax.imshow(image, origin='lower', cmap=color_map, extent=extents, interpolation='none')  # modification 'img=ax.imshow' to apply 'colorbar'
     ax.set_title('Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}'.format(**params))
     ax.set_xlabel('X (Cartesian)')
     ax.set_ylabel('Y (Cartesian)')

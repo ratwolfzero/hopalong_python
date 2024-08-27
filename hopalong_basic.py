@@ -111,11 +111,13 @@ def render_trajectory_image(image, extents, params, color_map):
     ax.set_title('Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}'.format(**params))
     ax.set_xlabel('X (Cartesian)')
     ax.set_ylabel('Y (Cartesian)')
+
     #plt.savefig('hopalong.svg', format='svg', dpi=1200)
+
+    cbar = fig.colorbar(img, ax=ax) # prepared to apply 'colorbar'
+    cbar.set_label('Pixel Density')
     
-    #cbar = fig.colorbar(img, ax=ax, extend='both') # prepared to apply 'colorbar'
-    #cbar.set_label('Pixel Density')
-    
+    plt.tight_layout()
     plt.show()
     #plt.pause(1)
     #plt.close(fig)

@@ -3,37 +3,33 @@
 
 ## Table of Contents
 <!-- TOC -->
-- [Calculate \& Display the "Hopalong" Attractor with Python](#calculate--display-the-hopalong-attractor-with-python)
-  - [Table of Contents](#table-of-contents)
-  - [1. Abstract](#1-abstract)
-    - [The chosen solution and its motivation](#the-chosen-solution-and-its-motivation)
-  - [Requirements](#requirements)
-  - [Usage](#usage)
-    - [Input Parameters](#input-parameters)
-    - [Output](#output)
-      - [Basic Version](#basic-version)
-      - [Extended Version](#extended-version)
-  - [Features](#features)
-    - [Image Pixel and Color Mapping](#image-pixel-and-color-mapping)
-    - [Pixel Hit Counts and Handling High Density](#pixel-hit-counts-and-handling-high-density)
-    - [Application of Copysign (Math Module) as Signum function](#application-of-copysign-math-module-as-signum-function)
-    - [Optional Features](#optional-features)
-  - [Performance Optimization](#performance-optimization)
-    - [Just-In-Time Compilation (JIT)](#just-in-time-compilation-jit)
-    - [Dummy Calls](#dummy-calls)
-    - [Race Conditions](#race-conditions)
-    - [Two-Pass Approach](#two-pass-approach)
-    - [Alternative Solutions](#alternative-solutions)
-      - [One-Pass Approach with Caching](#one-pass-approach-with-caching)
-      - [Chunked One-Pass Approach with caching](#chunked-one-pass-approach-with-caching)
-      - [One-Pass Approach without Caching](#one-pass-approach-without-caching)
-    - [Conclusion](#conclusion)
-    - [Two-Pass Code Section](#two-pass-code-section)
-  - [Recent Code Changes](#recent-code-changes)
-  - [Enjoy the Exploration](#enjoy-the-exploration)
-  - [References](#references)
-    - [References for Python Libraries and Modules](#references-for-python-libraries-and-modules)
-<!-- TOC -->
+### 1. [Abstract](#1-abstract)
+
+### 2. [Chosen Solution and Motivation](#2-chosen-solution-and-motivation)
+
+### 3. [Requirements](#3-requirements)
+
+### 4. [Usage](#4-usage)
+
+#### - [4.1 Input Parameters](#41-input-parameters)
+
+#### - [4.2 Output](#42-output)
+
+5. [Features](#5-features)
+   - [5.1 Image Pixel and Color Mapping](#51-image-pixel-and-color-mapping)
+   - [5.2 Understanding Pixel Hit Counts and Density Handling](#52-understanding-pixel-hit-counts-and-density-handling)
+   - [5.3 Application of Copysign (Math Module) as Signum Function](#53-application-of-copysign-math-module-as-signum-function)
+6. [Optional Features](#6-optional-features)
+7. [Performance Optimization](#7-performance-optimization)
+   - [7.1 Just-In-Time Compilation (JIT)](#71-just-in-time-compilation-jit)
+   - [7.2 Dummy Calls](#72-dummy-calls)
+   - [7.3 Race Conditions](#73-race-conditions)
+   - [7.4 Two-Pass Approach](#74-two-pass-approach)
+   - [7.5 Alternative Solutions](#75-alternative-solutions)
+   - [7.6 Conclusion](#76-conclusion)
+8. [Recent Code Changes](#8-recent-code-changes)
+9. [References](#9-references)
+<!-- /TOC -->
 
 ## 1. Abstract
 

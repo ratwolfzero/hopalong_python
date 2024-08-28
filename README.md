@@ -2,6 +2,7 @@
 
 ## Table of Contents
 <!-- TOC -->
+
 - [Calculate \& Display the "Hopalong" Attractor with Python](#calculate--display-the-hopalong-attractor-with-python)
   - [Table of Contents](#table-of-contents)
   - [1. Abstract](#1-abstract)

@@ -30,8 +30,6 @@
   - [References](#references)
     - [References for Python Libraries and Modules](#references-for-python-libraries-and-modules)
 
-
-
 ## Abstract
 
 The "Hopalong *" attractor, invented by Barry Martin at Aston University in Birmingham, England, was popularized by A.K. Dewdney in the September 1986 issue of Scientific American. In Germany, it gained further recognition through a translation titled "Hüpfer" in Spektrum der Wissenschaft.  
@@ -141,13 +139,13 @@ The program generates a visual representation of the Hopalong Attractor. The res
 This program is available in two versions:
 
 - Basic version: Calculation and display of the Hopalong attractor.
-- Advanced version: Like the basic version plus statistics and visualization of the pixel hit counts distribution.
+- Advanced version: Like the basic version, plus statistics and visualization of the pixel hit counts distribution.
 
-Example of outputs,  see section Usage above.
+Example of outputs can be found in the "Usage" section above.
 
 ### Image Pixel and Color Mapping  
 
-In both versions of the program (basic or extended), pixels are color-coded based on the number of times they are "hit" by trajectory points, referred to as the "pixel hit count." However, trajectory points are floating-point values and do not directly correspond to pixel coordinates. Instead, they are mapped to integer pixel coordinates on the image. The mapping is handled by scale factors using the image size and trajectory extents (min, max values). For the very details you can consult the function "compute_trajectory_and_image" in the code.
+In both versions of the program (basic or advanced), pixels are color-coded based on the number of times they are "hit" by trajectory points, referred to as the "pixel hit count." However, trajectory points are floating-point values and do not directly correspond to pixel coordinates. Instead, they are mapped to integer pixel coordinates on the image. The mapping is handled by scale factors using the image size and trajectory extents (min, max values). For further details, consult the function "compute_trajectory_and_image" in the code.
 
 ### Understanding-Pixel-Hit-Counts-and-Density-Handling
 
@@ -160,9 +158,9 @@ To ensure effective visualization, Matplotlib applies normalization to scale hit
 ### Application of Copysign (Math Module) as Signum function
 
 Signum Function:  
-The program now utilizes the math.copysign function "copysign(x,y)"  
+**The program now utilizes the math.copysign function "copysign(x,y)"  
 Return a float with the magnitude (absolute value) of x but the sign of y.  
-On platforms that support signed zeros, copysign(1.0, -0.0) returns -1.0.
+On platforms that support signed zeros, copysign(1.0, -0.0) returns -1.0.**
 
 $$
 copysign(1.0,x) =\begin{cases}
@@ -227,6 +225,8 @@ By separating the extent calculation (first pass) from trajectory point mapping 
 
 Disadvantage:  
 Trajectory points must be recomputed in both passes, but the impact of this trade-off is quite small and as mentioned above, as the number of iterations increases, the efficiency of the two-pass approach becomes much more advantageous in terms of memory usage and processing speed.
+
+While the two-pass approach is the chosen solution, it is important to consider alternative strategies that could be employed for trajectory calculations. Below are some alternative solutions that were evaluated, each with its own trade-offs in performance, memory usage, and complexity.
 
 ### Alternative Solutions
 

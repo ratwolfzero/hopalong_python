@@ -1,46 +1,37 @@
 # Calculate & Display the "Hopalong" Attractor with Python
 
-Table of Contents
+## Table of Contents
 
-## 1. Abstract
-
-## 2. Chosen Solution and Motivation
-
-## 3. Requirements
-
-## 4. Usage
-
-### 4.1 Input Parameters
-
-### 4.2 Output
-
-## 5. Features
-
-### 5.1 Image Pixel and Color Mapping
-
-### 5.2 Understanding Pixel Hit Counts and Density Handling
-
-## 5.3 Application of Copysign (Math Module) as Signum Function
-
-## 6. Optional Features
-
-## 7. Performance Optimization
-
-### 7.1 Just-In-Time Compilation (JIT)
-
-### 7.2 Dummy Calls
-
-### 7.3 Race Conditions
-
-### 7.4 Two-Pass Approach
-
-### 7.5 Alternative Solutions
-
-### 7.6 Conclusions
-
-## 8. Recent Code Changes
-
-## 9. References
+- [Calculate \& Display the "Hopalong" Attractor with Python](#calculate--display-the-hopalong-attractor-with-python)
+  - [Table of Contents](#table-of-contents)
+  - [1. Abstract](#1-abstract)
+    - [The chosen solution and its motivation](#the-chosen-solution-and-its-motivation)
+  - [Requirements](#requirements)
+  - [Usage](#usage)
+    - [Input Parameters](#input-parameters)
+    - [Output](#output)
+      - [Basic Version](#basic-version)
+      - [Extended Version](#extended-version)
+  - [Features](#features)
+    - [Image Pixel and Color Mapping](#image-pixel-and-color-mapping)
+    - [Pixel Hit Counts and Handling High Density](#pixel-hit-counts-and-handling-high-density)
+    - [Application of Copysign (Math Module) as Signum function](#application-of-copysign-math-module-as-signum-function)
+    - [Optional Features](#optional-features)
+  - [Performance Optimization](#performance-optimization)
+    - [Just-In-Time Compilation (JIT)](#just-in-time-compilation-jit)
+    - [Dummy Calls](#dummy-calls)
+    - [Race Conditions](#race-conditions)
+    - [Two-Pass Approach](#two-pass-approach)
+    - [Alternative Solutions](#alternative-solutions)
+      - [One-Pass Approach with Caching](#one-pass-approach-with-caching)
+      - [Chunked One-Pass Approach with caching](#chunked-one-pass-approach-with-caching)
+      - [One-Pass Approach without Caching](#one-pass-approach-without-caching)
+    - [Conclusion](#conclusion)
+    - [Two-Pass Code Section](#two-pass-code-section)
+  - [Recent Code Changes](#recent-code-changes)
+  - [Enjoy the Exploration](#enjoy-the-exploration)
+  - [References](#references)
+    - [References for Python Libraries and Modules](#references-for-python-libraries-and-modules)
 
 ## 1. Abstract
 

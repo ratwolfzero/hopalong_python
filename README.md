@@ -1,7 +1,8 @@
 
 # Calculate & Display the Hopalong Attractor with Python
   
-- [Calculate \& Display the Hopalong Attractor with Python](#Calculate \& Display the Hopalong Attractor with Python)
+
+- [Calculate \& Display the Hopalong Attractor with Python](#calculate--display-the-hopalong-attractor-with-python)
   - [Abstract](#abstract)
   - [Requirements](#requirements)
   - [Usage](#usage)

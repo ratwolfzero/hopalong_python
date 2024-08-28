@@ -3,7 +3,6 @@
 
 
 - [Abstract](#abstract)
-  - [The chosen solution and its motivation](#the-chosen-solution-and-its-motivation)
 - [Requirements](#requirements)
 - [Usage](#usage)
   - [Input Parameters](#input-parameters)
@@ -53,7 +52,7 @@ Where:
 
 ...........................................................................................................................................................
 
-### The chosen solution and its motivation
+The chosen solution and its motivation
 
 A two-pass algorithm is employed to compute the Hopalong Attractor by sequential processing in both passes through straightforward loops.
 

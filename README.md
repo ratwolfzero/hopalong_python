@@ -151,8 +151,6 @@ Example of outputs can be found in the "Usage" section above.
 
 In both versions of the program (basic or advanced), pixels are color-coded based on the number of times they are "hit" by trajectory points, referred to as the "pixel hit count." However, trajectory points are floating-point values and do not directly correspond to pixel coordinates. Instead, they are mapped to integer pixel coordinates on the image. The mapping is handled by scale factors using the image size and trajectory extents (min, max values). For further details, consult the function "compute_trajectory_and_image" in the code.
 
-[Back to Table of Contents](#calculate--display-the-hopalong-attractor-with-python)
-
 ### Understanding-Pixel-Hit-Counts-and-Density-Handling
 
 As each trajectory point is generated, it is mapped to corresponding pixel coordinates by converting its floating-point values into integers. This mapping process often results in certain pixels being "hit" multiple times, creating areas of varying density within the image. Initially, the image array is set to zero, and each time a pixel is hit, its value is incremented, reflecting the number of trajectory points that correspond to that pixel.

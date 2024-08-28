@@ -19,12 +19,12 @@
     - [Dummy Calls](#dummy-calls)
     - [Race Conditions](#race-conditions)
     - [Two-Pass Approach](#two-pass-approach)
+    - [Two-Pass Code Section](#two-pass-code-section)
     - [Alternative Solutions](#alternative-solutions)
       - [One-Pass Approach with Caching](#one-pass-approach-with-caching)
       - [Chunked One-Pass Approach with caching](#chunked-one-pass-approach-with-caching)
       - [One-Pass Approach without Caching](#one-pass-approach-without-caching)
     - [Conclusion](#conclusion)
-    - [Two-Pass Code Section](#two-pass-code-section)
   - [Recent Code Changes](#recent-code-changes)
   - [Enjoy the Exploration](#enjoy-the-exploration)
   - [References](#references)
@@ -240,29 +240,6 @@ Trajectory points must be recomputed in both passes, but the impact of this trad
 
 While the two-pass approach is the chosen solution, it is important to consider alternative strategies that could be employed for trajectory calculations. Below are some alternative solutions that were evaluated, each with its own trade-offs in performance, memory usage, and complexity.
 
-### Alternative Solutions
-
-#### One-Pass Approach with Caching
-
-- Description: Trajectory points are calculated only once, stored in an array and available for further processing such as mapping points to pixels.
-- Disadvantages: Requires large memory resources depending on the number of iterations and can lead to performance degradation due to system memory swapping.
-
-#### Chunked One-Pass Approach with caching
-
-- Description: Trajectory points are processed in smaller segments (chunks) while caching points to manage memory usage.
-- Disadvantages: While it keeps memory consumption low, this method adds complexity and overhead, often resulting in performance that is similar to or slower than the two-pass method.
-
-#### One-Pass Approach without Caching
-
-- Description: This method attempts to calculate and map points in a single pass without storing previous calculated points.
-- Disadvantages: Requires continuously recalculating the mapping of trajectory points to image pixels every time the trajectory extent changes, making it complicated and ineffective, and difficult to ensure accurate pixel mapping.
-
-Possible other, more sophisticated solutions were not taken into consideration
-
-### Conclusion
-
-Overall, the two-pass approach strikes the best balance of speed, efficiency, and simplicity, making it ideal for high-iteration calculations of the Hopalong Attractor. Despite the need to recalculate trajectory points, it avoids the pitfalls of alternative solutions.
-
 ### Two-Pass Code Section
 
     @njit #njit is an alias for nopython=True
@@ -328,7 +305,32 @@ Overall, the two-pass approach strikes the best balance of speed, efficiency, an
     _ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (2, 2)) 
 
  [Back to Table of Contents](#calculate--display-the-hopalong-attractor-with-python)
- 
+
+[Back to Table of Contents](#calculate--display-the-hopalong-attractor-with-python)
+
+### Alternative Solutions
+
+#### One-Pass Approach with Caching
+
+- Description: Trajectory points are calculated only once, stored in an array and available for further processing such as mapping points to pixels.
+- Disadvantages: Requires large memory resources depending on the number of iterations and can lead to performance degradation due to system memory swapping.
+
+#### Chunked One-Pass Approach with caching
+
+- Description: Trajectory points are processed in smaller segments (chunks) while caching points to manage memory usage.
+- Disadvantages: While it keeps memory consumption low, this method adds complexity and overhead, often resulting in performance that is similar to or slower than the two-pass method.
+
+#### One-Pass Approach without Caching
+
+- Description: This method attempts to calculate and map points in a single pass without storing previous calculated points.
+- Disadvantages: Requires continuously recalculating the mapping of trajectory points to image pixels every time the trajectory extent changes, making it complicated and ineffective, and difficult to ensure accurate pixel mapping.
+
+Possible other, more sophisticated solutions were not taken into consideration
+
+### Conclusion
+
+Overall, the two-pass approach strikes the best balance of speed, efficiency, and simplicity, making it ideal for high-iteration calculations of the Hopalong Attractor. Despite the need to recalculate trajectory points, it avoids the pitfalls of alternative solutions.
+
 ## Recent Code Changes
 
 Utilize a 'Color Bar' to indicate the Pixel Density (Basic Version)

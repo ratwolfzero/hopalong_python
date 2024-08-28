@@ -12,7 +12,7 @@
       - [Extended Version](#extended-version)
   - [Features](#features)
     - [Image Pixel and Color Mapping](#image-pixel-and-color-mapping)
-    - [Understanding-Pixel-Hit-Counts-and-Density-Handling](#understanding-pixel-hit-counts-and-density-handling)
+    - [Understanding Pixel Hit Counts, Pixel Density and Handling of Density](#understanding-pixel-hit-counts-pixel-density-and-handling-of-density)
     - [Application of Copysign (Math Module) as Signum function](#application-of-copysign-math-module-as-signum-function)
     - [Optional Features](#optional-features)
   - [Performance Optimization](#performance-optimization)
@@ -36,7 +36,7 @@
 The "Hopalong *" attractor, invented by Barry Martin at Aston University in Birmingham, England, was popularized by A.K. Dewdney in the September 1986 issue of Scientific American. In Germany, it gained further recognition through a translation titled "Hüpfer" in Spektrum der Wissenschaft.  
 <sub>*Nicknamed by A.K. Dewdney.</sub>
 
-This Python program calculates and displays the "Hopalong" Attractor by iterating the following system of interrelated equations (1) and (2):
+"This Python program calculates and displays the 'Hopalong' Attractor by iterating the following recursive equation system (1) and (2):"
 
 $$
 \begin{align}
@@ -150,13 +150,17 @@ Example of outputs can be found in the "Usage" section above.
 
 In both versions of the program (basic or advanced), pixels are color-coded based on the number of times they are "hit" by trajectory points, referred to as the "pixel hit count." However, trajectory points are floating-point values and do not directly correspond to pixel coordinates. Instead, they are mapped to integer pixel coordinates on the image. The mapping is handled by scale factors using the image size and trajectory extents (min, max values). For further details, consult the function "compute_trajectory_and_image" in the code.
 
-### Understanding-Pixel-Hit-Counts-and-Density-Handling
+### Understanding Pixel Hit Counts, Pixel Density and Handling of Density
 
-As each trajectory point is generated, it is mapped to corresponding pixel coordinates by converting its floating-point values into integers. This mapping process often results in certain pixels being "hit" multiple times, creating areas of varying density within the image. Initially, the image array is set to zero, and each time a pixel is hit, its value is incremented, reflecting the number of trajectory points that correspond to that pixel.
+"It is not proven, and due to the deterministic nature of the Hopalong attractor, based on its recursive equation system that is inherently deterministic, it is likely unrealistic that each point is unique in the continuous floating-point space. However, identical points can arise from rounding errors due to limited floating-point precision. When these floating-point values are mapped to pixel coordinates, they are converted to integers. As a result, points that are close together in floating-point space may be assigned to the same integer pixel. This mapping can cause certain pixels to be 'hit' multiple times, creating areas of varying density within the image.
 
-Pixels with higher hit counts are color-coded to represent their density, with the program utilizing Matplotlib's 'hot' colormap. This colormap creates a gradient that transitions from dark (indicating low hit counts) to bright (indicating high hit counts), effectively visualizing areas of higher activity within the attractor.
+Initially, the image array is set to zero. Each time a pixel is hit, its value is incremented, reflecting the number of trajectory points that correspond to that pixel. Thus, the hit counts in the image array serve as a discrete measure of concentration, indicating the proximity of trajectory points in floating-point space.
 
-To ensure effective visualization, Matplotlib applies normalization to scale hit counts within the finite range of colors provided by the colormap. Pixels exceeding the defined maximum are mapped to the brightest color, guaranteeing that regions of extreme density are distinctly represented. This clear color gradient allows users to easily discern patterns of activity and better understand the Hopalong attractor's behavior.
+This clear color gradient allows users to easily discern patterns of activity and better understand the dynamics of the Hopalong attractor."
+
+Each pixel in the image array is color-coded based on the number of hits it has received. Matplotlib's 'hot' colormap is used to represent this information. This colormap creates a gradient that transitions from dark colors, indicating low hit counts, to bright colors, indicating high hit counts. As a result, the colormap effectively visualizes areas of higher activity within the attractor.
+
+To ensure effective visualization, Matplotlib applies normalization to scale hit counts within the finite range of colors provided by the colormap. This normalization process enables a clear representation of hit density. Pixels with higher hit counts are mapped to brighter colors, while those with lower counts are represented by darker colors. The maximum hit count recorded in the image array determines the highest value represented in the colormap. This clear color gradient allows users to easily discern patterns of activity and better understand the dynamics of the Hopalong attractor.
 
 [Back to Table of Contents](#calculate--display-the-hopalong-attractor-with-python)
 

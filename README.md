@@ -334,6 +334,8 @@ Possible other, more sophisticated solutions were not taken into consideration
 
 Overall, the two-pass approach strikes the best balance of speed, efficiency, and simplicity, making it ideal for high-iteration calculations of the Hopalong Attractor. Despite the need to recalculate trajectory points, it avoids the pitfalls of alternative solutions.
 
+[Back to Table of Contents](#calculate--display-the-hopalong-attractor-with-python)
+
 ## Recent Code Changes
 
 Utilize a 'Color Bar' to indicate the Pixel Density (Basic Version)

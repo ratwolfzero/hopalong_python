@@ -3,6 +3,7 @@
   
 - [Calculate \& Display the Hopalong Attractor with Python](#calculate--display-the-hopalong-attractor-with-python)
   - [Abstract](#abstract)
+    - [The chosen solution and its motivation](#the-chosen-solution-and-its-motivation)
   - [Requirements](#requirements)
   - [Usage](#usage)
     - [Input Parameters](#input-parameters)
@@ -49,10 +50,9 @@ Where:
 - x<sub>n</sub> and y<sub>n</sub> represent the coordinates at the nth iteration.
 - a, b, c are user defined parameters that shape the attractor
 - The sequence starts from an initial point (x<sub>0</sub>, y<sub>0</sub>)
+  
+### The chosen solution and its motivation
 
-The chosen solution and its motivation
-
----------------------------------------
 A two-pass algorithm is employed to compute the Hopalong Attractor by sequential processing in both passes through straightforward loops.
 
 - In the first pass, the algorithm determines the overall trajectory extents, which consist of the minimum and maximum values of the attractor trajectory.

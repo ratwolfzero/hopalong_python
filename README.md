@@ -154,6 +154,8 @@ Example of outputs can be found in the "Usage" section above.
 
 In both versions of the program (basic or advanced), pixels are color-coded based on the number of times they are "hit" by trajectory points, referred to as the "pixel hit count." However, trajectory points are floating-point values and do not directly correspond to pixel coordinates. Instead, they are mapped to integer pixel coordinates on the image. The mapping is handled by scale factors using the image size and trajectory extents (min, max values). For further details, consult the function "compute_trajectory_and_image" in the code.
 
+[Two-Pass Approach](#two-pass-approach)
+
 ### Understanding-Pixel-Hit-Counts-and-Density-Handling
 
 As each trajectory point is generated, it is mapped to corresponding pixel coordinates by converting its floating-point values into integers. This mapping process often results in certain pixels being "hit" multiple times, creating areas of varying density within the image. Initially, the image array is set to zero, and each time a pixel is hit, its value is incremented, reflecting the number of trajectory points that correspond to that pixel.
@@ -161,6 +163,8 @@ As each trajectory point is generated, it is mapped to corresponding pixel coord
 Pixels with higher hit counts are color-coded to represent their density, with the program utilizing Matplotlib's 'hot' colormap. This colormap creates a gradient that transitions from dark (indicating low hit counts) to bright (indicating high hit counts), effectively visualizing areas of higher activity within the attractor.
 
 To ensure effective visualization, Matplotlib applies normalization to scale hit counts within the finite range of colors provided by the colormap. Pixels exceeding the defined maximum are mapped to the brightest color, guaranteeing that regions of extreme density are distinctly represented. This clear color gradient allows users to easily discern patterns of activity and better understand the Hopalong attractor's behavior.
+
+[Two-Pass Approach](#two-pass-approach)
 
 ### Application of Copysign (Math Module) as Signum function
 
@@ -207,6 +211,7 @@ As long as there is no interaction with the plot window, the "plt.pause() time" 
     #plt.show()
     plt.pause(1)
     plt.close(fig)
+
 [Back to Table of Contents](#calculate--display-the-hopalong-attractor-with-python)
 
 ## Performance Optimization  

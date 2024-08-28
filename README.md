@@ -34,6 +34,7 @@
   - [References](#references)
     - [References for Python Libraries and Modules](#references-for-python-libraries-and-modules)
 <!-- TOC -->
+
 ## 1. Abstract
 
 The "Hopalong *" attractor, invented by Barry Martin at Aston University in Birmingham, England, was popularized by A.K. Dewdney in the September 1986 issue of Scientific American. In Germany, it gained further recognition through a translation titled "Hüpfer" in Spektrum der Wissenschaft.  

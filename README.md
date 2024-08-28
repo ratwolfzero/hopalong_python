@@ -63,6 +63,7 @@ A two-pass algorithm is employed to compute the Hopalong Attractor by sequential
 The program uses Matplotlib to represent the attractor as an image in order to take advantage of its extensive image processing and manipulation capabilities. It supports a very high number of iterations with a low memory footprint, ensuring optimal, consistent processing speed. The program is designed with minimal complexity to allow effective use of Just-In-Time (JIT) compilation, thus further improving execution speed.
 
 For further hints regarding two-pass approach, see "Performance Optimization" section.
+[Back to Table of Contents](#calculate--display-the-hopalong-attractor-with-python)
 
 ## Requirements  
 
@@ -134,6 +135,7 @@ The program generates a visual representation of the Hopalong Attractor. The res
 #### Extended Version
 
 ![Example Attractor Image](./examples/Figure_ex_2.png)
+[Back to Table of Contents](#calculate--display-the-hopalong-attractor-with-python)
 
 ## Features
 
@@ -199,6 +201,7 @@ As long as there is no interaction with the plot window, the "plt.pause() time" 
     #plt.show()
     plt.pause(1)
     plt.close(fig)
+[Back to Table of Contents](#calculate--display-the-hopalong-attractor-with-python)
 
 ## Performance Optimization  
 
@@ -316,6 +319,8 @@ Overall, the two-pass approach strikes the best balance of speed, efficiency, an
     # Dummy call to ensure the function is pre-compiled by the JIT compiler before it's called by the interpreter.
     _ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (2, 2)) 
 
+ [Back to Table of Contents](#calculate--display-the-hopalong-attractor-with-python)
+ 
 ## Recent Code Changes
 
 Utilize a 'Color Bar' to indicate the Pixel Density (Basic Version)
@@ -352,6 +357,7 @@ Maple help:
 <https://de.maplesoft.com/support/help/maple/view.aspx?path=MathApps%2FHopalongAttractor>
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------
+[Back to Table of Contents](#calculate--display-the-hopalong-attractor-with-python)
 
 ### References for Python Libraries and Modules
 
@@ -362,3 +368,5 @@ Maple help:
 5. [Python Math Module](https://docs.python.org/3/library/math.html): Access mathematical functions defined by the C standard.
 6. [Python Time Module](https://docs.python.org/3/library/time.html#module-time): Time access and conversions.
 7. [Python Resource Module](https://docs.python.org/3/library/resource.html): Interface for getting and setting resource limits.
+
+[Back to Table of Contents](#calculate--display-the-hopalong-attractor-with-python)

@@ -101,7 +101,7 @@ Otherwise, please comment out the relevant code snippets at import section and m
     print(f'CPU User&System time used: {cpu_sys_time_used:.2f} seconds')
     print (f'Memory (RAM): {memMb:.2f} MByte used')
     """
-[Back to Table of Contents](#Calculate \& Display the Hopalong Attractor with Python)
+[Back to Table of Contents](#calculate--display-the-hopalong-attractor-with-python)
 
 ## Usage
 

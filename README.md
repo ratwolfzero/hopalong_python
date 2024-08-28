@@ -125,6 +125,8 @@ Example parameters:
 
 These parameters directly influence the appearance of the attractor, with different values yielding different patterns.
 
+[Back to Table of Contents](#calculate--display-the-hopalong-attractor-with-python)
+
 ### Output
 
 The program generates a visual representation of the Hopalong Attractor. The resulting image displays the trajectory where colors represent the density of hits (i.e., how often a particular point was visited).

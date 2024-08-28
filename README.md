@@ -223,6 +223,8 @@ For JIT-compiled functions dummy calls are made. This step ensures that the func
 
  Prange, is generally not applicable for cross-iteration dependencies as it is the case when calculating the trajectory points. A separate function to populate the image array in a parallel loop using prange is possible but leads to race conditions resulting in inconsistent pixel hit rate and was therefore not implemented.
 
+[Back to Table of Contents](#calculate--display-the-hopalong-attractor-with-python)
+
 ### Two-Pass Approach
 
 By separating the extent calculation (first pass) from trajectory point mapping (second pass), this approach allows for efficient sequential processing. Knowing the overall trajectory extents in advance enables direct and efficient mapping of points to image pixels, optimizing memory usage and maintaining consistent performance.

@@ -11,9 +11,9 @@
 
 ### 4. [Usage](#4-usage)
 
-#### - [4.1 Input Parameters](#41-input-parameters)
+#### [4.1 Input Parameters](#41-input-parameters)
 
-#### - [4.2 Output](#42-output)
+#### [4.2 Output](#42-output)
 
 5. [Features](#5-features)
    - [5.1 Image Pixel and Color Mapping](#51-image-pixel-and-color-mapping)

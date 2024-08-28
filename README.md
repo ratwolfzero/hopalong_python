@@ -12,7 +12,7 @@
       - [Extended Version](#extended-version)
   - [Features](#features)
     - [Image Pixel and Color Mapping](#image-pixel-and-color-mapping)
-    - [Understanding Pixel Hit Counts (Density), and Handling of Pixel Density](#understanding-pixel-hit-counts-density-and-handling-of-pixel-density)
+    - [Understanding Pixel Hit Counts (Density) and Handling of Pixel Density](#understanding-pixel-hit-counts-density-and-handling-of-pixel-density)
     - [Application of Copysign (Math Module) as Signum function](#application-of-copysign-math-module-as-signum-function)
     - [Optional Features](#optional-features)
   - [Performance Optimization](#performance-optimization)
@@ -150,7 +150,7 @@ Example of outputs can be found in the "Usage" section above.
 
 In both versions of the program (basic or advanced), pixels are color-coded based on the number of times they are "hit" by trajectory points, referred to as the "pixel hit count." However, trajectory points are floating-point values and do not directly correspond to pixel coordinates. Instead, they are mapped to integer pixel coordinates on the image. The mapping is handled by scale factors using the image size and trajectory extents (min, max values). For further details, consult the function "compute_trajectory_and_image" in the code.
 
-### Understanding Pixel Hit Counts (Density), and Handling of Pixel Density
+### Understanding Pixel Hit Counts (Density) and Handling of Pixel Density
 
 "It is not proven, and due to the deterministic nature of the Hopalong attractor, based on its recursive equation system that is inherently deterministic, it is likely unrealistic that each point is unique in the continuous floating-point space. However, identical points can arise from rounding errors due to limited floating-point precision. When these floating-point values are mapped to pixel coordinates, they are converted to integers. As a result, points that are close together in floating-point space may be assigned to the same integer pixel. This mapping can cause certain pixels to be 'hit' multiple times, creating areas of varying density within the image.
 

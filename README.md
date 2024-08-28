@@ -15,20 +15,24 @@
 
 #### 4.2 [Output](#42-output)
 
-5. [Features](#5-features)
-   - [5.1 Image Pixel and Color Mapping](#51-image-pixel-and-color-mapping)
-   - [5.2 Understanding Pixel Hit Counts and Density Handling](#52-understanding-pixel-hit-counts-and-density-handling)
-   - [5.3 Application of Copysign (Math Module) as Signum Function](#53-application-of-copysign-math-module-as-signum-function)
-6. [Optional Features](#6-optional-features)
-7. [Performance Optimization](#7-performance-optimization)
+### 5. [Features](#5-features)
+
+#### 5.1 [Image Pixel and Color Mapping](#51-image-pixel-and-color-mapping)
+
+   - 
+   - 
+   - [Understanding Pixel Hit Counts and Density Handling](#52-understanding-pixel-hit-counts-and-density-handling)
+   - [Application of Copysign (Math Module) as Signum Function](#53-application-of-copysign-math-module-as-signum-function)
+1. [Optional Features](#6-optional-features)
+2. [Performance Optimization](#7-performance-optimization)
    - [7.1 Just-In-Time Compilation (JIT)](#71-just-in-time-compilation-jit)
    - [7.2 Dummy Calls](#72-dummy-calls)
    - [7.3 Race Conditions](#73-race-conditions)
    - [7.4 Two-Pass Approach](#74-two-pass-approach)
    - [7.5 Alternative Solutions](#75-alternative-solutions)
    - [7.6 Conclusion](#76-conclusion)
-8. [Recent Code Changes](#8-recent-code-changes)
-9. [References](#9-references)
+3. [Recent Code Changes](#8-recent-code-changes)
+4. [References](#9-references)
 <!-- /TOC -->
 
 ## 1. Abstract

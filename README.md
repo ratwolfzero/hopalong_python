@@ -63,6 +63,7 @@ A two-pass algorithm is employed to compute the Hopalong Attractor by sequential
 The program uses Matplotlib to represent the attractor as an image in order to take advantage of its extensive image processing and manipulation capabilities. It supports a very high number of iterations with a low memory footprint, ensuring optimal, consistent processing speed. The program is designed with minimal complexity to allow effective use of Just-In-Time (JIT) compilation, thus further improving execution speed.
 
 For further hints regarding two-pass approach, see "Performance Optimization" section.
+
 [Back to Table of Contents](#calculate--display-the-hopalong-attractor-with-python)
 
 ## Requirements  

@@ -372,7 +372,6 @@ Maple help:
 <https://de.maplesoft.com/support/help/maple/view.aspx?path=MathApps%2FHopalongAttractor>
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------
-[Back to Table of Contents](#calculate--display-the-hopalong-attractor-with-python)
 
 ### References for Python Libraries and Modules
 

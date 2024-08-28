@@ -1,5 +1,28 @@
 # Calculate & Display the "Hopalong" Attractor with Python
 
+Table of Contents
+
+1. Abstract
+2. Chosen Solution and Motivation
+3. Requirements
+4. Usage
+4.1 Input Parameters
+4.2 Output
+5. Features
+5.1 Image Pixel and Color Mapping
+5.2 Understanding Pixel Hit Counts and Density Handling
+5.3 Application of Copysign (Math Module) as Signum Function
+6. Optional Features
+7. Performance Optimization
+7.1 Just-In-Time Compilation (JIT)
+7.2 Dummy Calls
+7.3 Race Conditions
+7.4 Two-Pass Approach
+7.5 Alternative Solutions
+7.6 Conclusions
+8. Recent Code Changes
+9. References
+
 ## Abstract  
 
 The "Hopalong *" attractor, invented by Barry Martin at Aston University in Birmingham, England, was popularized by A.K. Dewdney in the September 1986 issue of Scientific American. In Germany, it gained further recognition through a translation titled "Hüpfer" in Spektrum der Wissenschaft.  

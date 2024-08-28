@@ -364,7 +364,7 @@ A.K. Dewdney in Spektrum der Wissenschaft "Computer Kurzweil" 1988, (German vers
 ISBN-10: 3922508502, ISBN-13: 978-3922508502
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------
-Strogatz, S. H. (2018). Nonlinear Dynamics and Chaos: With Applications to Physics, Biology, Chemistry, and Engineering. Westview Press  
+Strogatz, S. H. (2018). Nonlinear Dynamics and Chaos: With Applications to Physics, Biology, Chemistry, and Engineering. Westview Press.  
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 

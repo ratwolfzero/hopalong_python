@@ -309,7 +309,7 @@ While the two-pass approach is the chosen solution, it is important to consider 
 
 #### One-Pass Approach with Caching
 
-- Description: Trajectory points are calculated only once, stored in an array and available for further processing such as vectorized mapping points to pixels.
+- Description: Trajectory points are calculated only once and stored in an array which allows the use of Numpy's vectorization capabilities, such as the vectorized determination of the trajectory extents and the mapping of trajectory points to image pixels.
 - Disadvantages: Depending on the number of iterations, large memory resources are required for caching the trajectory points and there may be performance degradation due to system memory swapping or even memory overflows. However, this depends on the system environment.
 
 #### Chunked One-Pass Approach with caching

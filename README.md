@@ -194,6 +194,8 @@ However, certain parameter combinations such as:
 
 may lead to "singularities" where the attractor doesn't produce complex patterns.
 
+[Back to Table of Contents](#calculate--display-the-hopalong-attractor-with-python)
+
 ### Optional Features  
 
 Execution time* and resources: Starts after user input and measures the CPU time for the entire process including image rendering and shows the system memory used.

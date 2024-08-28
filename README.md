@@ -134,7 +134,6 @@ The program generates a visual representation of the Hopalong Attractor. The res
 #### Basic Version
 
 ![Example Attractor Image](./examples/Figure_ex_1.png)
-[Back to Table of Contents](#calculate--display-the-hopalong-attractor-with-python)
 
 #### Extended Version
 
@@ -243,8 +242,6 @@ By separating the extent calculation (first pass) from trajectory point mapping 
 Disadvantage:  
 Trajectory points must be recomputed in both passes, but the impact of this trade-off is quite small and as mentioned above, as the number of iterations increases, the efficiency of the two-pass approach becomes much more advantageous in terms of memory usage and processing speed.
 
-While the two-pass approach is the chosen solution, it is important to consider alternative strategies that could be employed for trajectory calculations. Below are some alternative solutions that were evaluated, each with its own trade-offs in performance, memory usage, and complexity.
-
 ### Two-Pass Code Section
 
     @njit #njit is an alias for nopython=True
@@ -312,6 +309,8 @@ While the two-pass approach is the chosen solution, it is important to consider 
 [Back to Table of Contents](#calculate--display-the-hopalong-attractor-with-python)
 
 ### Alternative Solutions
+
+While the two-pass approach is the chosen solution, it is important to consider alternative strategies that could be employed for trajectory calculations. Below are some alternative solutions that were evaluated, each with its own trade-offs in performance, memory usage, and complexity.
 
 #### One-Pass Approach with Caching
 

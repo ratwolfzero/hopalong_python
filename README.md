@@ -1,5 +1,5 @@
-# First Line
-- [First Line](#first-line)
+# Calculate and Display the Hopalong Attractor with Python
+
 - [Calculate and Display the Hopalong Attractor with Python](#calculate-and-display-the-hopalong-attractor-with-python)
   - [Abstract](#abstract)
   - [Requirements](#requirements)
@@ -28,8 +28,6 @@
   - [Enjoy the Exploration](#enjoy-the-exploration)
   - [References](#references)
     - [References for Python Libraries and Modules](#references-for-python-libraries-and-modules)
-
-# Calculate and Display the Hopalong Attractor with Python
 
 ## Abstract
 

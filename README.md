@@ -52,6 +52,7 @@ Where:
 
 The chosen solution and its motivation
 
+---------------------------------------
 A two-pass algorithm is employed to compute the Hopalong Attractor by sequential processing in both passes through straightforward loops.
 
 - In the first pass, the algorithm determines the overall trajectory extents, which consist of the minimum and maximum values of the attractor trajectory.

@@ -1,11 +1,8 @@
-
+<!-- This section is for future TOC generation -->
 # Calculate & Display the "Hopalong" Attractor with Python
-<!-- This section is for future TOC generation -->
 
-## Table of Contents (DO NOT DELETE THIS LINE)
-<!-- This section is for future TOC generation -->
+
 - [Calculate \& Display the "Hopalong" Attractor with Python](#calculate--display-the-hopalong-attractor-with-python)
-  - [Table of Contents (DO NOT DELETE THIS LINE)](#table-of-contents-do-not-delete-this-line)
   - [Abstract](#abstract)
     - [The chosen solution and its motivation](#the-chosen-solution-and-its-motivation)
   - [Requirements](#requirements)

@@ -309,8 +309,8 @@ While the two-pass approach is the chosen solution, it is important to consider 
 
 #### One-Pass Approach with Caching
 
-- Description: Trajectory points are calculated only once, stored in an array and available for further processing such as mapping points to pixels.
-- Disadvantages: Requires large memory resources depending on the number of iterations and can lead to performance degradation due to system memory swapping.
+- Description: Trajectory points are calculated only once, stored in an array and available for further processing such as vectorized mapping points to pixels.
+- Disadvantages: Depending on the number of iterations, large memory resources are required for caching the trajectory points and there may be performance degradation due to system memory swapping or even memory overflows. However, this depends on the system environment.
 
 #### Chunked One-Pass Approach with caching
 

@@ -141,7 +141,7 @@ The program generates a visual representation of the Hopalong Attractor. The res
 
 This program is available in two versions:
 
-- Basic version: Calculation and display of the hopalong attractor and the pixel density (hit numbers) via a color bar.
+- Basic version: Calculation and display of the hopalong attractor and the pixel density via a color bar.
 - Advanced version: Like the basic version, plus statistics and visualization of the pixel hit counts distribution.
 
 Example of outputs can be found in the "Usage" section above.

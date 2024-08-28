@@ -53,9 +53,9 @@ Where:
   
 ### The chosen solution and its motivation
 
-A two-pass algorithm is employed to compute the Hopalong Attractor by sequential processing in both passes through straightforward loops.
+A two-pass algorithm is employed to compute the Hopalong Attractor by sequential processing in both passes through straightforward structure and loops.
 
-- In the first pass, the algorithm determines the overall trajectory extents, which consist of the minimum and maximum values of the attractor trajectory.
+- In the first pass, the algorithm determines the overall trajectory extents, which consist of the minimum and maximum values of the attractor trajectory. Python functions such as min(), max() were intentionally not used.
 
 - In the second pass, the algorithm generates the sequence of trajectory points and maps them directly to image pixel coordinates, representing the attractor hit pattern (pixel value > 0). This hit information is updated and stored in an image array, which is initialized with zero values.
 

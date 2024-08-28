@@ -18,7 +18,7 @@
   - [Performance Optimization](#performance-optimization)
     - [Just-In-Time Compilation (JIT)](#just-in-time-compilation-jit)
     - [Dummy Calls](#dummy-calls)
-    - [Race Conditions](#race-conditions)
+    - [Parallelization and race conditions](#parallelization-and-race-conditions)
     - [Two-Pass Approach](#two-pass-approach)
     - [Two-Pass Code Section](#two-pass-code-section)
     - [Alternative Solutions](#alternative-solutions)
@@ -218,9 +218,9 @@ The program leverages the Numba JIT just-in-time compilation for performance opt
 
 For JIT-compiled functions dummy calls are made. This step ensures that the function is precompiled before it is called by the interpreter, thus avoiding compilation overhead the first time the code is executed.  
 
-### Race Conditions  
+### Parallelization and race conditions
 
- Prange, is generally not applicable for cross-iteration dependencies as it is the case when calculating the trajectory points. A separate function to populate the image array in a parallel loop using prange is possible but leads to race conditions resulting in inconsistent pixel hit rate and was therefore not implemented.
+The parallel loop "prange" from Numba, which is fundamentally not applicable for cross-iteration dependencies, such as here when calculating the trajectory points, is therefore not used. A restructuring of the second pass, in which a separate function populates the image array with prange, would be possible, but leads to race conditions with an inconsistent pixel hit rate and was therefore not implemented.
 
 [Back to Table of Contents](#calculate--display-the-hopalong-attractor-with-python)
 

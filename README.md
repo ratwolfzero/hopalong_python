@@ -1,10 +1,8 @@
 # Calculate & Display the "Hopalong" Attractor with Python
 
 - Table of Contents
-
-- [Calculate \& Display the "Hopalong" Attractor with Python](#calculate--display-the-hopalong-attractor-with-python)
 - [1. Abstract](#1-abstract)
-  - [The chosen solution and its motivation](#the-chosen-solution-and-its-motivation)
+- [The chosen solution and its motivation](#the-chosen-solution-and-its-motivation)
 - [Requirements](#requirements)
 - [Usage](#usage)
   - [Input Parameters](#input-parameters)

@@ -347,7 +347,6 @@ Utilize a 'Color Bar' to indicate the Pixel Density (Basic Version)
 Experiment with different color maps or populate the image array differently than based on the hit count and explore new visual views.
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------
-[Back to Table of Contents](#calculate--display-the-hopalong-attractor-with-python)
 
 ## References
 

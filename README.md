@@ -3,39 +3,39 @@
 
 ## Table of Contents
 <!-- TOC -->
-### 1. [Abstract](#1-abstract)
-
-### 2. [Chosen Solution and Motivation](#2-chosen-solution-and-motivation)
-
-### 3. [Requirements](#3-requirements)
-
-### 4. [Usage](#4-usage)
-
-#### 4.1 [Input Parameters](#41-input-parameters)
-
-#### 4.2 [Output](#42-output)
-
-### 5. [Features](#5-features)
-
-#### 5.1 [Image Pixel and Color Mapping](#51-image-pixel-and-color-mapping)
-
-   - 
-   - 
-   - [Understanding Pixel Hit Counts and Density Handling](#52-understanding-pixel-hit-counts-and-density-handling)
-   - [Application of Copysign (Math Module) as Signum Function](#53-application-of-copysign-math-module-as-signum-function)
-1. [Optional Features](#6-optional-features)
-2. [Performance Optimization](#7-performance-optimization)
-   - [7.1 Just-In-Time Compilation (JIT)](#71-just-in-time-compilation-jit)
-   - [7.2 Dummy Calls](#72-dummy-calls)
-   - [7.3 Race Conditions](#73-race-conditions)
-   - [7.4 Two-Pass Approach](#74-two-pass-approach)
-   - [7.5 Alternative Solutions](#75-alternative-solutions)
-   - [7.6 Conclusion](#76-conclusion)
-3. [Recent Code Changes](#8-recent-code-changes)
-4. [References](#9-references)
+- [Calculate \& Display the "Hopalong" Attractor with Python](#calculate--display-the-hopalong-attractor-with-python)
+  - [Table of Contents](#table-of-contents)
+  - [Abstract](#abstract)
+    - [The chosen solution and its motivation](#the-chosen-solution-and-its-motivation)
+  - [Requirements](#requirements)
+  - [Usage](#usage)
+    - [Input Parameters](#input-parameters)
+    - [Output](#output)
+      - [Basic Version](#basic-version)
+      - [Extended Version](#extended-version)
+  - [Features](#features)
+    - [Image Pixel and Color Mapping](#image-pixel-and-color-mapping)
+    - [Understanding-Pixel-Hit-Counts-and-Density-Handling](#understanding-pixel-hit-counts-and-density-handling)
+    - [Application of Copysign (Math Module) as Signum function](#application-of-copysign-math-module-as-signum-function)
+    - [Optional Features](#optional-features)
+  - [Performance Optimization](#performance-optimization)
+    - [Just-In-Time Compilation (JIT)](#just-in-time-compilation-jit)
+    - [Dummy Calls](#dummy-calls)
+    - [Race Conditions](#race-conditions)
+    - [Two-Pass Approach](#two-pass-approach)
+    - [Alternative Solutions](#alternative-solutions)
+      - [One-Pass Approach with Caching](#one-pass-approach-with-caching)
+      - [Chunked One-Pass Approach with caching](#chunked-one-pass-approach-with-caching)
+      - [One-Pass Approach without Caching](#one-pass-approach-without-caching)
+    - [Conclusion](#conclusion)
+    - [Two-Pass Code Section](#two-pass-code-section)
+  - [Recent Code Changes](#recent-code-changes)
+  - [Enjoy the Exploration](#enjoy-the-exploration)
+  - [References](#references)
+    - [References for Python Libraries and Modules](#references-for-python-libraries-and-modules)
 <!-- /TOC -->
 
-## 1. Abstract
+## Abstract
 
 The "Hopalong *" attractor, invented by Barry Martin at Aston University in Birmingham, England, was popularized by A.K. Dewdney in the September 1986 issue of Scientific American. In Germany, it gained further recognition through a translation titled "Hüpfer" in Spektrum der Wissenschaft.  
 <sub>*Nicknamed by A.K. Dewdney.</sub>
@@ -152,7 +152,7 @@ Example of outputs,  see section Usage above.
 
 In both versions of the program (basic or extended), pixels are color-coded based on the number of times they are "hit" by trajectory points, referred to as the "pixel hit count." However, trajectory points are floating-point values and do not directly correspond to pixel coordinates. Instead, they are mapped to integer pixel coordinates on the image. The mapping is handled by scale factors using the image size and trajectory extents (min, max values). For the very details you can consult the function "compute_trajectory_and_image" in the code.
 
-### Pixel Hit Counts and Handling High Density
+### Understanding-Pixel-Hit-Counts-and-Density-Handling
 
 As each trajectory point is generated, it is mapped to corresponding pixel coordinates by converting its floating-point values into integers. This mapping process often results in certain pixels being "hit" multiple times, creating areas of varying density within the image. Initially, the image array is set to zero, and each time a pixel is hit, its value is incremented, reflecting the number of trajectory points that correspond to that pixel.
 

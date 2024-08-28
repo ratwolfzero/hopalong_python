@@ -134,6 +134,7 @@ The program generates a visual representation of the Hopalong Attractor. The res
 #### Basic Version
 
 ![Example Attractor Image](./examples/Figure_ex_1.png)
+[Back to Table of Contents](#calculate--display-the-hopalong-attractor-with-python)
 
 #### Extended Version
 

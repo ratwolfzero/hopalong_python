@@ -154,7 +154,7 @@ In both versions of the program (basic and advanced), pixels are color-coded bas
 
 ### Pixel Hit Counts (Density) and Visualization
 
-Trajectory points are floating-point values and do not directly correspond to pixel coordinates. Instead, these points are mapped to integer pixel coordinates in the image. The mapping process involves scaling factors that take into account the image size and the trajectory extents (minimum and maximum values). For more details, see the "compute_trajectory_and_image" function in the code. This approach differs from directly plotting floating-point values.
+Trajectory points are floating-point values and do not directly correspond to pixel coordinates. Instead, these points are mapped to integer pixel coordinates in the image. The mapping process involves scaling factors that take into account the image size and the trajectory extents (minimum and maximum values). For more details, see the "compute_trajectory_and_image" function in the code.
 
 When floating-point values are mapped to pixel coordinates, they are converted to integers. This conversion allows points that are close to each other in floating-point space to be assigned to the same integer pixel. As a result, certain pixels may be "hit" multiple times, leading to areas of varying density within the image.
 

@@ -11,10 +11,8 @@
       - [Basic Version](#basic-version)
       - [Extended Version](#extended-version)
   - [Features](#features)
-    - [Image Pixel and Color Mapping](#image-pixel-and-color-mapping)
-    - [The Attractors Behavior](#the-attractors-behavior)
-    - [Pixel Hit Counts (Density) and Visualization](#pixel-hit-counts-density-and-visualization)
-    - [Matplotlib Colormap](#matplotlib-colormap)
+    - [Image pixels and color mapping](#image-pixels-and-color-mapping)
+    - [Pixel hit counts (density) and visualization with Matplotlib color mapping](#pixel-hit-counts-density-and-visualization-with-matplotlib-color-mapping)
     - [Application of Copysign (Math Module) as Signum function](#application-of-copysign-math-module-as-signum-function)
     - [Optional Features](#optional-features)
   - [Performance Optimization](#performance-optimization)
@@ -61,7 +59,7 @@ A two-pass algorithm is employed to compute the Hopalong Attractor by sequential
 
 - In the second pass, the algorithm generates the sequence of trajectory points and maps them directly to image pixel coordinates, representing the attractor hit pattern (pixel value > 0). This hit information is updated and stored in an image array, which is initialized with zero values.
 
-The program uses Matplotlib to represent the attractor as an image in order to take advantage of its extensive image processing and manipulation capabilities. With optimal and consistent processing speed, it supports a very high number of iterations with low memory footprint and is therefore suitable for higher image resolutions. The program is designed with minimal complexity to allow effective use of Just-In-Time (JIT) compilation, thus further improving execution speed.
+The program uses Matplotlib to represent the attractor as an image in order to take advantage of its extensive image processing and manipulation capabilities. With optimal and consistent processing speed, it supports a very high number of iterations with low memory footprint. The program is designed with minimal complexity to allow effective use of Just-In-Time (JIT) compilation, thus further improving execution speed.
 
 For further hints regarding two-pass approach, see [Two-Pass Approach](#two-pass-approach)
 
@@ -150,35 +148,21 @@ This program is available in two versions:
 
 Example of outputs can be found in the "Usage" section above.
 
-### Image Pixel and Color Mapping  
+### Image pixels and color mapping
 
-In both versions of the program (basic or advanced), pixels are color-coded based on the number of times they are "hit" by trajectory points, referred to as the "pixel hit count." However, trajectory points are floating-point values and do not directly correspond to pixel coordinates. Instead, they are mapped to integer pixel coordinates on the image. The mapping is handled by scale factors using the image size and trajectory extents (min, max values). For further details, consult the function "compute_trajectory_and_image" in the code. This is different from directly plotting floating point values.
+In both versions of the program (basic or advanced), pixels are color-coded based on the number of times the trajectory points "hits" them, which is called the "pixel hit count". However, trajectory points are floating point values ​​and do not directly correspond to pixel coordinates. Instead, they are mapped to integer pixel coordinates in the image. The mapping is done by scaling factors using the image size and trajectory extents (min, max values). See the "compute_trajectory_and_image" function in the code for more details. This approach is different from plotting floating point values ​​directly.
 
-### The Attractors Behavior  
+### Pixel hit counts (density) and visualization with Matplotlib color mapping
 
-Depending on the parameters, the attractor can behave in different ways.:
+When floating point values ​​are mapped to pixel coordinates, they are converted to integers. This allows points that are close to each other in floating point space to be assigned to the same integer pixel. This mapping can result in certain pixels being "hit" multiple times, creating areas of varying density within the image.
 
-- Convergence: In certain parameter ranges, the iterative process quickly converges to a fixed point.
+First, the image array is set to zero. Each time a pixel is hit, its value is incremented, reflecting the number of trajectory points corresponding to that pixel. Thus, the hit counts in the image array serve as a discrete measure of concentration, indicating the proximity of the trajectory points in floating point space.
 
-- Periodic: In other parameter ranges, the iterations cycle through a finite set of 𝑁 points, creating a periodic attractor with a cycle of period 𝑁
+Note: Increasing the resolution of the output image (number of pixels) reduces the likelihood that multiple closely spaced trajectory points will be mapped to the same pixel.
 
-- Non-periodic: Often the iteration sequence can continue indefinitely without repeating. These sequences can either diverge infinitely or stay within a limited range. The latter often leads to the well known and complicated but pretty patterns.
-  
-### Pixel Hit Counts (Density) and Visualization
+Matplotlib's "hot" colormap is used to represent the hit count information. Matplotlib applies normalization to scale the hit count within the limited color range of the colormap. This creates a color gradient that ranges from dark colors indicating low hit counts to light colors indicating high hit counts. As a result, the colormap effectively visualizes areas of higher activity within the attractor.
 
-When floating-point values are mapped to pixel coordinates, they are converted to integers. As a result, points that are close together in floating-point space may be assigned to the same integer pixel. This mapping can cause certain pixels to be 'hit' multiple times, creating areas of varying density within the image.
-
-Initially, the image array is set to zero. Each time a pixel is hit, its value is incremented, reflecting the number of trajectory points that correspond to that pixel. Thus, the hit numbers in the image array serve as a discrete measure of concentration and indicate the proximity of the trajectory points in floating-point space.
-
-This clear color gradient allows users to easily discern patterns of activity and better understand the dynamics of the Hopalong attractor."  
-
-Note: Increasing the output image resolution enhances the representation of the Hopalong attractor. A higher number of pixels reduces the chance of multiple nearby trajectory points being mapped to the same pixel.
-
-### Matplotlib Colormap
-
-Each pixel in the image array is color-coded based on the number of hits it has received. Matplotlib's 'hot' colormap is used to represent this information. This colormap creates a gradient that transitions from dark colors, indicating low hit counts, to bright colors, indicating high hit counts. As a result, the colormap effectively visualizes areas of higher activity within the attractor.
-
-To ensure effective visualization, Matplotlib applies normalization to scale hit counts within the finite range of colors provided by the colormap. This normalization process enables a clear representation of hit density. Pixels with higher hit counts are mapped to brighter colors, while those with lower counts are represented by darker colors. The maximum hit count recorded in the image array determines the highest value represented in the colormap. This clear color gradient allows users to easily discern patterns of activity and better understand the dynamics of the Hopalong attractor.
+This clear color gradient allows users to easily identify activity patterns and better understand the dynamics of the Hopalong Attractor.
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 

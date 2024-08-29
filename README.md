@@ -158,11 +158,11 @@ In both versions of the program (basic or advanced), pixels are color-coded base
 
 Depending on the parameters, the attractor can behave in different ways.:
 
-- Convergence: In certain parameter ranges, the iterative process converges to a fixed point.
+- Convergence: In certain parameter ranges, the iterative process quickly converges to a fixed point.
 
 - Periodic: In other parameter ranges, the iterations cycle through a finite set of 𝑁 points, creating a periodic attractor with a cycle of period 𝑁
 
-- Non-periodic: Often the iteration sequence can continue indefinitely without repeating. These sequences can either diverge infinitely or stay within a limited range. The latter often leads to complicated but pretty patterns..  
+- Non-periodic: Often the iteration sequence can continue indefinitely without repeating. These sequences can either diverge infinitely or stay within a limited range. The latter often leads to the well known and complicated but pretty patterns.
   
 ### Pixel Hit Counts (Density) and Visualization
 

@@ -12,7 +12,7 @@
       - [Extended Version](#extended-version)
   - [Features](#features)
     - [Image pixels and color mapping](#image-pixels-and-color-mapping)
-    - [Pixel hit counts (density) and visualization with Matplotlib color mapping](#pixel-hit-counts-density-and-visualization-with-matplotlib-color-mapping)
+    - [Pixel hit counts (density) and visualization](#pixel-hit-counts-density-and-visualization)
     - [Application of Copysign (Math Module) as Signum function](#application-of-copysign-math-module-as-signum-function)
     - [Optional Features](#optional-features)
   - [Performance Optimization](#performance-optimization)
@@ -152,7 +152,7 @@ Example of outputs can be found in the "Usage" section above.
 
 In both versions of the program (basic or advanced), pixels are color-coded based on the number of times the trajectory points "hits" them, which is called the "pixel hit count". However, trajectory points are floating point values ​​and do not directly correspond to pixel coordinates. Instead, they are mapped to integer pixel coordinates in the image. The mapping is done by scaling factors using the image size and trajectory extents (min, max values). See the "compute_trajectory_and_image" function in the code for more details. This approach is different from plotting floating point values ​​directly.
 
-### Pixel hit counts (density) and visualization with Matplotlib color mapping
+### Pixel hit counts (density) and visualization
 
 When floating point values ​​are mapped to pixel coordinates, they are converted to integers. This allows points that are close to each other in floating point space to be assigned to the same integer pixel. This mapping can result in certain pixels being "hit" multiple times, creating areas of varying density within the image.
 

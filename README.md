@@ -160,7 +160,7 @@ For some ranges of parameters, the result after a few iterations may be an isola
 
 For other ranges of parameters, the iterations eventually settle into a pattern in which a finite set of N points are continuously visited one after the other, a periodic attractor with a cycle of period N.
 
-it is also possible and apparently not uncommon for the iteration sequence to continue infinitely without repetition<top>*<top> and thus not converge to one or more periodic attractors. These sequences can diverge to infinity or be contained within a limited region of the plane. This latter behavior produces many of the most complicated and interesting shapes.  
+it is also possible and apparently not uncommon for the iteration sequence to continue infinitely without repetition<top>*<top> and thus not converge to one or more periodic attractors. These sequences can diverge to infinity or be contained within a limited region of the plane. This latter behavior produces many of the most intricate and interesting forms.  
 <sub>*Due to the limited floating point precision of computers, rounding errors can result in identical points.</sub>
 
 When floating-point values are mapped to pixel coordinates, they are converted to integers. As a result, points that are close together in floating-point space may be assigned to the same integer pixel. This mapping can cause certain pixels to be 'hit' multiple times, creating areas of varying density within the image.

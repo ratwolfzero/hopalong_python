@@ -11,8 +11,8 @@
       - [Basic Version](#basic-version)
       - [Extended Version](#extended-version)
   - [Features](#features)
-    - [Image pixels and color mapping](#image-pixels-and-color-mapping)
-    - [Pixel hit counts (density) and visualization](#pixel-hit-counts-density-and-visualization)
+    - [Image Pixels and Color Mapping](#image-pixels-and-color-mapping)
+    - [Pixel Hit Counts (Density) and Visualization](#pixel-hit-counts-density-and-visualization)
     - [Application of Copysign (Math Module) as Signum function](#application-of-copysign-math-module-as-signum-function)
     - [Optional Features](#optional-features)
   - [Performance Optimization](#performance-optimization)
@@ -143,26 +143,24 @@ The program generates a visual representation of the Hopalong Attractor. The res
 
 This program is available in two versions:
 
-- Basic version: Calculation and display of the hopalong attractor and the pixel density via a color bar.
-- Advanced version: Like the basic version, plus statistics and visualization of the pixel hit counts distribution.
+- Basic version: Calculation and display of the Hopalong Attractor and the pixel density via a color bar.
+- Advanced version: Includes all features of the basic version, plus statistics and visualization of the pixel hit counts distribution.  
 
-Example of outputs can be found in the "Usage" section above.
+Examples of outputs can be found in the "Usage" section above.
 
-### Image pixels and color mapping
+### Image Pixels and Color Mapping
 
-In both versions of the program (basic or advanced), pixels are color-coded based on the number of times the trajectory points "hits" them, which is called the "pixel hit count".
+In both versions of the program (basic and advanced), pixels are color-coded based on the number of times the trajectory points "hit" them, referred to as the "pixel hit count."
 
-### Pixel hit counts (density) and visualization
+### Pixel Hit Counts (Density) and Visualization
 
-Trajectory points are floating point values ​​and do not directly correspond to pixel coordinates. Instead, they are mapped to integer pixel coordinates in the image. The mapping is done by scaling factors using the image size and trajectory extents (min, max values). See the "compute_trajectory_and_image" function in the code for more details. This approach is different from plotting floating point values ​​directly.
+Trajectory points are floating-point values and do not directly correspond to pixel coordinates. Instead, these points are mapped to integer pixel coordinates in the image. The mapping process involves scaling factors that take into account the image size and the trajectory extents (minimum and maximum values). For more details, see the "compute_trajectory_and_image" function in the code. This approach differs from directly plotting floating-point values.
 
-When floating point values ​​are mapped to pixel coordinates, they are converted to integers. This allows points that are close to each other in floating point space to be assigned to the same integer pixel. This mapping can result in certain pixels being "hit" multiple times, creating areas of varying density within the image*.
+When floating-point values are mapped to pixel coordinates, they are converted to integers. This conversion allows points that are close to each other in floating-point space to be assigned to the same integer pixel. As a result, certain pixels may be "hit" multiple times, leading to areas of varying density within the image.
 
-First, the image array is set to zero. Each time a pixel is hit, its value is incremented, reflecting the number of trajectory points corresponding to that pixel. Thus, the hit counts in the image array serve as a discrete measure of concentration, indicating the proximity of the trajectory points in floating point space.
+Initially, the image array is set to zero. Each time a pixel is hit, its value is incremented, reflecting the number of trajectory points corresponding to that pixel. Therefore, the hit counts in the image array provide a discrete measure of concentration, indicating the proximity of the trajectory points in floating-point space.
 
-Matplotlib's "hot" colormap is used to represent the hit count information. Matplotlib applies normalization to scale the hit count within the limited color range of the colormap. This creates a color gradient that ranges from dark colors indicating low hit counts to light colors indicating high hit counts. As a result, the colormap effectively visualizes areas of higher activity within the attractor.
-
-This clear color gradient allows users to easily identify activity patterns and better understand the dynamics of the Hopalong Attractor.
+Matplotlib's "hot" colormap is used to represent the hit count information. Matplotlib applies normalization to scale the hit count within the limited color range of the colormap. This scaling creates a color gradient that ranges from dark colors, indicating low hit counts, to light colors, indicating high hit counts. Consequently, the colormap effectively visualizes areas of higher activity within the attractor.
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 

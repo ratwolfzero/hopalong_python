@@ -36,7 +36,7 @@
 The "Hopalong *" attractor, invented by Barry Martin at Aston University in Birmingham, England, was popularized by A.K. Dewdney in the September 1986 issue of Scientific American. In Germany, it gained further recognition through a translation titled "Hüpfer" in Spektrum der Wissenschaft.  
 <sub>*Nicknamed by A.K. Dewdney.</sub>
 
-This Python program calculates and displays the 'Hopalong' Attractor by iterating the following recursive equation system (1) and (2):
+This Python program calculates and plots the “hopalong” attractor by iterating the following system of recursive equations (1) and (2):
 
 $$
 \begin{align}

@@ -198,9 +198,6 @@ However, certain parameter combinations will not produce intricate patterns such
 
 - a = 1, b = 1, c = 0,  
 
-For some parameter ranges the result after a few iterations can be an
-isolated point; that is, the process converges to a fixed point.
-
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
 ### Optional Features  

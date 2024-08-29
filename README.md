@@ -33,7 +33,7 @@
 
 ## Abstract
 
-The "Hopalong *" attractor, invented by Barry Martin at Aston University in Birmingham, England, was popularized by A.K. Dewdney in the September 1986 issue of Scientific American. In Germany, it gained further recognition through a translation titled "Hüpfer" in Spektrum der Wissenschaft.  
+The "Hopalong" attractortop>*<top>, invented by Barry Martin at Aston University in Birmingham, England, was popularized by A.K. Dewdney in the September 1986 issue of Scientific American. In Germany, it gained further recognition through a translation titled "Hüpfer" in Spektrum der Wissenschaft.  
 <sub>*Nicknamed by A.K. Dewdney.</sub>
 
 This Python program calculates and plots the “hopalong” attractor by iterating the following two-dimensional recursive functions (1) and (2):
@@ -158,7 +158,8 @@ For some ranges of parameters, the result after a few iterations may be an isola
 
 For other ranges of parameters, the iterations eventually settle into a pattern in which a finite set of N points are continuously visited one after the other, a periodic attractor with a cycle of period N.
 
-it is also possible and apparently not uncommon for the iteration sequence to continue infinitely without repetition<top>*<top> and thus not converge to one or more periodic attractors. These sequences can diverge to infinity or be contained within a limited region of the plane. This latter behavior produces many of the most complicated and interesting shapes.
+it is also possible and apparently not uncommon for the iteration sequence to continue infinitely without repetition<top>*<top> and thus not converge to one or more periodic attractors. These sequences can diverge to infinity or be contained within a limited region of the plane. This latter behavior produces many of the most complicated and interesting shapes.  
+
 <sub>*identical points can be forced ny rounding errors due to limited floating-point precision.</sub>
 
 When floating-point values are mapped to pixel coordinates, they are converted to integers. As a result, points that are close together in floating-point space may be assigned to the same integer pixel. This mapping can cause certain pixels to be 'hit' multiple times, creating areas of varying density within the image.

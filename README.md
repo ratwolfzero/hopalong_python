@@ -152,7 +152,16 @@ In both versions of the program (basic or advanced), pixels are color-coded base
 
 ### Understanding Pixel Hit Counts (Density) and Handling of Pixel Density
 
-"It is not proven, and due to the deterministic nature of the Hopalong attractor, based on its recursive equation system that is inherently deterministic, it is likely unrealistic that each point is unique in the continuous floating-point space. However, identical points can arise from rounding errors due to limited floating-point precision. When these floating-point values are mapped to pixel coordinates, they are converted to integers. As a result, points that are close together in floating-point space may be assigned to the same integer pixel. This mapping can cause certain pixels to be 'hit' multiple times, creating areas of varying density within the image.
+The Hopalong attractor can behave differently:
+
+For some ranges of parameters, the result after a few iterations may be an isolated point; that is, the process converges to a fixed point.
+
+For other ranges of parameters, the iterations eventually settle into a pattern in which a finite set of N points are continuously visited one after the other, a periodic attractor with a cycle of period N.
+
+it is also possible and apparently not uncommon for the iteration sequence to continue infinitely without repetition<top>*<top> and thus not converge to one or more periodic attractors. These sequences can diverge to infinity or be contained within a limited region of the plane. This latter behavior produces many of the most complicated and interesting shapes.
+<sub>*identical points can be forced ny rounding errors due to limited floating-point precision.</sub>
+
+When floating-point values are mapped to pixel coordinates, they are converted to integers. As a result, points that are close together in floating-point space may be assigned to the same integer pixel. This mapping can cause certain pixels to be 'hit' multiple times, creating areas of varying density within the image.
 
 Initially, the image array is set to zero. Each time a pixel is hit, its value is incremented, reflecting the number of trajectory points that correspond to that pixel. Thus, the hit counts in the image array serve as a discrete measure of concentration, indicating the proximity of trajectory points in floating-point space.
 
@@ -178,7 +187,7 @@ copysign(1.0,x) =\begin{cases}
 \end{cases}
 $$
 
-This adjustment improves handling of edge cases, allowing for different behavior. For example:
+This adjustment changes the behavior of some cases. For example:
 
 - a = 1, b = 2, c = 3 or  
 
@@ -186,7 +195,7 @@ This adjustment improves handling of edge cases, allowing for different behavior
 
 - a = 1, b =1, c = 1  
 
-However, certain parameter combinations such as:
+However, certain parameter combinations will not produce intricate patterns such as:
 
 - a =1 , b = 0, c = 0 or  
 
@@ -194,7 +203,8 @@ However, certain parameter combinations such as:
 
 - a = 1, b = 1, c = 0,  
 
-may lead to "singularities" where the attractor doesn't produce complex patterns.
+For some parameter ranges the result after a few iterations can be an
+isolated point; that is, the process converges to a fixed point.
 
 [Back to Table of Contents](#calculate--display-the-hopalong-attractor-with-python)
 

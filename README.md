@@ -165,7 +165,7 @@ it is also possible and apparently not uncommon for the iteration sequence to co
 
 When floating-point values are mapped to pixel coordinates, they are converted to integers. As a result, points that are close together in floating-point space may be assigned to the same integer pixel. This mapping can cause certain pixels to be 'hit' multiple times, creating areas of varying density within the image.
 
-Initially, the image array is set to zero. Each time a pixel is hit, its value is incremented, reflecting the number of trajectory points that correspond to that pixel. Thus, the hit counts in the image array serve as a discrete measure of concentration, indicating the proximity of trajectory points in floating-point space.
+Initially, the image array is set to zero. Each time a pixel is hit, its value is incremented, reflecting the number of trajectory points that correspond to that pixel. Thus, the hit numbers in the image array serve as a discrete measure of concentration and indicate the proximity of the trajectory points in floating-point space.
 
 This clear color gradient allows users to easily discern patterns of activity and better understand the dynamics of the Hopalong attractor."
 

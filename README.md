@@ -11,6 +11,7 @@
       - [Basic Version](#basic-version)
       - [Extended Version](#extended-version)
   - [Features](#features)
+    - [Program Variants](#program-variants)
     - [Image Pixels and Color Mapping](#image-pixels-and-color-mapping)
     - [Pixel Hit Counts (Density) and Visualization](#pixel-hit-counts-density-and-visualization)
     - [Application of Copysign (Math Module) as Signum function](#application-of-copysign-math-module-as-signum-function)
@@ -140,6 +141,8 @@ The program generates a visual representation of the Hopalong Attractor. The res
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
 ## Features
+
+### Program Variants
 
 This program is available in two versions:
 

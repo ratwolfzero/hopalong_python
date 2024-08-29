@@ -150,15 +150,15 @@ Example of outputs can be found in the "Usage" section above.
 
 ### Image pixels and color mapping
 
-In both versions of the program (basic or advanced), pixels are color-coded based on the number of times the trajectory points "hits" them, which is called the "pixel hit count". However, trajectory points are floating point values ​​and do not directly correspond to pixel coordinates. Instead, they are mapped to integer pixel coordinates in the image. The mapping is done by scaling factors using the image size and trajectory extents (min, max values). See the "compute_trajectory_and_image" function in the code for more details. This approach is different from plotting floating point values ​​directly.
+In both versions of the program (basic or advanced), pixels are color-coded based on the number of times the trajectory points "hits" them, which is called the "pixel hit count".
 
 ### Pixel hit counts (density) and visualization
 
-When floating point values ​​are mapped to pixel coordinates, they are converted to integers. This allows points that are close to each other in floating point space to be assigned to the same integer pixel. This mapping can result in certain pixels being "hit" multiple times, creating areas of varying density within the image.
+Trajectory points are floating point values ​​and do not directly correspond to pixel coordinates. Instead, they are mapped to integer pixel coordinates in the image. The mapping is done by scaling factors using the image size and trajectory extents (min, max values). See the "compute_trajectory_and_image" function in the code for more details. This approach is different from plotting floating point values ​​directly.
+
+When floating point values ​​are mapped to pixel coordinates, they are converted to integers. This allows points that are close to each other in floating point space to be assigned to the same integer pixel. This mapping can result in certain pixels being "hit" multiple times, creating areas of varying density within the image*.
 
 First, the image array is set to zero. Each time a pixel is hit, its value is incremented, reflecting the number of trajectory points corresponding to that pixel. Thus, the hit counts in the image array serve as a discrete measure of concentration, indicating the proximity of the trajectory points in floating point space.
-
-Note: Increasing the resolution of the output image (number of pixels) reduces the likelihood that multiple closely spaced trajectory points will be mapped to the same pixel.
 
 Matplotlib's "hot" colormap is used to represent the hit count information. Matplotlib applies normalization to scale the hit count within the limited color range of the colormap. This creates a color gradient that ranges from dark colors indicating low hit counts to light colors indicating high hit counts. As a result, the colormap effectively visualizes areas of higher activity within the attractor.
 

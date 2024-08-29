@@ -12,7 +12,7 @@
       - [Extended Version](#extended-version)
   - [Features](#features)
     - [Image Pixel and Color Mapping](#image-pixel-and-color-mapping)
-    - [Understanding Pixel Hit Counts (Density) and Handling of Pixel Density](#understanding-pixel-hit-counts-density-and-handling-of-pixel-density)
+    - [Understanding the Attractors Behavior, Pixel Hit Counts (Density) and Handling of Pixel Density](#understanding-the-attractors-behavior-pixel-hit-counts-density-and-handling-of-pixel-density)
     - [Application of Copysign (Math Module) as Signum function](#application-of-copysign-math-module-as-signum-function)
     - [Optional Features](#optional-features)
   - [Performance Optimization](#performance-optimization)
@@ -152,7 +152,7 @@ Example of outputs can be found in the "Usage" section above.
 
 In both versions of the program (basic or advanced), pixels are color-coded based on the number of times they are "hit" by trajectory points, referred to as the "pixel hit count." However, trajectory points are floating-point values and do not directly correspond to pixel coordinates. Instead, they are mapped to integer pixel coordinates on the image. The mapping is handled by scale factors using the image size and trajectory extents (min, max values). For further details, consult the function "compute_trajectory_and_image" in the code.
 
-### Understanding Pixel Hit Counts (Density) and Handling of Pixel Density
+### Understanding the Attractors Behavior, Pixel Hit Counts (Density) and Handling of Pixel Density
 
 The Hopalong attractor can behave differently:
 

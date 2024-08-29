@@ -190,7 +190,7 @@ This adjustment changes the behavior of some cases. For example:
 
 - a = 1, b =1, c = 1  
 
-However, certain parameter combinations will not produce intricate patterns such as:
+However, certain parameter sets will not produce intricate patterns such as:
 
 - a =1 , b = 0, c = 0 or  
 

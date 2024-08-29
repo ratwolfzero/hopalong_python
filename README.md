@@ -65,7 +65,7 @@ The program uses Matplotlib to represent the attractor as an image in order to t
 
 For further hints regarding two-pass approach, see [Two-Pass Approach](#two-pass-approach)
 
-[Back to Table of Contents](#calculate--display-the-hopalong-attractor-with-python)
+[Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
 ## Requirements  
 
@@ -106,7 +106,7 @@ Otherwise, please comment out the relevant code snippets at import section and m
     print(f'CPU User&System time used: {cpu_sys_time_used:.2f} seconds')
     print (f'Memory (RAM): {memMb:.2f} MByte used')
     """
-[Back to Table of Contents](#calculate--display-the-hopalong-attractor-with-python)
+[Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
 ## Usage
 
@@ -139,7 +139,7 @@ The program generates a visual representation of the Hopalong Attractor. The res
 #### Extended Version
 
 ![Example Attractor Image](./examples/Figure_ex_2.png)
-[Back to Table of Contents](#calculate--display-the-hopalong-attractor-with-python)
+[Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
 ## Features
 
@@ -181,7 +181,7 @@ Each pixel in the image array is color-coded based on the number of hits it has 
 
 To ensure effective visualization, Matplotlib applies normalization to scale hit counts within the finite range of colors provided by the colormap. This normalization process enables a clear representation of hit density. Pixels with higher hit counts are mapped to brighter colors, while those with lower counts are represented by darker colors. The maximum hit count recorded in the image array determines the highest value represented in the colormap. This clear color gradient allows users to easily discern patterns of activity and better understand the dynamics of the Hopalong attractor.
 
-[Back to Table of Contents](#calculate--display-the-hopalong-attractor-with-python)
+[Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
 ### Application of Copysign (Math Module) as Signum function
 
@@ -216,7 +216,7 @@ However, certain parameter combinations will not produce intricate patterns such
 For some parameter ranges the result after a few iterations can be an
 isolated point; that is, the process converges to a fixed point.
 
-[Back to Table of Contents](#calculate--display-the-hopalong-attractor-with-python)
+[Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
 ### Optional Features  
 
@@ -230,7 +230,7 @@ As long as there is no interaction with the plot window, the "plt.pause() time" 
     plt.pause(1)
     plt.close(fig)
 
-[Back to Table of Contents](#calculate--display-the-hopalong-attractor-with-python)
+[Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
 ## Performance Optimization  
 
@@ -246,7 +246,7 @@ For JIT-compiled functions dummy calls are made. This step ensures that the func
 
 The parallel loop "prange" from Numba, which is fundamentally not applicable for cross-iteration dependencies, such as here when calculating the trajectory points, is therefore not used. A restructuring of the second pass, in which a separate function populates the image array with prange, would be possible, but leads to race conditions with an inconsistent pixel hit rate and was therefore not implemented.
 
-[Back to Table of Contents](#calculate--display-the-hopalong-attractor-with-python)
+[Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
 ### Two-Pass Approach
 
@@ -325,7 +325,7 @@ Trajectory points must be recomputed in both passes, but the impact of this trad
     # Dummy call to ensure the function is pre-compiled by the JIT compiler before it's called by the interpreter.
     _ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (2, 2)) 
 
-[Back to Table of Contents](#calculate--display-the-hopalong-attractor-with-python)
+[Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
 ### Alternative Solutions
 
@@ -352,7 +352,7 @@ Possible other, more sophisticated solutions were not taken into consideration
 
 Overall, the two-pass approach strikes the best balance of speed, efficiency, and simplicity, making it ideal for high-iteration calculations of the Hopalong Attractor. Despite the need to recalculate trajectory points, it avoids the pitfalls of alternative solutions.
 
-[Back to Table of Contents](#calculate--display-the-hopalong-attractor-with-python)
+[Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
 ## Recent Code Changes
 
@@ -397,4 +397,4 @@ ISBN-10: 3922508502, ISBN-13: 978-3922508502
 6. [Python Time Module](https://docs.python.org/3/library/time.html#module-time): Time access and conversions.
 7. [Python Resource Module](https://docs.python.org/3/library/resource.html): Interface for getting and setting resource limits.
 
-[Back to Table of Contents](#calculate--display-the-hopalong-attractor-with-python)
+[Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)

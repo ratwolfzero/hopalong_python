@@ -6,7 +6,7 @@ from math import copysign
 
 # Parameters for the Hopalong attractor
 a = 1
-b = 2
+b = 25
 c = 3
 
 # Number of iterations

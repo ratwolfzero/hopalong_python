@@ -150,7 +150,7 @@ Example of outputs can be found in the "Usage" section above.
 
 ### Image Pixel and Color Mapping  
 
-In both versions of the program (basic or advanced), pixels are color-coded based on the number of times they are "hit" by trajectory points, referred to as the "pixel hit count." However, trajectory points are floating-point values and do not directly correspond to pixel coordinates. Instead, they are mapped to integer pixel coordinates on the image. The mapping is handled by scale factors using the image size and trajectory extents (min, max values). For further details, consult the function "compute_trajectory_and_image" in the code.
+In both versions of the program (basic or advanced), pixels are color-coded based on the number of times they are "hit" by trajectory points, referred to as the "pixel hit count." However, trajectory points are floating-point values and do not directly correspond to pixel coordinates. Instead, they are mapped to integer pixel coordinates on the image. The mapping is handled by scale factors using the image size and trajectory extents (min, max values). For further details, consult the function "compute_trajectory_and_image" in the code. This is different from directly plotting floating point values.
 
 ### Understanding the Attractors Behavior, Pixel Hit Counts (Density) and Handling of Pixel Density
 
@@ -170,6 +170,8 @@ When floating-point values are mapped to pixel coordinates, they are converted t
 Initially, the image array is set to zero. Each time a pixel is hit, its value is incremented, reflecting the number of trajectory points that correspond to that pixel. Thus, the hit numbers in the image array serve as a discrete measure of concentration and indicate the proximity of the trajectory points in floating-point space.
 
 This clear color gradient allows users to easily discern patterns of activity and better understand the dynamics of the Hopalong attractor."  
+
+Note: Increasing the output image resolution enhances the representation of the Hopalong attractor. A higher number of pixels reduces the chance of multiple nearby trajectory points being mapped to the same pixel.
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 Each pixel in the image array is color-coded based on the number of hits it has received. Matplotlib's 'hot' colormap is used to represent this information. This colormap creates a gradient that transitions from dark colors, indicating low hit counts, to bright colors, indicating high hit counts. As a result, the colormap effectively visualizes areas of higher activity within the attractor.

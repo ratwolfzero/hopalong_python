@@ -12,7 +12,7 @@
       - [Extended Version](#extended-version)
   - [Features](#features)
     - [Image Pixel and Color Mapping](#image-pixel-and-color-mapping)
-    - [Understanding the Attractors' Behavior](#understanding-the-attractors-behavior)
+    - [The Attractors Behavior](#the-attractors-behavior)
     - [Pixel Hit Counts (Density) and Visualization](#pixel-hit-counts-density-and-visualization)
     - [Matplotlib Colormap](#matplotlib-colormap)
     - [Application of Copysign (Math Module) as Signum function](#application-of-copysign-math-module-as-signum-function)
@@ -154,15 +154,16 @@ Example of outputs can be found in the "Usage" section above.
 
 In both versions of the program (basic or advanced), pixels are color-coded based on the number of times they are "hit" by trajectory points, referred to as the "pixel hit count." However, trajectory points are floating-point values and do not directly correspond to pixel coordinates. Instead, they are mapped to integer pixel coordinates on the image. The mapping is handled by scale factors using the image size and trajectory extents (min, max values). For further details, consult the function "compute_trajectory_and_image" in the code. This is different from directly plotting floating point values.
 
-### Understanding the Attractors' Behavior  
+### The Attractors Behavior  
 
 The Hopalong attractor can behave differently:
 
-- Convergence to a Fixed Point: For some ranges of parameters, the result after a few iterations may be an isolated point; that is, the process converges to a fixed point.
+- Convergence: In certain parameter ranges, the iterative process converges to a fixed point.
 
-- Periodic attractor: For other ranges of parameters, the iterations eventually settle into a pattern in which a finite set of N points are continuously visited one after the other, a periodic attractor with a cycle of period N.
+- Periodic: In other parameter ranges, the iterations cycle through a finite set of 𝑁 points, creating a periodic attractor with a cycle of period 𝑁
 
-- Non-Periodic attractor: It is also possible and apparently not uncommon for the iteration sequence to continue infinitely without repetition<top>*<top> and thus not converge to one or more periodic attractors. These sequences can diverge to infinity or be contained within a limited region of the plane. This latter behavior produces many of the most intricate and interesting forms.  
+
+- Non-Periodic: It's also common for the iteration sequence to continue indefinitely without repetition. These sequences can either diverge to infinity or remain within a bounded region, often resulting in complex and bautiful patterns.
 <sub>*Due to the limited floating point precision of computers, rounding errors can result in identical points.</sub> 
 
 ### Pixel Hit Counts (Density) and Visualization

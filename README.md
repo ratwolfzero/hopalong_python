@@ -162,7 +162,6 @@ The Hopalong attractor can behave differently:
 
 - Periodic: In other parameter ranges, the iterations cycle through a finite set of 𝑁 points, creating a periodic attractor with a cycle of period 𝑁
 
-
 - Non-Periodic: It's also common for the iteration sequence to continue indefinitely without repetition. These sequences can either diverge to infinity or remain within a bounded region, often resulting in complex and bautiful patterns.
 <sub>*Due to the limited floating point precision of computers, rounding errors can result in identical points.</sub> 
 

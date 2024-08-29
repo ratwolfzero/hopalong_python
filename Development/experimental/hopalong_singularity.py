@@ -5,12 +5,12 @@ from math import copysign
 
 
 # Parameters for the Hopalong attractor
-a = 1
-b = 25
-c = 3
+a = 5
+b = 5
+c = 0
 
 # Number of iterations
-iterations = 10000
+iterations = 10000000
 # Initialize arrays to hold the points
 x = np.zeros(iterations)
 y = np.zeros(iterations)
@@ -30,9 +30,9 @@ def custom_sign(x):
 
 # Iterate the Hopalong attractor equations
 for n in range(iterations - 1):
-    x[n + 1] = y[n] - np.sign(x[n]) * np.sqrt(abs(b * x[n] - c))
+    #x[n + 1] = y[n] - np.sign(x[n]) * np.sqrt(abs(b * x[n] - c))
     #x[n + 1] = y[n] - custom_sign(x[n]) * np.sqrt(abs(b * x[n] - c))
-    #x[n + 1] = y[n] - copysign(1.0, x[n]) * np.sqrt(abs(b * x[n] - c))
+    x[n + 1] = y[n] - copysign(1.0, x[n]) * np.sqrt(abs(b * x[n] - c))
     y[n + 1] = a - x[n]
 	
 	

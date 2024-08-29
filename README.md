@@ -161,14 +161,17 @@ For some ranges of parameters, the result after a few iterations may be an isola
 For other ranges of parameters, the iterations eventually settle into a pattern in which a finite set of N points are continuously visited one after the other, a periodic attractor with a cycle of period N.
 
 it is also possible and apparently not uncommon for the iteration sequence to continue infinitely without repetition<top>*<top> and thus not converge to one or more periodic attractors. These sequences can diverge to infinity or be contained within a limited region of the plane. This latter behavior produces many of the most intricate and interesting forms.  
-<sub>*Due to the limited floating point precision of computers, rounding errors can result in identical points.</sub>
+<sub>*Due to the limited floating point precision of computers, rounding errors can result in identical points.</sub> 
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
 
 When floating-point values are mapped to pixel coordinates, they are converted to integers. As a result, points that are close together in floating-point space may be assigned to the same integer pixel. This mapping can cause certain pixels to be 'hit' multiple times, creating areas of varying density within the image.
 
 Initially, the image array is set to zero. Each time a pixel is hit, its value is incremented, reflecting the number of trajectory points that correspond to that pixel. Thus, the hit numbers in the image array serve as a discrete measure of concentration and indicate the proximity of the trajectory points in floating-point space.
 
-This clear color gradient allows users to easily discern patterns of activity and better understand the dynamics of the Hopalong attractor."
+This clear color gradient allows users to easily discern patterns of activity and better understand the dynamics of the Hopalong attractor."  
 
+----------------------------------------------------------------------------------------------------------------------------------------------------
 Each pixel in the image array is color-coded based on the number of hits it has received. Matplotlib's 'hot' colormap is used to represent this information. This colormap creates a gradient that transitions from dark colors, indicating low hit counts, to bright colors, indicating high hit counts. As a result, the colormap effectively visualizes areas of higher activity within the attractor.
 
 To ensure effective visualization, Matplotlib applies normalization to scale hit counts within the finite range of colors provided by the colormap. This normalization process enables a clear representation of hit density. Pixels with higher hit counts are mapped to brighter colors, while those with lower counts are represented by darker colors. The maximum hit count recorded in the image array determines the highest value represented in the colormap. This clear color gradient allows users to easily discern patterns of activity and better understand the dynamics of the Hopalong attractor.

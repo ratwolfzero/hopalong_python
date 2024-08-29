@@ -36,7 +36,7 @@
 The "Hopalong *" attractor, invented by Barry Martin at Aston University in Birmingham, England, was popularized by A.K. Dewdney in the September 1986 issue of Scientific American. In Germany, it gained further recognition through a translation titled "Hüpfer" in Spektrum der Wissenschaft.  
 <sub>*Nicknamed by A.K. Dewdney.</sub>
 
-This Python program calculates and plots the “hopalong” attractor by iterating the following system of recursive equations (1) and (2):
+This Python program calculates and plots the “hopalong” attractor by iterating the following two-dimensional recursive functions (1) and (2):
 
 $$
 \begin{align}
@@ -362,9 +362,6 @@ ISBN-13: 978-1-4612-8868-8,  e-ISBN-13: 978-1-4612-4538-4
 A.K. Dewdney in Spektrum der Wissenschaft "Computer Kurzweil" 1988, (German version of Scientific American)
 
 ISBN-10: 3922508502, ISBN-13: 978-3922508502
-
-----------------------------------------------------------------------------------------------------------------------------------------------------
-Strogatz, S. H. (2018). Nonlinear Dynamics and Chaos: With Applications to Physics, Biology, Chemistry, and Engineering. Westview Press.  
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 

@@ -346,7 +346,8 @@ While the two-pass approach is the chosen solution, it is important to consider 
 - Feasibility:
 Theoretical approach, practically infeasible due to the following major limitations:
 
-- Data Loss and Inability to Recover Exactly: Due to the lossy nature of integer mapping*, previously computed floating-point values cannot be retrieved for remapping, making it impossible to recover the original values once they have been mapped to integers.
+- Data Loss and Inability to Recover Exactly: Due to the lossy nature of integer mapping*, previously computed floating-point values cannot be retrieved for remapping, making it impossible to recover the original values once they have been mapped to integers.  
+  
 <sub>*several closely spaced points of the floating point plane can be contained in an integer pixel.</sub>
 
 #### Possible other, more sophisticated solutions

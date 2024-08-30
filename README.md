@@ -199,7 +199,8 @@ However, certain parameter sets will not produce intricate patterns such as:
 - a = p, b = p, c = 0
   
 Where p is a parameter.  
-Instead, you will observe high-density cycles, characterized by a relatively small number of points being hit repeatedly. In these cases, the system appears to settle into a periodic orbit, where the density of hits sums to the total number of iterations, provided there will be no outliers or other abnormalties. This is also a ideal use case to apply the extended version of the programm with hit count statistics.
+  
+Instead, you may observe high-density cycles, characterized by a relatively small number of points being hit repeatedly. This suggests that in these cases, the system may settle into a periodic orbit, where the density of hits sums to the total number of iterations, assuming no outliers or other anomalies. This scenario is an ideal use case for the extended version of the program with hit count statistics.
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 

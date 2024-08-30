@@ -5,8 +5,8 @@ from math import copysign
 
 
 # Parameters for the Hopalong attractor
-a = 5
-b = 5
+a = 7991
+b = 7991
 c = 0
 
 # Number of iterations

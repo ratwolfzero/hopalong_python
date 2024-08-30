@@ -192,11 +192,14 @@ This adjustment changes the behavior of some cases. For example:
 
 However, certain parameter sets will not produce intricate patterns such as:
 
-- a =1 , b = 0, c = 0 or  
+- a = p , b = 0, c = 0 or  
 
-- a = 1, b = 0, c = 1 or  
+- a = p, b = 0, c = p or  
 
-- a = 1, b = 1, c = 0,  
+- a = p, b = p, c = 0
+  
+Where p is a parameter.  
+Instead, you will observe high-density cycles, characterized by a relatively small number of points being hit repeatedly. In these cases, the system appears to settle into a periodic orbit, where the density of hits sums to the total number of iterations, provided there will be no outliers or other abnormalties. This is also a ideal use case to apply the extended version of the programm with hit count statistics.
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 

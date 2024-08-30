@@ -360,7 +360,7 @@ Utilize a 'Color Bar' to indicate the Pixel Density (Basic Version)
 
 ## Enjoy the Exploration
 
-Experiment with different color maps or populate the image array differently than based on the hit count and explore new visual views.
+Experiment with different image resolutions, color maps or populate the image array differently than based on the hit count and explore new visual views.
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 

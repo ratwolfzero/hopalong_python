@@ -25,7 +25,7 @@
       - [One-Pass Approach with Caching](#one-pass-approach-with-caching)
       - [Chunked One-Pass Approach with caching](#chunked-one-pass-approach-with-caching)
       - [One-Pass Approach without Caching](#one-pass-approach-without-caching)
-    - [Possible other, more sophisticated solutions](#possible-other-more-sophisticated-solutions)
+      - [Possible other, more sophisticated solutions](#possible-other-more-sophisticated-solutions)
     - [Conclusion](#conclusion)
   - [Recent Code Changes](#recent-code-changes)
   - [Enjoy the Exploration](#enjoy-the-exploration)
@@ -343,12 +343,12 @@ While the two-pass approach is the chosen solution, it is important to consider 
 
 - Disadvantages: Requires continuous remapping of previously mapped pixels every time the trajectory extents change, making the method complicated and ineffective.
 
-Feasibility:
+- Feasibility:
 Theoretical approach, practically infeasible due to the following major limitations:
 
-Data Loss and Inability to Recover Exactly: Due to the lossy nature of integer mapping, previously computed floating-point values cannot be retrieved for remapping, making it impossible to recover the original values once they have been mapped to integers.
+- Data Loss and Inability to Recover Exactly: Due to the lossy nature of integer mapping, previously computed floating-point values cannot be retrieved for remapping, making it impossible to recover the original values once they have been mapped to integers.
 
-### Possible other, more sophisticated solutions
+#### Possible other, more sophisticated solutions
 
 No other solutions have been investigated or considered so far.
 More sophisticated solutions also contradict the approach of minimal complexity design. Unless a further significant performance increase would make it interesting to consider.

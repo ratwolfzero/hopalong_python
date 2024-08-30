@@ -10,12 +10,11 @@
     - [Output](#output)
       - [Basic Version](#basic-version)
       - [Extended Version](#extended-version)
-  - [Features](#features)
+  - [Features, Functionality, and Special Scenarios](#features-functionality-and-special-scenarios)
     - [Program Variants](#program-variants)
     - [Image Pixels and Color Mapping](#image-pixels-and-color-mapping)
     - [Pixel Hit Counts (Density) and Visualization](#pixel-hit-counts-density-and-visualization)
     - [Application of Copysign (Math Module) as Signum function](#application-of-copysign-math-module-as-signum-function)
-    - [Special constellations and attractor edge cases](#special-constellations-and-attractor-edge-cases)
     - [Optional Features](#optional-features)
   - [Performance Optimization](#performance-optimization)
     - [Just-In-Time Compilation (JIT)](#just-in-time-compilation-jit)
@@ -141,7 +140,7 @@ The program generates a visual representation of the Hopalong Attractor. The res
 ![Example Attractor Image](./examples/Figure_ex_2.png)
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
-## Features
+## Features, Functionality, and Special Scenarios
 
 ### Program Variants
 
@@ -190,8 +189,6 @@ This adjustment changes the behavior of some cases. For example:
 - a = 0, b = 1, c = 1 or  
 
 - a = 1, b =1, c = 1  
-
-### Special constellations and attractor edge cases
 
 However, certain parameter sets will not produce intricate patterns such as:
 

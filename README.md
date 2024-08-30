@@ -200,11 +200,11 @@ Certain parameter sets will not produce intricate patterns such as:
 
   3) a = p, b = p, c = 0
   
-Where ( p ) is a constant parameter that remains the same within each of these sets.
+Where (p) is a constant parameter that remains the same within each of these sets.
 
 Instead, you may observe high-density cycles, characterized by a relatively small number of pixels being hit repeatedly. This suggests that in these cases, the system may settle into a periodic orbit, where the density of hits sums to the total number of iterations, assuming no outliers or other anomalies. Additionally, it seems that certain of these "high-density cycle pixels" lie at the boundaries of the attractor extents.
 
-For example, with parameter set (3), we observe the 3-cycles: ((0, 0)), ((0, p)), and ((p, p)). If iterated 90,000 times, the pixel hit count is 30,000 per pixel.
+For example, with parameter set (3), we observe the 3-cycles: ((0, 0)), ((0, p)), and ((p, p)). At least with my programs [:-)]
 
 So If you want to experiment with this, it is recommend that you reduce the total number of pixels by reducing the image resolution (e.g. 100x100) in order to achieve a better visual representation of the pixels bordering the minimum and maximum extents of the trajectory.
 

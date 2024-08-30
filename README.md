@@ -146,7 +146,7 @@ Extended Version
 This program is available in two versions:
 
 - Basic version: Calculation and display of the Hopalong Attractor and the pixel density via a color bar.
-- Advanced version: Includes all features of the basic version, plus statistics and visualization of the pixel hit counts distribution.  
+- Extended version: Includes all features of the basic version, plus statistics and visualization of the pixel hit counts distribution.  
 
 Examples of outputs can be found in the "Usage" section above.
 

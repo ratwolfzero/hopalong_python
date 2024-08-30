@@ -128,7 +128,7 @@ These parameters directly influence the appearance of the attractor, with differ
 
 ### Output
 
-The program generates a visual representation of the Hopalong Attractor. The resulting image displays the trajectory where colors represent the density of hits (i.e., how often a particular point was visited).
+The program generates a visual representation of the Hopalong Attractor. The resulting image displays the trajectory where colors represent the "density of hits" (i.e., how often a particular point was visited).
 
 Basic Version
 
@@ -201,11 +201,11 @@ Certain parameter sets will not produce intricate patterns such as:
   
 Where p is a parameter.  
 
-Instead, you may observe high-density cycles, characterized by a relatively small number of points being hit repeatedly. This suggests that in these cases, the system may settle into a periodic orbit, where the density of hits sums to the total number of iterations, assuming no outliers or other anomalies. It also seems that certain of these "high density cycle points" lie at the boundaries of the attractor extents.  
+Instead, you may observe high-density cycles, characterized by a relatively small number of pixels being hit repeatedly. This suggests that in these cases, the system may settle into a periodic orbit, where the density of hits sums to the total number of iterations, assuming no outliers or other anomalies. It also seems that certain of these "high density cycle pixels" lie at the boundaries of the attractor extents.  
 
-For example, with a = b = 5, c = 0 we get the 3-cycle: (0, 0), (0, 5), (5, 5). If iterated 90000 times, the pixel hit count is 30000 per pixel.
+For example, with parametrs a = b = 5, c = 0 we get the 3-cycles: (0, 0), (0, 5), (5, 5). If iterated 90000 times, the pixel hit count is 30000 per pixel.
 
-So If you want to experiment with this, it is recommend that you reduce the total number of pixels by reducing the image resolution (e.g. 100x100) in order to achieve a better visual representation of the corresponding pixels.
+So If you want to experiment with this, it is recommend that you reduce the total number of pixels by reducing the image resolution (e.g. 100x100) in order to achieve a better visual representation of the pixels bordering the minimum and maximum extents of the trajectory.
 
     def main(image_size=(100, 100), color_map='hot'):
 
@@ -239,7 +239,7 @@ For JIT-compiled functions dummy calls are made. This step ensures that the func
 
 ### Parallelization and race conditions
 
-The parallel loop "prange" from Numba, which is fundamentally not applicable for cross-iteration dependencies, such as here when calculating the trajectory points, is therefore not used. A restructuring of the second pass, in which a separate function populates the image array with prange, would be possible, but leads to race conditions with an inconsistent pixel hit rate and was therefore not implemented.
+The parallel loop function "prange" from the "Numba" library, which is fundamentally not applicable for cross-iteration dependencies, such as here when calculating the trajectory points using recursive functions, is therefore not used. A restructuring of the second pass, in which a separate function populates the image array with prange, would be possible, but would lead to potential race conditions with an inconsistent pixel hit rate and was therefore not implemented.
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 

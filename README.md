@@ -341,7 +341,7 @@ While the two-pass approach is the chosen solution, it is important to consider 
 
 - Description: This method attempts to compute and map points in a single pass without storing previously computed points.
 
-- Disadvantages: Requires continuous remapping of previously mapped pixels every time the trajectory region changes, making the method complicated and ineffective.
+- Disadvantages: Requires continuous remapping of previously mapped pixels every time the trajectory extents changes, making the method complicated and ineffective.
 
 Feasibility:
 Theoretical approach, practically infeasible due to the following major limitations:

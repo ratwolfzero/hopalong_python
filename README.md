@@ -181,7 +181,7 @@ copysign(1.0,x) =\begin{cases}
 \end{cases}
 $$
 
-This adjustment changes the behavior of some cases. For example:
+This adjustment changes the behavior of some cases to produce intricate patterns. For example:
 
 - a = 1, b = 2, c = 3 or  
 
@@ -202,6 +202,8 @@ Certain parameter sets will not produce intricate patterns such as:
 Where p is a parameter.  
 
 Instead, you may observe high-density cycles, characterized by a relatively small number of points being hit repeatedly. This suggests that in these cases, the system may settle into a periodic orbit, where the density of hits sums to the total number of iterations, assuming no outliers or other anomalies. It also seems that certain of these "high density cycle points" lie at the boundaries of the attractor extents.  
+
+For example, with a = b = 5, c = 0 we get the 3-cycle: (0, 0),(0, 5), (5, 5). If iterated 90000 times, the pixel hit count is 30000 per pixel.
 
 So If you want to experiment with this, it is recommend that you reduce the total number of pixels by reducing the image resolution (e.g. 100x100) in order to achieve a better visual representation of the corresponding pixels.
 

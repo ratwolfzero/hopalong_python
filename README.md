@@ -191,7 +191,7 @@ This adjustment changes the behavior of some cases. For example:
 
 ### Special constellations and attractor edge cases
 
-However, certain parameter sets will not produce intricate patterns such as:
+Certain parameter sets will not produce intricate patterns such as:
 
 - a = p , b = 0, c = 0 or  
 

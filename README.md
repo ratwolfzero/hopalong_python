@@ -8,8 +8,6 @@
   - [Usage](#usage)
     - [Input Parameters](#input-parameters)
     - [Output](#output)
-      - [Basic Version](#basic-version)
-      - [Extended Version](#extended-version)
   - [Features, Functionality, and Special Scenarios](#features-functionality-and-special-scenarios)
     - [Program Variants](#program-variants)
     - [Image Pixels and Color Mapping](#image-pixels-and-color-mapping)
@@ -132,11 +130,11 @@ These parameters directly influence the appearance of the attractor, with differ
 
 The program generates a visual representation of the Hopalong Attractor. The resulting image displays the trajectory where colors represent the density of hits (i.e., how often a particular point was visited).
 
-#### Basic Version
+Basic Version
 
 ![Example Attractor Image](./examples/Figure_ex_1.png)
 
-#### Extended Version
+Extended Version
 
 ![Example Attractor Image](./examples/Figure_ex_2.png)
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)

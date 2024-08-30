@@ -15,6 +15,7 @@
     - [Image Pixels and Color Mapping](#image-pixels-and-color-mapping)
     - [Pixel Hit Counts (Density) and Visualization](#pixel-hit-counts-density-and-visualization)
     - [Application of Copysign (Math Module) as Signum function](#application-of-copysign-math-module-as-signum-function)
+    - [Special constellations and attractor edge cases](#special-constellations-and-attractor-edge-cases)
     - [Optional Features](#optional-features)
   - [Performance Optimization](#performance-optimization)
     - [Just-In-Time Compilation (JIT)](#just-in-time-compilation-jit)
@@ -190,6 +191,8 @@ This adjustment changes the behavior of some cases. For example:
 
 - a = 1, b =1, c = 1  
 
+### Special constellations and attractor edge cases
+
 However, certain parameter sets will not produce intricate patterns such as:
 
 - a = p , b = 0, c = 0 or  
@@ -199,7 +202,7 @@ However, certain parameter sets will not produce intricate patterns such as:
 - a = p, b = p, c = 0
   
 Where p is a parameter.  
-  
+
 Instead, you may observe high-density cycles, characterized by a relatively small number of points being hit repeatedly. This suggests that in these cases, the system may settle into a periodic orbit, where the density of hits sums to the total number of iterations, assuming no outliers or other anomalies. This scenario is an ideal use case for the extended version of the program with hit count statistics.
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)

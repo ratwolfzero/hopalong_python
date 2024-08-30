@@ -171,7 +171,7 @@ In both versions of the program (basic and advanced), pixels are color-coded bas
 ### Application of Copysign (Math Module) as Signum function
 
 Signum Function:  
-**The program now utilizes the math.copysign function "copysign(x,y)"  
+The programs now utilizes the math.copysign function "copysign(x,y)"  
 Return a float with the magnitude (absolute value) of x but the sign of y.  
 On platforms that support signed zeros, copysign(1.0, -0.0) returns -1.0.**
 

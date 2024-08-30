@@ -338,8 +338,17 @@ While the two-pass approach is the chosen solution, it is important to consider 
 
 #### One-Pass Approach without Caching
 
-- Description: This method attempts to calculate and map points in a single pass without storing previous calculated points.
-- Disadvantages: Requires continuously recalculating the mapping of trajectory points to image pixels every time the trajectory extent changes, making it complicated and ineffective, and difficult to ensure accurate pixel mapping.
+One-Pass Approach without Caching
+
+- Description: This method attempts to compute and map points in a single pass without storing previously computed points.
+
+- Disadvantages: Requires continuous remapping of previously mapped pixels every time the trajectory region changes, making the method complicated and ineffective.
+
+Feasibility:
+
+Theoretical approach, practically infeasible due to the following major limitations:
+
+Data Loss and Inability to Recover Exactly: Due to the lossy nature of integer mapping, previously computed floating-point values cannot be retrieved for remapping, making it impossible to recover the original values once they have been mapped to integers.
 
 Possible other, more sophisticated solutions were not taken into consideration
 

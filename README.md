@@ -194,11 +194,11 @@ This adjustment changes the behavior of some cases to produce intricate patterns
 
 Certain parameter sets will not produce intricate patterns such as:
 
-  1) a = p , b = 0, c = 0 or  
+1) a = p , b = 0, c = 0  
 
-  2) a = p, b = 0, c = p or  
+2) a = p, b = 0, c = p
 
-  3) a = p, b = p, c = 0
+3) a = p, b = p, c = 0
   
 Where (p) is a constant parameter that remains the same within each of these sets.
 

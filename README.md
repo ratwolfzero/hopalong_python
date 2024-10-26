@@ -72,8 +72,9 @@ To run this program, the following Python libraries or Modules must be installed
 
 - matplotlib *
 - numpy *  
-- numba * 
-(As of October 26, 2024, Numba only supports Python versions up to 12.7. Versions 13.x are currently not supported)
+- numba *
+<sub>As of October 26, 2024, Numba only supports Python versions up to 12.7. Versions 13.x are currently not supported</sub>
+As of October 26, 2024, Numba only supports Python versions up to 12.7. Versions 13.x are currently not supported
 - math *
   
 (* mandatory)

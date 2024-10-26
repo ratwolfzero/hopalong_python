@@ -206,6 +206,13 @@ Instead, you may observe high-density cycles, characterized by a relatively smal
 
 For example, with parameter set (3), we observe the 3-cycle: (0, 0), (0, p), and (p, p) and the pixel density is: number of iterations / 3.
 
+$$
+\begin{cases}
+x_n+1\space=&y_n-sgn(x_n)\times\sqrt{∣p\times x_n∣}&(1) \\
+y_n+1\space=&p-x_n&(2)
+\end{cases}
+$$
+
 So If you want to experiment with this, it is recommend that you reduce the total number of pixels by reducing the image resolution (e.g. 100x100) in order to achieve a better visual representation of the pixels bordering the minimum and maximum extents of the trajectory.
 
     def main(image_size=(100, 100), color_map='hot'):

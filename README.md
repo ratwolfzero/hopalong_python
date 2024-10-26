@@ -153,7 +153,7 @@ Examples of outputs can be found in the "Usage" section above.
 
 ### Image Pixels and Color Mapping
 
-In both versions of the program (basic and advanced), pixels are color-coded based on the number of times the trajectory points "hit" them, referred to as the "pixel hit count."
+In both versions of the program (basic and extended), pixels are color-coded based on the number of times the trajectory points "hit" them, referred to as the "pixel hit count."
 
 ### Pixel Hit Counts (Density) and Visualization
 

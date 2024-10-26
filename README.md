@@ -213,7 +213,7 @@ y_n+1\space=&p-x_n&(2)
 \end{cases}
 $$
 
-and we observe the 3-cycle: (0, 0), (0, p), and (p, p). The pixel density is: num / 3.
+and we observe the 3-cycle: (0, 0), (0, p), and (p, p). The pixel density is: num / 3
 
 start: (x<sub>0</sub> , y<sub>0</sub>) = (0 , 0)
 

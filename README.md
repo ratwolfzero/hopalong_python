@@ -37,7 +37,7 @@
 The "Hopalong" attractor<top>*<top>, invented by Barry Martin of Aston University in Birmingham, England, was popularized by A.K. Dewdney in the September 1986 issue of Scientific American. In Germany, it gained further recognition through a translation titled "Hüpfer" in Spektrum der Wissenschaft.  
 <sub>*Nicknamed by A.K. Dewdney.</sub>
 
-This Python program calculates and plots the “hopalong” attractor by iterating the following two-dimensional recursive functions (1) and (2):
+This Python program calculates and displays the “hopalong” attractor by iterating the following system of recursive functions (1) and (2):
 
 $$
 \begin{align}
@@ -147,7 +147,7 @@ Extended Version
 This program is available in two versions:
 
 - Basic version: Calculation and display of the Hopalong Attractor and the pixel density via a color bar.
-- Extended version: Includes all features of the basic version, plus statistics and visualization of the pixel hit counts distribution.  
+- Extended version: Includes the features of the basic version except color bar, plus statistics and visualization of the pixel hit counts distribution.  
 
 Examples of outputs can be found in the "Usage" section above.
 
@@ -170,7 +170,6 @@ In both versions of the program (basic and advanced), pixels are color-coded bas
 
 ### Application of Copysign (Math Module) as Signum function
 
-Signum Function:  
 The programs now utilizes the math.copysign function "copysign(x,y)"  
 Return a float with the magnitude (absolute value) of x but the sign of y.  
 On platforms that support signed zeros, copysign(1.0, -0.0) returns -1.0.**
@@ -202,9 +201,9 @@ Certain parameter sets will not produce intricate patterns such as:
   
 Where (p) is a constant parameter that remains the same within each of these sets.
 
-Instead, you may observe high-density cycles, characterized by a relatively small number of pixels being hit repeatedly. This suggests that in these cases, the system may settle into a periodic orbit, where the density of hits sums to the total number of iterations, assuming no outliers or other anomalies. Additionally, it seems that certain of these "high-density cycle pixels" lie at the boundaries of the attractor extents.
+Instead, you may observe high-density cycles, characterized by a relatively small number of pixels being hit repeatedly. This suggests that in these cases, the system may settle into a periodic orbit. Additionally, it seems that certain of these "high-density cycle pixels" lie at the boundaries of the attractor extents.
 
-For example, with parameter set (3), we observe the 3-cycles: ((0, 0)), ((0, p)), and ((p, p)). At least with my programs [:-)]
+For example, with parameter set (3), we observe the 3-cycles: ((0, 0)), ((0, p)), and ((p, p)) and the pixel desity is num/3
 
 So If you want to experiment with this, it is recommend that you reduce the total number of pixels by reducing the image resolution (e.g. 100x100) in order to achieve a better visual representation of the pixels bordering the minimum and maximum extents of the trajectory.
 

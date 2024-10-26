@@ -215,9 +215,12 @@ $$
 
 and we observe the 3-cycle: (0, 0), (0, p), and (p, p). The pixel density is: num / 3.
 
-(x<sub>0</sub> , y<sub>0</sub>) = (0 , 0)
-(x<sub>1</sub> , y<sub>1</sub>) = (0 , p)
-(x<sub>2</sub> , y<sub>2</sub>) = (p , p)
+(x<sub>0</sub> , y<sub>0</sub>) = (0 , 0)  
+
+(x<sub>1</sub> , y<sub>1</sub>) = (0 , p)  
+
+(x<sub>2</sub> , y<sub>2</sub>) = (p , p)  
+
 (x<sub>3</sub> , y<sub>3</sub>) = (0 , 0)
 
 So If you want to experiment with this, it is recommend that you reduce the total number of pixels by reducing the image resolution (e.g. 100x100) in order to achieve a better visual representation of the pixels bordering the minimum and maximum extents of the trajectory.

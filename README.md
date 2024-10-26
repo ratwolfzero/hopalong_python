@@ -215,7 +215,7 @@ $$
 
 and we observe the 3-cycle: (0, 0), (0, p), and (p, p). The pixel density is: num / 3.
 
-(x<sub>0</sub> , y<sub>0</sub>) = (0 , 0)
+start (x<sub>0</sub> , y<sub>0</sub>) = (0 , 0)
 
 --> (x<sub>1</sub> , y<sub>1</sub>) = (0 , p)
 

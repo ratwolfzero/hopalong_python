@@ -50,7 +50,7 @@ Where:
 
 - x<sub>n</sub> and y<sub>n</sub> represent the coordinates at the nth iteration.
 - a, b, c are user defined parameters that shape the attractor
-- The sequence starts from an initial point (x<sub>0</sub>, y<sub>0</sub>)=(0 , 0)
+- The sequence starts from an initial point (x<sub>0</sub> , y<sub>0</sub>)=(0 , 0)
   
 ### The chosen core algorithm and the motivation for it
 

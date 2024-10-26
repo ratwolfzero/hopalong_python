@@ -203,7 +203,7 @@ Where (p) is a constant parameter that remains the same within each of these set
 
 Instead, you may observe high-density cycles, characterized by a relatively small number of pixels being hit repeatedly. This suggests that in these cases, the system may settle into a periodic orbit. Additionally, it seems that certain of these "high-density cycle pixels" lie at the boundaries of the attractor extents.
 
-For example, with parameter set (3), we observe the 3-cycle: ((0, 0)), ((0, p)), and ((p, p)) and the pixel density is num / 3.
+For example, with parameter set (3), we observe the 3-cycle: ((0, 0)), ((0, p)), and ((p, p)) and the pixel density is number of iterations / 3.
 
 So If you want to experiment with this, it is recommend that you reduce the total number of pixels by reducing the image resolution (e.g. 100x100) in order to achieve a better visual representation of the pixels bordering the minimum and maximum extents of the trajectory.
 

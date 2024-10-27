@@ -272,7 +272,7 @@ By separating the extent calculation (first pass) from trajectory point mapping 
 - Scalability: As the number of iterations grows, the two-pass approach’s efficiency in memory usage and processing speed becomes much more advantageous.
 
 Disadvantage:  
-Trajectory points must be recomputed in both passes, but the impact of this trade-off is quite small and as mentioned above, as the number of iterations increases, the efficiency of the two-pass approach becomes much more advantageous in terms of memory usage and processing speed.
+Trajectory points must be computed in both passes, but the impact of this trade-off is quite small and as mentioned above, as the number of iterations increases, the efficiency of the two-pass approach becomes much more advantageous in terms of memory usage and processing speed.
 
 ### Two-Pass Code Section
 

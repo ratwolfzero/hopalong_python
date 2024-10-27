@@ -257,7 +257,7 @@ For JIT-compiled functions dummy calls are made. This step ensures that the func
 
 ### Parallelization and race conditions
 
-The parallel loop function "prange" from the "Numba" library, which is fundamentally not applicable for cross-iteration dependencies, such as here when calculating the trajectory points using recursive functions, is therefore not used. A restructuring of the second pass, in which a separate function populates the image array with prange, would be possible, but would lead to potential race conditions with an inconsistent pixel hit rate and was therefore not implemented.
+The parallel loop function "prange" from the "Numba" library, which is fundamentally not applicable for cross-iteration dependencies, such as here when calculating the trajectory points of recursive functions, is therefore not used. A restructuring of the second pass, in which a separate function populates the image array with prange, would be possible, but would lead to potential race conditions with an inconsistent pixel hit rate and was therefore not implemented.
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 

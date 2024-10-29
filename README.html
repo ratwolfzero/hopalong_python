@@ -149,7 +149,7 @@ y_n+1\space=&amp;a-x_n&amp;(2)
 </ul>
 <p>The program uses Matplotlib to represent the attractor as an image in order to take advantage of its extensive image processing and manipulation capabilities. With optimal and consistent processing speed, it supports a very high number of iterations with low memory footprint. The program is designed with minimal complexity to allow effective use of Just-In-Time (JIT) compilation, thus further improving execution speed.</p>
 <p>For further hints regarding two-pass approach, see <a href="#two-pass-approach">Two-Pass Approach</a></p>
-<p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
+<p><a href="#calculate-visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 </section>
 </section>
 <section id="requirements" class="level2">
@@ -189,7 +189,7 @@ memMb=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024.0/1024.0
 print(f'CPU User&amp;System time used: {cpu_sys_time_used:.2f} seconds')
 print (f'Memory (RAM): {memMb:.2f} MByte used')
 """</code></pre>
-<p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
+<p><a href="#calculate-visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 </section>
 <section id="usage" class="level2">
 <h2 class="anchored" data-anchor-id="usage">Usage</h2>
@@ -228,7 +228,7 @@ print (f'Memory (RAM): {memMb:.2f} MByte used')
 </figure>
 </div>
 <p>Extended Version</p>
-<p><img src="./examples/Figure_ex_2.png" class="img-fluid" alt="Example Attractor Image"> <a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
+<p><img src="./examples/Figure_ex_2.png" class="img-fluid" alt="Example Attractor Image"> <a href="#calculate-visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 </section>
 </section>
 <section id="features-functionality-and-special-scenarios" class="level2">
@@ -256,7 +256,7 @@ When floating-point values are mapped to pixel coordinates, they are converted t
 <li><p>Visualization with Colormap:<br>
 Matplotlib’s “hot” colormap is used to represent the hit count information. Matplotlib applies normalization to scale the hit count within the limited color range of the colormap. This scaling creates a color gradient that ranges from dark colors, indicating low hit counts, to light colors, indicating high hit counts. Consequently, the colormap effectively visualizes areas of higher activity within the attractor.</p></li>
 </ul>
-<p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
+<p><a href="#calculate-visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 </section>
 <section id="application-of-copysign-math-module-as-signum-function" class="level3">
 <h3 class="anchored" data-anchor-id="application-of-copysign-math-module-as-signum-function">Application of Copysign (Math Module) as Signum function</h3>
@@ -301,7 +301,7 @@ y_n+1\space=&amp;p-x_n&amp;(2)
 <p>So If you want to experiment with this, it is recommend that you reduce the total number of pixels by reducing the image resolution (e.g.&nbsp;100x100) in order to achieve a better visual representation of the pixels bordering the minimum and maximum extents of the trajectory.</p>
 <pre><code>def main(image_size=(100, 100), color_map='hot'):</code></pre>
 <p>By the way, this scenario is an ideal use case for the extended program version with pixel hit count statistics.</p>
-<p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
+<p><a href="#calculate-visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 </section>
 <section id="optional-features" class="level3">
 <h3 class="anchored" data-anchor-id="optional-features">Optional Features</h3>
@@ -310,7 +310,7 @@ y_n+1\space=&amp;p-x_n&amp;(2)
 <pre><code>#plt.show()
 plt.pause(1)
 plt.close(fig)</code></pre>
-<p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
+<p><a href="#calculate-visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 </section>
 </section>
 <section id="performance-optimization" class="level2">
@@ -326,7 +326,7 @@ plt.close(fig)</code></pre>
 <section id="parallelization-and-race-conditions" class="level3">
 <h3 class="anchored" data-anchor-id="parallelization-and-race-conditions">Parallelization and race conditions</h3>
 <p>The parallel loop function “prange” from the “Numba” library, which is fundamentally not applicable for cross-iteration dependencies, such as here when calculating the trajectory points of recursive functions, is therefore not used. A restructuring of the second pass, in which a separate function populates the image array with prange, would be possible, but would lead to potential race conditions with an inconsistent pixel hit rate and was therefore not implemented.</p>
-<p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
+<p><a href="#calculate-visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 </section>
 <section id="two-pass-approach" class="level3">
 <h3 class="anchored" data-anchor-id="two-pass-approach">Two-Pass Approach</h3>
@@ -402,7 +402,7 @@ for _ in range(num):
 return image
 # Dummy call to ensure the function is pre-compiled by the JIT compiler before it's called by the interpreter.
 _ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (2, 2)) </code></pre>
-<p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
+<p><a href="#calculate-visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 </section>
 <section id="alternative-solutions" class="level3">
 <h3 class="anchored" data-anchor-id="alternative-solutions">Alternative Solutions</h3>
@@ -439,7 +439,7 @@ _ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (2, 2)) </code
 <section id="conclusion" class="level3">
 <h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
 <p>Overall, the two-pass approach strikes the best balance of speed, efficiency, and simplicity, making it ideal for high-iteration calculations of the Hopalong Attractor. Despite the need to recalculate trajectory points, it avoids the pitfalls of alternative solutions.</p>
-<p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
+<p><a href="#calculate-visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 </section>
 </section>
 <section id="recent-code-changes" class="level2">
@@ -477,7 +477,7 @@ cbar.set_label('Pixel Density')  # title 'colorbar'
 <li><a href="https://docs.python.org/3/library/time.html#module-time">Python Time Module</a>: Time access and conversions.</li>
 <li><a href="https://docs.python.org/3/library/resource.html">Python Resource Module</a>: Interface for getting and setting resource limits.</li>
 </ol>
-<p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
+<p><a href="#calculate-visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 </section>
 </section>
 </section>

@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.56">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>readme</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="README_files/libs/clipboard/clipboard.min.js"></script>
+<script src="README_files/libs/quarto-html/quarto.js"></script>
+<script src="README_files/libs/quarto-html/popper.min.js"></script>
+<script src="README_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="README_files/libs/quarto-html/anchor.min.js"></script>
+<link href="README_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="README_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="README_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="README_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="README_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+
+<section id="calculate-visualize-the-hopalong-attractor-with-python" class="level1">
+<h1>Calculate &amp; Visualize the Hopalong Attractor with Python</h1>
+<ul>
+<li><a href="#calculate--visualize-the-hopalong-attractor-with-python">Calculate &amp; Visualize the Hopalong Attractor with Python</a>
+<ul>
+<li><a href="#abstract">Abstract</a>
+<ul>
+<li><a href="#the-chosen-core-algorithm-and-the-motivation-for-it">The chosen core algorithm and the motivation for it</a></li>
+</ul></li>
+<li><a href="#requirements">Requirements</a></li>
+<li><a href="#usage">Usage</a>
+<ul>
+<li><a href="#input-parameters">Input Parameters</a></li>
+<li><a href="#output">Output</a></li>
+</ul></li>
+<li><a href="#features-functionality-and-special-scenarios">Features, Functionality, and Special Scenarios</a>
+<ul>
+<li><a href="#program-variants">Program Variants</a></li>
+<li><a href="#image-pixels-and-color-mapping">Image Pixels and Color Mapping</a></li>
+<li><a href="#pixel-hit-counts-density-and-visualization">Pixel Hit Counts (Density) and Visualization</a></li>
+<li><a href="#application-of-copysign-math-module-as-signum-function">Application of Copysign (Math Module) as Signum function</a></li>
+<li><a href="#special-constellations-and-attractor-edge-cases">Special constellations and attractor edge cases</a></li>
+<li><a href="#optional-features">Optional Features</a></li>
+</ul></li>
+<li><a href="#performance-optimization">Performance Optimization</a>
+<ul>
+<li><a href="#just-in-time-compilation-jit">Just-In-Time Compilation (JIT)</a></li>
+<li><a href="#dummy-calls">Dummy Calls</a></li>
+<li><a href="#parallelization-and-race-conditions">Parallelization and race conditions</a></li>
+<li><a href="#two-pass-approach">Two-Pass Approach</a></li>
+<li><a href="#two-pass-code-section">Two-Pass Code Section</a></li>
+<li><a href="#alternative-solutions">Alternative Solutions</a>
+<ul>
+<li><a href="#one-pass-approach-with-caching">One-Pass Approach with Caching</a></li>
+<li><a href="#chunked-one-pass-approach-with-caching">Chunked One-Pass Approach with caching</a></li>
+<li><a href="#one-pass-approach-without-caching">One-Pass Approach without Caching</a></li>
+<li><a href="#possible-other-more-sophisticated-solutions">Possible other, more sophisticated solutions</a></li>
+</ul></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul></li>
+<li><a href="#recent-code-changes">Recent Code Changes</a></li>
+<li><a href="#enjoy-the-exploration">Enjoy the Exploration</a></li>
+<li><a href="#references">References</a>
+<ul>
+<li><a href="#references-for-python-libraries-and-modules">References for Python Libraries and Modules</a></li>
+</ul></li>
+</ul></li>
+</ul>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>The “Hopalong” attractor<top><em><top>, invented by Barry Martin of Aston University in Birmingham, England, was popularized by A.K. Dewdney in the September 1986 issue of Scientific American. In Germany, it gained further recognition through a translation titled “Hüpfer” in Spektrum der Wissenschaft.<br>
+<sub></sub></top></em>Nicknamed by A.K. Dewdney.</top></p>
+<p>This Python program computes and visualizes the “hopalong” attractor by iterating the following system of recursive functions (1) and (2):</p>
+<p><span class="math display">\[
+\begin{cases}
+x_n+1\space=&amp;y_n-sgn(x_n)\times\sqrt{∣b\times x_n-c∣}&amp;(1) \\
+y_n+1\space=&amp;a-x_n&amp;(2)
+\end{cases}
+\]</span></p>
+<p>Where:</p>
+<ul>
+<li>x<sub>n</sub> and y<sub>n</sub> represent the coordinates at the nth iteration.</li>
+<li>a, b, c are user defined parameters that shape the attractor</li>
+<li>The sequence starts from an initial point (x<sub>0</sub> , y<sub>0</sub>) = (0 , 0)</li>
+</ul>
+<section id="the-chosen-core-algorithm-and-the-motivation-for-it" class="level3">
+<h3 class="anchored" data-anchor-id="the-chosen-core-algorithm-and-the-motivation-for-it">The chosen core algorithm and the motivation for it</h3>
+<p>A two-pass algorithm is employed to compute the Hopalong Attractor by sequential processing in both passes through straightforward structure and loops.</p>
+<ul>
+<li><p>In the first pass, the algorithm determines the overall trajectory extents, which consist of the minimum and maximum values of the attractor trajectory. Python functions such as min(), max() were intentionally not used.</p></li>
+<li><p>In the second pass, the algorithm generates the sequence of trajectory points and maps them directly to image pixel coordinates, representing the attractor hit pattern (pixel value &gt; 0). This hit information is updated and stored in an image array, which is initialized with zero values.</p></li>
+</ul>
+<p>The program uses Matplotlib to represent the attractor as an image in order to take advantage of its extensive image processing and manipulation capabilities. With optimal and consistent processing speed, it supports a very high number of iterations with low memory footprint. The program is designed with minimal complexity to allow effective use of Just-In-Time (JIT) compilation, thus further improving execution speed.</p>
+<p>For further hints regarding two-pass approach, see <a href="#two-pass-approach">Two-Pass Approach</a></p>
+<p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
+</section>
+</section>
+<section id="requirements" class="level2">
+<h2 class="anchored" data-anchor-id="requirements">Requirements</h2>
+<p>To run this program, the following Python libraries or Modules must be installed / imported:</p>
+<ul>
+<li>matplotlib *</li>
+<li>numpy *<br>
+</li>
+<li>numba * <sub>(as of October 26, 2024, Numba only supports Python versions up to 3.12.7. Versions 3.13.x are currently not supported)</sub></li>
+<li>math *</li>
+</ul>
+<p>(* mandatory)</p>
+<p>Optional (for performance tracking):</p>
+<ul>
+<li>time</li>
+<li>resource</li>
+</ul>
+<p>Import the “Time” and “Resource” libraries if you want to track process time and system memory used. Otherwise, please comment out the relevant code snippets at import section and main() function.</p>
+<pre><code>#...
+#import time
+#import resource 
+
+# Start the time measurement
+# start_time = time.process_time()
+
+#...
+
+# End the time measurement
+# end_time = time.process_time()
+
+"""
+# Calculate the CPU user and system time
+cpu_sys_time_used = end_time - start_time
+# Calculate the memory resources used
+memMb=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024.0/1024.0
+print(f'CPU User&amp;System time used: {cpu_sys_time_used:.2f} seconds')
+print (f'Memory (RAM): {memMb:.2f} MByte used')
+"""</code></pre>
+<p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
+</section>
+<section id="usage" class="level2">
+<h2 class="anchored" data-anchor-id="usage">Usage</h2>
+<section id="input-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="input-parameters">Input Parameters</h3>
+<p>Upon running the program, you’ll be prompted to enter the following parameters:</p>
+<ul>
+<li>a (float or integer): Parameter ‘a’ of the Hopalong equation.<br>
+</li>
+<li>b (float or integer): Parameter ‘b’ of the Hopalong equation.<br>
+</li>
+<li>c (float or integer): Parameter ‘c’ of the Hopalong equation.<br>
+</li>
+<li>num (integer): The number of iterations (e.g., 1000000 or 1_000_000).</li>
+</ul>
+<p>Example parameters:</p>
+<ul>
+<li>a = -2<br>
+</li>
+<li>b = -0.33<br>
+</li>
+<li>c = 0.01<br>
+</li>
+<li>num = 200_000_000</li>
+</ul>
+<p>These parameters directly influence the appearance of the attractor, with different values yielding different patterns.</p>
+</section>
+<section id="output" class="level3">
+<h3 class="anchored" data-anchor-id="output">Output</h3>
+<p>The program generates a visual representation of the Hopalong Attractor. The resulting image displays the trajectory where colors represent the “density of hits” (i.e., how often a particular point was visited).</p>
+<p>Basic Version</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./examples/Figure_ex_1.png" class="img-fluid figure-img"></p>
+<figcaption>Example Attractor Image</figcaption>
+</figure>
+</div>
+<p>Extended Version</p>
+<p><img src="./examples/Figure_ex_2.png" class="img-fluid" alt="Example Attractor Image"> <a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
+</section>
+</section>
+<section id="features-functionality-and-special-scenarios" class="level2">
+<h2 class="anchored" data-anchor-id="features-functionality-and-special-scenarios">Features, Functionality, and Special Scenarios</h2>
+<section id="program-variants" class="level3">
+<h3 class="anchored" data-anchor-id="program-variants">Program Variants</h3>
+<p>This program is available in two versions:</p>
+<ul>
+<li>Basic version: Calculation and display of the Hopalong Attractor and the pixel density via a color bar.</li>
+<li>Extended version: Includes the features of the basic version except color bar, plus statistics and visualization of the pixel hit counts distribution.</li>
+</ul>
+<p>Examples of outputs can be found in the “Usage” section above.</p>
+</section>
+<section id="image-pixels-and-color-mapping" class="level3">
+<h3 class="anchored" data-anchor-id="image-pixels-and-color-mapping">Image Pixels and Color Mapping</h3>
+<p>In both versions of the program (basic and extended), pixels are color-coded based on the number of times the trajectory points “hit” them, referred to as the “pixel hit count.”</p>
+</section>
+<section id="pixel-hit-counts-density-and-visualization" class="level3">
+<h3 class="anchored" data-anchor-id="pixel-hit-counts-density-and-visualization">Pixel Hit Counts (Density) and Visualization</h3>
+<ul>
+<li><p>Point to Pixel Mapping:<br>
+Trajectory points are floating-point values and do not directly correspond to pixel coordinates. Instead, these points are mapped to integer pixel coordinates of the image. The mapping process involves scaling factors that take into account the image size and the trajectory extents (minimum and maximum values). For more details, see the “compute_trajectory_and_image” function in the code.</p></li>
+<li><p>Lossy Integer Conversion and Density Representation:<br>
+When floating-point values are mapped to pixel coordinates, they are converted to integers. This conversion allows closely spaced points of the floating-point plane to be assigned to the same integer pixel, leading to some pixels being “hit” multiple times. Initially, the image array is set to zero. Each time a pixel is hit, its value is incremented, which results in varying hit counts across the image. These hit counts provide a discrete measure of concentration, indicating the density and proximity of the trajectory points in floating-point plane. The total number of hit counts matches the number of iterations.</p></li>
+<li><p>Visualization with Colormap:<br>
+Matplotlib’s “hot” colormap is used to represent the hit count information. Matplotlib applies normalization to scale the hit count within the limited color range of the colormap. This scaling creates a color gradient that ranges from dark colors, indicating low hit counts, to light colors, indicating high hit counts. Consequently, the colormap effectively visualizes areas of higher activity within the attractor.</p></li>
+</ul>
+<p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
+</section>
+<section id="application-of-copysign-math-module-as-signum-function" class="level3">
+<h3 class="anchored" data-anchor-id="application-of-copysign-math-module-as-signum-function">Application of Copysign (Math Module) as Signum function</h3>
+<p>The programs now utilizes the math.copysign function “copysign(x,y)”<br>
+Return a float with the magnitude (absolute value) of x but the sign of y.<br>
+On platforms that support signed zeros, copysign(1.0, -0.0) returns -1.0.</p>
+<p><span class="math display">\[
+copysign(1.0,x) =\begin{cases}
+1.0  &amp; if &amp; x &amp; is &amp;positive, &amp; +0.0 &amp; or &amp;INFINITY \\
+-1.0 &amp; if &amp; x &amp; is &amp;negative, &amp; -0.0 &amp; or &amp;NEG. INFINITY
+\end{cases}
+\]</span></p>
+<p>This adjustment changes the behavior of some cases to produce intricate patterns. For example:</p>
+<ul>
+<li><p>a = 1, b = 2, c = 3 or</p></li>
+<li><p>a = 0, b = 1, c = 1 or</p></li>
+<li><p>a = 1, b =1, c = 1</p></li>
+</ul>
+</section>
+<section id="special-constellations-and-attractor-edge-cases" class="level3">
+<h3 class="anchored" data-anchor-id="special-constellations-and-attractor-edge-cases">Special constellations and attractor edge cases</h3>
+<p>Certain parameter sets will not produce intricate patterns such as:</p>
+<ul>
+<li><p>Set 1: a = p , b = 0, c = 0</p></li>
+<li><p>Set 2: a = p, b = 0, c = p</p></li>
+<li><p>Set 3: a = p, b = p, c = 0</p></li>
+</ul>
+<p>Where (p) is a constant parameter that remains the same within each of these sets.</p>
+<p>Instead, you may observe high-density cycles, characterized by a relatively small number of pixels being hit repeatedly. This suggests that in these cases, the system may settle into a periodic orbit. Additionally, it seems that certain of these “high-density cycle pixels” lie at the boundaries of the attractor extents.</p>
+<p>For example, with parameter set (3) the Hopalong equations are given by:</p>
+<p><span class="math display">\[
+\begin{cases}
+x_n+1\space=&amp;y_n-sgn(x_n)\times\sqrt{∣p\times x_n∣}&amp;(1) \\
+y_n+1\space=&amp;p-x_n&amp;(2)
+\end{cases}
+\]</span></p>
+<p>and we observe the 3-cycle: (0, 0), (0, p), and (p, p). The pixel density is: num / 3</p>
+<p>start: (x<sub>0</sub> , y<sub>0</sub>) = (0 , 0)</p>
+<p>–&gt; (x<sub>1</sub> , y<sub>1</sub>) = (0 , p)</p>
+<p>–&gt; (x<sub>2</sub> , y<sub>2</sub>) = (p , p)</p>
+<p>–&gt; (x<sub>3</sub> , y<sub>3</sub>) = (0 , 0), cycle completed</p>
+<p>So If you want to experiment with this, it is recommend that you reduce the total number of pixels by reducing the image resolution (e.g.&nbsp;100x100) in order to achieve a better visual representation of the pixels bordering the minimum and maximum extents of the trajectory.</p>
+<pre><code>def main(image_size=(100, 100), color_map='hot'):</code></pre>
+<p>By the way, this scenario is an ideal use case for the extended program version with pixel hit count statistics.</p>
+<p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
+</section>
+<section id="optional-features" class="level3">
+<h3 class="anchored" data-anchor-id="optional-features">Optional Features</h3>
+<p>Execution time* and resources: Starts after user input and measures the CPU time for the entire process including image rendering and shows the system memory used.</p>
+<p>*Since interactions with the plot window, e.g.&nbsp;zooming, panning, mouse movements, are measured, it is recommended to close the plot window automatically. This can be done, for example, by using the commands plt.pause(1) followed by plt.close(fig). As long as there is no interaction with the plot window, the “plt.pause() time” is not recorded by the “time.process_time()” function used.</p>
+<pre><code>#plt.show()
+plt.pause(1)
+plt.close(fig)</code></pre>
+<p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
+</section>
+</section>
+<section id="performance-optimization" class="level2">
+<h2 class="anchored" data-anchor-id="performance-optimization">Performance Optimization</h2>
+<section id="just-in-time-compilation-jit" class="level3">
+<h3 class="anchored" data-anchor-id="just-in-time-compilation-jit">Just-In-Time Compilation (JIT)</h3>
+<p>The program leverages the Numba JIT just-in-time compilation for performance optimization. This avoids the overhead of Python’s interpreter, providing a significant speedup over standard Python loops.</p>
+</section>
+<section id="dummy-calls" class="level3">
+<h3 class="anchored" data-anchor-id="dummy-calls">Dummy Calls</h3>
+<p>For JIT-compiled functions dummy calls are made. This step ensures that the function is precompiled before it is called by the interpreter, thus avoiding compilation overhead the first time the code is executed.</p>
+</section>
+<section id="parallelization-and-race-conditions" class="level3">
+<h3 class="anchored" data-anchor-id="parallelization-and-race-conditions">Parallelization and race conditions</h3>
+<p>The parallel loop function “prange” from the “Numba” library, which is fundamentally not applicable for cross-iteration dependencies, such as here when calculating the trajectory points of recursive functions, is therefore not used. A restructuring of the second pass, in which a separate function populates the image array with prange, would be possible, but would lead to potential race conditions with an inconsistent pixel hit rate and was therefore not implemented.</p>
+<p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
+</section>
+<section id="two-pass-approach" class="level3">
+<h3 class="anchored" data-anchor-id="two-pass-approach">Two-Pass Approach</h3>
+<p>By separating the extent calculation (first pass) from trajectory point mapping (second pass), this approach allows for efficient sequential processing. Knowing the overall trajectory extents in advance enables direct and efficient mapping of points to image pixels, optimizing memory usage and maintaining consistent performance.</p>
+<ul>
+<li><p>Memory Efficiency: The two-pass approach reduces memory requirements by recalculating trajectory points, eliminating the need for large-scale caching.</p></li>
+<li><p>JIT Compatibility: The simple, sequential structure is well-suited for Just-In-Time (JIT) compilation, enhancing execution speed.</p></li>
+<li><p>Scalability: As the number of iterations grows, the two-pass approach’s efficiency in memory usage and processing speed becomes much more advantageous.</p></li>
+</ul>
+<p>Disadvantage:<br>
+Trajectory points must be computed in both passes, but the impact of this trade-off is quite small and as mentioned above, as the number of iterations increases, the efficiency of the two-pass approach becomes much more advantageous in terms of memory usage and processing speed.</p>
+</section>
+<section id="two-pass-code-section" class="level3">
+<h3 class="anchored" data-anchor-id="two-pass-code-section">Two-Pass Code Section</h3>
+<pre><code>@njit #njit is an alias for nopython=True
+def compute_trajectory_extents(a, b, c, num):
+# Dynamically compute and track the minimum and maximum extents of the trajectory over 'num' iterations.
+x = np.float64(0.0)
+y = np.float64(0.0)
+
+min_x = np.inf  # ensure that the initial minimum is determined correctly
+max_x = -np.inf # ensure that the initial maximum is determined correctly
+min_y = np.inf
+max_y = -np.inf
+
+for _ in range(num):
+# selective min/max update using direct comparisons avoiding min/max function
+    if x &lt; min_x:
+        min_x = x
+    if x &gt; max_x:
+        max_x = x
+    if y &lt; min_y:
+        min_y = y
+    if y &gt; max_y:
+        max_y = y
+    # signum function respecting the behavior of floating point numbers according to IEEE 754 (signed zero)
+    xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
+    yy = a-x
+    x = xx
+    y = yy
+return min_x, max_x, min_y, max_y  
+
+# Dummy call to ensure the function is pre-compiled by the JIT compiler before it's called by the interpreter.
+_ = compute_trajectory_extents(1.0, 1.0, 1.0, 2) 
+
+
+@njit
+def compute_trajectory_and_image(a, b, c, num, extents, image_size):
+# Compute the trajectory and populate the image with trajectory points
+image = np.zeros(image_size, dtype=np.uint64)
+
+# pre-compute image scale factors
+min_x, max_x, min_y, max_y = extents
+scale_x = (image_size[0] - 1) / (max_x - min_x)
+scale_y = (image_size[1] - 1) / (max_y - min_y)
+
+x = np.float64(0.0)
+y = np.float64(0.0)
+
+for _ in range(num):
+    # map trajectory points to image pixel coordinates
+    px = np.uint64((x - min_x) * scale_x)
+    py = np.uint64((y - min_y) * scale_y)
+    # populate the image array "on the fly" with each computed point
+    image[py, px] += 1  # respecting row/column convention, update # of hits
+
+    # Update the trajectory "on the fly"
+    xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
+    yy = a-x
+    x = xx
+    y = yy
+    
+return image
+# Dummy call to ensure the function is pre-compiled by the JIT compiler before it's called by the interpreter.
+_ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (2, 2)) </code></pre>
+<p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
+</section>
+<section id="alternative-solutions" class="level3">
+<h3 class="anchored" data-anchor-id="alternative-solutions">Alternative Solutions</h3>
+<p>While the two-pass approach is the chosen solution, it is important to consider alternative strategies that could be employed for trajectory calculations. Below are some alternative solutions that were evaluated, each with its own trade-offs in performance, memory usage, and complexity.</p>
+<section id="one-pass-approach-with-caching" class="level4">
+<h4 class="anchored" data-anchor-id="one-pass-approach-with-caching">One-Pass Approach with Caching</h4>
+<ul>
+<li>Description: Trajectory points are calculated only once and stored in an array which allows the use of Numpy’s vectorization capabilities, such as the vectorized determination of the trajectory extents and the mapping of trajectory points to image pixels.</li>
+<li>Disadvantages: Depending on the number of iterations, large memory resources are required for caching the trajectory points and there may be performance degradation due to system memory swapping or even memory overflows. However, this depends on the system environment.</li>
+</ul>
+</section>
+<section id="chunked-one-pass-approach-with-caching" class="level4">
+<h4 class="anchored" data-anchor-id="chunked-one-pass-approach-with-caching">Chunked One-Pass Approach with caching</h4>
+<ul>
+<li>Description: Trajectory points are processed in smaller segments (chunks) while caching points to manage memory usage.</li>
+<li>Disadvantages: While it keeps memory consumption low, this method adds complexity and overhead, often resulting in performance that is similar to or slower than the two-pass method.</li>
+</ul>
+</section>
+<section id="one-pass-approach-without-caching" class="level4">
+<h4 class="anchored" data-anchor-id="one-pass-approach-without-caching">One-Pass Approach without Caching</h4>
+<ul>
+<li><p>Description: This method attempts to compute and map points in a single pass without storing previously computed points.</p></li>
+<li><p>Disadvantages: Requires continuous remapping of previously mapped pixels every time the trajectory extents change, making the method complicated and ineffective.</p></li>
+<li><p>Feasibility: Theoretical approach, practically infeasible due to the following major limitations:</p></li>
+<li><p>Data Loss and Inability to Recover Exactly: Due to the lossy nature of integer mapping<em>, previously computed floating-point values cannot be retrieved for remapping, making it impossible to recover the original values once they have been mapped to integers.<br>
+<sub></sub></em>several closely spaced points of the floating point plane can be contained in an integer pixel.</p></li>
+</ul>
+</section>
+<section id="possible-other-more-sophisticated-solutions" class="level4">
+<h4 class="anchored" data-anchor-id="possible-other-more-sophisticated-solutions">Possible other, more sophisticated solutions</h4>
+<p>No other solutions have been investigated or considered so far. More sophisticated solutions also contradict the approach of minimal complexity design. Unless a further significant performance increase for high-iteration calculations would make it interesting to consider.</p>
+</section>
+</section>
+<section id="conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
+<p>Overall, the two-pass approach strikes the best balance of speed, efficiency, and simplicity, making it ideal for high-iteration calculations of the Hopalong Attractor. Despite the need to recalculate trajectory points, it avoids the pitfalls of alternative solutions.</p>
+<p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
+</section>
+</section>
+<section id="recent-code-changes" class="level2">
+<h2 class="anchored" data-anchor-id="recent-code-changes">Recent Code Changes</h2>
+<p>Utilize a ‘Color Bar’ to indicate the Pixel Density (Basic Version)</p>
+<pre><code>#...
+img=ax.imshow(image, origin='lower', cmap=color_map, extent=extents, interpolation='none')  # modification 'img=ax.imshow' to apply 'colorbar'
+#...
+cbar = fig.colorbar(img, ax=ax,location='bottom') #'colorbar'
+cbar.set_label('Pixel Density')  # title 'colorbar'
+ä...</code></pre>
+</section>
+<section id="enjoy-the-exploration" class="level2">
+<h2 class="anchored" data-anchor-id="enjoy-the-exploration">Enjoy the Exploration</h2>
+<p>Experiment with different image resolutions, color maps or populate the image array differently than based on the hit count and explore new visual views.</p>
+<hr>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<p>Computers in Art, Design and Animation (J. Landsdown and R. A. Earnshaw, eds.), New York: Springer–Verlag, 1989.</p>
+<p>Barry Martin, “Graphic Potential of Recursive Functions,” in Computers in Art, Design and Animation pp.&nbsp;109–129.</p>
+<p>ISBN-13: 978-1-4612-8868-8, e-ISBN-13: 978-1-4612-4538-4</p>
+<hr>
+<p>A.K. Dewdney in Spektrum der Wissenschaft “Computer Kurzweil” 1988, (German version of Scientific American)</p>
+<p>ISBN-10: 3922508502, ISBN-13: 978-3922508502</p>
+<hr>
+<section id="references-for-python-libraries-and-modules" class="level3">
+<h3 class="anchored" data-anchor-id="references-for-python-libraries-and-modules">References for Python Libraries and Modules</h3>
+<ol type="1">
+<li><a href="https://numpy.org/doc/stable/">NumPy Documentation</a>: NumPy is a fundamental package for scientific computing in Python.</li>
+<li><a href="https://matplotlib.org/stable/contents.html">Matplotlib Documentation</a>: A library for creating static, interactive, and animated visualizations.</li>
+<li><a href="https://numba.readthedocs.io/">Numba Documentation</a>: Numba is a just-in-time compiler for optimizing numerical computations.</li>
+<li><a href="https://docs.python.org/3/library/functions.html">Python Built-in Functions</a>: Overview of built-in functions available in Python.</li>
+<li><a href="https://docs.python.org/3/library/math.html">Python Math Module</a>: Access mathematical functions defined by the C standard.</li>
+<li><a href="https://docs.python.org/3/library/time.html#module-time">Python Time Module</a>: Time access and conversions.</li>
+<li><a href="https://docs.python.org/3/library/resource.html">Python Resource Module</a>: Interface for getting and setting resource limits.</li>
+</ol>
+<p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

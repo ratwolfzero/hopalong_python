@@ -5,8 +5,8 @@ from math import copysign
 
 
 # Parameters for the Hopalong attractor
-a = 5-1
-b = 5-1
+a = 5.1
+b = 5.1
 c = 0.0
 
 # Number of iterations
@@ -42,7 +42,7 @@ for n in range(iterations - 1):
 # Plot the results
 
 plt.figure(figsize=(8, 8))
-plt.plot(x, y, 'o', c='red', markersize=0.2)
+plt.plot(x, y, 'o', c='red', markersize=5)
 plt.title(f'Hopalong Attractor with a={a}, b={b}, c={c}')
 plt.xlabel('x')
 plt.ylabel('y')

@@ -107,18 +107,29 @@ _ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (2, 2))
 def render_trajectory_image(image, extents, params, color_map):
     # Render the trajectory image
     fig = plt.figure(figsize=(8, 8))
-    ax = fig.add_subplot(1, 1, 1) #aspect='auto')
-    # origin='lower' align according cartesian coordinates
-    img=ax.imshow(image, origin='lower', cmap=color_map, extent=extents, interpolation='none')  # modification 'img=ax.imshow' to apply 'colorbar'
+    ax = fig.add_subplot(1, 1, 1)
+    
+    # Display the image
+    img = ax.imshow(image, origin='lower', cmap=color_map, extent=extents, interpolation='none')
+
     ax.set_title('Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}'.format(**params))
     ax.set_xlabel('X (Cartesian)')
     ax.set_ylabel('Y (Cartesian)')
 
     #plt.savefig('hopalong.svg', format='svg', dpi=1200)
 
-    cbar = fig.colorbar(img, ax=ax,location='bottom') #'colorbar'
-    cbar.set_label('Pixel Density')  # title 'colorbar'
-    
+    # Create the colorbar
+    cbar = fig.colorbar(img, ax=ax, location='bottom')
+    cbar.set_label('Pixel Density. (Scale = 1 - max)')  # Title for colorbar
+
+    # Set ticks to display the exact max hit count
+    max_hit_count = np.max(image)  # Get the maximum hit count from the image
+    tick_positions = np.linspace(1, max_hit_count, num=8)  # Choose 8 tick positions
+    tick_labels = (int(tick) for tick in tick_positions)  # Format tick labels as integers
+
+    cbar.set_ticks(tick_positions)  # Set ticks on the colorbar
+    cbar.set_ticklabels(tick_labels)  # Set formatted labels
+
     plt.tight_layout()
     plt.show()
     #plt.pause(1)

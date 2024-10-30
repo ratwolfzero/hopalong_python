@@ -384,8 +384,18 @@ Utilize a 'Color Bar' to indicate the Pixel Density (Basic Version)
     #...
     img=ax.imshow(image, origin='lower', cmap=color_map, extent=extents, interpolation='none')  # modification 'img=ax.imshow' to apply 'colorbar'
     #...
-    cbar = fig.colorbar(img, ax=ax,location='bottom') #'colorbar'
-    cbar.set_label('Pixel Density')  # title 'colorbar'
+
+    # Create the colorbar
+    cbar = fig.colorbar(img, ax=ax, location='bottom')
+    cbar.set_label('Pixel Density. (Scale = 1 - max)')  # Title for colorbar
+
+    # Set ticks to display the exact max hit count
+    max_hit_count = np.max(image)  # Get the maximum hit count from the image
+    tick_positions = np.linspace(1, max_hit_count, num=8)  # Choose 8 tick positions
+    tick_labels = (int(tick) for tick in tick_positions)  # Format tick labels as integers
+
+    cbar.set_ticks(tick_positions)  # Set ticks on the colorbar
+    cbar.set_ticklabels(tick_labels)  # Set formatted labels
     ä...
 
 ## Enjoy the Exploration

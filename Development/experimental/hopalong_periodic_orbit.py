@@ -5,12 +5,12 @@ from math import copysign
 
 
 # Parameters for the Hopalong attractor
-a = -2
-b = -0.33
-c = 0.01
+a = 5-1
+b = 5-1
+c = 0.0
 
 # Number of iterations
-iterations = 2000000
+iterations = 1000000
 # Initialize arrays to hold the points
 x = np.zeros(iterations)
 y = np.zeros(iterations)

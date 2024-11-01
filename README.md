@@ -400,7 +400,7 @@ Utilize a 'Color Bar' to indicate the Pixel Density (Basic Version)
 
     cbar.set_ticks(tick_positions)  # Set ticks on the colorbar
     cbar.set_ticklabels(tick_labels)  # Set formatted labels
-    ä...
+    #...
 
 ## Enjoy the Exploration
 

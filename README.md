@@ -187,7 +187,8 @@ which returns a float with the magnitude (absolute value) of x but the sign of y
 On platforms that support signed zeros, copysign(1.0, -0.0) returns -1.0.
 
 $$
-copysign(1.0,x) =\begin{cases}
+\text{copysign}(1.0,x) =
+\begin{cases}
 1.0  & if & x & is &positive, & +0.0 & or &INFINITY \\
 -1.0 & if & x & is &negative, & -0.0 & or &NEG. INFINITY
 \end{cases}

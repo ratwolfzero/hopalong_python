@@ -256,7 +256,7 @@ The program leverages the Numba JIT just-in-time compilation for performance opt
   
 ### Dummy Calls
 
-For JIT-compiled functions dummy calls are made. Dummy calls are preliminary invocations of the JIT-compiled function that prompt the Numba compiler to generate machine code before the function is used in the main execution flow.This step ensures that the function is precompiled before it is called by the interpreter, thus avoiding compilation overhead the first time the code is executed.
+For JIT-compiled functions dummy calls are made. Dummy calls are preliminary invocations of the JIT-compiled function that prompt the Numba compiler to generate machine code before the function is used in the main execution flow. This step ensures that the function is precompiled before it is called by the interpreter, thus avoiding compilation overhead the first time the code is executed. This process is similar to "eager compilation", where the compilation occurs ahead of time, but does not require the explicit function signatures in the function header.
 
 ### Parallelization and race conditions
 

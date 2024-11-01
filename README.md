@@ -45,10 +45,12 @@ y_n+1\space=&a-x_n&(2)
 $$
 
 Where:
+
 - x<sub>n</sub> and y<sub>n</sub> represent the coordinates at the nth iteration.
 - a, b, c are user defined parameters that shape the attractor
 - The sequence starts from an initial point (x<sub>0</sub> , y<sub>0</sub>) = (0 , 0)
 - sgn = signum function
+
 $$
 sgn (x) =\begin{cases}
 -1.0  & if & x & < 0 \\

@@ -166,8 +166,8 @@ Lossy Integer Conversion and Density Representation:
 
 During the mapping process, the floating-point coordinates are converted to integers to determine their corresponding pixel locations. This conversion is "lossy" because closely spaced trajectory points can end up being assigned to the same pixel index, resulting in multiple hits for that pixel. Initially, the image array is set to zero, and each time a pixel is hit by a trajectory point, the count at that pixel's index is incremented. Consequently, pixels that receive more hits represent areas of higher density, indicating that more trajectory points have passed through them. The varying hit counts across the image effectively provide a discrete measure of the concentration of trajectory points, with the total number of hits reflecting the number of iterations performed in the simulation.
 
-- Visualization with Colormap:  
-  Matplotlib's "hot" colormap is used to represent the hit count information. Matplotlib applies normalization to scale the hit count within the limited color range of the colormap. This scaling creates a color gradient that ranges from dark colors, indicating low hit counts, to light colors, indicating high hit counts. Consequently, the colormap effectively visualizes areas of higher activity within the attractor.
+Visualization with Colormap:  
+Matplotlib's "hot" colormap is used to represent the hit count information. Matplotlib applies normalization to scale the hit count within the limited color range of the colormap. This scaling creates a color gradient that ranges from dark colors, indicating low hit counts, to light colors, indicating high hit counts. Consequently, the colormap effectively visualizes areas of higher activity within the attractor.
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 

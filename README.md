@@ -361,13 +361,12 @@ While the two-pass approach is the chosen solution, it is important to consider 
 
 - Description: This method attempts to compute and map points in a single pass without storing previously computed points.
 
-- Disadvantages: Requires continuous remapping of previously mapped pixels every time the trajectory extents change, making the method complicated and ineffective.
+- Disadvantages: Requires continuous remapping of previously mapped pixels every time the trajectory extents change, making the method complex and potentially inefficient.
 
 - Feasibility:
 Theoretical approach, practically infeasible due to the following major limitations:
 
-- Data Loss and Inability to Recover Exactly: Due to the lossy nature of integer mapping*, previously computed floating-point values cannot be retrieved for remapping, making it impossible to recover the original values once they have been mapped to integers.  
-<sub>*several closely spaced points of the floating point plane can be contained in an integer pixel.</sub>
+- Data Loss and Inability to Recover Exactly: Due to the lossy nature of integer mapping, where several closely spaced floating-point values may be represented by the same integer pixel, previously computed floating-point values cannot be retrieved for remapping. This loss of information makes it impossible to recover the original values once they have been mapped to integers.
 
 #### Possible other, more sophisticated solutions
 

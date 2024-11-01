@@ -2,7 +2,7 @@
   "sections" : [
     {
       "type" : "plain",
-      "contents" : "\n$$\nsgn (x) =\\begin{cases}\n-1.0  & if & x & < 0 \\\\\n0  & if & x & = 0 \\\\\n1.0  & if & x & > 0\n\\end{cases}\n$$\n\n\n\n$$\nX =\\begin{cases}\n1.0  & if & x & is &positive, & +0.0 & or &INFINITY \\\\\n-1.0 & if & x & is &negative, & -0.0 & or &NEG. INFINITY\n\\end{cases}\n$$\n\n\n$$\n\\begin{cases}\nx_n+1 & = y_n-sgn(x_n)\\times\\sqrt{∣b\\times x_n−c∣} &(1) \\\\\ny_n+1 & = a-x_n &(2)\n\\end{cases}\n$$"
+      "contents" : "\n$$\n\\text{sgn}(x) =\n\\begin{cases}\n-1 & \\text{if } x < 0 \\\\\n0 & \\text{if } x = 0 \\\\\n1 & \\text{if } x > 0\n\\end{cases}\n$$\n\n\n$$\n\\text{copysign}(1.0,x) =\n\\begin{cases}\n1.0  & \\text{if } & \\text{x } & \\text{is} &\\text{positive}, & \\text{0.0} & or &\\text{infinity} \\\\\n-1.0 & \\text{if } & \\text{x } & \\text{is} &\\text{negative}, & \\text{-0.0} & or &\\text{neg.infinity}\n\\end{cases}\n$$\n\n\n$$\n\\begin{cases}\nx_{n+1} = y_n - \\text{sgn}(x_n) \\times \\sqrt{|b \\times x_n - c|} \\\\\ny_{n+1} = a - x_n\n\\end{cases}\n$$"
     }
   ],
   "metadata" : {

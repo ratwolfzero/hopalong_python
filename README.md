@@ -189,10 +189,11 @@ On platforms that support signed zeros, copysign(1.0, -0.0) returns -1.0.
 $$
 \text{copysign}(1.0,x) =
 \begin{cases}
-1.0  & if & x & is &positive, & +0.0 & or &INFINITY \\
--1.0 & if & x & is &negative, & -0.0 & or &NEG. INFINITY
+1.0  & \text{if } & \text{x } & \text{is} &\text{positive}, & \text{0.0} & or &\text{infinity} \\
+-1.0 & \text{if } & \text{x } & \text{is} &\text{negative}, & \text{-0.0} & or &\text{neg.infinity}
 \end{cases}
 $$
+
 
 This adjustment alters the behavior of certain parameter sets, resulting in intricate patterns instead of periodic orbits or fixed point( (0, 0) with a = 0), which is the case when using the standard signum function.
 

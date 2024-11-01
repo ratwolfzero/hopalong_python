@@ -168,8 +168,6 @@
 <li><a href="#performance-optimization">Performance Optimization</a>
 <ul>
 <li><a href="#just-in-time-compilation-jit">Just-In-Time Compilation (JIT)</a></li>
-<li><a href="#dummy-calls">Dummy Calls</a></li>
-<li><a href="#parallelization-and-race-conditions">Parallelization and race conditions</a></li>
 <li><a href="#two-pass-approach">Two-Pass Approach</a></li>
 <li><a href="#two-pass-code-section">Two-Pass Code Section</a></li>
 <li><a href="#alternative-solutions">Alternative Solutions</a>
@@ -353,7 +351,7 @@ On platforms that support signed zeros, copysign(1.0, -0.0) returns -1.0.</p>
 </li>
 </ul>
 <p>Where (p) is a constant parameter that remains the same within each of these sets.</p>
-<p>Instead, you may observe high-density cycles, characterized by a relatively small number of pixels being hit repeatedly. This suggests that in these cases, the system may settle into a periodic orbit. Additionally, it seems that certain of these &quot;high-density cycle pixels&quot; lie at the boundaries of the attractor extents.</p>
+<p>Instead, you may observe high-density cycles, characterized by a relatively small number of pixels being hit repeatedly. This suggests that in these cases, the system may settle into a periodic orbit. Periodic orbits are trajectories in which the system returns to the same state after a fixed number of iterations. Additionally, it seems that certain of these &quot;high-density cycle pixels&quot; lie at the boundaries of the attractor extents.</p>
 <p>For example, with parameter set (3) the Hopalong equations are given by:</p>
 <p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo fence="true">{</mo><mtable rowspacing="0.36em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>+</mo><mn>1</mn><mtext> </mtext><mo>=</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi>y</mi><mi>n</mi></msub><mo>−</mo><mi>s</mi><mi>g</mi><mi>n</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo><mo>×</mo><msqrt><mrow><mo>∣</mo><mi>p</mi><mo>×</mo><msub><mi>x</mi><mi>n</mi></msub><mo>∣</mo></mrow></msqrt></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi>y</mi><mi>n</mi></msub><mo>+</mo><mn>1</mn><mtext> </mtext><mo>=</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>p</mi><mo>−</mo><msub><mi>x</mi><mi>n</mi></msub></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></mstyle></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">\begin{cases}
 x_n+1\space=&amp;y_n-sgn(x_n)\times\sqrt{∣p\times x_n∣}&amp;(1) \\
@@ -392,14 +390,15 @@ plt.close(fig)
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h2 id="performance-optimization">Performance Optimization</h2>
 <h3 id="just-in-time-compilation-jit">Just-In-Time Compilation (JIT)</h3>
-<p>The program leverages the Numba JIT just-in-time compilation for performance optimization. This avoids the overhead of Python's interpreter, providing a significant speedup over standard Python loops.</p>
-<h3 id="dummy-calls">Dummy Calls</h3>
-<p>For JIT-compiled functions dummy calls are made. This step ensures that the function is precompiled before it is called by the interpreter, thus avoiding compilation overhead the first time the code is executed.</p>
-<h3 id="parallelization-and-race-conditions">Parallelization and race conditions</h3>
-<p>The parallel loop function &quot;prange&quot; from the &quot;Numba&quot; library, which is fundamentally not applicable for cross-iteration dependencies, such as here when calculating the trajectory points of recursive functions, is therefore not used. A restructuring of the second pass, in which a separate function populates the image array with prange, would be possible, but would lead to potential race conditions with an inconsistent pixel hit rate and was therefore not implemented.</p>
+<p>The program leverages the Numba JIT just-in-time compilation for performance optimization. This avoids the overhead of Python's interpreter, providing a significant speedup over standard Python loops. JIT compilation translates Python code into machine code at runtime, allowing for more efficient execution of loops and mathematical operations.</p>
+<p>Dummy Calls</p>
+<p>Dummy calls are preliminary invocations of JIT-compiled functions that prompt the Numba compiler to generate machine code before the function is used in the main execution flow. This ensures that the function is precompiled, avoiding compilation overhead during its first actual execution. This process is akin to &quot;eager compilation,&quot; as it occurs ahead of time, but it does not require explicit function signatures in the header.</p>
+<p>Parallelization and Race Conditions</p>
+<p>The parallel loop function &quot;prange&quot; from the Numba library is not suitable for cross-iteration dependencies, such as those encountered when calculating trajectory points of recursive functions. While it is possible to restructure the second pass to use prange for populating the image array, this could introduce race conditions—situations where multiple threads access and modify shared data simultaneously, leading to inconsistent or unpredictable results. Therefore, this approach was not implemented.</p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h3 id="two-pass-approach">Two-Pass Approach</h3>
 <p>By separating the extent calculation (first pass) from trajectory point mapping (second pass), this approach allows for efficient sequential processing. Knowing the overall trajectory extents in advance enables direct and efficient mapping of points to image pixels, optimizing memory usage and maintaining consistent performance.</p>
+<p>Advantages:</p>
 <ul>
 <li>
 <p>Memory Efficiency: The two-pass approach reduces memory requirements by recalculating trajectory points, eliminating the need for large-scale caching.</p>
@@ -411,8 +410,7 @@ plt.close(fig)
 <p>Scalability: As the number of iterations grows, the two-pass approach’s efficiency in memory usage and processing speed becomes much more advantageous.</p>
 </li>
 </ul>
-<p>Disadvantage:<br>
-Trajectory points must be computed in both passes, but the impact of this trade-off is quite small and as mentioned above, as the number of iterations increases, the efficiency of the two-pass approach becomes much more advantageous in terms of memory usage and processing speed.</p>
+<p>Disadvantage: Trajectory points must be computed in both passes, but this trade-off is minimal. As the number of iterations increases, the benefits of memory efficiency and processing speed outweigh this drawback</p>
 <h3 id="two-pass-code-section">Two-Pass Code Section</h3>
 <pre><code>@njit #njit is an alias for nopython=True
 def compute_trajectory_extents(a, b, c, num):

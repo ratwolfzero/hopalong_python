@@ -7,7 +7,7 @@ import resource
 
 
 def validate_input(prompt, input_type=float, check_positive_non_zero=False, min_value=None):
-    # Prompt for and return user input validated by type and positive/non-zero checks
+    # Prompt for and return user input validated by type and positive/non-zero checks.
     while True:
         user_input = input(prompt)
         try:
@@ -124,7 +124,7 @@ def render_trajectory_image(image, extents, params, color_map):
 
     # Set ticks to display the exact max hit count
     max_hit_count = np.max(image)  # Get the maximum hit count from the image
-    tick_positions = np.linspace(1, max_hit_count, num=8)  # Choose 8 tick positions
+    tick_positions = np.linspace(1, max_hit_count, num = 8)  # Choose 8 tick positions
     tick_labels = (int(tick) for tick in tick_positions)  # Format tick labels as integers
 
     cbar.set_ticks(tick_positions)  # Set ticks on the colorbar

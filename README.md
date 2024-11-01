@@ -72,13 +72,14 @@ y_{n+1} = a - x_n
 $$
 
 Where:
+
 - \(x_n\) and \(y_n\) are the coordinates at the n-th iteration.
 - \(a\), \(b\), and \(c\) are user-defined parameters influencing the attractor's shape.
 - The sequence starts from the initial point \((x_0, y_0) = (0, 0)\).
 - \(\text{sgn}\) is the signum function, defined as follows:
 
 $$
-\text{sgn}(x) = 
+\text{sgn}(x) =
 \begin{cases}
 -1 & \text{if } x < 0 \\
 0 & \text{if } x = 0 \\

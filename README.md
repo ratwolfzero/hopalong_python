@@ -3,7 +3,6 @@
   
 - [Calculate \& Visualize the Hopalong Attractor with Python](#calculate--visualize-the-hopalong-attractor-with-python)
   - [Abstract](#abstract)
-  - [Abstract](#abstract-1)
     - [The chosen core algorithm and the motivation for it](#the-chosen-core-algorithm-and-the-motivation-for-it)
   - [Requirements](#requirements)
   - [Usage](#usage)
@@ -50,33 +49,6 @@ Where:
 - x<sub>n</sub> and y<sub>n</sub> represent the coordinates at the n-th iteration.
 - \(a\), \(b\), and \(c\) are user-defined parameters influencing the attractor's shape.
 - The sequence starts from the initial point (x<sub>0</sub> , y<sub>0</sub>) = (0 , 0)
-- \(\text{sgn}\) is the signum function, defined as follows:
-
-$$
-\text{sgn}(x) =
-\begin{cases}
--1 & \text{if } x < 0 \\
-0 & \text{if } x = 0 \\
-1 & \text{if } x > 0
-\end{cases}
-$$
-
-## Abstract
-
-The "Hopalong" attractor, invented by Barry Martin of Aston University, gained popularity through A.K. Dewdney's work. This Python program computes and visualizes the Hopalong attractor by iterating the following recursive functions:
-
-$$
-\begin{cases}
-x_{n+1} = y_n - \text{sgn}(x_n) \times \sqrt{|b \times x_n - c|} \\
-y_{n+1} = a - x_n
-\end{cases}
-$$
-
-Where:
-
-- \(x_n\) and \(y_n\) are the coordinates at the n-th iteration.
-- \(a\), \(b\), and \(c\) are user-defined parameters influencing the attractor's shape.
-- The sequence starts from the initial point \((x_0, y_0) = (0, 0)\).
 - \(\text{sgn}\) is the signum function, defined as follows:
 
 $$

@@ -17,8 +17,6 @@
     - [Optional Features](#optional-features)
   - [Performance Optimization](#performance-optimization)
     - [Just-In-Time Compilation (JIT)](#just-in-time-compilation-jit)
-    - [Dummy Calls](#dummy-calls)
-    - [Parallelization and race conditions](#parallelization-and-race-conditions)
     - [Two-Pass Approach](#two-pass-approach)
     - [Two-Pass Code Section](#two-pass-code-section)
     - [Alternative Solutions](#alternative-solutions)
@@ -205,7 +203,7 @@ Certain parameter sets will not produce intricate patterns such as:
   
 Where (p) is a constant parameter that remains the same within each of these sets.
 
-Instead, you may observe high-density cycles, characterized by a relatively small number of pixels being hit repeatedly. This suggests that in these cases, the system may settle into a periodic orbit. Periodic orbits are trajectories in which the system returns to the same state after a fixed number of iterations.  Additionally, it seems that certain of these "high-density cycle pixels" lie at the boundaries of the attractor extents.
+Instead, you may observe high-density cycles, characterized by a relatively small number of pixels being hit repeatedly. This suggests that in these cases, the system may settle into a periodic orbit. Periodic orbits are trajectories in which the system returns to the same state after a fixed number of iterations. Additionally, it seems that certain of these "high-density cycle pixels" lie at the boundaries of the attractor extents.
 
 For example, with parameter set (3) the Hopalong equations are given by:
 
@@ -254,13 +252,13 @@ As long as there is no interaction with the plot window, the "plt.pause() time" 
 
 The program leverages the Numba JIT just-in-time compilation for performance optimization. This avoids the overhead of Python's interpreter, providing a significant speedup over standard Python loops. JIT compilation translates Python code into machine code at runtime, allowing for more efficient execution of loops and mathematical operations.
   
-### Dummy Calls
+Dummy Calls
 
-For JIT-compiled functions dummy calls are made. Dummy calls are preliminary invocations of the JIT-compiled function that prompt the Numba compiler to generate machine code before the function is used in the main execution flow. This step ensures that the function is precompiled before it is called by the interpreter, thus avoiding compilation overhead the first time the code is executed. This process is similar to "eager compilation", where the compilation occurs ahead of time, but does not require the explicit function signatures in the function header.
+Dummy calls are preliminary invocations of JIT-compiled functions that prompt the Numba compiler to generate machine code before the function is used in the main execution flow. This ensures that the function is precompiled, avoiding compilation overhead during its first actual execution. This process is akin to "eager compilation," as it occurs ahead of time, but it does not require explicit function signatures in the header.
 
-### Parallelization and race conditions
+Parallelization and Race Conditions
 
-The parallel loop function "prange" from the "Numba" library, which is fundamentally not applicable for cross-iteration dependencies, such as here when calculating the trajectory points of recursive functions, is therefore not used. A restructuring of the second pass, in which a separate function populates the image array with prange, would be possible, but would lead to potential race conditions with an inconsistent pixel hit rate and was therefore not implemented. Race conditions occur when multiple threads or processes access shared data and attempt to change it simultaneously, which can lead to inconsistent or unpredictable results.
+The parallel loop function "prange" from the Numba library is not suitable for cross-iteration dependencies, such as those encountered when calculating trajectory points of recursive functions. While it is possible to restructure the second pass to use prange for populating the image array, this could introduce race conditions—situations where multiple threads access and modify shared data simultaneously, leading to inconsistent or unpredictable results. Therefore, this approach was not implemented.
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 

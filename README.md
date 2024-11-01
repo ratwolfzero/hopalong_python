@@ -252,15 +252,15 @@ As long as there is no interaction with the plot window, the "plt.pause() time" 
 
 ### Just-In-Time Compilation (JIT)
 
-The program leverages the Numba JIT just-in-time compilation for performance optimization. This avoids the overhead of Python's interpreter, providing a significant speedup over standard Python loops.  
+The program leverages the Numba JIT just-in-time compilation for performance optimization. This avoids the overhead of Python's interpreter, providing a significant speedup over standard Python loops. JIT compilation translates Python code into machine code at runtime, allowing for more efficient execution of loops and mathematical operations.
   
 ### Dummy Calls
 
-For JIT-compiled functions dummy calls are made. This step ensures that the function is precompiled before it is called by the interpreter, thus avoiding compilation overhead the first time the code is executed.  
+For JIT-compiled functions dummy calls are made. Dummy calls are preliminary invocations of the JIT-compiled function that prompt the Numba compiler to generate machine code before the function is used in the main execution flow.This step ensures that the function is precompiled before it is called by the interpreter, thus avoiding compilation overhead the first time the code is executed.
 
 ### Parallelization and race conditions
 
-The parallel loop function "prange" from the "Numba" library, which is fundamentally not applicable for cross-iteration dependencies, such as here when calculating the trajectory points of recursive functions, is therefore not used. A restructuring of the second pass, in which a separate function populates the image array with prange, would be possible, but would lead to potential race conditions with an inconsistent pixel hit rate and was therefore not implemented.
+The parallel loop function "prange" from the "Numba" library, which is fundamentally not applicable for cross-iteration dependencies, such as here when calculating the trajectory points of recursive functions, is therefore not used. A restructuring of the second pass, in which a separate function populates the image array with prange, would be possible, but would lead to potential race conditions with an inconsistent pixel hit rate and was therefore not implemented. Race conditions occur when multiple threads or processes access shared data and attempt to change it simultaneously, which can lead to inconsistent or unpredictable results.
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
@@ -268,14 +268,15 @@ The parallel loop function "prange" from the "Numba" library, which is fundament
 
 By separating the extent calculation (first pass) from trajectory point mapping (second pass), this approach allows for efficient sequential processing. Knowing the overall trajectory extents in advance enables direct and efficient mapping of points to image pixels, optimizing memory usage and maintaining consistent performance.
 
+Advantages:
+
 - Memory Efficiency: The two-pass approach reduces memory requirements by recalculating trajectory points, eliminating the need for large-scale caching.  
   
 - JIT Compatibility: The simple, sequential structure is well-suited for Just-In-Time (JIT) compilation, enhancing execution speed.  
   
 - Scalability: As the number of iterations grows, the two-pass approach’s efficiency in memory usage and processing speed becomes much more advantageous.
 
-Disadvantage:  
-Trajectory points must be computed in both passes, but the impact of this trade-off is quite small and as mentioned above, as the number of iterations increases, the efficiency of the two-pass approach becomes much more advantageous in terms of memory usage and processing speed.
+Disadvantage: Trajectory points must be computed in both passes, but this trade-off is minimal. As the number of iterations increases, the benefits of memory efficiency and processing speed outweigh this drawback
 
 ### Two-Pass Code Section
 

@@ -2,7 +2,7 @@
   "sections" : [
     {
       "type" : "plain",
-      "contents" : "$$\nX =\\begin{cases}\n1.0  & if & x & is &positive, & +0.0 & or &INFINITY \\\\\n-1.0 & if & x & is &negative, & -0.0 & or &NEG. INFINITY\n\\end{cases}\n$$\n\n\n$$\n\\begin{cases}\nx_n+1 & = y_n-sgn(x_n)\\times\\sqrt{∣b\\times x_n−c∣} &(1) \\\\\ny_n+1 & = a-x_n &(2)\n\\end{cases}\n$$"
+      "contents" : "\n$$\nsgn (x) =\\begin{cases}\n-1.0  & if & x & < 0 \\\\\n0  & if & x & = 0 \\\\\n1.0  & if & x & > 0\n\\end{cases}\n$$\n\n\n\n$$\nX =\\begin{cases}\n1.0  & if & x & is &positive, & +0.0 & or &INFINITY \\\\\n-1.0 & if & x & is &negative, & -0.0 & or &NEG. INFINITY\n\\end{cases}\n$$\n\n\n$$\n\\begin{cases}\nx_n+1 & = y_n-sgn(x_n)\\times\\sqrt{∣b\\times x_n−c∣} &(1) \\\\\ny_n+1 & = a-x_n &(2)\n\\end{cases}\n$$"
     }
   ],
   "metadata" : {
@@ -13,6 +13,7 @@
     "indentStyle" : "tabs",
     "pageNumberingEnabled" : false,
     "indentWidth" : 4,
+    "writingDirection" : 0,
     "topMargin" : 2,
     "previewStyle" : "preview_modern"
   }

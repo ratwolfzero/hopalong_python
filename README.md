@@ -50,6 +50,16 @@ Where:
 - a, b, c are user defined parameters that shape the attractor
 - The sequence starts from an initial point (x<sub>0</sub> , y<sub>0</sub>) = (0 , 0)
   
+sgn = signum function
+
+$$
+sgn (x) =\begin{cases}
+-1.0  & if & x & < 0 \\
+0  & if & x & = 0 \\
+1.0  & if & x & > 0
+\end{cases}
+$$
+  
 ### The chosen core algorithm and the motivation for it
 
 A two-pass algorithm is employed to compute the Hopalong Attractor by sequential processing in both passes through straightforward structure and loops.

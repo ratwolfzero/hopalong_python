@@ -173,7 +173,7 @@ Visualization with Colormap:
 ### Application of Copysign (Math Module) as Signum function
 
 The programs now utilizes the math.copysign function "copysign(x,y)"  
-Return a float with the magnitude (absolute value) of x but the sign of y.  
+which returns a float with the magnitude (absolute value) of x but the sign of y.  
 On platforms that support signed zeros, copysign(1.0, -0.0) returns -1.0.
 
 $$

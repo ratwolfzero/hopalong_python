@@ -54,11 +54,11 @@ Where:
 
 A two-pass algorithm is employed to compute the Hopalong Attractor by sequential processing in both passes through straightforward structure and loops.
 
-- In the first pass, the algorithm determines the overall trajectory extents, which consist of the minimum and maximum values of the attractor trajectory. Python functions such as min(), max() were intentionally not used.
+- In the first pass, the algorithm determines the overall trajectory extents, which consist of the minimum and maximum values of the attractor trajectory. .
 
 - In the second pass, the algorithm generates the sequence of trajectory points and maps them directly to image pixel coordinates, representing the attractor hit pattern (pixel value > 0). This hit information is updated and stored in an image array, which is initialized with zero values.
 
-The program uses Matplotlib to represent the attractor as an image in order to take advantage of its extensive image processing and manipulation capabilities. With optimal and consistent processing speed, it supports a very high number of iterations with low memory footprint. The program is designed with minimal complexity to allow effective use of Just-In-Time (JIT) compilation, thus further improving execution speed.
+The program uses Matplotlib to represent the attractor as an image in order to take advantage of its extensive image processing and manipulation capabilities. With optimal and consistent processing speed, it supports a very high number of iterations with low memory footprint. The program is designed with minimal complexity, Python functions such as min(), max() were intentionally not used, to allow effective use of Just-In-Time (JIT) compilation, thus further improving execution speed.
 
 For further hints regarding two-pass approach, see [Two-Pass Approach](#two-pass-approach)
 
@@ -183,17 +183,17 @@ copysign(1.0,x) =\begin{cases}
 \end{cases}
 $$
 
-This adjustment changes the behavior of some cases to produce intricate patterns. For example:
+This adjustment alters the behavior of certain parameter sets, resulting in intricate patterns instead of periodic orbits or fixed points, which is the case when using the standard signum function. Periodic orbits are trajectories in which the system returns to the same state after a fixed number of iterations. For example, the following parameter combinations may yield complex patterns:
 
 - a = 1, b = 2, c = 3 or  
 
 - a = 0, b = 1, c = 1 or  
 
-- a = 1, b =1, c = 1  
+- a = 1, b =1, c = 1
 
 ### Special constellations and attractor edge cases
 
-Certain parameter sets will not produce intricate patterns such as:
+Despite using the Copysign function, some parameter sets will lead to periodic orbits instead of intricate patterns, such as:
 
 - Set 1: a = p , b = 0, c = 0  
 
@@ -201,9 +201,9 @@ Certain parameter sets will not produce intricate patterns such as:
 
 - Set 3: a = p, b = p, c = 0
   
-Where (p) is a constant parameter that remains the same within each of these sets.
+Here, ( p ) is a constant parameter that remains the same within each of these sets.
 
-Instead, you may observe high-density cycles, characterized by a relatively small number of pixels being hit repeatedly. This suggests that in these cases, the system may settle into a periodic orbit. Periodic orbits are trajectories in which the system returns to the same state after a fixed number of iterations. Additionally, it seems that certain of these "high-density cycle pixels" lie at the boundaries of the attractor extents.
+In these cases, you may observe high-density cycles, where a relatively small number of pixels are hit repeatedly, suggesting that the system is likely settling into periodic orbits. Additionally, many of these "high-density cycle pixels" tend to be located at the boundaries of the attractor extents.
 
 For example, with parameter set (3) the Hopalong equations are given by:
 

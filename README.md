@@ -49,7 +49,7 @@ Where:
 - x<sub>n</sub> and y<sub>n</sub> represent the coordinates at the n-th iteration.
 - \(a\), \(b\), and \(c\) are user-defined parameters influencing the attractor's shape.
 - The sequence starts from the initial point (x<sub>0</sub> , y<sub>0</sub>) = (0 , 0)
-- \{sgn\} is the signum function, defined as follows:
+- \(sgn\) is the signum function, defined as follows:
 
 $$
 \text{sgn}(x) =

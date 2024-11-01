@@ -131,8 +131,6 @@ def render_trajectory_image(image, extents, params, color_map):
     cbar.set_ticklabels(tick_labels)  # Set formatted labels
 
     plt.tight_layout()
-    #plt.gcf().set_dpi(135)
-    #fig.canvas.manager.full_screen_toggle()
     plt.show()
     #plt.pause(1)
     #plt.close(fig)

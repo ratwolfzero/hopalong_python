@@ -205,7 +205,7 @@ Certain parameter sets will not produce intricate patterns such as:
   
 Where (p) is a constant parameter that remains the same within each of these sets.
 
-Instead, you may observe high-density cycles, characterized by a relatively small number of pixels being hit repeatedly. This suggests that in these cases, the system may settle into a periodic orbit. Additionally, it seems that certain of these "high-density cycle pixels" lie at the boundaries of the attractor extents.
+Instead, you may observe high-density cycles, characterized by a relatively small number of pixels being hit repeatedly. This suggests that in these cases, the system may settle into a periodic orbit. Periodic orbits are trajectories in which the system returns to the same state after a fixed number of iterations.  Additionally, it seems that certain of these "high-density cycle pixels" lie at the boundaries of the attractor extents.
 
 For example, with parameter set (3) the Hopalong equations are given by:
 

@@ -36,27 +36,28 @@
 The "Hopalong" attractor<top>*<top>, invented by Barry Martin of Aston University in Birmingham, England, was popularized by A.K. Dewdney in the September 1986 issue of Scientific American. In Germany, it gained further recognition through a translation titled "Hüpfer" in Spektrum der Wissenschaft.  
 <sub>*Nicknamed by A.K. Dewdney.</sub>
 
-This Python program computes and visualizes the “hopalong” attractor by iterating the following system of recursive functions (1) and (2):
+This Python program computes and visualizes the “hopalong” attractor by iterating the following system of recursive functions:
 
 $$
 \begin{cases}
-x_n+1\space=&y_n-sgn(x_n)\times\sqrt{∣b\times x_n-c∣}&(1) \\
-y_n+1\space=&a-x_n&(2)
+x_{n+1} = y_n - \text{sgn}(x_n) \times \sqrt{|b \times x_n - c|} \\
+y_{n+1} = a - x_n
 \end{cases}
 $$
 
 Where:
 
-- x<sub>n</sub> and y<sub>n</sub> represent the coordinates at the nth iteration.
-- a, b, c are user defined parameters that shape the attractor
-- The sequence starts from an initial point (x<sub>0</sub> , y<sub>0</sub>) = (0 , 0)
+- x<sub>n</sub> and y<sub>n</sub> represent the coordinates at the n-th iteration.
+- \(a\), \(b\), and \(c\) are user-defined parameters influencing the attractor's shape.
+- The sequence starts from the initial point (x<sub>0</sub> , y<sub>0</sub>) = (0 , 0)
 - sgn = signum function
 
 $$
-sgn (x) =\begin{cases}
--1.0  & if & x & < 0 \\
-0  & if & x & = 0 \\
-1.0  & if & x & > 0
+\text{sgn}(x) =
+\begin{cases}
+-1 & \text{if } x < 0 \\
+0 & \text{if } x = 0 \\
+1 & \text{if } x > 0
 \end{cases}
 $$
 

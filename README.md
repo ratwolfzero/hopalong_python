@@ -184,7 +184,9 @@ copysign(1.0,x) =\begin{cases}
 $$
 
 This adjustment alters the behavior of certain parameter sets, resulting in intricate patterns instead of periodic orbits or fixed point( (0, 0) with a = 0), which is the case when using the standard signum function.
-Periodic orbits are trajectories in which the system returns to the same state after a fixed number of iterations.  
+
+Periodic orbits are trajectories in which the system returns to the same state after a fixed number of iterations.
+  
 For example, the following parameter combinations may yield complex patterns:
 
 - a = 1, b = 2, c = 3 or  

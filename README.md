@@ -349,13 +349,13 @@ While the two-pass approach is the chosen solution, it is important to consider 
 
 #### One-Pass Approach with Caching
 
-- Description: Trajectory points are calculated only once and stored in an array which allows the use of Numpy's vectorization capabilities, such as the vectorized determination of the trajectory extents and the mapping of trajectory points to image pixels.
-- Disadvantages: Depending on the number of iterations, large memory resources are required for caching the trajectory points and there may be performance degradation due to system memory swapping or even memory overflows. However, this depends on the system environment.
+- Description: Trajectory points are calculated only once and stored in an array, allowing the use of NumPy's vectorization capabilities. This can enable efficient computation of trajectory extents and mapping of trajectory points to image pixels in a single operation.
+- Disadvantages: While this approach can significantly enhance performance, it requires substantial memory resources for caching trajectory points, especially with a high number of iterations. This can lead to performance degradation due to system memory swapping or even memory overflows, depending on the system's available resources.
 
 #### Chunked One-Pass Approach with caching
 
-- Description: Trajectory points are processed in smaller segments (chunks) while caching points to manage memory usage.
-- Disadvantages: While it keeps memory consumption low, this method adds complexity and overhead, often resulting in performance that is similar to or slower than the two-pass method.
+- Description: Trajectory points are processed in smaller segments (chunks), allowing for caching of points while managing memory usage effectively. This method processes chunks sequentially, which can help mitigate memory constraints while still leveraging caching.
+- Disadvantages: While this approach helps keep memory consumption low, it introduces additional complexity and overhead in managing the chunked processing. This can often result in performance that is similar to or slower than the two-pass method, particularly if the chunk size is not optimally configured.
 
 #### One-Pass Approach without Caching
 

@@ -122,9 +122,9 @@ Otherwise, please comment out the relevant code snippets at import section and m
 
 When you run the program, you will be prompted to enter the following parameters, which are crucial for determining the behavior of the Hopalong Attractor:
 
-- **a (float or integer)**: The first parameter affecting the equation's dynamics.
-- **b (float or integer)**: The second parameter affecting the equation's dynamics.
-- **c (float or integer)**: The third parameter affecting the equation's dynamics.
+- **a (float or integer)**: The first parameter affecting the attractor's dynamics.
+- **b (float or integer)**: The second parameter affecting the attractor's dynamics.
+- **c (float or integer)**: The third parameter affecting the attractor's dynamics.
 - **num (integer)**: The number of iterations to run (e.g., 1000000 or 1_000_000).
 
 **Example parameters**:

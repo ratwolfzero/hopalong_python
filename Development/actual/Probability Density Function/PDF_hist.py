@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from numba import njit
 from math import copysign, sqrt, fabs
-from scipy.stats import gaussian_kde  # Import for Kernel Density Estimation
+from scipy.stats import gaussian_kde
 import time
 
 def validate_input(prompt, input_type=float, check_positive_non_zero=False, min_value=None):
@@ -22,7 +22,7 @@ def validate_input(prompt, input_type=float, check_positive_non_zero=False, min_
 
 def get_attractor_parameters():
     a = validate_input('Enter a float value for "a": ', float)
-    b = validate_input('Enter a float value for "b": ', float)
+    b = validate_input('Enter a float value for "b": ', float)                                      
     while True:
         c = validate_input('Enter a float value for "c": ', float)
         if (a == 0 and b == 0 and c == 0) or (a == 0 and c == 0):
@@ -37,10 +37,9 @@ def get_attractor_parameters():
 
 @njit
 def compute_trajectory(a, b, c, num):
-    # Compute the trajectory points over 'num' iterations.
-    x = np.float64(0.0)
-    y = np.float64(0.0)
-    trajectory = np.zeros((num, 2))  # Store trajectory points in an array
+    x = np.float32(0.0)
+    y = np.float32(0.0)      
+    trajectory = np.zeros((num, 2))
 
     for i in range(num):
         trajectory[i, 0] = x
@@ -53,41 +52,47 @@ def compute_trajectory(a, b, c, num):
     return trajectory
 
 def plot_trajectory_with_density(trajectory):
-    # Calculate the density using Kernel Density Estimation
-    kde = gaussian_kde(trajectory.T)  # Transpose to have points in columns
-    density = kde(trajectory.T)  # Calculate density for each point
-
-    # Normalize density for better visualization
-    density /= np.max(density)  # Normalize to the range [0, 1]
-
-    # Plot the trajectory colored by density
-    plt.figure(figsize=(10, 10))
-    plt.scatter(trajectory[:, 0], trajectory[:, 1], c=density, cmap='hot', s=1)  # s=1 for small points
-    plt.colorbar(label='Density')
-    plt.title('Hopalong Attractor with Density Coloring')
+    # Use 2D histogram for density estimation instead of KDE
+    x = trajectory[:, 0]
+    y = trajectory[:, 1]
+    
+    # Define the binning parameters
+    bins = 400
+    density, xedges, yedges = np.histogram2d(x, y, bins=bins, density=True)
+    
+    # Plotting with density color mapping
+    plt.figure(figsize=(8, 8))
+    #plt.imshow(np.log(density.T + 1), origin='lower', cmap='hot', extent=[xedges[0], xedges[-1], yedges[0], yedges[-1]])
+    plt.imshow(density.T, origin='lower', cmap='hot', extent=[xedges[0], xedges[-1], yedges[0], yedges[-1]])
+    plt.colorbar(label='Log Density')
+    plt.title('Hopalong Attractor with Density Coloring (2D Histogram Approximation)')
     plt.xlabel('X (Cartesian)')
     plt.ylabel('Y (Cartesian)')
-    plt.axis('equal')  # Keep aspect ratio equal
+    plt.axis('equal')
+    plt.tight_layout()
     plt.show()
 
 def main():
-    # Main execution process
     try:
         params = get_attractor_parameters()
         
-        # Start the time measurement
         start_time = time.process_time()
 
         trajectory = compute_trajectory(params['a'], params['b'], params['c'], params['num'])
         plot_trajectory_with_density(trajectory)
 
-        # End the time measurement
         end_time = time.process_time()
         print(f'Execution time: {end_time - start_time:.2f} seconds')
         
     except Exception as e:
         print(f'An error occurred: {e}')
 
-# Main execution
 if __name__ == '__main__':
     main()
+
+
+
+
+
+
+

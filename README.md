@@ -129,10 +129,10 @@ When you run the program, you will be prompted to enter the following parameters
 
 **Example parameters**:
 
-- \ a = -2 \
-- \ b = -0.33 \  
-- \c = 0.01 \  
-- \ num = 200_000_000 \
+- a = -2
+- b = -0.33
+- c = 0.01  
+- num = 200_000_000
 
 Experimenting with different values of these parameters will yield diverse and intricate visual patterns.
 

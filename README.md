@@ -120,25 +120,25 @@ Otherwise, please comment out the relevant code snippets at import section and m
 
 ### Input Parameters
 
-Upon running the program, you'll be prompted to enter the following parameters:
+When you run the program, you will be prompted to enter the following parameters, which are crucial for determining the behavior of the Hopalong Attractor:
 
-- a (float or integer): Parameter 'a' of the Hopalong equation.  
-- b (float or integer): Parameter 'b' of the Hopalong equation.  
-- c (float or integer): Parameter 'c' of the Hopalong equation.  
-- num (integer): The number of iterations (e.g., 1000000 or 1_000_000).
+- **a (float or integer)**: The first parameter influencing the Hopalong equation.
+- **b (float or integer)**: The second parameter affecting the equation's dynamics.
+- **c (float or integer)**: The third parameter that modifies the system's characteristics.
+- **num (integer)**: The number of iterations to run (e.g., 1,000,000 or 1_000_000).
 
-Example parameters:
+**Example parameters**:
 
-- a = -2  
-- b = -0.33  
-- c = 0.01  
-- num = 200_000_000
+- \( a = -2 \)  
+- \( b = -0.33 \)  
+- \( c = 0.01 \)  
+- \( num = 200,000,000 \)
 
-These parameters directly influence the appearance of the attractor, with different values yielding different patterns.
+These parameters directly influence the appearance of the attractor, and experimenting with different values can yield a wide variety of intricate patterns.
 
 ### Output
 
-The program generates a visual representation of the Hopalong Attractor. The resulting image displays the trajectory where colors represent the "density of hits" (i.e., how often a particular point was visited).
+The program generates a visual representation of the Hopalong Attractor. The resulting image displays the trajectory, with colors indicating the "density of hits"—that is, how frequently a particular point was visited during the iterations. Darker colors represent points that were hit more often, allowing you to visualize the attractor's structure and behavior effectively.
 
 Basic Version
 

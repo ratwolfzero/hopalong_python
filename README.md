@@ -58,7 +58,6 @@ $$
 -1.0 & \text{if } & \text{x } & \text{is} &\text{negative}, & \text{-0.0} & or &\text{neg. infinity}
 \end{cases}
 $$
-\
 
 ### The chosen core algorithm and the motivation for it
 

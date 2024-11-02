@@ -56,7 +56,7 @@ def plot_trajectory_with_density(trajectory):
     y = trajectory[:, 1]
     
     # Define the binning parameters
-    bins = 200
+    bins = 500
     density, xedges, yedges = np.histogram2d(x, y, bins=bins, density=True)
     
     # Plotting with density color mapping
@@ -70,9 +70,9 @@ def plot_trajectory_with_density(trajectory):
     plt.ylabel('Y (Cartesian)')
     plt.axis('equal')
     plt.tight_layout()
-    #plt.show()
-    plt.pause(1)
-    plt.close()
+    plt.show()
+    #plt.pause(1)
+    #plt.close()
 
 def main():
     try:

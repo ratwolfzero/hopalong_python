@@ -234,7 +234,7 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">â
 <p>In the second pass, the algorithm generates the sequence of trajectory points and maps them directly to image pixel coordinates, representing the attractor hit pattern (pixel value &gt; 0). This hit information is updated and stored in an image array, which is initialized with zero values.</p>
 </li>
 </ul>
-<p>The program uses Matplotlib to represent the attractor as an image in order to take advantage of its extensive image processing and manipulation capabilities. With optimal and consistent processing speed, it supports a very high number of iterations with low memory footprint. The program is designed with minimal complexity, Python functions such as min(), max() were intentionally not used, to allow effective use of Just-In-Time (JIT) compilation, thus further improving execution speed.</p>
+<p>The program uses Matplotlib to represent the attractor as an image in order to take advantage of its extensive image processing and manipulation capabilities. With optimal and consistent processing speed, it supports a very high number of iterations with low memory footprint. The program is designed with minimal complexity to allow effective use of Just-In-Time (JIT) compilation, thus further improving execution speed.</p>
 <p>For further hints regarding two-pass approach, see <a href="#two-pass-approach">Two-Pass Approach</a></p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h2 id="requirements">Requirements</h2>

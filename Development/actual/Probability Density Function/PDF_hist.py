@@ -2,7 +2,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 from numba import njit
 from math import copysign, sqrt, fabs
-from scipy.stats import gaussian_kde
 import time
 
 def validate_input(prompt, input_type=float, check_positive_non_zero=False, min_value=None):
@@ -37,8 +36,8 @@ def get_attractor_parameters():
 
 @njit
 def compute_trajectory(a, b, c, num):
-    x = np.float32(0.0)
-    y = np.float32(0.0)      
+    x = np.float64(0.0)
+    y = np.float64(0.0)      
     trajectory = np.zeros((num, 2))
 
     for i in range(num):
@@ -57,20 +56,23 @@ def plot_trajectory_with_density(trajectory):
     y = trajectory[:, 1]
     
     # Define the binning parameters
-    bins = 400
+    bins = 200
     density, xedges, yedges = np.histogram2d(x, y, bins=bins, density=True)
     
     # Plotting with density color mapping
     plt.figure(figsize=(8, 8))
     #plt.imshow(np.log(density.T + 1), origin='lower', cmap='hot', extent=[xedges[0], xedges[-1], yedges[0], yedges[-1]])
     plt.imshow(density.T, origin='lower', cmap='hot', extent=[xedges[0], xedges[-1], yedges[0], yedges[-1]])
-    plt.colorbar(label='Log Density')
+    #plt.colorbar(label='Log Density')
+    plt.colorbar(label='Density')
     plt.title('Hopalong Attractor with Density Coloring (2D Histogram Approximation)')
     plt.xlabel('X (Cartesian)')
     plt.ylabel('Y (Cartesian)')
     plt.axis('equal')
     plt.tight_layout()
-    plt.show()
+    #plt.show()
+    plt.pause(1)
+    plt.close()
 
 def main():
     try:

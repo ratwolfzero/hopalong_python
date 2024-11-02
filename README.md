@@ -61,13 +61,14 @@ $$
 
 ### The chosen core algorithm and the motivation for it
 
-A two-pass algorithm is employed to compute the Hopalong Attractor by sequential processing in both passes through straightforward structure and loops.
+The hopalong attractor is computed using a two-pass algorithm that achieves high speed with low memory consumption while producing a density map similar to a probability density function (PDF). To further improve performance, just-in-time (JIT) compilation is applied, supported by a low-complexity code structure.
 
-- In the first pass, the algorithm determines the overall trajectory extents, which consist of the minimum and maximum values of the attractor trajectory. .
+First pass: In this phase, the minimum and maximum bounds of the trajectory are computed, effectively defining the area for subsequent coordinate mapping.
 
-- In the second pass, the algorithm generates the sequence of trajectory points and maps them directly to image pixel coordinates, representing the attractor hit pattern (pixel value > 0). This hit information is updated and stored in an image array, which is initialized with zero values.
+Second pass: In this phase, the trajectory points are generated sequentially and mapped directly to pixel coordinates within an image array. Each time a trajectory point “hits” a pixel, the value of the pixel is incremented, resulting in a density map that visually represents areas of frequent trajectory occurrence.
 
-The program uses Matplotlib to represent the attractor as an image in order to take advantage of its extensive image processing and manipulation capabilities. With optimal and consistent processing speed, it supports a very high number of iterations with low memory footprint. The program is designed with minimal complexity to allow effective use of Just-In-Time (JIT) compilation, thus further improving execution speed.
+This approach effectively leverages efficient image processing capabilities from libraries such as Matplotlib, which are optimized for handling large datasets and presenting complex visualizations. Consequently, the approach can manage a large number of iterations while delivering high-quality visual output.
+
 
 For further hints regarding two-pass approach, see [Two-Pass Approach](#two-pass-approach)
 

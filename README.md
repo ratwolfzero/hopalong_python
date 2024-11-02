@@ -51,7 +51,7 @@ Where:
 - The sequence starts from the initial point (x<sub>0</sub> , y<sub>0</sub>) = (0 , 0)
 - \(sgn\) is the signum function using math.copysign() instead of the standard signum function, which is defined as follows:
 
-$
+$$
 \text{copysign}(1.0,x) =
 \begin{cases}
 1.0  & \text{if } & \text{x } & \text{is} &\text{positive}, & \text{0.0} & or &\text{infinity} \\

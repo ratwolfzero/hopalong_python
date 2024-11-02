@@ -177,6 +177,9 @@ Visualization with Colormap:
 
 - Matplotlib's "hot" colormap is used to represent the hit count information. Matplotlib applies normalization to scale the hit count within the limited color range of the colormap. This scaling creates a color gradient that ranges from dark colors, indicating low hit counts, to light colors, indicating high hit counts. Consequently, the colormap effectively visualizes areas of higher activity within the attractor.
 
+Remark:
+While the method of mapping trajectory points to pixel coordinates and counting hits provides a discrete representation of point density, it does not strictly yield a Probability Density Function (PDF); instead, it offers an approximation that can closely resemble the characteristics of a PDF, particularly in terms of visualizing areas of higher concentration of trajectory points.
+
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
 ### Application of Copysign (Math Module) as Signum function

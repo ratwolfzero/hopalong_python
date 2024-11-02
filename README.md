@@ -125,20 +125,20 @@ When you run the program, you will be prompted to enter the following parameters
 - **a (float or integer)**: The first parameter influencing the Hopalong equation.
 - **b (float or integer)**: The second parameter affecting the equation's dynamics.
 - **c (float or integer)**: The third parameter that modifies the system's characteristics.
-- **num (integer)**: The number of iterations to run (e.g., 1,000,000 or 1_000_000).
+- **num (integer)**: The number of iterations to run (e.g., 1000000 or 1_000_000).
 
 **Example parameters**:
 
 - \( a = -2 \)  
 - \( b = -0.33 \)  
 - \( c = 0.01 \)  
-- \( num = 200,000,000 \)
+- \( num = 200_000_000 \)
 
 These parameters directly influence the appearance of the attractor, and experimenting with different values can yield a wide variety of intricate patterns.
 
 ### Output
 
-The program generates a visual representation of the Hopalong Attractor. The resulting image displays the trajectory, with colors indicating the "density of hits"—that is, how frequently a particular point was visited during the iterations. Darker colors represent points that were hit more often, allowing you to visualize the attractor's structure and behavior effectively.
+The program generates a visual representation of the Hopalong Attractor. The resulting image displays the trajectory, with colors indicating the "density of hits"—that is, how frequently a particular point was visited during the iterations. Lighter colors represent points that were hit more often, allowing you to visualize the attractor's structure and behavior effectively.
 
 Basic Version
 

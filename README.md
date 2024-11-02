@@ -138,7 +138,7 @@ These parameters directly influence the appearance of the attractor, and experim
 
 ### Output
 
-The program generates a visual representation of the Hopalong Attractor. The resulting image displays the trajectory, with colors indicating the "density of hits"—that is, how frequently a particular point was visited during the iterations. Lighter colors represent points that were hit more often,
+The program generates a visual representation of the Hopalong Attractor. The resulting image displays the trajectory, with colors indicating the "density of hits"—that is, how frequently a particular point was visited during the iterations. Lighter colors represent points that were hit more often.
 
 Basic Version
 

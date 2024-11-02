@@ -129,16 +129,16 @@ When you run the program, you will be prompted to enter the following parameters
 
 **Example parameters**:
 
-- \( a = -2 \)  
-- \( b = -0.33 \)  
-- \( c = 0.01 \)  
-- \( num = 200_000_000 \)
+- \ a = -2 \
+- \ b = -0.33 \  
+- \c = 0.01 \  
+- \ num = 200_000_000 \
 
-These parameters directly influence the appearance of the attractor, and experimenting with different values can yield a wide variety of intricate patterns.
+Experimenting with different values of these parameters will yield diverse and intricate visual patterns.
 
 ### Output
 
-The program generates a visual representation of the Hopalong Attractor. The resulting image displays the trajectory, with colors indicating the "density of hits"—that is, how frequently a particular point was visited during the iterations. Lighter colors represent points that were hit more often.
+The program generates a visual rendering of the Hopalong Attractor. The image displays the trajectory as a density map, where color intensity represents the frequency of points visited: lighter areas indicate regions of higher density. This provides a striking visual of the attractor's complex structure.
 
 Basic Version
 

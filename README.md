@@ -47,9 +47,9 @@ $$
 Where:
 
 - x<sub>n</sub> and y<sub>n</sub> represent the coordinates at the n-th iteration.
-- \a\, \(b\), and \(c\) are parameters influencing the attracto's dynamics.
+- a, b and c are parameters influencing the attracto's dynamics.
 - The sequence starts from the initial point (x<sub>0</sub> , y<sub>0</sub>) = (0 , 0)
-- \(sgn\) is the sign (signum) function, but math.copysign() is used, which is defined as follows:
+- sgn is the sign (signum) function, but math.copysign() is used, which is defined as follows:
 
 $$
 \text{copysign}(1.0,x) =

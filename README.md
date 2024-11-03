@@ -190,7 +190,9 @@ Visualization with Colormap:
 - Matplotlib's "hot" colormap is used to represent the hit count information. Matplotlib applies normalization to scale the hit count within the limited color range of the colormap. This scaling creates a color gradient that ranges from dark colors, indicating low hit counts, to light colors, indicating high hit counts. Consequently, the colormap effectively visualizes areas of higher activity within the attractor.
 
 Remark:
-While the method of mapping trajectory points to pixel coordinates and counting hits provides a discrete representation of point density, it does not strictly yield a Probability Density Function (PDF); instead, it offers an approximation that can closely resemble the characteristics of a PDF, particularly in terms of visualizing areas of higher concentration of trajectory points.
+While the method of mapping trajectory points to pixel coordinates and counting hits provides a discrete representation of point density, it does not strictly yield a Probability Density Function (PDF); instead, it offers an approximation that can closely resemble the characteristics of a PDF, particularly in terms of visualizing areas of higher concentration of trajectory points. Proven by applying np.histogram2d(...density=True) to the correlating raw data in floating point format. 
+First picture: Output using Integer conversion and image mapping
+Second picture: Output applying 'np.histogram2d(...density=True)' which can be considered as true PDF
 
 ![Example Attractor Image](./examples/Figure_ex_1.png)
 ![Example Attractor Image](./examples/true_PDF_histogram.png)

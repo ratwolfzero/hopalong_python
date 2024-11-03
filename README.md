@@ -67,18 +67,19 @@ $$
 
 Computing the attractor with a very high number of iterations while maintaining:
 
-- Generally a code structure with low complexity
-- High processing speed with low memory requirements and
-- Representation of the attractor in the form of a density map resembling a probability density function (PDF)
+- A code structure with low complexity
+- High processing speed with low memory requirements
+- Representation of the attractor as a density map resembling a probability density function (PDF)
 
 #### Core algorithm
 
 Two-pass algorithm with separate computation of:
 
-- Spatial expansion of the attractor trajectory during the first pass and
+- Spatial expansion of the attractor trajectory during the first pass
 - Direct mapping of the sequentially generated floating point values in continuous space to a discrete image grid, while tracking the pixel hit count to display the density map in the second pass
-- Efficient application of just-in-time (JIT) compilation supported by a low complexity code structure
-- Appropriate image processing and representation of the attractor are achieved by applying methods from the Matplotlib library
+  
+Efficient application of just-in-time (JIT) compilation supported by a low complexity code structure
+Appropriate image processing and representation of the attractor are achieved by applying methods from the Matplotlib library
 
 For further hints regarding two-pass approach, see [Two-Pass Approach](#two-pass-approach)
 

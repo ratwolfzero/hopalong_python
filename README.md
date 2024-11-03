@@ -22,8 +22,8 @@
     - [Two-Pass Approach](#two-pass-approach)
     - [Two-Pass Code Section](#two-pass-code-section)
     - [Alternative Solutions](#alternative-solutions)
-      - [One-Pass Approach with Caching](#one-pass-approach-with-caching)
-      - [Chunked One-Pass Approach with caching](#chunked-one-pass-approach-with-caching)
+      - [One-Pass Approach with Caching\*](#one-pass-approach-with-caching)
+      - [Chunked One-Pass Approach with caching\*](#chunked-one-pass-approach-with-caching)
       - [One-Pass Approach without Caching](#one-pass-approach-without-caching)
       - [Possible other, more sophisticated solutions](#possible-other-more-sophisticated-solutions)
     - [Conclusion](#conclusion)
@@ -374,17 +374,19 @@ Disadvantage: Trajectory points must be computed in both passes, but this trade-
 
 While the two-pass approach is the chosen solution, it is important to consider alternative strategies that could be employed for trajectory calculations. Below are some alternative solutions that were evaluated, each with its own trade-offs in performance, memory usage, and complexity.
 
-#### One-Pass Approach with Caching
+#### One-Pass Approach with Caching*
 
 - Description: Trajectory points are calculated only once and stored in an array, allowing the use of NumPy's vectorization capabilities. This can enable efficient computation of trajectory extents and mapping of trajectory points to image pixels in a single operation.  
   
 - Disadvantages: While this approach can significantly enhance performance, it requires substantial memory resources for caching trajectory points, especially with a high number of iterations. This can lead to performance degradation due to system memory swapping or even memory overflows, depending on the system's available resources.
 
-#### Chunked One-Pass Approach with caching
+#### Chunked One-Pass Approach with caching*
 
 - Description: Trajectory points are processed in smaller segments (chunks), allowing for caching of points while managing memory usage effectively. This method processes chunks sequentially, which can help mitigate memory constraints while still leveraging caching.  
   
 - Disadvantages: While this approach helps keep memory consumption low, it introduces additional complexity and overhead in managing the chunked processing. This can often result in performance that is similar to or slower than the two-pass method, particularly if the chunk size is not optimally configured.
+
+* According to my current research, this applies both to mapping floating point values ​​to a discrete image and to directly processing floating point values ​​with a true probability density function (PDF) using SciPy Kernel Density Estimation (KDE) or the faster Numpy histogram with density = True.
 
 #### One-Pass Approach without Caching
 

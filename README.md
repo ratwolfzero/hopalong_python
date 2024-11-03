@@ -4,6 +4,8 @@
 - [Calculate \& Visualize the Hopalong Attractor with Python](#calculate--visualize-the-hopalong-attractor-with-python)
   - [Abstract](#abstract)
     - [The chosen core algorithm and the motivation for it](#the-chosen-core-algorithm-and-the-motivation-for-it)
+      - [otivation](#otivation)
+      - [Core algorithm](#core-algorithm)
   - [Requirements](#requirements)
   - [Usage](#usage)
     - [Input Parameters](#input-parameters)
@@ -61,14 +63,21 @@ $$
 
 ### The chosen core algorithm and the motivation for it
 
-The hopalong attractor is computed using a two-pass algorithm that achieves high speed with low memory consumption while producing a density map similar to a probability density function (PDF). To further improve performance, just-in-time (JIT) compilation is applied, supported by a low-complexity code structure.
+#### otivation
 
-First pass: In this phase, the minimum and maximum bounds of the trajectory are computed, effectively defining the area for subsequent coordinate mapping.
+Computing the attractor with a very high number of iterations while maintaining:
 
-Second pass: In this phase, the trajectory points are generated sequentially and mapped directly to pixel coordinates within an image array. Each time a trajectory point “hits” a pixel, the value of the pixel is incremented, resulting in a density map that visually represents areas of frequent trajectory occurrence.
+- high processing speed with low memory requirements and
+- representation of the attractor in the form of a density map resembling a probability density function (PDF)
 
-This approach effectively leverages efficient image processing capabilities from libraries such as Matplotlib, which are optimized for handling large datasets and presenting complex visualizations. Consequently, the approach can manage a large number of iterations while delivering high-quality visual output.
+#### Core algorithm
 
+Two-pass algorithm with separate computation of:
+
+- spatial extent of the attractor trajectory in the first pass and
+- and direct mapping of the sequentially generated floating point values ​​in continuous space to a discrete image grid, with tracking of the pixel hit count to represent the density map, in the second pass,
+- Efficient application of just-in-time (JIT) compilation supported by a low complexity code structure
+- Appropriate image processing and representation of the attractor by applying methods from the Matplotlib library
 
 For further hints regarding two-pass approach, see [Two-Pass Approach](#two-pass-approach)
 

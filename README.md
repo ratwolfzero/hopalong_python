@@ -4,7 +4,7 @@
 - [Calculate \& Visualize the Hopalong Attractor with Python](#calculate--visualize-the-hopalong-attractor-with-python)
   - [Abstract](#abstract)
     - [The chosen core algorithm and the motivation for it](#the-chosen-core-algorithm-and-the-motivation-for-it)
-      - [otivation](#otivation)
+      - [Motivation](#motivation)
       - [Core algorithm](#core-algorithm)
   - [Requirements](#requirements)
   - [Usage](#usage)
@@ -63,7 +63,7 @@ $$
 
 ### The chosen core algorithm and the motivation for it
 
-#### otivation
+#### Motivation
 
 Computing the attractor with a very high number of iterations while maintaining:
 

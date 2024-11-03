@@ -192,8 +192,8 @@ Visualization with Colormap:
 Remark:
 While the method of mapping trajectory points to pixel coordinates and counting hits provides a discrete representation of point density, it does not strictly yield a Probability Density Function (PDF); instead, it offers an approximation that can closely resemble the characteristics of a PDF, particularly in terms of visualizing areas of higher concentration of trajectory points.  
 
-Proven by applying np.histogram2d(...density=True) to the correlating raw data in floating point format. 
-First picture: Output using Integer conversion and image mapping
+Proven by applying np.histogram2d(...density=True) to the correlating raw data in floating point format.  
+First picture: Output using Integer conversion and image mapping  
 Second picture: Output applying 'np.histogram2d(...density=True)' which can be considered as true PDF
 
 ![Example Attractor Image](./examples/Figure_ex_1.png)

@@ -50,32 +50,6 @@ def compute_trajectory(a, b, c, num):
 
     return trajectory
 
-""""
-def plot_trajectory_with_density(trajectory):
-    # Use 2D histogram for density estimation instead of KDE
-    x = trajectory[:, 0]
-    y = trajectory[:, 1]
-    
-    # Define the binning parameters
-    bins = 500
-    density, xedges, yedges = np.histogram2d(x, y, bins=bins, density=True)
-    
-    # Plotting with density color mapping
-    plt.figure(figsize=(8, 8))
-    #plt.imshow(np.log(density.T + 1), origin='lower', cmap='hot', extent=[xedges[0], xedges[-1], yedges[0], yedges[-1]])
-    plt.imshow(density.T, origin='lower', cmap='hot', extent=[xedges[0], xedges[-1], yedges[0], yedges[-1]])
-    #plt.colorbar(label='Log Density')
-    plt.colorbar(label='Density')
-    plt.colorbar(x)
-    plt.title('Hopalong Attractor with Density Coloring (2D Histogram Approximation)')
-    plt.xlabel('X (Cartesian)')
-    plt.ylabel('Y (Cartesian)')
-    plt.axis('equal')
-    plt.tight_layout()
-    plt.show()
-    #plt.pause(1)
-    #plt.close()
-"""
 
 def plot_trajectory_with_density(trajectory):
     # Use 2D histogram for density estimation instead of KDE
@@ -87,24 +61,21 @@ def plot_trajectory_with_density(trajectory):
     density, xedges, yedges = np.histogram2d(x, y, bins=bins, density=True)
     
     # Create a figure
-    fig, ax = plt.subplots(figsize=(8, 8))
+    #fig, ax = plt.subplots(figsize=(8, 8))
+    fig = plt.figure(figsize=(8, 8))
+    ax = fig.add_subplot(1, 1, 1)
     
     # Plotting with density color mapping
-    im = ax.imshow(density.T, origin='lower', cmap='hot', extent=[xedges[0], xedges[-1], yedges[0], yedges[-1]])
+    img = ax.imshow(density.T, origin='lower', cmap='hot', extent=[xedges[0], xedges[-1], yedges[0], yedges[-1]])
     
     # Add color bar using the ax argument
-    cbar = plt.colorbar(im, ax=ax, label='Density', location='bottom')  # Associate color bar with the axes
-    
-    # Set aspect ratio to equal
-    ax.axis('equal')
-    
-    # Set x and y limits to avoid stretching
-    ax.set_xlim(xedges[0], xedges[-1])
-    ax.set_ylim(yedges[0], yedges[-1])
+    cbar = fig.colorbar(img, ax=ax, location='bottom')
+    cbar.set_label('Density')  # Title for colorbar
 
     ax.set_title('Hopalong Attractor with Density Coloring (2D Histogram Approximation)')
     ax.set_xlabel('X (Cartesian)')
     ax.set_ylabel('Y (Cartesian)')
+    #ax.axis('equal')
     plt.tight_layout()
     plt.show()
 

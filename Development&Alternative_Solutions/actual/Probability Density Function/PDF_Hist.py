@@ -62,7 +62,6 @@ def plot_trajectory_with_density(trajectory):
     density, xedges, yedges = np.histogram2d(x, y, bins=bins, density=True)
     
     # Create a figure
-    #fig, ax = plt.subplots(figsize=(8, 8))
     fig = plt.figure(figsize=(8, 8))
     ax = fig.add_subplot(1, 1, 1)
     

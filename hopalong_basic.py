@@ -130,6 +130,7 @@ def render_trajectory_image(image, extents, params, color_map):
     cbar.set_ticks(tick_positions)  # Set ticks on the colorbar
     cbar.set_ticklabels(tick_labels)  # Set formatted labels
 
+    #ax.axis('equal')
     plt.tight_layout()
     plt.show()
     #plt.pause(1)

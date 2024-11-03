@@ -334,6 +334,11 @@ print (f'Memory (RAM): {memMb:.2f} MByte used')
 </ul>
 <p>Remark:
 While the method of mapping trajectory points to pixel coordinates and counting hits provides a discrete representation of point density, it does not strictly yield a Probability Density Function (PDF); instead, it offers an approximation that can closely resemble the characteristics of a PDF, particularly in terms of visualizing areas of higher concentration of trajectory points.</p>
+<p>Proven by applying np.histogram2d(...density=True) to the correlating raw data in floating point format.<br>
+First picture: Output using Integer conversion and image mapping<br>
+Second picture: Output applying 'np.histogram2d(...density=True)' which can be considered as true PDF</p>
+<p><img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/Figure_ex_1.png" alt="Example Attractor Image">
+<img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/true_PDF_histogram.png" alt="Example Attractor Image"></p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h3 id="application-of-copysign-math-module-as-signum-function">Application of Copysign (Math Module) as Signum function</h3>
 <p>The programs now utilizes the math.copysign function &quot;copysign(x,y)&quot;<br>

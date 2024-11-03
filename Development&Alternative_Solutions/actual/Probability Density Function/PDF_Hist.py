@@ -35,6 +35,7 @@ def get_attractor_parameters():
     num = validate_input('Enter a positive integer value for "num": ', int, check_positive_non_zero=True, min_value=1000)
     return {'a': a, 'b': b, 'c': c, 'num': num}
 
+
 @njit
 def compute_trajectory(a, b, c, num):
     x = np.float64(0.0)
@@ -78,6 +79,7 @@ def plot_trajectory_with_density(trajectory):
     #ax.axis('equal')
     plt.tight_layout()
     plt.show()
+
 
 def main():
     try:

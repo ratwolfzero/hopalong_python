@@ -232,18 +232,18 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 <h4 id="motivation">Motivation</h4>
 <p>Computing the attractor with a very high number of iterations while maintaining:</p>
 <ul>
-<li>Generally a code structure with low complexity</li>
-<li>high processing speed with low memory requirements and</li>
-<li>representation of the attractor in the form of a density map resembling a probability density function (PDF)</li>
+<li>A code structure with low complexity</li>
+<li>High processing speed with low memory requirements</li>
+<li>Representation of the attractor as a density map resembling a probability density function (PDF)</li>
 </ul>
 <h4 id="core-algorithm">Core algorithm</h4>
 <p>Two-pass algorithm with separate computation of:</p>
 <ul>
-<li>spatial extent of the attractor trajectory in the first pass and</li>
-<li>direct mapping of the sequentially generated floating point values ​​in continuous space to a discrete image grid, while tracking the pixel hit count to represent the density map, in the second pass.</li>
-<li>Efficient application of just-in-time (JIT) compilation supported by a low complexity code structure</li>
-<li>Appropriate image processing and representation of the attractor by applying methods from the Matplotlib library</li>
+<li>Spatial expansion of the attractor trajectory during the first pass</li>
+<li>Direct mapping of the sequentially generated floating point values in continuous space to a discrete image grid, while tracking the pixel hit count to display the density map in the second pass</li>
 </ul>
+<p>Efficient application of just-in-time (JIT) compilation supported by a low complexity code structure<br>
+Appropriate image processing and representation of the attractor are achieved by applying methods from the Matplotlib library</p>
 <p>For further hints regarding two-pass approach, see <a href="#two-pass-approach">Two-Pass Approach</a></p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h2 id="requirements">Requirements</h2>

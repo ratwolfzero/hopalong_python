@@ -443,7 +443,7 @@ Utilize a 'Color Bar' to indicate the Pixel Density (Basic Version)
 
 Experiment with different image resolutions, color maps or populate the image array differently than based on the hit count and explore new visual views.
 
-© Ralf Becker
+© Ralf Becker  
 Nuernberg: November 2024
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------

@@ -24,7 +24,6 @@
     - [Alternative Solutions](#alternative-solutions)
       - [One-Pass Approach with Caching\*](#one-pass-approach-with-caching)
       - [Chunked One-Pass Approach with caching\*](#chunked-one-pass-approach-with-caching)
-        - [\*](#)
       - [One-Pass Approach without Caching](#one-pass-approach-without-caching)
       - [Possible other, more sophisticated solutions](#possible-other-more-sophisticated-solutions)
     - [Conclusion](#conclusion)
@@ -386,8 +385,6 @@ While the two-pass approach is the chosen solution, it is important to consider 
 - Description: Trajectory points are processed in smaller segments (chunks), allowing for caching of points while managing memory usage effectively. This method processes chunks sequentially, which can help mitigate memory constraints while still leveraging caching.  
   
 - Disadvantages: While this approach helps keep memory consumption low, it introduces additional complexity and overhead in managing the chunked processing. This can often result in performance that is similar to or slower than the two-pass method, particularly if the chunk size is not optimally configured.
-  
-##### *
 
 According to my current research, this applies both to mapping floating point values ​​to a discrete image and to directly processing floating point values ​​with a true probability density function (PDF) using SciPy Kernel Density Estimation (KDE) or the faster Numpy histogram with density = True.
 

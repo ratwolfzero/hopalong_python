@@ -67,7 +67,7 @@ $$
 
 Computing the attractor with a very high number of iterations while maintaining:
 
-- low complexity code structure
+- Generally a code structure with low complexity
 - high processing speed with low memory requirements and
 - representation of the attractor in the form of a density map resembling a probability density function (PDF)
 

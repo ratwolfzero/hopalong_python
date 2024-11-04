@@ -34,7 +34,7 @@ def get_attractor_parameters():
     return params
 
 
-@njit(cache=True)
+@njit
 def compute_full_trajectory_extents(a, b, c, num):
     # Compute the x and y extents of the Hopalong attractor trajectory.
     x = y = np.float64(0)
@@ -55,7 +55,7 @@ def generate_chunk_sizes(num, chunk_size):
         yield current_chunk_size
 
 
-@njit(cache=True)
+@njit
 def compute_trajectory_chunk(a, b, c, current_chunk_size, x0, y0):
     # Compute a chunk of the Hopalong trajectory.
     points = np.zeros((current_chunk_size, 2), dtype=np.float64)

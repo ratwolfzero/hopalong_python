@@ -67,9 +67,9 @@ $$
 
 Computing the attractor with a very high number of iterations while maintaining:
 
-- A code structure with low complexity
+- Low complexity code structure
 - High processing speed with low memory requirements
-- Representation of the attractor as a density map resembling a probability density function (PDF)
+- Representation of the attractor as a density map that resembles a probability density function (PDF)
 
 #### Core algorithm
 

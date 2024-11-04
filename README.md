@@ -195,7 +195,10 @@ While the method of mapping trajectory points to pixel coordinates and counting 
 
 Proven by applying np.histogram2d(...density=True) to the correlating raw data in floating point format.  
 First picture: Output using Integer conversion and image mapping  
-Second picture: Output applying 'np.histogram2d(...density=True)' which can be considered as true PDF
+Second picture: Output applying 'np.histogram2d(...density=True)' which can be considered as true PDF  
+Both pictures are quite similar.
+
+The visual similarity does not necessarily mean that the original floating-point data follows a probability density function (PDF) before any processing. Instead, it suggests that the distribution of the points has regions of higher concentration, which is common for chaotic systems, that both methods capture effectively.
 
 ![Example Attractor Image](./examples/Figure_ex_1.png)
 ![Example Attractor Image](./examples/true_PDF_histogram.png)

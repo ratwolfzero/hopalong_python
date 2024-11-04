@@ -237,13 +237,17 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 <li>Representation of the attractor as a density map that resembles a probability density function (PDF)</li>
 </ul>
 <h4 id="core-algorithm">Core algorithm</h4>
-<p>Two-pass algorithm with separate computation of:</p>
+<p>Two-pass algorithm with separate calculation of:</p>
 <ul>
-<li>Spatial expansion of the attractor trajectory during the first pass</li>
-<li>Direct mapping of the sequentially generated floating point values in continuous space to a discrete image, while tracking the pixel hit count to display the density map in the second pass</li>
+<li>
+<p>The spatial extent of the attractor trajectory (first pass)</p>
+</li>
+<li>
+<p>Direct mapping of the sequentially generated floating point values ​​in continuous space to a discrete image while tracking the number of pixel hits to display the density map (second pass)</p>
+</li>
 </ul>
-<p>Efficient application of just-in-time (JIT) compilation supported by a low complexity code structure<br>
-Appropriate image processing and representation of the attractor are achieved by applying methods from the Matplotlib library</p>
+<p>Efficient application of just-in-time (JIT) compilation supported by a low complexity code structure
+Appropriate image processing and representation of the attractor is achieved by applying methods from the Matplotlib library</p>
 <p>For further hints regarding two-pass approach, see <a href="#two-pass-approach">Two-Pass Approach</a></p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h2 id="requirements">Requirements</h2>

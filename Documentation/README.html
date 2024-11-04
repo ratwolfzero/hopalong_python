@@ -338,9 +338,11 @@ print (f'Memory (RAM): {memMb:.2f} MByte used')
 </ul>
 <p>Remark:
 While the method of mapping trajectory points to pixel coordinates and counting hits provides a discrete representation of point density, it does not strictly yield a Probability Density Function (PDF); instead, it offers an approximation that can closely resemble the characteristics of a PDF, particularly in terms of visualizing areas of higher concentration of trajectory points.</p>
-<p>Proven by applying np.histogram2d(...density=True) to the correlating raw data in floating point format.<br>
-First picture: Output using Integer conversion and image mapping<br>
-Second picture: Output applying 'np.histogram2d(...density=True)' which can be considered as true PDF</p>
+<p>This has been proven by applying np.histogram2d(...density=True) to the correlating raw data in floating point format.</p>
+<p>First picture: Output using Integer conversion and image mapping.<br>
+Second picture: Output applying 'np.histogram2d(...density=True)' which can be considered as a true PDF.</p>
+<p>Both pictures are quite similar.</p>
+<p>This visual similarity does not necessarily mean that the original floating-point data follows a probability density function (PDF) before any processing. Instead, it suggests that the distribution of the points has regions of higher concentration, which is common for chaotic systems, that both methods capture effectively.</p>
 <p><img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/Figure_ex_1.png" alt="Example Attractor Image">
 <img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/true_PDF_histogram.png" alt="Example Attractor Image"></p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>

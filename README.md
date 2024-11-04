@@ -394,7 +394,7 @@ While the two-pass approach is the chosen solution, it is important to consider 
   
 - Disadvantages: While this approach helps keep memory consumption low, it introduces additional complexity and overhead in managing the chunked processing. This can often result in performance that is similar to or slower than the two-pass method, particularly if the chunk size is not optimally configured.
 
-"*According to my recent research, this also applies analogously to versions that process floating point values ​​directly with a true probability density function (PDF) using SciPy Kernel Density Estimation (KDE) or the faster Numpy histogram with density = True. "True PDF" versions that use a chunked approach to minimize memory requirements seem to be difficult in terms of correctly accumulating the chunked histogram.
+*This also applies analogously to versions that process floating point values ​​directly with a true probability density function (PDF) using SciPy Kernel Density Estimation (KDE) or the faster Numpy histogram with density = True. "True PDF" versions that use a chunked approach to minimize memory requirements seem to be difficult in terms of correctly accumulating the chunked histogram.
 
 #### One-Pass Approach without Caching
 

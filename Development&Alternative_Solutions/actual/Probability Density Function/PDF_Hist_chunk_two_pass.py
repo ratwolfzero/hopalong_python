@@ -79,11 +79,11 @@ def compute_pdf_histogram(a, b, c, num, chunk_size, extents, bins):
         
         # Update histogram with current chunk
         hist, _, _ = np.histogram2d(points[:, 0], points[:, 1], bins=bins,
-                                    range=[[min_x, max_x], [min_y, max_y]], density=False)
+                                    range=[[min_x, max_x], [min_y, max_y]], density=True)
         histogram += hist
 
     # Normalize to get PDF
-    #histogram /= histogram.sum()  # This makes it a probability density function
+    histogram /= histogram.sum()  # This makes it a probability density function
 
     return histogram
 

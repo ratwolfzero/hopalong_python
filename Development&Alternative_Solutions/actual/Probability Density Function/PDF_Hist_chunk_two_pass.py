@@ -83,19 +83,13 @@ def compute_pdf_histogram(a, b, c, num, chunk_size, extents, bins):
         histogram += hist
 
     # Normalize to get PDF
-    histogram /= histogram.sum()  # This makes it a probability density function
+    #histogram /= histogram.sum()  # This makes it a probability density function
 
     return histogram
 
 
 def render_pdf_histogram(histogram, extents, params, color_map='hot'):
     # Render the PDF histogram as an image
-    """
-    fig, ax = plt.subplots(figsize=(8, 8))
-    ax.imshow(histogram.T, origin="lower", cmap=color_map,
-              extent=[extents[0], extents[1], extents[2], extents[3]])
-    ax.set_title("Hopalong Attractor PDF\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
-    """
     
     # Create a figure
     fig = plt.figure(figsize=(8, 8))

@@ -54,7 +54,7 @@ def compute_trajectory(a, b, c, num):
 
 
 def plot_trajectory_with_density(trajectory):
-    # Use 2D histogram for density estimation instead of KDE
+    # Use 2D histogram for density estimation
     x = trajectory[:, 0]
     y = trajectory[:, 1]
     

@@ -75,9 +75,9 @@ Computing the attractor with a very high number of iterations while maintaining:
 
 Two-pass algorithm with separate calculation of:
 
-- The spatial extent of the attractor trajectory during the first pass
+- The spatial extent of the attractor trajectory (first pass)
 
-- Direct mapping of the sequentially generated floating point values ​​in continuous space to a discrete image while tracking the number of pixel hits to display the density map in the second pass
+- Direct mapping of the sequentially generated floating point values ​​in continuous space to a discrete image while tracking the number of pixel hits to display the density map (second pass)
 
 Efficient application of just-in-time (JIT) compilation supported by a low complexity code structure
 Appropriate image processing and representation of the attractor is achieved by applying methods from the Matplotlib library

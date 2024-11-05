@@ -202,7 +202,7 @@ def main(image_size=(1000, 1000), color_map='hot'):
         # Calculate the memory resources used
         memMb=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024.0/1024.0
         
-        print(f'CPU User&System time used: {cpu_sys_time_used:.2f} seconds')
+        print(f'CPU User&System time: {cpu_sys_time_used:.2f} seconds')
         print (f'Memory (RAM): {memMb:.2f} MByte used')
 
     except Exception as e:

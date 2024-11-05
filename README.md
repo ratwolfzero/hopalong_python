@@ -6,7 +6,6 @@
     - [The chosen core algorithm and the motivation for it](#the-chosen-core-algorithm-and-the-motivation-for-it)
       - [Motivation](#motivation)
       - [Core algorithm](#core-algorithm)
-        - [Two-pass algorithm with separate calculation of:](#two-pass-algorithm-with-separate-calculation-of)
   - [Requirements](#requirements)
   - [Usage](#usage)
     - [Input Parameters](#input-parameters)
@@ -71,14 +70,14 @@ $$
 
 #### Core algorithm
 
-##### Two-pass algorithm with separate calculation of:
+Two-pass algorithm with separate calculation of:
 
 - The spatial extent of the attractor trajectory (first pass)
 
 - Direct mapping of the sequentially generated floating point values ​​in continuous space to a discrete image while tracking the number of pixel hits to display the density map (second pass)
 
-Efficient application of just-in-time (JIT) compilation supported by a low complexity code structure.  
-Appropriate image processing and representation of the attractor is achieved by applying methods from the Matplotlib library.
+Just-in-time (JIT) compilation supported by a low complexity code structure.  
+
 
 For further hints regarding two-pass approach, see [Two-Pass Approach](#two-pass-approach)
 

@@ -386,7 +386,7 @@ While the two-pass approach is the primary solution, it’s valuable to consider
 
 #### One-Pass Approach with Full Trajectory Caching
 
-Description: This method computes all trajectory points in a single pass and stores them in memory, enabling efficient calculation of trajectory extents and direct mapping to image pixels.  
+Description: This method computes all trajectory points in a single pass and stores them in memory, enabling efficient calculation of trajectory extents and mapping to image pixels.  
 
 - Advantages: Leveraging NumPy’s vectorized operations, this approach efficiently computes and maps points in a single pass, potentially increasing performance.  
 - Disadvantages:  

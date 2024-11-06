@@ -405,7 +405,7 @@ No Caching: Points are computed and mapped to pixels directly without storing th
 - Disadvantages: Both approaches become impractical due to the following major limitations:
 Data Loss and Inaccuracy: As previously computed floating-point values are irrecoverably mapped to integer pixel coordinates, it becomes impossible to retrieve the exact values for remapping, leading to data loss and inconsistencies.  
 
-*This also applies analogously to versions that process floating point values ​​directly with a true probability density function (PDF) using SciPy Kernel Density Estimation (KDE) or the faster Numpy histogram.
+*This also applies analogously to any versions that only process floating point values.
 
 #### Possible other, more sophisticated solutions
 

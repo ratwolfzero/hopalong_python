@@ -22,7 +22,7 @@
     - [Two-Pass Approach](#two-pass-approach)
     - [Two-Pass Code Section](#two-pass-code-section)
     - [Alternative Solutions](#alternative-solutions)
-      - [One-Pass Approach with Full Trajectory Caching](#one-pass-approach-with-full-trajectory-caching)
+      - [One-Pass Approach with Full Trajectory Caching\*](#one-pass-approach-with-full-trajectory-caching)
       - [One-Pass Approach with Limited Memory Usage (Chunked or No Caching)\*](#one-pass-approach-with-limited-memory-usage-chunked-or-no-caching)
       - [Possible other, more sophisticated solutions](#possible-other-more-sophisticated-solutions)
     - [Conclusion](#conclusion)
@@ -384,7 +384,7 @@ Disadvantage: Trajectory points must be computed in both passes, but this trade-
 
 While the two-pass approach is the primary solution, it’s valuable to consider alternative one-pass methods, each with unique trade-offs in performance, memory usage, and complexity. Here’s an overview:
 
-#### One-Pass Approach with Full Trajectory Caching
+#### One-Pass Approach with Full Trajectory Caching*
 
 Description: This method computes all trajectory points in a single pass and stores them in memory, enabling efficient calculation of trajectory extents and mapping to image pixels.  
 

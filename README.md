@@ -388,7 +388,8 @@ While the two-pass approach is the primary solution, it’s valuable to consider
 
 Description: This method computes all trajectory points in a single pass and stores them in memory, enabling efficient calculation of trajectory extents and mapping to image pixels.  
 
-- Advantages: Leveraging NumPy’s vectorized operations, this approach efficiently computes and maps points in a single pass, potentially increasing performance.  
+- Advantages: Leveraging NumPy’s vectorized operations, this approach efficiently computes and maps points in a single pass, potentially increasing performance.
+  
 - Disadvantages:  
 Full caching requires substantial memory, especially for high iteration counts. This may lead to performance issues from system memory swapping or even memory overflow.
 
@@ -396,10 +397,11 @@ Full caching requires substantial memory, especially for high iteration counts. 
 
 Description: This approach attempts to reduce memory consumption by either processing the trajectory in chunks or not caching trajectory points at all. However, since the full trajectory extents are unknown at the outset, each variation faces the same limitation: pixel mappings require recalculating because extents change (floating points in continuous space).  
 
-- Chunked: The trajectory is divided into manageable chunks, each cached temporarily.  
-- No Caching: Points are computed and mapped to pixels immediately without storing them.  
+Chunked: The trajectory is divided into manageable chunks, each cached temporarily.  
+No Caching: Points are computed and mapped to pixels immediately without storing them.  
 
-- Advantages: Limits memory usage.  
+- Advantages: Limits memory usage.
+
 - Disadvantages: Both approaches become impractical due to the following major limitations:
 Data Loss and Inaccuracy: As previously computed floating-point values are irrecoverably mapped to integer pixel coordinates, it becomes impossible to retrieve the exact values for remapping, leading to data loss and inconsistencies.  
 

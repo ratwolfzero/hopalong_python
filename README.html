@@ -530,7 +530,7 @@ No Caching: Points are computed and mapped to pixels directly without storing th
 Data Loss and Inaccuracy: As previously computed floating-point values are irrecoverably mapped to integer pixel coordinates, it becomes impossible to retrieve the exact values for remapping, leading to data loss and inconsistencies.</p>
 </li>
 </ul>
-<p>*This also applies analogously to versions that process floating point values ​​directly with a true probability density function (PDF) using SciPy Kernel Density Estimation (KDE) or the faster Numpy histogram.</p>
+<p>*This also applies analogously to any versions that only process floating point values.</p>
 <h4 id="possible-other-more-sophisticated-solutions">Possible other, more sophisticated solutions</h4>
 <p>No other solutions have been investigated or considered so far.
 More sophisticated solutions also contradict the approach of minimal complexity design. Unless a further significant performance increase for high-iteration calculations would make it interesting to consider.</p>

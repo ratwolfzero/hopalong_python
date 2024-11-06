@@ -77,7 +77,6 @@ Two-pass algorithm with separate calculation of:
 
 Just-in-time (JIT) compilation supported by a low complexity code structure.  
 
-
 For further hints regarding two-pass approach, see [Two-Pass Approach](#two-pass-approach)
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
@@ -176,18 +175,13 @@ In both versions of the program (basic and extended), pixels are color-coded bas
 
 Point to Pixel Mapping:
 
-
 - The trajectory points generated are represented as floating-point values in a two-dimensional continuous space. To visualize these points on a discrete image, they must be mapped to integer pixel coordinates using scaling factors based on the trajectory's extents (minimum and maximum values) and the image dimensions. This scaling ensures that continuous coordinates fit within the pixel grid.
-
 
 Integer Conversion and Density Representation:
 
-
 - The floating-point coordinates are converted to integers to determine pixel locations. This conversion is "lossy," as closely spaced trajectory points can be assigned to the same pixel, leading to multiple hits for that pixel. The image array is initialized to zero, and each time a pixel is hit, the count at that pixel's index is incremented. Pixels with more hits represent higher density areas, indicating a greater concentration of trajectory points. The varying hit counts provide a discrete measure of point concentration, with the total number of hits reflecting the number of iterations.
 
-
 Visualization with Colormap:
-
 
 - Matplotlib's "hot" colormap is used to represent the hit count information. It applies normalization to scale the hit counts within the color range, producing a gradient from dark colors (low hit counts) to light colors (high hit counts). This effectively visualizes areas of greater activity within the attractor.
 

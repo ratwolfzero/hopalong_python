@@ -13,7 +13,8 @@ a = -2.0
 b = -0.33
 c = 0.01
 iterations = 200000000
-width, height = 1000, 1000  # Resolution of the pixel grid
+#width, height = 1000, 1000  # Resolution of the pixel grid
+image_size= 1000,1000
 
 # Initial values
 #x0, y0 = 0.0, 0.0
@@ -39,7 +40,7 @@ def calculate_extents(x0, y0, a, b, c, iterations):
 """
 
 @njit #njit is an alias for nopython=True
-def calculate_extents(x0, y0,a, b, c, iterations):
+def calculate_extents(x, y,a, b, c, iterations):
     # Dynamically compute and track the minimum and maximum extents of the trajectory over 'num' iterations.
     x = np.float64(0.0)
     y = np.float64(0.0)
@@ -68,7 +69,7 @@ def calculate_extents(x0, y0,a, b, c, iterations):
     return x_min, x_max, y_min, y_max
 
 @njit
-def create_density_map(x0, y0, a, b, c, iterations, x_min, x_max, y_min, y_max, image_size):
+def create_density_map(x, y, a, b, c, iterations, x_min, x_max, y_min, y_max, image_size):
     #x, y = x0, y0
     x = np.float64(0.0)
     y = np.float64(0.0)

@@ -22,9 +22,8 @@
     - [Two-Pass Approach](#two-pass-approach)
     - [Two-Pass Code Section](#two-pass-code-section)
     - [Alternative Solutions](#alternative-solutions)
-      - [One-Pass Approach with Caching \*](#one-pass-approach-with-caching-)
-      - [Chunked One-Pass Approach with caching \*](#chunked-one-pass-approach-with-caching-)
-      - [One-Pass Approach without Caching](#one-pass-approach-without-caching)
+      - [One-Pass Approach with Full Trajectory Caching](#one-pass-approach-with-full-trajectory-caching)
+      - [One-Pass Approach with Limited Memory Usage (Chunked or No Caching)](#one-pass-approach-with-limited-memory-usage-chunked-or-no-caching)
       - [Possible other, more sophisticated solutions](#possible-other-more-sophisticated-solutions)
     - [Conclusion](#conclusion)
   - [Recent Code Changes](#recent-code-changes)
@@ -383,33 +382,26 @@ Disadvantage: Trajectory points must be computed in both passes, but this trade-
 
 ### Alternative Solutions
 
-While the two-pass approach is the chosen solution, it is important to consider alternative strategies that could be employed for trajectory calculations. Below are some alternative solutions that were evaluated, each with its own trade-offs in performance, memory usage, and complexity.
+While the two-pass approach is the primary solution, it’s valuable to consider alternative one-pass methods, each with unique trade-offs in performance, memory usage, and complexity. Here’s an overview:
 
-#### One-Pass Approach with Caching *
+#### One-Pass Approach with Full Trajectory Caching
 
-- Description: Trajectory points are calculated only once and stored in an array, allowing the use of NumPy's vectorization capabilities. This can enable efficient computation of trajectory extents and mapping of trajectory points to image pixels in a single operation.  
-  
-- Disadvantages: While this approach can significantly enhance performance, it requires substantial memory resources for caching trajectory points, especially with a high number of iterations. This can lead to performance degradation due to system memory swapping or even memory overflows, depending on the system's available resources.
+Description: This method computes all trajectory points in a single pass and stores them in memory, enabling efficient calculation of trajectory extents and direct mapping to image pixels.  
 
-#### Chunked One-Pass Approach with caching *
+Advantages: Leveraging NumPy’s vectorized operations, this approach efficiently computes and maps points in a single pass, potentially increasing performance.  
+Disadvantages:  
+Full caching requires substantial memory, especially for high iteration counts. This may lead to performance issues from system memory swapping or even memory overflow.
 
-- Description: Trajectory points are processed in smaller segments (chunks), allowing for caching of points while managing memory usage effectively. This method processes chunks sequentially, which can help mitigate memory constraints while still leveraging caching.  
-  
-- Disadvantages: While this approach helps keep memory consumption low, it introduces additional complexity and overhead in managing the chunked processing. This can often result in performance that is similar to or slower than the two-pass method, particularly if the chunk size is not optimally configured.
+#### One-Pass Approach with Limited Memory Usage (Chunked or No Caching)
 
-*This also applies analogously to versions that process floating point values ​​directly with a true probability density function (PDF) using SciPy Kernel Density Estimation (KDE) or the faster Numpy histogram.  
-"True PDF" versions that use a chunked approach to minimize memory requirements seem to be difficult in terms of correctly accumulating the chunked histogram.
+Description: This approach attempts to reduce memory consumption by either processing the trajectory in chunks or not caching trajectory points at all. However, since the full trajectory extents are unknown at the outset, each variation faces the same limitation: pixel mappings require recalculating because extents change (floating points in continuous space).  
+hunked: The trajectory is divided into manageable chunks, each cached temporarily.  
+No Caching: Points are computed and mapped to pixels immediately without storing them.  
 
-#### One-Pass Approach without Caching
+Advantages: Limits memory usage.  
 
-- Description: This method attempts to compute and map points in a single pass without storing previously computed points.
-
-- Disadvantages: Requires continuous remapping of previously mapped pixels every time the trajectory extents change, making the method complex and potentially inefficient.
-
-- Feasibility:
-Theoretical approach, practically infeasible due to the following major limitations:
-
-  Data Loss and Inability to Recover Exactly: Due to the lossy nature of integer mapping, where several closely spaced floating-point values may be represented by the same integer pixel, previously computed floating-point values cannot be retrieved for remapping. This loss of information makes it impossible to recover the original values once they have been mapped to integers.
+Disadvantages: Both approaches become impractical due to the following major limitations:
+Data Loss and Inaccuracy: As previously computed floating-point values are irrecoverably mapped to integer pixel coordinates, it becomes impossible to retrieve the exact values for remapping, leading to data loss and inconsistencies.
 
 #### Possible other, more sophisticated solutions
 

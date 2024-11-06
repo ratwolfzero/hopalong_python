@@ -160,16 +160,19 @@ Extended Version
 
 ### Program Variants
 
-Two program variants are available:
+Two variants of the program are available:
 
-- Basic version: Calculation and display of the Hopalong Attractor and the pixel density via a color bar.
-- Extended version: Includes the features of the basic version except color bar, plus statistics and visualization of the pixel hit counts distribution.  
+
+Basic Version: Calculates and displays the Hopalong Attractor along with pixel density represented by a color bar.
+
+Extended Version: Includes all features of the basic version, excluding the color bar, plus additional statistics and visualization of the pixel hit counts distribution.
+
 
 Examples of outputs can be found in the "Usage" section above.
 
 ### Image Pixels and Color Mapping
 
-In both versions of the program (basic and extended), pixels are color-coded based on the number of times the trajectory points "hit" them, referred to as the "pixel hit count."
+In both program variants, pixels are color-coded based on the frequency of trajectory point "hits," referred to as the "pixel hit count."
 
 ### Pixel Hit Counts (Density) and Visualization
 

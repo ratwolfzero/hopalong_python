@@ -23,7 +23,7 @@
     - [Two-Pass Code Section](#two-pass-code-section)
     - [Alternative Solutions](#alternative-solutions)
       - [One-Pass Approach with Full Trajectory Caching](#one-pass-approach-with-full-trajectory-caching)
-      - [One-Pass Approach with Limited Memory Usage (Chunked or No Caching)](#one-pass-approach-with-limited-memory-usage-chunked-or-no-caching)
+      - [One-Pass Approach with Limited Memory Usage (Chunked or No Caching)\*](#one-pass-approach-with-limited-memory-usage-chunked-or-no-caching)
       - [Possible other, more sophisticated solutions](#possible-other-more-sophisticated-solutions)
     - [Conclusion](#conclusion)
   - [Recent Code Changes](#recent-code-changes)
@@ -392,7 +392,7 @@ Advantages: Leveraging NumPy’s vectorized operations, this approach efficientl
 Disadvantages:  
 Full caching requires substantial memory, especially for high iteration counts. This may lead to performance issues from system memory swapping or even memory overflow.
 
-#### One-Pass Approach with Limited Memory Usage (Chunked or No Caching)
+#### One-Pass Approach with Limited Memory Usage (Chunked or No Caching)*
 
 Description: This approach attempts to reduce memory consumption by either processing the trajectory in chunks or not caching trajectory points at all. However, since the full trajectory extents are unknown at the outset, each variation faces the same limitation: pixel mappings require recalculating because extents change (floating points in continuous space).  
 hunked: The trajectory is divided into manageable chunks, each cached temporarily.  
@@ -401,7 +401,9 @@ No Caching: Points are computed and mapped to pixels immediately without storing
 Advantages: Limits memory usage.  
 
 Disadvantages: Both approaches become impractical due to the following major limitations:
-Data Loss and Inaccuracy: As previously computed floating-point values are irrecoverably mapped to integer pixel coordinates, it becomes impossible to retrieve the exact values for remapping, leading to data loss and inconsistencies.
+Data Loss and Inaccuracy: As previously computed floating-point values are irrecoverably mapped to integer pixel coordinates, it becomes impossible to retrieve the exact values for remapping, leading to data loss and inconsistencies.  
+
+*This also applies analogously to versions that process floating point values ​​directly with a true probability density function (PDF) using SciPy Kernel Density Estimation (KDE) or the faster Numpy histogram.
 
 #### Possible other, more sophisticated solutions
 

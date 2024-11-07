@@ -263,13 +263,10 @@ By the way, this scenario is an ideal use case for the extended program version 
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
-### Optional Features  
+### Optional Features
+Execution time and resources: Measurement starts after user input and records the CPU time for the entire process, including image rendering. It also tracks the system memory used.
 
-Execution time* and resources: Starts after user input and measures the CPU time for the entire process including image rendering and shows the system memory used.
-
-*Since interactions with the plot window, e.g. zooming, panning, mouse movements, are measured, it is recommended to close the plot window automatically.
-This can be done, for example, by using the commands plt.pause(1) followed by plt.close(fig).
-As long as there is no interaction with the plot window, the "plt.pause() time" is not recorded by the "time.process_time()" function used.
+Note: Since interactions with the plot window, such as zooming, panning, or mouse movements, are also measured, it is recommended to close the plot window automatically. This can be achieved using the commands plt.pause(1) followed by plt.close(fig). As long as there is no interaction with the plot window, the pause time from plt.pause() is not recorded by the time.process_time() function.
 
     #plt.show()
     plt.pause(1)

@@ -261,8 +261,7 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">â
 <li>time</li>
 <li>resource</li>
 </ul>
-<p>Import the &quot;Time&quot; and &quot;Resource&quot; libraries if you want to track process time and system memory used.
-Otherwise, please comment out the relevant code snippets at import section and main() function.</p>
+<p>mport the <code>time</code> and <code>resource</code> libraries if you want to track process time and system memory usage. Otherwise, please comment out the relevant code snippets in the import section and the main() function.</p>
 <pre><code>#...
 #import time
 #import resource 
@@ -402,16 +401,14 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">â
 <p>--&gt; (x<sub>1</sub> , y<sub>1</sub>) = (0 , p)</p>
 <p>--&gt; (x<sub>2</sub> , y<sub>2</sub>) = (p , p)</p>
 <p>--&gt; (x<sub>3</sub> , y<sub>3</sub>) = (0 , 0), cycle completed</p>
-<p>So If you want to experiment with this, it is recommend that you reduce the total number of pixels by reducing the image resolution (e.g. 100x100) in order to achieve a better visual representation of the pixels bordering the minimum and maximum extents of the trajectory.</p>
+<p>If you want to experiment with this, it is recommended to reduce the total number of pixels by lowering the image resolution (e.g., 100x100) to achieve a clearer visual representation of the pixels bordering the minimum and maximum extents of the trajectory.</p>
 <pre><code>def main(image_size=(100, 100), color_map='hot'):
 </code></pre>
-<p>By the way, this scenario is an ideal use case for the extended program version with pixel hit count statistics.</p>
+<p>By the way, this scenario is an ideal use case for the extended version of the program with pixel hit count statistics.</p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h3 id="optional-features">Optional Features</h3>
-<p>Execution time* and resources: Starts after user input and measures the CPU time for the entire process including image rendering and shows the system memory used.</p>
-<p>*Since interactions with the plot window, e.g. zooming, panning, mouse movements, are measured, it is recommended to close the plot window automatically.
-This can be done, for example, by using the commands plt.pause(1) followed by plt.close(fig).
-As long as there is no interaction with the plot window, the &quot;plt.pause() time&quot; is not recorded by the &quot;time.process_time()&quot; function used.</p>
+<p>Execution time and resources: Measurement starts after user input and records the CPU time for the entire process, including image rendering. It also tracks the system memory used.</p>
+<p>Note: Since interactions with the plot window, such as zooming, panning, or mouse movements, are also measured, it is recommended to close the plot window automatically. This can be achieved using the commands plt.pause(1) followed by plt.close(fig). As long as there is no interaction with the plot window, the pause time from plt.pause() is not recorded by the time.process_time() function.</p>
 <pre><code>#plt.show()
 plt.pause(1)
 plt.close(fig)
@@ -532,8 +529,7 @@ Data Loss and Inaccuracy: As previously computed floating-point values are irrec
 </ul>
 <p>*This also applies analogously to any versions that only process floating point values.</p>
 <h4 id="possible-other-more-sophisticated-solutions">Possible other, more sophisticated solutions</h4>
-<p>No other solutions have been investigated or considered so far.
-More sophisticated solutions also contradict the approach of minimal complexity design. Unless a further significant performance increase for high-iteration calculations would make it interesting to consider.</p>
+<p>No other solutions have been investigated or considered so far. More sophisticated solutions would also contradict the approach of minimal complexity design, unless a significant performance increase for high-iteration calculations makes it worth considering.</p>
 <h3 id="conclusion">Conclusion</h3>
 <p>Overall, the two-pass approach strikes the best balance of speed, efficiency, and simplicity, making it ideal for high-iteration calculations of the Hopalong Attractor. Despite the need to recalculate trajectory points, it avoids the pitfalls of alternative solutions.</p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
@@ -557,7 +553,7 @@ cbar.set_ticklabels(tick_labels)  # Set formatted labels
 #...
 </code></pre>
 <h2 id="enjoy-the-exploration">Enjoy the Exploration</h2>
-<p>Experiment with different image resolutions, color maps or populate the image array differently than based on the hit count and explore new visual views.</p>
+<p>Experiment with different image resolutions, color maps, or ways of populating the image array beyond using the hit count to explore new visual perspectives.</p>
 <p>Â© Ralf Becker<br>
 Nuernberg: November 2024</p>
 <hr>

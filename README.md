@@ -98,7 +98,7 @@ Optional (for performance tracking):
 - time
 - resource
   
-mport the `time` and `resource` libraries if you want to track process time and system memory usage. Otherwise, please comment out the relevant code snippets in the import section and the main() function.
+Import the `time` and `resource` libraries if you want to track process time and system memory usage. Otherwise, please comment out the relevant code snippets in the import section and the main() function.
   
     #...
     #import time

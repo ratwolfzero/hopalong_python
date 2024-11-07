@@ -258,7 +258,7 @@ If you want to experiment with this, it is recommended to reduce the total numbe
 
     def main(image_size=(100, 100), color_map='hot'):
 
-By the way, this scenario is an ideal use case for the extended program version with pixel hit count statistics.
+By the way, this scenario is an ideal use case for the extended version of the program with pixel hit count statistics.
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 

@@ -400,8 +400,7 @@ Data Loss and Inaccuracy: As previously computed floating-point values are irrec
 
 #### Possible other, more sophisticated solutions
 
-No other solutions have been investigated or considered so far.
-More sophisticated solutions also contradict the approach of minimal complexity design. Unless a further significant performance increase for high-iteration calculations would make it interesting to consider.
+No other solutions have been investigated or considered so far. More sophisticated solutions would also contradict the approach of minimal complexity design, unless a significant performance increase for high-iteration calculations makes it worth considering.
 
 ### Conclusion
 
@@ -432,7 +431,7 @@ Utilize a 'Color Bar' to indicate the Pixel Density (Basic Version)
 
 ## Enjoy the Exploration
 
-Experiment with different image resolutions, color maps or populate the image array differently than based on the hit count and explore new visual views.
+Experiment with different image resolutions, color maps, or ways of populating the image array beyond using the hit count to explore new visual perspectives.
 
 © Ralf Becker  
 Nuernberg: November 2024

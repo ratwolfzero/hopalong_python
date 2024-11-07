@@ -83,7 +83,7 @@ For further hints regarding two-pass approach, see [Two-Pass Approach](#two-pass
 
 ## Requirements  
 
-To run this program, the following Python libraries or Modules must be installed / imported:
+To run the programs, the following Python libraries or Modules must be installed / imported:
 
 - matplotlib *
 - numpy *  

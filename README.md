@@ -127,7 +127,7 @@ Otherwise, please comment out the relevant code snippets at import section and m
 
 ### Input Parameters
 
-When you run the program, you will be prompted to enter the following parameters, which are crucial for determining the behavior of the Hopalong Attractor:
+When you run the programs, you will be prompted to enter the following parameters, which are crucial for determining the behavior of the Hopalong Attractor:
 
 - **a (float or integer)**: The first parameter affecting the attractor's dynamics.
 - **b (float or integer)**: The second parameter affecting the attractor's dynamics.

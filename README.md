@@ -98,8 +98,8 @@ Optional (for performance tracking):
 - time
 - resource
   
-Import the "Time" and "Resource" libraries if you want to track process time and system memory used.
-Otherwise, please comment out the relevant code snippets at import section and main() function.
+Import the time and resource libraries if you want to track process time and system memory usage.  
+Otherwise, please comment out the relevant code snippets in the import section and the main() function.
   
     #...
     #import time
@@ -255,7 +255,7 @@ start: (x<sub>0</sub> , y<sub>0</sub>) = (0 , 0)
 
 --> (x<sub>3</sub> , y<sub>3</sub>) = (0 , 0), cycle completed
 
-So If you want to experiment with this, it is recommend that you reduce the total number of pixels by reducing the image resolution (e.g. 100x100) in order to achieve a better visual representation of the pixels bordering the minimum and maximum extents of the trajectory.
+If you want to experiment with this, it is recommended to reduce the total number of pixels by lowering the image resolution (e.g., 100x100) to achieve a clearer visual representation of the pixels bordering the minimum and maximum extents of the trajectory.
 
     def main(image_size=(100, 100), color_map='hot'):
 
@@ -264,6 +264,7 @@ By the way, this scenario is an ideal use case for the extended program version 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
 ### Optional Features
+
 Execution time and resources: Measurement starts after user input and records the CPU time for the entire process, including image rendering. It also tracks the system memory used.
 
 Note: Since interactions with the plot window, such as zooming, panning, or mouse movements, are also measured, it is recommended to close the plot window automatically. This can be achieved using the commands plt.pause(1) followed by plt.close(fig). As long as there is no interaction with the plot window, the pause time from plt.pause() is not recorded by the time.process_time() function.

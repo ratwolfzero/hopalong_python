@@ -1,5 +1,7 @@
 
 # Calculate & Visualize the Hopalong Attractor with Python
+
+![Example Attractor Image](./examples/Figure_32.png)
   
 - [Calculate \& Visualize the Hopalong Attractor with Python](#calculate--visualize-the-hopalong-attractor-with-python)
   - [Abstract](#abstract)

@@ -103,15 +103,10 @@ Otherwise, please comment out the relevant code snippets in the import section a
   
     ...
 
-    #import time
-    #import resource 
+    # import time
+    # import resource 
     
     ...
-
-    def main(image_size=(1000, 1000), color_map='hot'):
-    # Main execution process
-    try:
-        params = get_attractor_parameters()
 
     # Start the time measurement
     # start_time = time.process_time()

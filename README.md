@@ -108,7 +108,7 @@ Otherwise, please comment out the relevant code snippets in the import section a
     # Start the time measurement
     # start_time = time.process_time()
 
-    #...
+    ...
 
     # End the time measurement
     # end_time = time.process_time()

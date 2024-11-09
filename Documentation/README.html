@@ -264,8 +264,11 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">â
 <p>Import the <code>time</code> and <code>resource</code> libraries if you want to track process time and system memory usage.<br>
 Otherwise, please comment out the relevant code snippets in the import section and the main() function.</p>
 <pre><code>...
-#import time
-#import resource 
+
+# import time
+# import resource 
+
+...
 
 # Start the time measurement
 # start_time = time.process_time()
@@ -275,14 +278,16 @@ Otherwise, please comment out the relevant code snippets in the import section a
 # End the time measurement
 # end_time = time.process_time()
 
-&quot;&quot;&quot;
 # Calculate the CPU user and system time
-cpu_sys_time_used = end_time - start_time
+# cpu_sys_time_used = end_time - start_time
+
 # Calculate the memory resources used
-memMb=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024.0/1024.0
-print(f'CPU User&amp;System time used: {cpu_sys_time_used:.2f} seconds')
-print (f'Memory (RAM): {memMb:.2f} MByte used')
-&quot;&quot;&quot;
+# memMb=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024.0/1024.0
+    
+# print(f'CPU User&amp;System time: {cpu_sys_time_used:.2f} seconds')
+# print (f'Memory (RAM): {memMb:.2f} MByte used')
+
+...
 </code></pre>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h2 id="usage">Usage</h2>

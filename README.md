@@ -24,7 +24,7 @@
     - [Alternative Solutions](#alternative-solutions)
       - [One-Pass Approach with Full Trajectory Caching\*](#one-pass-approach-with-full-trajectory-caching)
       - [One-Pass Approach with Limited Memory Usage (Chunked or No Caching)\*](#one-pass-approach-with-limited-memory-usage-chunked-or-no-caching)
-      - [Possible other, more sophisticated solutions](#possible-other-more-sophisticated-solutions)
+      - [Potentially other, more sophisticated solutions](#potentially-other-more-sophisticated-solutions)
     - [Conclusion](#conclusion)
   - [Recent Code Changes](#recent-code-changes)
   - [Enjoy the Exploration](#enjoy-the-exploration)
@@ -404,13 +404,13 @@ Data Loss and Inaccuracy: As previously computed floating-point values are irrec
 
 *This also applies analogously to any versions that only process floating point values.
 
-#### Possible other, more sophisticated solutions
+#### Potentially other, more sophisticated solutions
 
-No other solutions have been investigated or considered so far. More sophisticated solutions would also contradict the approach of minimal complexity design, unless a significant performance increase for high-iteration calculations makes it worth considering.
+No other one-pass method solutions have been investigated or considered to date. More sophisticated solutions would also contradict the minimum complexity design approach unless a significant performance improvement in calculations with a high number of iterations makes them worth considering.
 
 ### Conclusion
 
-Overall, the two-pass approach strikes the best balance of speed, efficiency, and simplicity, making it ideal for high-iteration calculations of the Hopalong Attractor. Despite the need to recalculate trajectory points, it avoids the pitfalls of alternative solutions.
+Overall, the two-pass approach strikes the best balance between speed, efficiency and simplicity and is therefore ideal for attractor calculations with a high number of iterations. Although the trajectory points need to be computed in both passes, the pitfalls of alternative solutions are avoided.
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 

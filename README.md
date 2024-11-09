@@ -103,27 +103,27 @@ Otherwise, please comment out the relevant code snippets in the import section a
   
     ...
 
-    # import time
-    # import resource 
+    #import time
+    #import resource 
     
     ...
 
     # Start the time measurement
-    # start_time = time.process_time()
+    #start_time = time.process_time()
 
     ...
 
     # End the time measurement
-    # end_time = time.process_time()
+    #end_time = time.process_time()
 
     # Calculate the CPU user and system time
-    # cpu_sys_time_used = end_time - start_time
+    #cpu_sys_time_used = end_time - start_time
 
     # Calculate the memory resources used
-    # memMb=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024.0/1024.0
+    #memMb=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024.0/1024.0
         
-    # print(f'CPU User&System time: {cpu_sys_time_used:.2f} seconds')
-    # print (f'Memory (RAM): {memMb:.2f} MByte used')
+    #print(f'CPU User&System time: {cpu_sys_time_used:.2f} seconds')
+    #print (f'Memory (RAM): {memMb:.2f} MByte used')
 
     ...
 

@@ -102,8 +102,16 @@ Import the `time` and `resource` libraries if you want to track process time and
 Otherwise, please comment out the relevant code snippets in the import section and the main() function.
   
     ...
+
     #import time
     #import resource 
+    
+    ...
+
+    def main(image_size=(1000, 1000), color_map='hot'):
+    # Main execution process
+    try:
+        params = get_attractor_parameters()
 
     # Start the time measurement
     # start_time = time.process_time()
@@ -113,14 +121,17 @@ Otherwise, please comment out the relevant code snippets in the import section a
     # End the time measurement
     # end_time = time.process_time()
 
-    """
     # Calculate the CPU user and system time
-    cpu_sys_time_used = end_time - start_time
+    # cpu_sys_time_used = end_time - start_time
+
     # Calculate the memory resources used
-    memMb=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024.0/1024.0
-    print(f'CPU User&System time used: {cpu_sys_time_used:.2f} seconds')
-    print (f'Memory (RAM): {memMb:.2f} MByte used')
-    """
+    # memMb=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024.0/1024.0
+        
+    # print(f'CPU User&System time: {cpu_sys_time_used:.2f} seconds')
+    # print (f'Memory (RAM): {memMb:.2f} MByte used')
+
+    ...
+
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
 ## Usage

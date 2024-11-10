@@ -439,7 +439,10 @@ Utilize a 'Color Bar' to indicate the Pixel Density (Basic Version)
 
 ## Enjoy the Exploration
 
-Experiment with different image resolutions, color maps, or ways of populating the image array beyond using the hit count to explore new visual perspectives.
+Experiment with different image resolutions, color maps, or ways of populating the image array beyond using the hit count to explore new visual perspectives.  
+ 
+[Also check out my simpler Rust version](https://github.com/ratwolfzero/hopalong)
+
 
 © Ralf Becker  
 Nuernberg: November 2024

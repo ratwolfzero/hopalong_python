@@ -167,7 +167,7 @@ def plot_hit_metrics(ax, hit_metrics, scale='log'):
 
 
 def visualize_trajectory_image_and_hit_metrics(img, extents, params, color_map, hit_metrics):
-    fig = plt.figure(figsize=(18, 8))
+    fig = plt.figure(figsize=(18, 8),facecolor='gainsboro')
 
     ax1 = fig.add_subplot(1, 2, 1, aspect='auto')
     render_trajectory_image(ax1, img, extents, params, color_map)

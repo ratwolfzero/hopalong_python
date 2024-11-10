@@ -192,7 +192,7 @@ Integer Conversion and Density Representation:
 
 Visualization with Colormap:
 
-- Matplotlib's "hot" colormap is used to represent the hit count information. It applies normalization to scale the hit counts within the color range, producing a gradient from dark colors (low hit counts) to light colors (high hit counts). This effectively visualizes areas of greater activity within the attractor.
+- Matplotlib's "hot" colormap is used to represent the hit count information. It applies normalization to scale the hit counts within the color range, producing a gradient* from dark colors (low hit counts) to light colors (high hit counts). This effectively visualizes areas of greater activity within the attractor.
 
 Remarks:  
 
@@ -200,7 +200,7 @@ Remarks:
 
 - This is illustrated in the following two pictures: the first shows the output from integer conversion and image mapping, while the second displays the results from np.histogram2d(...density=True), which serves as a true PDF. Although both visualizations are similar, this does not imply that the original floating-point data follows a PDF. Rather, it indicates that the distribution exhibits regions of higher concentration, a characteristic common in chaotic systems, effectively captured by both methods.  
 
-- The intensity of the gradient when visualizing the density of a trajectory depends on the image resolution (number of pixels) or the number of bins used in a histogram (pixels per bin). A lower image resolution or fewer bins will result in a more intense gradient because more trajectory points are concentrated in a smaller area.
+- *The intensity of the gradient when visualizing the density of a trajectory depends on the image resolution (number of pixels) or the number of bins used in a histogram (pixels per bin). A lower image resolution or fewer bins will result in a more intense gradient because more trajectory points are concentrated in a smaller area.
 
 So if you are not happy with the visual appearance, you can reduce the image size to e.g. 500x500 if you are happy with the lower resolution too
 

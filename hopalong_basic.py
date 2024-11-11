@@ -133,7 +133,7 @@ def render_trajectory_image(image, extents, params, color_map):
     #ax.axis('equal')
     plt.tight_layout()
     plt.show()
-    #plt.pause(1)
+    plt.pause(1)
     #plt.close(fig)
     
 

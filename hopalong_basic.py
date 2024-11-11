@@ -79,8 +79,8 @@ def compute_trajectory_and_image(a, b, c, num, extents, image_size):
     
     # pre-compute image scale factors
     min_x, max_x, min_y, max_y = extents
-    scale_x = (image_size[1] - 1) / (max_x - min_x)
-    scale_y = (image_size[0] - 1) / (max_y - min_y)
+    scale_x = (image_size[1] - 1) / (max_x - min_x) # column
+    scale_y = (image_size[0] - 1) / (max_y - min_y) # row
     
     x = np.float64(0.0)
     y = np.float64(0.0)

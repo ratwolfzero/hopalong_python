@@ -322,32 +322,32 @@ Disadvantage: Trajectory points must be computed in both passes, but this trade-
 
     @njit #njit is an alias for nopython=True
     def compute_trajectory_extents(a, b, c, num):
-    # Dynamically compute and track the minimum and maximum extents of the trajectory over 'num' iterations.
-    x = np.float64(0.0)
-    y = np.float64(0.0)
+        # Dynamically compute and track the minimum and maximum extents of the trajectory over 'num' iterations.
+        x = np.float64(0.0)
+        y = np.float64(0.0)
 
-    min_x = np.inf  # ensure that the initial minimum is determined correctly
-    max_x = -np.inf # ensure that the initial maximum is determined correctly
-    min_y = np.inf
-    max_y = -np.inf
+        min_x = np.inf  # ensure that the initial minimum is determined correctly
+        max_x = -np.inf # ensure that the initial maximum is determined correctly
+        min_y = np.inf
+        max_y = -np.inf
 
-    for _ in range(num):
-    # selective min/max update using direct comparisons avoiding min/max function
-        if x < min_x:
-            min_x = x
-        if x > max_x:
-            max_x = x
-        if y < min_y:
-            min_y = y
-        if y > max_y:
-            max_y = y
-        # signum function respecting the behavior of floating point numbers according to IEEE 754 (signed zero)
-        xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
-        yy = a-x
-        x = xx
-        y = yy
+        for _ in range(num):
+        # selective min/max update using direct comparisons avoiding min/max function
+            if x < min_x:
+                min_x = x
+            if x > max_x:
+                max_x = x
+            if y < min_y:
+                min_y = y
+            if y > max_y:
+                max_y = y
+            # signum function respecting the behavior of floating point numbers according to IEEE 754 (signed zero)
+            xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
+            yy = a-x
+            x = xx
+            y = yy
         
-    return min_x, max_x, min_y, max_y
+        return min_x, max_x, min_y, max_y
 
     # Dummy call to ensure the function is pre-compiled by the JIT compiler before it's called by the interpreter.
     _ = compute_trajectory_extents(1.0, 1.0, 1.0, 2)
@@ -355,31 +355,31 @@ Disadvantage: Trajectory points must be computed in both passes, but this trade-
 
     @njit
     def compute_trajectory_and_image(a, b, c, num, extents, image_size):
-    # Compute the trajectory and populate the image with trajectory points
-    image = np.zeros(image_size, dtype=np.uint64)
+        # Compute the trajectory and populate the image with trajectory points
+        image = np.zeros(image_size, dtype=np.uint64)
     
-    # pre-compute image scale factors
-    min_x, max_x, min_y, max_y = extents
-    scale_x = (image_size[1] - 1) / (max_x - min_x) # column
-    scale_y = (image_size[0] - 1) / (max_y - min_y) # row
+        # pre-compute image scale factors
+        min_x, max_x, min_y, max_y = extents
+        scale_x = (image_size[1] - 1) / (max_x - min_x) # column
+        scale_y = (image_size[0] - 1) / (max_y - min_y) # row
     
-    x = np.float64(0.0)
-    y = np.float64(0.0)
+        x = np.float64(0.0)
+        y = np.float64(0.0)
     
-    for _ in range(num):
-        # map trajectory points to image pixel coordinates
-        px = np.uint64((x - min_x) * scale_x)
-        py = np.uint64((y - min_y) * scale_y)
-        # populate the image arrayy "on the fly" with each computed point
-        image[py, px] += 1  # respecting row/column convention, update # of hits
+        for _ in range(num):
+            # map trajectory points to image pixel coordinates
+            px = np.uint64((x - min_x) * scale_x)
+            py = np.uint64((y - min_y) * scale_y)
+            # populate the image arrayy "on the fly" with each computed point
+            image[py, px] += 1  # respecting row/column convention, update # of hits
 
-        # Update the trajectory "on the fly"
-        xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
-        yy = a-x
-        x = xx
-        y = yy
+            # Update the trajectory "on the fly"
+            xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
+           yy = a-x
+           x = xx
+           y = yy
         
-    return image
+        return image
 
     # Dummy call to ensure the function is pre-compiled by the JIT compiler before it's called by the interpreter.
     _ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (2, 2)) 

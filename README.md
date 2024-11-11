@@ -110,22 +110,22 @@ Otherwise, please comment out the relevant code snippets in the import section a
     
     ...
 
-    # Start the time measurement
-    #start_time = time.process_time()
+            # Start the time measurement
+            #start_time = time.process_time()
 
-    ...
+            ...
 
-    # End the time measurement
-    #end_time = time.process_time()
+            # End the time measurement
+            #end_time = time.process_time()
 
-    # Calculate the CPU user and system time
-    #cpu_sys_time_used = end_time - start_time
+            # Calculate the CPU user and system time
+            #cpu_sys_time_used = end_time - start_time
 
-    # Calculate the memory resources used
-    #memMb=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024.0/1024.0
+            # Calculate the memory resources used
+            #memMb=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024.0/1024.0
         
-    #print(f'CPU User&System time: {cpu_sys_time_used:.2f} seconds')
-    #print (f'Memory (RAM): {memMb:.2f} MByte used')
+            #print(f'CPU User&System time: {cpu_sys_time_used:.2f} seconds')
+            #print (f'Memory (RAM): {memMb:.2f} MByte used')
 
     ...
 
@@ -427,22 +427,22 @@ Overall, the two-pass approach strikes the best balance between speed, efficienc
 
 Utilize a 'Color Bar' to indicate the Pixel Density (Basic Version)
 
-    #...
-    img=ax.imshow(image, origin='lower', cmap=color_map, extent=extents, interpolation='none')  # modification 'img=ax.imshow' to apply 'colorbar'
-    #...
+        #...
+        img=ax.imshow(image, origin='lower', cmap=color_map, extent=extents, interpolation='none')  # modification 'img=ax.imshow' to apply 'colorbar'
+        #...
 
-    # Create the colorbar
-    cbar = fig.colorbar(img, ax=ax, location='bottom')
-    cbar.set_label('Pixel Density. (Scale = 1 - max)')  # Title for colorbar
+        # Create the colorbar
+        cbar = fig.colorbar(img, ax=ax, location='bottom')
+        cbar.set_label('Pixel Density. (Scale = 1 - max)')  # Title for colorbar
 
-    # Set ticks to display the exact max hit count
-    max_hit_count = np.max(image)  # Get the maximum hit count from the image
-    tick_positions = np.linspace(1, max_hit_count, num=8)  # Choose 8 tick positions
-    tick_labels = (int(tick) for tick in tick_positions)  # Format tick labels as integers
+        # Set ticks to display the exact max hit count
+        max_hit_count = np.max(image)  # Get the maximum hit count from the image
+        tick_positions = np.linspace(1, max_hit_count, num=8)  # Choose 8 tick positions
+        tick_labels = (int(tick) for tick in tick_positions)  # Format tick labels as integers
 
-    cbar.set_ticks(tick_positions)  # Set ticks on the colorbar
-    cbar.set_ticklabels(tick_labels)  # Set formatted labels
-    #...
+        cbar.set_ticks(tick_positions)  # Set ticks on the colorbar
+        cbar.set_ticklabels(tick_labels)  # Set formatted labels
+        #...
 
 ## Enjoy the Exploration
 

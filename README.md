@@ -346,10 +346,11 @@ Disadvantage: Trajectory points must be computed in both passes, but this trade-
         yy = a-x
         x = xx
         y = yy
-    return min_x, max_x, min_y, max_y  
+        
+    return min_x, max_x, min_y, max_y
 
     # Dummy call to ensure the function is pre-compiled by the JIT compiler before it's called by the interpreter.
-    _ = compute_trajectory_extents(1.0, 1.0, 1.0, 2) 
+    _ = compute_trajectory_extents(1.0, 1.0, 1.0, 2)
 
 
     @njit
@@ -359,8 +360,8 @@ Disadvantage: Trajectory points must be computed in both passes, but this trade-
     
     # pre-compute image scale factors
     min_x, max_x, min_y, max_y = extents
-    scale_x = (image_size[0] - 1) / (max_x - min_x)
-    scale_y = (image_size[1] - 1) / (max_y - min_y)
+    scale_x = (image_size[1] - 1) / (max_x - min_x) # column
+    scale_y = (image_size[0] - 1) / (max_y - min_y) # row
     
     x = np.float64(0.0)
     y = np.float64(0.0)
@@ -369,7 +370,7 @@ Disadvantage: Trajectory points must be computed in both passes, but this trade-
         # map trajectory points to image pixel coordinates
         px = np.uint64((x - min_x) * scale_x)
         py = np.uint64((y - min_y) * scale_y)
-        # populate the image array "on the fly" with each computed point
+        # populate the image arrayy "on the fly" with each computed point
         image[py, px] += 1  # respecting row/column convention, update # of hits
 
         # Update the trajectory "on the fly"
@@ -379,6 +380,7 @@ Disadvantage: Trajectory points must be computed in both passes, but this trade-
         y = yy
         
     return image
+
     # Dummy call to ensure the function is pre-compiled by the JIT compiler before it's called by the interpreter.
     _ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (2, 2)) 
 

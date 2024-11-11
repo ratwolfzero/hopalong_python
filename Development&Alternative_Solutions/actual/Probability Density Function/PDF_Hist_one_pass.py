@@ -63,7 +63,7 @@ def plot_trajectory_with_density(trajectory):
     density, xedges, yedges = np.histogram2d(x, y, bins=bins, density=True)
     
     # Create a figure
-    fig = plt.figure(figsize=(8, 8))
+    fig = plt.figure(figsize=(8, 8),facecolor='gainsboro')
     ax = fig.add_subplot(1, 1, 1)
     
     # Plotting with density color mapping

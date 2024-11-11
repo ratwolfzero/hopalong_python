@@ -92,7 +92,7 @@ def render_pdf_histogram(histogram, extents, params, color_map='hot'):
     # Render the PDF histogram as an image
     
     # Create a figure
-    fig = plt.figure(figsize=(8, 8))
+    fig = plt.figure(figsize=(8, 8),facecolor='gainsboro')
     ax = fig.add_subplot(1, 1, 1)
 
     # Plotting with density color mapping

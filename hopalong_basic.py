@@ -79,8 +79,8 @@ def compute_trajectory_and_image(a, b, c, num, extents, image_size):
     
     # pre-compute image scale factors
     min_x, max_x, min_y, max_y = extents
-    scale_x = (image_size[0] - 1) / (max_x - min_x)
-    scale_y = (image_size[1] - 1) / (max_y - min_y)
+    scale_x = (image_size[1] - 1) / (max_x - min_x)
+    scale_y = (image_size[0] - 1) / (max_y - min_y)
     
     x = np.float64(0.0)
     y = np.float64(0.0)
@@ -120,11 +120,11 @@ def render_trajectory_image(image, extents, params, color_map):
 
     # Create the colorbar
     cbar = fig.colorbar(img, ax=ax, location='bottom')
-    cbar.set_label('Pixel Density. (Scale = 1 - max)')  # Title for colorbar
+    cbar.set_label('Pixel Density. (Scale = 0 - max)')  # Title for colorbar
 
     # Set ticks to display the exact max hit count
     max_hit_count = np.max(image)  # Get the maximum hit count from the image
-    tick_positions = np.linspace(1, max_hit_count, num = 8)  # Choose 8 tick positions
+    tick_positions = np.linspace(0, max_hit_count, num = 8)  # Choose 8 tick positions
     tick_labels = (int(tick) for tick in tick_positions)  # Format tick labels as integers
 
     cbar.set_ticks(tick_positions)  # Set ticks on the colorbar

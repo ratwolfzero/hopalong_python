@@ -180,7 +180,7 @@ def visualize_trajectory_image_and_hit_metrics(img, extents, params, color_map, 
     #plt.close(fig)
 
 
-def main(image_size=(1000, 1000), color_map='hot'):
+def main(image_size=(1000, 1800), color_map='hot'):
     # Main execution process
     try:
         params = get_attractor_parameters()

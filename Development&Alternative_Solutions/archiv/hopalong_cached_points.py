@@ -65,8 +65,8 @@ def compute_trajectory_and_image_cached(a, b, c, num, image_size):
         x, y = xx, yy
     
     # Pre-compute image scale factors using final extents
-    scale_x = (image_size[0] - 1) / (max_x - min_x)
-    scale_y = (image_size[1] - 1) / (max_y - min_y)
+    scale_x = (image_size[1] - 1) / (max_x - min_x)
+    scale_y = (image_size[0] - 1) / (max_y - min_y)
     
     # Initialize image
     image = np.zeros(image_size, dtype=np.uint64)

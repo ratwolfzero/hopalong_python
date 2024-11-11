@@ -89,7 +89,7 @@ def compute_full_trajectory_image(a, b, c, num, chunk_size, extents, image_size)
     image = np.zeros(image_size, dtype=np.uint64)
 
     min_x, max_x, min_y, max_y = extents
-    scale_x, scale_y = (image_size[0] - 1) / (max_x - min_x), (image_size[1] - 1) / (max_y - min_y)
+    scale_x, scale_y = (image_size[1] - 1) / (max_x - min_x), (image_size[0] - 1) / (max_y - min_y)
 
     x0 = y0 = np.float64(0)
 

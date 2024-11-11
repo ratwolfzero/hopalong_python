@@ -375,9 +375,9 @@ Disadvantage: Trajectory points must be computed in both passes, but this trade-
 
             # Update the trajectory "on the fly"
             xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
-           yy = a-x
-           x = xx
-           y = yy
+            yy = a-x
+            x = xx
+            y = yy
         
         return image
 

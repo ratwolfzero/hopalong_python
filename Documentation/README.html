@@ -270,7 +270,7 @@ Otherwise, please comment out the relevant code snippets in the import section a
 #import resource 
 
 ...
-
+    ...
         # Start the time measurement
         #start_time = time.process_time()
 
@@ -288,7 +288,7 @@ Otherwise, please comment out the relevant code snippets in the import section a
         #print(f'CPU User&amp;System time: {cpu_sys_time_used:.2f} seconds')
         #print (f'Memory (RAM): {memMb:.2f} MByte used')
 
-...
+    ...
 </code></pre>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h2 id="usage">Usage</h2>
@@ -426,9 +426,9 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">â
 <h3 id="optional-features">Optional Features</h3>
 <p>Execution time and resources: Measurement starts after user input and records the CPU time for the entire process, including image rendering. It also tracks the system memory used.</p>
 <p>Note: Since interactions with the plot window, such as zooming, panning, or mouse movements, are also measured, it is recommended to close the plot window automatically. This can be achieved using the commands plt.pause(1) followed by plt.close(fig). As long as there is no interaction with the plot window, the pause time from plt.pause() is not recorded by the time.process_time() function.</p>
-<pre><code>#plt.show()
-plt.pause(1)
-plt.close(fig)
+<pre><code>    #plt.show()
+    plt.pause(1)
+    plt.close(fig)
 </code></pre>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h2 id="performance-optimization">Performance Optimization</h2>

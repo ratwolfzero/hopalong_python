@@ -109,7 +109,7 @@ Otherwise, please comment out the relevant code snippets in the import section a
     #import resource 
     
     ...
-
+        ...
             # Start the time measurement
             #start_time = time.process_time()
 
@@ -127,7 +127,7 @@ Otherwise, please comment out the relevant code snippets in the import section a
             #print(f'CPU User&System time: {cpu_sys_time_used:.2f} seconds')
             #print (f'Memory (RAM): {memMb:.2f} MByte used')
 
-    ...
+        ...
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 

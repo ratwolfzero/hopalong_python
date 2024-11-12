@@ -282,9 +282,9 @@ Execution time and resources: Measurement starts after user input and records th
 
 Note: Since interactions with the plot window, such as zooming, panning, or mouse movements, are also measured, it is recommended to close the plot window automatically. This can be achieved using the commands plt.pause(1) followed by plt.close(fig). As long as there is no interaction with the plot window, the pause time from plt.pause() is not recorded by the time.process_time() function.
 
-    #plt.show()
-    plt.pause(1)
-    plt.close(fig)
+        #plt.show()
+        plt.pause(1)
+        plt.close(fig)
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 

@@ -109,19 +109,25 @@ def render_full_trajectory_image(image, extents, params, color_map):
     ax.imshow(image, origin="lower", cmap=color_map, extent=extents)
     ax.set_title("Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
 
-    plt.show()
+    #plt.show()
+    plt.pause(1)
+    plt.close(fig)
 
 
 def main(image_size=(1000, 1000), color_map='hot', chunk_size=1750000):
     # Execute processes to generate and render the Hopalong Attractor
     try:
         params = get_attractor_parameters()
-        start_time = time.time() 
+        start_time = time.process_time()
+
         extents = compute_full_trajectory_extents(params['a'], params['b'], params['c'], params['num'])
         image = compute_full_trajectory_image(params['a'], params['b'], params['c'], params['num'], chunk_size, extents, image_size)
-        end_time = time.time()
-        print(f"Execution time: {end_time - start_time} seconds") # excecution time after user input w/o rendering of image
         render_full_trajectory_image(image, extents, params, color_map)
+
+        end_time = time.process_time()
+        cpu_sys_time_used = end_time - start_time
+        print(f'CPU User&System time: {cpu_sys_time_used:.2f} seconds')
+        
         
     except Exception as e:
         print(f"An error occurred: {e}")

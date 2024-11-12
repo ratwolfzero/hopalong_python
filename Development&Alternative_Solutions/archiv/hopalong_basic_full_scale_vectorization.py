@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from numba import njit, prange
 from math import copysign, sqrt, fabs
+import time
 
 
 def get_validated_input(prompt, input_type=float, check_non_zero=False, check_positive=False):
@@ -88,7 +89,9 @@ def render_trajectory_image(img, extents, params, color_map):
     ax.imshow(img, origin="lower", cmap=color_map, extent=extents)
     ax.set_title(
         "Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}".format(**params))
-    plt.show()
+    #plt.show()
+    plt.pause(1)
+    plt.close(fig)
 
 
 def main(image_size=(1000, 1000), color_map='hot'):
@@ -98,9 +101,22 @@ def main(image_size=(1000, 1000), color_map='hot'):
     """
     try:
         a, b, c, num, params = get_attractor_parameters()
+
+        # Start the time measurement
+        start_time = time.process_time()
+
         points = compute_trajectory(a, b, c, num)
         img, extents = generate_trajectory_image(points, image_size)
         render_trajectory_image(img, extents, params, color_map)
+
+        # End the time measurement
+        end_time = time.process_time()
+
+        # Calculate the CPU user and system time
+        cpu_sys_time_used = end_time - start_time
+
+        print(f'CPU User&System time: {cpu_sys_time_used:.2f} seconds')
+
     except Exception as e:
         print(f"An error occurred: {e}")
 

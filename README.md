@@ -17,7 +17,7 @@
     - [Image Pixels and Color Mapping](#image-pixels-and-color-mapping)
     - [Pixel Hit Counts (Density) and Visualization](#pixel-hit-counts-density-and-visualization)
     - [Application of Copysign (Math Module) as Signum function](#application-of-copysign-math-module-as-signum-function)
-    - [Special constellations and attractor edge cases](#special-constellations-and-attractor-edge-cases)
+    - [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)
     - [Optional Features](#optional-features)
   - [Performance Optimization](#performance-optimization)
     - [Just-In-Time Compilation (JIT)](#just-in-time-compilation-jit)
@@ -234,7 +234,7 @@ For example, the following parameter combinations may yield complex patterns:
 
 - a = 1, b =1, c = 1
 
-### Special constellations and attractor edge cases
+### Special Constellations and Edge Cases of the Attractor
 
 Despite using the Copysign function, some parameter sets will still lead to periodic orbits instead of intricate patterns, such as:
 

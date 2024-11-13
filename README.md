@@ -140,14 +140,14 @@ When you run the programs, you will be prompted to enter the following parameter
 - **a (float or integer)**: The first parameter affecting the attractor's dynamics.
 - **b (float or integer)**: The second parameter affecting the attractor's dynamics.
 - **c (float or integer)**: The third parameter affecting the attractor's dynamics.
-- **num (integer)**: The number of iterations to run (e.g., 1000000 or 1_000_000).
+- **n (integer)**: The number of iterations to run (e.g., 1000000 or 1_000_000).
 
 **Example parameters**:
 
 - a = -2
 - b = -0.33
 - c = 0.01  
-- num = 200_000_000
+- n = 200_000_000
 
 Experimenting with different values of these parameters will yield diverse and intricate visual patterns.
 
@@ -257,7 +257,7 @@ y_{n+1} = p - x_n
 \end{cases}
 $$
 
-and we observe the 3-cycle: (0, 0), (0, p), and (p, p). The pixel density is: num / 3
+and we observe the 3-cycle: (0, 0), (0, p), and (p, p). The pixel density is: n / 3
 
 start: (x<sub>0</sub> , y<sub>0</sub>) = (0 , 0)
 
@@ -320,8 +320,8 @@ Disadvantage: Trajectory points must be computed in both passes, but this trade-
 ### Two-Pass Code Section
 
     @njit #njit is an alias for nopython=True
-    def compute_trajectory_extents(a, b, c, num):
-        # Dynamically compute and track the minimum and maximum extents of the trajectory over 'num' iterations.
+    def compute_trajectory_extents(a, b, c, n):
+        # Dynamically compute and track the minimum and maximum extents of the trajectory over 'n' iterations.
         x = np.float64(0.0)
         y = np.float64(0.0)
 
@@ -330,7 +330,7 @@ Disadvantage: Trajectory points must be computed in both passes, but this trade-
         min_y = np.inf
         max_y = -np.inf
 
-        for _ in range(num):
+        for _ in range(n):
         # selective min/max update using direct comparisons avoiding min/max function
             if x < min_x:
                 min_x = x
@@ -353,7 +353,7 @@ Disadvantage: Trajectory points must be computed in both passes, but this trade-
 
 
     @njit
-    def compute_trajectory_and_image(a, b, c, num, extents, image_size):
+    def compute_trajectory_and_image(a, b, c, n, extents, image_size):
         # Compute the trajectory and populate the image with trajectory points
         image = np.zeros(image_size, dtype=np.uint64)
     
@@ -365,7 +365,7 @@ Disadvantage: Trajectory points must be computed in both passes, but this trade-
         x = np.float64(0.0)
         y = np.float64(0.0)
     
-        for _ in range(num):
+        for _ in range(n):
             # map trajectory points to image pixel coordinates
             px = np.uint64((x - min_x) * scale_x)
             py = np.uint64((y - min_y) * scale_y)

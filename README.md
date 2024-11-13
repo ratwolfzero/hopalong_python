@@ -147,7 +147,7 @@ When you run the programs, you will be prompted to enter the following parameter
 - a = -2
 - b = -0.33
 - c = 0.01  
-- n = 200_000_000
+- n = 2e8
 
 Experimenting with different values of these parameters will yield diverse and intricate visual patterns.
 

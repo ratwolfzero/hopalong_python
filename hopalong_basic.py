@@ -11,13 +11,20 @@ def validate_input(prompt, input_type=float, check_positive_non_zero=False, min_
     while True:
         user_input = input(prompt)
         try:
-            value = input_type(user_input)
+            # Parse input as float first to handle scientific notation
+            value = float(user_input)
             if check_positive_non_zero and value <= 0:
                 print('Invalid input. The value must be a positive non-zero number.')
                 continue
             if min_value is not None and value < min_value:
                 print(f'Invalid input. The value should be at least {min_value}.')
                 continue
+            # Convert to int if the required type is integer and value is whole
+            if input_type == int:
+                if not value.is_integer():
+                    print('Invalid input. Please enter a whole number.')
+                    continue
+                value = int(value)
             return value
         except ValueError:
             print(f'Invalid input. Please enter a valid {input_type.__name__} value.')

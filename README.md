@@ -140,7 +140,7 @@ When you run the programs, you will be prompted to enter the following parameter
 - **a (float or integer)**: The first parameter affecting the attractor's dynamics.
 - **b (float or integer)**: The second parameter affecting the attractor's dynamics.
 - **c (float or integer)**: The third parameter affecting the attractor's dynamics.
-- **n (integer)**: The number of iterations to run (e.g., 1000000 or 1_000_000).
+- **n (integer)**: The number of iterations to run (e.g. 1e6, 1_000_000 or 1000000).
 
 **Example parameters**:
 

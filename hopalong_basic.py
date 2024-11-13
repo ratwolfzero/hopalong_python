@@ -35,13 +35,13 @@ def get_attractor_parameters():
                   'Please enter different values.')
         else:
             break
-    num = validate_input('Enter a positive integer value for "num": ', int, check_positive_non_zero=True, min_value=1000)
-    return {'a': a, 'b': b, 'c': c, 'num': num}
+    n = validate_input('Enter a positive integer value for "n": ', int, check_positive_non_zero=True, min_value=1000)
+    return {'a': a, 'b': b, 'c': c, 'n': n}
 
 
 @njit #njit is an alias for nopython=True
-def compute_trajectory_extents(a, b, c, num):
-    # Dynamically compute and track the minimum and maximum extents of the trajectory over 'num' iterations.
+def compute_trajectory_extents(a, b, c, n):
+    # Dynamically compute and track the minimum and maximum extents of the trajectory over 'n' iterations.
     x = np.float64(0.0)
     y = np.float64(0.0)
 
@@ -50,7 +50,7 @@ def compute_trajectory_extents(a, b, c, num):
     min_y = np.inf
     max_y = -np.inf
 
-    for _ in range(num):
+    for _ in range(n):
     # selective min/max update using direct comparisons avoiding min/max function
         if x < min_x:
             min_x = x
@@ -73,7 +73,7 @@ _ = compute_trajectory_extents(1.0, 1.0, 1.0, 2)
 
 
 @njit
-def compute_trajectory_and_image(a, b, c, num, extents, image_size):
+def compute_trajectory_and_image(a, b, c, n, extents, image_size):
     # Compute the trajectory and populate the image with trajectory points
     image = np.zeros(image_size, dtype=np.uint64)
     
@@ -85,7 +85,7 @@ def compute_trajectory_and_image(a, b, c, num, extents, image_size):
     x = np.float64(0.0)
     y = np.float64(0.0)
     
-    for _ in range(num):
+    for _ in range(n):
         # map trajectory points to image pixel coordinates
         px = np.uint64((x - min_x) * scale_x)
         py = np.uint64((y - min_y) * scale_y)
@@ -112,7 +112,7 @@ def render_trajectory_image(image, extents, params, color_map):
     # Display the image
     img = ax.imshow(image, origin='lower', cmap=color_map, extent=extents, interpolation='none')
 
-    ax.set_title('Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, num={num:_}'.format(**params))
+    ax.set_title('Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, n={n:_}'.format(**params))
     ax.set_xlabel('X (Cartesian)')
     ax.set_ylabel('Y (Cartesian)')
 
@@ -145,8 +145,8 @@ def main(image_size=(1000, 1000), color_map='hot'):
         # Start the time measurement
         start_time = time.process_time()
 
-        extents = compute_trajectory_extents(params['a'], params['b'], params['c'], params['num'])
-        image = compute_trajectory_and_image(params['a'], params['b'], params['c'], params['num'], extents, image_size)
+        extents = compute_trajectory_extents(params['a'], params['b'], params['c'], params['n'])
+        image = compute_trajectory_and_image(params['a'], params['b'], params['c'], params['n'], extents, image_size)
         render_trajectory_image(image, extents, params, color_map)
 
         # End the time measurement

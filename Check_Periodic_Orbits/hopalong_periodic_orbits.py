@@ -22,7 +22,7 @@ def compute_hopalong(x, y, a, b, c, iterations):
 # Plot the results
 def plot_hopalong(x, y, a, b, c):
     plt.figure(figsize=(8, 8))
-    plt.plot(x, y, 'o', c='red', markersize=0.1)
+    plt.plot(x, y, 'o', c='red', markersize=4)
     plt.title(f'Hopalong Attractor with a={a}, b={b}, c={c}')
     plt.xlabel('x')
     plt.ylabel('y')
@@ -30,8 +30,8 @@ def plot_hopalong(x, y, a, b, c):
 
 def main():
     # Define local parameters
-    a = 1e-99
-    b = 1e-98
+    a = 5
+    b = 5
     c = 0
     iterations = 1000000
 

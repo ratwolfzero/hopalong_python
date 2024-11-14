@@ -48,7 +48,7 @@ def get_attractor_parameters():
                   'Please enter different values.')
         else:
             break
-    n = validate_input('Enter a positive integer value for "n": ', int, check_positive_non_zero=True, min_value=1000)
+    n = validate_input('Enter a positive integer value > 1000 for "n": ', int, check_positive_non_zero=True, min_value=1000)
     return {'a': a, 'b': b, 'c': c, 'n': n}
 
 

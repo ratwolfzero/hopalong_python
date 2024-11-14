@@ -117,41 +117,6 @@ def compute_trajectory_and_image(a, b, c, n, extents, image_size):
 # Dummy call to ensure the function is pre-compiled by the JIT compiler before it's called by the interpreter.
 _ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (2, 2))
 
-"""
-def render_trajectory_image(image, extents, params, color_map):
-    # Render the trajectory image
-    fig = plt.figure(figsize=(8, 8),facecolor='gainsboro')
-    ax = fig.add_subplot(1, 1, 1)
-    
-    # Display the image
-    img = ax.imshow(image, origin='lower', cmap=color_map, extent=extents, interpolation='none')
-
-    ax.set_title('Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, n={n:_}'.format(**params))
-    ax.set_xlabel('X (Cartesian)')
-    ax.set_ylabel('Y (Cartesian)')
-
-    plt.savefig('hopalong.svg', format='svg', dpi=1200)
-
-    # Create the colorbar
-    cbar = fig.colorbar(img, ax=ax, location='bottom')
-    cbar.set_label('Pixel Density. (Scale = 0 - max)')  # Title for colorbar
-
-    # Set ticks to display the exact max hit count
-    max_hit_count = np.max(image)  # Get the maximum hit count from the image
-    tick_positions = np.linspace(0, max_hit_count, num = 8)  # Choose 8 tick positions
-    tick_labels = (int(tick) for tick in tick_positions)  # Format tick labels as integers
-
-    cbar.set_ticks(tick_positions)  # Set ticks on the colorbar
-    cbar.set_ticklabels(tick_labels)  # Set formatted labels
-
-    #ax.axis('equal')
-    plt.tight_layout()
-    plt.show()
-    #plt.pause(1)
-    #plt.close(fig)
-    
-"""
-
 
 
 def render_trajectory_3d(image, extents, params, color_map):
@@ -161,8 +126,7 @@ def render_trajectory_3d(image, extents, params, color_map):
     # Create a meshgrid for X and Y coordinates                    
     x = np.linspace(extents[0], extents[1], image.shape[1])
     y = np.linspace(extents[2], extents[3], image.shape[0])
-    
-								
+    						
     
     y, x = np.meshgrid(x, y)
 
@@ -179,7 +143,6 @@ def render_trajectory_3d(image, extents, params, color_map):
     
     #z_flattened = z.flatten()
     #ax.scatter(x.flatten(), y.flatten(), z_flattened, c=z_flattened, cmap=color_map, marker='.', s=1)
-    
          
 
     # Customize the plot
@@ -192,37 +155,6 @@ def render_trajectory_3d(image, extents, params, color_map):
     plt.show()
 
 
-""" 
-def render_trajectory_3d(image, extents, params, color_map):
-    fig = plt.figure(figsize=(10, 10), facecolor='gainsboro')
-    ax = fig.add_subplot(111, projection='3d')
-
-    # Create a meshgrid for X, Y coordinates based on extents and image dimensions
-    x = np.linspace(extents[0], extents[1], image.shape[1])
-    y = np.linspace(extents[2], extents[3], image.shape[0])
-    X, Y = np.meshgrid(x, y)
-
-    # Repeat the 2D array along a new axis to create a 3D volume
-    Z_stack = np.repeat(image[:, :, np.newaxis], repeats=10, axis=2)  # Repeat to add height
-    threshold = 0.1 * np.max(image)  # Define a threshold for density
-
-    # Define voxel data by thresholding to create a boolean array
-    voxel_data = Z_stack > threshold
-
-    # Prepare colors based on the scaled Z values
-    colors = plt.cm.viridis(Z_stack / np.max(Z_stack))
-	 
-    # Plot the voxels
-    ax.voxels(voxel_data, facecolors=colors, edgecolor='none')
-
-    # Customize plot
-    ax.set_title(f'Hopalong Attractor - 3D Voxel Density\nParams: a={params["a"]}, b={params["b"]}, c={params["c"]}, n={params["n"]:_}')
-    ax.set_xlabel('X (Cartesian)')
-    ax.set_ylabel('Y (Cartesian)')
-    ax.set_zlabel('Density Level')
-
-    plt.show()   
-"""   
 
 def main(image_size=(1000, 1000), color_map='hot'):
     # Main execution process

@@ -14,19 +14,19 @@ def validate_input(prompt, input_type=float, check_positive_non_zero=False, min_
             # Parse input as float first to handle scientific notation
             value = float(user_input)
             
-            # If the expected input is an integer, ensure the input is an integer
+            # Ensure the input is an integer, if expected
             if input_type == int:
                 if not value.is_integer():
                     print('Invalid input. Please enter an integer.')
                     continue
                 value = int(value)
 
-            # Check if positive non-zero is required and applicable
+            # Check if input is a positive non-zero value
             if check_positive_non_zero and value <= 0:
                 print('Invalid input. The value must be a positive non-zero number.')
                 continue
 
-            # Then, check minimum value if specified and applicable
+            # Then, check minimum value
             if min_value is not None and value < min_value:
                 print(f'Invalid input. The value should be at least {min_value}.')
                 continue

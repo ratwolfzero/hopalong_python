@@ -2,22 +2,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 from numba import njit
 
-# Parameters for the Hopalong attractor
-a = 0.6
-b = 0.6
-c = 0
-
-# Number of iterations
-iterations = 1000000
-
-# Initialize arrays to hold the points
-x = np.zeros(iterations)
-y = np.zeros(iterations)
-
-# Initial values
-x[0] = 0.0
-y[0] = 0.0
-
 @njit
 def custom_sign(x):
     if np.isnan(x):
@@ -36,17 +20,32 @@ def compute_hopalong(x, y, a, b, c, iterations):
     return x, y
 
 # Plot the results
-def plot_hopalong(x, y):
+def plot_hopalong(x, y, a, b, c):
     plt.figure(figsize=(8, 8))
-    plt.plot(x, y, 'o', c='red', markersize=5)
+    plt.plot(x, y, 'o', c='red', markersize=0.1)
     plt.title(f'Hopalong Attractor with a={a}, b={b}, c={c}')
     plt.xlabel('x')
     plt.ylabel('y')
     plt.show()
 
 def main():
+    # Define local parameters
+    a = 1e-99
+    b = 1e-98
+    c = 0
+    iterations = 1000000
+
+    # Initialize arrays to hold the points
+    x = np.zeros(iterations)
+    y = np.zeros(iterations)
+
+    # Initial values
+    x[0] = 0.0
+    y[0] = 0.0
+
     # Call the compute_hopalong function with arguments
     x_vals, y_vals = compute_hopalong(x, y, a, b, c, iterations)
-    plot_hopalong(x_vals, y_vals)
+    plot_hopalong(x_vals, y_vals, a, b, c)
 
 main()
+

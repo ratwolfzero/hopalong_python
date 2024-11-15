@@ -130,7 +130,7 @@ def render_trajectory_3d(image, extents, params, color_map):
     
     y, x = np.meshgrid(x, y)
 
-    # Plot the surface with hit count as Z values
+    # Plot with hit count as Z values
     
     #z = image
     z = image / np.max(image) if np.max(image) > 0 else image

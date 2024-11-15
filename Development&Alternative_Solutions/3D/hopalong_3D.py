@@ -137,7 +137,7 @@ def render_trajectory_3d(image, extents, params, color_map):
     
     #ax.plot_surface(x, y, z, cmap=color_map, edgecolor='none')
     
-    ax.contour3D(x, y, z, levels=60, cmap=color_map)
+    ax.contour3D(x, y, z, levels=100, cmap=color_map)
     
     #ax.plot_wireframe(x, y, z, color='blue', linewidth=0.5)
     
@@ -147,9 +147,9 @@ def render_trajectory_3d(image, extents, params, color_map):
 
     # Customize the plot
     ax.set_title(f'Hopalong Attractor - 3D Density Plot\nParams: a={params["a"]}, b={params["b"]}, c={params["c"]}, n={params["n"]:_}')
-    ax.set_xlabel('X (Cartesian)')
-    ax.set_ylabel('Y (Cartesian)')
-    ax.set_zlabel('Pixel Density normalized')
+    ax.set_xlabel('X')
+    ax.set_ylabel('Y')
+    ax.set_zlabel('Density norm')
     ax.view_init(elev=45, azim=45)  # Adjust angle for better view
 
     plt.show()

@@ -129,7 +129,7 @@ def render_trajectory_3d(image, extents, params, color_map):
     # normalize density values
     z = image / np.max(image) if np.max(image) > 0 else image
     
-    ax.contour3D(x, y, z, levels=100, cmap=color_map)
+    ax.contourf(x, y, z, levels=100, cmap=color_map)
     
     # optional variants
     #ax.plot_surface(x, y, z, cmap=color_map, edgecolor='none')

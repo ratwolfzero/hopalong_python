@@ -3,8 +3,6 @@ from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 from numba import njit
 from math import copysign, sqrt, fabs
-import time
-import resource 
 
 
 def validate_input(prompt, input_type=float, check_positive_non_zero=False, min_value=None):
@@ -125,26 +123,23 @@ def render_trajectory_3d(image, extents, params, color_map):
 
     # Create a meshgrid for X and Y coordinates                    
     x = np.linspace(extents[0], extents[1], image.shape[1])
-    y = np.linspace(extents[2], extents[3], image.shape[0])
-    						
-    
+    y = np.linspace(extents[2], extents[3], image.shape[0])						
     y, x = np.meshgrid(x, y)
 
-    # Plot with hit count as Z values
-    
-    #z = image
+    # Plot with density (hit count) as Z values
+    # normalize density values
     z = image / np.max(image) if np.max(image) > 0 else image
     
-    #ax.plot_surface(x, y, z, cmap=color_map, edgecolor='none')
-    
     ax.contour3D(x, y, z, levels=100, cmap=color_map)
+    
+    # optional variants
+    #ax.plot_surface(x, y, z, cmap=color_map, edgecolor='none')
     
     #ax.plot_wireframe(x, y, z, color='blue', linewidth=0.5)
     
     #z_flattened = z.flatten()
     #ax.scatter(x.flatten(), y.flatten(), z_flattened, c=z_flattened, cmap=color_map, marker='.', s=1)
          
-
     # Customize the plot
     ax.set_title(f'Hopalong Attractor - 3D Density Plot\nParams: a={params["a"]}, b={params["b"]}, c={params["c"]}, n={params["n"]:_}')
     ax.set_xlabel('X')
@@ -155,30 +150,13 @@ def render_trajectory_3d(image, extents, params, color_map):
     plt.show()
 
 
-
 def main(image_size=(1000, 1000), color_map='hot'):
     # Main execution process
     try:
         params = get_attractor_parameters()
-        
-        # Start the time measurement
-        start_time = time.process_time()
-
         extents = compute_trajectory_extents(params['a'], params['b'], params['c'], params['n'])
         image = compute_trajectory_and_image(params['a'], params['b'], params['c'], params['n'], extents, image_size)
         render_trajectory_3d(image, extents, params, color_map)
-
-        # End the time measurement
-        end_time = time.process_time()
-
-        # Calculate the CPU user and system time
-        cpu_sys_time_used = end_time - start_time
-
-        # Calculate the memory resources used
-        memMb=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024.0/1024.0
-        
-        print(f'CPU User&System time: {cpu_sys_time_used:.2f} seconds')
-        print (f'Memory (RAM): {memMb:.2f} MByte used')
         
     except Exception as e:
         print(f'An error occurred: {e}')

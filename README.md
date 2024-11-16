@@ -155,9 +155,13 @@ Experimenting with different values of these parameters will yield diverse and i
 
 The programs produce a visual representation of the Hopalong Attractor. The image displays the trajectory as a density map, where color intensity represents the frequency of points visited. Lighter areas indicate regions of higher density. This provides a striking visual of the attractor's complex structure.
 
-Basic Version
+Basic Version 2D
 
 ![Example Attractor Image](./examples/Figure_ex_1.png)
+
+Basic Version 3D
+
+![Example Attractor Image](./examples/Figure_ex_1_1.png)
 
 Extended Version
 
@@ -170,7 +174,9 @@ Extended Version
 
 Two variants of the program are available:
 
-- Basic Version: Calculates and displays the Hopalong Attractor along with pixel density represented by a color bar.
+- Basic 2D Version: Calculates and displays the Hopalong Attractor along with pixel density represented by a color bar.
+- Basic 3D Version: Calculates and displays the Hopalong Attractor along with pixel density represented by Z-axis.  
+The code of the basis version is prepered for both, just comment out the corresponding "render_trajectory_image" function
 
 - Extended Version: Includes all features of the basic version, excluding the color bar, plus additional statistics and visualization of the pixel hit counts distribution.
 

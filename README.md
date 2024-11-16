@@ -437,32 +437,32 @@ Overall, the two-pass approach strikes the best balance between speed, efficienc
 ## Recent Code Changes
 
 OPTIONAL: Using a 3D graph to display pixel density (normalized) on the Z axis (Basic 3D version).  
-You can use or experiment with `ax.contourf3D` or `ax.contour3D`
+You can use or experiment with `ax.contourf3D` or `ax.contour3D
 
-""""
-def render_trajectory_image(image, extents, params, color_map):
-    # Render the trajectory image in 3D
-    # Create a meshgrid for X and Y coordinates
-    x = np.linspace(extents[0], extents[1], image.shape[1])
-    y = np.linspace(extents[2], extents[3], image.shape[0])
-    x, y = np.meshgrid(x, y)
+    """"
+    def render_trajectory_image(image, extents, params, color_map):
+        # Render the trajectory image in 3D
+        # Create a meshgrid for X and Y coordinates
+        x = np.linspace(extents[0], extents[1], image.shape[1])
+        y = np.linspace(extents[2], extents[3], image.shape[0])
+        x, y = np.meshgrid(x, y)
 
-    # Plot with normalized density (hit count) as Z values
-    z = image / np.max(image) if np.max(image) > 0 else image
+        # Plot with normalized density (hit count) as Z values
+        z = image / np.max(image) if np.max(image) > 0 else image
 
-    fig = plt.figure(figsize=(8, 8))
-    ax = fig.add_subplot(111, projection='3d')
-    ax.contourf3D(x, y, z, levels=100, cmap=color_map)
+        fig = plt.figure(figsize=(8, 8))
+        ax = fig.add_subplot(111, projection='3d')
+        ax.contourf3D(x, y, z, levels=100, cmap=color_map)
 
-    # Customize the plot
-    ax.set_title(f'Hopalong Attractor - 3D Density (Z) Plot\nParams: a={params["a"]}, b={params["b"]}, c={params["c"]}, n={params["n"]:_}')
-    ax.set_xlabel('X')
-    ax.set_ylabel('Y')
-    ax.set_zlabel('Z')
-    ax.view_init(elev=75, azim=-95)  # Adjust angle for better view
+        # Customize the plot
+        ax.set_title(f'Hopalong Attractor - 3D Density (Z) Plot\nParams: a={params["a"]}, b={params["b"]}, c={params["c"]}, n={params["n"]:_}')
+        ax.set_xlabel('X')
+        ax.set_ylabel('Y')
+        ax.set_zlabel('Z')
+        ax.view_init(elev=75, azim=-95)  # Adjust angle for better view
 
-    plt.show()
-"""
+        plt.show()
+    """
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)  
 
 ## Enjoy the Exploration

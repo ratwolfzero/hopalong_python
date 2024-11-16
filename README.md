@@ -442,9 +442,9 @@ You can use or experiment with `ax.contourf3D` or `ax.contour3D`
 """"
 def render_trajectory_image(image, extents, params, color_map):
     # Render the trajectory image in 3D
-    # Create a meshgrid for X and Y coordinates                    
+    # Create a meshgrid for X and Y coordinates
     x = np.linspace(extents[0], extents[1], image.shape[1])
-    y = np.linspace(extents[2], extents[3], image.shape[0])						
+    y = np.linspace(extents[2], extents[3], image.shape[0])
     x, y = np.meshgrid(x, y)
 
     # Plot with normalized density (hit count) as Z values

@@ -155,26 +155,26 @@ def render_trajectory_image(image, extents, params, color_map):
     # Create a meshgrid for X and Y coordinates                    
     x = np.linspace(extents[0], extents[1], image.shape[1])
     y = np.linspace(extents[2], extents[3], image.shape[0])						
-    y, x = np.meshgrid(x, y)
+    x, y = np.meshgrid(x, y)
 
     # Plot with normalized density (hit count) as Z values
     z = image / np.max(image) if np.max(image) > 0 else image
 
     fig = plt.figure(figsize=(8, 8))
     ax = fig.add_subplot(111, projection='3d')
-    ax.contourf3D(x, y, z, levels=100, cmap=color_map)
+    ax.contour3D(x, y, z, levels=100, cmap=color_map)
 
     # Customize the plot
     ax.set_title(f'Hopalong Attractor - 3D Density (Z) Plot\nParams: a={params["a"]}, b={params["b"]}, c={params["c"]}, n={params["n"]:_}')
     ax.set_xlabel('X')
     ax.set_ylabel('Y')
     ax.set_zlabel('Z')
-    ax.view_init(elev=75, azim=85)  # Adjust angle for better view
+    ax.view_init(elev=75, azim=-95)  # Adjust angle for better view
 
     plt.show()
-"""  
+"""
 
-def main(image_size=(1000, 1000), color_map='hot'):
+def main(image_size=(1000, 1200), color_map='hot'):
     # Main execution process
     try:
         params = get_attractor_parameters()

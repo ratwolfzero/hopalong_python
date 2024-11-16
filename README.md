@@ -431,24 +431,32 @@ Overall, the two-pass approach strikes the best balance between speed, efficienc
 
 ## Recent Code Changes
 
-Utilize a 'Color Bar' to indicate the Pixel Density (Basic Version)
+Utilize a 3D-Plot to indicate the Pixel Density on Z-axis (Basic Version 3D)
 
-        #...
-        img=ax.imshow(image, origin='lower', cmap=color_map, extent=extents, interpolation='none')  # modification 'img=ax.imshow' to apply 'colorbar'
-        #...
+    """
+    def render_trajectory_image(image, extents, params, color_map):
+        # Render the trajectory image in 3D
+        # Create a meshgrid for X and Y coordinates                    
+        x = np.linspace(extents[0], extents[1], image.shape[1])
+        y = np.linspace(extents[2], extents[3], image.shape[0])						
+        y, x = np.meshgrid(x, y)
 
-        # Create the colorbar
-        cbar = fig.colorbar(img, ax=ax, location='bottom')
-        cbar.set_label('Pixel Density. (Scale = 1 - max)')  # Title for colorbar
+        # Plot with normalized density (hit count) as Z values
+        z = image / np.max(image) if np.max(image) > 0 else image
+ 
+        fig = plt.figure(figsize=(8, 8))
+        ax = fig.add_subplot(111, projection='3d')
+        ax.contourf3D(x, y, z, levels=100, cmap=color_map)
 
-        # Set ticks to display the exact max hit count
-        max_hit_count = np.max(image)  # Get the maximum hit count from the image
-        tick_positions = np.linspace(1, max_hit_count, num=8)  # Choose 8 tick positions
-        tick_labels = (int(tick) for tick in tick_positions)  # Format tick labels as integers
+        # Customize the plot
+        ax.set_title(f'Hopalong Attractor - 3D Density (Z) Plot\nParams: a={params["a"]}, b={params["b"]}, c={params["c"]}, n={params["n"]:_}')
+        ax.set_xlabel('X')
+        ax.set_ylabel('Y')
+        ax.set_zlabel('Z')
+        ax.view_init(elev=75, azim=85)  # Adjust angle for better view
 
-        cbar.set_ticks(tick_positions)  # Set ticks on the colorbar
-        cbar.set_ticklabels(tick_labels)  # Set formatted labels
-        #...
+        plt.show()
+    """
 
 ## Enjoy the Exploration
 

@@ -177,9 +177,10 @@ Two variants of the program are available:
 - Basic 2D Version: Calculates and displays the Hopalong Attractor along with pixel density represented by a color bar.
 - Basic 3D Version: Calculates and displays the Hopalong Attractor along with pixel density represented by Z-axis.  
 
-The code of the basis version is prepered for both, just comment out the corresponding "render_trajectory_image" function
+- Extended Version: Includes all features of the basic version, excluding the color bar, plus additional statistics and visualization of the pixel hit counts distribution.  
 
-- Extended Version: Includes all features of the basic version, excluding the color bar, plus additional statistics and visualization of the pixel hit counts distribution.
+The code of the basis version is prepered for both, just comment out the corresponding "render_trajectory_image" function.  
+[See Recent Code Changes](#recent-code-changes)
 
 Examples of outputs can be found in the "Usage" section above.
 

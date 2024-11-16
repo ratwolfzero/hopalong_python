@@ -325,7 +325,7 @@ Otherwise, please comment out the relevant code snippets in the import section a
 <p>Basic 2D Version: Calculates and displays the Hopalong Attractor along with pixel density represented by a color bar.</p>
 </li>
 <li>
-<p>Basic 3D Version: Calculates and displays the Hopalong Attractor along with pixel density represented by Z-axis.</p>
+<p>Basic 3D Version: Calculates and displays the Hopalong Attractor along with pixel density (normalized) represented by Z-axis.</p>
 </li>
 <li>
 <p>Extended Version: Includes all features of the basic version, excluding the color bar, plus additional statistics and visualization of the pixel hit counts distribution.</p>
@@ -559,13 +559,13 @@ Data Loss and Inaccuracy: As previously computed floating-point values are irrec
 <p>Overall, the two-pass approach strikes the best balance between speed, efficiency and simplicity and is therefore ideal for attractor calculations with a high number of iterations. Although the trajectory points need to be computed in both passes, the pitfalls of alternative solutions are avoided.</p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h2 id="recent-code-changes">Recent Code Changes</h2>
-<p>Using a 3D graph to display pixel density on the Z axis (Basic 3D version).</p>
+<p>Using a 3D graph to display pixel density (normalized) on the Z axis (Basic 3D version).</p>
 <pre><code>&quot;&quot;&quot;
 def render_trajectory_image(image, extents, params, color_map):
     # Render the trajectory image in 3D
     # Create a meshgrid for X and Y coordinates                    
     x = np.linspace(extents[0], extents[1], image.shape[1])
-    y = np.linspace(extents[2], extents[3], image.shape[0])						
+    y = np.linspace(extents[2], extents[3], image.shape[0])      
     y, x = np.meshgrid(x, y)
 
     # Plot with normalized density (hit count) as Z values

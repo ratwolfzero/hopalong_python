@@ -273,8 +273,9 @@ start: (x<sub>0</sub> , y<sub>0</sub>) = (0 , 0)
 
 --> (x<sub>2</sub> , y<sub>2</sub>) = (p , p)
 
---> (x<sub>3</sub> , y<sub>3</sub>) = (0 , 0), cycle completed  
+--> (x<sub>3</sub> , y<sub>3</sub>) = (0 , 0), cycle completed 
 
+Example a=5, b=5, c=0 (1_000_000 iterations):
 ![Example Attractor Image](./examples/Figure_ex_3.png)
 
 If you want to experiment with this, it is recommended to reduce the total number of pixels by lowering the image resolution (e.g., 100x100) to achieve a clearer visual representation of the pixels bordering the minimum and maximum extents of the trajectory.

@@ -432,7 +432,7 @@ Overall, the two-pass approach strikes the best balance between speed, efficienc
 
 ## Recent Code Changes
 
-Utilize a 3D-Plot to indicate the Pixel Density on Z-axis (Basic Version 3D)
+Using a 3D graph to display pixel density on the Z axis (Basic 3D version).
 
     """
     def render_trajectory_image(image, extents, params, color_map):

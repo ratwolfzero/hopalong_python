@@ -161,7 +161,7 @@ Basic Version 2D
 
 Basic Version 3D
 
-![Example Attractor Image](./examples/Figure_ex_1_1.png)
+![Example Attractor Image](./examples/Figure_ex_1.png)
 
 Extended Version
 

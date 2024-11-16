@@ -175,7 +175,7 @@ Extended Version
 Two variants of the program are available:
 
 - Basic 2D Version: Calculates and displays the Hopalong Attractor along with pixel density represented by a color bar.
-- Basic 3D Version: Calculates and displays the Hopalong Attractor along with pixel density represented by Z-axis.  
+- Basic 3D Version: Calculates and displays the Hopalong Attractor along with pixel density (normalized) represented by Z-axis.  
 
 - Extended Version: Includes all features of the basic version, excluding the color bar, plus additional statistics and visualization of the pixel hit counts distribution.  
 
@@ -432,14 +432,14 @@ Overall, the two-pass approach strikes the best balance between speed, efficienc
 
 ## Recent Code Changes
 
-Using a 3D graph to display pixel density on the Z axis (Basic 3D version).
+Using a 3D graph to display pixel density (normalized) on the Z axis (Basic 3D version).
 
     """
     def render_trajectory_image(image, extents, params, color_map):
         # Render the trajectory image in 3D
         # Create a meshgrid for X and Y coordinates                    
         x = np.linspace(extents[0], extents[1], image.shape[1])
-        y = np.linspace(extents[2], extents[3], image.shape[0])						
+        y = np.linspace(extents[2], extents[3], image.shape[0])      
         y, x = np.meshgrid(x, y)
 
         # Plot with normalized density (hit count) as Z values

@@ -458,6 +458,7 @@ Using a 3D graph to display pixel density on the Z axis (Basic 3D version).
 
         plt.show()
     """
+[Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)  
 
 ## Enjoy the Exploration
 

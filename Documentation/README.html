@@ -563,14 +563,14 @@ Data Loss and Inaccuracy: As previously computed floating-point values are irrec
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h2 id="recent-code-changes">Recent Code Changes</h2>
 <p>OPTIONAL: Using a 3D graph to display pixel density (normalized) on the Z axis (Basic 3D version).<br>
-You can use or experiment with <code>ax.contourf3D</code> or <code>ax.contour3D</code></p>
-<pre><code>&quot;&quot;&quot;
+You can use or experiment with <code>ax.contourf3D</code> or `ax.contour3D</p>
+<pre><code>&quot;&quot;&quot;&quot;
 def render_trajectory_image(image, extents, params, color_map):
     # Render the trajectory image in 3D
-    # Create a meshgrid for X and Y coordinates                    
+    # Create a meshgrid for X and Y coordinates
     x = np.linspace(extents[0], extents[1], image.shape[1])
-    y = np.linspace(extents[2], extents[3], image.shape[0])      
-    y, x = np.meshgrid(x, y)
+    y = np.linspace(extents[2], extents[3], image.shape[0])
+    x, y = np.meshgrid(x, y)
 
     # Plot with normalized density (hit count) as Z values
     z = image / np.max(image) if np.max(image) &gt; 0 else image
@@ -584,7 +584,7 @@ def render_trajectory_image(image, extents, params, color_map):
     ax.set_xlabel('X')
     ax.set_ylabel('Y')
     ax.set_zlabel('Z')
-    ax.view_init(elev=75, azim=85)  # Adjust angle for better view
+    ax.view_init(elev=75, azim=-95)  # Adjust angle for better view
 
     plt.show()
 &quot;&quot;&quot;

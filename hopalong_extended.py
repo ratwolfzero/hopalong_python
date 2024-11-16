@@ -160,7 +160,7 @@ def render_trajectory_image(ax, img, extents, params, color_map):
 
 
 def plot_hit_metrics(ax, hit_metrics, scale='log'):
-    ax.plot(hit_metrics['hit'], hit_metrics['count'], 'o-', color='navy', markersize=1, linewidth=0.6)
+    ax.plot(hit_metrics['hit'], hit_metrics['count'], 'o-', color='navy', markersize=5, linewidth=0.6)
     ax.set_xlabel('# of hits (n)')
     ax.set_ylabel('# of pixels hit n-times')
 
@@ -193,7 +193,7 @@ def visualize_trajectory_image_and_hit_metrics(img, extents, params, color_map, 
     #plt.close(fig)
 
 
-def main(image_size=(1000, 1000), color_map='hot'):
+def main(image_size=(50, 50), color_map='hot'):
     # Main execution process
     try:
         params = get_attractor_parameters()

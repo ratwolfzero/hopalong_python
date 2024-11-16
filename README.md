@@ -277,6 +277,7 @@ start: (x<sub>0</sub> , y<sub>0</sub>) = (0 , 0)
 
 Example a=5, b=5, c=0 (1_200_000 iterations):
 ![Example Attractor Image](./examples/Figure_ex_3.png)
+![Example Attractor Image](./examples/Figure_ex_4.png)
 
 If you want to experiment with this, it is recommended to reduce the total number of pixels by lowering the image resolution (e.g., 100x100) to achieve a clearer visual representation of the pixels bordering the minimum and maximum extents of the trajectory.
 

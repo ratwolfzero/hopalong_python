@@ -56,6 +56,7 @@ Where:
 - sgn is the sign (signum) function, but math.copysign() is used, which is defined as follows:
 
 $$
+\large
 \text{copysign}(1.0,x) =
 \begin{cases}
 1.0  & \text{if } & \text{x } & \text{is} &\text{positive}, & \text{0.0} & or &\text{infinity} \\

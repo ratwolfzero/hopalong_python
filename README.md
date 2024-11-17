@@ -262,8 +262,8 @@ For example, with parameter set (3) the Hopalong equations are given by:
 $$
 \large
 \begin{cases}
-x_{n+1} = y_n - \text{sgn}(x_n)\sqrt{|p x_n|}, \\
-y_{n+1} = p - x_n.
+x_{n+1} = y_n - \text{sgn}(x_n)\sqrt{|p x_n|} \\
+y_{n+1} = p - x_n
 \end{cases}
 $$
 

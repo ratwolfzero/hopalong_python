@@ -46,6 +46,7 @@ x_{n+1} = y_n - \text{sgn}(x_n)\sqrt{|b x_n - c|}, \\
 y_{n+1} = a - x_n.
 \end{cases}
 $$
+
 Where:
 
 - The sequence starts from the initial point (x<sub>0</sub> , y<sub>0</sub>) = (0 , 0)

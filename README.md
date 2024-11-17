@@ -56,7 +56,6 @@ Where:
 - sgn is the sign (signum) function, but math.copysign() is used, which is defined as follows:
 
 $$
-\large
 \text{copysign}(1.0,x) =
 \begin{cases}
 1.0  & \text{if } & \text{x } & \text{is} &\text{positive}, & \text{0.0} & or &\text{infinity} \\
@@ -261,9 +260,10 @@ In these cases, you may observe high-density cycles, where a relatively small nu
 For example, with parameter set (3) the Hopalong equations are given by:
 
 $$
+\large
 \begin{cases}
-x_{n+1} = y_n - \text{sgn}(x_n) \times \sqrt{|p \times x_n|} \\
-y_{n+1} = p - x_n
+x_{n+1} = y_n - \text{sgn}(x_n)\sqrt{|p x_n|}, \\
+y_{n+1} = p - x_n.
 \end{cases}
 $$
 

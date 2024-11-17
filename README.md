@@ -41,6 +41,7 @@ The "Hopalong" attractor<top>*<top>, invented by Barry Martin of Aston Universit
 The two Python programs provided calculate and visualize the “Hopalong” attractor by iterating the following recursive functions:
 
 $$
+\Large
 \begin{cases}
 x_{n+1} = y_n - \text{sgn}(x_n)\sqrt{|b x_n - c|}, \\
 y_{n+1} = a - x_n.

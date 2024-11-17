@@ -43,9 +43,10 @@ The two Python programs provided calculate and visualize the “Hopalong” attr
 $$
 \large
 \begin{cases}
-x_{n+1} = y_n - \text{sgn}(x_n)\sqrt{|b x_n - c|} \\
+x_{n+1} = y_n - \text{sgn}(x_n) \sqrt{\lvert b x_n - c \rvert} \\
 y_{n+1} = a - x_n
 \end{cases}
+\large
 $$
 
 Where:

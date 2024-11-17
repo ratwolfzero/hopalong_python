@@ -263,9 +263,10 @@ For example, with parameter set (3) the Hopalong equations are given by:
 $$
 \large
 \begin{cases}
-x_{n+1} = y_n - \text{sgn}(x_n)\sqrt{|p x_n|} \\
+x_{n+1} = y_n - \text{sgn}(x_n) \sqrt{\lvert p x_n \rvert} \\
 y_{n+1} = p - x_n
 \end{cases}
+\large
 $$
 
 and we observe the 3-cycle: (0, 0), (0, p), and (p, p). The pixel density is: n / 3

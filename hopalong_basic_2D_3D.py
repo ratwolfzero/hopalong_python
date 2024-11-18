@@ -148,7 +148,7 @@ def render_trajectory_image(image, extents, params, color_map, mode='2D'):
         ax.set_title(f'Hopalong Attractor - 3D Density (Z) Plot\nParams: a={params["a"]}, b={params["b"]}, c={params["c"]}, n={params["n"]:_}')
         ax.set_xlabel('X')
         ax.set_ylabel('Y')
-        ax.set_zlabel('Z Norm.')
+        ax.set_zlabel('Z')
         ax.view_init(elev=75, azim=-95)
         plt.show()
     else:

@@ -174,10 +174,10 @@ Extended Version
 
 ### Program Variants
 
-Three variants of the program are available:
+Variants of the program available:
 
-- Basic: Calculates and displays the Hopalong Attractor along with pixel density represented by a color bar.
-- Basic 2D/3D : Calculates and displays the Hopalong Attractor along with pixel density (normalized) represented by Z-axis.  
+- Basic: Calculation and representation of the Hopalong attractor as a 2D density map with integrated color bar
+- Basic 2D/3D : 2D representation like Basic or visualization in 3D with representation of density as Z-axis.  
 
 - Extended: Includes all features of the Basic version, excluding the color bar, plus additional statistics and visualization of the pixel hit counts distribution.  
 

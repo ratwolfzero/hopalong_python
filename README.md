@@ -68,8 +68,8 @@ $$
 
 #### Motivation
 
-- Representation of the attractor as a density map representing a probability density function (PDF)
-- Calculation with a very high number of iterations at high processing speed and low memory requirements
+- Representation of the attractor as a density map that approximates a probability density function (PDF).
+- Calculation with a very high number of iterations at high processing speed and low memory requirements.
 
 #### Core algorithm
 
@@ -475,7 +475,6 @@ You can use or experiment with `ax.contourf3D` or `ax.contour3D
 
 - Explore displaying the attractor in 3D by using density as the Z-axis to visualize the structure in three dimensions.
 - Experiment with different image resolutions, color maps, or ways of populating the image array beyond using the hit count to explore new visual perspectives.  
-
 
 [Also check out my simpler Rust version](https://github.com/ratwolfzero/hopalong)
 

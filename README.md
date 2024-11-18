@@ -211,7 +211,7 @@ Remarks:
 
 - `METHOD:`The method of mapping trajectory points to pixel coordinates and counting hits provides a discrete representation of point density, but it does not yield a true Probability Density Function (PDF). Instead, it offers an approximation that resembles a PDF, particularly in visualizing areas of higher concentration.
 
-- `VERIFICATION: This is illustrated in the following two pictures: the first shows the output from integer conversion and image mapping, while the second displays the results from np.histogram2d(..., density=True), which estimates the density of the original floating-point trajectory data. Although both visualizations are similar, this does not imply that the original data represents a PDF. Instead, it highlights regions of higher concentration, a characteristic common in chaotic systems, effectively captured by both methods.  
+- `VERIFICATION: This is illustrated in the following two pictures: the first shows the output from integer conversion and image mapping, while the second displays the results from np.histogram2d(..., density=True), which estimates the density of the original floating-point trajectory data. Although both visualizations are similar, this does not imply that the original data represent a PDF. Instead, it highlights regions of higher concentration, a characteristic common in chaotic systems, effectively captured by both methods.  
 
 - *`GRADIENT:`The intensity of the gradient when visualizing the density of a trajectory depends on the image resolution (number of pixels) or the number of bins used in a histogram (pixels per bin). A lower image resolution or fewer bins will result in a more intense gradient because more trajectory points are concentrated in a smaller area.
 

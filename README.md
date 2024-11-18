@@ -201,7 +201,7 @@ Point to Pixel Mapping:
 
 Integer Conversion and Density Representation:
 
-- The floating-point coordinates are converted to integers to determine pixel locations. This conversion is "lossy," as closely spaced trajectory points can be assigned to the same pixel, leading to multiple hits for that pixel. The image array is initialized to zero, and each time a pixel is hit, the count at that pixel's index is incremented. Pixels with more hits represent higher density areas, indicating a greater concentration of trajectory points. The varying hit counts provide a discrete measure of point concentration, with the total number of hits reflecting the number of iterations.
+- The floating-point coordinates are converted to integers to determine pixel locations. This conversion is "lossy," as closely spaced trajectory points can be assigned to the same pixel, leading to multiple hits for that pixel. The image array is initialized to zero, and each time a pixel is hit, the count at that pixel's index is incremented. Pixels with more hits represent higher density areas, approximating the concentration of trajectory points in continuous space. The varying hit counts provide a discrete measure of point concentration, with the total number of hits reflecting the number of iterations.
 
 Visualization with Colormap:
 

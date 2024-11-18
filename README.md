@@ -174,15 +174,14 @@ Extended Version
 
 ### Program Variants
 
-Variants of the program available:
+Program Variants:
 
-- Basic: Calculation and representation of the Hopalong attractor as a 2D density map with integrated color bar
-- Basic 2D/3D: 2D representation like Basic or visualization in 3D with density as Z-axis.  
-The visualization mode can be selected at runtime. 
-
-- Extended: Includes all features of the Basic version, excluding the color bar, plus additional statistics and visualization of the pixel hit counts distribution.  
-
-The code of the `Basic` variant is prepared for both 2D and 3D, just comment out the corresponding "render_trajectory_image" function. Or choose the 2D/3D variant, which prompts you to switch to visualization mode at runtime.
+- Basic: Calculates and displays the Hopalong attractor as a 2D density map with an integrated color bar.
+- Basic 2D/3D: Provides the functionality of the Basic variant, with an option to visualize the attractor in 3D (using density as the Z-axis). The visualization mode can be selected at runtime.
+- Extended: Includes all features of the Basic version (except the color bar), along with additional statistics and a visualization of the pixel hit count distribution.  
+  
+Note:
+The code for the Basic variant supports both 2D and 3D visualization. Simply comment out the relevant render_trajectory_image function to switch modes. Alternatively, use the 2D/3D variant, which allows you to select the visualization mode during runtime.
 
 [See Recent Code Changes](#recent-code-changes)
 

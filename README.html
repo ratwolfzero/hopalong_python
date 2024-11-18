@@ -199,7 +199,7 @@
 <h2 id="abstract">Abstract</h2>
 <p>The &quot;Hopalong&quot; attractor<top>*<top>, invented by Barry Martin of Aston University in Birmingham, England, was popularized by A.K. Dewdney in the September 1986 issue of Scientific American. In Germany, it gained further recognition through a translation titled &quot;Hüpfer&quot; in Spektrum der Wissenschaft.<br>
 <sub>*Nicknamed by A.K. Dewdney.</sub></p>
-<p>The two Python programs provided calculate and visualize the “Hopalong” attractor by iterating the following recursive functions:</p>
+<p>The Python programs provided calculate and visualize the “Hopalong” attractor by iterating the following recursive functions:</p>
 <p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mstyle mathsize="1.2em"><mrow><mo fence="true">{</mo><mtable rowspacing="0.36em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><msub><mi>y</mi><mi>n</mi></msub><mo>−</mo><mtext>sgn</mtext><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo><msqrt><mrow><mo stretchy="false">∣</mo><mi>b</mi><msub><mi>x</mi><mi>n</mi></msub><mo>−</mo><mi>c</mi><mo stretchy="false">∣</mo></mrow></msqrt></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi>y</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mi>a</mi><mo>−</mo><msub><mi>x</mi><mi>n</mi></msub></mrow></mstyle></mtd></mtr></mtable></mrow><mstyle mathsize="1.2em"></mstyle></mstyle></mrow><annotation encoding="application/x-tex">\large
 \begin{cases}
 x_{n+1} = y_n - \text{sgn}(x_n) \sqrt{\lvert b x_n - c \rvert} \\
@@ -311,7 +311,7 @@ Otherwise, please comment out the relevant code snippets in the import section a
 </ul>
 <p>Experimenting with different values of these parameters will yield diverse and intricate visual patterns.</p>
 <h3 id="output">Output</h3>
-<p>The programs produce a visual representation of the Hopalong Attractor. The image displays the trajectory as a density map, where color intensity represents the frequency of points visited. Lighter areas indicate regions of higher density. This provides a striking visual of the attractor's complex structure. The density map also allows the attractor to be displayed in 3D by using the density as the Z-axis.</p>
+<p>The programs produce a visual representation of the Hopalong Attractor. The image displays the trajectory as a density map, where color intensity represents the frequency of points visited. Lighter areas indicate regions of higher density. This provides a striking visual of the attractor's complex structure. The density map also allows a 3D representation of the attractor by displaying the density on the Z-axis.</p>
 <p>Basic Version 2D</p>
 <p><img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/Figure_ex_1.png" alt="Example Attractor Image"></p>
 <p>Basic Version 3D</p>
@@ -321,20 +321,20 @@ Otherwise, please comment out the relevant code snippets in the import section a
 <a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h2 id="features-functionality-and-special-scenarios">Features, Functionality, and Special Scenarios</h2>
 <h3 id="program-variants">Program Variants</h3>
-<p>Two variants of the program are available:</p>
+<p>Variants of the program available:</p>
 <ul>
 <li>
-<p>Basic 2D Version: Calculates and displays the Hopalong Attractor along with pixel density represented by a color bar.</p>
+<p>Basic: Calculation and representation of the Hopalong attractor as a 2D density map with integrated color bar</p>
 </li>
 <li>
-<p>Basic 3D Version: Calculates and displays the Hopalong Attractor along with pixel density (normalized) represented by Z-axis.</p>
+<p>Basic 2D/3D: 2D representation like Basic or visualization in 3D with density as Z-axis.</p>
 </li>
 <li>
-<p>Extended Version: Includes all features of the basic version, excluding the color bar, plus additional statistics and visualization of the pixel hit counts distribution.</p>
+<p>Extended: Includes all features of the Basic version, excluding the color bar, plus additional statistics and visualization of the pixel hit counts distribution.</p>
 </li>
 </ul>
-<p>The code of the <code>Basic Version</code> is prepared for both 2D and 3D, just comment out the corresponding &quot;render_trajectory_image&quot; function.<br>
-<a href="#recent-code-changes">See Recent Code Changes</a></p>
+<p>The code of the <code>Basic</code> variant is prepared for both 2D and 3D, just comment out the corresponding &quot;render_trajectory_image&quot; function. Or choose the 2D/3D variant, which prompts you to switch to visualization mode at runtime.</p>
+<p><a href="#recent-code-changes">See Recent Code Changes</a></p>
 <p>Examples of outputs can be found in the &quot;Usage&quot; section above.</p>
 <h3 id="image-pixels-and-color-mapping">Image Pixels and Color Mapping</h3>
 <p>In both program variants, pixels are color-coded based on the frequency of trajectory point &quot;hits,&quot; referred to as the &quot;pixel hit count.&quot;</p>

@@ -311,7 +311,7 @@ Otherwise, please comment out the relevant code snippets in the import section a
 </ul>
 <p>Experimenting with different values of these parameters will yield diverse and intricate visual patterns.</p>
 <h3 id="output">Output</h3>
-<p>The programs produce a visual representation of the Hopalong Attractor. The image displays the trajectory as a density map, where color intensity represents the frequency of points visited. Lighter areas indicate regions of higher density. This provides a striking visual of the attractor's complex structure.</p>
+<p>The programs produce a visual representation of the Hopalong Attractor. The image displays the trajectory as a density map, where color intensity represents the frequency of points visited. Lighter areas indicate regions of higher density. This provides a striking visual of the attractor's complex structure. The density map also allows the attractor to be displayed in 3D by using the density as the Z-axis.</p>
 <p>Basic Version 2D</p>
 <p><img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/Figure_ex_1.png" alt="Example Attractor Image"></p>
 <p>Basic Version 3D</p>
@@ -595,7 +595,10 @@ def render_trajectory_image(image, extents, params, color_map):
 </code></pre>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h2 id="enjoy-the-exploration">Enjoy the Exploration</h2>
-<p>Experiment with different image resolutions, color maps, or ways of populating the image array beyond using the hit count to explore new visual perspectives.</p>
+<ul>
+<li>Explore displaying the attractor in 3D by using density as the Z-axis to visualize the structure in three dimensions.</li>
+<li>Experiment with different image resolutions, color maps, or ways of populating the image array beyond using the hit count to explore new visual perspectives.</li>
+</ul>
 <p><a href="https://github.com/ratwolfzero/hopalong">Also check out my simpler Rust version</a></p>
 <p>© Ralf Becker<br>
 Nuernberg: November 2024</p>

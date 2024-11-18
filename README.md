@@ -38,7 +38,7 @@
 The "Hopalong" attractor<top>*<top>, invented by Barry Martin of Aston University in Birmingham, England, was popularized by A.K. Dewdney in the September 1986 issue of Scientific American. In Germany, it gained further recognition through a translation titled "Hüpfer" in Spektrum der Wissenschaft.  
 <sub>*Nicknamed by A.K. Dewdney.</sub>
 
-The two Python programs provided calculate and visualize the “Hopalong” attractor by iterating the following recursive functions:
+The Python programs provided calculate and visualize the “Hopalong” attractor by iterating the following recursive functions:
 
 $$
 \large
@@ -174,14 +174,15 @@ Extended Version
 
 ### Program Variants
 
-Two variants of the program are available:
+Three variants of the program are available:
 
-- Basic 2D Version: Calculates and displays the Hopalong Attractor along with pixel density represented by a color bar.
-- Basic 3D Version: Calculates and displays the Hopalong Attractor along with pixel density (normalized) represented by Z-axis.  
+- Basic: Calculates and displays the Hopalong Attractor along with pixel density represented by a color bar.
+- Basic 2D/3D : Calculates and displays the Hopalong Attractor along with pixel density (normalized) represented by Z-axis.  
 
-- Extended Version: Includes all features of the basic version, excluding the color bar, plus additional statistics and visualization of the pixel hit counts distribution.  
+- Extended: Includes all features of the Basic version, excluding the color bar, plus additional statistics and visualization of the pixel hit counts distribution.  
 
-The code of the `Basic Version` is prepared for both 2D and 3D, just comment out the corresponding "render_trajectory_image" function.  
+The code of the `Basic` variant is prepared for both 2D and 3D, just comment out the corresponding "render_trajectory_image" function. Or choose the 2D/3D variant, which prompts you to switch to visualization mode at runtime.
+
 [See Recent Code Changes](#recent-code-changes)
 
 Examples of outputs can be found in the "Usage" section above.

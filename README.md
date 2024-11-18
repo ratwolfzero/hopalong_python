@@ -177,7 +177,7 @@ Extended Version
 Program Variants:
 
 - Basic: Calculates and displays the Hopalong attractor as a 2D density map with an integrated color bar.
-- Basic 2D/3D: Provides the functionality of the Basic variant, with an option to visualize the attractor in 3D displaying the normalized density on the Z-axis. The visualization mode can be selected at runtime.
+- .Basic 2D/3D: Provides the functionality of the Basic variant with the option to visualize the attractor in 3D and display the normalized density on the Z axis. The visualization mode can be selected at runtime.
 - Extended: Includes all features of the Basic version (except the color bar), along with additional statistics and a visualization of the pixel hit count distribution.  
   
 Note:

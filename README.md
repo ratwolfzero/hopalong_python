@@ -470,8 +470,9 @@ You can use or experiment with `ax.contourf3D` or `ax.contour3D
 
 ## Enjoy the Exploration
 
-Experiment with different image resolutions, color maps, or ways of populating the image array beyond using the hit count to explore new visual perspectives.  
-Explore displaying the attractor in 3D by using density as the Z-axis to visualize the structure in three dimensions.
+- Explore displaying the attractor in 3D by using density as the Z-axis to visualize the structure in three dimensions.
+- Experiment with different image resolutions, color maps, or ways of populating the image array beyond using the hit count to explore new visual perspectives.  
+
 
 [Also check out my simpler Rust version](https://github.com/ratwolfzero/hopalong)
 

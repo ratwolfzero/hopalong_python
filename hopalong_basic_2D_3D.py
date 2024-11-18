@@ -112,71 +112,49 @@ def compute_trajectory_and_image(a, b, c, n, extents, image_size):
         y = yy
         
     return image
-    
 
 # Dummy call to ensure the function is pre-compiled by the JIT compiler before it's called by the interpreter.
 _ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (2, 2))
 
-"""
-def render_trajectory_image(image, extents, params, color_map):
-    # Render the trajectory image
-    fig = plt.figure(figsize=(8, 8),facecolor='gainsboro')
-    ax = fig.add_subplot(1, 1, 1)
-    
-    # Display the image
-    img = ax.imshow(image, origin='lower', cmap=color_map, extent=extents, interpolation='none')
 
-    ax.set_title('Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, n={n:_}'.format(**params))
-    ax.set_xlabel('X (Cartesian)')
-    ax.set_ylabel('Y (Cartesian)')
+def render_trajectory_image(image, extents, params, color_map, mode='2D'):
+    if mode == '2D':
+        # Render in 2D using imshow
+        fig = plt.figure(figsize=(8, 8), facecolor='gainsboro')
+        ax = fig.add_subplot(1, 1, 1)
+        
+        img = ax.imshow(image, origin='lower', cmap=color_map, extent=extents, interpolation='none')
+        ax.set_title(f'Hopalong Attractor@ratwolf@2024\nParams: a={params["a"]}, b={params["b"]}, c={params["c"]}, n={params["n"]:_}')
+        ax.set_xlabel('X (Cartesian)')
+        ax.set_ylabel('Y (Cartesian)')
 
-    #plt.savefig('hopalong.svg', format='svg', dpi=1200)
+        cbar = fig.colorbar(img, ax=ax, location='bottom')
+        cbar.set_label('Pixel Density. (Scale = 0 - max)')
+        max_hit_count = np.max(image)
+        cbar.set_ticks(np.linspace(0, max_hit_count, num=8))
+        plt.tight_layout()
+        plt.show()
+    elif mode == '3D':
+        # Render in 3D using contourf3D
+        x = np.linspace(extents[0], extents[1], image.shape[1])
+        y = np.linspace(extents[2], extents[3], image.shape[0])
+        x, y = np.meshgrid(x, y)
+        z = image / np.max(image) if np.max(image) > 0 else image
+        
+        fig = plt.figure(figsize=(8, 8))
+        ax = fig.add_subplot(111, projection='3d')
+        ax.contourf3D(x, y, z, levels=100, cmap=color_map)
+        
+        ax.set_title(f'Hopalong Attractor - 3D Density (Z) Plot\nParams: a={params["a"]}, b={params["b"]}, c={params["c"]}, n={params["n"]:_}')
+        ax.set_xlabel('X')
+        ax.set_ylabel('Y')
+        ax.set_zlabel('Normalized Density (Z)')
+        ax.view_init(elev=75, azim=-95)
+        plt.show()
+    else:
+        print("Invalid mode. Please choose '2D' or '3D'.")
 
-    # Create the colorbar
-    cbar = fig.colorbar(img, ax=ax, location='bottom')
-    cbar.set_label('Pixel Density. (Scale = 0 - max)')  # Title for colorbar
-
-    # Set ticks to display the exact max hit count
-    max_hit_count = np.max(image)  # Get the maximum hit count from the image
-    tick_positions = np.linspace(0, max_hit_count, num = 8)  # Choose 8 tick positions
-    tick_labels = (int(tick) for tick in tick_positions)  # Format tick labels as integers
-
-    cbar.set_ticks(tick_positions)  # Set ticks on the colorbar
-    cbar.set_ticklabels(tick_labels)  # Set formatted labels
-
-    #ax.axis('equal')
-    plt.tight_layout()
-    plt.show()
-    #plt.pause(1)
-    #plt.close(fig)
-"""
-
-
-def render_trajectory_image(image, extents, params, color_map):
-    # Render the trajectory image in 3D
-    # Create a meshgrid for X and Y coordinates                    
-    x = np.linspace(extents[0], extents[1], image.shape[1])
-    y = np.linspace(extents[2], extents[3], image.shape[0])						
-    x, y = np.meshgrid(x, y)
-
-    # Plot with normalized density (hit count) as Z values
-    z = image / np.max(image) if np.max(image) > 0 else image
-
-    fig = plt.figure(figsize=(8, 8))
-    ax = fig.add_subplot(111, projection='3d')
-    ax.contourf3D(x, y, z, levels=100, cmap=color_map)
-
-    # Customize the plot
-    ax.set_title(f'Hopalong Attractor - 3D Density (Z) Plot\nParams: a={params["a"]}, b={params["b"]}, c={params["c"]}, n={params["n"]:_}')
-    ax.set_xlabel('X')
-    ax.set_ylabel('Y')
-    ax.set_zlabel('Z')
-    ax.view_init(elev=75, azim=-95)  # Adjust angle for better view
-
-    plt.show()
-
-
-def main(image_size=(1000, 1000), color_map='hot'):
+def main(image_size=(1000, 1000), color_map='hot', mode='2D'):
     # Main execution process
     try:
         params = get_attractor_parameters()
@@ -186,7 +164,7 @@ def main(image_size=(1000, 1000), color_map='hot'):
 
         extents = compute_trajectory_extents(params['a'], params['b'], params['c'], params['n'])
         image = compute_trajectory_and_image(params['a'], params['b'], params['c'], params['n'], extents, image_size)
-        render_trajectory_image(image, extents, params, color_map)
+        render_trajectory_image(image, extents, params, color_map, mode=mode)
 
         # End the time measurement
         end_time = time.process_time()
@@ -195,10 +173,10 @@ def main(image_size=(1000, 1000), color_map='hot'):
         cpu_sys_time_used = end_time - start_time
 
         # Calculate the memory resources used
-        memMb=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024.0/1024.0
+        memMb = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024.0 / 1024.0
         
         print(f'CPU User&System time: {cpu_sys_time_used:.2f} seconds')
-        print (f'Memory (RAM): {memMb:.2f} MByte used')
+        print(f'Memory (RAM): {memMb:.2f} MByte used')
         
     except Exception as e:
         print(f'An error occurred: {e}')
@@ -206,4 +184,8 @@ def main(image_size=(1000, 1000), color_map='hot'):
 
 # Main execution
 if __name__ == '__main__':
-    main()
+    mode = input("Choose visualization mode (2D/3D): ").strip().upper()
+    if mode not in ['2D', '3D']:
+        print("Invalid choice. Defaulting to 2D.")
+        mode = '2D'
+    main(mode=mode)

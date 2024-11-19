@@ -211,7 +211,7 @@ Remarks:
 
 - The method of mapping trajectory points to pixel coordinates and counting hits provides a discrete approximation of point density in continuous space, effectively visualizing areas of higher concentration.
   
-- This is illustrated in the following two images, which show a comparison with the histogram approximation method: the first shows the output of integer conversion and image pixel mapping, while the second shows the results of np.histogram2d(..., density=True) which estimates the density of the original floating point trajectory data. Both visualizations xield similar results and highlight areas of higher concentration, a characteristic common of chaotic systems, which is effectively captured by both methods.
+- This is illustrated in the following two images, which show a comparison with the histogram approximation method: the first shows the output of integer conversion and image pixel mapping, while the second shows the results of np.histogram2d(..., density=True) which estimates the density of the original floating point trajectory data. Both visualizations yield similar results and highlight areas of higher concentration, a characteristic common of chaotic systems, which is effectively captured by both methods.
 
 - The intensity of the color gradient depends on the image resolution (number of pixels) or the number of bins used in a histogram (pixels per bin). A lower image resolution or fewer bins result in a more intense gradient because more trajectory points are concentrated in a smaller area.
 

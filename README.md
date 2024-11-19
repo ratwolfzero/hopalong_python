@@ -68,7 +68,7 @@ $$
 
 #### Motivation
 
-- Representation of the attractor as a density map that approximates a probability density function (PDF).
+- Representation of the attractor as a density map to visualize point concentration.
 - Calculation with a very high number of iterations at high processing speed and low memory requirements.
 
 #### Core algorithm

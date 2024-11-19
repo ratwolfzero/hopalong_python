@@ -250,7 +250,7 @@ For example, the following parameter combinations may yield complex patterns:
 
 ### Special Constellations and Edge Cases of the Attractor
 
-Despite using the Copysign function, some parameter sets will still lead to periodic orbits instead of intricate patterns, such as:
+Despite using the Copysign function, some parameter sets will still lead to periodic or near-periodic orbits instead of intricate patterns, such as:
 
 - Set 1: a = p , b = 0, c = 0  
 

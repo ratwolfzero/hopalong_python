@@ -233,7 +233,7 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">â
 <h3 id="the-chosen-core-algorithm-and-the-motivation-for-it">The chosen core algorithm and the motivation for it</h3>
 <h4 id="motivation">Motivation</h4>
 <ul>
-<li>Representation of the attractor as a density map that approximates a probability density function (PDF).</li>
+<li>Representation of the attractor as a density map to visualize point concentration.</li>
 <li>Calculation with a very high number of iterations at high processing speed and low memory requirements.</li>
 </ul>
 <h4 id="core-algorithm">Core algorithm</h4>
@@ -338,30 +338,30 @@ The code for the Basic variant supports both 2D and 3D visualization. Simply com
 <p><a href="#recent-code-changes">See Recent Code Changes</a></p>
 <p>Examples of outputs can be found in the &quot;Usage&quot; section above.</p>
 <h3 id="image-pixels-and-color-mapping">Image Pixels and Color Mapping</h3>
-<p>In all program variants, pixels are color-coded based on the frequency of trajectory point &quot;hits,&quot; referred to as the &quot;pixel hit count.&quot;</p>
+<p>In all program variants, pixels are color-coded based on the frequency of trajectory point &quot;hits,&quot; referred to as the pixel hit count.</p>
 <h3 id="pixel-hit-counts-density-and-visualization">Pixel Hit Counts (Density) and Visualization</h3>
 <p>Point to Pixel Mapping:</p>
 <ul>
-<li>The trajectory points generated are represented as floating-point values in a two-dimensional continuous space. To visualize these points on a discrete image, they must be mapped to integer pixel coordinates using scaling factors based on the trajectory's extents (minimum and maximum values) and the image dimensions. This scaling ensures that continuous coordinates fit within the pixel grid.</li>
+<li>The trajectory points are represented as floating-point values in a two-dimensional continuous space. To visualize these points on a discrete image, they must be mapped to integer pixel coordinates. This mapping uses scaling factors based on the trajectory's extents (minimum and maximum values) and the image dimensions, ensuring that continuous coordinates fit within the pixel grid.</li>
 </ul>
 <p>Integer Conversion and Density Representation:</p>
 <ul>
-<li>The floating-point coordinates are converted to integers to determine pixel locations. This conversion is &quot;lossy,&quot; as closely spaced trajectory points can be assigned to the same pixel, leading to multiple hits for that pixel. The image array is initialized to zero, and each time a pixel is hit, the count at that pixel's index is incremented. Pixels with more hits represent higher density areas, approximating the concentration of trajectory points in continuous space. The varying hit counts provide a discrete measure of point concentration, with the total number of hits reflecting the number of iterations.</li>
+<li>The floating-point coordinates are converted to integers to determine pixel locations. This conversion is &quot;lossy,&quot; as closely spaced trajectory points can be assigned to the same pixel, resulting in multiple hits for that pixel. An image array is initialized to zero, and each time a pixel is hit, the count at that pixel's index is incremented. Pixels with more hits represent higher density areas, approximating the concentration of trajectory points in continuous space. The varying hit counts provide a discrete measure of point concentration, with the total number of hits reflecting the number of iterations.</li>
 </ul>
 <p>Visualization with Colormap:</p>
 <ul>
-<li>Matplotlib's &quot;hot&quot; colormap is used to represent the hit count information. It applies normalization to scale the hit counts within the color range, producing a gradient* from dark colors (low hit counts) to light colors (high hit counts). This effectively visualizes areas of greater activity within the attractor.</li>
+<li>Matplotlib's &quot;hot&quot; colormap is used to represent the hit count information. Normalization scales the hit counts within the color range, producing a gradient from dark colors (low hit counts) to light colors (high hit counts). This effectively visualizes areas of greater activity within the attractor.</li>
 </ul>
 <p>Remarks:</p>
 <ul>
 <li>
-<p><code>METHOD:</code>The method of mapping trajectory points to pixel coordinates and counting hits provides a discrete representation of point density, but it does not yield a true Probability Density Function (PDF). Instead, it offers an approximation that resembles a PDF, particularly in visualizing areas of higher concentration.</p>
+<p>The method of mapping trajectory points to pixel coordinates and counting hits provides a discrete approximation of point density in continuous space, effectively visualizing areas of higher concentration.</p>
 </li>
 <li>
-<p>`VERIFICATION: This is illustrated in the following two pictures: the first shows the output from integer conversion and image mapping, while the second displays the results from np.histogram2d(..., density=True), which estimates the density of the original floating-point trajectory data. Although both visualizations are similar, this does not imply that the original data represent a PDF. Instead, it highlights regions of higher concentration, a characteristic common in chaotic systems, effectively captured by both methods.</p>
+<p>This is illustrated in the following two pictures: the first shows the output from integer conversion and image mapping, while the second displays the results from np.histogram2d(..., density=True), which estimates the density of the original floating-point trajectory data. Both visualizations are similar and highlight regions of higher concentration, a characteristic common in chaotic systems, effectively captured by both methods.</p>
 </li>
 <li>
-<p>*<code>GRADIENT:</code>The intensity of the gradient when visualizing the density of a trajectory depends on the image resolution (number of pixels) or the number of bins used in a histogram (pixels per bin). A lower image resolution or fewer bins will result in a more intense gradient because more trajectory points are concentrated in a smaller area.</p>
+<p>The intensity of the color gradient depends on the image resolution (number of pixels) or the number of bins used in a histogram (pixels per bin). A lower image resolution or fewer bins result in a more intense gradient because more trajectory points are concentrated in a smaller area.</p>
 </li>
 </ul>
 <p><img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/Figure_ex_1.png" alt="Example Attractor Image">

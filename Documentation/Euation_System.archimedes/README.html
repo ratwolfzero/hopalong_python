@@ -340,28 +340,33 @@ The code for the Basic variant supports both 2D and 3D visualization. Simply com
 <h3 id="image-pixels-and-color-mapping">Image Pixels and Color Mapping</h3>
 <p>In all program variants, pixels are color-coded based on the frequency of trajectory point &quot;hits,&quot; referred to as the pixel hit count.</p>
 <h3 id="pixel-hit-counts-density-and-visualization">Pixel Hit Counts (Density) and Visualization</h3>
-<p>Point to Pixel Mapping:</p>
+<p>Point-to-Pixel Mapping</p>
 <ul>
-<li>The trajectory points are represented as floating-point values in a two-dimensional continuous space. To visualize these points on a discrete image, they must be mapped to integer pixel coordinates. This mapping uses scaling factors based on the trajectory's extents (minimum and maximum values) and the image dimensions, ensuring that continuous coordinates fit within the pixel grid.</li>
+<li>Trajectory points are represented as floating-point coordinates in a two-dimensional continuous space. To visualize these points on a discrete image, they must be mapped to integer pixel coordinates. This is achieved by applying scaling factors derived from the trajectory’s extents (minimum and maximum values) and the image dimensions. These scaling factors ensure that continuous coordinates are appropriately transformed to fit within the image’s pixel grid.</li>
 </ul>
 <p>Integer Conversion and Density Representation:</p>
 <ul>
-<li>The floating-point coordinates are converted to integers to determine pixel locations. This conversion is &quot;lossy,&quot; as closely spaced trajectory points can be assigned to the same pixel, resulting in multiple hits for that pixel. An image array is initialized to zero, and each time a pixel is hit, the count at that pixel's index is incremented. Pixels with more hits represent higher density areas, approximating the concentration of trajectory points in continuous space. The varying hit counts provide a discrete measure of point concentration, with the total number of hits reflecting the number of iterations.</li>
+<li>
+<p>Floating-point coordinates are converted to integers to determine their corresponding pixel locations. This conversion is inherently lossy: closely spaced trajectory points in continuous space may map to the same pixel, resulting in multiple &quot;hits&quot; for that pixel.</p>
+</li>
+<li>
+<p>An image array is initialized with zeros. For each mapped pixel location, the hit count at the corresponding array index is incremented. Pixels with higher hit counts represent areas of greater density, approximating the local concentration of trajectory points in the original continuous space. The sum of all pixel hit counts corresponds to the number of iterations used.</p>
+</li>
 </ul>
 <p>Visualization with Colormap:</p>
 <ul>
-<li>Matplotlib's &quot;hot&quot; colormap is used to represent the hit count information. Normalization scales the hit counts within the color range, producing a gradient from dark colors (low hit counts) to light colors (high hit counts). This effectively visualizes areas of greater activity within the attractor.</li>
+<li>The Matplotlib &quot;hot&quot; colormap is applied to represent hit counts as colors. To enhance visualization, hit counts are normalized to fit within the colormap’s gradient range. Darker colors correspond to lower hit counts, while lighter colors indicate higher hit counts, creating a visual gradient that highlights areas of intense activity within the attractor.</li>
 </ul>
 <p>Remarks:</p>
 <ul>
 <li>
-<p>The method of mapping trajectory points to pixel coordinates and counting hits provides a discrete approximation of point density in continuous space, effectively visualizing areas of higher concentration.</p>
+<p>Mapping trajectory points to pixel coordinates and counting hits provides a discrete approximation of point density in continuous space. This technique effectively highlights areas of higher concentration.</p>
 </li>
 <li>
-<p>This is illustrated in the following two images, which show a comparison with the histogram approximation method: the first shows the output of integer conversion and image pixel mapping, while the second shows the results of np.histogram2d(..., density=True) which estimates the density of the original floating point trajectory data. Both visualizations yield similar results and highlight areas of higher concentration, a characteristic common of chaotic systems, which is effectively captured by both methods.</p>
+<p>This is illustrated in the following two images, which show a comparison with the histogram approximation method: The first image depicts the results of integer-based pixel mapping and hit counting, while The second image shows the output of np.histogram2d(..., density=True), which estimates the density of the original floating-point trajectory data using a binning approach. Both visualizations yield similar results and highlight areas of higher concentration, a characteristic common of chaotic systems, which is effectively captured by both methods.</p>
 </li>
 <li>
-<p>The intensity of the color gradient depends on the image resolution (number of pixels) or the number of bins used in a histogram (pixels per bin). A lower image resolution or fewer bins result in a more intense gradient because more trajectory points are concentrated in a smaller area.</p>
+<p>The intensity of the colormap gradient depends on the resolution of the image (number of pixels) or the number of bins in the histogram. Lower resolution or fewer bins lead to a more intense gradient because more trajectory points are concentrated within a smaller area, amplifying the density contrast.</p>
 </li>
 </ul>
 <p><img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/Figure_ex_1.png" alt="Example Attractor Image">

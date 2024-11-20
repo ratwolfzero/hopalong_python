@@ -365,10 +365,9 @@ The code for the Basic variant supports both 2D and 3D visualization. Simply com
 <li>
 <p>To clearly demonstrate this, the following two images compare the pixel-based density estimation approach with the histogram-based density approximation method. The first image shows the results of mapping trajectory points to integer pixel coordinates and counting hits, while the second image shows the output of NumPy’s histogram function, np.histogram2d(..., density=True), which estimates the density of the original floating-point trajectory data using a binning approach. Both visualizations produce similar results, highlighting regions of higher concentration—common features of chaotic systems effectively captured by both methods.</p>
 </li>
-</ul>
-<p>Pixel-based density estimation approach</p>
-<ul>
-<li>The intensity of the colormap gradient depends on the resolution of the image (number of pixels) or the number of bins in the histogram. Lower resolution or fewer bins lead to a more intense gradient because more trajectory points are concentrated within a smaller area, amplifying the density contrast.</li>
+<li>
+<p>The intensity of the colormap gradient depends on the resolution of the image (number of pixels) or the number of bins in the histogram. Lower resolution or fewer bins lead to a more intense gradient because more trajectory points are concentrated within a smaller area, amplifying the density contrast.</p>
+</li>
 </ul>
 <p><img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/Figure_ex_1.png" alt="Example Attractor Image">
 <img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/true_PDF_histogram.png" alt="Example Attractor Image"></p>

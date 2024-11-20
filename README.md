@@ -197,7 +197,7 @@ In all program variants, pixels are color-coded based on the frequency of trajec
 
 Point-to-Pixel Mapping
 
-- Trajectory points are represented as floating-point coordinates in a two-dimensional continuous space. To visualize these points to a discrete image, they must be mapped to integer pixel coordinates. This is achieved by applying scaling factors derived from the trajectory’s extents (minimum and maximum values) and the image dimensions. These scaling factors ensure that continuous coordinates are appropriately transformed to fit within the image’s pixel grid.
+- Trajectory points are represented as floating-point coordinates in a two-dimensional continuous space. To visualize these points as a discrete image, they must be mapped to integer pixel coordinates. This is achieved by applying scaling factors derived from the trajectory’s extents (minimum and maximum values) and the image dimensions. These scaling factors ensure that continuous coordinates are appropriately transformed to fit within the image’s pixel grid.
 
 Integer Conversion and Density Representation:
 

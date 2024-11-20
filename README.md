@@ -77,7 +77,7 @@ Two-pass algorithm with separate calculation of:
 
 - The spatial extent of the attractor trajectory (first pass).
 
-- Direct mapping of the sequentially generated floating-point values in continuous space to a discrete image grid, while tracking the number of pixel hits to display the density map (second pass).
+- Direct mapping of the sequentially generated floating-point values in continuous space to a discrete image grid, while tracking the number of pixel hits to generate the density map (second pass).
 
 Just-in-time (JIT) compilation supported by a low complexity code structure.  
 

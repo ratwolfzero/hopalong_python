@@ -240,10 +240,10 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 <p>Two-pass algorithm with separate calculation of:</p>
 <ul>
 <li>
-<p>The spatial extent of the attractor trajectory (first pass)</p>
+<p>The spatial extent of the attractor trajectory (first pass).</p>
 </li>
 <li>
-<p>Direct mapping of the sequentially generated floating point values ​​in continuous space to a discrete image while tracking the number of pixel hits to display the density map (second pass)</p>
+<p>Direct mapping of the sequentially generated floating-point values in continuous space to a discrete image grid, while tracking the number of pixel hits to display the density map (second pass).</p>
 </li>
 </ul>
 <p>Just-in-time (JIT) compilation supported by a low complexity code structure.</p>
@@ -342,7 +342,7 @@ The code for the Basic variant supports both 2D and 3D visualization. Simply com
 <h3 id="pixel-hit-counts-density-and-visualization">Pixel Hit Counts (Density) and Visualization</h3>
 <p>Point-to-Pixel Mapping</p>
 <ul>
-<li>Trajectory points are represented as floating-point coordinates in a two-dimensional continuous space. To visualize these points on a discrete image, they must be mapped to integer pixel coordinates. This is achieved by applying scaling factors derived from the trajectory’s extents (minimum and maximum values) and the image dimensions. These scaling factors ensure that continuous coordinates are appropriately transformed to fit within the image’s pixel grid.</li>
+<li>Trajectory points are represented as floating-point coordinates in a two-dimensional continuous space. To visualize these points to a discrete image, they must be mapped to integer pixel coordinates. This is achieved by applying scaling factors derived from the trajectory’s extents (minimum and maximum values) and the image dimensions. These scaling factors ensure that continuous coordinates are appropriately transformed to fit within the image’s pixel grid.</li>
 </ul>
 <p>Integer Conversion and Density Representation:</p>
 <ul>

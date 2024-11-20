@@ -207,13 +207,13 @@ Integer Conversion and Density Representation:
 
 Visualization with Colormap:
 
-- The Matplotlib "hot" colormap is applied to represent hit counts as colors. To enhance visualization, hit counts are normalized to fit within the colormap’s gradient range. Darker colors correspond to lower hit counts, while lighter colors indicate higher hit counts, creating a visual gradient that highlights areas of intense activity within the attractor.
+- The Matplotlib "hot" colormap is applied to represent hit counts as colors. To enhance visualization, the colormap automatically normalizes the hit counts to fit within its gradient range. Darker colors correspond to lower hit counts, while lighter colors indicate higher hit counts, creating a visual gradient that highlights areas of intense activity within the attractor.
 
 Remarks:
 
 - Mapping trajectory points to pixel coordinates and counting hits provides a discrete approximation of point density in continuous space. This technique effectively highlights areas of higher concentration.
   
-- This is clearly illustrated in the following two images, which show a comparison with the histogram approximation method: the first image shows the results of integer pixel mapping and hit counting, while the second image shows the output of np.histogram2d(..., density=True) which estimates the density of the original floating-point trajectory data using a binning approach. Both visualizations produce similar results, highlighting regions of higher concentration, a common feature of chaotic systems that is effectively captured by both methods.
+- To clearly demonstrate this, the following two images compare the integer pixel mapping and hit counting method with the histogram approximation method. The first image shows the results of mapping trajectory points to integer pixel coordinates and counting hits, while the second image shows the output of np.histogram2d(..., density=True), which estimates the density of the original floating-point trajectory data using a binning approach. Both visualizations produce similar results, highlighting regions of higher concentration—common features of chaotic systems effectively captured by both methods.
 
 - The intensity of the colormap gradient depends on the resolution of the image (number of pixels) or the number of bins in the histogram. Lower resolution or fewer bins lead to a more intense gradient because more trajectory points are concentrated within a smaller area, amplifying the density contrast.
 

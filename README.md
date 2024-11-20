@@ -215,8 +215,6 @@ Remarks:
   
 - To clearly demonstrate this, the following two images compare the pixel-based density estimation approach with the histogram-based density approximation method. The first image shows the results of mapping trajectory points to integer pixel coordinates and counting hits, while the second image shows the output of NumPy’s histogram function, np.histogram2d(..., density=True), which estimates the density of the original floating-point trajectory data using a binning approach. Both visualizations produce similar results, highlighting regions of higher concentration—common features of chaotic systems effectively captured by both methods.
 
-Pixel-based density estimation approach
-
 - The intensity of the colormap gradient depends on the resolution of the image (number of pixels) or the number of bins in the histogram. Lower resolution or fewer bins lead to a more intense gradient because more trajectory points are concentrated within a smaller area, amplifying the density contrast.
 
 ![Example Attractor Image](./examples/Figure_ex_1.png)

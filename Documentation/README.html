@@ -573,8 +573,7 @@ Data Loss and Inaccuracy: As previously computed floating-point values are irrec
 <p>Overall, the two-pass approach strikes the best balance between speed, efficiency and simplicity and is therefore ideal for attractor calculations with a high number of iterations. Although the trajectory points need to be computed in both passes, the pitfalls of alternative solutions are avoided.</p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h2 id="recent-code-changes">Recent Code Changes</h2>
-<p>OPTIONAL: Using a 3D graph to display pixel density (normalized) on the Z axis (Basic 3D version).<br>
-You can use or experiment with <code>ax.contourf3D</code> or `ax.contour3D</p>
+<p>OPTIONAL: Using a 3D graph to display pixel density (normalized) on the Z axis (Basic 3D version).</p>
 <pre><code>&quot;&quot;&quot;&quot;
 def render_trajectory_image(image, extents, params, color_map):
     # Render the trajectory image in 3D
@@ -603,8 +602,12 @@ def render_trajectory_image(image, extents, params, color_map):
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h2 id="enjoy-the-exploration">Enjoy the Exploration</h2>
 <ul>
-<li>Explore displaying the attractor in 3D by using density as the Z-axis to visualize the structure in three dimensions.</li>
-<li>Experiment with different image resolutions, color maps, or ways of populating the image array beyond using the hit count to explore new visual perspectives.</li>
+<li>
+<p>Explore displaying the attractor in 3D by using density as the Z-axis to visualize the structure in three dimensions. You can use or experiment with <code>ax.contourf3D</code> or <code>ax.contour3D</code>.</p>
+</li>
+<li>
+<p>Experiment with different image resolutions, color maps, or ways of populating the image array beyond using the hit count to explore new visual perspectives.</p>
+</li>
 </ul>
 <p><a href="https://github.com/ratwolfzero/hopalong">Also check out my simpler Rust version</a></p>
 <p>© Ralf Becker<br>

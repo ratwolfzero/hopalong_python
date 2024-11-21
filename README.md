@@ -209,7 +209,7 @@ Visualization with Colormap:
 
 Remarks:
 
-`Method`
+Method
 
 - Mapping trajectory points to pixel coordinates and counting hits provides a discrete approximation of point density in continuous space. This technique effectively highlights areas of higher concentration.
 

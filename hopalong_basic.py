@@ -118,7 +118,7 @@ _ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (2, 2))
 
 
 def render_trajectory_image(image, extents, params, color_map):
-    # Render the trajectory image
+    # Render the trajectory image in 2D
     fig = plt.figure(figsize=(8, 8),facecolor='gainsboro')
     ax = fig.add_subplot(1, 1, 1)
     

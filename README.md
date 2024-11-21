@@ -473,7 +473,8 @@ OPTIONAL: Using a 3D graph to display pixel density (normalized) on the Z axis (
 
 ## Enjoy the Exploration
 
-- Explore displaying the attractor in 3D by using density as the Z-axis to visualize the structure in three dimensions. You can use or experiment with `ax.contourf3D` or `ax.contour3D`.
+- Explore the attractor in three dimensions by displaying density on the Z-axis.  
+You can try `ax.contourf3D`(Filled Contours) or `ax.contour3D`(Unfilled Contours).
 
 - Experiment with different image resolutions, color maps, or ways of populating the image array beyond using the hit count to explore new visual perspectives.  
 

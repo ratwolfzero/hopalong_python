@@ -146,10 +146,10 @@
 <ul>
 <li><a href="#abstract">Abstract</a>
 <ul>
-<li><a href="#the-chosen-core-algorithm-and-the-motivation-for-it">The chosen core algorithm and the motivation for it</a>
+<li><a href="#the-chosen-core-algorithm-and-the-motivation-for-it">The Chosen Core Algorithm and the Motivation for It</a>
 <ul>
 <li><a href="#motivation">Motivation</a></li>
-<li><a href="#core-algorithm">Core algorithm</a></li>
+<li><a href="#core-algorithm">Core Algorithm</a></li>
 </ul>
 </li>
 </ul>
@@ -166,7 +166,7 @@
 <li><a href="#program-variants">Program Variants</a></li>
 <li><a href="#image-pixels-and-color-mapping">Image Pixels and Color Mapping</a></li>
 <li><a href="#pixel-hit-counts-density-and-visualization">Pixel Hit Counts (Density) and Visualization</a></li>
-<li><a href="#application-of-copysign-math-module-as-signum-function">Application of Copysign (Math Module) as Signum function</a></li>
+<li><a href="#application-of-copysign-math-module-as-signum-function">Application of Copysign (Math Module) as Signum Function</a></li>
 <li><a href="#special-constellations-and-edge-cases-of-the-attractor">Special Constellations and Edge Cases of the Attractor</a></li>
 <li><a href="#optional-features">Optional Features</a></li>
 </ul>
@@ -180,7 +180,7 @@
 <ul>
 <li><a href="#one-pass-approach-with-full-trajectory-caching">One-Pass Approach with Full Trajectory Caching*</a></li>
 <li><a href="#one-pass-approach-with-limited-memory-usage-chunked-or-no-caching">One-Pass Approach with Limited Memory Usage (Chunked or No Caching)*</a></li>
-<li><a href="#potentially-other-more-sophisticated-solutions">Potentially other, more sophisticated solutions</a></li>
+<li><a href="#potentially-other-more-sophisticated-solutions">Potentially Other, More Sophisticated Solutions</a></li>
 </ul>
 </li>
 <li><a href="#conclusion">Conclusion</a></li>
@@ -230,13 +230,13 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 -1.0 &amp; \text{if } &amp; \text{x } &amp; \text{is} &amp;\text{negative}, &amp; \text{-0.0} &amp; or &amp;\text{neg. infinity}
 \end{cases}
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">copysign</span></span><span class="mopen">(</span><span class="mord">1.0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:3em;vertical-align:-1.25em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">1.0</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">−</span><span class="mord">1.0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">if </span></span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">if </span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">x </span></span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">x </span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">is</span></span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">is</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">positive</span></span><span class="mpunct">,</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">negative</span></span><span class="mpunct">,</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">0.0</span></span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">-0.0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">or</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">or</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">infinity</span></span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">neg. infinity</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
-<h3 id="the-chosen-core-algorithm-and-the-motivation-for-it">The chosen core algorithm and the motivation for it</h3>
+<h3 id="the-chosen-core-algorithm-and-the-motivation-for-it">The Chosen Core Algorithm and the Motivation for It</h3>
 <h4 id="motivation">Motivation</h4>
 <ul>
 <li>Representation of the attractor as a density map to visualize point concentration.</li>
 <li>Calculation with a very high number of iterations at high processing speed and low memory requirements.</li>
 </ul>
-<h4 id="core-algorithm">Core algorithm</h4>
+<h4 id="core-algorithm">Core Algorithm</h4>
 <p>Two-pass algorithm with separate calculation of:</p>
 <ul>
 <li>
@@ -302,7 +302,7 @@ Otherwise, please comment out the relevant code snippets in the import section a
 <li><strong>c (float or integer)</strong>: The third parameter affecting the attractor's dynamics.</li>
 <li><strong>n (integer)</strong>: The number of iterations to run (e.g. 1e6, 1_000_000 or 1000000).</li>
 </ul>
-<p><strong>Example parameters</strong>:</p>
+<p><strong>Example Parameters</strong>:</p>
 <ul>
 <li>a = -2</li>
 <li>b = -0.33</li>
@@ -359,7 +359,7 @@ The code for the Basic variant supports both 2D and 3D visualization. Simply com
 <p>Remarks:</p>
 <p>Method:</p>
 <ul>
-<li>Mapping continuous trajectory points to discrete pixel coordinates and counting hits approximates point density in continuous space and effectively highlights areas of higher concentration.</li>
+<li>By mapping continuous trajectory points to discrete pixel coordinates and counting the hits, the point density in continuous space can be approximated and areas of higher concentration can be effectively highlighted.</li>
 </ul>
 <p>Verification:</p>
 <ul>
@@ -372,7 +372,7 @@ The code for the Basic variant supports both 2D and 3D visualization. Simply com
 <p><img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/Figure_ex_1.png" alt="Example Attractor Image">
 <img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/true_PDF_histogram.png" alt="Example Attractor Image"></p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
-<h3 id="application-of-copysign-math-module-as-signum-function">Application of Copysign (Math Module) as Signum function</h3>
+<h3 id="application-of-copysign-math-module-as-signum-function">Application of Copysign (Math Module) as Signum Function</h3>
 <p>The programs utilize the math.copysign function 'copysign(x, y)',<br>
 which returns a float with the magnitude (absolute value) of x but the sign of y<br>
 On platforms that support signed zeros, copysign(1.0, -0.0) returns -1.0.</p>
@@ -445,7 +445,7 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h3 id="optional-features">Optional Features</h3>
 <p>Execution time and resources: Measurement starts after user input and records the CPU time for the entire process, including image rendering. It also tracks the system memory used.</p>
-<p>Note: Since interactions with the plot window, such as zooming, panning, or mouse movements, are also measured, it is recommended to close the plot window automatically. This can be achieved using the commands plt.pause(1) followed by plt.close(fig). As long as there is no interaction with the plot window, the pause time from plt.pause() is not recorded by the time.process_time() function.</p>
+<p>Note: Since user interactions with the plot window, such as zooming, panning, or mouse movements, are also measured, it is recommended to close the plot window automatically. This can be achieved using the commands plt.pause(1) followed by plt.close(fig). As long as there is no interaction with the plot window, the pause time from plt.pause() is not recorded by the time.process_time() function.</p>
 <pre><code>    #plt.show()
     plt.pause(1)
     plt.close(fig)
@@ -567,7 +567,7 @@ Data Loss and Inaccuracy: As previously computed floating-point values are irrec
 </li>
 </ul>
 <p>*This also applies analogously to any versions that only process floating point values.</p>
-<h4 id="potentially-other-more-sophisticated-solutions">Potentially other, more sophisticated solutions</h4>
+<h4 id="potentially-other-more-sophisticated-solutions">Potentially Other, More Sophisticated Solutions</h4>
 <p>No other one-pass method solutions have been investigated or considered to date. More sophisticated solutions would also contradict the minimum complexity design approach unless a significant performance improvement in calculations with a high number of iterations makes them worth considering.</p>
 <h3 id="conclusion">Conclusion</h3>
 <p>Overall, the two-pass approach strikes the best balance between speed, efficiency and simplicity and is therefore ideal for attractor calculations with a high number of iterations. Although the trajectory points need to be computed in both passes, the pitfalls of alternative solutions are avoided.</p>

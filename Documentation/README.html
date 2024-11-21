@@ -321,7 +321,6 @@ Otherwise, please comment out the relevant code snippets in the import section a
 <a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h2 id="features-functionality-and-special-scenarios">Features, Functionality, and Special Scenarios</h2>
 <h3 id="program-variants">Program Variants</h3>
-<p>Program Variants:</p>
 <ul>
 <li>
 <p>Basic: Calculates and displays the Hopalong attractor as a 2D density map with an integrated color bar.</p>
@@ -363,7 +362,7 @@ The code for the Basic variant supports both 2D and 3D visualization. Simply com
 <p>Mapping trajectory points to pixel coordinates and counting hits provides a discrete approximation of point density in continuous space. This technique effectively highlights areas of higher concentration.</p>
 </li>
 <li>
-<p>To clearly demonstrate this, the following two images compare the pixel-based density estimation approach with the histogram-based density approximation method. The first image shows the results of mapping trajectory points to integer pixel coordinates and counting hits, while the second image shows the output of NumPy’s histogram function, np.histogram2d(..., density=True), which estimates the density of the original floating-point trajectory data using a binning approach. Both visualizations produce quite similar results in highlighting areas of higher concentration, which are effectively captured by both methods.</p>
+<p>To clearly demonstrate this, the following two images compare the pixel-based density estimation approach with the histogram-based density approximation method. The first shows the results of mapping trajectory points to integer pixel coordinates and counting hits, while the second shows the results of NumPy’s<code>np.histogram2d(..., density=True)</code>, which estimates the density of the original floating-point trajectory data. Both methods highlight areas of higher concentration similarly and effectively.</p>
 </li>
 <li>
 <p>The intensity of the colormap gradient depends on the resolution of the image (number of pixels) or the number of bins in the histogram. Lower resolution or fewer bins lead to a more intense gradient because more trajectory points are concentrated within a smaller area, amplifying the density contrast.</p>
@@ -373,8 +372,8 @@ The code for the Basic variant supports both 2D and 3D visualization. Simply com
 <img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/true_PDF_histogram.png" alt="Example Attractor Image"></p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h3 id="application-of-copysign-math-module-as-signum-function">Application of Copysign (Math Module) as Signum function</h3>
-<p>The programs now utilizes the math.copysign function &quot;copysign(x,y)&quot;<br>
-which returns a float with the magnitude (absolute value) of x but the sign of y.<br>
+<p>The programs utilize the math.copysign function 'copysign(x, y)',<br>
+which returns a float with the magnitude (absolute value) of x but the sign of y<br>
 On platforms that support signed zeros, copysign(1.0, -0.0) returns -1.0.</p>
 <p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>copysign</mtext><mo stretchy="false">(</mo><mn>1.0</mn><mo separator="true">,</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mrow><mo fence="true">{</mo><mtable rowspacing="0.36em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1.0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>if </mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>x </mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>is</mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mtext>positive</mtext><mo separator="true">,</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>0.0</mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>o</mi><mi>r</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>infinity</mtext></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>−</mo><mn>1.0</mn></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>if </mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>x </mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>is</mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mtext>negative</mtext><mo separator="true">,</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>-0.0</mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>o</mi><mi>r</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>neg. infinity</mtext></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">\text{copysign}(1.0,x) =
 \begin{cases}
@@ -457,7 +456,7 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 <p>Dummy Calls</p>
 <p>Dummy calls are preliminary invocations of JIT-compiled functions that prompt the Numba compiler to generate machine code before the function is used in the main execution flow. This ensures that the function is precompiled, avoiding compilation overhead during its first actual execution. This process is akin to &quot;eager compilation,&quot; as it occurs ahead of time, but it does not require explicit function signatures in the header.</p>
 <p>Parallelization and Race Conditions</p>
-<p>The parallel loop function <code>prange</code> from the Numba library is not suitable for cross-iteration dependencies, such as those encountered when calculating trajectory points of recursive functions. While it is possible to restructure the second pass to use prange for populating the image array, this could introduce race conditions—situations where multiple threads access and modify shared data simultaneously, leading to inconsistent or unpredictable results. Therefore, this approach was not implemented.</p>
+<p>The parallel loop function <code>prange</code> from the Numba library is not suitable for cross-iteration dependencies, such as those encountered when iterating recursive functions. While it is possible to restructure the second pass to use prange for populating the image array, this could introduce race conditions—situations where multiple threads access and modify shared data simultaneously, leading to inconsistent or unpredictable results. Therefore, this approach was not implemented.</p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h3 id="two-pass-approach">Two-Pass Approach</h3>
 <p>By separating the extent calculation (first pass) from trajectory point mapping (second pass), this approach allows for efficient sequential processing. Knowing the overall trajectory extents in advance enables direct and efficient mapping of points to image pixels, optimizing memory usage and maintaining consistent performance.</p>

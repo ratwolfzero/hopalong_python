@@ -363,11 +363,10 @@ The code for the Basic variant supports both 2D and 3D visualization. Simply com
 </ul>
 <p>Verification:</p>
 <ul>
-<li>To clearly demonstrate this, the following two images show the results from comparing density approximation methods: pixel-based and histogram-based. The first shows mapping continuous trajectory points to discrete integer pixels and counting hits, while the second shows directly applying NumPy's np.histogram2d(..., density=True) function to continuous trajectory points. Both methods highlight areas of higher concentration in a similar and effective way.</li>
-</ul>
-<p>Gradient:</p>
-<ul>
-<li>The intensity of the colormap gradient depends on the resolution of the image (number of pixels) or the number of bins in the histogram. Lower resolution or fewer bins lead to a more intense gradient because more trajectory points are concentrated within a smaller area, amplifying the density contrast.</li>
+<li>
+<p>To clearly demonstrate this, the following two images show the results from comparing density approximation methods: pixel-based and histogram-based. The first shows mapping continuous trajectory points to discrete integer pixels and counting hits, while the second shows directly applying NumPy's np.histogram2d(..., density=True) function to continuous trajectory points. Both methods highlight areas of higher concentration in a similar and effective way.</p>
+<p>The intensity of the colormap gradient depends on the resolution of the image (number of pixels) or the number of bins in the histogram. Lower resolution or fewer bins lead to a more intense gradient because more trajectory points are concentrated within a smaller area, amplifying the density contrast.</p>
+</li>
 </ul>
 <p><img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/Figure_ex_6.png" alt="Example Attractor Image">
 <img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/true_PDF_histogram.png" alt="Example Attractor Image"></p>

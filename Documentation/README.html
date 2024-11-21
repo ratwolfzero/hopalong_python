@@ -357,16 +357,17 @@ The code for the Basic variant supports both 2D and 3D visualization. Simply com
 <li>The Matplotlib &quot;hot&quot; colormap is applied to represent hit counts as colors. To enhance visualization, the colormap automatically normalizes the hit counts to fit within its gradient range. Darker colors correspond to lower hit counts, while lighter colors indicate higher hit counts, creating a visual gradient that highlights areas of intense activity within the attractor.</li>
 </ul>
 <p>Remarks:</p>
+<p>Method:</p>
 <ul>
-<li>
-<p>Mapping trajectory points to pixel coordinates and counting hits provides a discrete approximation of point density in continuous space. This technique effectively highlights areas of higher concentration.</p>
-</li>
-<li>
-<p>To clearly demonstrate this, the following two images compare the pixel-based density estimation approach with the histogram-based density approximation method. The first shows the results of mapping trajectory points to integer pixel coordinates and counting the hits, while the second shows the results of NumPy's <code>np.histogram2d(..., density=True)</code> used to estimate the density of the original floating-point trajectory data. Both methods highlight areas of higher concentration similarly and effectively.</p>
-</li>
-<li>
-<p>The intensity of the colormap gradient depends on the resolution of the image (number of pixels) or the number of bins in the histogram. Lower resolution or fewer bins lead to a more intense gradient because more trajectory points are concentrated within a smaller area, amplifying the density contrast.</p>
-</li>
+<li>Mapping trajectory points to pixel coordinates and counting hits provides a discrete approximation of point density in continuous space. This technique effectively highlights areas of higher concentration.</li>
+</ul>
+<p>Verification:</p>
+<ul>
+<li>To clearly demonstrate this, the following two images compare the pixel-based density estimation approach with the histogram-based density approximation method. The first shows the results of mapping trajectory points to integer pixel coordinates and counting the hits, while the second shows the results of NumPy's <code>np.histogram2d(..., density=True)</code> used to estimate the density of the original floating-point trajectory data. Both methods highlight areas of higher concentration similarly and effectively.</li>
+</ul>
+<p>Gradient:</p>
+<ul>
+<li>The intensity of the colormap gradient depends on the resolution of the image (number of pixels) or the number of bins in the histogram. Lower resolution or fewer bins lead to a more intense gradient because more trajectory points are concentrated within a smaller area, amplifying the density contrast.</li>
 </ul>
 <p><img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/Figure_ex_1.png" alt="Example Attractor Image">
 <img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/true_PDF_histogram.png" alt="Example Attractor Image"></p>

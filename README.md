@@ -5,9 +5,9 @@
   
 - [Calculate \& Visualize the Hopalong Attractor with Python](#calculate--visualize-the-hopalong-attractor-with-python)
   - [Abstract](#abstract)
-    - [The chosen core algorithm and the motivation for it](#the-chosen-core-algorithm-and-the-motivation-for-it)
+    - [The Chosen Core Algorithm and the Motivation for It](#the-chosen-core-algorithm-and-the-motivation-for-it)
       - [Motivation](#motivation)
-      - [Core algorithm](#core-algorithm)
+      - [Core Algorithm](#core-algorithm)
   - [Requirements](#requirements)
   - [Usage](#usage)
     - [Input Parameters](#input-parameters)
@@ -16,7 +16,7 @@
     - [Program Variants](#program-variants)
     - [Image Pixels and Color Mapping](#image-pixels-and-color-mapping)
     - [Pixel Hit Counts (Density) and Visualization](#pixel-hit-counts-density-and-visualization)
-    - [Application of Copysign (Math Module) as Signum function](#application-of-copysign-math-module-as-signum-function)
+    - [Application of Copysign (Math Module) as Signum Function](#application-of-copysign-math-module-as-signum-function)
     - [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)
     - [Optional Features](#optional-features)
   - [Performance Optimization](#performance-optimization)
@@ -26,7 +26,7 @@
     - [Alternative Solutions](#alternative-solutions)
       - [One-Pass Approach with Full Trajectory Caching\*](#one-pass-approach-with-full-trajectory-caching)
       - [One-Pass Approach with Limited Memory Usage (Chunked or No Caching)\*](#one-pass-approach-with-limited-memory-usage-chunked-or-no-caching)
-      - [Potentially other, more sophisticated solutions](#potentially-other-more-sophisticated-solutions)
+      - [Potentially Other, More Sophisticated Solutions](#potentially-other-more-sophisticated-solutions)
     - [Conclusion](#conclusion)
   - [Recent Code Changes](#recent-code-changes)
   - [Enjoy the Exploration](#enjoy-the-exploration)
@@ -64,14 +64,14 @@ $$
 \end{cases}
 $$
 
-### The chosen core algorithm and the motivation for it
+### The Chosen Core Algorithm and the Motivation for It
 
 #### Motivation
 
 - Representation of the attractor as a density map to visualize point concentration.
 - Calculation with a very high number of iterations at high processing speed and low memory requirements.
 
-#### Core algorithm
+#### Core Algorithm
 
 Two-pass algorithm with separate calculation of:
 
@@ -144,7 +144,7 @@ When you run the programs, you will be prompted to enter the following parameter
 - **c (float or integer)**: The third parameter affecting the attractor's dynamics.
 - **n (integer)**: The number of iterations to run (e.g. 1e6, 1_000_000 or 1000000).
 
-**Example parameters**:
+**Example Parameters**:
 
 - a = -2
 - b = -0.33
@@ -226,7 +226,7 @@ Gradient:
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
-### Application of Copysign (Math Module) as Signum function
+### Application of Copysign (Math Module) as Signum Function
 
 The programs utilize the math.copysign function 'copysign(x, y)',  
 which returns a float with the magnitude (absolute value) of x but the sign of y  
@@ -304,7 +304,7 @@ By the way, this scenario is an ideal use case for the extended version of the p
 
 Execution time and resources: Measurement starts after user input and records the CPU time for the entire process, including image rendering. It also tracks the system memory used.
 
-Note: Since interactions with the plot window, such as zooming, panning, or mouse movements, are also measured, it is recommended to close the plot window automatically. This can be achieved using the commands plt.pause(1) followed by plt.close(fig). As long as there is no interaction with the plot window, the pause time from plt.pause() is not recorded by the time.process_time() function.
+Note: Since user interactions with the plot window, such as zooming, panning, or mouse movements, are also measured, it is recommended to close the plot window automatically. This can be achieved using the commands plt.pause(1) followed by plt.close(fig). As long as there is no interaction with the plot window, the pause time from plt.pause() is not recorded by the time.process_time() function.
 
         #plt.show()
         plt.pause(1)
@@ -437,7 +437,7 @@ Data Loss and Inaccuracy: As previously computed floating-point values are irrec
 
 *This also applies analogously to any versions that only process floating point values.
 
-#### Potentially other, more sophisticated solutions
+#### Potentially Other, More Sophisticated Solutions
 
 No other one-pass method solutions have been investigated or considered to date. More sophisticated solutions would also contradict the minimum complexity design approach unless a significant performance improvement in calculations with a high number of iterations makes them worth considering.
 

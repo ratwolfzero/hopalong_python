@@ -318,7 +318,7 @@ Dummy calls are preliminary invocations of JIT-compiled functions that prompt th
 
 Parallelization and Race Conditions
 
-The parallel loop function `prange` from the Numba library is not suitable for cross-iteration dependencies, such as those encountered when calculating trajectory points of recursive functions. While it is possible to restructure the second pass to use prange for populating the image array, this could introduce race conditions—situations where multiple threads access and modify shared data simultaneously, leading to inconsistent or unpredictable results. Therefore, this approach was not implemented.
+The parallel loop function `prange` from the Numba library is not suitable for cross-iteration dependencies, such as those encountered when iterating recursive functions. While it is possible to restructure the second pass to use prange for populating the image array, this could introduce race conditions—situations where multiple threads access and modify shared data simultaneously, leading to inconsistent or unpredictable results. Therefore, this approach was not implemented.
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 

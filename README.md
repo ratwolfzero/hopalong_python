@@ -221,7 +221,7 @@ Gradient:
 
 - The intensity of the colormap gradient depends on the resolution of the image (number of pixels) or the number of bins in the histogram. Lower resolution or fewer bins lead to a more intense gradient because more trajectory points are concentrated within a smaller area, amplifying the density contrast.
 
-![Example Attractor Image](./examples/Figure_ex_1.png)
+![Example Attractor Image](./examples/Figure_ex_6.png)
 ![Example Attractor Image](./examples/true_PDF_histogram.png)
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)

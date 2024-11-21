@@ -443,7 +443,7 @@ Overall, the two-pass approach strikes the best balance between speed, efficienc
 
 ## Recent Code Changes
 
-OPTIONAL: Using a 3D graph to display pixel density (normalized) on the Z axis (Basic 3D version).  
+OPTIONAL: Using a 3D plot to display normalized pixel density on the Z-axis.
 
     """
     def render_trajectory_image(image, extents, params, color_map):

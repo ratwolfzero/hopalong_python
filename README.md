@@ -215,7 +215,7 @@ Method:
 
 Verification:
   
-- To clearly demonstrate this, the following two images compare the pixel-based density estimation approach with the histogram-based density approximation method. The first shows the results of mapping trajectory points to integer pixel coordinates and counting the hits, while the second shows the results of NumPy's `np.histogram2d(..., density=True)` used to estimate the density of the original floating-point trajectory data. Both methods highlight areas of higher concentration similarly and effectively.
+- To clearly demonstrate this, the following two images compare density approximation methods: pixel-based and histogram-based. The first shows results from mapping continuous trajectory points to discrete integer pixels and counting hits, while the second shows the application of NumPy's `np.histogram2d(..., density=True)` function directly to the original continuous trajectory points. Both methods highlight areas of higher concentration similarly and effectively.
 
 Gradient:
 

@@ -53,8 +53,8 @@ Where:
 
 - The sequence starts from the initial point (x<sub>0</sub> , y<sub>0</sub>) = (0 , 0)
 - x<sub>n</sub> and y<sub>n</sub> represent the coordinates at the n-th iteration of the attractor.
-- a, b and c are parameters influencing the attracto's dynamics.
-- sgn is the sign (signum) function, but math.copysign() is used, which is defined as follows:
+- a, b and c are parameters influencing the attractor's dynamics.
+- sgn is the sign (signum) function. However, the programs use `math.copysign()`, which is defined as follows:
 
 $$
 \text{copysign}(1.0,x) =

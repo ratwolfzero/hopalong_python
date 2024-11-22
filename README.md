@@ -35,7 +35,7 @@
 
 ## Abstract
 
-The "Hopalong"<top>*<top> attractor, authored by Barry Martin of Aston University in Birmingham, England, was popularized by A.K. Dewdney in the September 1986 issue of Scientific American. In Germany, it gained further recognition through a translation titled "Hüpfer" in Spektrum der Wissenschaft.  
+The "Hopalong"<top>*<top> attractor, authored by Barry Martin of Aston University in Birmingham, England, was popularized by A.K. Dewdney in the September 1986 issue of Scientific American. In Germany, it gained further recognition through a translation titled "HÜPFER" in Spektrum der Wissenschaft.  
 <sub>*Nicknamed by A.K. Dewdney.</sub>
 
 The Python programs provided calculate and visualize the “Hopalong” attractor by iterating the following recursive functions:
@@ -499,13 +499,13 @@ Nuernberg: November 2024
 
 Computers in Art, Design and Animation (J. Landsdown and R. A. Earnshaw, eds.), New York: Springer–Verlag, 1989.
 
-Barry Martin, "Graphic Potential of Recursive Functions," in Computers in Art, Design and Animation pp. 109–129.
+Barry Martin, "Graphic Potential of Recursive Functions" in Computers in Art, Design and Animation pp. 109–129.
 
 ISBN-13: 978-1-4612-8868-8,  e-ISBN-13: 978-1-4612-4538-4
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 
-A.K. Dewdney in Spektrum der Wissenschaft "Computer Kurzweil" 1988, (German version of Scientific American)
+A.K. Dewdney, Program "HÜPFER" in Spektrum der Wissenschaft "Computer Kurzweil" 1988, (German version of Scientific American)
 
 ISBN-10: 3922508502, ISBN-13: 978-3922508502
 

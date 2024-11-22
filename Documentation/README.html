@@ -250,7 +250,7 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">â
 <p>For further hints regarding two-pass approach, see <a href="#two-pass-approach">Two-Pass Approach</a></p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h2 id="requirements">Requirements</h2>
-<p>To run the programs, the following Python libraries or Modules must be installed / imported:</p>
+<p>To run the programs, the following Python libraries or modules must be installed / imported:</p>
 <ul>
 <li>matplotlib *</li>
 <li>numpy *</li>
@@ -365,7 +365,7 @@ The code for the Basic variant supports both 2D and 3D visualization. Simply com
 <ul>
 <li>
 <p>To demonstrate this clearly, the following two images show the results from comparing density approximation methods: pixel-based and histogram-based. The first shows mapping the continuous trajectory points to discrete integer pixels and counting the hits, while the second shows directly applying NumPy's<code>np.histogram2d(..., density=True)</code>function to the continuous trajectory points. Both methods highlight areas of higher concentration in a very similar and effective way.</p>
-<p>The intensity of the colormap gradient depends on the resolution of the image (number of pixels) or the number of bins in the histogram. Lower resolution or fewer bins lead to a more intense gradient because more trajectory points are concentrated within a smaller area, amplifying the density contrast.</p>
+<p>The intensity of the color gradient depends on the resolution of the image (number of pixels) or the number of bins in the histogram. Lower resolution or fewer bins lead to a more intense gradient because more trajectory points are concentrated within a smaller area, amplifying the density contrast.</p>
 <p>Note: Applying<code>scipy.ndimage.gaussian_filter</code>to the<code>image</code>is a potential option to increase contrast, but it alters pixel hits. This method is not implemented in the current code.</p>
 </li>
 </ul>
@@ -399,7 +399,7 @@ On platforms that support signed zeros, copysign(1.0, -0.0) returns -1.0.</p>
 </li>
 </ul>
 <h3 id="special-constellations-and-edge-cases-of-the-attractor">Special Constellations and Edge Cases of the Attractor</h3>
-<p>Despite using the Copysign function, some parameter sets will still lead to periodic or near-periodic orbits instead of intricate patterns, such as:</p>
+<p>Despite using the copysign function, some parameter sets will still lead to periodic or near-periodic orbits instead of intricate patterns, such as:</p>
 <ul>
 <li>
 <p>Set 1: a = p , b = 0, c = 0</p>

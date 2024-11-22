@@ -515,7 +515,7 @@ Spektrum der Wissenschaft Verlagsgesellschaft mbH & Co. 6900 Heidelberg, 1988.
 ISBN-10: 3922508502, ISBN-13: 978-3922508502.
 
 [1] **J. Lansdown and R. A. Earnshaw (eds.)**, *Computers in Art, Design and Animation*.  
-&nbsp;&nbsp;&nbsp;&nbsp;New York: Springer-Verlag, 1989.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;New York: Springer-Verlag, 1989.  
 &nbsp;&nbsp;&nbsp;e-ISBN-13: 978-1-4612-4538-4.
 
 [2] **Barry Martin**, "Graphic Potential of Recursive Functions," in *Computers in Art, Design and Animation* [1],  

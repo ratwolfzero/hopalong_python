@@ -308,7 +308,7 @@ By the way, this scenario is an ideal use case for the extended version of the p
 
 Execution time and resources: Measurement starts after user input and records the CPU time for the entire process, including image rendering. It also tracks the system memory used.
 
-Note: Since user interactions with the plot window, such as zooming, panning, or mouse movements, are also measured, it is recommended to close the plot window automatically. This can be achieved using the commands`plt.pause(1)`followed by`plt.close(fig)`.As long as there is no interaction with the plot window, the pause time from`plt.pause()`is not recorded by the`time.process_time()`function.
+Note: Since user interactions with the plot window, such as zooming, panning, or mouse movements, are also measured, it is recommended to close the plot window automatically. This can be achieved using the commands`plt.pause(1)`followed by`plt.close(fig)`. As long as there is no interaction with the plot window, the pause time from`plt.pause()`is not recorded by the`time.process_time()`function.
 
         #plt.show()
         plt.pause(1)

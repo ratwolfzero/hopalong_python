@@ -292,7 +292,7 @@ start: (x<sub>0</sub> , y<sub>0</sub>) = (0 , 0)
 --> (x<sub>3</sub> , y<sub>3</sub>) = (0 , 0), cycle completed
 
 Example a=5, b=5, c=0 (1_200_000 iterations):
-![Example Attractor Image](./examples/Figure_ex_3.png=300x200)
+![Example Attractor Image](./examples/Figure_ex_3.png){ width=300px height=200px }
 ![Example Attractor Image](./examples/Figure_ex_4.png)
 ![Example Attractor Image](./examples/Figure_ex_5.png)
 

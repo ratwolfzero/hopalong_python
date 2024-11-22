@@ -87,7 +87,7 @@ For further hints regarding two-pass approach, see [Two-Pass Approach](#two-pass
 
 ## Requirements  
 
-To run the programs, the following Python libraries or Modules must be installed / imported:
+To run the programs, the following Python libraries or modules must be installed / imported:
 
 - matplotlib *
 - numpy *  
@@ -217,7 +217,7 @@ Verification:
   
 - To demonstrate this clearly, the following two images show the results from comparing density approximation methods: pixel-based and histogram-based. The first shows mapping the continuous trajectory points to discrete integer pixels and counting the hits, while the second shows directly applying NumPy's`np.histogram2d(..., density=True)`function to the continuous trajectory points. Both methods highlight areas of higher concentration in a very similar and effective way.
 
-  The intensity of the colormap gradient depends on the resolution of the image (number of pixels) or the number of bins in the histogram. Lower resolution or fewer bins lead to a more intense gradient because more trajectory points are concentrated within a smaller area, amplifying the density contrast.  
+  The intensity of the color gradient depends on the resolution of the image (number of pixels) or the number of bins in the histogram. Lower resolution or fewer bins lead to a more intense gradient because more trajectory points are concentrated within a smaller area, amplifying the density contrast.  
   
   Note: Applying`scipy.ndimage.gaussian_filter`to the`image`is a potential option to increase contrast, but it alters pixel hits. This method is not implemented in the current code.
 
@@ -259,7 +259,7 @@ For example, the following parameter combinations may yield complex patterns:
 
 ### Special Constellations and Edge Cases of the Attractor
 
-Despite using the Copysign function, some parameter sets will still lead to periodic or near-periodic orbits instead of intricate patterns, such as:
+Despite using the copysign function, some parameter sets will still lead to periodic or near-periodic orbits instead of intricate patterns, such as:
 
 - Set 1: a = p , b = 0, c = 0  
 

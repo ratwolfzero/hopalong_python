@@ -118,7 +118,7 @@ def compute_trajectory_and_image(a, b, c, n, extents, image_size):
 _ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (2, 2))
 
 
-def render_trajectory_image(image, extents, params, color_map, mode='2D', smoothing_sigma=0.0):
+def render_trajectory_image(image, extents, params, color_map, mode='2D', smoothing_sigma=4.0):
     if mode == '2D':
         # Apply smoothing to the image before rendering in 2D
         smoothed_image = ndimage.gaussian_filter(image, sigma=smoothing_sigma)  # Apply Gaussian filter
@@ -163,7 +163,7 @@ def render_trajectory_image(image, extents, params, color_map, mode='2D', smooth
     else:
         print("Invalid mode. Please choose '2D' or '3D'.")
 
-def main(image_size=(1000, 1000), color_map='hot', mode='2D'):
+def main(image_size=(8000, 8000), color_map='hot', mode='2D'):
     # Main execution process
     try:
         params = get_attractor_parameters()

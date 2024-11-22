@@ -218,7 +218,7 @@ Verification:
 - To clearly demonstrate this, the following two images show the results from comparing density approximation methods: pixel-based and histogram-based. The first shows mapping continuous trajectory points to discrete integer pixels and counting hits, while the second shows directly applying NumPy's np.histogram2d(..., density=True) function to continuous trajectory points. Both methods highlight areas of higher concentration in a similar and effective way.
 
   The intensity of the colormap gradient depends on the resolution of the image (number of pixels) or the number of bins in the histogram. Lower resolution or fewer bins lead to a more intense gradient because more trajectory points are concentrated within a smaller area, amplifying the density contrast.  
-  Hint: `scipy` `ndimage.gaussian_filter` can be applied to `image` as a contast booster.
+  Hint: `scipy` `ndimage.gaussian_filter` can be applied to `image` as a contrast booster but will alter pixel hit count
 
 Pixel Based Approximation
 

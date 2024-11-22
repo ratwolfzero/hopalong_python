@@ -506,7 +506,7 @@ ISBN-13: 978-1-4612-8868-8,  e-ISBN-13: 978-1-4612-4538-4
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 
-A.K. Dewdney, Program "HÜPFER" in Spektrum der Wissenschaft "Computer Kurzweil", 1988  
+A.K. Dewdney, Program "HÜPFER" in Spektrum der Wissenschaft "Computer Kurzweil", 1988.  
 (German version of Scientific American)
 
 ISBN-10: 3922508502, ISBN-13: 978-3922508502

@@ -499,7 +499,7 @@ Nuernberg: November 2024
 
 ## References
 
-1. **J. Lansdown and R. A. Earnshaw (eds.)**, *Computers in Art, Design and Animation*.  
+[1]. **J. Lansdown and R. A. Earnshaw (eds.)**, *Computers in Art, Design and Animation*.  
 New York: Springer-Verlag, 1989.  
 e-ISBN-13: 978-1-4612-4538-4.  
 

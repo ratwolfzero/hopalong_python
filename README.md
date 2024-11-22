@@ -15,7 +15,7 @@
   - [Features, Functionality, and Special Scenarios](#features-functionality-and-special-scenarios)
     - [Program Variants](#program-variants)
     - [Image Pixels and Color Mapping](#image-pixels-and-color-mapping)
-    - [Pixel Hit Counts (Density) and Visualization](#pixel-hit-counts-density-and-visualization)
+    - [Pixel Hit Counts and Visualization](#pixel-hit-counts-and-visualization)
     - [Application of Copysign (Math Module) as Signum Function](#application-of-copysign-math-module-as-signum-function)
     - [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)
     - [Optional Features](#optional-features)
@@ -191,15 +191,15 @@ Examples of outputs can be found in the "Usage" section above.
 
 In all program variants, pixels are color-coded based on the frequency of trajectory point "hits," referred to as the pixel hit count.
 
-### Pixel Hit Counts (Density) and Visualization
+### Pixel Hit Counts and Visualization
 
 Point-to-Pixel Mapping
 
-- Trajectory points are represented as floating-point coordinates in a two-dimensional continuous space. To visualize these points as a discrete image, they must be mapped to integer pixel coordinates. This is achieved by applying scaling factors derived from the trajectory’s extents (minimum and maximum values) and the image dimensions. These scaling factors ensure that continuous coordinates are appropriately transformed to fit within the image’s pixel grid.
+- Trajectory points are represented as floating-point coordinates in a two-dimensional continuous space. To visualize these points as a discrete image, they must be mapped to integer pixel coordinates. This is achieved by applying scaling factors derived from the trajectory’s extents (minimum and maximum) and the image dimensions. These scaling factors ensure that continuous coordinates are appropriately transformed to fit within the image’s pixel grid.
 
-Integer Conversion and Density Representation:
+Integer Conversion and Density Representation, Pixel-Based Density Estimation
 
-- Floating-point coordinates are converted to integers to determine their corresponding pixel locations. This conversion is inherently lossy: closely spaced trajectory points in continuous space may map to the same pixel, resulting in multiple "hits" for that pixel.
+- Floating-point coordinates are converted to integer pixel locations. This conversion is inherently lossy: closely spaced trajectory points in continuous space may map to the same pixel, resulting in multiple "hits" for that pixel. (quantization error due to discretization)
   
 - An image array is initialized with zeros. For each mapped pixel location, the hit count at the corresponding array index is incremented. Pixels with higher hit counts represent areas of greater density, approximating the local concentration of trajectory points in the continuous space. The sum of all pixel hit counts corresponds to the number of iterations.
 
@@ -215,7 +215,7 @@ Method:
 
 Verification:
   
-- To demonstrate this clearly, the following two images show the results from comparing density approximation methods: pixel-based and histogram-based. The first shows mapping the continuous trajectory points to discrete integer pixels and counting the hits, while the second shows directly applying NumPy's`np.histogram2d(..., density=True)`function to the continuous trajectory points. Both methods highlight areas of higher concentration in a very similar and effective way.
+- To demonstrate this clearly, the following two images show the results from comparing density estimation methods: pixel-based and histogram-based. The first shows mapping the continuous trajectory points to discrete integer pixels and counting the hits, while the second shows directly applying NumPy's`np.histogram2d(..., density=True)`function to the continuous trajectory points. Both methods highlight areas of higher concentration in a very similar and effective way.
 
   The intensity of the color gradient depends on the resolution of the image (number of pixels) or the number of bins in the histogram. Lower resolution or fewer bins lead to a more intense gradient because more trajectory points are concentrated within a smaller area, amplifying the density contrast.  
   

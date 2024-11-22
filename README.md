@@ -54,7 +54,7 @@ Where:
 - The sequence starts from the initial point (x<sub>0</sub> , y<sub>0</sub>) = (0 , 0)
 - x<sub>n</sub> and y<sub>n</sub> represent the coordinates at the n-th iteration of the attractor.
 - a, b and c are parameters influencing the attractor's dynamics.
-- sgn is the sign (signum) function. However, the programs use `math.copysign()`, which is defined as follows:
+- sgn is the sign (signum) function. However, the programs use`math.copysign()`, which is defined as follows:
 
 $$
 \text{copysign}(1.0,x) =
@@ -102,7 +102,7 @@ Optional (for performance tracking):
 - time
 - resource
   
-Import the `time` and `resource` libraries if you want to track process time and system memory usage.  
+Import the`time`and`resource`libraries if you want to track process time and system memory usage.  
 Otherwise, please comment out the relevant code snippets in the import section and the main() function.
   
     ...
@@ -218,7 +218,7 @@ Verification:
 - To demonstrate this clearly, the following two images show the results from comparing density approximation methods: pixel-based and histogram-based. The first shows mapping the continuous trajectory points to discrete integer pixels and counting the hits, while the second shows directly applying NumPy's`np.histogram2d(..., density=True)`function to the continuous trajectory points. Both methods highlight areas of higher concentration in a very similar and effective way.
 
   The intensity of the colormap gradient depends on the resolution of the image (number of pixels) or the number of bins in the histogram. Lower resolution or fewer bins lead to a more intense gradient because more trajectory points are concentrated within a smaller area, amplifying the density contrast.  
-  Note: `scipy` `ndimage.gaussian_filter` increases contrast when applied to `image`, but changes pixel hits.
+  Note:`scipy``ndimage.gaussian_filter`increases contrast when applied to`image`, but changes pixel hits.
 
 Pixel Based Approximation
 
@@ -328,7 +328,7 @@ Dummy calls are preliminary invocations of JIT-compiled functions that prompt th
 
 Parallelization and Race Conditions
 
-The parallel loop function `prange` from the Numba library is not suitable for cross-iteration dependencies, such as those encountered when iterating recursive functions. While it is possible to restructure the second pass to use prange for populating the image array, this could introduce race conditions—situations where multiple threads access and modify shared data simultaneously, leading to inconsistent or unpredictable results. Therefore, this approach was not implemented.
+The parallel loop function`prange`from the Numba library is not suitable for cross-iteration dependencies, such as those encountered when iterating recursive functions. While it is possible to restructure the second pass to use prange for populating the image array, this could introduce race conditions—situations where multiple threads access and modify shared data simultaneously, leading to inconsistent or unpredictable results. Therefore, this approach was not implemented.
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
@@ -484,7 +484,7 @@ OPTIONAL: Using a 3D plot to display normalized pixel density on the Z-axis.
 ## Enjoy the Exploration
 
 - Explore the attractor in three dimensions by displaying density on the Z-axis.  
-You can try `ax.contourf3D`(Filled Contours) or `ax.contour3D`(Unfilled Contours).
+You can try`ax.contourf3D`(Filled Contours) or `ax.contour3D`(Unfilled Contours).
 
 - Experiment with different image resolutions, color maps, or ways of populating the image array beyond using the hit count to explore new visual perspectives.  
 

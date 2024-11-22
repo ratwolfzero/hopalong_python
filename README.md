@@ -181,7 +181,7 @@ Extended Version
 - Extended: Includes all features of the Basic version (except the color bar), along with additional statistics and a visualization of the pixel hit count distribution.  
   
 Note:
-The code for the Basic variant supports both 2D and 3D visualization. Simply comment out the relevant render_trajectory_image function to switch modes. Alternatively, use the 2D/3D variant, which allows you to select the visualization mode during runtime.
+The code for the Basic variant supports both 2D and 3D visualization. Simply comment out the relevant`render_trajectory_image`function to switch modes. Alternatively, use the 2D/3D variant, which allows you to select the visualization mode during runtime.
 
 [See Recent Code Changes](#recent-code-changes)
 

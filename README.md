@@ -211,7 +211,7 @@ Remarks:
 
 Method:
 
-- By mapping continuous trajectory points to discrete pixel coordinates and counting the hits, the point density in continuous space can be approximated and areas of higher concentration can be effectively highlighted.
+- By mapping continuous trajectory points to discrete pixel coordinates and counting hits, the point density in continuous space is approximated, and areas of higher concentration can then be effectively highlighted.
 
 Verification:
   

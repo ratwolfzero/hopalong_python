@@ -359,14 +359,14 @@ The code for the Basic variant supports both 2D and 3D visualization. Simply com
 <p>Remarks:</p>
 <p>Method:</p>
 <ul>
-<li>By mapping continuous trajectory points to discrete pixel coordinates and counting the hits, the point density in continuous space can be approximated and areas of higher concentration can be effectively highlighted.</li>
+<li>By mapping continuous trajectory points to discrete pixel coordinates and counting hits, the point density in continuous space is approximated, and areas of higher concentration can then be effectively highlighted.</li>
 </ul>
 <p>Verification:</p>
 <ul>
 <li>
 <p>To demonstrate this clearly, the following two images show the results from comparing density approximation methods: pixel-based and histogram-based. The first shows mapping the continuous trajectory points to discrete integer pixels and counting the hits, while the second shows directly applying NumPy's<code>np.histogram2d(..., density=True)</code>function to the continuous trajectory points. Both methods highlight areas of higher concentration in a very similar and effective way.</p>
-<p>The intensity of the colormap gradient depends on the resolution of the image (number of pixels) or the number of bins in the histogram. Lower resolution or fewer bins lead to a more intense gradient because more trajectory points are concentrated within a smaller area, amplifying the density contrast.<br>
-Note:<code>scipy ndimage.gaussian_filter</code>increases contrast when applied to<code>image</code>, but changes pixel hits.</p>
+<p>The intensity of the colormap gradient depends on the resolution of the image (number of pixels) or the number of bins in the histogram. Lower resolution or fewer bins lead to a more intense gradient because more trajectory points are concentrated within a smaller area, amplifying the density contrast.</p>
+<p>Note: Applying<code>scipy.ndimage.gaussian_filter</code>to the<code>image</code>is a potential option to increase contrast, but it alters pixel hits. This method is not implemented in the current code.</p>
 </li>
 </ul>
 <p>Pixel Based Approximation</p>

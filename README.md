@@ -497,7 +497,8 @@ Nuernberg: November 2024
 
 ## References
 
-Computers in Art, Design and Animation (J. Landsdown and R. A. Earnshaw, eds.), New York: Springer–Verlag, 1989.
+Computers in Art, Design and Animation (J. Landsdown and R. A. Earnshaw, eds.),  
+New York: Springer–Verlag, 1989.
 
 Barry Martin, "Graphic Potential of Recursive Functions" in Computers in Art, Design and Animation pp. 109–129.
 

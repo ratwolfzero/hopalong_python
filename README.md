@@ -59,7 +59,7 @@ Where:
 - The sequence starts from the initial point (x<sub>0</sub> , y<sub>0</sub>) = (0 , 0).
 - x<sub>n</sub> and y<sub>n</sub> represent the coordinates at the n-th iteration of the attractor.
 - a, b, and c are parameters influencing the attractor's dynamics.
-- sgn is the sign (signum) function. However, the programs use`math.copysign()`, which is defined as follows:
+- sgn is the sign (signum) function. However, the programs use `math.copysign()` , which is defined as follows:
 
 $$
 \text{copysign}(1.0,x) =
@@ -107,7 +107,7 @@ Optional (for performance tracking):
 - time
 - resource
   
-Import the`time`and`resource`libraries if you want to track process time and system memory usage.  
+Import the `time` and `resource` libraries if you want to track process time and system memory usage.  
 Otherwise, please comment out the relevant code snippets in the import section and the main() function.
   
     ...
@@ -185,7 +185,7 @@ The programs produce a visual representation of the attractor trajectory as a de
 - Extended: Incorporates all features of the Basic version (except the color bar) and includes additional statistics as well as a visualization of the pixel hit count distribution.
   
 **Note:**  
-The code for the Basic variant supports both 2D and 3D visualization. To switch modes, comment out the relevant`render_trajectory_image function`.Alternatively, use the 2D/3D variant to select the visualization mode during runtime.
+The code for the Basic variant supports both 2D and 3D visualization. To switch modes, comment out the relevant `render_trajectory_image function` .Alternatively, use the 2D/3D variant to select the visualization mode during runtime.
 
 [See Recent Code Changes](#recent-code-changes)
 
@@ -211,7 +211,7 @@ Examples of outputs can be found in the "Usage" section above.
 
   The Matplotlib "hot" colormap is applied to represent hit counts as colors. The colormap normalizes the hit counts to fit within its gradient range. Darker colors correspond to lower hit counts, while lighter colors indicate higher hit counts, creating a visual gradient that highlights areas of intense activity within the attractor.
 
-  The intensity of the color gradient depends on the resolution of the image (number of pixels). Lower resolutions lead to a more intense gradient because more trajectory points are concentrated within a smaller area, amplifying the density contrast. 
+  The intensity of the color gradient depends on the resolution of the image (number of pixels). Lower resolutions lead to a more intense gradient because more trajectory points are concentrated within a smaller area, amplifying the density contrast.
   
   Note: Applying `scipy.ndimage.gaussian_filter` to the image is a potential option to increase contrast. However, this process alters pixel hit counts and is not implemented in the current code.
 
@@ -227,7 +227,7 @@ Verification
 
   1. Pixel-Based Approximation: Continuous trajectory points are mapped to discrete integer pixels, and hit counts are recorded.
 
-  2. 2D Histogram Approximation: NumPy's`np.histogram2d(..., density=True)`function is applied directly to the continuous trajectory points.  
+  2. 2D Histogram Approximation: NumPy's `np.histogram2d(..., density=True)` function is applied directly to the continuous trajectory points.  
 
 Both methods highlight areas of higher concentration similarly and effectively.
 
@@ -241,7 +241,7 @@ Both methods highlight areas of higher concentration similarly and effectively.
 
 ### Application of Copysign (Math Module) as Signum Function
 
-The programs utilize the`math.copysign` function `copysign(x, y)`,  
+The programs utilize the `math.copysign` function `copysign(x, y)` ,  
 which returns a float with the magnitude (absolute value) of x but the sign of y  
 On platforms that support signed zeros, copysign(1.0, -0.0) returns -1.0.
 
@@ -317,7 +317,7 @@ By the way, this scenario is an ideal use case for the extended version of the p
 
 Execution time and resources: Measurement starts after user input and records the CPU time for the entire process, including image rendering. It also tracks the system memory used.
 
-Note: Since user interactions with the plot window, such as zooming, panning, or mouse movements, are also measured, it is recommended to close the plot window automatically. This can be achieved using the commands`plt.pause(1)`followed by`plt.close(fig)`. As long as there is no interaction with the plot window, the pause time from`plt.pause()`is not recorded by the`time.process_time()`function.
+Note: Since user interactions with the plot window, such as zooming, panning, or mouse movements, are also measured, it is recommended to close the plot window automatically. This can be achieved using the commands `plt.pause(1)` followed by `plt.close(fig)` . As long as there is no interaction with the plot window, the pause time from `plt.pause()` is not recorded by the `time.process_time()` function.
 
         #plt.show()
         plt.pause(1)
@@ -337,7 +337,7 @@ Dummy calls are preliminary invocations of JIT-compiled functions that prompt th
 
 ### Parallelization and Race Conditions
 
-The parallel loop function`prange`from the Numba library is not suitable for cross-iteration dependencies, such as those encountered when iterating recursive functions. While it is possible to restructure the second pass to use prange for populating the image array, this could introduce race conditions—situations where multiple threads access and modify shared data simultaneously, leading to inconsistent or unpredictable results. Therefore, this approach was not implemented.
+The parallel loop function `prange` from the Numba library is not suitable for cross-iteration dependencies, such as those encountered when iterating recursive functions. While it is possible to restructure the second pass to use prange for populating the image array, this could introduce race conditions—situations where multiple threads access and modify shared data simultaneously, leading to inconsistent or unpredictable results. Therefore, this approach was not implemented.
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
@@ -492,7 +492,7 @@ OPTIONAL: Using a 3D plot to display normalized pixel density on the Z-axis.
 ## Enjoy the Exploration
 
 - Explore the attractor in three dimensions by displaying density on the Z-axis.  
-You can try`ax.contourf3D`(Filled Contours) or `ax.contour3D`(Unfilled Contours).
+You can try `ax.contourf3D` (Filled Contours) or `ax.contour3D` (Unfilled Contours).
 
 - Experiment with different image resolutions, color maps, or ways of populating the image array beyond using the hit count to explore new visual perspectives.  
 

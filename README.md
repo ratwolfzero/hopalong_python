@@ -515,7 +515,7 @@ pp. 109–129.
 
 [3]  
 **A.K. Dewdney**, Program "HÜPFER," in *Spektrum der Wissenschaft: Computer Kurzweil*.  
-Spektrum der Wissenschaft Verlagsgesellschaft mbH & Co. 6900 Heidelberg, 1988.  
+Spektrum der Wissenschaft Verlagsgesellschaft mbH & Co., Heidelberg, 1988.  
 (German version of *Scientific American*).  
 ISBN-10: 3922508502, ISBN-13: 978-3922508502.
 

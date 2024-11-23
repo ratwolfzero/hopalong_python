@@ -196,7 +196,7 @@ Examples of outputs can be found in the "Usage" section above.
 
 - Density Representation
   
-  An image array is initialized with zeros. For each mapped pixel location, the hit count at the corresponding array index is incremented. Pixels with higher hit counts represent areas of greater density, approximating the local concentration of trajectory points in continuous space. The sum of all pixel hit counts corresponds to the total number of iterations.
+  An image array is initialized with zeros. For each mapped pixel location, the hit count at the corresponding array index is incremented. Pixels with higher hit counts represent areas of greater density, approximating the local concentration of trajectory points in continuous space. The sum of all pixel hit counts corresponds to the number of iterations.
 
 - Density Visualization
 

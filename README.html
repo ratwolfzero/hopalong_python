@@ -222,7 +222,7 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 <li>The sequence starts from the initial point (x<sub>0</sub> , y<sub>0</sub>) = (0 , 0).</li>
 <li>x<sub>n</sub> and y<sub>n</sub> represent the coordinates at the n-th iteration of the attractor.</li>
 <li>a, b, and c are parameters influencing the attractor's dynamics.</li>
-<li>sgn is the sign (signum) function. However, the programs use<code>math.copysign()</code>, which is defined as follows:</li>
+<li>sgn is the sign (signum) function. However, the programs use <code>math.copysign()</code> , which is defined as follows:</li>
 </ul>
 <p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>copysign</mtext><mo stretchy="false">(</mo><mn>1.0</mn><mo separator="true">,</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mrow><mo fence="true">{</mo><mtable rowspacing="0.36em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1.0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>if </mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>x </mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>is</mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mtext>positive</mtext><mo separator="true">,</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>0.0</mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>o</mi><mi>r</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>infinity</mtext></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>−</mo><mn>1.0</mn></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>if </mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>x </mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>is</mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mtext>negative</mtext><mo separator="true">,</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>-0.0</mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>o</mi><mi>r</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>neg. infinity</mtext></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">\text{copysign}(1.0,x) =
 \begin{cases}
@@ -264,7 +264,7 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 <li>time</li>
 <li>resource</li>
 </ul>
-<p>Import the<code>time</code>and<code>resource</code>libraries if you want to track process time and system memory usage.<br>
+<p>Import the <code>time</code> and <code>resource</code> libraries if you want to track process time and system memory usage.<br>
 Otherwise, please comment out the relevant code snippets in the import section and the main() function.</p>
 <pre><code>...
 
@@ -334,7 +334,7 @@ The programs produce a visual representation of the attractor trajectory as a de
 </li>
 </ul>
 <p><strong>Note:</strong><br>
-The code for the Basic variant supports both 2D and 3D visualization. To switch modes, comment out the relevant<code>render_trajectory_image function</code>.Alternatively, use the 2D/3D variant to select the visualization mode during runtime.</p>
+The code for the Basic variant supports both 2D and 3D visualization. To switch modes, comment out the relevant <code>render_trajectory_image function</code> .Alternatively, use the 2D/3D variant to select the visualization mode during runtime.</p>
 <p><a href="#recent-code-changes">See Recent Code Changes</a></p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <p>Examples of outputs can be found in the &quot;Usage&quot; section above.</p>
@@ -373,7 +373,7 @@ The code for the Basic variant supports both 2D and 3D visualization. To switch 
 <p>Pixel-Based Approximation: Continuous trajectory points are mapped to discrete integer pixels, and hit counts are recorded.</p>
 </li>
 <li>
-<p>2D Histogram Approximation: NumPy's<code>np.histogram2d(..., density=True)</code>function is applied directly to the continuous trajectory points.</p>
+<p>2D Histogram Approximation: NumPy's <code>np.histogram2d(..., density=True)</code> function is applied directly to the continuous trajectory points.</p>
 </li>
 </ol>
 </li>
@@ -385,7 +385,7 @@ The code for the Basic variant supports both 2D and 3D visualization. To switch 
 <img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/true_PDF_histogram.png" alt="Example Attractor Image"></p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h3 id="application-of-copysign-math-module-as-signum-function">Application of Copysign (Math Module) as Signum Function</h3>
-<p>The programs utilize the<code>math.copysign</code> function <code>copysign(x, y)</code>,<br>
+<p>The programs utilize the <code>math.copysign</code> function <code>copysign(x, y)</code> ,<br>
 which returns a float with the magnitude (absolute value) of x but the sign of y<br>
 On platforms that support signed zeros, copysign(1.0, -0.0) returns -1.0.</p>
 <p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>copysign</mtext><mo stretchy="false">(</mo><mn>1.0</mn><mo separator="true">,</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mrow><mo fence="true">{</mo><mtable rowspacing="0.36em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1.0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>if </mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>x </mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>is</mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mtext>positive</mtext><mo separator="true">,</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>0.0</mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>o</mi><mi>r</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>infinity</mtext></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>−</mo><mn>1.0</mn></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>if </mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>x </mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>is</mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mtext>negative</mtext><mo separator="true">,</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>-0.0</mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>o</mi><mi>r</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>neg. infinity</mtext></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">\text{copysign}(1.0,x) =
@@ -457,7 +457,7 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h3 id="optional-features">Optional Features</h3>
 <p>Execution time and resources: Measurement starts after user input and records the CPU time for the entire process, including image rendering. It also tracks the system memory used.</p>
-<p>Note: Since user interactions with the plot window, such as zooming, panning, or mouse movements, are also measured, it is recommended to close the plot window automatically. This can be achieved using the commands<code>plt.pause(1)</code>followed by<code>plt.close(fig)</code>. As long as there is no interaction with the plot window, the pause time from<code>plt.pause()</code>is not recorded by the<code>time.process_time()</code>function.</p>
+<p>Note: Since user interactions with the plot window, such as zooming, panning, or mouse movements, are also measured, it is recommended to close the plot window automatically. This can be achieved using the commands <code>plt.pause(1)</code> followed by <code>plt.close(fig)</code> . As long as there is no interaction with the plot window, the pause time from <code>plt.pause()</code> is not recorded by the <code>time.process_time()</code> function.</p>
 <pre><code>    #plt.show()
     plt.pause(1)
     plt.close(fig)
@@ -469,7 +469,7 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 <h3 id="dummy-calls">Dummy Calls</h3>
 <p>Dummy calls are preliminary invocations of JIT-compiled functions that prompt the Numba compiler to generate machine code before the function is used in the main execution flow. This ensures that the function is precompiled, avoiding compilation overhead during its first actual execution. This process is akin to &quot;eager compilation,&quot; as it occurs ahead of time, but it does not require explicit function signatures in the header.</p>
 <h3 id="parallelization-and-race-conditions">Parallelization and Race Conditions</h3>
-<p>The parallel loop function<code>prange</code>from the Numba library is not suitable for cross-iteration dependencies, such as those encountered when iterating recursive functions. While it is possible to restructure the second pass to use prange for populating the image array, this could introduce race conditions—situations where multiple threads access and modify shared data simultaneously, leading to inconsistent or unpredictable results. Therefore, this approach was not implemented.</p>
+<p>The parallel loop function <code>prange</code> from the Numba library is not suitable for cross-iteration dependencies, such as those encountered when iterating recursive functions. While it is possible to restructure the second pass to use prange for populating the image array, this could introduce race conditions—situations where multiple threads access and modify shared data simultaneously, leading to inconsistent or unpredictable results. Therefore, this approach was not implemented.</p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h3 id="two-pass-approach">Two-Pass Approach</h3>
 <p>By separating the extent calculation (first pass) from trajectory point mapping (second pass), this approach allows for efficient sequential processing. Knowing the overall trajectory extents in advance enables direct and efficient mapping of points to image pixels, optimizing memory usage and maintaining consistent performance.</p>
@@ -616,7 +616,7 @@ def render_trajectory_image(image, extents, params, color_map):
 <ul>
 <li>
 <p>Explore the attractor in three dimensions by displaying density on the Z-axis.<br>
-You can try<code>ax.contourf3D</code>(Filled Contours) or <code>ax.contour3D</code>(Unfilled Contours).</p>
+You can try <code>ax.contourf3D</code> (Filled Contours) or <code>ax.contour3D</code> (Unfilled Contours).</p>
 </li>
 <li>
 <p>Experiment with different image resolutions, color maps, or ways of populating the image array beyond using the hit count to explore new visual perspectives.</p>

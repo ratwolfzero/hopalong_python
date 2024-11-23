@@ -12,9 +12,6 @@
   - [Usage](#usage)
     - [Input Parameters](#input-parameters)
     - [Output](#output)
-      - [Basic Version 2D](#basic-version-2d)
-      - [Basic Version 3D](#basic-version-3d)
-      - [Extended Version](#extended-version)
   - [Features, Functionality, and Special Scenarios](#features-functionality-and-special-scenarios)
     - [Program Variants](#program-variants)
     - [Image Pixels and Color Mapping](#image-pixels-and-color-mapping)
@@ -22,25 +19,19 @@
       - [Point-to-Pixel Mapping](#point-to-pixel-mapping)
       - [Integer Conversion and Density Representation, Pixel-Based Density Estimation](#integer-conversion-and-density-representation-pixel-based-density-estimation)
       - [Visualization with Colormap](#visualization-with-colormap)
-      - [Remarks](#remarks)
-        - [Method](#method)
-        - [Verification](#verification)
-      - [Pixel Based Approximation](#pixel-based-approximation)
-      - [2D Histogram Approximation](#2d-histogram-approximation)
     - [Application of Copysign (Math Module) as Signum Function](#application-of-copysign-math-module-as-signum-function)
     - [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)
     - [Optional Features](#optional-features)
   - [Performance Optimization](#performance-optimization)
     - [Just-In-Time Compilation (JIT)](#just-in-time-compilation-jit)
-      - [Dummy Calls](#dummy-calls)
-      - [Parallelization and Race Conditions](#parallelization-and-race-conditions)
+    - [Dummy Calls](#dummy-calls)
+    - [Parallelization and Race Conditions](#parallelization-and-race-conditions)
     - [Two-Pass Approach](#two-pass-approach)
     - [Two-Pass Code Section](#two-pass-code-section)
-    - [Alternative Solutions](#alternative-solutions)
-      - [One-Pass Approach with Full Trajectory Caching\*](#one-pass-approach-with-full-trajectory-caching)
-      - [One-Pass Approach with Limited Memory Usage (Chunked or No Caching)\*](#one-pass-approach-with-limited-memory-usage-chunked-or-no-caching)
-      - [Potentially Other, More Sophisticated Solutions](#potentially-other-more-sophisticated-solutions)
-    - [Conclusion](#conclusion)
+  - [Alternative Solutions](#alternative-solutions)
+    - [One-Pass Approach with Full Trajectory Caching\*](#one-pass-approach-with-full-trajectory-caching)
+    - [One-Pass Approach with Limited Memory Usage (Chunked or No Caching)\*](#one-pass-approach-with-limited-memory-usage-chunked-or-no-caching)
+    - [Potentially Other, More Sophisticated Solutions](#potentially-other-more-sophisticated-solutions)
   - [Recent Code Changes](#recent-code-changes)
   - [Enjoy the Exploration](#enjoy-the-exploration)
   - [References](#references)
@@ -171,16 +162,13 @@ Experimenting with different values of these parameters will yield diverse and i
 
 The programs produce a visual representation of the Hopalong Attractor. The image displays the trajectory as a density map, where color intensity represents the frequency of points visited. Lighter areas indicate regions of higher density. This provides a striking visual of the attractor's complex structure. The density map also allows a 3D representation of the attractor by displaying the density on the Z-axis.
 
-#### Basic Version 2D
-
+**Basic Version 2D**
 ![Example Attractor Image](./examples/Figure_ex_1.png)
 
-#### Basic Version 3D
-
+**Basic Version 3D**
 ![Example Attractor Image](./examples/Figure_ex_1_1.png)
 
-#### Extended Version
-
+**Extended Version**
 ![Example Attractor Image](./examples/Figure_ex_2.png)
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
@@ -222,13 +210,12 @@ In all program variants, pixels are color-coded based on the frequency of trajec
 
 - The Matplotlib "hot" colormap is applied to represent hit counts as colors. To enhance visualization, the colormap automatically normalizes the hit counts to fit within its gradient range. Darker colors correspond to lower hit counts, while lighter colors indicate higher hit counts, creating a visual gradient that highlights areas of intense activity within the attractor.
 
-#### Remarks
-
-##### Method
+**Remarks**
+Method
 
 - By mapping continuous trajectory points to discrete pixel coordinates and counting hits, the point density in continuous space is approximated, and areas of higher concentration can then be effectively highlighted.
 
-##### Verification
+Verification
   
 - To demonstrate this clearly, the following two images show the results from comparing density estimation methods: pixel-based and histogram-based. The first shows mapping the continuous trajectory points to discrete integer pixels and counting the hits, while the second shows directly applying NumPy's`np.histogram2d(..., density=True)`function to the continuous trajectory points. Both methods highlight areas of higher concentration in a very similar and effective way.
 
@@ -236,12 +223,10 @@ In all program variants, pixels are color-coded based on the frequency of trajec
   
   Note: Applying`scipy.ndimage.gaussian_filter`to the`image`is a potential option to increase contrast, but it alters pixel hits. This method is not implemented in the current code.
 
-#### Pixel Based Approximation
-
+**Pixel Based Approximation**
 ![Example Attractor Image](./examples/Figure_ex_6.png)
 
-#### 2D Histogram Approximation
-
+**2D Histogram Approximation**
 ![Example Attractor Image](./examples/true_PDF_histogram.png)
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
@@ -338,11 +323,11 @@ Note: Since user interactions with the plot window, such as zooming, panning, or
 
 The program leverages the Numba JIT just-in-time compilation for performance optimization. This avoids the overhead of Python's interpreter, providing a significant speedup over standard Python loops. JIT compilation translates Python code into machine code at runtime, allowing for more efficient execution of loops and mathematical operations.
   
-#### Dummy Calls
+### Dummy Calls
 
 Dummy calls are preliminary invocations of JIT-compiled functions that prompt the Numba compiler to generate machine code before the function is used in the main execution flow. This ensures that the function is precompiled, avoiding compilation overhead during its first actual execution. This process is akin to "eager compilation," as it occurs ahead of time, but it does not require explicit function signatures in the header.
 
-#### Parallelization and Race Conditions
+### Parallelization and Race Conditions
 
 The parallel loop function`prange`from the Numba library is not suitable for cross-iteration dependencies, such as those encountered when iterating recursive functions. While it is possible to restructure the second pass to use prange for populating the image array, this could introduce race conditions—situations where multiple threads access and modify shared data simultaneously, leading to inconsistent or unpredictable results. Therefore, this approach was not implemented.
 
@@ -430,11 +415,11 @@ Disadvantage: Trajectory points must be computed in both passes, but this trade-
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
-### Alternative Solutions
+## Alternative Solutions
 
 While the two-pass approach is the primary solution, it’s valuable to consider alternative one-pass methods, each with unique trade-offs in performance, memory usage, and complexity. Here’s an overview:
 
-#### One-Pass Approach with Full Trajectory Caching*
+### One-Pass Approach with Full Trajectory Caching*
 
 Description: This method computes all trajectory points in a single pass and stores them in memory, enabling efficient calculation of trajectory extents and mapping to image pixels.  
 
@@ -443,7 +428,7 @@ Description: This method computes all trajectory points in a single pass and sto
 - Disadvantages:  
 Full caching requires substantial memory, especially for high iteration counts. This may lead to performance issues from system memory swapping or even memory overflow.
 
-#### One-Pass Approach with Limited Memory Usage (Chunked or No Caching)*
+### One-Pass Approach with Limited Memory Usage (Chunked or No Caching)*
 
 Description: These approaches attempt to reduce memory consumption by either processing the trajectory in chunks or not caching trajectory points at all. However, since the full trajectory extents are unknown at the outset, each variation faces the same limitation: pixel mappings require recalculating because trajectory extents change (floating points in continuous space).  
 
@@ -457,12 +442,11 @@ Data Loss and Inaccuracy: As previously computed floating-point values are irrec
 
 *This also applies analogously to any versions that only process floating point values.
 
-#### Potentially Other, More Sophisticated Solutions
+### Potentially Other, More Sophisticated Solutions
 
 No other one-pass method solutions have been investigated or considered to date. More sophisticated solutions would also contradict the minimum complexity design approach unless a significant performance improvement in calculations with a high number of iterations makes them worth considering.
 
-### Conclusion
-
+**Conclusion**
 Overall, the two-pass approach strikes the best balance between speed, efficiency and simplicity and is therefore ideal for attractor calculations with a high number of iterations. Although the trajectory points need to be computed in both passes, the pitfalls of alternative solutions are avoided.
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)

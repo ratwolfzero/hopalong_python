@@ -5,6 +5,8 @@
   
 - [Calculate \& Visualize the Hopalong Attractor with Python](#calculate--visualize-the-hopalong-attractor-with-python)
   - [Abstract](#abstract)
+    - [Historical Background and Context](#historical-background-and-context)
+    - [Mathematical Formulation of the Attractor](#mathematical-formulation-of-the-attractor)
     - [The Chosen Core Algorithm and the Motivation for It](#the-chosen-core-algorithm-and-the-motivation-for-it)
   - [Requirements](#requirements)
   - [Usage](#usage)
@@ -33,9 +35,13 @@
 
 ## Abstract
 
+### Historical Background and Context
+
 The "Hopalong"<top>*<top> attractor, authored by Barry Martin of Aston University in Birmingham, England [[2](#references)],  
 was popularized by A.K. Dewdney in the September 1986 issue of Scientific American. In Germany, it gained further recognition through a translation titled "HÜPFER" in Spektrum der Wissenschaft [[3](#references)].  
 <sub>*Nicknamed by A.K. Dewdney.</sub>  
+
+### Mathematical Formulation of the Attractor
 
 The Python programs provided calculate and visualize the “Hopalong” attractor by iterating the following recursive functions:
 

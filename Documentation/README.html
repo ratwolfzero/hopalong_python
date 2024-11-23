@@ -196,7 +196,7 @@
 <h2 id="abstract">Abstract</h2>
 <h3 id="historical-background-and-context">Historical Background and Context</h3>
 <p>The &quot;Hopalong&quot;<top>*<top> attractor, authored by Barry Martin of Aston University in Birmingham, England [<a href="#references">2</a>],<br>
-was popularized by A.K. Dewdney in the September 1986 issue of Scientific American. In Germany, it gained further recognition through a translation titled &quot;HÜPFER&quot; in Spektrum der Wissenschaft [<a href="#references">3</a>].<br>
+was popularized by A.K. Dewdney in the September 1986 issue of <em>Scientific American</em>. In Germany, it gained further recognition through a translation titled &quot;HÜPFER&quot; in <em>Spektrum der Wissenschaft</em> [<a href="#references">3</a>].<br>
 <sub>*Nicknamed by A.K. Dewdney.</sub></p>
 <h3 id="mathematical-formulation-of-the-attractor">Mathematical Formulation of the Attractor</h3>
 <p>The Python programs provided calculate and visualize the “Hopalong” attractor by iterating the following recursive functions:</p>
@@ -219,9 +219,9 @@ c-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26s76,-59,76,-59s76,-60,76,-60z
 M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.305em;"><span></span></span></span></span></span></span></span><span style="top:-2.442em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2796em;"><span style="top:-2.65em;margin-left:-0.0359em;margin-right:0.0417em;"><span class="pstrut" style="height:2.8em;"></span><span class="sizing reset-size7 size4 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2056em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.137em;"><span style="top:-2.65em;margin-left:0em;margin-right:0.0417em;"><span class="pstrut" style="height:2.8em;"></span><span class="sizing reset-size7 size4 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size7 size6"></span></span></span></span></span></span></p>
 <p>Where:</p>
 <ul>
-<li>The sequence starts from the initial point (x<sub>0</sub> , y<sub>0</sub>) = (0 , 0)</li>
+<li>The sequence starts from the initial point (x<sub>0</sub> , y<sub>0</sub>) = (0 , 0).</li>
 <li>x<sub>n</sub> and y<sub>n</sub> represent the coordinates at the n-th iteration of the attractor.</li>
-<li>a, b and c are parameters influencing the attractor's dynamics.</li>
+<li>a, b, and c are parameters influencing the attractor's dynamics.</li>
 <li>sgn is the sign (signum) function. However, the programs use<code>math.copysign()</code>, which is defined as follows:</li>
 </ul>
 <p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>copysign</mtext><mo stretchy="false">(</mo><mn>1.0</mn><mo separator="true">,</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mrow><mo fence="true">{</mo><mtable rowspacing="0.36em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1.0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>if </mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>x </mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>is</mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mtext>positive</mtext><mo separator="true">,</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>0.0</mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>o</mi><mi>r</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>infinity</mtext></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>−</mo><mn>1.0</mn></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>if </mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>x </mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>is</mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mtext>negative</mtext><mo separator="true">,</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>-0.0</mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>o</mi><mi>r</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>neg. infinity</mtext></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">\text{copysign}(1.0,x) =
@@ -238,15 +238,15 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 </ul>
 <p>Core Algorithm</p>
 <p>Two-pass algorithm with separate calculation of:</p>
-<ul>
+<ol>
 <li>
 <p>The spatial extent of the attractor trajectory (first pass).</p>
 </li>
 <li>
 <p>Direct mapping of the sequentially generated floating-point values in continuous space to a discrete image grid, while tracking the number of pixel hits to generate the density map (second pass).</p>
 </li>
-</ul>
-<p>Just-in-time (JIT) compilation supported by a low complexity code structure.</p>
+</ol>
+<p>Just-in-time (JIT) compilation is supported by a low-complexity code structure.</p>
 <p>For further hints regarding two-pass approach, see <a href="#two-pass-approach">Two-Pass Approach</a></p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h2 id="requirements">Requirements</h2>
@@ -632,7 +632,7 @@ Nuernberg: November 2024</p>
 New York: Springer-Verlag, 1989.<br>
 e-ISBN-13: 978-1-4612-4538-4.</p>
 <p>[2]<br>
-<strong>Barry Martin</strong>, &quot;Graphic Potential of Recursive Functions,&quot; in Computers in Art, Design and Animation [1],<br>
+<strong>Barry Martin</strong>, &quot;Graphic Potential of Recursive Functions,&quot; in <em>Computers in Art, Design and Animation</em> [1],<br>
 pp. 109–129.</p>
 <p>[3]<br>
 <strong>A.K. Dewdney</strong>, Program &quot;HÜPFER,&quot; in <em>Spektrum der Wissenschaft: Computer Kurzweil</em>.<br>

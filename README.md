@@ -62,7 +62,7 @@ $$
 \end{cases}
 $$
 
-***The Chosen Core Algorithm and the Motivation for It***
+The Chosen Core Algorithm and the Motivation for It
 
 Motivation
 

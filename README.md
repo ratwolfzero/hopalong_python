@@ -22,11 +22,15 @@
       - [Remarks](#remarks)
         - [Method](#method)
         - [Verification](#verification)
+      - [Pixel Based Approximation](#pixel-based-approximation)
+      - [2D Histogram Approximation](#2d-histogram-approximation)
     - [Application of Copysign (Math Module) as Signum Function](#application-of-copysign-math-module-as-signum-function)
     - [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)
     - [Optional Features](#optional-features)
   - [Performance Optimization](#performance-optimization)
     - [Just-In-Time Compilation (JIT)](#just-in-time-compilation-jit)
+      - [Dummy Calls](#dummy-calls)
+      - [Parallelization and Race Conditions](#parallelization-and-race-conditions)
     - [Two-Pass Approach](#two-pass-approach)
     - [Two-Pass Code Section](#two-pass-code-section)
     - [Alternative Solutions](#alternative-solutions)
@@ -228,11 +232,11 @@ In all program variants, pixels are color-coded based on the frequency of trajec
   
   Note: Applying`scipy.ndimage.gaussian_filter`to the`image`is a potential option to increase contrast, but it alters pixel hits. This method is not implemented in the current code.
 
-Pixel Based Approximation
+#### Pixel Based Approximation
 
 ![Example Attractor Image](./examples/Figure_ex_6.png)
 
-2D Histogram Approximation
+#### 2D Histogram Approximation
 
 ![Example Attractor Image](./examples/true_PDF_histogram.png)
 
@@ -330,11 +334,11 @@ Note: Since user interactions with the plot window, such as zooming, panning, or
 
 The program leverages the Numba JIT just-in-time compilation for performance optimization. This avoids the overhead of Python's interpreter, providing a significant speedup over standard Python loops. JIT compilation translates Python code into machine code at runtime, allowing for more efficient execution of loops and mathematical operations.
   
-Dummy Calls
+#### Dummy Calls
 
 Dummy calls are preliminary invocations of JIT-compiled functions that prompt the Numba compiler to generate machine code before the function is used in the main execution flow. This ensures that the function is precompiled, avoiding compilation overhead during its first actual execution. This process is akin to "eager compilation," as it occurs ahead of time, but it does not require explicit function signatures in the header.
 
-Parallelization and Race Conditions
+#### Parallelization and Race Conditions
 
 The parallel loop function`prange`from the Numba library is not suitable for cross-iteration dependencies, such as those encountered when iterating recursive functions. While it is possible to restructure the second pass to use prange for populating the image array, this could introduce race conditions—situations where multiple threads access and modify shared data simultaneously, leading to inconsistent or unpredictable results. Therefore, this approach was not implemented.
 

@@ -153,7 +153,8 @@ Experimenting with different values of these parameters will yield diverse and i
 
 ### Output
 
-The programs produce a visual representation of the attractor trajectory as density map image, where color intensity represents the frequency of points visited (referred to as hit counts). Lighter areas indicate regions of higher density. This provides a striking visual of the attractor's complex structure. The density map also allows a 3D representation of the attractor by displaying the density on the Z-axis.
+Output
+The program produces a visual representation of the attractor trajectory as a density map image, where color intensity represents the frequency of points visited (referred to as hit counts). Lighter areas indicate regions of higher density, providing a striking visual of the attractor's complex structure. Additionally, the density map allows for a 3D representation of the attractor by displaying the density along the Z-axis.
 
 **Basic Version 2D**
 ![Example Attractor Image](./examples/Figure_ex_1.png)
@@ -172,12 +173,12 @@ The programs produce a visual representation of the attractor trajectory as dens
 
 - Basic: Calculates and displays the Hopalong attractor as a 2D density map with an integrated color bar.
   
-- Basic 2D/3D: Provides the functionality of the Basic variant with the option to visualize the attractor in 3D and display the normalized density on the Z axis. The visualization mode can be selected at runtime.
+- Basic 2D/3D: Adds the ability to visualize the attractor in 3D by displaying normalized density on the Z-axis. Users can select the visualization mode at runtime.
   
-- Extended: Includes all features of the Basic version (except the color bar), along with additional statistics and a visualization of the pixel hit count distribution.  
+- Extended: Incorporates all features of the Basic version (except the color bar) and includes additional statistics as well as a visualization of the pixel hit count distribution.
   
 **Note:**  
-The code for the Basic variant supports both 2D and 3D visualization. Simply comment out the relevant`render_trajectory_image`function to switch modes. Alternatively, use the 2D/3D variant, which allows you to select the visualization mode during runtime.
+The code for the Basic variant supports both 2D and 3D visualization. To switch modes, comment out the relevant `render_trajectory_image function`. Alternatively, use the 2D/3D variant to select the visualization mode during runtime.
 
 [See Recent Code Changes](#recent-code-changes)
 
@@ -187,38 +188,42 @@ Examples of outputs can be found in the "Usage" section above.
 
 - Continuous Point to Discrete Pixel Mapping
 
-  Trajectory points are represented as floating-point coordinates in a two-dimensional continuous space. To visualize these points as a discrete image, they must be mapped to integer pixel coordinates. This is achieved by applying scaling factors derived from the trajectory’s extents (minimum and maximum) and the image dimensions. These scaling factors ensure that continuous coordinates are appropriately transformed to fit within the image’s pixel grid.
+  Trajectory points, represented as floating-point coordinates in a two-dimensional continuous space, are mapped to integer pixel coordinates for visualization. This mapping is performed using scaling factors derived from the trajectory's extents (minimum and maximum) and the image dimensions. The scaling ensures that continuous coordinates are accurately transformed to fit within the image’s pixel grid.
 
 - Integer Conversion
 
-  Floating-point coordinates are converted to integer pixel locations. This conversion is inherently lossy: closely spaced trajectory points in continuous space may map to the same pixel, resulting in multiple "hits" for that pixel. (quantization error due to discretization)
+  Floating-point coordinates are converted to integer pixel locations. This conversion is inherently lossy: closely spaced trajectory points in continuous space may map to the same pixel, resulting in multiple "hits" for that pixel (a quantization error due to discretization).
 
 - Density Representation*
   
-  An image array is initialized with zeros. For each mapped pixel location, the hit count at the corresponding array index is incremented. Pixels with higher hit counts represent areas of greater density, approximating the local concentration of trajectory points in the continuous space. The sum of all pixel hit counts corresponds to the number of iterations.
+  An image array is initialized with zeros. For each mapped pixel location, the hit count at the corresponding array index is incremented. Pixels with higher hit counts represent areas of greater density, approximating the local concentration of trajectory points in continuous space. The sum of all pixel hit counts corresponds to the total number of iterations.
 
 - Density Visualization
 
- The Matplotlib "hot" colormap is applied to represent hit counts as colors. To enhance visualization, the colormap automatically normalizes the hit counts to fit within its gradient range. Darker colors correspond to lower hit counts, while lighter colors indicate higher hit counts, creating a visual gradient that highlights areas of intense activity within the attractor.
+ The Matplotlib "hot" colormap is applied to represent hit counts as colors. The colormap normalizes the hit counts to fit within its gradient range. Darker colors correspond to lower hit counts, while lighter colors indicate higher hit counts, creating a visual gradient that highlights areas of intense activity within the attractor.
 
- The intensity of the color gradient depends on the resolution of the image (number of pixels). Lower resolution lead to a more intense gradient because more trajectory points are concentrated within a smaller area, amplifying the density contrast.  
+ The intensity of the color gradient depends on the resolution of the image (number of pixels). Lower resolutions lead to a more intense gradient because more trajectory points are concentrated within a smaller area, amplifying the density contrast. 
   
- Note: Applying`scipy.ndimage.gaussian_filter`to the`image`is a potential option to increase contrast, but it alters pixel hits. This method is not implemented in the current code.
+ Note: Applying `scipy.ndimage.gaussian_filter` to the image is a potential option to increase contrast. However, this process alters pixel hit counts and is not implemented in the current code.
 
 **Remarks:**
 
 Method
 
-- By mapping continuous trajectory points to discrete pixel coordinates and counting hits, the point density in continuous space is approximated, and areas of higher concentration can then be effectively highlighted.
+- By mapping continuous trajectory points to discrete pixel coordinates and counting hits, the program approximates point density in continuous space. Areas of higher concentration are effectively highlighted through this process.
 
 Verification
   
-- To demonstrate this clearly, the following two images show the results from comparing density estimation methods: pixel-based and histogram-based. The first shows mapping the continuous trajectory points to discrete integer pixels and counting the hits, while the second shows directly applying NumPy's`np.histogram2d(..., density=True)`function to the continuous trajectory points. Both methods highlight areas of higher concentration in a very similar and effective way.
+- To demonstrate the effectiveness of the pixel-based density estimation, the following images compare results from two methods:
+  1. Pixel-Based Approximation: Continuous trajectory points are mapped to discrete integer pixels, and hit counts are recorded.
 
-**Pixel Based Approximation**
+  2. 2D Histogram Approximation: NumPy's `np.histogram2d(..., density=True)` function is applied directly to the continuous trajectory points.
+Both methods highlight areas of higher concentration similarly and effectively.
+
+**1. Pixel Based Approximation**
 ![Example Attractor Image](./examples/Figure_ex_6.png)
 
-**2D Histogram Approximation**
+**2. 2D Histogram Approximation**
 ![Example Attractor Image](./examples/true_PDF_histogram.png)
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)

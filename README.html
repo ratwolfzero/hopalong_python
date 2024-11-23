@@ -362,7 +362,7 @@ The code for the Basic variant supports both 2D and 3D visualization. To switch 
 <p><strong>Remarks:</strong></p>
 <p>Method</p>
 <ul>
-<li>By mapping continuous trajectory points to discrete pixel coordinates and counting hits, the program approximates point density in continuous space. Areas of higher concentration are effectively highlighted through this process.</li>
+<li>By mapping continuous trajectory points to discrete pixel coordinates and counting hits, the programs approximate point density in continuous space. Areas of higher concentration are effectively highlighted through this process.</li>
 </ul>
 <p>Verification</p>
 <ul>
@@ -465,7 +465,7 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">â
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h2 id="performance-optimization">Performance Optimization</h2>
 <h3 id="just-in-time-compilation-jit">Just-In-Time Compilation (JIT)</h3>
-<p>The program leverages the Numba JIT just-in-time compilation for performance optimization. This avoids the overhead of Python's interpreter, providing a significant speedup over standard Python loops. JIT compilation translates Python code into machine code at runtime, allowing for more efficient execution of loops and mathematical operations.</p>
+<p>The programs leverage the Numba JIT just-in-time compilation for performance optimization. This avoids the overhead of Python's interpreter, providing a significant speedup over standard Python loops. JIT compilation translates Python code into machine code at runtime, allowing for more efficient execution of loops and mathematical operations.</p>
 <h3 id="dummy-calls">Dummy Calls</h3>
 <p>Dummy calls are preliminary invocations of JIT-compiled functions that prompt the Numba compiler to generate machine code before the function is used in the main execution flow. This ensures that the function is precompiled, avoiding compilation overhead during its first actual execution. This process is akin to &quot;eager compilation,&quot; as it occurs ahead of time, but it does not require explicit function signatures in the header.</p>
 <h3 id="parallelization-and-race-conditions">Parallelization and Race Conditions</h3>

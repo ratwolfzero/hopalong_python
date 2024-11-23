@@ -153,7 +153,7 @@ Experimenting with different values of these parameters will yield diverse and i
 
 ### Output
 
-The programs produce a visual representation of the Hopalong Attractor. The image displays the trajectory as a density map, where color intensity represents the frequency of points visited (hit counts). Lighter areas indicate regions of higher density. This provides a striking visual of the attractor's complex structure. The density map also allows a 3D representation of the attractor by displaying the density on the Z-axis.
+The programs produce a visual representation of the Hopalong Attractor as image which displays the trajectory as a density map, where color intensity represents the frequency of points visited (hit counts). Lighter areas indicate regions of higher density. This provides a striking visual of the attractor's complex structure. The density map also allows a 3D representation of the attractor by displaying the density on the Z-axis.
 
 **Basic Version 2D**
 ![Example Attractor Image](./examples/Figure_ex_1.png)

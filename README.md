@@ -179,7 +179,7 @@ The programs produce a visual representation of the attractor trajectory as a de
 
 - Basic: Calculates and displays the Hopalong attractor as a 2D density map with an integrated color bar.
   
-- Basic 2D/3D: Adds the ability to visualize the attractor in 3D by displaying normalized density on the Z-axis. Users can select the visualization mode at runtime.
+- Basic 2D/3D: Adds the ability to visualize the attractor in 3D by displaying normalized density along the Z-axis. Users can select the visualization mode at runtime.
   
 - Extended: Incorporates all features of the Basic version (except the color bar) and includes additional statistics as well as a visualization of the pixel hit count distribution.
   
@@ -490,7 +490,7 @@ OPTIONAL: Using a 3D plot to display normalized pixel density on the Z-axis.
 
 ## Enjoy the Exploration
 
-- Explore the attractor in three dimensions by displaying density on the Z-axis.  
+- Explore the attractor in three dimensions by displaying density along the Z-axis.  
 You can try `ax.contourf3D` (Filled Contours) or `ax.contour3D` (Unfilled Contours).
 
 - Experiment with different image resolutions, color maps, or ways of populating the image array beyond using the hit count to explore new visual perspectives.  

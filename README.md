@@ -230,7 +230,7 @@ Evaluation
 
 Conclusion
 
-- Both methods identify areas of high concentration in a similar manner. Differences in the color gradient may arise from variations in image resolution (number of pixels) versus the number of pixels per bin in the histogram. Based on visual comparison (without statistical verification), pixel-based density estimation appears to be a viable alternative to 2D histogram density estimation.
+- Both methods identify areas of high concentration in a similar manner. Differences in the color gradient may arise from variations in image resolution (number of pixels) versus the number of pixels per bin in the histogram. Based on visual comparison (without statistical verification), pixel-based density estimation appears to be a viable alternative to 2D histogram density estimation for this particular use case.
 
 **I. Pixel Based Approximation**
 ![Example Attractor Image](./examples/Figure_ex_6.png)

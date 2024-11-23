@@ -200,11 +200,11 @@ Examples of outputs can be found in the "Usage" section above.
 
 - Density Visualization
 
- The Matplotlib "hot" colormap is applied to represent hit counts as colors. The colormap normalizes the hit counts to fit within its gradient range. Darker colors correspond to lower hit counts, while lighter colors indicate higher hit counts, creating a visual gradient that highlights areas of intense activity within the attractor.
+  The Matplotlib "hot" colormap is applied to represent hit counts as colors. The colormap normalizes the hit counts to fit within its gradient range. Darker colors correspond to lower hit counts, while lighter colors indicate higher hit counts, creating a visual gradient that highlights areas of intense activity within the attractor.
 
- The intensity of the color gradient depends on the resolution of the image (number of pixels). Lower resolutions lead to a more intense gradient because more trajectory points are concentrated within a smaller area, amplifying the density contrast. 
+  The intensity of the color gradient depends on the resolution of the image (number of pixels). Lower resolutions lead to a more intense gradient because more trajectory points are concentrated within a smaller area, amplifying the density contrast. 
   
- Note: Applying `scipy.ndimage.gaussian_filter` to the image is a potential option to increase contrast. However, this process alters pixel hit counts and is not implemented in the current code.
+  Note: Applying `scipy.ndimage.gaussian_filter` to the image is a potential option to increase contrast. However, this process alters pixel hit counts and is not implemented in the current code.
 
 **Remarks:**
 

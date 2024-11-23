@@ -228,7 +228,7 @@ Evaluation
 
   2. 2D Histogram Approximation: NumPy's `np.histogram2d(..., density=True)` function is applied directly to the continuous trajectory points.  
 
-Both methods highlight areas of higher concentration in a similar and effective manner, suggesting that the pixel-based approach is an alternative to the histogram-based method for this particular use case.
+Both methods effectively identify areas of high concentration. Visual comparison suggests that the pixel-based approach could serve as an alternative to the histogram-based method for this particular use case. No further statistical analysis or literature review was performed. Methods like pixel-based crowd density detection, proven effective for static systems, may not be directly applicable to dynamic systems.
 
 **I. Pixel Based Approximation**
 ![Example Attractor Image](./examples/Figure_ex_6.png)

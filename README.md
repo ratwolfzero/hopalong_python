@@ -182,6 +182,8 @@ The code for the Basic variant supports both 2D and 3D visualization. To switch 
 
 [See Recent Code Changes](#recent-code-changes)
 
+[Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
+
 Examples of outputs can be found in the "Usage" section above.
 
 ### Pixel-Based Density Estimation

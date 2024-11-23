@@ -178,7 +178,7 @@ The program produces a visual representation of the attractor trajectory as a de
 - Extended: Incorporates all features of the Basic version (except the color bar) and includes additional statistics as well as a visualization of the pixel hit count distribution.
   
 **Note:**  
-The code for the Basic variant supports both 2D and 3D visualization. To switch modes, comment out the relevant `render_trajectory_image function`. Alternatively, use the 2D/3D variant to select the visualization mode during runtime.
+The code for the Basic variant supports both 2D and 3D visualization. To switch modes, comment out the relevant`render_trajectory_image function`.Alternatively, use the 2D/3D variant to select the visualization mode during runtime.
 
 [See Recent Code Changes](#recent-code-changes)
 
@@ -218,7 +218,7 @@ Verification
 
   I. Pixel-Based Approximation: Continuous trajectory points are mapped to discrete integer pixels, and hit counts are recorded.
 
-  II. 2D Histogram Approximation: NumPy's `np.histogram2d(..., density=True)` function is applied directly to the continuous trajectory points.  
+  II. 2D Histogram Approximation: NumPy's`np.histogram2d(..., density=True)`function is applied directly to the continuous trajectory points.  
 
 Both methods highlight areas of higher concentration similarly and effectively.
 

@@ -71,12 +71,12 @@ $$
 
 ### The Chosen Core Algorithm and the Motivation for It
 
-Motivation: Why?
+Motivation: *Why?*
 
 - Representation of the attractor as a density map to visualize point concentration.
 - Calculation with a very high number of iterations at high processing speed and low memory requirements.
 
-Core Algorithm: How?
+Core Algorithm: *How?*
 
 Two-pass algorithm with separate calculation of:
 

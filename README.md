@@ -216,16 +216,16 @@ Verification
   
 - To demonstrate the effectiveness of the pixel-based density estimation, the following images compare results from two methods:
 
-  1. Pixel-Based Approximation: Continuous trajectory points are mapped to discrete integer pixels, and hit counts are recorded.
+  I. Pixel-Based Approximation: Continuous trajectory points are mapped to discrete integer pixels, and hit counts are recorded.
 
-  2. 2D Histogram Approximation: NumPy's `np.histogram2d(..., density=True)` function is applied directly to the continuous trajectory points.  
+  II. 2D Histogram Approximation: NumPy's `np.histogram2d(..., density=True)` function is applied directly to the continuous trajectory points.  
 
 Both methods highlight areas of higher concentration similarly and effectively.
 
-**1. Pixel Based Approximation**
+**I. Pixel Based Approximation**
 ![Example Attractor Image](./examples/Figure_ex_6.png)
 
-**2. 2D Histogram Approximation**
+**II. 2D Histogram Approximation**
 ![Example Attractor Image](./examples/true_PDF_histogram.png)
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)

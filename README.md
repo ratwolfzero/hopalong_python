@@ -6,8 +6,6 @@
 - [Calculate \& Visualize the Hopalong Attractor with Python](#calculate--visualize-the-hopalong-attractor-with-python)
   - [Abstract](#abstract)
     - [The Chosen Core Algorithm and the Motivation for It](#the-chosen-core-algorithm-and-the-motivation-for-it)
-      - [Motivation](#motivation)
-      - [Core Algorithm](#core-algorithm)
   - [Requirements](#requirements)
   - [Usage](#usage)
     - [Input Parameters](#input-parameters)
@@ -67,12 +65,12 @@ $$
 
 ### The Chosen Core Algorithm and the Motivation for It
 
-#### Motivation
+***Motivation***
 
 - Representation of the attractor as a density map to visualize point concentration.
 - Calculation with a very high number of iterations at high processing speed and low memory requirements.
 
-#### Core Algorithm
+***Core Algorithm***
 
 Two-pass algorithm with separate calculation of:
 

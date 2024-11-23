@@ -220,7 +220,7 @@ Method
 
 - By mapping continuous trajectory points to discrete pixel coordinates and counting hits, the programs approximate point density in continuous space. Areas of higher concentration are effectively highlighted through this process.
 
-Validation
+Evaluation
   
 - To demonstrate the effectiveness of the pixel-based density estimation, the following images compare results from two methods:
 

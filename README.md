@@ -217,7 +217,8 @@ Verification
 - To demonstrate the effectiveness of the pixel-based density estimation, the following images compare results from two methods:
   1. Pixel-Based Approximation: Continuous trajectory points are mapped to discrete integer pixels, and hit counts are recorded.
 
-  2. 2D Histogram Approximation: NumPy's `np.histogram2d(..., density=True)` function is applied directly to the continuous trajectory points.
+  2. 2D Histogram Approximation: NumPy's `np.histogram2d(..., density=True)` function is applied directly to the continuous trajectory points.  
+
 Both methods highlight areas of higher concentration similarly and effectively.
 
 **1. Pixel Based Approximation**

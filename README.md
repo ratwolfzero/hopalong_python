@@ -12,6 +12,9 @@
   - [Usage](#usage)
     - [Input Parameters](#input-parameters)
     - [Output](#output)
+      - [Basic Version 2D](#basic-version-2d)
+      - [Basic Version 3D](#basic-version-3d)
+      - [Extended Version](#extended-version)
   - [Features, Functionality, and Special Scenarios](#features-functionality-and-special-scenarios)
     - [Program Variants](#program-variants)
     - [Image Pixels and Color Mapping](#image-pixels-and-color-mapping)
@@ -168,17 +171,18 @@ Experimenting with different values of these parameters will yield diverse and i
 
 The programs produce a visual representation of the Hopalong Attractor. The image displays the trajectory as a density map, where color intensity represents the frequency of points visited. Lighter areas indicate regions of higher density. This provides a striking visual of the attractor's complex structure. The density map also allows a 3D representation of the attractor by displaying the density on the Z-axis.
 
-Basic Version 2D
+#### Basic Version 2D
 
 ![Example Attractor Image](./examples/Figure_ex_1.png)
 
-Basic Version 3D
+#### Basic Version 3D
 
 ![Example Attractor Image](./examples/Figure_ex_1_1.png)
 
-Extended Version
+#### Extended Version
 
 ![Example Attractor Image](./examples/Figure_ex_2.png)
+
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
 ## Features, Functionality, and Special Scenarios
@@ -191,7 +195,7 @@ Extended Version
   
 - Extended: Includes all features of the Basic version (except the color bar), along with additional statistics and a visualization of the pixel hit count distribution.  
   
-Note:
+**Note:**
 The code for the Basic variant supports both 2D and 3D visualization. Simply comment out the relevant`render_trajectory_image`function to switch modes. Alternatively, use the 2D/3D variant, which allows you to select the visualization mode during runtime.
 
 [See Recent Code Changes](#recent-code-changes)

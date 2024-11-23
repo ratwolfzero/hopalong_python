@@ -15,7 +15,6 @@
   - [Features, Functionality, and Special Scenarios](#features-functionality-and-special-scenarios)
     - [Program Variants](#program-variants)
     - [Pixel-Based Density Estimation](#pixel-based-density-estimation)
-      - [Visualization](#visualization)
     - [Application of Copysign (Math Module) as Signum Function](#application-of-copysign-math-module-as-signum-function)
     - [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)
     - [Optional Features](#optional-features)
@@ -201,9 +200,13 @@ Examples of outputs can be found in the "Usage" section above.
   
   An image array is initialized with zeros. For each mapped pixel location, the hit count at the corresponding array index is incremented. Pixels with higher hit counts represent areas of greater density, approximating the local concentration of trajectory points in the continuous space. The sum of all pixel hit counts corresponds to the number of iterations.
 
-#### Visualization
+- Density Visualization
 
-The Matplotlib "hot" colormap is applied to represent hit counts as colors. To enhance visualization, the colormap automatically normalizes the hit counts to fit within its gradient range. Darker colors correspond to lower hit counts, while lighter colors indicate higher hit counts, creating a visual gradient that highlights areas of intense activity within the attractor.
+ The Matplotlib "hot" colormap is applied to represent hit counts as colors. To enhance visualization, the colormap automatically normalizes the hit counts to fit within its gradient range. Darker colors correspond to lower hit counts, while lighter colors indicate higher hit counts, creating a visual gradient that highlights areas of intense activity within the attractor.
+
+ The intensity of the color gradient depends on the resolution of the image (number of pixels) or the number of bins in the histogram. Lower resolution or fewer bins lead to a more intense gradient because more trajectory points are concentrated within a smaller area, amplifying the density contrast.  
+  
+Note: Applying`scipy.ndimage.gaussian_filter`to the`image`is a potential option to increase contrast, but it alters pixel hits. This method is not implemented in the current code.
 
 **Remarks:**
 
@@ -214,10 +217,6 @@ Method
 Verification
   
 - To demonstrate this clearly, the following two images show the results from comparing density estimation methods: pixel-based and histogram-based. The first shows mapping the continuous trajectory points to discrete integer pixels and counting the hits, while the second shows directly applying NumPy's`np.histogram2d(..., density=True)`function to the continuous trajectory points. Both methods highlight areas of higher concentration in a very similar and effective way.
-
-  The intensity of the color gradient depends on the resolution of the image (number of pixels) or the number of bins in the histogram. Lower resolution or fewer bins lead to a more intense gradient because more trajectory points are concentrated within a smaller area, amplifying the density contrast.  
-  
-  Note: Applying`scipy.ndimage.gaussian_filter`to the`image`is a potential option to increase contrast, but it alters pixel hits. This method is not implemented in the current code.
 
 **Pixel Based Approximation**
 ![Example Attractor Image](./examples/Figure_ex_6.png)

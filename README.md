@@ -10,7 +10,7 @@
     - [The Chosen Core Algorithm and the Motivation for It](#the-chosen-core-algorithm-and-the-motivation-for-it)
   - [Requirements](#requirements)
   - [Usage](#usage)
-    - [Input Parameters](#input-parameters)
+    - [Input](#input)
     - [Output](#output)
   - [Features, Functionality, and Special Scenarios](#features-functionality-and-special-scenarios)
     - [Program Variants](#program-variants)
@@ -140,7 +140,7 @@ Otherwise, please comment out the relevant code snippets in the import section a
 
 ## Usage
 
-### Input Parameters
+### Input
 
 When you run the programs, you will be prompted to enter the following parameters, which are crucial for determining the behavior of the Hopalong Attractor:
 

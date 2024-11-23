@@ -15,10 +15,10 @@
   - [Features, Functionality, and Special Scenarios](#features-functionality-and-special-scenarios)
     - [Program Variants](#program-variants)
     - [Image Pixels and Color Mapping](#image-pixels-and-color-mapping)
-    - [Pixel Hit Counts and Visualization](#pixel-hit-counts-and-visualization)
+    - [Pixel-Based Density Estimation](#pixel-based-density-estimation)
       - [Point-to-Pixel Mapping](#point-to-pixel-mapping)
-      - [Integer Conversion and Density Representation, Pixel-Based Density Estimation](#integer-conversion-and-density-representation-pixel-based-density-estimation)
-      - [Visualization with Colormap](#visualization-with-colormap)
+        - [Integer Conversion](#integer-conversion)
+      - [Visualization](#visualization)
     - [Application of Copysign (Math Module) as Signum Function](#application-of-copysign-math-module-as-signum-function)
     - [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)
     - [Optional Features](#optional-features)
@@ -194,24 +194,24 @@ Examples of outputs can be found in the "Usage" section above.
 
 In all program variants, pixels are color-coded based on the frequency of trajectory point "hits," referred to as the pixel hit count.
 
-### Pixel Hit Counts and Visualization
+### Pixel-Based Density Estimation
 
 #### Point-to-Pixel Mapping
 
 - Trajectory points are represented as floating-point coordinates in a two-dimensional continuous space. To visualize these points as a discrete image, they must be mapped to integer pixel coordinates. This is achieved by applying scaling factors derived from the trajectory’s extents (minimum and maximum) and the image dimensions. These scaling factors ensure that continuous coordinates are appropriately transformed to fit within the image’s pixel grid.
 
-#### Integer Conversion and Density Representation, Pixel-Based Density Estimation
+##### Integer Conversion
 
 - Floating-point coordinates are converted to integer pixel locations. This conversion is inherently lossy: closely spaced trajectory points in continuous space may map to the same pixel, resulting in multiple "hits" for that pixel. (quantization error due to discretization)
   
 - An image array is initialized with zeros. For each mapped pixel location, the hit count at the corresponding array index is incremented. Pixels with higher hit counts represent areas of greater density, approximating the local concentration of trajectory points in the continuous space. The sum of all pixel hit counts corresponds to the number of iterations.
 
-#### Visualization with Colormap
+#### Visualization
 
 - The Matplotlib "hot" colormap is applied to represent hit counts as colors. To enhance visualization, the colormap automatically normalizes the hit counts to fit within its gradient range. Darker colors correspond to lower hit counts, while lighter colors indicate higher hit counts, creating a visual gradient that highlights areas of intense activity within the attractor.
 
 **Remarks:**
-  
+
 Method
 
 - By mapping continuous trajectory points to discrete pixel coordinates and counting hits, the point density in continuous space is approximated, and areas of higher concentration can then be effectively highlighted.

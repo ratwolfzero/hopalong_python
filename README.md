@@ -56,9 +56,9 @@ $$
 
 Where:
 
-- The sequence starts from the initial point (x<sub>0</sub> , y<sub>0</sub>) = (0 , 0)
+- The sequence starts from the initial point (x<sub>0</sub> , y<sub>0</sub>) = (0 , 0).
 - x<sub>n</sub> and y<sub>n</sub> represent the coordinates at the n-th iteration of the attractor.
-- a, b and c are parameters influencing the attractor's dynamics.
+- a, b, and c are parameters influencing the attractor's dynamics.
 - sgn is the sign (signum) function. However, the programs use`math.copysign()`, which is defined as follows:
 
 $$
@@ -80,11 +80,11 @@ Core Algorithm
 
 Two-pass algorithm with separate calculation of:
 
-- The spatial extent of the attractor trajectory (first pass).
+1. The spatial extent of the attractor trajectory (first pass).
 
-- Direct mapping of the sequentially generated floating-point values in continuous space to a discrete image grid, while tracking the number of pixel hits to generate the density map (second pass).
+2. Direct mapping of the sequentially generated floating-point values in continuous space to a discrete image grid, while tracking the number of pixel hits to generate the density map (second pass).
 
-Just-in-time (JIT) compilation supported by a low complexity code structure.  
+Just-in-time (JIT) compilation is supported by a low-complexity code structure.
 
 For further hints regarding two-pass approach, see [Two-Pass Approach](#two-pass-approach)
 

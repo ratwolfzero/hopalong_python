@@ -5,7 +5,6 @@
   
 - [Calculate \& Visualize the Hopalong Attractor with Python](#calculate--visualize-the-hopalong-attractor-with-python)
   - [Abstract](#abstract)
-    - [The Chosen Core Algorithm and the Motivation for It](#the-chosen-core-algorithm-and-the-motivation-for-it)
   - [Requirements](#requirements)
   - [Usage](#usage)
     - [Input Parameters](#input-parameters)
@@ -63,7 +62,7 @@ $$
 \end{cases}
 $$
 
-### The Chosen Core Algorithm and the Motivation for It
+***The Chosen Core Algorithm and the Motivation for It***
 
 ***Motivation***
 

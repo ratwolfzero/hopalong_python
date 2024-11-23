@@ -228,7 +228,7 @@ Evaluation
 
   2. 2D Histogram Approximation: NumPy's `np.histogram2d(..., density=True)` function is applied directly to the continuous trajectory points.  
 
-Both methods highlight areas of higher concentration similarly and effectively, suggesting that the pixel-based approach is a reliable alternative.
+Both methods highlight areas of higher concentration in a similar and effective manner, suggesting that the pixel-based approach is an alternative to the histogram-based method for this particular use case.
 
 **I. Pixel Based Approximation**
 ![Example Attractor Image](./examples/Figure_ex_6.png)

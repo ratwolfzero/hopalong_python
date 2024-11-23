@@ -210,7 +210,8 @@ In all program variants, pixels are color-coded based on the frequency of trajec
 
 - The Matplotlib "hot" colormap is applied to represent hit counts as colors. To enhance visualization, the colormap automatically normalizes the hit counts to fit within its gradient range. Darker colors correspond to lower hit counts, while lighter colors indicate higher hit counts, creating a visual gradient that highlights areas of intense activity within the attractor.
 
-**Remarks:**  
+**Remarks:**
+  
 Method
 
 - By mapping continuous trajectory points to discrete pixel coordinates and counting hits, the point density in continuous space is approximated, and areas of higher concentration can then be effectively highlighted.

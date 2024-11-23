@@ -161,7 +161,7 @@ Experimenting with different values of these parameters will yield diverse and i
 ### Output
 
 Output
-The program produces a visual representation of the attractor trajectory as a density map image, where color intensity represents the frequency of points visited (referred to as hit counts). Lighter areas indicate regions of higher density, providing a striking visual of the attractor's complex structure. Additionally, the density map allows for a 3D representation of the attractor by displaying the density along the Z-axis.
+The programs produce a visual representation of the attractor trajectory as a density map image, where color intensity represents the frequency of points visited (referred to as hit counts). Lighter areas indicate regions of higher density, providing a striking visual of the attractor's complex structure. Additionally, the density map allows for a 3D representation of the attractor by displaying the density along the Z-axis.
 
 **Basic Version 2D**
 ![Example Attractor Image](./examples/Figure_ex_1.png)

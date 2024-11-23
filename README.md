@@ -219,7 +219,7 @@ Examples of outputs can be found in the "Usage" section above.
 
 Method
 
-- By mapping continuous trajectory points to discrete pixel coordinates and counting hits, the program approximates point density in continuous space. Areas of higher concentration are effectively highlighted through this process.
+- By mapping continuous trajectory points to discrete pixel coordinates and counting hits, the programs approximate point density in continuous space. Areas of higher concentration are effectively highlighted through this process.
 
 Verification
   
@@ -329,7 +329,7 @@ Note: Since user interactions with the plot window, such as zooming, panning, or
 
 ### Just-In-Time Compilation (JIT)
 
-The program leverages the Numba JIT just-in-time compilation for performance optimization. This avoids the overhead of Python's interpreter, providing a significant speedup over standard Python loops. JIT compilation translates Python code into machine code at runtime, allowing for more efficient execution of loops and mathematical operations.
+The programs leverage the Numba JIT just-in-time compilation for performance optimization. This avoids the overhead of Python's interpreter, providing a significant speedup over standard Python loops. JIT compilation translates Python code into machine code at runtime, allowing for more efficient execution of loops and mathematical operations.
   
 ### Dummy Calls
 

@@ -196,41 +196,49 @@ Examples of outputs can be found in the "Usage" section above.
 
 - Continuous Point to Discrete Pixel Mapping
 
-  Trajectory points, represented as floating-point coordinates in a two-dimensional continuous space, are mapped to integer pixel coordinates for visualization. This mapping is performed using scaling factors derived from the trajectory's extents (minimum and maximum) and the image dimensions. The scaling ensures that continuous coordinates are accurately transformed to fit within the image’s pixel grid.
+  Trajectory points, represented as floating-point coordinates in a two-dimensional continuous space, are mapped to integer pixel coordinates for visualization. This transformation utilizes scaling factors derived from the trajectory's extents (minimum and maximum) and the dimensions of the image. The mapping ensures that continuous coordinates are accurately scaled to fit within the image’s pixel grid, maintaining the spatial relationships of the trajectory points.
 
 - Integer Conversion
 
-  Floating-point coordinates are converted to integer pixel locations. This conversion is inherently lossy: closely spaced trajectory points in continuous space may map to the same pixel, resulting in multiple "hits" for that pixel (a quantization error due to discretization).
+  Floating-point coordinates are converted to integer pixel locations. This step introduces quantization: closely spaced trajectory points in continuous space may map to the same pixel, resulting in multiple "hits" for that pixel. This discretization effectively aggregates local density but results in some loss of detail due to the grouping of points within the pixel grid.
 
 - Density Representation
   
-  An image array is initialized with zeros. For each mapped pixel location, the hit count at the corresponding array index is incremented. Pixels with higher hit counts represent areas of greater density, approximating the local concentration of trajectory points in continuous space. The sum of all pixel hit counts corresponds to the number of iterations.
+  An image array is initialized with zeros, representing a blank canvas. Each trajectory point, after being mapped to a pixel, increments the value at the corresponding array index. Higher hit counts in the array indicate areas of greater density in the continuous trajectory, approximating the local concentration of points. The total sum of all pixel hit counts matches the total number of trajectory iterations, ensuring the preservation of the dataset's size
 
 - Density Visualization
 
-  The Matplotlib "hot" colormap is applied to represent hit counts as colors. The colormap normalizes the hit counts to fit within its gradient range. Darker colors correspond to lower hit counts, while lighter colors indicate higher hit counts, creating a visual gradient that highlights areas of intense activity within the attractor.
+  The Matplotlib "hot" colormap is applied to represent pixel hit counts as colors. The colormap normalizes the hit counts to fit within its gradient range, where darker colors correspond to lower densities and lighter colors to higher densities. This gradient creates a visual representation of areas of intense activity within the attractor.
 
-  The intensity of the color gradient depends on the resolution of the image (number of pixels). Lower resolutions lead to a more intense gradient because more trajectory points are concentrated within a smaller area, amplifying the density contrast.
-  
-  Note: Applying `scipy.ndimage.gaussian_filter` to the image is a potential option to increase contrast. However, this process alters pixel hit counts and is not implemented in the current code.
+  The intensity and detail of the color gradient are influenced by the resolution of the image (number of pixels). Lower resolutions lead to greater density per pixel, enhancing contrast but potentially reducing fine detail. Higher resolutions, conversely, may distribute trajectory points across more pixels, reducing contrast but increasing detail.
+
+  Optional Refinement: While smoothing methods, such as applying `scipy.ndimage.gaussian_filter`, can enhance the visual contrast, such techniques modify the pixel hit counts and are not included in the current implementation to preserve the raw density data.
 
 **Remarks:**
 
 Method
 
-- By mapping continuous trajectory points to discrete pixel coordinates and counting hits, the programs approximate point density in continuous space. Areas of higher concentration are effectively highlighted through this process.
+- The pixel-based density estimation method maps continuous trajectory points to discrete pixel coordinates, allowing for an intuitive approximation of point density. By counting the number of hits per pixel, the program highlights areas of higher concentration effectively, making it particularly suitable for visual exploration of density distributions.
 
 Evaluation
-  
-- To demonstrate the effectiveness of the pixel-based density estimation, the following images ***visually*** compare results from two methods:
 
-  1. Pixel-Based Approximation: Continuous trajectory points are mapped to discrete integer pixels, and hit counts are recorded.
+To evaluate the pixel-based density estimation method, its visual results are compared with those from the 2D Histogram Approximation method. The latter uses NumPy's `np.histogram2d(..., density=True)` function, which divides the continuous trajectory space into bins to estimate density. These two methods are illustrated in the following images:
 
-  2. 2D Histogram Approximation: NumPy's `np.histogram2d(..., density=True)` function is applied directly to the continuous trajectory points.  
+1. Pixel-Based Approximation
+Continuous trajectory points are mapped to discrete integer pixels on a grid, and the hit counts for each pixel are recorded. This approach emphasizes the spatial distribution of trajectory points as localized "hotspots" of activity.
+
+2. 2D Histogram Approximation
+NumPy's `np.histogram2d` function is applied directly to the continuous trajectory points, dividing the space into equal-sized bins. The density within each bin is calculated, and the results are normalized to represent relative densities across the entire space.
 
 Conclusion
 
-- Both methods identify areas of concentration in a similar manner. Differences in the color gradient may arise from variations in image resolution (number of pixels) versus the number of pixels per bin in the histogram. Based on ***visual*** comparison, pixel-based density estimation appears to be a viable alternative to 2D histogram density estimation for this particular use case.
+Both methods successfully identify areas of concentration. However, the results can vary due to differences in how trajectory points are discretized:
+
+1. Pixel-Based Approach: Visual outcomes depend on the image resolution, with the number of pixels influencing the density contrast and detail.
+
+2. 2D Histogram Approach: Outcomes are similarly affected by the number of bins, as larger bin counts approximate the distribution more finely but with reduced contrast.
+
+For visual comparison, pixel-based density estimation is a practical and effective alternative to 2D histogram-based density estimation. Its ability to directly render visual patterns makes it particularly well-suited for attractor visualization, even without direct alignment of resolutions or bin sizes between the methods. However, for precise numerical and statistical analyses, the histogram approach is more appropriate due to its ability to estimate densities directly in continuous space.
 
 **I. Pixel Based Approximation**
 ![Example Attractor Image](./examples/Figure_ex_6.png)

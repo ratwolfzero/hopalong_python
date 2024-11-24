@@ -5,9 +5,9 @@
   
 - [Calculate \& Visualize the Hopalong Attractor with Python](#calculate--visualize-the-hopalong-attractor-with-python)
   - [Abstract](#abstract)
-    - [Historical Background and Context](#historical-background-and-context)
-    - [Mathematical Formulation of the Attractor](#mathematical-formulation-of-the-attractor)
-    - [The Chosen Core Algorithm and the Motivation for It](#the-chosen-core-algorithm-and-the-motivation-for-it)
+    - [Historical Context](#historical-context)
+    - [The Hopalong Attractor Equations](#the-hopalong-attractor-equations)
+    - [Computational Approach](#computational-approach)
   - [Requirements](#requirements)
   - [Usage](#usage)
     - [Input](#input)
@@ -35,13 +35,13 @@
 
 ## Abstract
 
-### Historical Background and Context
+### Historical Context
 
 The "Hopalong"<top>*<top> attractor, authored by Barry Martin of Aston University in Birmingham, England [[2](#references)],  
 was popularized by A.K. Dewdney in the September 1986 issue of *Scientific American*. In Germany, it gained further recognition through a translation titled "HÜPFER" in *Spektrum der Wissenschaft* [[3](#references)].  
 <sub>*Nicknamed by A.K. Dewdney.</sub>  
 
-### Mathematical Formulation of the Attractor
+### The Hopalong Attractor Equations
 
 The Python programs provided calculate and visualize the “Hopalong” attractor by iterating the following recursive functions:
 
@@ -69,14 +69,14 @@ $$
 \end{cases}
 $$
 
-### The Chosen Core Algorithm and the Motivation for It
+### Computational Approach
 
-Motivation: *Why?*
+Motivation:
 
 - Representation of the attractor as a density map to visualize point concentration.
 - Calculation with a very high number of iterations at high processing speed and low memory requirements.
 
-Core Algorithm: *How?*
+Core Algorithm:
 
 Two-pass algorithm with separate calculation of:
 

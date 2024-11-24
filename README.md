@@ -300,18 +300,16 @@ y_{n+1} = p - x_n
 \large
 $$
 
-With p>0, the system settles into a 3-cycle:  
-(0,0)→(0,p)→(p,p)→(0,0).
+With p>0, the system settles into a 3-cycle:  (0,0)→(0,p)→(p,p)→(0,0).
 
 The pixel density simplifies to n/3, where n is the number of iterations.
 
 Example:  
 
-- Parameters: a=5,b=5,c=0
+- Parameters: a=5, b=5, c=0
 - Iterations: 1_200_000
 - Observations: The 3-cycle structure dominates, with "high-density" pixels clustering along the attractor's extent boundaries.
 
-**Example a=5, b=5, c=0 (1_200_000 iterations):**
 ![Example Attractor Image](./examples/Figure_ex_3.png)
 ![Example Attractor Image](./examples/Figure_ex_4.png)
 ![Example Attractor Image](./examples/Figure_ex_5.png)

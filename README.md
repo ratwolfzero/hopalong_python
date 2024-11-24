@@ -260,9 +260,9 @@ $$
 \end{cases}
 $$
 
-This adjustment alters the behavior of certain parameter sets, often leading to intricate, fractal-like patterns instead of periodic or fixed-point dynamics
+This adjustment alters the behavior of certain parameter sets, often leading to intricate, fractal-like patterns instead of periodic or fixed-point dynamics.
 
-Periodic Orbits Defined:
+Periodic Orbits Defined:  
 Periodic orbits are trajectories in which the system revisits the same state after a fixed number of iterations.
 
 Example Parameters Yielding Intricate Patterns:
@@ -285,7 +285,7 @@ Example Parameter Sets:
 
 - 3: *a = p, b = p, c = 0*
   
-Here,*p* is a constant parameter, unchanged within each set.
+Here,*p* is a constant parameter not euqal to zero $p \neq 0$, unchanged within each set.
 
 Case Analysis: Parameter Set 3 (*a=p,b=p,c=0*)
 

@@ -275,7 +275,7 @@ Example Parameters Yielding Intricate Patterns:
 
 ### Special Constellations and Edge Cases of the Attractor
 
-Certain parameter sets lead to periodic or near-periodic orbits, even when using the copysign function. These scenarios often result in high-density cycles, where a small subset of pixels is repeatedly visited. Such cycles frequently occur at the attractor's boundary.
+Certain parameter sets lead to periodic or near-periodic orbits, even when using the copysign function. In these cases, the attractor's trajectory revisits a limited number of distinct points repeatedly, resulting in high-density cycles. Such cycles frequently occur at the attractor's boundary.
 
 Example Parameter Sets:
 

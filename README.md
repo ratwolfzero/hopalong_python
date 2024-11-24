@@ -260,9 +260,9 @@ $$
 \end{cases}
 $$
 
-This adjustment alters the behavior of certain parameter sets, often leading to intricate, fractal-like patterns instead of periodic or fixed-point dynamics.
+This adjustment alters the behavior of certain parameter sets, often leading to intricate, fractal-like patterns instead of periodic orbit or fixed-point dynamics.
 
-Periodic Orbits Defined:  
+Periodic Orbit(s) Defined:  
 Periodic orbits are trajectories in which the system revisits the same state after a fixed number of iterations.
 
 Example Parameters Yielding Intricate Patterns:

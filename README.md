@@ -321,7 +321,7 @@ For example:
 
     def main(image_size=(100, 100), color_map='hot'):
 
-This scenario is an ideal use case for the extended program variant features, such as pixel hit count statistics, to analyze high-density cycle behavior.
+This scenario is an ideal use case for the features of the extended program variant, such as pixel hit count statistics, to analyze high-density cycle behavior.
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 

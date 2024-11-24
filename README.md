@@ -275,19 +275,21 @@ Example Parameters Yielding Intricate Patterns:
 
 ### Special Constellations and Edge Cases of the Attractor
 
-Despite using the copysign function, some parameter sets will still lead to periodic or near-periodic orbits instead of intricate patterns, such as:
+Certain parameter sets lead to periodic or near-periodic orbits, even when using the copysign function. These scenarios often result in high-density cycles, where a small subset of pixels is repeatedly visited. Such cycles frequently occur at the attractor's boundary.
 
-- Set 1: a = p , b = 0, c = 0  
+Example Parameter Sets:
 
-- Set 2: a = p, b = 0, c = p
+- 1: *a = p , b = 0, c = 0*  
 
-- Set 3: a = p, b = p, c = 0
+- 2: *a = p, b = 0, c = p*
+
+- 3: *a = p, b = p, c = 0*
   
-Here, ( p ) is a constant parameter that remains the same within each of these sets.
+Here,*p* is a constant parameter, unchanged within each set.
 
-In these cases, you may observe high-density cycles, where a relatively small number of pixels are hit repeatedly, suggesting that the system is likely settling into periodic orbits. Additionally, many of these "high-density cycle pixels" tend to be located at the boundaries of the attractor extents.
+Case Analysis: Parameter Set 3 (*a=p,b=p,c=0*)
 
-For example, with parameter set (3) the Hopalong equations are given by:
+For this parameter set, the Hopalong equations are:
 
 $$
 \large
@@ -298,26 +300,31 @@ y_{n+1} = p - x_n
 \large
 $$
 
-and we observe the 3-cycle: (0, 0), (0, p), and (p, p). The pixel density is: n / 3
+With p>0, the system settles into a 3-cycle:  
+(0,0)→(0,p)→(p,p)→(0,0).
 
-start: (x<sub>0</sub> , y<sub>0</sub>) = (0 , 0)
+The pixel density simplifies to n/3, where n is the number of iterations.
 
---> (x<sub>1</sub> , y<sub>1</sub>) = (0 , p)
+Example:
+Parameters:
 
---> (x<sub>2</sub> , y<sub>2</sub>) = (p , p)
-
---> (x<sub>3</sub> , y<sub>3</sub>) = (0 , 0), cycle completed
+- a=5,b=5,c=0
+- Iterations: 1_200_000
+- Observations: The 3-cycle structure dominates, with "high-density" pixels clustering along the attractor's extent boundaries.
 
 **Example a=5, b=5, c=0 (1_200_000 iterations):**
 ![Example Attractor Image](./examples/Figure_ex_3.png)
 ![Example Attractor Image](./examples/Figure_ex_4.png)
 ![Example Attractor Image](./examples/Figure_ex_5.png)
 
-If you want to experiment with this, it is recommended to reduce the total number of pixels by lowering the image resolution (e.g., 100x100) to achieve a clearer visual representation of the pixels bordering the minimum and maximum extents of the trajectory.
+Visualization Recommendation:
+
+For edge cases, reduce the image resolution (e.g., 100×100) to better highlight the boundaries of the attractor.
+For example:
 
     def main(image_size=(100, 100), color_map='hot'):
 
-By the way, this scenario is an ideal use case for the extended version of the program with pixel hit count statistics.
+This scenario is an ideal use case for the extended program variant features, such as pixel hit count statistics, to analyze high-density cycle behavior.
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 

@@ -222,7 +222,7 @@ Method
 
 Evaluation
   
-- To demonstrate the effectiveness of the pixel-based density estimation, the following images *visually* compare results from two methods:
+- To demonstrate the effectiveness of the pixel-based density estimation, the following images ***visually*** compare results from two methods:
 
   1. Pixel-Based Approximation: Continuous trajectory points are mapped to discrete integer pixels, and hit counts are recorded.
 

@@ -341,49 +341,60 @@ The code for the Basic variant supports both 2D and 3D visualization. To switch 
 <ul>
 <li>
 <p>Continuous Point to Discrete Pixel Mapping</p>
-<p>Trajectory points, represented as floating-point coordinates in a two-dimensional continuous space, are mapped to integer pixel coordinates for visualization. This mapping is performed using scaling factors derived from the trajectory's extents (minimum and maximum) and the image dimensions. The scaling ensures that continuous coordinates are accurately transformed to fit within the image’s pixel grid.</p>
+<p>Trajectory points, represented as floating-point coordinates in a two-dimensional continuous space, are mapped to integer pixel coordinates for visualization. This transformation utilizes scaling factors derived from the trajectory's extents (minimum and maximum) and the dimensions of the image. The mapping ensures that continuous coordinates are accurately scaled to fit within the image’s pixel grid, maintaining the spatial relationships of the trajectory points.</p>
 </li>
 <li>
 <p>Integer Conversion</p>
-<p>Floating-point coordinates are converted to integer pixel locations. This conversion is inherently lossy: closely spaced trajectory points in continuous space may map to the same pixel, resulting in multiple &quot;hits&quot; for that pixel (a quantization error due to discretization).</p>
+<p>Floating-point coordinates are converted to integer pixel locations. This step introduces quantization: closely spaced trajectory points in continuous space may map to the same pixel, resulting in multiple &quot;hits&quot; for that pixel. This discretization effectively aggregates local density but results in some loss of detail due to the grouping of points within the pixel grid.</p>
 </li>
 <li>
 <p>Density Representation</p>
-<p>An image array is initialized with zeros. For each mapped pixel location, the hit count at the corresponding array index is incremented. Pixels with higher hit counts represent areas of greater density, approximating the local concentration of trajectory points in continuous space. The sum of all pixel hit counts corresponds to the number of iterations.</p>
+<p>An image array is initialized with zeros, representing a blank canvas. Each trajectory point, after being mapped to a pixel, increments the value at the corresponding array index. Higher hit counts in the array indicate areas of greater density in the continuous trajectory, approximating the local concentration of points. The total sum of all pixel hit counts matches the total number of trajectory iterations, ensuring the preservation of the dataset's size</p>
 </li>
 <li>
 <p>Density Visualization</p>
-<p>The Matplotlib &quot;hot&quot; colormap is applied to represent hit counts as colors. The colormap normalizes the hit counts to fit within its gradient range. Darker colors correspond to lower hit counts, while lighter colors indicate higher hit counts, creating a visual gradient that highlights areas of intense activity within the attractor.</p>
-<p>The intensity of the color gradient depends on the resolution of the image (number of pixels). Lower resolutions lead to a more intense gradient because more trajectory points are concentrated within a smaller area, amplifying the density contrast.</p>
-<p>Note: Applying <code>scipy.ndimage.gaussian_filter</code> to the image is a potential option to increase contrast. However, this process alters pixel hit counts and is not implemented in the current code.</p>
+<p>The Matplotlib &quot;hot&quot; colormap is applied to represent pixel hit counts as colors. The colormap normalizes the hit counts to fit within its gradient range, where darker colors correspond to lower densities and lighter colors to higher densities. This gradient creates a visual representation of areas of intense activity within the attractor.</p>
+<p>The intensity and detail of the color gradient are influenced by the resolution of the image (number of pixels). Lower resolutions lead to greater density per pixel, enhancing contrast but potentially reducing fine detail. Higher resolutions, conversely, may distribute trajectory points across more pixels, reducing contrast but increasing detail.</p>
+<p>Optional Refinement: While smoothing methods, such as applying <code>scipy.ndimage.gaussian_filter</code>, can enhance the visual contrast, such techniques modify the pixel hit counts and are not included in the current implementation to preserve the raw density data.</p>
 </li>
 </ul>
 <p><strong>Remarks:</strong></p>
 <p>Method</p>
 <ul>
-<li>By mapping continuous trajectory points to discrete pixel coordinates and counting hits, the programs approximate point density in continuous space. Areas of higher concentration are effectively highlighted through this process.</li>
+<li>The pixel-based density estimation method maps continuous trajectory points to discrete pixel coordinates, allowing for an intuitive approximation of point density. By counting the number of hits per pixel, the program highlights areas of higher concentration effectively, making it particularly suitable for visual exploration of density distributions.</li>
 </ul>
 <p>Evaluation</p>
 <ul>
-<li>
-<p>To demonstrate the effectiveness of the pixel-based density estimation, the following images <em><strong>visually</strong></em> compare results from two methods:</p>
+<li>To evaluate the pixel-based density estimation method, its visual results are compared with those from the 2D Histogram Approximation method. The latter uses NumPy's <code>np.histogram2d(..., density=True)</code> function, which divides the continuous trajectory space into bins to estimate density. These two methods are illustrated in the following images:</li>
+</ul>
 <ol>
 <li>
-<p>Pixel-Based Approximation: Continuous trajectory points are mapped to discrete integer pixels, and hit counts are recorded.</p>
+<p>Pixel-Based Approximation
+Continuous trajectory points are mapped to discrete integer pixels on a grid, and the hit counts for each pixel are recorded. This approach emphasizes the spatial distribution of trajectory points as localized &quot;hotspots&quot; of activity.</p>
 </li>
 <li>
-<p>2D Histogram Approximation: NumPy's <code>np.histogram2d(..., density=True)</code> function is applied directly to the continuous trajectory points.</p>
+<p>2D Histogram Approximation
+NumPy's <code>np.histogram2d</code> function is applied directly to the continuous trajectory points, dividing the space into equal-sized bins. The density within each bin is calculated, and the results are normalized to represent relative densities across the entire space.</p>
 </li>
 </ol>
-</li>
-</ul>
 <p>Conclusion</p>
 <ul>
-<li>Both methods identify areas of concentration in a similar manner. Differences in the color gradient may arise from variations in image resolution (number of pixels) versus the number of pixels per bin in the histogram. Based on <em><strong>visual</strong></em> comparison, pixel-based density estimation appears to be a viable alternative to 2D histogram density estimation for this particular use case.</li>
+<li>Both methods successfully identify areas of concentration. However, the results can vary due to differences in how trajectory points are discretized:</li>
 </ul>
-<p><strong>I. Pixel Based Approximation</strong>
+<ol>
+<li>
+<p>Pixel-Based Approach: Visual outcomes depend on the image resolution, with the number of pixels influencing the density contrast and detail.</p>
+</li>
+<li>
+<p>2D Histogram Approach: Outcomes are similarly affected by the number of bins, as larger bin counts approximate the distribution more finely but with reduced contrast.</p>
+</li>
+</ol>
+<ul>
+<li>For visual comparison, pixel-based density estimation is a practical and effective alternative to 2D histogram-based density estimation. Its ability to directly render visual patterns makes it particularly well-suited for attractor visualization, even without direct alignment of resolutions or bin sizes between the methods. However, for precise numerical and statistical analyses, the histogram approach is more appropriate due to its ability to estimate densities directly in continuous space.</li>
+</ul>
+<p><strong>1. Pixel Based Approximation</strong>
 <img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/Figure_ex_6.png" alt="Example Attractor Image"></p>
-<p><strong>II. 2D Histogram Approximation</strong>
+<p><strong>2. 2D Histogram Approximation</strong>
 <img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/true_PDF_histogram.png" alt="Example Attractor Image"></p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h3 id="application-of-copysign-math-module-as-signum-function">Application of Copysign (Math Module) as Signum Function</h3>

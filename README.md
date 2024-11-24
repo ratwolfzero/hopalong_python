@@ -236,7 +236,7 @@ Conclusion
 
 2. 2D Histogram Approach: Outcomes are similarly affected by the number of bins, as larger bin counts approximate the distribution more finely but with reduced contrast.
 
-- For visual comparison, pixel-based density estimation is a practical and effective alternative to 2D histogram-based density estimation. Its ability to directly render visual patterns makes it particularly well-suited for attractor visualization, even without direct alignment of resolutions or bin sizes between the methods. However, for precise numerical and statistical analyses, the histogram approach is more appropriate due to its ability to estimate densities directly in continuous space.
+- For visual representation, pixel-based density estimation is a practical and effective method for attractor visualization. Its ability to directly render visual patterns highlights areas of concentration in an intuitive and detailed manner. In contrast, the 2D histogram approach is better suited for precise numerical and statistical analyses, as it estimates densities directly in continuous space
 
 **1. Pixel Based Approximation**
 ![Example Attractor Image](./examples/Figure_ex_6.png)

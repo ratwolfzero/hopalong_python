@@ -287,7 +287,7 @@ Example Parameter Sets:
   
 Here, *p* is a constant parameter ($p \neq 0$), unchanged within each set.
 
-Case Analysis: Parameter Set 3 (*a=p,b=p,c=0*)
+Case Analysis: Parameter Set 3 (*a=p, b=p, c=0*)
 
 For this parameter set, the Hopalong equations are:
 
@@ -305,10 +305,9 @@ With p>0, the system settles into a 3-cycle:
 
 The pixel density simplifies to n/3, where n is the number of iterations.
 
-Example:
-Parameters:
+Example:  
 
-- a=5,b=5,c=0
+- Parameters: a=5,b=5,c=0
 - Iterations: 1_200_000
 - Observations: The 3-cycle structure dominates, with "high-density" pixels clustering along the attractor's extent boundaries.
 

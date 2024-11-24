@@ -15,7 +15,7 @@
   - [Features, Functionality, and Special Scenarios](#features-functionality-and-special-scenarios)
     - [Program Variants](#program-variants)
     - [Pixel-Based Density Estimation](#pixel-based-density-estimation)
-    - [Application of Copysign (Math Module) as Signum Function](#application-of-copysign-math-module-as-signum-function)
+    - [pplication of Copysign (Math Module) as a Signum Function](#pplication-of-copysign-math-module-as-a-signum-function)
     - [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)
     - [Optional Features](#optional-features)
   - [Performance Optimization](#performance-optimization)
@@ -218,7 +218,7 @@ Examples of outputs can be found in the "Usage" section above.
 
 Method
 
-- The pixel-based density estimation method maps continuous trajectory points to discrete pixel coordinates, allowing for an intuitive approximation of point density. By counting the number of hits per pixel, the program highlights areas of higher concentration effectively, making it particularly suitable for visual exploration of density distributions.
+- The pixel-based density estimation method maps continuous trajectory points to discrete pixel coordinates, allowing for an intuitive approximation of point density. By counting the number of hits per pixel, the programs highlights areas of higher concentration effectively, making it particularly suitable for visual exploration of density distributions.
 
 Evaluation
 
@@ -246,11 +246,11 @@ Conclusion
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
-### Application of Copysign (Math Module) as Signum Function
+### pplication of Copysign (Math Module) as a Signum Function
 
-The programs utilize the `math.copysign` function `copysign(x, y)` ,  
-which returns a float with the magnitude (absolute value) of x but the sign of y  
-On platforms that support signed zeros, copysign(1.0, -0.0) returns -1.0.
+The programs leverage the `math.copysign` function, `copysign(x, y)`, which returns a float with the magnitude (absolute value) of x but the sign of y. On platforms that support signed zeros, `copysign(1.0, -0.0)` correctly evaluates to `-1.0`.
+
+The copysign function can serve as a substitute for the standard signum function, with behavior defined as follows:
 
 $$
 \text{copysign}(1.0,x) =
@@ -260,17 +260,18 @@ $$
 \end{cases}
 $$
 
-This adjustment alters the behavior of certain parameter sets, resulting in intricate patterns instead of periodic orbits or fixed point( (0, 0) with a = 0), which is the case when using the standard signum function.
+This adjustment alters the behavior of certain parameter sets, often leading to intricate, fractal-like patterns instead of periodic or fixed-point dynamics
 
-Periodic orbits are trajectories in which the system returns to the same state after a fixed number of iterations.
+Periodic Orbits Defined:
+Periodic orbits are trajectories in which the system revisits the same state after a fixed number of iterations.
 
-For example, the following parameter combinations may yield complex patterns:
+Example Parameters Yielding Intricate Patterns:
 
-- a = 1, b = 2, c = 3 or  
+- *a = 1, b = 2, c = 3* or  
 
-- a = 0, b = 1, c = 1 or  
+- *a = 0, b = 1, c = 1* or  
 
-- a = 1, b =1, c = 1
+- *a = 1, b =1, c = 1*
 
 ### Special Constellations and Edge Cases of the Attractor
 

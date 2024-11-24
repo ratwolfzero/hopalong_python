@@ -162,7 +162,7 @@
 <ul>
 <li><a href="#program-variants">Program Variants</a></li>
 <li><a href="#pixel-based-density-estimation">Pixel-Based Density Estimation</a></li>
-<li><a href="#application-of-copysign-math-module-as-signum-function">Application of Copysign (Math Module) as Signum Function</a></li>
+<li><a href="#application-of-copysign-math-module-as-a-signum-function">Application of Copysign (Math Module) as a Signum Function</a></li>
 <li><a href="#special-constellations-and-edge-cases-of-the-attractor">Special Constellations and Edge Cases of the Attractor</a></li>
 <li><a href="#optional-features">Optional Features</a></li>
 </ul>
@@ -361,7 +361,7 @@ The code for the Basic variant supports both 2D and 3D visualization. To switch 
 <p><strong>Remarks:</strong></p>
 <p>Method</p>
 <ul>
-<li>The pixel-based density estimation method maps continuous trajectory points to discrete pixel coordinates, allowing for an intuitive approximation of point density. By counting the number of hits per pixel, the program highlights areas of higher concentration effectively, making it particularly suitable for visual exploration of density distributions.</li>
+<li>The pixel-based density estimation method maps continuous trajectory points to discrete pixel coordinates, allowing for an intuitive approximation of point density. By counting the number of hits per pixel, the programs highlights areas of higher concentration effectively, making it particularly suitable for visual exploration of density distributions.</li>
 </ul>
 <p>Evaluation</p>
 <ul>
@@ -395,46 +395,47 @@ The code for the Basic variant supports both 2D and 3D visualization. To switch 
 <p><strong>2. 2D Histogram Approximation</strong>
 <img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/true_PDF_histogram.png" alt="Example Attractor Image"></p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
-<h3 id="application-of-copysign-math-module-as-signum-function">Application of Copysign (Math Module) as Signum Function</h3>
-<p>The programs utilize the <code>math.copysign</code> function <code>copysign(x, y)</code> ,<br>
-which returns a float with the magnitude (absolute value) of x but the sign of y<br>
-On platforms that support signed zeros, copysign(1.0, -0.0) returns -1.0.</p>
+<h3 id="application-of-copysign-math-module-as-a-signum-function">Application of Copysign (Math Module) as a Signum Function</h3>
+<p>The programs leverage the <code>math.copysign</code> function, <code>copysign(x, y)</code>, which returns a float with the magnitude (absolute value) of x but the sign of y. On platforms that support signed zeros, <code>copysign(1.0, -0.0)</code> correctly evaluates to <code>-1.0</code>.</p>
+<p>The copysign function can serve as a substitute for the standard signum function, and is defined as follows:</p>
 <p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>copysign</mtext><mo stretchy="false">(</mo><mn>1.0</mn><mo separator="true">,</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mrow><mo fence="true">{</mo><mtable rowspacing="0.36em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1.0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>if </mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>x </mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>is</mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mtext>positive</mtext><mo separator="true">,</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>0.0</mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>o</mi><mi>r</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>infinity</mtext></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>−</mo><mn>1.0</mn></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>if </mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>x </mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>is</mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mtext>negative</mtext><mo separator="true">,</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>-0.0</mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>o</mi><mi>r</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>neg. infinity</mtext></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">\text{copysign}(1.0,x) =
 \begin{cases}
 1.0  &amp; \text{if } &amp; \text{x } &amp; \text{is} &amp;\text{positive}, &amp; \text{0.0} &amp; or &amp;\text{infinity} \\
 -1.0 &amp; \text{if } &amp; \text{x } &amp; \text{is} &amp;\text{negative}, &amp; \text{-0.0} &amp; or &amp;\text{neg. infinity}
 \end{cases}
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">copysign</span></span><span class="mopen">(</span><span class="mord">1.0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:3em;vertical-align:-1.25em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">1.0</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">−</span><span class="mord">1.0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">if </span></span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">if </span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">x </span></span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">x </span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">is</span></span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">is</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">positive</span></span><span class="mpunct">,</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">negative</span></span><span class="mpunct">,</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">0.0</span></span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">-0.0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">or</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">or</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">infinity</span></span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">neg. infinity</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
-<p>This adjustment alters the behavior of certain parameter sets, resulting in intricate patterns instead of periodic orbits or fixed point( (0, 0) with a = 0), which is the case when using the standard signum function.</p>
-<p>Periodic orbits are trajectories in which the system returns to the same state after a fixed number of iterations.</p>
-<p>For example, the following parameter combinations may yield complex patterns:</p>
+<p>This adjustment alters the behavior of certain parameter sets, often leading to intricate, fractal-like patterns instead of periodic orbit or fixed-point dynamics.</p>
+<p>Periodic Orbit(s) Defined:<br>
+Periodic orbits are trajectories in which the system revisits the same state after a fixed number of iterations.</p>
+<p>Example Parameters Yielding Intricate Patterns:</p>
 <ul>
 <li>
-<p>a = 1, b = 2, c = 3 or</p>
+<p><em>a = 1, b = 2, c = 3</em> or</p>
 </li>
 <li>
-<p>a = 0, b = 1, c = 1 or</p>
+<p><em>a = 0, b = 1, c = 1</em> or</p>
 </li>
 <li>
-<p>a = 1, b =1, c = 1</p>
+<p><em>a = 1, b =1, c = 1</em></p>
 </li>
 </ul>
 <h3 id="special-constellations-and-edge-cases-of-the-attractor">Special Constellations and Edge Cases of the Attractor</h3>
-<p>Despite using the copysign function, some parameter sets will still lead to periodic or near-periodic orbits instead of intricate patterns, such as:</p>
+<p>Certain parameter sets lead to periodic or near-periodic orbits, even when using the copysign function. In these cases, the attractor's trajectory revisits a limited number of distinct points repeatedly, resulting in high-density cycles. Such cycles frequently occur at the attractor's boundary.</p>
+<p>Example Parameter Sets:</p>
 <ul>
 <li>
-<p>Set 1: a = p , b = 0, c = 0</p>
+<p>1: <em>a = p , b = 0, c = 0</em></p>
 </li>
 <li>
-<p>Set 2: a = p, b = 0, c = p</p>
+<p>2: <em>a = p, b = 0, c = p</em></p>
 </li>
 <li>
-<p>Set 3: a = p, b = p, c = 0</p>
+<p>3: <em>a = p, b = p, c = 0</em></p>
 </li>
 </ul>
-<p>Here, ( p ) is a constant parameter that remains the same within each of these sets.</p>
-<p>In these cases, you may observe high-density cycles, where a relatively small number of pixels are hit repeatedly, suggesting that the system is likely settling into periodic orbits. Additionally, many of these &quot;high-density cycle pixels&quot; tend to be located at the boundaries of the attractor extents.</p>
-<p>For example, with parameter set (3) the Hopalong equations are given by:</p>
+<p>Here, <em>p</em> is a constant parameter (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo mathvariant="normal">≠</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">p \neq 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel"><span class="mrel"><span class="mord vbox"><span class="thinbox"><span class="rlap"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="inner"><span class="mord"><span class="mrel"></span></span></span><span class="fix"></span></span></span></span></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>), unchanged within each set.</p>
+<p>Case Analysis: Parameter Set 3 (<em>a=p, b=p, c=0</em>)</p>
+<p>For this parameter set, the Hopalong equations are:</p>
 <p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mstyle mathsize="1.2em"><mrow><mo fence="true">{</mo><mtable rowspacing="0.36em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><msub><mi>y</mi><mi>n</mi></msub><mo>−</mo><mtext>sgn</mtext><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo><msqrt><mrow><mo stretchy="false">∣</mo><mi>p</mi><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">∣</mo></mrow></msqrt></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi>y</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mi>p</mi><mo>−</mo><msub><mi>x</mi><mi>n</mi></msub></mrow></mstyle></mtd></mtr></mtable></mrow><mstyle mathsize="1.2em"></mstyle></mstyle></mrow><annotation encoding="application/x-tex">\large
 \begin{cases}
 x_{n+1} = y_n - \text{sgn}(x_n) \sqrt{\lvert p x_n \rvert} \\
@@ -452,19 +453,23 @@ c-22.3,46.7,-33.8,70.3,-34.5,71c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1
 s-109,-253,-109,-253c-72.7,-168,-109.3,-252,-110,-252c-10.7,8,-22,16.7,-34,26
 c-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26s76,-59,76,-59s76,-60,76,-60z
 M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.305em;"><span></span></span></span></span></span></span></span><span style="top:-2.442em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2796em;"><span style="top:-2.65em;margin-left:-0.0359em;margin-right:0.0417em;"><span class="pstrut" style="height:2.8em;"></span><span class="sizing reset-size7 size4 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2056em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord mathnormal">p</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.137em;"><span style="top:-2.65em;margin-left:0em;margin-right:0.0417em;"><span class="pstrut" style="height:2.8em;"></span><span class="sizing reset-size7 size4 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size7 size6"></span></span></span></span></span></span></p>
-<p>and we observe the 3-cycle: (0, 0), (0, p), and (p, p). The pixel density is: n / 3</p>
-<p>start: (x<sub>0</sub> , y<sub>0</sub>) = (0 , 0)</p>
-<p>--&gt; (x<sub>1</sub> , y<sub>1</sub>) = (0 , p)</p>
-<p>--&gt; (x<sub>2</sub> , y<sub>2</sub>) = (p , p)</p>
-<p>--&gt; (x<sub>3</sub> , y<sub>3</sub>) = (0 , 0), cycle completed</p>
-<p><strong>Example a=5, b=5, c=0 (1_200_000 iterations):</strong>
-<img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/Figure_ex_3.png" alt="Example Attractor Image">
+<p>With p&gt;0, the system settles into a 3-cycle:  (0,0)→(0,p)→(p,p)→(0,0).</p>
+<p>The pixel density simplifies to n/3, where n is the number of iterations.</p>
+<p>Example:</p>
+<ul>
+<li>Parameters: a=5, b=5, c=0</li>
+<li>Iterations: 1_200_000</li>
+<li>Observations: The 3-cycle structure dominates, with &quot;high-density&quot; pixels clustering along the attractor's extent boundaries.</li>
+</ul>
+<p><img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/Figure_ex_3.png" alt="Example Attractor Image">
 <img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/Figure_ex_4.png" alt="Example Attractor Image">
 <img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/Figure_ex_5.png" alt="Example Attractor Image"></p>
-<p>If you want to experiment with this, it is recommended to reduce the total number of pixels by lowering the image resolution (e.g., 100x100) to achieve a clearer visual representation of the pixels bordering the minimum and maximum extents of the trajectory.</p>
+<p>Visualization Recommendation:</p>
+<p>For edge cases, reduce the image resolution (e.g., 100×100) to better highlight the boundaries of the attractor.
+For example:</p>
 <pre><code>def main(image_size=(100, 100), color_map='hot'):
 </code></pre>
-<p>By the way, this scenario is an ideal use case for the extended version of the program with pixel hit count statistics.</p>
+<p>This scenario is an ideal use case for the features of the extended program variant, such as pixel hit count statistics, to analyze high-density cycle behavior.</p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h3 id="optional-features">Optional Features</h3>
 <p>Execution time and resources: Measurement starts after user input and records the CPU time for the entire process, including image rendering. It also tracks the system memory used.</p>

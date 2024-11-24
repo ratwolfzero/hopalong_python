@@ -15,7 +15,7 @@
   - [Features, Functionality, and Special Scenarios](#features-functionality-and-special-scenarios)
     - [Program Variants](#program-variants)
     - [Pixel-Based Density Estimation](#pixel-based-density-estimation)
-    - [pplication of Copysign (Math Module) as a Signum Function](#pplication-of-copysign-math-module-as-a-signum-function)
+    - [Application of Copysign (Math Module) as a Signum Function](#application-of-copysign-math-module-as-a-signum-function)
     - [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)
     - [Optional Features](#optional-features)
   - [Performance Optimization](#performance-optimization)
@@ -246,7 +246,7 @@ Conclusion
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
-### pplication of Copysign (Math Module) as a Signum Function
+### Application of Copysign (Math Module) as a Signum Function
 
 The programs leverage the `math.copysign` function, `copysign(x, y)`, which returns a float with the magnitude (absolute value) of x but the sign of y. On platforms that support signed zeros, `copysign(1.0, -0.0)` correctly evaluates to `-1.0`.
 

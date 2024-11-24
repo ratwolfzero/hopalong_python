@@ -240,10 +240,10 @@ Conclusion
 
 - For visual comparison, pixel-based density estimation is a practical and effective alternative to 2D histogram-based density estimation. Its ability to directly render visual patterns makes it particularly well-suited for attractor visualization, even without direct alignment of resolutions or bin sizes between the methods. However, for precise numerical and statistical analyses, the histogram approach is more appropriate due to its ability to estimate densities directly in continuous space.
 
-**I. Pixel Based Approximation**
+**1. Pixel Based Approximation**
 ![Example Attractor Image](./examples/Figure_ex_6.png)
 
-**II. 2D Histogram Approximation**
+**2. 2D Histogram Approximation**
 ![Example Attractor Image](./examples/true_PDF_histogram.png)
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)

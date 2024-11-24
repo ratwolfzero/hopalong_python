@@ -279,11 +279,11 @@ Certain parameter sets lead to periodic or near-periodic orbits, even when using
 
 Example Parameter Sets:
 
-- 1: *a = p , b = 0, c = 0*  
+- 1:  *a = p , b = 0, c = 0*  
 
-- 2: *a = p, b = 0, c = p*
+- 2:  *a = p, b = 0, c = p*
 
-- 3: *a = p, b = p, c = 0*
+- 3:  *a = p, b = p, c = 0*
   
 Here, *p* is a constant parameter ($p \neq 0$), unchanged within each set.
 

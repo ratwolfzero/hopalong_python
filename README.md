@@ -248,7 +248,7 @@ Conclusion
 
 ### Application of Copysign (Math Module) as a Signum Function
 
-The programs leverage the `math.copysign` function, `copysign(x, y)`, which returns a float value with the magnitude (absolute value) of *x* but the sign of *y*. On platforms that support signed zeros, `copysign(1.0, -0.0)` correctly evaluates to `-1.0`.
+The programs leverage the `math.copysign` function, `copysign(x, y)`, which returns a float value with the magnitude (absolute value) of *x* but the sign of *y*. On platforms that support signed zeros, `copysign(1.0, -0.0)` correctly evaluates to *-1.0*.
 
 The copysign function can serve as a substitute for the standard signum function, and is defined as follows:
 

@@ -2,7 +2,7 @@
   "sections" : [
     {
       "type" : "plain",
-      "contents" : "$$\n\\begin{cases}\nx_{n+1} = y_n - \\text{sgn}(x_n)\\sqrt{|b x_n - c|} \\\\\ny_{n+1} = a - x_n\n\\end{cases}\n$$\n\n\n$$\n\\text{copysign}(1.0,x) =\n\\begin{cases}\n+1.0  & \\text{if } & \\text{x } & \\text{is} &\\text{positive}, & \\text{+0.0} & or &\\text{infinity} \\\\\n-1.0 & \\text{if } & \\text{x } & \\text{is} &\\text{negative}, & \\text{-0.0} & or &\\text{negative infinity}\n\\end{cases}\n$$\n\n\n$$\n\\large\n\\begin{cases}\nx_{n+1} = y_n - \\text{sgn}(x_n) \\sqrt{\\lvert b x_n - c \\rvert} \\\\\ny_{n+1} = a - x_n\n\\end{cases}\n\\large\n$$\n\n\n$$\n\\large \n\\begin{cases}\nx_{n+1} = y_n - \\text{sgn}(x_n)\\sqrt{|p x_n|} \\\\\ny_{n+1} = p - x_n\n\\end{cases}\n$$\n\n$$\n\\large\n\\begin{cases}\nx_{n+1} = y_n - \\text{sgn}(x_n) \\sqrt{\\lvert p x_n \\rvert} \\\\\ny_{n+1} = p - x_n\n\\end{cases}\n\\large\n$$\n"
+      "contents" : "\n$$\n\\large\n\\begin{cases}\nx_{n+1} = y_n - \\text{sgn}(x_n) \\sqrt{\\lvert b x_n - c \\rvert} \\\\\ny_{n+1} = a - x_n\n\\end{cases}\n\\large\n$$\n\n\n$$\n\\large\n\\begin{cases}\nx_{n+1} = y_n - \\text{sgn}(x_n) \\sqrt{\\lvert p x_n \\rvert} \\\\\ny_{n+1} = p - x_n\n\\end{cases}\n\\large\n$$\n\n$$\n\\text{copysign}(1.0,x) =\n\\begin{cases}\n+1.0  & \\text{if } & \\text{x } & \\text{is} &\\text{positive}, & \\text{+0.0} & or &\\text{infinity} \\\\\n-1.0 & \\text{if } & \\text{x } & \\text{is} &\\text{negative}, & \\text{-0.0} & or &\\text{negative infinity}\n\\end{cases}\n$$\n"
     }
   ],
   "metadata" : {

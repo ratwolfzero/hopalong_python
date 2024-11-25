@@ -43,7 +43,7 @@ was popularized by A.K. Dewdney in the September 1986 issue of *Scientific Ameri
 
 ### The Hopalong Attractor Equations
 
-The Python programs provided calculate and visualize the “Hopalong” attractor by iterating the following recursive functions:
+The mathematical definition of the Hopalong attractor is given by the following recursive functions:
 
 $$
 \large
@@ -58,8 +58,8 @@ Where:
 
 - The sequence starts from the initial point (x<sub>0</sub> , y<sub>0</sub>) = (0 , 0).
 - x<sub>n</sub> and y<sub>n</sub> represent the coordinates at the n-th iteration of the attractor.
-- a, b, and c are parameters influencing the attractor's dynamics.
-- sgn is the sign (signum) function. However, the programs use `math.copysign()` , which is defined as follows:
+- *a*, *b*, and *c* are parameters influencing the attractor's dynamics.
+- *sgn* is the *signum* function. However, the programs use `math.copysign()` , which is defined as follows:
 
 $$
 \text{copysign}(1.0,x) =
@@ -71,7 +71,9 @@ $$
 
 ### Computational Approach
 
-Motivation:
+The Python programs calculate and visualize the Hopalong attractor by iterating the equation system defined above.
+
+Goal:
 
 - Representation of the attractor as a density map to visualize point concentration.
 - Calculation with a very high number of iterations at high processing speed and low memory requirements.

@@ -75,7 +75,7 @@ The Python programs calculate and visualize the attractor by iterating the equat
 
 Goal:
 
-- Representation of the attractor as a density map to visualize point concentration.
+- Representation of the attractor as a density map to highlight point concentration.
 - Calculation with a very high number of iterations at high processing speed and low memory requirements.
 
 Core Algorithm:

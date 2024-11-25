@@ -512,7 +512,7 @@ You can try `ax.contourf3D` (Filled Contours) or `ax.contour3D` (Unfilled Contou
 
 [Also check out my simpler Rust version](https://github.com/ratwolfzero/hopalong)
 
-Copyright © 2024 Ralf Becker, Nuremberg
+Copyright © 2024 Ralf Becker, Nuremberg  
 Contact: <ratwolf@duck.com>  
 
 [MIT License](Copyright.pdf)

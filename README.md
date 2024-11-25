@@ -515,7 +515,7 @@ You can try `ax.contourf3D` (Filled Contours) or `ax.contour3D` (Unfilled Contou
 Copyright © 2024 Ralf Becker, Nuremberg  
 Contact: <ratwolf@duck.com>  
 
-[MIT License](Copyright.pdf)
+[MIT License](https://github.com/ratwolfzero/hopalong_python/blob/main/Copyright.pdf)
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 

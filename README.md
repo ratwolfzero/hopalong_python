@@ -6,7 +6,7 @@
 - [Calculate \& Visualize the Hopalong Attractor with Python](#calculate--visualize-the-hopalong-attractor-with-python)
   - [Abstract](#abstract)
     - [Historical Context](#historical-context)
-    - [The Hopalong Attractor Equations](#the-hopalong-attractor-equations)
+    - [The Hopalong Attractor Functions](#the-hopalong-attractor-functions)
     - [Computational Approach](#computational-approach)
   - [Requirements](#requirements)
   - [Usage](#usage)
@@ -41,9 +41,9 @@ The "Hopalong"<top>*<top> attractor, authored by Barry Martin of Aston Universit
 was popularized by A.K. Dewdney in the September 1986 issue of *Scientific American*. In Germany, it gained further recognition through a translation titled "HÜPFER" in *Spektrum der Wissenschaft* [[3](#references)].  
 <sub>*Nicknamed by A.K. Dewdney.</sub>  
 
-### The Hopalong Attractor Equations
+### The Hopalong Attractor Functions
 
-The mathematical definition of the Hopalong attractor is given by the following recursive functions:
+The mathematical definition of the Hopalong attractor is given by the following system of recursive functions:
 
 $$
 \large
@@ -56,7 +56,7 @@ $$
 
 Where:
 
-- The sequence starts from the initial point (x<sub>0</sub> , y<sub>0</sub>) = (0 , 0).
+- The sequence starts from the initial point (*x<sub>0</sub> , y<sub>0</sub>*) = (0 , 0).
 - x<sub>n</sub> and y<sub>n</sub> represent the coordinates at the n-th iteration of the attractor.
 - *a*, *b*, and *c* are parameters influencing the attractor's dynamics.
 - *sgn* is the *signum* function. However, the programs use `math.copysign()` , which is defined as follows:
@@ -65,13 +65,13 @@ $$
 \text{copysign}(1.0,x) =
 \begin{cases}
 1.0  & \text{if } & \text{x } & \text{is} &\text{positive}, & \text{0.0} & or &\text{infinity} \\
--1.0 & \text{if } & \text{x } & \text{is} &\text{negative}, & \text{-0.0} & or &\text{neg. infinity}
+-1.0 & \text{if } & \text{x } & \text{is} &\text{negative}, & \text{-0.0} & or &\text{negative infinity}
 \end{cases}
 $$
 
 ### Computational Approach
 
-The Python programs calculate and visualize the attractor by iterating the equation system defined above.
+The Python programs calculate and visualize the attractor by iterating the functions system defined above.
 
 Goal:
 

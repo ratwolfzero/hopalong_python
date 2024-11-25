@@ -302,7 +302,7 @@ $$
 
 With *p>0*, the system settles into a *3-cycle*:  *(0,0)→(0,p)→(p,p)→(0,0)*.
 
-The pixel density simplifies to n/3, where *n* is the number of iterations.
+The pixel density simplifies to n / 3, where *n* is the number of iterations.
 
 Example:  
 

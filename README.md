@@ -287,7 +287,7 @@ Example Parameter Sets:
 
 - 3: a = p, b = p, c = 0
   
-Here, *p* is a constant parameter ($p \neq 0$), unchanged within each set.
+Here, *p* is a constant parameter (p \neq 0), unchanged within each set.
 
 Case Analysis: Parameter Set 3 (a=p, b=p, c=0)
 

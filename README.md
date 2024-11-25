@@ -275,7 +275,7 @@ Example Parameters Yielding Intricate Patterns When Using `copysign`:
 
 ### Special Constellations and Edge Cases of the Attractor
 
-Certain parameter sets lead to periodic or near-periodic orbits, even when using the copysign function. In these cases, the attractor's trajectory revisits a limited number of distinct points repeatedly, resulting in high-density cycles. Such cycles frequently occur at the attractor's boundary.
+Certain parameter sets lead to periodic or near-periodic orbits, even when using the `copysign` function. In these cases, the attractor's trajectory revisits a limited number of distinct points repeatedly, resulting in high-density cycles. Such cycles frequently occur at the attractor's boundary.
 
 Example Parameter Sets:
 
@@ -300,9 +300,9 @@ y_{n+1} = p - x_n
 \large
 $$
 
-With p>0, the system settles into a 3-cycle:  (0,0)→(0,p)→(p,p)→(0,0).
+With *p>0*, the system settles into a *3-cycle*:  *(0,0)→(0,p)→(p,p)→(0,0)*.
 
-The pixel density simplifies to n/3, where n is the number of iterations.
+The pixel density simplifies to *n/3*, where *n* is the number of iterations.
 
 Example:  
 

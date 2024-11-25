@@ -260,12 +260,12 @@ $$
 \end{cases}
 $$
 
-This adjustment alters the behavior of certain parameter sets, often leading to intricate, fractal-like patterns instead of periodic orbit or fixed-point dynamics.
+This adjustment alters the behavior of certain parameter sets, often leading to intricate, fractal-like patterns instead of periodic orbits or fixed-point dynamics.
 
-Periodic Orbit(s) Defined:  
+Periodic Orbits Defined:  
 Periodic orbits are trajectories in which the system revisits the same state after a fixed number of iterations.
 
-Example Parameters Yielding Intricate Patterns:
+Example Parameters Yielding Intricate Patterns When Using `copysign`:
 
 - *a = 1, b = 2, c = 3* or  
 

@@ -287,7 +287,7 @@ Example Parameter Sets:
 
 - 3: a = p, b = p, c = 0
   
-Here, *p* is a constant parameter (p\neq 0), unchanged within each set.
+Here, *p* is a constant parameter ($p\neq 0$), unchanged within each set.
 
 Case Analysis: Parameter Set 3 (a=p, b=p, c=0)
 
@@ -514,6 +514,11 @@ You can try `ax.contourf3D` (Filled Contours) or `ax.contour3D` (Unfilled Contou
 
 © Ralf Becker  
 Nuernberg: November 2024
+
+The Python code in this repository is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+
+All other content, including written analyses, images, and documentation, is © Ralf Becker, Nürnberg, November 2024.  
+All rights reserved.
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 

@@ -515,7 +515,7 @@ You can try `ax.contourf3D` (Filled Contours) or `ax.contour3D` (Unfilled Contou
 © Ralf Becker  
 Nuernberg: November 2024
 
- [MIT License](MIT.html)
+ [MIT License](Copyright.pdf)
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 

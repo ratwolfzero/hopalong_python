@@ -37,8 +37,8 @@
 
 ### Historical Context
 
-The "Hopalong"<top>*<top> attractor, authored by Barry Martin of Aston University in Birmingham, England [[2](#references)],  
-was popularized by A.K. Dewdney in the September 1986 issue of *Scientific American*. In Germany, it gained further recognition through a translation titled "HÜPFER" in *Spektrum der Wissenschaft* [[3](#references)].  
+The "*Hopalong*"<top>*<top> attractor, authored by Barry Martin of Aston University in Birmingham, England [[2](#references)],  
+was popularized by A.K. Dewdney in the September 1986 issue of *Scientific American*. In Germany, it gained further recognition through a translation titled "*HÜPFER*" in *Spektrum der Wissenschaft* [[3](#references)].  
 <sub>*Nicknamed by A.K. Dewdney.</sub>  
 
 ### The Hopalong Attractor Functions
@@ -56,9 +56,9 @@ $$
 
 Where:
 
-- The sequence starts from the initial point (*x<sub>0</sub> , y<sub>0</sub>*) = (0 , 0).
-- *x<sub>n</sub>* and *y<sub>n</sub>* represent the coordinates at the n-th iteration of the attractor.
-- *a*, *b*, and *c* are parameters influencing the attractor's dynamics.
+- The sequence starts from the initial point (x<sub>0</sub> , y<sub>0</sub>) = (0 , 0).
+- x<sub>n</sub> and y<sub>n</sub> represent the coordinates at the n-th iteration of the attractor.
+- a, b, and c are parameters influencing the attractor's dynamics.
 - *sgn* is the *signum* function. However, the programs use `math.copysign()` , which is defined as follows:
 
 $$
@@ -269,11 +269,11 @@ Periodic orbits are trajectories in which the system revisits the same state aft
 
 Example Parameters Yielding Intricate Patterns When Using `copysign`:
 
-- *a = 1, b = 2, c = 3* or  
+- a = 1, b = 2, c = 3 or  
 
-- *a = 0, b = 1, c = 1* or  
+- a = 0, b = 1, c = 1 or  
 
-- *a = 1, b =1, c = 1*
+- a = 1, b =1, c = 1
 
 ### Special Constellations and Edge Cases of the Attractor
 
@@ -281,15 +281,15 @@ Certain parameter sets lead to periodic or near-periodic orbits, even when using
 
 Example Parameter Sets:
 
-- 1: *a = p , b = 0, c = 0*  
+- 1: a = p , b = 0, c = 0
 
-- 2: *a = p, b = 0, c = p*
+- 2: a = p, b = 0, c = p
 
-- 3: *a = p, b = p, c = 0*
+- 3: a = p, b = p, c = 0
   
 Here, *p* is a constant parameter ($p \neq 0$), unchanged within each set.
 
-Case Analysis: Parameter Set 3 (*a=p, b=p, c=0*)
+Case Analysis: Parameter Set 3 (a=p, b=p, c=0)
 
 For this parameter set, the Hopalong equations are:
 

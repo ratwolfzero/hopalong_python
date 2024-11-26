@@ -291,7 +291,7 @@ Here, *p* is a constant parameter ($p\neq 0$), unchanged within each set.
 
 Case Analysis: Parameter Set 3 (a=p, b=p, c=0)
 
-For this parameter set, the Hopalong equations are:
+For this parameter set, the Hopalong functions are:
 
 $$
 \large

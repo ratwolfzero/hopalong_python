@@ -32,9 +32,13 @@ def PBDE(x, y, bins=(100, 100), x_range=None, y_range=None):
     density = np.zeros((bins[0], bins[1]), dtype=int)
     np.add.at(density, (x_indices, y_indices), 1)
 
-    # Normalize the density to match the behavior of np.histogram2d (density=True)
+    # Calculate the total number of points
     total_points = len(x)
-    density_normalized = density / total_points
+
+    # Normalize the density to match the behavior of np.histogram2d (density=True)
+    bin_area = (x_range[1] - x_range[0]) / bins[0] * (y_range[1] - y_range[0]) / bins[1]
+    density_normalized = density / (total_points * bin_area)
+
     
     return density_normalized, x_edges, y_edges
     
@@ -78,6 +82,7 @@ plt.colorbar(im2, ax=axes[1], label='Density')  # Add colorbar for histogram plo
 # Show the plot
 plt.tight_layout()
 plt.show()
+
 
 
 

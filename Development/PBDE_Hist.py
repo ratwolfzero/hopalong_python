@@ -2,12 +2,25 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Generate Gaussian-distributed data
-mean = [0, 0]  # Mean of the distribution (centered at origin)
+##mean = [0, 0]  # Mean of the distribution (centered at origin)
 cov = [[1, 0], [0, 1]]  # Covariance matrix (identity for independent variables)
 
 # Draw 10,000 samples from the distribution
-x, y = np.random.multivariate_normal(mean, cov, 10000).T
+#x, y = np.random.multivariate_normal(mean, cov, 10000).T
 
+# Generate non-uniformly distributed data (mixture of two Gaussians)
+mean1 = [0, 0]  # Mean of the first Gaussian
+cov1 = [[1, 0], [0, 1]]  # Covariance matrix for the first Gaussian
+mean2 = [5, 5]  # Mean of the second Gaussian
+cov2 = [[1, 0], [0, 1]]  # Covariance matrix for the second Gaussian
+
+# Draw 10,000 samples from each distribution
+x1, y1 = np.random.multivariate_normal(mean1, cov1, 50000).T
+x2, y2 = np.random.multivariate_normal(mean2, cov2, 50000).T
+
+# Combine the two sets of data
+x = np.concatenate([x1, x2])
+y = np.concatenate([y1, y2])
 
 def PBDE(x, y, bins=(100, 100), x_range=None, y_range=None): #Pixel-Based Density Estimation
     # Determine ranges

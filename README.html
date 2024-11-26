@@ -362,18 +362,18 @@ The code for the Basic variant supports both 2D and 3D visualization. To switch 
 <p><strong>Remarks:</strong></p>
 <p>Method</p>
 <ul>
-<li>The pixel-based density estimation method maps continuous trajectory points to discrete pixel coordinates, allowing for an intuitive approximation of point density. By counting the number of hits per pixel, the programs highlights areas of higher concentration effectively, making it particularly suitable for visual exploration of density distributions.</li>
+<li>The pixel-based density estimation method maps continuous trajectory points to discrete pixel coordinates, providing an intuitive approximation of point density. By counting the number of hits per pixel, it highlights areas of higher concentration effectively, making it particularly suitable for visual exploration of density distributions.</li>
 </ul>
 <p>Evaluation</p>
 <ul>
-<li>To evaluate the pixel-based density estimation method, its visual results are compared with those from the 2D Histogram Approximation method. The latter uses NumPy's <code>np.histogram2d(..., density=True)</code> function, which divides the continuous trajectory space into bins to estimate density. These two methods are illustrated in the following images:</li>
+<li>The visual results of the pixel-based density estimation method are compared with those from the 2D Histogram Approximation method. The latter employs NumPy's <code>np.histogram2d(..., density=True)</code> function, which divides the continuous trajectory space into bins to estimate density. The comparison is illustrated in the following images:</li>
 </ul>
 <ol>
 <li>
-<p>Pixel-Based Approximation: Continuous trajectory points are mapped to discrete integer pixels on a grid, and the hit counts for each pixel are recorded. This approach emphasizes the spatial distribution of trajectory points as localized &quot;hotspots&quot; of activity.</p>
+<p>Pixel-Based Approximation: As described above, this method maps continuous trajectory points to integer pixel coordinates and visualizes density based on pixel hit counts.</p>
 </li>
 <li>
-<p>2D Histogram Approximation: NumPy's <code>np.histogram2d</code> function is applied directly to the continuous trajectory points, dividing the space into equal-sized bins. The density within each bin is calculated, and the results are normalized to represent relative densities across the entire space.</p>
+<p>2D Histogram Approximation: NumPy's <code>np.histogram2d</code> function directly processes continuous trajectory points, dividing the space into equal-sized bins. Each bin's density is normalized to represent relative densities across the entire space.</p>
 </li>
 </ol>
 <p>Conclusion</p>

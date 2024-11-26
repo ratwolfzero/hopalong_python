@@ -234,9 +234,9 @@ Conclusion
 
 - Both methods successfully identify areas of concentration. However, the results can vary due to differences in how trajectory points are discretized:
 
-1. Pixel-Based Approach: Visual outcomes depend on the image resolution, with the number of pixels influencing the density contrast and detail.
+1. Pixel-Based Approach: Visual outcomes depend on the image resolution, with the number of pixels influencing the density contrast and detail. This method visually captures areas of concentration, with pixel "hits" forming localized hotspots.
 
-2. 2D Histogram Approach: Outcomes are similarly affected by the number of bins, as larger bin counts approximate the distribution more finely but with reduced contrast.
+2. 2D Histogram Approach: Outcomes are similarly affected by the number of bins, as larger bin counts approximate the distribution more finely but with reduced contrast. The 2D histogram method provides a more quantitative estimate of density across the entire space.
 
 - For visual representation, pixel-based density estimation is a practical and effective method for attractor visualization. Its ability to directly render visual patterns highlights areas of concentration in an intuitive and detailed manner. In contrast, the 2D histogram approach is better suited for precise numerical and statistical analyses, as it estimates densities directly in continuous space.
 

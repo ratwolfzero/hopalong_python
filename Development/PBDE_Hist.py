@@ -52,16 +52,15 @@ def PBDE(x, y, bins=(100, 100), x_range=None, y_range=None): #Pixel-Based Densit
     bin_area = (x_range[1] - x_range[0]) / bins[0] * (y_range[1] - y_range[0]) / bins[1]
     density = density / (total_points * bin_area)
 
-    
     return density, x_edges, y_edges
     
 
 # Apply Pixel-Based Density Estimation (PBDE) with normalization
-density_pbde, xedges, yedges = PBDE(x, y, bins=(100, 100))
+density_pbde, xedges, yedges = PBDE(x, y, bins=(20, 20))
 
 # Apply 2D Histogram Approximation
 density_hist, xedges_hist, yedges_hist = np.histogram2d(x, y, bins=(100, 100), range=[[xedges[0], xedges[-1]], [yedges[0], yedges[-1]]], density=True)
-
+print(density_hist)
 # Plot the results side by side for comparison
 
 fig, axes = plt.subplots(1, 2, figsize=(16, 6))

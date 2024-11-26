@@ -234,6 +234,10 @@ Conclusion
 
 - Both methods successfully identify areas of concentration. However, the results can vary due to differences in how trajectory points are discretized:
 
+Key Insight
+
+While the visual contrast and density gradients (color intensity) can vary due to different resolutions image size or bin sizes, the intrinsic geometric shape of the attractor itself remains unchanged across both methods. The attractor’s underlying structure, which reflects the dynamical system's behavior, does not depend on the visualization technique.
+
 1. Pixel-Based Approach: Visual outcomes depend on the image resolution, with the number of pixels influencing the density contrast and detail. This method visually captures areas of concentration, with pixel "hits" forming localized hotspots.
 
 2. 2D Histogram Approach: Outcomes are similarly affected by the number of bins, as larger bin counts approximate the distribution more finely but with reduced contrast. The 2D histogram method provides a more quantitative estimate of density across the entire space.

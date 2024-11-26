@@ -37,10 +37,10 @@ def PBDE(x, y, bins=(100, 100), x_range=None, y_range=None):
 
     # Normalize the density to match the behavior of np.histogram2d (density=True)
     bin_area = (x_range[1] - x_range[0]) / bins[0] * (y_range[1] - y_range[0]) / bins[1]
-    density_normalized = density / (total_points * bin_area)
+    density = density / (total_points * bin_area)
 
     
-    return density_normalized, x_edges, y_edges
+    return density, x_edges, y_edges
     
 
 # Apply Pixel-Based Density Estimation (PBDE) with normalization

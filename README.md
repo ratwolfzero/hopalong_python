@@ -236,7 +236,7 @@ Conclusion
 
 Key Insight
 
-While the visual contrast and density gradients (color intensity) can vary due to different resolutions image size or bin sizes, the intrinsic geometric shape of the attractor itself remains unchanged across both methods. The attractor’s underlying structure, which reflects the dynamical system's behavior, does not depend on the visualization technique.
+While the visual contrast and density gradients (color intensity) can vary due to different resolutions (image size or bin sizes), the intrinsic geometric shape of the attractor itself remains unchanged across both methods. The attractor’s underlying structure, which reflects the dynamical system's behavior, does not depend on the visualization technique.
 
 1. Pixel-Based Approach: Visual outcomes depend on the image resolution, with the number of pixels influencing the density contrast and detail. This method visually captures areas of concentration, with pixel "hits" forming localized hotspots.
 

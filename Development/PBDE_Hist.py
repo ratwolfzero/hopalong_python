@@ -9,7 +9,7 @@ cov = [[1, 0], [0, 1]]  # Covariance matrix (identity for independent variables)
 x, y = np.random.multivariate_normal(mean, cov, 10000).T
 
 
-def PBDE(x, y, bins=(100, 100), x_range=None, y_range=None):
+def PBDE(x, y, bins=(100, 100), x_range=None, y_range=None): #Pixel-Based Density Estimation
     # Determine ranges
     if x_range is None:
         x_range = (np.min(x), np.max(x))
@@ -82,8 +82,3 @@ plt.colorbar(im2, ax=axes[1], label='Density')  # Add colorbar for histogram plo
 # Show the plot
 plt.tight_layout()
 plt.show()
-
-
-
-
-

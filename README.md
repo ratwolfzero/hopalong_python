@@ -16,7 +16,7 @@
     - [Program Variants](#program-variants)
     - [Pixel-Based Density Estimation](#pixel-based-density-estimation)
       - [Pixel-Based vs. Histogram Density Estimation](#pixel-based-vs-histogram-density-estimation)
-      - [Conclusion and Insights](#conclusion-and-insights)
+      - [Conclusion](#conclusion)
     - [Application of Copysign (Math Module) as a Signum Function](#application-of-copysign-math-module-as-a-signum-function)
     - [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)
     - [Optional Features](#optional-features)
@@ -234,7 +234,7 @@ Examples of outputs can be found in the "Usage" section above.
 
 In both methods, the visualization step is performed separately, allowing flexibility in how the density matrices are rendered.
 
-#### Conclusion and Insights
+#### Conclusion
 
 Both methods effectively highlight areas of point concentration. This is illustrated in the following pictures.
 Each approach offers distinct advantages and considerations:
@@ -242,8 +242,7 @@ Each approach offers distinct advantages and considerations:
 - The **pixel-based approach** is ideal for visual exploration, efficiently creating intuitive, detailed patterns.  
 - The **histogram approach** excels in statistical and numerical analyses, offering a more precise representation of density distributions in continuous space.
 
-**Key Insight:**  
-  Despite variations in density gradients and visual contrast due to resolution or bin size, the attractor’s intrinsic geometric structure remains unchanged. This invariance reflects the dynamical system's behavior, independent of the chosen visualization technique.
+Despite variations in density gradients and visual contrast due to resolution or bin size, the attractor’s intrinsic geometric structure remains unchanged. This invariance reflects the dynamical system's behavior, independent of the chosen visualization technique.
 
 **1. Pixel Based Approximation**
 ![Example Attractor Image](./examples/Figure_ex_6.png)

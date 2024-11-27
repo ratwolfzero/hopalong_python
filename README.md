@@ -15,9 +15,9 @@
   - [Features, Functionality, and Special Scenarios](#features-functionality-and-special-scenarios)
     - [Program Variants](#program-variants)
     - [Pixel-Based Density Estimation](#pixel-based-density-estimation)
-  - [Comparison with Histogram Density Estimation](#comparison-with-histogram-density-estimation)
-  - [Evaluation and Comparison](#evaluation-and-comparison)
-  - [Conclusion](#conclusion)
+      - [Comparison with Histogram Density Estimation](#comparison-with-histogram-density-estimation)
+      - [Evaluation and Comparison](#evaluation-and-comparison)
+      - [Conclusion](#conclusion)
     - [Application of Copysign (Math Module) as a Signum Function](#application-of-copysign-math-module-as-a-signum-function)
     - [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)
     - [Optional Features](#optional-features)
@@ -217,13 +217,13 @@ Examples of outputs can be found in the "Usage" section above.
 
   Image resolution influences the gradient's intensity and detail. Lower resolutions lead to higher densities per pixel, enhancing contrast but reducing detail. Higher resolutions distribute trajectory points across more pixels, increasing detail but potentially lowering contrast. While smoothing techniques like `scipy.ndimage.gaussian_filter` can enhance visual contrast, they alter raw hit counts and are not included here to preserve data integrity.
 
-## Comparison with Histogram Density Estimation
+#### Comparison with Histogram Density Estimation
 
 1. Pixel-Based Density Estimation: Continuous trajectory points are mapped to discrete pixel coordinates. The density estimation and visualization occur simultaneously as a direct result of quantization and discretization. This method excels at visually highlighting areas of concentration, producing detailed patterns linked to the trajectory's geometry.
 
 2. Histogram Density Estimation: Continuous space is divided into bins, and point counts per bin are normalized to compute relative densities. This approach separates density estimation from visualization, providing a more quantitative representation of point distributions.
 
-## Evaluation and Comparison
+#### Evaluation and Comparison
 
 The results of these methods are compared to illustrate their unique strengths:
 
@@ -233,7 +233,7 @@ Image resolution directly impacts the visual density and detail, with coarser gr
 1. Histogram Approximation: NumPy's `np.histogram2d(..., density=True)` function divides the space into bins and normalizes densities across the entire trajectory. Bins represent absolute densities in continuous space, enabling more quantitative analysis.
 Bin size affects density precision: smaller bins capture finer detail, while larger bins average densities over broader regions.
 
-## Conclusion
+#### Conclusion
 
 Both methods effectively highlight areas of point concentration, but their applications and outcomes differ:
 

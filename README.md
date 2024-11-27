@@ -232,7 +232,7 @@ Examples of outputs can be found in the "Usage" section above.
      - Smaller bins capture finer detail.  
      - Larger bins average densities over broader regions.
 
-In both methods, the visualization step is performed separately, allowing flexibility in how the density matrices are rendered.
+Visualization of density matrix can be done seperately for both methods in a flexible manner.
 
 #### Conclusion
 

@@ -220,7 +220,7 @@ Comparison with Histogram Density Estimation
 
 2. Histogram Density Estimation: Continuous space is divided into bins, and point counts per bin are normalized to compute relative densities. This approach separates density estimation from visualization, providing a more quantitative representation of point distributions.
 
-Evaluation and Comparison*
+Evaluation and Comparison
 
 The results of these methods are compared to illustrate their unique strengths:
 

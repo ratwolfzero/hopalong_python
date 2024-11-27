@@ -15,8 +15,8 @@
   - [Features, Functionality, and Special Scenarios](#features-functionality-and-special-scenarios)
     - [Program Variants](#program-variants)
     - [Pixel-Based Density Estimation](#pixel-based-density-estimation)
-    - [Pixel-Based vs. Histogram Density Estimation](#pixel-based-vs-histogram-density-estimation)
-    - [Conclusion and Insights](#conclusion-and-insights)
+      - [Pixel-Based vs. Histogram Density Estimation](#pixel-based-vs-histogram-density-estimation)
+      - [Conclusion and Insights](#conclusion-and-insights)
     - [Application of Copysign (Math Module) as a Signum Function](#application-of-copysign-math-module-as-a-signum-function)
     - [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)
     - [Optional Features](#optional-features)
@@ -86,7 +86,7 @@ Two-pass algorithm with separate calculation of:
 
 1. The spatial extent of the attractor trajectory (first pass).
 
-2. Direct mapping of the sequentially generated floating-point values in continuous space to a discrete pixel grid, while tracking the number of pixel hits to generate the density map (second pass).
+2. Direct mapping of the sequentially generated floating-point values in continuous space to a discrete pixel grid, while tracking the number of pixel hits to generate the density map (second pass). See [Pixel-Based Density Estimation](#pixel-based-density-estimation)
 
 Just-in-time (JIT) compilation is supported by a low-complexity code structure.
 
@@ -218,7 +218,7 @@ Examples of outputs can be found in the "Usage" section above.
 
 ---
 
-### Pixel-Based vs. Histogram Density Estimation
+#### Pixel-Based vs. Histogram Density Estimation
 
 1. **Pixel-Based Density Estimation**:  
    Continuous trajectory points are mapped to discrete pixel coordinates. The density estimation and the creation of a density matrix (pixel grid) occur simultaneously as a direct result of quantization and discretization.
@@ -237,7 +237,7 @@ In both methods, the visualization step is performed separately, allowing flexib
 
 ---
 
-### Conclusion and Insights
+#### Conclusion and Insights
 
 Both methods effectively highlight areas of point concentration. This is illustrated in the following pictures.
 Each approach offers distinct advantages and considerations:

@@ -227,7 +227,7 @@ Examples of outputs can be found in the "Usage" section above.
 
 2. **Histogram Density Estimation**:  
 
-   NumPy's `np.histogram2d(..., density=True)` discretizes the continuous space into equal-sized bins and counts the points per bin. The density within each bin is calculated and the results are normalized to represent relative densities across the entire space. This process generates a density matrix, suitable for quantitative analysis.
+   NumPy's `np.histogram2d(..., density=True)` discretizes continuous space into a grid of equal-sized bins. It counts the number of points falling into each bin and calculates the density by normalizing these counts relative to the total number of points and bin area. This normalization ensures that the density values represent relative point distributions across the entire space, producing a density matrix suitable for quantitative analysis.
    - Bin size affects density precision:  
      - Smaller bins capture finer detail.  
      - Larger bins average densities over broader regions.

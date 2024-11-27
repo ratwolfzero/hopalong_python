@@ -161,9 +161,12 @@
 <li><a href="#features-functionality-and-special-scenarios">Features, Functionality, and Special Scenarios</a>
 <ul>
 <li><a href="#program-variants">Program Variants</a></li>
-<li><a href="#pixel-based-density-estimation">Pixel-Based Density Estimation</a></li>
+<li><a href="#pixel-based-density-estimation">Pixel-Based Density Estimation</a>
+<ul>
 <li><a href="#pixel-based-vs-histogram-density-estimation">Pixel-Based vs. Histogram Density Estimation</a></li>
 <li><a href="#conclusion-and-insights">Conclusion and Insights</a></li>
+</ul>
+</li>
 <li><a href="#application-of-copysign-math-module-as-a-signum-function">Application of Copysign (Math Module) as a Signum Function</a></li>
 <li><a href="#special-constellations-and-edge-cases-of-the-attractor">Special Constellations and Edge Cases of the Attractor</a></li>
 <li><a href="#optional-features">Optional Features</a></li>
@@ -246,7 +249,8 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">â
 <p>The spatial extent of the attractor trajectory (first pass).</p>
 </li>
 <li>
-<p>Direct mapping of the sequentially generated floating-point values in continuous space to a discrete pixel grid, while tracking the number of pixel hits to generate the density map (second pass).</p>
+<p>Direct mapping of the sequentially generated floating-point values in continuous space to a discrete pixel grid, while tracking the number of pixel hits to generate the density map (second pass).<br>
+See <a href="#pixel-based-density-estimation">Pixel-Based Density Estimation</a></p>
 </li>
 </ol>
 <p>Just-in-time (JIT) compilation is supported by a low-complexity code structure.</p>
@@ -369,7 +373,7 @@ The Matplotlib &quot;hot&quot; colormap is applied to represent pixel hit counts
 </li>
 </ul>
 <hr>
-<h3 id="pixel-based-vs-histogram-density-estimation">Pixel-Based vs. Histogram Density Estimation</h3>
+<h4 id="pixel-based-vs-histogram-density-estimation">Pixel-Based vs. Histogram Density Estimation</h4>
 <ol>
 <li>
 <p><strong>Pixel-Based Density Estimation</strong>:<br>
@@ -398,7 +402,7 @@ Continuous trajectory points are mapped to discrete pixel coordinates. The densi
 </ol>
 <p>In both methods, the visualization step is performed separately, allowing flexibility in how the density matrices are rendered.</p>
 <hr>
-<h3 id="conclusion-and-insights">Conclusion and Insights</h3>
+<h4 id="conclusion-and-insights">Conclusion and Insights</h4>
 <p>Both methods effectively highlight areas of point concentration. This is illustrated in the following pictures.
 Each approach offers distinct advantages and considerations:</p>
 <ul>

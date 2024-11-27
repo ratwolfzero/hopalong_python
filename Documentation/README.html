@@ -246,7 +246,7 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">â
 <p>The spatial extent of the attractor trajectory (first pass).</p>
 </li>
 <li>
-<p>Direct mapping of the sequentially generated floating-point values in continuous space to a discrete image grid, while tracking the number of pixel hits to generate the density map (second pass).</p>
+<p>Direct mapping of the sequentially generated floating-point values in continuous space to a discrete pixel grid, while tracking the number of pixel hits to generate the density map (second pass).</p>
 </li>
 </ol>
 <p>Just-in-time (JIT) compilation is supported by a low-complexity code structure.</p>
@@ -373,7 +373,7 @@ The Matplotlib &quot;hot&quot; colormap is applied to represent pixel hit counts
 <ol>
 <li>
 <p><strong>Pixel-Based Density Estimation</strong>:<br>
-Continuous trajectory points are mapped to discrete pixel coordinates. The density estimation and the creation of a density matrix (image grid) occur simultaneously as a direct result of quantization and discretization.</p>
+Continuous trajectory points are mapped to discrete pixel coordinates. The density estimation and the creation of a density matrix (pixel grid) occur simultaneously as a direct result of quantization and discretization.</p>
 <ul>
 <li>Image resolution directly impacts the visual density and detail:
 <ul>
@@ -475,7 +475,7 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">â
 <p>Example:</p>
 <ul>
 <li>Parameters: a=5, b=5, c=0</li>
-<li>Iterations: 1_200_000</li>
+<li>Iterations: 1,200,000</li>
 <li>Observations: The 3-cycle structure dominates, with &quot;high-density&quot; pixels clustering along the attractor's extent boundaries.</li>
 </ul>
 <p><img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/Figure_ex_3.png" alt="Example Attractor Image">

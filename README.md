@@ -217,8 +217,6 @@ Examples of outputs can be found in the "Usage" section above.
 
   While smoothing techniques like `scipy.ndimage.gaussian_filter` can enhance visual contrast, they alter raw hit counts and are not included here to preserve data integrity.
 
----
-
 #### Pixel-Based vs. Histogram Density Estimation
 
 1. **Pixel-Based Density Estimation**:  
@@ -235,8 +233,6 @@ Examples of outputs can be found in the "Usage" section above.
      - Larger bins average densities over broader regions.
 
 In both methods, the visualization step is performed separately, allowing flexibility in how the density matrices are rendered.
-
----
 
 #### Conclusion and Insights
 

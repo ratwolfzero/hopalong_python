@@ -222,10 +222,10 @@ Examples of outputs can be found in the "Usage" section above.
 ### Pixel-Based vs. Histogram Density Estimation
 
 1. **Pixel-Based Density Estimation**:  
-   Continuous trajectory points are mapped to discrete pixel coordinates. The density estimation and visualization occur simultaneously as a direct result of quantization and discretization. This method excels at visually highlighting areas of concentration, producing detailed patterns linked to the trajectory's geometry.
+   Continuous trajectory points are mapped to discrete pixel coordinates. The density estimation and the creation of a density matrix occur simultaneously as a direct result of quantization and discretization. Visualization occurs as a separate and flexible step. This method excels at visually highlighting areas of concentration, producing detailed patterns linked to the trajectory's geometry.
 
 2. **Histogram Density Estimation**:  
-   Continuous space is divided into bins, and point counts per bin are normalized to compute relative densities. This approach separates density estimation from visualization, providing a more quantitative representation of point distributions.
+   Continuous space is divided into bins, and point counts per bin are normalized to compute relative densities. This approach is providing a more quantitative representation of point distributions. Visualization occurs as a separate and flexible step
 
 ---
 
@@ -256,12 +256,8 @@ Both methods effectively highlight areas of point concentration, but their appli
   Despite variations in density gradients and visual contrast due to resolution or bin size, the attractor’s intrinsic geometric structure remains unchanged. This invariance reflects the dynamical system's behavior, independent of the chosen visualization technique.
 
 - **Practical Considerations:**  
-  - The **pixel-based approach** is ideal for visual exploration, combining density estimation and visualization efficiently to produce intuitive, detailed patterns.  
+  - The **pixel-based approach** is ideal for visual exploration  
   - The **histogram approach** excels in statistical and numerical analyses, offering a more precise representation of density distributions in continuous space.
-
-- **Additional Insights:**  
-  - The pixel-based method’s efficiency stems from its integration of density estimation and visualization into a single step. However, its dependence on resolution may limit flexibility for certain analytical purposes.  
-  - Histogram density estimation is more versatile, with bin sizes adjustable independently of visualization parameters, making it suitable for broader quantitative applications.
 
 **1. Pixel Based Approximation**
 ![Example Attractor Image](./examples/Figure_ex_6.png)

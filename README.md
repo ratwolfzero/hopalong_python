@@ -11,6 +11,7 @@
   - [Requirements](#requirements)
   - [Usage](#usage)
     - [Input](#input)
+    - [Output](#output)
   - [Features, Functionality, and Special Scenarios](#features-functionality-and-special-scenarios)
     - [Program Variants](#program-variants)
     - [Pixel-Based Density Estimation](#pixel-based-density-estimation)
@@ -162,7 +163,9 @@ When you run the programs, you will be prompted to enter the following parameter
 
 Experimenting with different values of these parameters will yield diverse and intricate visual patterns.
 
-#The programs generate a visual representation of the attractor trajectory as a density map, where color intensity reflects the frequency of points visited (hit counts). Lighter areas indicate regions of higher density, highlighting the attractor's intricate structure. This density map also supports a 3D representation by mapping density values along the Z-axis
+### Output
+
+The programs generate a visual representation of the attractor trajectory as a density map, where color intensity reflects the frequency of points visited (hit counts). Lighter areas indicate regions of higher density, highlighting the attractor's intricate structure. This density map also supports a 3D representation by mapping density values along the Z-axis
 
 **Basic Version 2D**
 ![Example Attractor Image](./examples/Figure_ex_1.png)

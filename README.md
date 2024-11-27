@@ -15,9 +15,9 @@
   - [Features, Functionality, and Special Scenarios](#features-functionality-and-special-scenarios)
     - [Program Variants](#program-variants)
     - [Pixel-Based Density Estimation](#pixel-based-density-estimation)
-      - [Pixel-Based vs. Histogram Density Estimation](#pixel-based-vs-histogram-density-estimation)
-      - [Strengths and Applications](#strengths-and-applications)
-      - [Conclusion and Insights](#conclusion-and-insights)
+    - [Pixel-Based vs. Histogram Density Estimation](#pixel-based-vs-histogram-density-estimation)
+    - [Strengths and Applications](#strengths-and-applications)
+    - [Conclusion and Insights](#conclusion-and-insights)
     - [Application of Copysign (Math Module) as a Signum Function](#application-of-copysign-math-module-as-a-signum-function)
     - [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)
     - [Optional Features](#optional-features)
@@ -199,55 +199,69 @@ Examples of outputs can be found in the "Usage" section above.
 
 ### Pixel-Based Density Estimation
 
-- Continuous Point to Discrete Pixel Mapping
+- **Continuous Point to Discrete Pixel Mapping**  
+  Trajectory points, represented as floating-point coordinates in a two-dimensional continuous space, are mapped to integer pixel coordinates for visualization. Scaling factors, derived from the trajectory's extents (minimum and maximum values) and the image dimensions, ensure that the continuous coordinates fit within the pixel grid while preserving spatial relationships.
 
-  Trajectory points, represented as floating-point coordinates in a two-dimensional continuous space, are mapped to integer pixel coordinates for visualization. Scaling factors, derived from the trajectory's extents (minimum and maximum) and the image dimensions, ensure that the continuous coordinates fit within the pixel grid while preserving spatial relationships.
-
-- Integer Conversion
-
+- **Integer Conversion**  
   Floating-point coordinates are converted to integer pixel locations. This step introduces quantization: closely spaced trajectory points in continuous space may map to the same pixel, resulting in multiple "hits" per pixel. This discretization aggregates local density but may reduce fine details due to grouping within the pixel grid.
 
-- Density Representation
-  
+- **Density Representation**  
   An image array, initialized with zeros, serves as a blank canvas. Each trajectory point, after being mapped to a pixel, increments the corresponding array index. Higher hit counts in the array indicate greater density, approximating local concentrations of points. The total sum of pixel hit counts matches the number of trajectory iterations, preserving the dataset's size.
 
-- Density Visualization
-
+- **Density Visualization**  
   The Matplotlib "hot" colormap is applied to represent pixel hit counts as colors. The colormap normalizes these counts, where darker colors correspond to lower densities and lighter colors to higher densities, creating a gradient that highlights areas of activity.
 
-  Image resolution influences the gradient's intensity and detail. Lower resolutions lead to higher densities per pixel, enhancing contrast but reducing detail. Higher resolutions distribute trajectory points across more pixels, increasing detail but potentially lowering contrast. While smoothing techniques like `scipy.ndimage.gaussian_filter` can enhance visual contrast, they alter raw hit counts and are not included here to preserve data integrity.
+  - **Image resolution influences the gradient's intensity and detail:**  
+    - Lower resolutions lead to higher densities per pixel, enhancing contrast but reducing detail.  
+    - Higher resolutions distribute trajectory points across more pixels, increasing detail but potentially lowering contrast.  
 
-#### Pixel-Based vs. Histogram Density Estimation
+  While smoothing techniques like `scipy.ndimage.gaussian_filter` can enhance visual contrast, they alter raw hit counts and are not included here to preserve data integrity.
 
-1. Pixel-Based Density Estimation: Continuous trajectory points are mapped to discrete pixel coordinates. The density estimation and visualization occur simultaneously as a direct result of quantization and discretization. This method excels at visually highlighting areas of concentration, producing detailed patterns linked to the trajectory's geometry.
+---
 
-2. Histogram Density Estimation: Continuous space is divided into bins, and point counts per bin are normalized to compute relative densities. This approach separates density estimation from visualization, providing a more quantitative representation of point distributions.
+### Pixel-Based vs. Histogram Density Estimation
 
-#### Strengths and Applications
+1. **Pixel-Based Density Estimation**:  
+   Continuous trajectory points are mapped to discrete pixel coordinates. The density estimation and visualization occur simultaneously as a direct result of quantization and discretization. This method excels at visually highlighting areas of concentration, producing detailed patterns linked to the trajectory's geometry.
+
+2. **Histogram Density Estimation**:  
+   Continuous space is divided into bins, and point counts per bin are normalized to compute relative densities. This approach separates density estimation from visualization, providing a more quantitative representation of point distributions.
+
+---
+
+### Strengths and Applications
 
 The results of these methods are compared to illustrate their unique strengths:
 
-1. Pixel-Based Approximation: Direct mapping of points to pixels creates a visual density map with localized hotspots.
-Image resolution directly impacts the visual density and detail, with coarser grids enhancing contrast and finer grids emphasizing structural intricacies.
+1. **Pixel-Based Approximation**:  
+   Direct mapping of points to pixels creates a visual density map with localized hotspots.  
+   - Image resolution directly impacts the visual density and detail:  
+     - Coarser grids enhance contrast but reduce detail.  
+     - Finer grids emphasize structural intricacies.  
 
-1. Histogram Approximation: NumPy's `np.histogram2d(..., density=True)` function divides the space into bins and normalizes densities across the entire trajectory. Bins represent absolute densities in continuous space, enabling more quantitative analysis.
-Bin size affects density precision: smaller bins capture finer detail, while larger bins average densities over broader regions.
+2. **Histogram Approximation**:  
+   NumPy's `np.histogram2d(..., density=True)` function divides the space into bins and normalizes densities across the entire trajectory.  
+   - Bins represent absolute densities in continuous space, enabling more quantitative analysis.  
+   - Bin size affects density precision:  
+     - Smaller bins capture finer detail.  
+     - Larger bins average densities over broader regions.
 
-#### Conclusion and Insights
+---
+
+### Conclusion and Insights
 
 Both methods effectively highlight areas of point concentration, but their applications and outcomes differ:
 
-- Key Insight:
-Despite variations in density gradients and visual contrast due to resolution or bin size, the attractor’s intrinsic geometric structure remains unchanged. This invariance reflects the dynamical system's behavior, independent of the chosen visualization technique.
+- **Key Insight:**  
+  Despite variations in density gradients and visual contrast due to resolution or bin size, the attractor’s intrinsic geometric structure remains unchanged. This invariance reflects the dynamical system's behavior, independent of the chosen visualization technique.
 
-- Practical Considerations:
-The pixel-based approach is ideal for visual exploration, combining density estimation and visualization efficiently to produce intuitive, detailed patterns.
+- **Practical Considerations:**  
+  - The **pixel-based approach** is ideal for visual exploration, combining density estimation and visualization efficiently to produce intuitive, detailed patterns.  
+  - The **histogram approach** excels in statistical and numerical analyses, offering a more precise representation of density distributions in continuous space.
 
-- The histogram approach excels in statistical and numerical analyses, offering a more precise representation of density distributions in continuous space.
-
-- Additional Insights:
-The pixel-based method’s efficiency stems from its integration of density estimation and visualization into a single step. However, its dependence on resolution may limit flexibility for certain analytical purposes.
-Histogram density estimation is more versatile, with bin sizes adjustable independently of visualization parameters, making it suitable for broader quantitative applications.
+- **Additional Insights:**  
+  - The pixel-based method’s efficiency stems from its integration of density estimation and visualization into a single step. However, its dependence on resolution may limit flexibility for certain analytical purposes.  
+  - Histogram density estimation is more versatile, with bin sizes adjustable independently of visualization parameters, making it suitable for broader quantitative applications.
 
 **1. Pixel Based Approximation**
 ![Example Attractor Image](./examples/Figure_ex_6.png)

@@ -165,7 +165,7 @@ Experimenting with different values of these parameters will yield diverse and i
 
 ### Output
 
-The programs generate a visual representation of the attractor trajectory as a density map, where color intensity reflects the frequency of points visited (hit counts). Lighter areas indicate regions of higher density, highlighting the attractor's intricate structure. This density map also supports a 3D representation by mapping density values along the Z-axis
+The programs generate a visual representation of the attractor trajectory as a density map, where color intensity reflects the frequency of points visited (hit counts). Lighter areas indicate regions of higher density, highlighting the attractor's intricate structure. This density map also supports a 3D representation by mapping normalized density values along the Z-axis
 
 **Basic Version 2D**
 ![Example Attractor Image](./examples/Figure_ex_1.png)
@@ -184,7 +184,7 @@ The programs generate a visual representation of the attractor trajectory as a d
 
 - Basic: Calculates and displays the Hopalong attractor as a 2D density map with an integrated color bar.
   
-- Basic 2D/3D: Adds the ability to visualize the attractor in 3D by displaying normalized density along the Z-axis. Users can select the visualization mode at runtime.
+- Basic 2D/3D: Adds the ability to visualize the attractor in 3D by mapping normalized density values along the Z-axis. Users can select the visualization mode at runtime.
   
 - Extended: Incorporates all features of the Basic version (except the color bar) and includes additional statistics as well as a visualization of the pixel hit count distribution.
   
@@ -481,7 +481,7 @@ Overall, the two-pass approach strikes the best balance between speed, efficienc
 
 ## Recent Code Changes
 
-OPTIONAL: Using a 3D plot to display normalized pixel density on the Z-axis.
+OPTIONAL: Using a 3D plot by mapping normalized density values along the Z-axis.
 
     """
     def render_trajectory_image(image, extents, params, color_map):
@@ -511,7 +511,7 @@ OPTIONAL: Using a 3D plot to display normalized pixel density on the Z-axis.
 
 ## Enjoy the Exploration
 
-- Explore the attractor in three dimensions by displaying density along the Z-axis.  
+- Explore the attractor in three dimensions by mapping normalized density values along the Z-axis.  
 You can try `ax.contourf3D` (Filled Contours) or `ax.contour3D` (Unfilled Contours).
 
 - Experiment with different image resolutions, color maps, or ways of populating the image array beyond using the hit count to explore new visual perspectives.  

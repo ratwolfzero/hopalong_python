@@ -15,7 +15,7 @@
   - [Features, Functionality, and Special Scenarios](#features-functionality-and-special-scenarios)
     - [Program Variants](#program-variants)
     - [Pixel-Based Density Estimation](#pixel-based-density-estimation)
-      - [Pixel-Based vs. Histogram Density Estimation](#pixel-based-vs-histogram-density-estimation)
+      - [Comparison of Pixel-Based vs. Histogram Density Estimation](#comparison-of-pixel-based-vs-histogram-density-estimation)
       - [Conclusion](#conclusion)
     - [Application of Copysign (Math Module) as a Signum Function](#application-of-copysign-math-module-as-a-signum-function)
     - [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)
@@ -209,7 +209,7 @@ Examples of outputs can be found in the "Usage" section above.
   An image array, initialized with zeros, serves as a blank canvas. Each trajectory point, after being mapped to a pixel, increments the corresponding array index. Higher hit counts in the array indicate greater density, approximating local concentrations of points. The total sum of pixel hit counts matches the number of trajectory iterations, preserving the dataset's size.
 
 - **Density Visualization**  
-  The Matplotlib "hot" colormap is applied to represent pixel hit counts as colors. The colormap normalizes these counts, where darker colors correspond to lower densities and lighter colors to higher densities, creating a gradient that highlights areas of activity.
+  The Matplotlib "hot" colormap is applied to represent pixel hit counts as colors. The colormap normalizes these counts to fit within its color space, where darker colors correspond to lower densities and lighter colors to higher densities, creating a gradient that highlights areas of activity.
 
   - **Image resolution influences the gradient's intensity and detail:**  
     - Lower resolutions lead to higher densities per pixel, enhancing contrast but reducing detail.  
@@ -217,7 +217,7 @@ Examples of outputs can be found in the "Usage" section above.
 
   While smoothing techniques like `scipy.ndimage.gaussian_filter` can enhance visual contrast, they alter raw hit counts and are not included here to preserve data integrity.
 
-#### Pixel-Based vs. Histogram Density Estimation
+#### Comparison of Pixel-Based vs. Histogram Density Estimation
 
 1. **Pixel-Based Density Estimation**:  
    Continuous trajectory points are mapped to discrete pixel coordinates. The density estimation and the creation of a density matrix (pixel grid) occur simultaneously as a direct result of quantization and discretization.
@@ -236,6 +236,7 @@ Visualization of density matrices can be done seperately for both methods in a f
 
 #### Conclusion
 
+The pixel-based density estimation method is an effective alternative to Histogram-based density estimation.
 Both methods effectively highlight areas of point concentration. This is illustrated in the following pictures.
 Each approach offers distinct advantages and considerations:
 

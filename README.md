@@ -86,7 +86,7 @@ Two-pass algorithm with separate calculation of:
 
 1. The spatial extent of the attractor trajectory (first pass).
 
-2. Direct mapping of the sequentially generated floating-point values in continuous space to a discrete image grid, while tracking the number of pixel hits to generate the density map (second pass).
+2. Direct mapping of the sequentially generated floating-point values in continuous space to a discrete pixel grid, while tracking the number of pixel hits to generate the density map (second pass).
 
 Just-in-time (JIT) compilation is supported by a low-complexity code structure.
 
@@ -221,7 +221,7 @@ Examples of outputs can be found in the "Usage" section above.
 ### Pixel-Based vs. Histogram Density Estimation
 
 1. **Pixel-Based Density Estimation**:  
-   Continuous trajectory points are mapped to discrete pixel coordinates. The density estimation and the creation of a density matrix (image grid) occur simultaneously as a direct result of quantization and discretization.
+   Continuous trajectory points are mapped to discrete pixel coordinates. The density estimation and the creation of a density matrix (pixel grid) occur simultaneously as a direct result of quantization and discretization.
    - Image resolution directly impacts the visual density and detail:  
      - Coarser grids enhance contrast but reduce detail.  
      - Finer grids emphasize structural intricacies.
@@ -317,7 +317,7 @@ The pixel density simplifies to n / 3, where *n* is the number of iterations.
 Example:  
 
 - Parameters: a=5, b=5, c=0
-- Iterations: 1_200_000
+- Iterations: 1,200,000
 - Observations: The 3-cycle structure dominates, with "high-density" pixels clustering along the attractor's extent boundaries.
 
 ![Example Attractor Image](./examples/Figure_ex_3.png)

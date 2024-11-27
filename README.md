@@ -228,7 +228,7 @@ Examples of outputs can be found in the "Usage" section above.
 
 2. **Histogram Density Estimation**:  
 
-   NumPy's `np.histogram2d(..., density=True)` function divides the space into bins, point counts per bin are normalized to compute relative densities. Bins represent absolute densities in continuous space, enabling more quantitative analysis.
+   NumPy's `np.histogram2d(..., density=True)` function divides the space into bins, point counts per bin are normalized to compute relative densities, enabling more quantitative analysis.
    - Bin size affects density precision:  
      - Smaller bins capture finer detail.  
      - Larger bins average densities over broader regions.

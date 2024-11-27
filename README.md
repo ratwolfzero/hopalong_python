@@ -16,7 +16,6 @@
     - [Program Variants](#program-variants)
     - [Pixel-Based Density Estimation](#pixel-based-density-estimation)
     - [Pixel-Based vs. Histogram Density Estimation](#pixel-based-vs-histogram-density-estimation)
-    - [Strengths and Applications](#strengths-and-applications)
     - [Conclusion and Insights](#conclusion-and-insights)
     - [Application of Copysign (Math Module) as a Signum Function](#application-of-copysign-math-module-as-a-signum-function)
     - [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)
@@ -222,26 +221,14 @@ Examples of outputs can be found in the "Usage" section above.
 ### Pixel-Based vs. Histogram Density Estimation
 
 1. **Pixel-Based Density Estimation**:  
-   Continuous trajectory points are mapped to discrete pixel coordinates. The density estimation and the creation of a density matrix occur simultaneously as a direct result of quantization and discretization. Visualization occurs as a separate and flexible step. This method excels at visually highlighting areas of concentration, producing detailed patterns linked to the trajectory's geometry.
-
-2. **Histogram Density Estimation**:  
-   Continuous space is divided into bins, and point counts per bin are normalized to compute relative densities. This approach is providing a more quantitative representation of point distributions. Visualization occurs as a separate and flexible step
-
----
-
-### Strengths and Applications
-
-The results of these methods are compared to illustrate their unique strengths:
-
-1. **Pixel-Based Approximation**:  
-   Direct mapping of points to pixels creates a visual density map with localized hotspots.  
+   Continuous trajectory points are mapped to discrete pixel coordinates. The density estimation and the creation of a density matrix occur simultaneously as a direct result of quantization and discretization. Visualization occurs as a separate step.
    - Image resolution directly impacts the visual density and detail:  
      - Coarser grids enhance contrast but reduce detail.  
-     - Finer grids emphasize structural intricacies.  
+     - Finer grids emphasize structural intricacies.
 
-2. **Histogram Approximation**:  
-   NumPy's `np.histogram2d(..., density=True)` function divides the space into bins and normalizes densities across the entire trajectory.  
-   - Bins represent absolute densities in continuous space, enabling more quantitative analysis.  
+2. **Histogram Density Estimation**:  
+
+   NumPy's `np.histogram2d(..., density=True)` function divides the space into bins, point counts per bin are normalized to compute densities across the entire trajectory. Bins represent absolute densities in continuous space, enabling more quantitative analysis. Visualization occurs as a separate step.
    - Bin size affects density precision:  
      - Smaller bins capture finer detail.  
      - Larger bins average densities over broader regions.
@@ -250,7 +237,7 @@ The results of these methods are compared to illustrate their unique strengths:
 
 ### Conclusion and Insights
 
-Both methods effectively highlight areas of point concentration, but their applications and outcomes differ:
+Both methods (1 and 2 )effectively highlight areas of point concentration, but their applications and outcomes differ:
 
 - **Key Insight:**  
   Despite variations in density gradients and visual contrast due to resolution or bin size, the attractor’s intrinsic geometric structure remains unchanged. This invariance reflects the dynamical system's behavior, independent of the chosen visualization technique.

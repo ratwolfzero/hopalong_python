@@ -59,7 +59,7 @@ def plot_trajectory_with_density(trajectory):
     y = trajectory[:, 1]
     
     # Define the binning parameters
-    bins = 1000
+    bins = 500
     density, xedges, yedges = np.histogram2d(x, y, bins=bins, density=True)
     
     # Create a figure

@@ -169,10 +169,13 @@ The programs generate a visual representation of the attractor trajectory as a d
 
 **Basic Version 2D**
 ![Example Attractor Image](./examples/Figure_ex_1.png)
+
 **Basic Version 3D (`contourf3D`)**
 ![Example Attractor Image](./examples/Figure_ex_1_1.png)
+
 **Basic Version 3D (`contour3D`)**
 ![Example Attractor Image](./examples/Figure_ex_1_2.png)
+
 **Extended Version**
 ![Example Attractor Image](./examples/Figure_ex_2.png)
 

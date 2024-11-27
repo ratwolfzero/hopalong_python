@@ -388,7 +388,7 @@ Continuous trajectory points are mapped to discrete pixel coordinates. The densi
 </li>
 <li>
 <p><strong>Histogram Density Estimation</strong>:</p>
-<p>NumPy's <code>np.histogram2d(..., density=True)</code> is dividing the continuous space into equal-sized bins and counts the points per bin. The density within each bin is calculated and the results are normalized to represent relative densities across the entire space, enabling more quantitative analysis.</p>
+<p>NumPy's <code>np.histogram2d(..., density=True)</code> discretizes the continuous space into equal-sized bins and counts the points per bin. The density within each bin is calculated and the results are normalized to represent relative densities across the entire space. This process generates a density matrix, suitable for quantitative analysis.</p>
 <ul>
 <li>Bin size affects density precision:
 <ul>
@@ -399,7 +399,7 @@ Continuous trajectory points are mapped to discrete pixel coordinates. The densi
 </ul>
 </li>
 </ol>
-<p>Visualization of density matrix can be done seperately for both methods in a flexible manner.</p>
+<p>Visualization of density matrices can be done seperately for both methods in a flexible manner.</p>
 <h4 id="conclusion">Conclusion</h4>
 <p>Both methods effectively highlight areas of point concentration. This is illustrated in the following pictures.
 Each approach offers distinct advantages and considerations:</p>

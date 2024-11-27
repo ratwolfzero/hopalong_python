@@ -221,7 +221,7 @@ Examples of outputs can be found in the "Usage" section above.
 ### Pixel-Based vs. Histogram Density Estimation
 
 1. **Pixel-Based Density Estimation**:  
-   Continuous trajectory points are mapped to discrete pixel coordinates. The density estimation and the creation of a density matrix occur simultaneously as a direct result of quantization and discretization.
+   Continuous trajectory points are mapped to discrete pixel coordinates. The density estimation and the creation of a density matrix (image grid) occur simultaneously as a direct result of quantization and discretization.
    - Image resolution directly impacts the visual density and detail:  
      - Coarser grids enhance contrast but reduce detail.  
      - Finer grids emphasize structural intricacies.

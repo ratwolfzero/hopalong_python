@@ -155,6 +155,7 @@
 <li><a href="#usage">Usage</a>
 <ul>
 <li><a href="#input">Input</a></li>
+<li><a href="#output">Output</a></li>
 </ul>
 </li>
 <li><a href="#features-functionality-and-special-scenarios">Features, Functionality, and Special Scenarios</a>
@@ -316,7 +317,8 @@ Otherwise, please comment out the relevant code snippets in the import section a
 <li>n = 2e8</li>
 </ul>
 <p>Experimenting with different values of these parameters will yield diverse and intricate visual patterns.</p>
-<p>#The programs generate a visual representation of the attractor trajectory as a density map, where color intensity reflects the frequency of points visited (hit counts). Lighter areas indicate regions of higher density, highlighting the attractor's intricate structure. This density map also supports a 3D representation by mapping density values along the Z-axis</p>
+<h3 id="output">Output</h3>
+<p>The programs generate a visual representation of the attractor trajectory as a density map, where color intensity reflects the frequency of points visited (hit counts). Lighter areas indicate regions of higher density, highlighting the attractor's intricate structure. This density map also supports a 3D representation by mapping normalized density values along the Z-axis</p>
 <p><strong>Basic Version 2D</strong>
 <img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/Figure_ex_1.png" alt="Example Attractor Image"></p>
 <p><strong>Basic Version 3D</strong>
@@ -331,7 +333,7 @@ Otherwise, please comment out the relevant code snippets in the import section a
 <p>Basic: Calculates and displays the Hopalong attractor as a 2D density map with an integrated color bar.</p>
 </li>
 <li>
-<p>Basic 2D/3D: Adds the ability to visualize the attractor in 3D by displaying normalized density along the Z-axis. Users can select the visualization mode at runtime.</p>
+<p>Basic 2D/3D: Adds the ability to visualize the attractor in 3D by mapping normalized density values along the Z-axis. Users can select the visualization mode at runtime.</p>
 </li>
 <li>
 <p>Extended: Incorporates all features of the Basic version (except the color bar) and includes additional statistics as well as a visualization of the pixel hit count distribution.</p>
@@ -618,7 +620,7 @@ Data Loss and Inaccuracy: As previously computed floating-point values are irrec
 Overall, the two-pass approach strikes the best balance between speed, efficiency and simplicity and is therefore ideal for attractor calculations with a high number of iterations. Although the trajectory points need to be computed in both passes, the pitfalls of alternative solutions are avoided.</p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h2 id="recent-code-changes">Recent Code Changes</h2>
-<p>OPTIONAL: Using a 3D plot to display normalized pixel density on the Z-axis.</p>
+<p>OPTIONAL: Using a 3D plot by mapping normalized density values along the Z-axis.</p>
 <pre><code>&quot;&quot;&quot;
 def render_trajectory_image(image, extents, params, color_map):
     # Render the trajectory image in 3D
@@ -648,7 +650,7 @@ def render_trajectory_image(image, extents, params, color_map):
 <h2 id="enjoy-the-exploration">Enjoy the Exploration</h2>
 <ul>
 <li>
-<p>Explore the attractor in three dimensions by displaying density along the Z-axis.<br>
+<p>Explore the attractor in three dimensions by mapping normalized density values along the Z-axis.<br>
 You can try <code>ax.contourf3D</code> (Filled Contours) or <code>ax.contour3D</code> (Unfilled Contours).</p>
 </li>
 <li>

@@ -163,7 +163,7 @@
 <li><a href="#program-variants">Program Variants</a></li>
 <li><a href="#pixel-based-density-estimation">Pixel-Based Density Estimation</a>
 <ul>
-<li><a href="#pixel-based-vs-histogram-density-estimation">Pixel-Based vs. Histogram Density Estimation</a></li>
+<li><a href="#comparison-of-pixel-based-vs-histogram-density-estimation">Comparison of Pixel-Based vs. Histogram Density Estimation</a></li>
 <li><a href="#conclusion">Conclusion</a></li>
 </ul>
 </li>
@@ -360,7 +360,7 @@ An image array, initialized with zeros, serves as a blank canvas. Each trajector
 </li>
 <li>
 <p><strong>Density Visualization</strong><br>
-The Matplotlib &quot;hot&quot; colormap is applied to represent pixel hit counts as colors. The colormap normalizes these counts, where darker colors correspond to lower densities and lighter colors to higher densities, creating a gradient that highlights areas of activity.</p>
+The Matplotlib &quot;hot&quot; colormap is applied to represent pixel hit counts as colors. The colormap normalizes these counts to fit within its color space, where darker colors correspond to lower densities and lighter colors to higher densities, creating a gradient that highlights areas of activity.</p>
 <ul>
 <li><strong>Image resolution influences the gradient's intensity and detail:</strong>
 <ul>
@@ -372,7 +372,7 @@ The Matplotlib &quot;hot&quot; colormap is applied to represent pixel hit counts
 <p>While smoothing techniques like <code>scipy.ndimage.gaussian_filter</code> can enhance visual contrast, they alter raw hit counts and are not included here to preserve data integrity.</p>
 </li>
 </ul>
-<h4 id="pixel-based-vs-histogram-density-estimation">Pixel-Based vs. Histogram Density Estimation</h4>
+<h4 id="comparison-of-pixel-based-vs-histogram-density-estimation">Comparison of Pixel-Based vs. Histogram Density Estimation</h4>
 <ol>
 <li>
 <p><strong>Pixel-Based Density Estimation</strong>:<br>
@@ -401,7 +401,8 @@ Continuous trajectory points are mapped to discrete pixel coordinates. The densi
 </ol>
 <p>Visualization of density matrices can be done seperately for both methods in a flexible manner.</p>
 <h4 id="conclusion">Conclusion</h4>
-<p>Both methods effectively highlight areas of point concentration. This is illustrated in the following pictures.
+<p>The pixel-based density estimation method is an effective alternative to Histogram-based density estimation.
+Both methods effectively highlight areas of point concentration. This is illustrated in the following pictures.
 Each approach offers distinct advantages and considerations:</p>
 <ul>
 <li>The <strong>pixel-based approach</strong> is ideal for visual exploration, efficiently creating intuitive, detailed patterns.</li>

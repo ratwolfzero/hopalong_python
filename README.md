@@ -89,7 +89,7 @@ Two-pass algorithm with separate calculation of:
 2. Direct mapping of the sequentially generated floating-point values in continuous space to a discrete pixel grid, while tracking the number of pixel hits to generate the density map (second pass).  
 See [Pixel-Based Density Estimation](#pixel-based-density-estimation)
 
-Just-in-time (JIT) compilation is supported by a low-complexity code structure.
+Just-in-time (JIT) compilation is applied and supported by a low-complexity code structure.
 
 For further hints regarding two-pass approach, see [Two-Pass Approach](#two-pass-approach)
 

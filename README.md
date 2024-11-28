@@ -221,8 +221,6 @@ Examples of outputs can be found in the "Usage" section above.
 
     - Higher resolutions distribute trajectory points across more pixels, capturing finer variations in the data and increasing detail. However, this reduces visual density contrast because hit counts are spread more evenly, diminishing the apparent differences between regions of perceived high and low density as represented by variations in colormap intensity.
 
-  While smoothing techniques like `scipy.ndimage.gaussian_filter` can enhance visual density contrast, they alter raw hit counts and are not included here to preserve data integrity.
-
 #### Comparison of Pixel-Based vs. Histogram-Based Density Estimation
 
 1. **Pixel-Based Density Estimation**:

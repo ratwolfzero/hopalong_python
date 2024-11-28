@@ -186,6 +186,7 @@
 <li><a href="#one-pass-approach-with-full-trajectory-caching">One-Pass Approach with Full Trajectory Caching*</a></li>
 <li><a href="#one-pass-approach-with-limited-memory-usage-chunked-or-no-caching">One-Pass Approach with Limited Memory Usage (Chunked or No Caching)*</a></li>
 <li><a href="#potentially-other-more-sophisticated-solutions">Potentially Other, More Sophisticated Solutions</a></li>
+<li><a href="#summary">Summary</a></li>
 </ul>
 </li>
 <li><a href="#recent-code-changes">Recent Code Changes</a></li>
@@ -618,8 +619,8 @@ Data Loss and Inaccuracy: As previously computed floating-point values are irrec
 <p>*This also applies analogously to any versions that only process floating point values.</p>
 <h3 id="potentially-other-more-sophisticated-solutions">Potentially Other, More Sophisticated Solutions</h3>
 <p>No other one-pass method solutions have been investigated or considered to date. More sophisticated solutions would also contradict the minimum complexity design approach unless a significant performance improvement in calculations with a high number of iterations makes them worth considering.</p>
-<p><strong>Conclusion</strong>
-Overall, the two-pass approach strikes the best balance between speed, efficiency and simplicity and is therefore ideal for attractor calculations with a high number of iterations. Although the trajectory points need to be computed in both passes, the pitfalls of alternative solutions are avoided.</p>
+<h3 id="summary">Summary</h3>
+<p>Overall, the two-pass approach strikes the best balance between speed, efficiency and simplicity and is therefore ideal for attractor calculations with a high number of iterations. Although the trajectory points need to be computed in both passes, the pitfalls of alternative solutions are avoided.</p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h2 id="recent-code-changes">Recent Code Changes</h2>
 <p>OPTIONAL: Using a 3D plot by mapping normalized density values along the Z-axis.</p>

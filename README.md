@@ -17,7 +17,7 @@
     - [Pixel-Based Density Estimation](#pixel-based-density-estimation)
       - [Comparison of Pixel-Based vs. Histogram Density Estimation](#comparison-of-pixel-based-vs-histogram-density-estimation)
       - [Conclusion](#conclusion)
-        - [Invariance](#invariance)
+        - [Method Invariance](#method-invariance)
     - [Application of Copysign (Math Module) as a Signum Function](#application-of-copysign-math-module-as-a-signum-function)
     - [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)
     - [Optional Features](#optional-features)
@@ -248,10 +248,10 @@ Each approach offers distinct advantages and considerations:
 
 - The **pixel-based approach** is ideal for visual exploration, efficiently creating intuitive, detailed patterns.  
 - The **histogram approach** excels in statistical and numerical analyses, offering a more precise representation of density distributions in continuous space.
-  
-##### Invariance
-  
-Despite variations in the attractor density due to image resolution or bin size, the geometric structure of the attractor remains unchanged, as the underlying mathematical functions are not affected by density estimation or visualization methods.
+
+##### Method Invariance
+
+Despite variations in density estimation techniques (e.g., pixel-based, histograms, or KDE) and visualization settings (such as resolution or bin size), the underlying geometric structure of the attractor remains unchanged. These methods influence how density is represented but do not alter the attractor's intrinsic shape or dynamics.
 
 **1. Pixel Based Approximation**
 ![Example Attractor Image](./examples/Figure_ex_6.png)

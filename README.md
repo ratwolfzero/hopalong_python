@@ -218,7 +218,7 @@ Examples of outputs can be found in the "Usage" section above.
 
   - **Image resolution directly impacts the visual density and detail:**
   
-    - Lower resolutions result in higher visual density contrast due to the grouping of multiple trajectory points into fewer pixels. This concentrates hit counts and emphasizes differences between regions of perceived high and low density, as represented by variations in colormap intensity and enhances visual clarity but reduces detail due to the coarser grid.
+    - Lower resolutions result in higher visual density contrast due to the grouping of multiple trajectory points into fewer pixels. This concentrates hit counts and emphasizes differences between regions of perceived high and low density, as represented by variations in colormap intensity. Visual clarity is enhanced but with reduced detail due to the coarser grid.
 
     - Higher resolutions distribute trajectory points across more pixels, capturing finer variations in the data and increasing detail. However, this reduces visual density contrast because hit counts are spread more evenly, diminishing the apparent differences between regions of perceived high and low density as represented by variations in colormap intensity.
 

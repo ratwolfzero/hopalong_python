@@ -264,10 +264,10 @@ Each approach offers distinct advantages and considerations:
 
 Despite variations in density estimation techniques (pixel-based or histograms) and visualization settings (such as resolution or bin size), the underlying geometric structure of the attractor remains unchanged. These methods influence how density is represented but do not alter the attractor's intrinsic shape or dynamics, which are determined by the underlying mathematical functions.
 
-**1. Pixel Based Approximation, Image Size=1000x1000, Same Attractor Parameters, 2e8 Iterations**
+**1. Pixel Based Approximation, Image Size=1000x1000,
 ![Example Attractor Image](./examples/Figure_ex_6.png)
 
-**2. Histogram-Based Approximation, Number of Bins = 1000, Same Attractor Parameters, 2e8 Iterations**
+**2. Histogram-Based Approximation, Number of Bins = 1000, Same Attractor Parameters and Iterations as (1)**
 ![Example Attractor Image](./examples/true_PDF_histogram.png)
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)

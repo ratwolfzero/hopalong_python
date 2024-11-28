@@ -333,7 +333,7 @@ The 3-cycle structure dominates, with "high-density" pixels clustering along the
 
 **Visualization Recommendation:**
 
-For edge cases, reduce the image resolution (e.g., 100×100) to better highlight the boundaries of the attractor.
+For edge cases, reduce the image resolution (e.g., 100×100) to better highlight the boundaries of the attractor.  
 For example:
 
     def main(image_size=(100, 100), color_map='hot'):

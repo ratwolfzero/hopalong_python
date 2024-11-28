@@ -377,7 +377,6 @@ The Matplotlib &quot;hot&quot; colormap is applied to represent pixel hit counts
 </ul>
 </li>
 </ul>
-<p>While smoothing techniques like <code>scipy.ndimage.gaussian_filter</code> can enhance visual density contrast, they alter raw hit counts and are not included here to preserve data integrity.</p>
 </li>
 </ul>
 <h4 id="comparison-of-pixel-based-vs-histogram-based-density-estimation">Comparison of Pixel-Based vs. Histogram-Based Density Estimation</h4>
@@ -426,14 +425,13 @@ Each approach offers different advantages and considerations:</p>
 <p>Remarks:</p>
 <ul>
 <li>
-<p>The Density matrix of pixel-based method contains raw hit counts and is normalized during plotting by the <em>Matplotlib Colormap</em> to fit within its color space</p>
+<p>The density matrix of the pixel-based method contains raw hit counts and is normalized internally by the <em>Matplotlib Colormap</em> during plotting to fit within its color space.</p>
 </li>
 <li>
-<p>The density matrix of the histogram-based method contains normalized probability densities<br>
-(not between 0 and 1) and is further normalized by the <em>Matplotlib Colormap</em>.</p>
+<p>The density matrix of the histogram-based method contains normalized probability densities (not constrained to [0, 1]) and is further normalized internally by the <em>Matplotlib Colormap</em> as previously described</p>
 </li>
 <li>
-<p>Explicitly normalizing both matrices to the [0, 1] range before plotting reveals no visual differences, suggesting the need for further statistical evaluation.</p>
+<p>Explicitly normalizing both matrices to the [0, 1] range before plotting reveals no visual differences.</p>
 </li>
 <li>
 <p>Method Invariance: Despite variations in density estimation techniques (pixel-based or histograms) and visualization settings (such as resolution or bin size), the underlying geometric structure of the attractor remains unchanged. These methods influence how density is represented but do not alter the attractor's intrinsic shape or dynamics, which are determined by the underlying mathematical functions.</p>

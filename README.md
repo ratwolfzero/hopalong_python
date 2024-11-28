@@ -323,7 +323,9 @@ The pixel density simplifies to n / 3, where *n* is the number of iterations.
 - Parameters: a=5, b=5, c=0
 - Iterations: 1,200,000
 
-Observations: The 3-cycle structure dominates, with "high-density" pixels clustering along the attractor's extent boundaries.
+**Observations:**  
+
+The 3-cycle structure dominates, with "high-density" pixels clustering along the attractor's extent boundaries.
 
 ![Example Attractor Image](./examples/Figure_ex_3.png)
 ![Example Attractor Image](./examples/Figure_ex_4.png)

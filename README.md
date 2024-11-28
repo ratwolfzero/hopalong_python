@@ -218,10 +218,10 @@ Examples of outputs can be found in the "Usage" section above.
 
   - **Image resolution directly impacts the visual density and detail:**
   
-    - Lower resolutions result in higher visual density contrast due to the grouping of multiple trajectory points into fewer pixels. This concentrates hit counts and emphasizes differences between regions of perceived high and low density, as visualized by the colormap.
-    This enhances visual clarity but reduces detail due to the coarser grid.
+    - Lower resolutions result in higher visual density contrast due to the grouping of multiple trajectory points into fewer pixels. This concentrates hit counts and emphasizes differences between regions of perceived high and low density, as represented by variations in colormap intensity and enhances visual clarity but reduces detail due to the coarser grid.
 
-    - Higher resolutions distribute trajectory points across more pixels, capturing finer variations in the data and increasing detail. However, this reduces visual density contrast because hit counts are spread more evenly, diminishing the apparent differences between regions of perceived high and low density in the colormap.
+    - Higher resolutions distribute trajectory points across more pixels, capturing finer variations in the data and increasing detail. However, this reduces visual density contrast because hit counts are spread more evenly, diminishing the apparent differences between regions of perceived high and low density as represented by variations in colormap intensity.
+
 
   While smoothing techniques like `scipy.ndimage.gaussian_filter` can enhance visual density contrast, they alter raw hit counts and are not included here to preserve data integrity.
 
@@ -243,7 +243,7 @@ Examples of outputs can be found in the "Usage" section above.
 
      - Larger bins (lower number of bins) average densities over broader regions, resulting in a smoother, less detailed density estimate. However, this increases density contrast by concentrating normalized density values in fewer, larger bins, making differences between regions of high and low density more pronounced
 
-Visualization of density matrices can be done seperately for both methods in a flexible manner.
+Visualization of density matrices can be done separately for both methods.
 
 #### Conclusion
 

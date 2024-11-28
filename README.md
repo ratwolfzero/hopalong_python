@@ -252,8 +252,8 @@ Both methods can effectively capture and highlight areas with point concentratio
 
 Remark:
 
-- The Density matrix of pixel-based method contains raw hit counts and is normalized during plotting by the Matplotlib colormap to fit within its color space
-- The density matrix of the histogram-based method contains normalized probability densities (not between 0 and 1) and is further normalized by the Matplotlib colormap. Explicitly normalizing both matrices to the [0, 1] range before plotting reveals no visual differences, suggesting the need for further statistical evaluation.
+- The Density matrix of pixel-based method contains raw hit counts and is normalized during plotting by the *Matplotlib Colormap* to fit within its color space
+- The density matrix of the histogram-based method contains normalized probability densities (not between 0 and 1) and is further normalized by the *Matplotlib Colormap*. Explicitly normalizing both matrices to the [0, 1] range before plotting reveals no visual differences, suggesting the need for further statistical evaluation.
 
 Each approach offers distinct advantages and considerations:
 

@@ -251,7 +251,7 @@ Each approach offers distinct advantages and considerations:
 
 ##### Method Invariance
 
-Despite variations in density estimation techniques (pixel-based or histograms) and visualization settings (such as resolution or bin size), the underlying geometric structure of the attractor remains unchanged. These methods influence how density is represented but do not alter the attractor's intrinsic shape or dynamics.
+Despite variations in density estimation techniques (pixel-based or histograms) and visualization settings (such as resolution or bin size), the underlying geometric structure of the attractor remains unchanged. These methods influence how density is represented but do not alter the attractor's intrinsic shape or dynamics, which are determined by the underlying mathematical functions.
 
 **1. Pixel Based Approximation**
 ![Example Attractor Image](./examples/Figure_ex_6.png)

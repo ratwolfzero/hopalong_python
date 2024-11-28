@@ -15,7 +15,7 @@
   - [Features, Functionality, and Special Scenarios](#features-functionality-and-special-scenarios)
     - [Program Variants](#program-variants)
     - [Pixel-Based Density Estimation](#pixel-based-density-estimation)
-      - [Comparison of Pixel-Based vs. Histogram Density Estimation](#comparison-of-pixel-based-vs-histogram-density-estimation)
+      - [Comparison of Pixel-Based vs. Histogram-Based Density Estimation](#comparison-of-pixel-based-vs-histogram-based-density-estimation)
       - [Conclusion](#conclusion)
         - [Method Invariance](#method-invariance)
     - [Application of Copysign (Math Module) as a Signum Function](#application-of-copysign-math-module-as-a-signum-function)
@@ -225,7 +225,7 @@ Examples of outputs can be found in the "Usage" section above.
 
   While smoothing techniques like `scipy.ndimage.gaussian_filter` can enhance visual density contrast, they alter raw hit counts and are not included here to preserve data integrity.
 
-#### Comparison of Pixel-Based vs. Histogram Density Estimation
+#### Comparison of Pixel-Based vs. Histogram-Based Density Estimation
 
 1. **Pixel-Based Density Estimation**:
   
@@ -235,7 +235,7 @@ Examples of outputs can be found in the "Usage" section above.
   
      - Higher resolutions (finer grids) increase detail but reduce visual density contrast.
 
-2. **Histogram Density Estimation**:  
+2. **Histogram-Based Density Estimation**:  
 
    NumPy's `np.histogram2d(..., density=True)` discretizes continuous space into a grid of equal-sized bins. It counts the number of points falling into each bin and calculates the density by normalizing these counts relative to the total number of points and bin area. This normalization ensures that the density values represent relative point distributions across the entire space, producing a density matrix suitable for quantitative analysis.
    - Bin size affects density precision:  
@@ -262,7 +262,7 @@ Despite variations in density estimation techniques (pixel-based or histograms) 
 **1. Pixel Based Approximation**
 ![Example Attractor Image](./examples/Figure_ex_6.png)
 
-**2. 2D Histogram Approximation**
+**2. Histogram-Based Approximation**
 ![Example Attractor Image](./examples/true_PDF_histogram.png)
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)

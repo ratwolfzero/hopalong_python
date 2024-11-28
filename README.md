@@ -256,7 +256,7 @@ Remarks:
 - The Density matrix of pixel-based method contains raw hit counts and is normalized during plotting by the *Matplotlib Colormap* to fit within its color space
 - The density matrix of the histogram-based method contains normalized probability densities  
 (not between 0 and 1) and is further normalized by the *Matplotlib Colormap*.
-- Explicitly normalizing both matrices to the [0, 1] range before plotting reveals no visual differences, suggesting the need for further statistical evaluation.
+- Explicitly normalizing both matrices to the [0, 1] range before plotting reveals no visual differences.
 
 - Method Invariance: Despite variations in density estimation techniques (pixel-based or histograms) and visualization settings (such as resolution or bin size), the underlying geometric structure of the attractor remains unchanged. These methods influence how density is represented but do not alter the attractor's intrinsic shape or dynamics, which are determined by the underlying mathematical functions.
 

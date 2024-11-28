@@ -249,8 +249,8 @@ Visualization of density matrices can be done separately for both methods.
 For the present application, pixel-based density estimation is a promising alternative to histogram-based density estimation.
 Each approach offers distinct advantages and considerations:
 
-- The **pixel-based approach** is ideal for visual exploration, supporting the implementation of fast algorithms and excelling in computations involving a large number of iterations
-- The **histogram-based approach** excels in statistical and numerical analyses, offering a more precise representation of density distributions in continuous space.
+- *Qualitative*: The **pixel-based approach** is ideal for visual exploration, supporting the implementation of fast algorithms and excelling in computations involving a large number of iterations
+- *Quantitative*: The **histogram-based approach** excels in statistical and numerical analyses, offering a more precise representation of density distributions in continuous space.
   
 Remarks:
 
@@ -259,7 +259,7 @@ Remarks:
 
 - Method Invariance: Despite variations in density estimation techniques (pixel-based or histograms) and visualization settings (such as resolution or bin size), the underlying geometric structure of the attractor remains unchanged. These methods influence how density is represented but do not alter the attractor's intrinsic shape or dynamics, which are determined by the underlying mathematical functions.
 
-Apart from that and finally  
+Finally:  
 Both methods can effectively capture and highlight areas with point concentrations. This is illustrated in the following images:
 
 **1. Pixel Based Approximation, Image Size=1000x1000**

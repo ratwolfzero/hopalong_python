@@ -228,14 +228,14 @@ Examples of outputs can be found in the "Usage" section above.
    Continuous trajectory points are mapped to discrete pixel coordinates. The density estimation and the creation of a density matrix (pixel grid) occur simultaneously as a direct result of quantization and discretization.
    - Image resolution directly impacts the visual density and detail:  
      - Coarser grids enhance contrast but reduce detail.  
-     - Finer grids emphasize structural intricacies.
+     - Finer grids increase detail and emphasize structural subtleties but reduce contrast.
 
 2. **Histogram Density Estimation**:  
 
    NumPy's `np.histogram2d(..., density=True)` discretizes continuous space into a grid of equal-sized bins. It counts the number of points falling into each bin and calculates the density by normalizing these counts relative to the total number of points and bin area. This normalization ensures that the density values represent relative point distributions across the entire space, producing a density matrix suitable for quantitative analysis.
    - Bin size affects density precision:  
-     - Smaller bins (higher number of bins) result in finer resolution of the density estimate, as each bin represents a smaller region of the space and captures more detailed variations in the data.  
-     - Larger bins (lower number of bins) average densities over broader regions, leading to a smoother, less detailed density estimate.
+     - Smaller bins (higher number of bins) result in finer resolution of the density estimate, as each bin represents a smaller region of the space and captures more detailed variations in the data. However, this can reduce contrast because the data is distributed over more bins, leading to smaller density values per bin.  
+     - Larger bins (lower number of bins) average densities over broader regions, leading to a smoother, less detailed density estimate, but increases contrast by concentrating the density in fewer, larger bins.
 
 Visualization of density matrices can be done seperately for both methods in a flexible manner.
 

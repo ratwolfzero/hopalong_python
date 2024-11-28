@@ -477,7 +477,7 @@ Data Loss and Inaccuracy: As previously computed floating-point values are irrec
 
 No other one-pass method solutions have been investigated or considered to date. More sophisticated solutions would also contradict the minimum complexity design approach unless a significant performance improvement in calculations with a high number of iterations makes them worth considering.
 
-**Conclusion**
+**Conclusion**  
 Overall, the two-pass approach strikes the best balance between speed, efficiency and simplicity and is therefore ideal for attractor calculations with a high number of iterations. Although the trajectory points need to be computed in both passes, the pitfalls of alternative solutions are avoided.
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)

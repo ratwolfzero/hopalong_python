@@ -234,8 +234,8 @@ Examples of outputs can be found in the "Usage" section above.
 
    NumPy's `np.histogram2d(..., density=True)` discretizes continuous space into a grid of equal-sized bins. It counts the number of points falling into each bin and calculates the density by normalizing these counts relative to the total number of points and bin area. This normalization ensures that the density values represent relative point distributions across the entire space, producing a density matrix suitable for quantitative analysis.
    - Bin size affects density precision:  
-     - Smaller bins capture finer detail.  
-     - Larger bins average densities over broader regions.
+     - Smaller bins (higher number of bins) result in finer resolution of the density estimate, as each bin represents a smaller region of the space and captures more detailed variations in the data.  
+     - Larger bins (lower number of bins) average densities over broader regions, leading to a smoother, less detailed density estimate.
 
 Visualization of density matrices can be done seperately for both methods in a flexible manner.
 
@@ -251,7 +251,7 @@ Each approach offers distinct advantages and considerations:
 
 ##### Method Invariance
 
-Despite variations in density estimation techniques (e.g., pixel-based, histograms, or KDE) and visualization settings (such as resolution or bin size), the underlying geometric structure of the attractor remains unchanged. These methods influence how density is represented but do not alter the attractor's intrinsic shape or dynamics.
+Despite variations in density estimation techniques (pixel-based or histograms) and visualization settings (such as resolution or bin size), the underlying geometric structure of the attractor remains unchanged. These methods influence how density is represented but do not alter the attractor's intrinsic shape or dynamics.
 
 **1. Pixel Based Approximation**
 ![Example Attractor Image](./examples/Figure_ex_6.png)

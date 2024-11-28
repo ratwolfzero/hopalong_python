@@ -219,6 +219,7 @@ Examples of outputs can be found in the "Usage" section above.
   - **Image resolution influences the gradient's intensity and detail:**
   
     - Lower resolutions lead to higher densities per pixel, which enhances contrast because multiple trajectory points are grouped into fewer pixels, creating more pronounced differences between high-density and low-density areas. However, this also reduces the level of detail, as finer variations within the data are lost due to the coarser grid.
+
     - Higher resolutions distribute trajectory points across more pixels, which increases the level of detail by capturing finer variations in the data. However, this also potentially lowers contrast, as the density values are spread across more pixels, reducing the visible differentiation between areas of high and low density.
 
   While smoothing techniques like `scipy.ndimage.gaussian_filter` can enhance visual contrast, they alter raw hit counts and are not included here to preserve data integrity.

@@ -376,7 +376,7 @@ The Matplotlib &quot;hot&quot; colormap is applied to represent pixel hit counts
 <p>Lower resolutions lead to higher densities per pixel, which enhances contrast because multiple trajectory points are grouped into fewer pixels, creating more pronounced differences between high-density and low-density areas. However, this also reduces the level of detail, as finer variations within the data are lost due to the coarser grid.</p>
 </li>
 <li>
-<p>Higher resolutions distribute trajectory points across more pixels, which increases the level of detail by capturing finer variations in the data. However, this also potentially lowers contrast, as the density values are spread across more pixels, reducing the visible differentiation between areas of high and low density.</p>
+<p>Higher resolutions distribute trajectory points across more pixels, which increases the level of detail by capturing finer variations in the data. However, this also lowers contrast, as the density values are spread across more pixels, reducing the visible differentiation between areas of high and low density.</p>
 </li>
 </ul>
 </li>
@@ -425,8 +425,8 @@ The Matplotlib &quot;hot&quot; colormap is applied to represent pixel hit counts
 Both methods can effectively capture and highlight areas with point concentrations. This is illustrated in the following images.</p>
 <p>Each approach offers distinct advantages and considerations:</p>
 <ul>
-<li>The <strong>pixel-based approach</strong> is ideal for visual exploration, efficiently creating intuitive, detailed patterns.</li>
-<li>The <strong>histogram approach</strong> excels in statistical and numerical analyses, offering a more precise representation of density distributions in continuous space.</li>
+<li>The <strong>pixel-based approach</strong> is ideal for visual exploration, supporting the implementation of fast algorithms and excelling in computations involving a large number of iterations</li>
+<li>The <strong>histogram-based approach</strong> excels in statistical and numerical analyses, offering a more precise representation of density distributions in continuous space.</li>
 </ul>
 <h5 id="method-invariance">Method Invariance</h5>
 <p>Despite variations in density estimation techniques (pixel-based or histograms) and visualization settings (such as resolution or bin size), the underlying geometric structure of the attractor remains unchanged. These methods influence how density is represented but do not alter the attractor's intrinsic shape or dynamics, which are determined by the underlying mathematical functions.</p>

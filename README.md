@@ -246,8 +246,8 @@ Visualization of density matrices can be done seperately for both methods in a f
 
 #### Conclusion
 
-The pixel-based density estimation method is an effective alternative to Histogram-based density estimation.  
-Both methods effectively highlight areas of point concentration. This is illustrated in the following pictures.  
+For the present application, pixel-based density estimation is a promising alternative to histogram-based density estimation.
+Both methods can effectively capture and highlight areas with point concentrations. This is illustrated in the following images.  
 
 Each approach offers distinct advantages and considerations:
 

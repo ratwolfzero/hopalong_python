@@ -251,7 +251,7 @@ Both methods can effectively capture and highlight areas with point concentratio
 
 Each approach offers distinct advantages and considerations:
 
-- The **pixel-based approach** is ideal for visual exploration, efficiently creating intuitive, detailed patterns.  
+- The **pixel-based approach** is ideal for visual exploration, supporting the implementation of fast algorithms and excelling in computations involving a large number of iterations
 - The **histogram approach** excels in statistical and numerical analyses, offering a more precise representation of density distributions in continuous space.
 
 ##### Method Invariance

@@ -61,6 +61,7 @@ def plot_trajectory_with_density(trajectory):
     # Define the binning parameters
     bins = 1000
     density, xedges, yedges = np.histogram2d(x, y, bins=bins, density=True)
+    density=density/np.max(density)
     
     # Create a figure
     fig = plt.figure(figsize=(8, 8),facecolor='gainsboro')

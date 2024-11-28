@@ -229,7 +229,7 @@ Examples of outputs can be found in the "Usage" section above.
 
 1. **Pixel-Based Density Estimation**:
   
-   Continuous trajectory points are mapped to discrete pixel coordinates. The density estimation and the creation of a density matrix (pixel grid) occur simultaneously as a direct result of quantization and discretization.
+   Continuous trajectory points are mapped to discrete pixel coordinates. The density estimation and the creation of a density matrix (pixel grid) occur simultaneously as a direct result of quantization and discretization, resulting in emergent density patterns.
    - Image resolution directly impacts the visual density and detail:  
      - Lower resolutions (coarser grids) enhance visual density contrast but reduce detail.
   

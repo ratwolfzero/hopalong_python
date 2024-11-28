@@ -370,33 +370,33 @@ An image array, initialized with zeros, serves as a blank canvas. Each trajector
 The Matplotlib &quot;hot&quot; colormap is applied to represent pixel hit counts as colors. The colormap normalizes these counts to fit within its color space, where darker colors correspond to lower densities and lighter colors to higher densities, creating a gradient that highlights areas of activity.</p>
 <ul>
 <li>
-<p><strong>Image resolution influences the gradient's intensity and detail:</strong></p>
+<p><strong>Image resolution directly impacts the visual density and detail:</strong></p>
 <ul>
 <li>
-<p>Lower resolutions lead to higher densities per pixel, which enhances contrast because multiple trajectory points are grouped into fewer pixels, creating more pronounced differences between high-density and low-density areas. However, this also reduces the level of detail, as finer variations within the data are lost due to the coarser grid.</p>
+<p>Lower resolutions result in higher visual density contrast due to the grouping of multiple trajectory points into fewer pixels. This concentrates hit counts and emphasizes differences between regions of perceived high and low density, as represented by variations in colormap intensity. Visual clarity is enhanced but with reduced detail due to the coarser grid.</p>
 </li>
 <li>
-<p>Higher resolutions distribute trajectory points across more pixels, which increases the level of detail by capturing finer variations in the data. However, this also lowers contrast, as the density values are spread across more pixels, reducing the visible differentiation between areas of high and low density.</p>
+<p>Higher resolutions distribute trajectory points across more pixels, capturing finer variations in the data and increasing detail. However, this reduces visual density contrast because hit counts are spread more evenly, diminishing the apparent differences between regions of perceived high and low density as represented by variations in colormap intensity.</p>
 </li>
 </ul>
 </li>
 </ul>
-<p>While smoothing techniques like <code>scipy.ndimage.gaussian_filter</code> can enhance visual contrast, they alter raw hit counts and are not included here to preserve data integrity.</p>
+<p>While smoothing techniques like <code>scipy.ndimage.gaussian_filter</code> can enhance visual density contrast, they alter raw hit counts and are not included here to preserve data integrity.</p>
 </li>
 </ul>
 <h4 id="comparison-of-pixel-based-vs-histogram-density-estimation">Comparison of Pixel-Based vs. Histogram Density Estimation</h4>
 <ol>
 <li>
 <p><strong>Pixel-Based Density Estimation</strong>:</p>
-<p>Continuous trajectory points are mapped to discrete pixel coordinates. The density estimation and the creation of a density matrix (pixel grid) occur simultaneously as a direct result of quantization and discretization.</p>
+<p>Continuous trajectory points are mapped to discrete pixel coordinates. The density estimation and the creation of a density matrix (pixel grid) occur simultaneously as a direct result of quantization and discretization, resulting in emergent density patterns.</p>
 <ul>
 <li>Image resolution directly impacts the visual density and detail:
 <ul>
 <li>
-<p>Lower resolutions (coarser grids) enhance contrast but reduce detail.</p>
+<p>Lower resolutions (coarser grids) enhance visual density contrast but reduce detail.</p>
 </li>
 <li>
-<p>Higher resolutions (finer grids) increase detail but reduce contrast.</p>
+<p>Higher resolutions (finer grids) increase detail but reduce visual density contrast.</p>
 </li>
 </ul>
 </li>
@@ -409,17 +409,17 @@ The Matplotlib &quot;hot&quot; colormap is applied to represent pixel hit counts
 <li>Bin size affects density precision:
 <ul>
 <li>
-<p>Smaller bins (higher number of bins) result in finer resolution of the density estimate, as each bin represents a smaller region of the space and captures more detailed variations in the data. However, this can reduce contrast because the data is distributed over more bins, leading to smaller density values per bin.</p>
+<p>Smaller bins (higher number of bins) result in finer resolution of the density estimate, as each bin represents a smaller region of the space and captures more detailed variations in the data. However, this reduces density contrast because normalized density values are distributed over more bins, making differences between regions of high and low density less pronounced</p>
 </li>
 <li>
-<p>Larger bins (lower number of bins) average densities over broader regions, leading to a smoother, less detailed density estimate, but increases contrast by concentrating the density in fewer, larger bins.</p>
+<p>Larger bins (lower number of bins) average densities over broader regions, resulting in a smoother, less detailed density estimate. However, this increases density contrast by concentrating normalized density values in fewer, larger bins, making differences between regions of high and low density more pronounced</p>
 </li>
 </ul>
 </li>
 </ul>
 </li>
 </ol>
-<p>Visualization of density matrices can be done seperately for both methods in a flexible manner.</p>
+<p>Visualization of density matrices can be done separately for both methods.</p>
 <h4 id="conclusion">Conclusion</h4>
 <p>For the present application, pixel-based density estimation is a promising alternative to histogram-based density estimation.
 Both methods can effectively capture and highlight areas with point concentrations. This is illustrated in the following images.</p>

@@ -216,7 +216,7 @@ Examples of outputs can be found in the "Usage" section above.
 - **Density Visualization**  
   The Matplotlib "hot" colormap is applied to represent pixel hit counts as colors. The colormap normalizes these counts to fit within its color space, where darker colors correspond to lower densities and lighter colors to higher densities, creating a gradient that highlights areas of activity.
 
-  - **Image resolution influences the gradient's intensity and detail:**
+  - **Image resolution directly impacts the visual density and detail:**
   
     - Lower resolutions lead to higher densities per pixel, which enhances contrast because multiple trajectory points are grouped into fewer pixels, creating more pronounced differences between high-density and low-density areas. However, this also reduces the level of detail, as finer variations within the data are lost due to the coarser grid.
 
@@ -238,9 +238,9 @@ Examples of outputs can be found in the "Usage" section above.
 
    NumPy's `np.histogram2d(..., density=True)` discretizes continuous space into a grid of equal-sized bins. It counts the number of points falling into each bin and calculates the density by normalizing these counts relative to the total number of points and bin area. This normalization ensures that the density values represent relative point distributions across the entire space, producing a density matrix suitable for quantitative analysis.
    - Bin size affects density precision:  
-     - Smaller bins (higher number of bins) result in finer resolution of the density estimate, as each bin represents a smaller region of the space and captures more detailed variations in the data. However, this can reduce contrast because the data is distributed over more bins, leading to smaller density values per bin.
+     - Smaller bins (higher number of bins) result in finer resolution of the density estimate, as each bin represents a smaller region of the space and captures more detailed variations in the data. However, this can reduce density contrast because the data is distributed over more bins, leading to smaller density values per bin.
 
-     - Larger bins (lower number of bins) average densities over broader regions, leading to a smoother, less detailed density estimate, but increases contrast by concentrating the density in fewer, larger bins.
+     - Larger bins (lower number of bins) average densities over broader regions, leading to a smoother, less detailed density estimate, but increases density contrast by concentrating the density in fewer, larger bins.
 
 Visualization of density matrices can be done seperately for both methods in a flexible manner.
 

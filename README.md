@@ -17,7 +17,6 @@
     - [Pixel-Based Density Estimation](#pixel-based-density-estimation)
       - [Comparison of Pixel-Based vs. Histogram-Based Density Estimation](#comparison-of-pixel-based-vs-histogram-based-density-estimation)
       - [Conclusion](#conclusion)
-        - [Method Invariance](#method-invariance)
     - [Application of Copysign (Math Module) as a Signum Function](#application-of-copysign-math-module-as-a-signum-function)
     - [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)
     - [Optional Features](#optional-features)
@@ -250,7 +249,7 @@ Visualization of density matrices can be done separately for both methods.
 For the present application, pixel-based density estimation is a promising alternative to histogram-based density estimation.
 Both methods can effectively capture and highlight areas with point concentrations. This is illustrated in the following images  
 
-Remark:
+Remarks:
 
 - The Density matrix of pixel-based method contains raw hit counts and is normalized during plotting by the *Matplotlib Colormap* to fit within its color space
 - The density matrix of the histogram-based method contains normalized probability densities (not between 0 and 1) and is further normalized by the *Matplotlib Colormap*. Explicitly normalizing both matrices to the [0, 1] range before plotting reveals no visual differences, suggesting the need for further statistical evaluation.
@@ -260,7 +259,7 @@ Each approach offers distinct advantages and considerations:
 - The **pixel-based approach** is ideal for visual exploration, supporting the implementation of fast algorithms and excelling in computations involving a large number of iterations
 - The **histogram-based approach** excels in statistical and numerical analyses, offering a more precise representation of density distributions in continuous space.
 
-##### Method Invariance
+Method Invariance
 
 Despite variations in density estimation techniques (pixel-based or histograms) and visualization settings (such as resolution or bin size), the underlying geometric structure of the attractor remains unchanged. These methods influence how density is represented but do not alter the attractor's intrinsic shape or dynamics, which are determined by the underlying mathematical functions.
 

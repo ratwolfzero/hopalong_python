@@ -301,7 +301,7 @@ Here, *p* is a constant parameter ($p\neq 0$), unchanged within each set.
 
 **Case Analysis:**  
 
-- Parameter Set 3 (a=p, b=p, c=0)
+Parameter Set 3 (a=p, b=p, c=0)
 
 For this parameter set, the Hopalong functions are:
 
@@ -318,7 +318,7 @@ With p>0, the system settles into a 3-cycle:  *(0,0)→(0,p)→(p,p)→(0,0)*.
 
 The pixel density simplifies to n / 3, where *n* is the number of iterations.
 
-- Example:  
+**Example:**  
 
 - Parameters: a=5, b=5, c=0
 - Iterations: 1,200,000

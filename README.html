@@ -163,7 +163,7 @@
 <li><a href="#program-variants">Program Variants</a></li>
 <li><a href="#pixel-based-density-estimation">Pixel-Based Density Estimation</a>
 <ul>
-<li><a href="#comparison-of-pixel-based-vs-histogram-density-estimation">Comparison of Pixel-Based vs. Histogram Density Estimation</a></li>
+<li><a href="#comparison-of-pixel-based-vs-histogram-based-density-estimation">Comparison of Pixel-Based vs. Histogram-Based Density Estimation</a></li>
 <li><a href="#conclusion">Conclusion</a>
 <ul>
 <li><a href="#method-invariance">Method Invariance</a></li>
@@ -384,7 +384,7 @@ The Matplotlib &quot;hot&quot; colormap is applied to represent pixel hit counts
 <p>While smoothing techniques like <code>scipy.ndimage.gaussian_filter</code> can enhance visual density contrast, they alter raw hit counts and are not included here to preserve data integrity.</p>
 </li>
 </ul>
-<h4 id="comparison-of-pixel-based-vs-histogram-density-estimation">Comparison of Pixel-Based vs. Histogram Density Estimation</h4>
+<h4 id="comparison-of-pixel-based-vs-histogram-based-density-estimation">Comparison of Pixel-Based vs. Histogram-Based Density Estimation</h4>
 <ol>
 <li>
 <p><strong>Pixel-Based Density Estimation</strong>:</p>
@@ -403,7 +403,7 @@ The Matplotlib &quot;hot&quot; colormap is applied to represent pixel hit counts
 </ul>
 </li>
 <li>
-<p><strong>Histogram Density Estimation</strong>:</p>
+<p><strong>Histogram-Based Density Estimation</strong>:</p>
 <p>NumPy's <code>np.histogram2d(..., density=True)</code> discretizes continuous space into a grid of equal-sized bins. It counts the number of points falling into each bin and calculates the density by normalizing these counts relative to the total number of points and bin area. This normalization ensures that the density values represent relative point distributions across the entire space, producing a density matrix suitable for quantitative analysis.</p>
 <ul>
 <li>Bin size affects density precision:
@@ -432,7 +432,7 @@ Both methods can effectively capture and highlight areas with point concentratio
 <p>Despite variations in density estimation techniques (pixel-based or histograms) and visualization settings (such as resolution or bin size), the underlying geometric structure of the attractor remains unchanged. These methods influence how density is represented but do not alter the attractor's intrinsic shape or dynamics, which are determined by the underlying mathematical functions.</p>
 <p><strong>1. Pixel Based Approximation</strong>
 <img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/Figure_ex_6.png" alt="Example Attractor Image"></p>
-<p><strong>2. 2D Histogram Approximation</strong>
+<p><strong>2. Histogram-Based Approximation</strong>
 <img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/true_PDF_histogram.png" alt="Example Attractor Image"></p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h3 id="application-of-copysign-math-module-as-a-signum-function">Application of Copysign (Math Module) as a Signum Function</h3>

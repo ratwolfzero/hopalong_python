@@ -299,7 +299,9 @@ Example Parameter Sets:
   
 Here, *p* is a constant parameter ($p\neq 0$), unchanged within each set.
 
-Case Analysis: Parameter Set 3 (a=p, b=p, c=0)
+**Case Analysis:**  
+
+Parameter Set 3 (a=p, b=p, c=0)
 
 For this parameter set, the Hopalong functions are:
 
@@ -326,7 +328,7 @@ Example:
 ![Example Attractor Image](./examples/Figure_ex_4.png)
 ![Example Attractor Image](./examples/Figure_ex_5.png)
 
-Visualization Recommendation:
+**Visualization Recommendation:**
 
 For edge cases, reduce the image resolution (e.g., 100×100) to better highlight the boundaries of the attractor.
 For example:

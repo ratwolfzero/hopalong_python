@@ -217,8 +217,8 @@ Examples of outputs can be found in the "Usage" section above.
   The Matplotlib "hot" colormap is applied to represent pixel hit counts as colors. The colormap normalizes these counts to fit within its color space, where darker colors correspond to lower densities and lighter colors to higher densities, creating a gradient that highlights areas of activity.
 
   - **Image resolution influences the gradient's intensity and detail:**  
-    - Lower resolutions lead to higher densities per pixel, enhancing contrast but reducing detail.  
-    - Higher resolutions distribute trajectory points across more pixels, increasing detail but potentially lowering contrast.  
+    - Lower resolutions lead to higher densities per pixel, which enhances contrast because multiple trajectory points are grouped into fewer pixels, creating more pronounced differences between high-density and low-density areas. However, this also reduces the level of detail, as finer variations within the data are lost due to the coarser grid.
+    - Higher resolutions distribute trajectory points across more pixels, which increases the level of detail by capturing finer variations in the data. However, this also potentially lowers contrast, as the density values are spread across more pixels, reducing the visible differentiation between areas of high and low density.
 
   While smoothing techniques like `scipy.ndimage.gaussian_filter` can enhance visual contrast, they alter raw hit counts and are not included here to preserve data integrity.
 
@@ -227,8 +227,8 @@ Examples of outputs can be found in the "Usage" section above.
 1. **Pixel-Based Density Estimation**:  
    Continuous trajectory points are mapped to discrete pixel coordinates. The density estimation and the creation of a density matrix (pixel grid) occur simultaneously as a direct result of quantization and discretization.
    - Image resolution directly impacts the visual density and detail:  
-     - Coarser grids enhance contrast but reduce detail.  
-     - Finer grids increase detail and emphasize structural subtleties but reduce contrast.
+     - Lower resolutions (coarser grids) enhance contrast but reduce detail.  
+     - Higher resolutions (finer grids) increase detail but reduce contrast.
 
 2. **Histogram Density Estimation**:  
 

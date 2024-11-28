@@ -247,7 +247,8 @@ Each approach offers distinct advantages and considerations:
 
 - The **pixel-based approach** is ideal for visual exploration, efficiently creating intuitive, detailed patterns.  
 - The **histogram approach** excels in statistical and numerical analyses, offering a more precise representation of density distributions in continuous space.
-
+  
+**Invariance**  
 Despite variations in the attractor density due to image resolution or bin size, the geometric structure of the attractor remains unchanged, as the underlying mathematical functions are not affected by density estimation or visualization methods.
 
 **1. Pixel Based Approximation**

@@ -114,8 +114,8 @@ Optional (for performance tracking):
 - time
 - resource
   
-Import the `time` and `resource` libraries if you want to track process time and system memory usage.  
-Otherwise, please comment out the relevant code snippets in the import section and the main() function.
+Import the "`time`" and "`resource`" libraries if you want to track process time and system memory usage.
+Otherwise, please comment out the corresponding code snippets in the import section and in the main()function.
   
     ...
 
@@ -205,7 +205,7 @@ Examples of outputs can be found in the "Usage" section above.
 ### Pixel-Based Density Estimation
 
 - **Continuous Point to Discrete Pixel Mapping**  
-  Trajectory points, represented as floating-point coordinates in a two-dimensional continuous space, are mapped to integer pixel coordinates for visualization. Scaling factors, derived from the trajectory's extents (minimum and maximum values) and the image dimensions, ensure that the continuous coordinates fit within the pixel grid while preserving spatial relationships.
+  Trajectory points, represented as floating-point coordinates in a two-dimensional continuous space, are mapped to integer pixel coordinates for visualization. Scaling factors derived from the trajectory's extents (minimum and maximum values) and the image dimensions ensure that the continuous coordinates fit within the pixel grid while preserving spatial relationships.
 
 - **Integer Conversion**  
   Floating-point coordinates are converted to integer pixel locations. This step introduces quantization: closely spaced trajectory points in continuous space may map to the same pixel, resulting in multiple "hits" per pixel. This discretization aggregates local density but may reduce fine details due to grouping within the pixel grid.
@@ -220,7 +220,7 @@ Examples of outputs can be found in the "Usage" section above.
   
     - Lower resolutions increase visual density contrast by grouping multiple trajectory points into fewer pixels. This concentrates hit counts, emphasizing density differences but reducing detail.
 
-    - Higher resolutions distribute trajectory points across more pixels, capturing finer data variations and increasing detail, but reducing visual density contrast as hit counts are spread more evenly.
+    - Higher resolutions distribute trajectory points across more pixels, capturing finer data variations and increasing detail but reducing visual density contrast as hit counts are spread more evenly.
 
 #### Comparison of Pixel-Based vs. Histogram-Based Density Estimation
 
@@ -273,7 +273,7 @@ Under consideration of the previously described considerations, both methods eff
 
 The programs leverage the `math.copysign` function, `copysign(x, y)`, which returns a float value with the magnitude (absolute value) of *x* but the sign of *y*. On platforms that support signed zeros, `copysign(1.0, -0.0)` correctly evaluates to *-1.0*.
 
-The copysign function can serve as a substitute for the standard signum function, and is defined as follows:
+The copysign function can serve as a substitute for the standard signum function and is defined as follows:
 
 $$
 \text{copysign}(1.0,x) =
@@ -383,7 +383,7 @@ The parallel loop function `prange` from the Numba library is not suitable for c
 
 ### Two-Pass Approach
 
-By separating the extent calculation (first pass) from trajectory point to pixel mapping (second pass), this approach allows for efficient sequential processing. Knowing the overall trajectory extents in advance enables direct and efficient mapping of points to image pixels, optimizing memory usage and maintaining consistent performance.
+By separating the extent calculation (first pass) from the trajectory point to pixel mapping (second pass), this approach allows for efficient sequential processing. Knowing the overall trajectory extents in advance enables direct and efficient mapping of points to image pixels, optimizing memory usage and maintaining consistent performance.
 
 Advantages:
 
@@ -393,7 +393,7 @@ Advantages:
   
 - Scalability: As the number of iterations grows, the two-pass approach’s efficiency in memory usage and processing speed becomes much more advantageous.
 
-Disadvantage: Trajectory points must be computed in both passes, but this trade-off is minimal. As the number of iterations increases, the benefits of memory efficiency and processing speed outweigh this drawback
+Disadvantage: Trajectory points must be computed in both passes, but this trade-off is minimal. As the number of iterations increases, the benefits of memory efficiency and processing speed outweigh this drawback.
 
 ### Two-Pass Code Section
 

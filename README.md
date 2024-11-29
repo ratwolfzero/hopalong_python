@@ -251,7 +251,7 @@ Remarks
 The histogram-based density matrix contains normalized probability densities (not restricted to [0, 1]) and is also normalized internally by the Matplotlib Colormap for visualization.
 Explicit normalization of both matrices to the [0, 1] range before plotting produces identical visual outputs.
 
-Method Invariance
+- Method Invariance
 
 Regardless of the density estimation technique (pixel-based or histogram) or visualization settings (resolution, bin size), the attractor's intrinsic geometric structure remains unchanged. These methods influence density representation but do not alter the attractor's underlying shape or dynamics, which are governed by the mathematical functions.
 

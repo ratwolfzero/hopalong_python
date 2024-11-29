@@ -227,6 +227,7 @@ Examples of outputs can be found in the "Usage" section above.
 1. **Pixel-Based Density Estimation**:
   
    Continuous trajectory points are mapped to discrete pixel coordinates. Density estimation and the creation of a density matrix (pixel grid) occur simultaneously through quantization and discretization, producing emergent density patterns.  
+  
    *For resolution impact, see Density Visualization above*.
 
 2. **Histogram-Based Density Estimation**:  

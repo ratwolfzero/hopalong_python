@@ -17,6 +17,7 @@
     - [Pixel-Based Density Estimation](#pixel-based-density-estimation)
       - [Comparison of Pixel-Based vs. Histogram-Based Density Estimation](#comparison-of-pixel-based-vs-histogram-based-density-estimation)
       - [Summary](#summary)
+      - [Conclusions](#conclusions)
     - [Application of Copysign (Math Module) as a Signum Function](#application-of-copysign-math-module-as-a-signum-function)
     - [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)
     - [Optional Features](#optional-features)
@@ -253,9 +254,9 @@ Remarks
 
 - Method Invariance
 
-Regardless of the density estimation technique (pixel-based or histogram) or visualization settings (resolution, bin size), the attractor's intrinsic geometric structure remains unchanged. These methods influence density representation but do not alter the attractor's underlying shape or dynamics, which are governed by the mathematical functions.
+  Regardless of the density estimation technique (pixel-based or histogram) or visualization settings (resolution, bin size), the attractor's intrinsic geometric structure remains unchanged. These methods influence density representation but do not alter the attractor's underlying shape or dynamics, which are governed by the mathematical functions.
 
-**Conclusion**
+#### Conclusions
 
 Under consideration of the previously described topics, both methods effectively highlight areas with point concentrations, as illustrated in the following images.
 

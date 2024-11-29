@@ -244,7 +244,7 @@ The visualization of density matrices can be done separately for both methods.
 
 Pixel-based density estimation presents a promising alternative to histogram-based density estimation, each offering distinct advantages:
 
-- Qualitative: The pixel-based approach is well-suited for visual exploration, supporting fast algorithms and handling large numbers of iterations efficiently.
+- Qualitative: The pixel-based approach is well suited for visual exploration and supports fast algorithms that efficiently handle large numbers of iterations. See Two-Pass Approach.
 - Quantitative: The histogram-based approach excels in statistical and numerical analyses, providing a precise representation of density distributions in continuous space.
 
 Remarks
@@ -383,7 +383,7 @@ The parallel loop function `prange` from the Numba library is not suitable for c
 
 ### Two-Pass Approach
 
-By separating the extent calculation (first pass) from trajectory point mapping (second pass), this approach allows for efficient sequential processing. Knowing the overall trajectory extents in advance enables direct and efficient mapping of points to image pixels, optimizing memory usage and maintaining consistent performance.
+By separating the extent calculation (first pass) from trajectory point to pixel mapping (second pass), this approach allows for efficient sequential processing. Knowing the overall trajectory extents in advance enables direct and efficient mapping of points to image pixels, optimizing memory usage and maintaining consistent performance.
 
 Advantages:
 

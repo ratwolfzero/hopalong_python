@@ -408,7 +408,7 @@ The Matplotlib &quot;hot&quot; colormap represents pixel hit counts as colors, n
 <h4 id="summary">Summary</h4>
 <p>Pixel-based density estimation presents a promising alternative to histogram-based density estimation, each offering distinct advantages:</p>
 <ul>
-<li>Qualitative: The pixel-based approach is well-suited for visual exploration, supporting fast algorithms and handling large numbers of iterations efficiently.</li>
+<li>Qualitative: The pixel-based approach is well suited for visual exploration and supports fast algorithms that efficiently handle large numbers of iterations. See Two-Pass Approach.</li>
 <li>Quantitative: The histogram-based approach excels in statistical and numerical analyses, providing a precise representation of density distributions in continuous space.</li>
 </ul>
 <p>Remarks</p>
@@ -529,7 +529,7 @@ For example:</p>
 <p>The parallel loop function <code>prange</code> from the Numba library is not suitable for cross-iteration dependencies, such as those encountered when iterating recursive functions. While it is possible to restructure the second pass to use prange for populating the image array, this could introduce race conditions—situations where multiple threads access and modify shared data simultaneously, leading to inconsistent or unpredictable results. Therefore, this approach was not implemented.</p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h3 id="two-pass-approach">Two-Pass Approach</h3>
-<p>By separating the extent calculation (first pass) from trajectory point mapping (second pass), this approach allows for efficient sequential processing. Knowing the overall trajectory extents in advance enables direct and efficient mapping of points to image pixels, optimizing memory usage and maintaining consistent performance.</p>
+<p>By separating the extent calculation (first pass) from trajectory point to pixel mapping (second pass), this approach allows for efficient sequential processing. Knowing the overall trajectory extents in advance enables direct and efficient mapping of points to image pixels, optimizing memory usage and maintaining consistent performance.</p>
 <p>Advantages:</p>
 <ul>
 <li>

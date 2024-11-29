@@ -255,7 +255,7 @@ Remarks
 
 - Method Invariance
 
-  Regardless of the density estimation technique (pixel-based or histogram) or visualization settings (resolution, bin size), the attractor's intrinsic geometric structure remains unchanged. These methods influence density representation but do not alter the attractor's underlying shape or dynamics, which are governed by the underlying mathematical functions.
+  Regardless of the density estimation technique (pixel-based or histogram) or the visualization settings (resolution, bin size), the intrinsic geometric structure of the attractor remains unchanged. These methods affect the density representation but do not change the shape or dynamics of the attractor, which is determined by the underlying mathematical functions.
 
 #### Conclusions
 

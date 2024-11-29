@@ -187,7 +187,7 @@
 <li><a href="#one-pass-approach-with-full-trajectory-caching">One-Pass Approach with Full Trajectory Caching*</a></li>
 <li><a href="#one-pass-approach-with-limited-memory-usage-chunked-or-no-caching">One-Pass Approach with Limited Memory Usage (Chunked or No Caching)*</a></li>
 <li><a href="#potentially-other-more-sophisticated-solutions">Potentially Other, More Sophisticated Solutions</a></li>
-<li><a href="#summary-1">Summary</a></li>
+<li><a href="#recap">Recap</a></li>
 </ul>
 </li>
 <li><a href="#recent-code-changes">Recent Code Changes</a></li>
@@ -408,8 +408,8 @@ The Matplotlib &quot;hot&quot; colormap represents pixel hit counts as colors, n
 <h4 id="summary">Summary</h4>
 <p>Pixel-based density estimation presents a promising alternative to histogram-based density estimation, each offering distinct advantages:</p>
 <ul>
-<li>Qualitative: The pixel-based approach is well suited for visual exploration and supports fast algorithms that efficiently handle large numbers of iterations. See Two-Pass Approach.</li>
-<li>Quantitative: The histogram-based approach excels in statistical and numerical analyses, providing a precise representation of density distributions in continuous space.</li>
+<li>Qualitative: The pixel-based approach is well suited for visual exploration and supports fast algorithms that efficiently handle large numbers of iterations. See <a href="#two-pass-approach">Two-Pass Approach</a></li>
+<li>Quantitative: The histogram-based approach excels in statistical and numerical analysis, offering a close approximation of probability density distributions within continuous space.</li>
 </ul>
 <p>Remarks</p>
 <ul>
@@ -638,7 +638,7 @@ Data Loss and Inaccuracy: As previously computed floating-point values are irrec
 <p>*This also applies analogously to any versions that only process floating point values.</p>
 <h3 id="potentially-other-more-sophisticated-solutions">Potentially Other, More Sophisticated Solutions</h3>
 <p>No other one-pass method solutions have been investigated or considered to date. More sophisticated solutions would also contradict the minimum complexity design approach unless a significant performance improvement in calculations with a high number of iterations makes them worth considering.</p>
-<h3 id="summary-1">Summary</h3>
+<h3 id="recap">Recap</h3>
 <p>Overall, the two-pass approach strikes the best balance between speed, efficiency and simplicity and is therefore ideal for attractor calculations with a high number of iterations. Although the trajectory points need to be computed in both passes, the pitfalls of alternative solutions are avoided.</p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h2 id="recent-code-changes">Recent Code Changes</h2>

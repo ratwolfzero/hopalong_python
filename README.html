@@ -164,7 +164,8 @@
 <li><a href="#pixel-based-density-estimation">Pixel-Based Density Estimation</a>
 <ul>
 <li><a href="#comparison-of-pixel-based-vs-histogram-based-density-estimation">Comparison of Pixel-Based vs. Histogram-Based Density Estimation</a></li>
-<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#conclusions">Conclusions</a></li>
 </ul>
 </li>
 <li><a href="#application-of-copysign-math-module-as-a-signum-function">Application of Copysign (Math Module) as a Signum Function</a></li>
@@ -186,7 +187,7 @@
 <li><a href="#one-pass-approach-with-full-trajectory-caching">One-Pass Approach with Full Trajectory Caching*</a></li>
 <li><a href="#one-pass-approach-with-limited-memory-usage-chunked-or-no-caching">One-Pass Approach with Limited Memory Usage (Chunked or No Caching)*</a></li>
 <li><a href="#potentially-other-more-sophisticated-solutions">Potentially Other, More Sophisticated Solutions</a></li>
-<li><a href="#summary">Summary</a></li>
+<li><a href="#summary-1">Summary</a></li>
 </ul>
 </li>
 <li><a href="#recent-code-changes">Recent Code Changes</a></li>
@@ -363,16 +364,16 @@ An image array, initialized with zeros, serves as a blank canvas. Each trajector
 </li>
 <li>
 <p><strong>Density Visualization</strong><br>
-The Matplotlib &quot;hot&quot; colormap is applied to represent pixel hit counts as colors. The colormap normalizes these counts to fit within its color space, where darker colors correspond to lower densities and lighter colors to higher densities, creating a gradient that highlights areas of activity.</p>
+The Matplotlib &quot;hot&quot; colormap represents pixel hit counts as colors, normalized to fit within its color space. Darker colors correspond to lower densities, and lighter colors to higher densities, creating a gradient that highlights areas of activity.</p>
 <ul>
 <li>
-<p><strong>Image resolution directly impacts the visual density and detail:</strong></p>
+<p><strong>Impact of Image Resolution:</strong></p>
 <ul>
 <li>
-<p>Lower resolutions result in higher visual density contrast due to the grouping of multiple trajectory points into fewer pixels. This concentrates hit counts and emphasizes differences between regions of perceived high and low density, as represented by variations in colormap intensity. Visual clarity is enhanced but with reduced detail due to the coarser grid.</p>
+<p>Lower resolutions increase visual density contrast by grouping multiple trajectory points into fewer pixels. This concentrates hit counts, emphasizing density differences but reducing detail.</p>
 </li>
 <li>
-<p>Higher resolutions distribute trajectory points across more pixels, capturing finer variations in the data and increasing detail. However, this reduces visual density contrast because hit counts are spread more evenly, diminishing the apparent differences between regions of perceived high and low density as represented by variations in colormap intensity.</p>
+<p>Higher resolutions distribute trajectory points across more pixels, capturing finer data variations and increasing detail, but reducing visual density contrast as hit counts are spread more evenly.</p>
 </li>
 </ul>
 </li>
@@ -383,63 +384,51 @@ The Matplotlib &quot;hot&quot; colormap is applied to represent pixel hit counts
 <ol>
 <li>
 <p><strong>Pixel-Based Density Estimation</strong>:</p>
-<p>Continuous trajectory points are mapped to discrete pixel coordinates. The density estimation and the creation of a density matrix (pixel grid) occur simultaneously as a direct result of quantization and discretization, resulting in emergent density patterns.</p>
-<ul>
-<li>Image resolution directly impacts the visual density and detail:
-<ul>
-<li>
-<p>Lower resolutions (coarser grids) enhance visual density contrast but reduce detail.</p>
-</li>
-<li>
-<p>Higher resolutions (finer grids) increase detail but reduce visual density contrast.</p>
-</li>
-</ul>
-</li>
-</ul>
+<p>Continuous trajectory points are mapped to discrete pixel coordinates. Density estimation and the creation of a density matrix (pixel grid) occur simultaneously through quantization and discretization, producing emergent density patterns.</p>
+<p><em>For resolution impact, see Density Visualization above</em>.</p>
 </li>
 <li>
 <p><strong>Histogram-Based Density Estimation</strong>:</p>
-<p>NumPy's <code>np.histogram2d(..., density=True)</code> discretizes continuous space into a grid of equal-sized bins. It counts the number of points falling into each bin and calculates the density by normalizing these counts relative to the total number of points and bin area. This normalization ensures that the density values represent relative point distributions across the entire space, producing a density matrix suitable for quantitative analysis.</p>
+<p>NumPy's np.histogram2d(..., density=True) divides continuous space into a grid of equal-sized bins, counts the points in each bin, and normalizes the counts relative to the total number of points and bin area. This produces a density matrix representing relative point distributions for quantitative analysis.</p>
 <ul>
-<li>Bin size affects density precision:
+<li>Bin size impact:
 <ul>
 <li>
-<p>Smaller bins (higher number of bins) result in finer resolution of the density estimate, as each bin represents a smaller region of the space and captures more detailed variations in the data. However, this reduces density contrast because normalized density values are distributed over more bins, making differences between regions of high and low density less pronounced</p>
+<p>Smaller bins (higher bin count) improve density precision but reduce density contrast by spreading density over more bins.</p>
 </li>
 <li>
-<p>Larger bins (lower number of bins) average densities over broader regions, resulting in a smoother, less detailed density estimate. However, this increases density contrast by concentrating normalized density values in fewer, larger bins, making differences between regions of high and low density more pronounced</p>
+<p>Larger bins (lower bin count) increase density contrast by concentrating normalized density values in fewer, larger bins but reduce precision.</p>
 </li>
 </ul>
 </li>
 </ul>
 </li>
 </ol>
-<p>Visualization of density matrices can be done separately for both methods.</p>
-<h4 id="conclusion">Conclusion</h4>
-<p>In summary, pixel-based density estimation is a promising alternative to histogram-based density estimation for the present application.
-Each approach offers different advantages and considerations:</p>
+<p>The visualization of density matrices can be done separately for both methods.</p>
+<h4 id="summary">Summary</h4>
+<p>Pixel-based density estimation presents a promising alternative to histogram-based density estimation, each offering distinct advantages:</p>
 <ul>
-<li><em>Qualitative</em>: The <strong>pixel-based approach</strong> is ideal for visual exploration, supporting the implementation of fast algorithms and excelling in computations involving a large number of iterations</li>
-<li><em>Quantitative</em>: The <strong>histogram-based approach</strong> excels in statistical and numerical analyses, offering a more precise representation of density distributions in continuous space.</li>
+<li>Qualitative: The pixel-based approach is well-suited for visual exploration, supporting fast algorithms and handling large numbers of iterations efficiently.</li>
+<li>Quantitative: The histogram-based approach excels in statistical and numerical analyses, providing a precise representation of density distributions in continuous space.</li>
 </ul>
-<p>Remarks:</p>
+<p>Remarks</p>
 <ul>
 <li>
-<p>The density matrix of the pixel-based method contains raw hit counts and is normalized internally by the <em>Matplotlib Colormap</em> during plotting to fit within its color space.</p>
+<p>The pixel-based density matrix contains raw hit counts, normalized internally by the Matplotlib Colormap during plotting to fit its color space.</p>
 </li>
 <li>
-<p>The density matrix of the histogram-based method contains normalized probability densities (not constrained to [0, 1]) and is further normalized internally by the <em>Matplotlib Colormap</em> as previously described</p>
+<p>The histogram-based density matrix contains normalized probability densities (not restricted to [0, 1]) and is also normalized internally by the Matplotlib Colormap for visualization.</p>
 </li>
 <li>
-<p>Explicitly normalizing both matrices to the [0, 1] range before plotting reveals no visual differences.</p>
+<p>Explicit normalization of both matrices to the [0, 1] range before plotting produces identical visual outputs.</p>
 </li>
 <li>
-<p>Method Invariance: Despite variations in density estimation techniques (pixel-based or histograms) and visualization settings (such as resolution or bin size), the underlying geometric structure of the attractor remains unchanged. These methods influence how density is represented but do not alter the attractor's intrinsic shape or dynamics, which are determined by the underlying mathematical functions.</p>
+<p>Method Invariance</p>
+<p>Regardless of the density estimation technique (pixel-based or histogram) or visualization settings (resolution, bin size), the attractor's intrinsic geometric structure remains unchanged. These methods influence density representation but do not alter the attractor's underlying shape or dynamics, which are governed by the mathematical functions.</p>
 </li>
 </ul>
-<p>Finally:<br>
-Both methods can effectively capture and highlight areas with point concentrations.<br>
-This is illustrated in the following images:</p>
+<h4 id="conclusions">Conclusions</h4>
+<p>Under consideration of the previously described considerations, both methods effectively highlight areas with point concentrations, as illustrated in the following images.</p>
 <p><strong>1. Pixel Based Approximation, Image Size=1000x1000</strong>
 <img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/Figure_ex_6.png" alt="Example Attractor Image"></p>
 <p><strong>2. Histogram-Based Approximation, Number of Bins = 1000, Same Attractor Parameters and Iterations as (1)</strong>
@@ -649,7 +638,7 @@ Data Loss and Inaccuracy: As previously computed floating-point values are irrec
 <p>*This also applies analogously to any versions that only process floating point values.</p>
 <h3 id="potentially-other-more-sophisticated-solutions">Potentially Other, More Sophisticated Solutions</h3>
 <p>No other one-pass method solutions have been investigated or considered to date. More sophisticated solutions would also contradict the minimum complexity design approach unless a significant performance improvement in calculations with a high number of iterations makes them worth considering.</p>
-<h3 id="summary">Summary</h3>
+<h3 id="summary-1">Summary</h3>
 <p>Overall, the two-pass approach strikes the best balance between speed, efficiency and simplicity and is therefore ideal for attractor calculations with a high number of iterations. Although the trajectory points need to be computed in both passes, the pitfalls of alternative solutions are avoided.</p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h2 id="recent-code-changes">Recent Code Changes</h2>

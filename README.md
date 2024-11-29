@@ -16,7 +16,7 @@
     - [Program Variants](#program-variants)
     - [Pixel-Based Density Estimation](#pixel-based-density-estimation)
       - [Comparison of Pixel-Based vs. Histogram-Based Density Estimation](#comparison-of-pixel-based-vs-histogram-based-density-estimation)
-      - [**Summary**](#summary)
+      - [Summary](#summary)
     - [Application of Copysign (Math Module) as a Signum Function](#application-of-copysign-math-module-as-a-signum-function)
     - [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)
     - [Optional Features](#optional-features)
@@ -238,7 +238,7 @@ Examples of outputs can be found in the "Usage" section above.
 
 The visualization of density matrices can be done separately for both methods.
 
-#### **Summary**
+#### Summary
 
 Pixel-based density estimation presents a promising alternative to histogram-based density estimation, each offering distinct advantages:
 

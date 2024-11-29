@@ -245,7 +245,7 @@ The visualization of density matrices can be done separately for both methods.
 Pixel-based density estimation presents a promising alternative to histogram-based density estimation, each offering distinct advantages:
 
 - Qualitative: The pixel-based approach is well suited for visual exploration and supports fast algorithms that efficiently handle large numbers of iterations. See [Two-Pass Approach](#two-pass-approach)
-- Quantitative: The histogram-based approach excels in statistical and numerical analyses, providing a precise representation of density distributions in continuous space.
+- Quantitative: The histogram-based approach excels in statistical and numerical analysis, offering a close approximation of probability density distributions within continuous space.
 
 Remarks
 

@@ -258,7 +258,7 @@ Remarks
 
 #### Conclusions
 
-Under consideration of the previously described topics, both methods effectively highlight areas with point concentrations, as illustrated in the following images.
+Under consideration of the previously described considerations, both methods effectively highlight areas with point concentrations, as illustrated in the following images.
 
 **1. Pixel Based Approximation, Image Size=1000x1000**
 ![Example Attractor Image](./examples/Figure_ex_6.png)

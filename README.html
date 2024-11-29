@@ -273,8 +273,8 @@ See <a href="#pixel-based-density-estimation">Pixel-Based Density Estimation</a>
 <li>time</li>
 <li>resource</li>
 </ul>
-<p>Import the <code>time</code> and <code>resource</code> libraries if you want to track process time and system memory usage.<br>
-Otherwise, please comment out the relevant code snippets in the import section and the main() function.</p>
+<p>Import the &quot;<code>time</code>&quot; and &quot;<code>resource</code>&quot; libraries if you want to track process time and system memory usage.
+Otherwise, please comment out the corresponding code snippets in the import section and in the main()function.</p>
 <pre><code>...
 
 #import time
@@ -352,7 +352,7 @@ The code for the Basic variant supports both 2D and 3D visualization. To switch 
 <ul>
 <li>
 <p><strong>Continuous Point to Discrete Pixel Mapping</strong><br>
-Trajectory points, represented as floating-point coordinates in a two-dimensional continuous space, are mapped to integer pixel coordinates for visualization. Scaling factors, derived from the trajectory's extents (minimum and maximum values) and the image dimensions, ensure that the continuous coordinates fit within the pixel grid while preserving spatial relationships.</p>
+Trajectory points, represented as floating-point coordinates in a two-dimensional continuous space, are mapped to integer pixel coordinates for visualization. Scaling factors derived from the trajectory's extents (minimum and maximum values) and the image dimensions ensure that the continuous coordinates fit within the pixel grid while preserving spatial relationships.</p>
 </li>
 <li>
 <p><strong>Integer Conversion</strong><br>
@@ -373,7 +373,7 @@ The Matplotlib &quot;hot&quot; colormap represents pixel hit counts as colors, n
 <p>Lower resolutions increase visual density contrast by grouping multiple trajectory points into fewer pixels. This concentrates hit counts, emphasizing density differences but reducing detail.</p>
 </li>
 <li>
-<p>Higher resolutions distribute trajectory points across more pixels, capturing finer data variations and increasing detail, but reducing visual density contrast as hit counts are spread more evenly.</p>
+<p>Higher resolutions distribute trajectory points across more pixels, capturing finer data variations and increasing detail but reducing visual density contrast as hit counts are spread more evenly.</p>
 </li>
 </ul>
 </li>
@@ -436,7 +436,7 @@ The Matplotlib &quot;hot&quot; colormap represents pixel hit counts as colors, n
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h3 id="application-of-copysign-math-module-as-a-signum-function">Application of Copysign (Math Module) as a Signum Function</h3>
 <p>The programs leverage the <code>math.copysign</code> function, <code>copysign(x, y)</code>, which returns a float value with the magnitude (absolute value) of <em>x</em> but the sign of <em>y</em>. On platforms that support signed zeros, <code>copysign(1.0, -0.0)</code> correctly evaluates to <em>-1.0</em>.</p>
-<p>The copysign function can serve as a substitute for the standard signum function, and is defined as follows:</p>
+<p>The copysign function can serve as a substitute for the standard signum function and is defined as follows:</p>
 <p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>copysign</mtext><mo stretchy="false">(</mo><mn>1.0</mn><mo separator="true">,</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mrow><mo fence="true">{</mo><mtable rowspacing="0.36em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1.0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>if </mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>x </mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>is</mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mtext>positive</mtext><mo separator="true">,</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>0.0</mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>o</mi><mi>r</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>infinity</mtext></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>−</mo><mn>1.0</mn></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>if </mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>x </mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>is</mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mtext>negative</mtext><mo separator="true">,</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>-0.0</mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>o</mi><mi>r</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>negative infinity</mtext></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">\text{copysign}(1.0,x) =
 \begin{cases}
 1.0  &amp; \text{if } &amp; \text{x } &amp; \text{is} &amp;\text{positive}, &amp; \text{0.0} &amp; or &amp;\text{infinity} \\
@@ -529,7 +529,7 @@ For example:</p>
 <p>The parallel loop function <code>prange</code> from the Numba library is not suitable for cross-iteration dependencies, such as those encountered when iterating recursive functions. While it is possible to restructure the second pass to use prange for populating the image array, this could introduce race conditions—situations where multiple threads access and modify shared data simultaneously, leading to inconsistent or unpredictable results. Therefore, this approach was not implemented.</p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h3 id="two-pass-approach">Two-Pass Approach</h3>
-<p>By separating the extent calculation (first pass) from trajectory point to pixel mapping (second pass), this approach allows for efficient sequential processing. Knowing the overall trajectory extents in advance enables direct and efficient mapping of points to image pixels, optimizing memory usage and maintaining consistent performance.</p>
+<p>By separating the extent calculation (first pass) from the trajectory point to pixel mapping (second pass), this approach allows for efficient sequential processing. Knowing the overall trajectory extents in advance enables direct and efficient mapping of points to image pixels, optimizing memory usage and maintaining consistent performance.</p>
 <p>Advantages:</p>
 <ul>
 <li>
@@ -542,7 +542,7 @@ For example:</p>
 <p>Scalability: As the number of iterations grows, the two-pass approach’s efficiency in memory usage and processing speed becomes much more advantageous.</p>
 </li>
 </ul>
-<p>Disadvantage: Trajectory points must be computed in both passes, but this trade-off is minimal. As the number of iterations increases, the benefits of memory efficiency and processing speed outweigh this drawback</p>
+<p>Disadvantage: Trajectory points must be computed in both passes, but this trade-off is minimal. As the number of iterations increases, the benefits of memory efficiency and processing speed outweigh this drawback.</p>
 <h3 id="two-pass-code-section">Two-Pass Code Section</h3>
 <pre><code>@njit #njit is an alias for nopython=True
 def compute_trajectory_extents(a, b, c, n):

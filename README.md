@@ -31,7 +31,7 @@
     - [One-Pass Approach with Full Trajectory Caching\*](#one-pass-approach-with-full-trajectory-caching)
     - [One-Pass Approach with Limited Memory Usage (Chunked or No Caching)\*](#one-pass-approach-with-limited-memory-usage-chunked-or-no-caching)
     - [Potentially Other, More Sophisticated Solutions](#potentially-other-more-sophisticated-solutions)
-    - [Summary](#summary-1)
+    - [Recap](#recap)
   - [Recent Code Changes](#recent-code-changes)
   - [Enjoy the Exploration](#enjoy-the-exploration)
   - [References](#references)
@@ -233,7 +233,7 @@ Examples of outputs can be found in the "Usage" section above.
 2. **Histogram-Based Density Estimation**:  
 
    NumPy's np.histogram2d(..., density=True) divides continuous space into a grid of equal-sized bins, counts the points in each bin, and normalizes the counts relative to the total number of points and bin area. This produces a density matrix representing relative point distributions for quantitative analysis.
-   - Bin size impact: 
+   - Bin size impact:
      - Smaller bins (higher bin count) improve density precision but reduce density contrast by spreading density over more bins.
 
      - Larger bins (lower bin count) increase density contrast by concentrating normalized density values in fewer, larger bins but reduce precision.
@@ -244,7 +244,7 @@ The visualization of density matrices can be done separately for both methods.
 
 Pixel-based density estimation presents a promising alternative to histogram-based density estimation, each offering distinct advantages:
 
-- Qualitative: The pixel-based approach is well suited for visual exploration and supports fast algorithms that efficiently handle large numbers of iterations. See Two-Pass Approach.
+- Qualitative: The pixel-based approach is well suited for visual exploration and supports fast algorithms that efficiently handle large numbers of iterations. See [Two-Pass Approach](#two-pass-approach)
 - Quantitative: The histogram-based approach excels in statistical and numerical analyses, providing a precise representation of density distributions in continuous space.
 
 Remarks
@@ -494,7 +494,7 @@ Data Loss and Inaccuracy: As previously computed floating-point values are irrec
 
 No other one-pass method solutions have been investigated or considered to date. More sophisticated solutions would also contradict the minimum complexity design approach unless a significant performance improvement in calculations with a high number of iterations makes them worth considering.
 
-### Summary
+### Recap
 
 Overall, the two-pass approach strikes the best balance between speed, efficiency and simplicity and is therefore ideal for attractor calculations with a high number of iterations. Although the trajectory points need to be computed in both passes, the pitfalls of alternative solutions are avoided.
 

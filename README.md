@@ -496,7 +496,7 @@ No other one-pass method solutions have been investigated or considered to date.
 
 ### Recap
 
-Overall, The two-pass approach offers an excellent balance of speed, efficiency, and simplicity, making it ideal for attractor calculations that involve a high number of iterations. While the trajectory points must be computed during both passes, this method successfully avoids the drawbacks associated with alternative solutions.
+Overall, the two-pass approach offers an excellent balance of speed, efficiency, and simplicity, making it ideal for attractor calculations that involve a high number of iterations. While the trajectory points must be computed during both passes, this method successfully avoids the drawbacks associated with alternative solutions.
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 

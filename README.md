@@ -16,7 +16,7 @@
     - [Program Variants](#program-variants)
     - [Pixel-Based Density Estimation](#pixel-based-density-estimation)
       - [Comparison of Pixel-Based vs. Histogram-Based Density Estimation](#comparison-of-pixel-based-vs-histogram-based-density-estimation)
-      - [Conclusion](#conclusion)
+      - [Summary](#summary)
     - [Application of Copysign (Math Module) as a Signum Function](#application-of-copysign-math-module-as-a-signum-function)
     - [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)
     - [Optional Features](#optional-features)
@@ -30,7 +30,7 @@
     - [One-Pass Approach with Full Trajectory Caching\*](#one-pass-approach-with-full-trajectory-caching)
     - [One-Pass Approach with Limited Memory Usage (Chunked or No Caching)\*](#one-pass-approach-with-limited-memory-usage-chunked-or-no-caching)
     - [Potentially Other, More Sophisticated Solutions](#potentially-other-more-sophisticated-solutions)
-    - [Summary](#summary)
+    - [Summary](#summary-1)
   - [Recent Code Changes](#recent-code-changes)
   - [Enjoy the Exploration](#enjoy-the-exploration)
   - [References](#references)
@@ -213,11 +213,11 @@ Examples of outputs can be found in the "Usage" section above.
   An image array, initialized with zeros, serves as a blank canvas. Each trajectory point, after being mapped to a pixel, increments the corresponding array index. Higher hit counts in the array indicate greater density, approximating local concentrations of points. The total sum of pixel hit counts matches the number of trajectory iterations, preserving the dataset's size.
 
 - **Density Visualization**  
-  The Matplotlib "hot" colormap is applied to represent pixel hit counts as colors. The colormap normalizes these counts to fit within its color space, where darker colors correspond to lower densities and lighter colors to higher densities, creating a gradient that highlights areas of activity.
+  The Matplotlib "hot" colormap represents pixel hit counts as colors, normalized to fit within its color space. Darker colors correspond to lower densities, and lighter colors to higher densities, creating a gradient that highlights areas of activity.
 
   - **Impact of Image Resolution:**
   
-    - Lower resolutions increase visual density contrast by grouping multiple trajectory points into fewer pixels. This concentrates hit counts, emphasizing density differences but at the cost of detail.
+    - Lower resolutions increase visual density contrast by grouping multiple trajectory points into fewer pixels. This concentrates hit counts, emphasizing density differences but reducing detail.
 
     - Higher resolutions distribute trajectory points across more pixels, capturing finer data variations and increasing detail, but reducing visual density contrast as hit counts are spread more evenly.
 
@@ -225,41 +225,39 @@ Examples of outputs can be found in the "Usage" section above.
 
 1. **Pixel-Based Density Estimation**:
   
-   Continuous trajectory points are mapped to discrete pixel coordinates. Density estimation and the creation of a density matrix (pixel grid) occur simultaneously as a direct result of quantization and discretization, resulting in emergent density patterns.
-   - Resolution impact:  
-     - Lower resolutions (coarser grids) enhance visual density contrast but reduce detail.
-  
-     - Higher resolutions (finer grids) increase detail but reduce visual density contrast.
+   Continuous trajectory points are mapped to discrete pixel coordinates. Density estimation and the creation of a density matrix (pixel grid) occur simultaneously through quantization and discretization, producing emergent density patterns.
+  *For resolution impact, see Density Visualization above*.
 
 2. **Histogram-Based Density Estimation**:  
 
-   NumPy's np.histogram2d(..., density=True) discretizes continuous space into a grid of equal-sized bins. It counts the number of points in each bin and calculates the density by normalizing these counts relative to the total number of points and bin area. This ensures density values represent relative point distributions across the entire space, producing a density matrix suitable for quantitative analysis.
+   NumPy's np.histogram2d(..., density=True) divides continuous space into a grid of equal-sized bins, counts the points in each bin, and normalizes the counts relative to the total number of points and bin area. This produces a density matrix representing relative point distributions for quantitative analysis.
    - Bin size impact: 
      - Smaller bins (higher bin count) improve density precision but reduce density contrast by spreading density over more bins.
 
      - Larger bins (lower bin count) increase density contrast by concentrating normalized density values in fewer, larger bins but reduce precision.
 
-Visualization of density matrices can be done separately for both methods.
+The visualization of density matrices can be done separately for both methods.
 
-#### Conclusion
+#### Summary
 
-In summary, pixel-based density estimation is a promising alternative to histogram-based density estimation for the present application.
-Each approach offers different advantages and considerations:
+Pixel-based density estimation presents a promising alternative to histogram-based density estimation, each offering distinct advantages:
 
-- *Qualitative*: The **pixel-based approach** is ideal for visual exploration, supporting the implementation of fast algorithms and excelling in computations involving a large number of iterations
-- *Quantitative*: The **histogram-based approach** excels in statistical and numerical analyses, offering a more precise representation of density distributions in continuous space.
-  
-Remarks:
+- Qualitative: The pixel-based approach is well-suited for visual exploration, supporting fast algorithms and handling large numbers of iterations efficiently.
+- Quantitative: The histogram-based approach excels in statistical and numerical analyses, providing a precise representation of density distributions in continuous space.
 
-- The density matrix of the pixel-based method contains raw hit counts and is normalized internally by the *Matplotlib Colormap* during plotting to fit within its color space.
-- The density matrix of the histogram-based method contains normalized probability densities (not constrained to [0, 1]) and is further normalized internally by the *Matplotlib Colormap* as previously described
-- Explicitly normalizing both matrices to the [0, 1] range before plotting reveals no visual differences.
+Remarks
 
-- Method Invariance: Despite variations in density estimation techniques (pixel-based or histograms) and visualization settings (such as resolution or bin size), the underlying geometric structure of the attractor remains unchanged. These methods influence how density is represented but do not alter the attractor's intrinsic shape or dynamics, which are determined by the underlying mathematical functions.
+- The pixel-based density matrix contains raw hit counts, normalized internally by the Matplotlib Colormap during plotting to fit its color space.
+The histogram-based density matrix contains normalized probability densities (not restricted to [0, 1]) and is also normalized internally by the Matplotlib Colormap for visualization.
+Explicit normalization of both matrices to the [0, 1] range before plotting produces identical visual outputs.
 
-Finally:  
-Both methods can effectively capture and highlight areas with point concentrations.  
-This is illustrated in the following images:
+Method Invariance
+
+Regardless of the density estimation technique (pixel-based or histogram) or visualization settings (resolution, bin size), the attractor's intrinsic geometric structure remains unchanged. These methods influence density representation but do not alter the attractor's underlying shape or dynamics, which are governed by the mathematical functions.
+
+Conclusion
+
+Under consideration of the previously described topics, both methods effectively highlight areas with point concentrations, as illustrated in the following images.
 
 **1. Pixel Based Approximation, Image Size=1000x1000**
 ![Example Attractor Image](./examples/Figure_ex_6.png)

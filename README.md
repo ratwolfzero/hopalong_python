@@ -245,9 +245,9 @@ Pixel-based density estimation presents a promising alternative to histogram-bas
 
 Remarks
 
-- The pixel-based density matrix contains raw hit counts, normalized internally by the Matplotlib Colormap during plotting to fit its color space.
-- The histogram-based density matrix contains normalized probability densities (not restricted to [0, 1]) and is also normalized internally by the Matplotlib Colormap for visualization.
-- Explicit normalization of both matrices to the [0, 1] range before plotting produces identical visual outputs.
+- The pixel-based density matrix uses raw hit counts that Matplotlib's colormap normalizes for visualization.
+- The histogram-based density matrix represents normalized probability densities and undergoes the same Colormap normalization during plotting.
+- Explicitly normalizing both matrices to [0, 1] before plotting yields identical visual results.
 
 - Method Invariance  
   Regardless of the density estimation technique (pixel-based or histogram) or the visualization settings (resolution, bin size), the intrinsic geometric structure of the attractor remains unchanged. These methods affect the density representation but do not change the shape or dynamics of the attractor, which is determined by the underlying mathematical functions.

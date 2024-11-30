@@ -412,13 +412,7 @@ The Matplotlib &quot;hot&quot; colormap represents pixel hit counts as colors, s
 <p>Remarks</p>
 <ul>
 <li>
-<p>The pixel-based density matrix contains raw hit counts, normalized internally by the Matplotlib Colormap during plotting to fit its color space.</p>
-</li>
-<li>
-<p>The histogram-based density matrix contains normalized probability densities (not restricted to [0, 1]) and is also normalized internally by the Matplotlib Colormap for visualization.</p>
-</li>
-<li>
-<p>Explicit normalization of both matrices to the [0, 1] range before plotting produces identical visual outputs.</p>
+<p>The pixel-based density matrix uses raw hit counts, while the histogram-based density matrix represents normalized probability densities. Both are normalized by Matplotlib's Colormap to fit within its color space. Explicitly normalizing both matrices to [0, 1] before plotting yields identical visual results.</p>
 </li>
 <li>
 <p>Method Invariance<br>

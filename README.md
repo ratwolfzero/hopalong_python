@@ -250,7 +250,6 @@ Remarks
 - Explicit normalization of both matrices to the [0, 1] range before plotting produces identical visual outputs.
 
 - Method Invariance
-
   Regardless of the density estimation technique (pixel-based or histogram) or the visualization settings (resolution, bin size), the intrinsic geometric structure of the attractor remains unchanged. These methods affect the density representation but do not change the shape or dynamics of the attractor, which is determined by the underlying mathematical functions.
 
 #### Conclusions

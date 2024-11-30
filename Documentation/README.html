@@ -242,7 +242,7 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">â
 <p>Goal:</p>
 <ul>
 <li>Representation of the attractor as a density map to highlight point concentration.</li>
-<li>Calculation with a very high number of iterations at high processing speed and low memory requirements.</li>
+<li>Calculation with large number of iterations at high processing speed and low memory requirements.</li>
 </ul>
 <p>Core Algorithm:</p>
 <p>Two-pass algorithm with separate calculation of:</p>
@@ -251,7 +251,7 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">â
 <p>The spatial extent of the attractor trajectory (first pass).</p>
 </li>
 <li>
-<p>Direct mapping of the sequentially generated floating-point values in continuous space to a discrete pixel grid, while tracking the number of pixel hits to generate the density map (second pass).<br>
+<p>Direct mapping of the sequentially generated trajectory points in continuous space to a discrete pixel grid, while tracking the number of pixel hits to generate the density map (second pass).<br>
 See <a href="#pixel-based-density-estimation">Pixel-Based Density Estimation</a></p>
 </li>
 </ol>
@@ -351,20 +351,20 @@ The code for the Basic variant supports both 2D and 3D visualization. To switch 
 <h3 id="pixel-based-density-estimation">Pixel-Based Density Estimation</h3>
 <ul>
 <li>
-<p><strong>Continuous Point to Discrete Pixel Mapping</strong><br>
+<p><strong>Continuous to Discrete Mapping</strong><br>
 Trajectory points, represented as floating-point coordinates in a two-dimensional continuous space, are mapped to integer pixel coordinates for visualization. Scaling factors derived from the trajectory's extents (minimum and maximum values) and the image dimensions ensure that the continuous coordinates fit within the pixel grid while preserving spatial relationships.</p>
 </li>
 <li>
 <p><strong>Integer Conversion</strong><br>
-Floating-point coordinates are converted to integer pixel locations. This step introduces quantization: closely spaced trajectory points in continuous space may map to the same pixel, resulting in multiple &quot;hits&quot; per pixel. This discretization aggregates local density but may reduce fine details due to grouping within the pixel grid.</p>
+The continuous to discrete mapping introduces quantization: closely spaced trajectory points in continuous space may map to the same pixel, resulting in multiple &quot;hits&quot; per pixel. This discretization aggregates local density but may reduce fine details due to grouping within the pixel grid.</p>
 </li>
 <li>
-<p><strong>Density Representation</strong><br>
-An image array, initialized with zeros, serves as a blank canvas. Each trajectory point, after being mapped to a pixel, increments the corresponding array index. Higher hit counts in the array indicate greater density, approximating local concentrations of points. The total sum of pixel hit counts matches the number of trajectory iterations, preserving the dataset's size.</p>
+<p><strong>Density Tracking</strong><br>
+An image array, initialized with zeros, serves as a blank canvas. Each trajectory point, after being mapped to a pixel, increments the value at the corresponding array index. Higher hit counts in the array indicate greater density, approximating local concentrations of points. The total sum of pixel hit counts matches the number of trajectory iterations, preserving the dataset's size.</p>
 </li>
 <li>
-<p><strong>Density Visualization</strong><br>
-The Matplotlib &quot;hot&quot; colormap represents pixel hit counts as colors, normalized to fit within its color space. Darker colors correspond to lower densities, and lighter colors to higher densities, creating a gradient that highlights areas of activity.</p>
+<p><strong>Visualization of Density Distribution</strong><br>
+The Matplotlib &quot;hot&quot; colormap represents pixel hit counts as colors, scaled to span the full range of the colormap. Darker colors correspond to lower densities, and lighter colors to higher densities, creating a gradient that highlights areas of activity.</p>
 <ul>
 <li>
 <p><strong>Impact of Image Resolution:</strong></p>
@@ -384,12 +384,12 @@ The Matplotlib &quot;hot&quot; colormap represents pixel hit counts as colors, n
 <ol>
 <li>
 <p><strong>Pixel-Based Density Estimation</strong>:</p>
-<p>Continuous trajectory points are mapped to discrete pixel coordinates. Density estimation and the creation of a density matrix (pixel grid) occur simultaneously through quantization and discretization, producing emergent density patterns.</p>
+<p>Density estimation and the creation of a density matrix (pixel grid) occur simultaneously through quantization and discretization resulting from continuous to discrete mapping, producing emergent density patterns.</p>
 <p><em>For resolution impact, see Density Visualization above</em>.</p>
 </li>
 <li>
 <p><strong>Histogram-Based Density Estimation</strong>:</p>
-<p>NumPy's np.histogram2d(..., density=True) divides continuous space into a grid of equal-sized bins, counts the points in each bin, and normalizes the counts relative to the total number of points and bin area. This produces a density matrix representing relative point distributions for quantitative analysis.</p>
+<p>NumPy's np.histogram2d(..., density=True) divides continuous space into a grid of equal-sized bins, counts trajectory points in each bin, and normalizes counts per bin by total points and bin area. This produces a density matrix representing relative point distributions for quantitative analysis.</p>
 <ul>
 <li>Bin size impact:
 <ul>
@@ -404,7 +404,6 @@ The Matplotlib &quot;hot&quot; colormap represents pixel hit counts as colors, n
 </ul>
 </li>
 </ol>
-<p>The visualization of density matrices can be done separately for both methods.</p>
 <h4 id="summary">Summary</h4>
 <p>Pixel-based density estimation presents a promising alternative to histogram-based density estimation, each offering distinct advantages:</p>
 <ul>
@@ -639,7 +638,7 @@ Data Loss and Inaccuracy: As previously computed floating-point values are irrec
 <h3 id="potentially-other-more-sophisticated-solutions">Potentially Other, More Sophisticated Solutions</h3>
 <p>No other one-pass method solutions have been investigated or considered to date. More sophisticated solutions would also contradict the minimum complexity design approach unless a significant performance improvement in calculations with a high number of iterations makes them worth considering.</p>
 <h3 id="recap">Recap</h3>
-<p>Overall, the two-pass approach offers an excellent balance of speed, efficiency, and simplicity, making it ideal for attractor calculations that involve a high number of iterations. While the trajectory points must be computed during both passes, this method successfully avoids the drawbacks associated with alternative solutions.</p>
+<p>Overall, the two-pass approach offers an excellent balance of speed, efficiency, and simplicity, making it ideal for attractor calculations that involve large number of iterations. While the trajectory points must be computed during both passes, this method successfully avoids the drawbacks associated with alternative solutions.</p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <h2 id="recent-code-changes">Recent Code Changes</h2>
 <p>OPTIONAL: Using a 3D plot by mapping normalized density values along the Z-axis.</p>

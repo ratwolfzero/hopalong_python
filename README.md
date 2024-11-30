@@ -231,7 +231,7 @@ Examples of outputs can be found in the "Usage" section above.
 2. **Histogram-Based Density Estimation**:  
 
    NumPy's np.histogram2d(..., density=True) divides continuous space into a grid of equal-sized bins, counts trajectory points in each bin, and normalizes counts per bin by total points and bin area. This produces a density matrix representing relative point distributions for quantitative analysis.
-   - Bin size impact:
+   - Impact of bin size:
      - Smaller bins (higher bin count) improve density precision but reduce density contrast by spreading density over more bins.
 
      - Larger bins (lower bin count) increase density contrast by concentrating normalized density values in fewer, larger bins but reduce precision.

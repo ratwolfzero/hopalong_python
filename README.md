@@ -226,7 +226,8 @@ Examples of outputs can be found in the "Usage" section above.
 
 1. **Pixel-Based Density Estimation**:
   
-   Density estimation and the creation of a density matrix (pixel grid) occur simultaneously through quantization and discretization resulting from continuous to discrete mapping, producing emergent density patterns. Impact of image resolution see above.
+   Density estimation and the creation of a density matrix (pixel grid) are carried out simultaneously by quantization and discretization, which result from the continuous to the discrete mapping, creating emergent density patterns.  
+   For the influence of image resolution, see above.
 
 2. **Histogram-Based Density Estimation**:  
 

@@ -93,7 +93,7 @@ For details, see [Pixel-Based Density Estimation](#pixel-based-density-estimatio
 
 Just-in-time (JIT) compilation is applied and supported by a low-complexity code structure.
 
-For further hints regarding two-pass approach, see [Two-Pass Approach](#two-pass-approach)
+For details regarding two-pass algorithm, see [Two-Pass Approach](#two-pass-approach)
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 

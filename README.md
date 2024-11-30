@@ -216,7 +216,7 @@ Examples of outputs can be found in the "Usage" section above.
 - **Visualization of Density Distribution**  
   The Matplotlib "hot" colormap represents pixel hit counts as colors, scaled to span the full range of the colormap. Darker colors correspond to lower densities, and lighter colors to higher densities, creating a gradient that highlights areas of activity.
 
-  - **Impact of Image Resolution:**
+  - Impact of Image Resolution:
   
     - Lower resolutions increase visual density contrast by grouping multiple trajectory points into fewer pixels. This concentrates hit counts, emphasizing density differences but reducing detail.
 

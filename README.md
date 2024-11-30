@@ -213,7 +213,7 @@ Examples of outputs can be found in the "Usage" section above.
 - **Density Tracking**  
   An image array, initialized with zeros, serves as a blank canvas. Each trajectory point, after being mapped to a pixel, increments the value at the corresponding array index. Higher hit counts in the array indicate greater density, approximating local concentrations of points. The total sum of pixel hit counts matches the number of trajectory iterations, preserving the dataset's size.
 
-- **Visual Representation of Density**  
+- **Visualization of Density Distribution**  
   The Matplotlib "hot" colormap represents pixel hit counts as colors, scaled to span the full range of the colormap. Darker colors correspond to lower densities, and lighter colors to higher densities, creating a gradient that highlights areas of activity.
 
   - **Impact of Image Resolution:**

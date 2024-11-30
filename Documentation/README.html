@@ -367,7 +367,7 @@ An image array, initialized with zeros, serves as a blank canvas. Each trajector
 The Matplotlib &quot;hot&quot; colormap represents pixel hit counts as colors, scaled to span the full range of the colormap. Darker colors correspond to lower densities, and lighter colors to higher densities, creating a gradient that highlights areas of activity.</p>
 <ul>
 <li>
-<p><strong>Impact of Image Resolution:</strong></p>
+<p>Impact of Image Resolution:</p>
 <ul>
 <li>
 <p>Lower resolutions increase visual density contrast by grouping multiple trajectory points into fewer pixels. This concentrates hit counts, emphasizing density differences but reducing detail.</p>
@@ -390,7 +390,7 @@ The Matplotlib &quot;hot&quot; colormap represents pixel hit counts as colors, s
 <p><strong>Histogram-Based Density Estimation</strong>:</p>
 <p>NumPy's np.histogram2d(..., density=True) divides continuous space into a grid of equal-sized bins, counts trajectory points in each bin, and normalizes counts per bin by total points and bin area. This produces a density matrix representing relative point distributions for quantitative analysis.</p>
 <ul>
-<li>Bin size impact:
+<li>Impact of bin size:
 <ul>
 <li>
 <p>Smaller bins (higher bin count) improve density precision but reduce density contrast by spreading density over more bins.</p>

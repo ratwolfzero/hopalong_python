@@ -204,17 +204,17 @@ Examples of outputs can be found in the "Usage" section above.
 
 ### Pixel-Based Density Estimation
 
-- **Continuous Point to Discrete Pixel Mapping**  
+- **Continuous to Discrete Mapping**  
   Trajectory points, represented as floating-point coordinates in a two-dimensional continuous space, are mapped to integer pixel coordinates for visualization. Scaling factors derived from the trajectory's extents (minimum and maximum values) and the image dimensions ensure that the continuous coordinates fit within the pixel grid while preserving spatial relationships.
 
 - **Integer Conversion**  
-  Floating-point coordinates are converted to integer pixel locations. This step introduces quantization: closely spaced trajectory points in continuous space may map to the same pixel, resulting in multiple "hits" per pixel. This discretization aggregates local density but may reduce fine details due to grouping within the pixel grid.
+  The continuous to discrete mapping introduces quantization: closely spaced trajectory points in continuous space may map to the same pixel, resulting in multiple "hits" per pixel. This discretization aggregates local density but may reduce fine details due to grouping within the pixel grid.
 
 - **Density Representation**  
-  An image array, initialized with zeros, serves as a blank canvas. Each trajectory point, after being mapped to a pixel, increments the corresponding array index. Higher hit counts in the array indicate greater density, approximating local concentrations of points. The total sum of pixel hit counts matches the number of trajectory iterations, preserving the dataset's size.
+  An image array, initialized with zeros, serves as a blank canvas. Each trajectory point, after being mapped to a pixel, increments the value at the corresponding array index. Higher hit counts in the array indicate greater density, approximating local concentrations of points. The total sum of pixel hit counts matches the number of trajectory iterations, preserving the dataset's size.
 
 - **Density Visualization**  
-  The Matplotlib "hot" colormap represents pixel hit counts as colors, normalized to fit within its color space. Darker colors correspond to lower densities, and lighter colors to higher densities, creating a gradient that highlights areas of activity.
+  The Matplotlib "hot" colormap represents pixel hit counts as colors, scaled to span the full range of the colormap. Darker colors correspond to lower densities, and lighter colors to higher densities, creating a gradient that highlights areas of activity.
 
   - **Impact of Image Resolution:**
   
@@ -226,13 +226,13 @@ Examples of outputs can be found in the "Usage" section above.
 
 1. **Pixel-Based Density Estimation**:
   
-   Continuous trajectory points are mapped to discrete pixel coordinates. Density estimation and the creation of a density matrix (pixel grid) occur simultaneously through quantization and discretization, producing emergent density patterns.  
+   Density estimation and the creation of a density matrix (pixel grid) occur simultaneously through quantization and discretization resulting from continuous to discrete mapping, producing emergent density patterns.  
   
    *For resolution impact, see Density Visualization above*.
 
 2. **Histogram-Based Density Estimation**:  
 
-   NumPy's np.histogram2d(..., density=True) divides continuous space into a grid of equal-sized bins, counts the points in each bin, and normalizes the counts relative to the total number of points and bin area. This produces a density matrix representing relative point distributions for quantitative analysis.
+   NumPy's np.histogram2d(..., density=True) divides continuous space into a grid of equal-sized bins, counts trajectory points in each bin, and normalizes counts per bin by total points and bin area. This produces a density matrix representing relative point distributions for quantitative analysis.
    - Bin size impact:
      - Smaller bins (higher bin count) improve density precision but reduce density contrast by spreading density over more bins.
 

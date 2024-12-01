@@ -82,6 +82,7 @@ def plot_trajectory_with_density(trajectory):
     plt.tight_layout()
     plt.show()
 
+
 def main():
     try:
         params = get_attractor_parameters()

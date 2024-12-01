@@ -230,7 +230,7 @@ Examples of outputs can be found in the "Usage" section above.
 
 2. **Histogram-Based Density Estimation**:  
 
-   Using `np.histogram2d(..., density=True)`, this approach aggregates density over grid bins, normalizing the counts of trajectory points per bin by the total number of points and the bin area. The resulting density matrix represents relative point distributions across the entire space for quantitative analysis. While the matrix does not explicitly embed coordinates, spatial information is inferred from the bin edges, which define the coordinate ranges for each entry. The center of each bin is considered a representative coordinate, and the density value reflects the concentration of points around that center.
+   Using `np.histogram2d(..., density=True)`, this approach aggregates density over grid bins, normalizing the counts of trajectory points per bin by the total number of points and the bin area. The resulting density matrix represents relative point distributions across the entire space for quantitative analysis. While the matrix does not explicitly embed coordinates, spatial information is inferred from the bin edges, which define the index ranges for each entry. The center of each bin is considered a representative index, and the density value reflects the concentration of points around those indices.
    - Impact of bin size:
      - Smaller bins (higher bin count) improve density precision but reduce density contrast by spreading density over more bins.
 

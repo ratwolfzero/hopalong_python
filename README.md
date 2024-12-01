@@ -226,7 +226,7 @@ Examples of outputs can be found in the "Usage" section above.
 
 1. **Pixel-Based Density Approximation**:
   
-   Quantization and discretization map continuous trajectory points directly to discrete pixel indices, simultaneously establishing coordinates and producing a density approximation. This process generates a density matrix where each pixel corresponds to a specific region in continuous space, creating emergent density patterns. Impact of Image Resolution, see above.
+   This process generates a density matrix where each pixel corresponds to a specific region in continuous space, with emergent density patterns arising from the interaction between the system's dynamics and the mapping of continuous coordinates to discrete pixel indices. Impact of Image Resolution, see above.
 
 2. **Histogram-Based Density Estimation**:  
 
@@ -247,7 +247,7 @@ Remarks
 
 - The pixel-based density matrix uses raw hit counts, while the histogram-based density matrix represents normalized density values. Both are scaled by Matplotlib's Colormap to fit within its color space. Explicitly normalizing both matrices to [0, 1] before plotting yields identical visual results.
 
-- Method Invariance  
+- Method Invariance (Invariant Measure)  
   Regardless of the density estimation technique (pixel-based or histogram-based) or the visualization settings (resolution, bin size), the intrinsic geometric structure of the attractor remains unchanged. These methods affect the density representation but do not change the shape or dynamics of the attractor, which is determined by the underlying mathematical functions.
 
 #### Conclusions

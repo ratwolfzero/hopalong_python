@@ -161,9 +161,9 @@
 <li><a href="#features-functionality-and-special-scenarios">Features, Functionality, and Special Scenarios</a>
 <ul>
 <li><a href="#program-variants">Program Variants</a></li>
-<li><a href="#pixel-based-density-estimation">Pixel-Based Density Estimation</a>
+<li><a href="#pixel-based-density-approximation">Pixel-Based Density Approximation</a>
 <ul>
-<li><a href="#comparison-of-pixel-based-vs-histogram-based-density-estimation">Comparison of Pixel-Based vs. Histogram-Based Density Estimation</a></li>
+<li><a href="#comparison-of-pixel-based-density-approximation-vs-histogram-based-density-estimation">Comparison of Pixel-Based Density Approximation vs. Histogram-Based Density Estimation</a></li>
 <li><a href="#summary">Summary</a></li>
 <li><a href="#conclusions">Conclusions</a></li>
 </ul>
@@ -252,7 +252,7 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">â
 </li>
 <li>
 <p>Direct mapping of the sequentially generated trajectory points in continuous space to a discrete pixel grid, while tracking the number of pixel hits to generate the density map (second pass).<br>
-For details, see <a href="#pixel-based-density-estimation">Pixel-Based Density Estimation</a></p>
+For details, see <a href="#pixel-based-approximation-of-density">Pixel-Based Density Approximation</a></p>
 </li>
 </ol>
 <p>Just-in-time (JIT) compilation is applied and supported by a low-complexity code structure.</p>
@@ -348,7 +348,7 @@ The code for the Basic variant supports both 2D and 3D visualization. To switch 
 <p><a href="#recent-code-changes">See Recent Code Changes</a></p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <p>Examples of outputs can be found in the &quot;Usage&quot; section above.</p>
-<h3 id="pixel-based-density-estimation">Pixel-Based Density Estimation</h3>
+<h3 id="pixel-based-density-approximation">Pixel-Based Density Approximation</h3>
 <ul>
 <li>
 <p><strong>Continuous to Discrete Mapping</strong><br>
@@ -380,15 +380,15 @@ The Matplotlib &quot;hot&quot; colormap represents pixel hit counts as colors, s
 </ul>
 </li>
 </ul>
-<h4 id="comparison-of-pixel-based-vs-histogram-based-density-estimation">Comparison of Pixel-Based vs. Histogram-Based Density Estimation</h4>
+<h4 id="comparison-of-pixel-based-density-approximation-vs-histogram-based-density-estimation">Comparison of Pixel-Based Density Approximation vs. Histogram-Based Density Estimation</h4>
 <ol>
 <li>
-<p><strong>Pixel-Based Density Estimation</strong>:</p>
-<p>Density estimation and the creation of a density matrix (pixel grid) are carried out simultaneously by quantization and discretization, which result from the continuous to the discrete mapping, creating emergent density patterns. For the influence of image resolution, see above.</p>
+<p><strong>Pixel-Based Density Approximation</strong>:</p>
+<p>Quantization and discretization map continuous trajectory points directly to discrete pixel indices, simultaneously establishing coordinates and producing a density approximation. This process generates a density matrix where each pixel corresponds to a specific region in continuous space, creating emergent density patterns.</p>
 </li>
 <li>
 <p><strong>Histogram-Based Density Estimation</strong>:</p>
-<p>NumPy's np.histogram2d(..., density=True) divides continuous space into a grid of equal-sized bins, counts trajectory points in each bin, and normalizes counts per bin by total points and bin area. This produces a density matrix representing relative point distributions for quantitative analysis.</p>
+<p>Using np.histogram2d(..., density=True), this approach aggregates density over grid bins, normalizing the counts of trajectory points per bin by the total number of points and the bin area. The resulting density matrix represents relative point distributions for quantitative analysis. While the matrix does not explicitly embed coordinates, spatial information is implied by the bin edges, which define the coordinate ranges for each entry.</p>
 <ul>
 <li>Impact of bin size:
 <ul>
@@ -404,10 +404,10 @@ The Matplotlib &quot;hot&quot; colormap represents pixel hit counts as colors, s
 </li>
 </ol>
 <h4 id="summary">Summary</h4>
-<p>Pixel-based density estimation presents a promising alternative to histogram-based density estimation, each offering distinct advantages:</p>
+<p>Pixel-based density approximation presents a promising alternative to histogram-based density estimation, each offering distinct advantages:</p>
 <ul>
 <li>Qualitative: The pixel-based approach is well suited for visual exploration and supports fast algorithms that efficiently handle large numbers of iterations. See <a href="#two-pass-approach">Two-Pass Approach</a></li>
-<li>Quantitative: The histogram-based approach excels in statistical and numerical analysis, offering a close approximation of probability density distributions within continuous space.</li>
+<li>Quantitative Analysis: The histogram-based approach excels in statistical and numerical analysis, providing an accurate estimation of probability density distributions within continuous space.</li>
 </ul>
 <p>Remarks</p>
 <ul>
@@ -416,7 +416,7 @@ The Matplotlib &quot;hot&quot; colormap represents pixel hit counts as colors, s
 </li>
 <li>
 <p>Method Invariance<br>
-Regardless of the density estimation technique (pixel-based or histogram) or the visualization settings (resolution, bin size), the intrinsic geometric structure of the attractor remains unchanged. These methods affect the density representation but do not change the shape or dynamics of the attractor, which is determined by the underlying mathematical functions.</p>
+Regardless of the density estimation technique (pixel-based or histogram-based) or the visualization settings (resolution, bin size), the intrinsic geometric structure of the attractor remains unchanged. These methods affect the density representation but do not change the shape or dynamics of the attractor, which is determined by the underlying mathematical functions.</p>
 </li>
 </ul>
 <h4 id="conclusions">Conclusions</h4>

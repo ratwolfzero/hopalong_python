@@ -226,7 +226,7 @@ Examples of outputs can be found in the "Usage" section above.
 
 1. **Pixel-Based Density Approximation**:
   
-   Quantization and discretization map continuous trajectory points directly to discrete pixel indices, simultaneously establishing coordinates and producing a density approximation. This process generates a density matrix where each pixel corresponds to a specific region in continuous space, creating emergent density patterns.
+   Quantization and discretization map continuous trajectory points directly to discrete pixel indices, simultaneously establishing coordinates and producing a density approximation. This process generates a density matrix where each pixel corresponds to a specific region in continuous space, creating emergent density patterns. Impact of Image Resolution, see above.
 
 2. **Histogram-Based Density Estimation**:  
 

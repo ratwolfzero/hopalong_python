@@ -75,7 +75,7 @@ def plot_trajectory_with_density(trajectory):
     cbar = fig.colorbar(img, ax=ax, location='bottom')
     cbar.set_label('Density')  # Title for colorbar
 
-    ax.set_title('Hopalong Attractor with Density Coloring (2D Histogram Approximation)')
+    ax.set_title('Hopalong Attractor with Density Coloring (2D Histogram Estimation)')
     ax.set_xlabel('X (Cartesian)')
     ax.set_ylabel('Y (Cartesian)')
     #ax.axis('equal')

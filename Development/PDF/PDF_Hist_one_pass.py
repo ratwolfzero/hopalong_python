@@ -68,6 +68,8 @@ def plot_trajectory_with_density(trajectory):
     
     # Plotting with density color mapping
     img = ax.imshow(density.T, origin='lower', cmap='hot', extent=[xedges[0], xedges[-1], yedges[0], yedges[-1]],interpolation='none')
+    #plt.pcolormesh(xedges, yedges, density.T, cmap='hot', shading='auto')
+    #plt.contourf(xedges[:-1], yedges[:-1], density.T, cmap='hot')
     
     # Add color bar using the ax argument
     cbar = fig.colorbar(img, ax=ax, location='bottom')

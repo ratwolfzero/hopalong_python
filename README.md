@@ -253,13 +253,13 @@ Remarks
 #### Conclusions
 
 Considering the previously described factors, both methods effectively highlight areas with point concentrations, as illustrated in the following images.
-  
+
 Both images were rendered with `matplotlib.pyplot.imshow, interpolation='none'`
 
-**1. Pixel Based Approximation, Image Size=1000x1000**
+**1. Pixel-Based Density Approximation, Image Size=1000x1000**
 ![Example Attractor Image](./examples/Figure_ex_6.png)
 
-**2. Histogram-Based Approximation, Number of Bins = 1000, Same Attractor Parameters and Iterations as (1)**
+**2. Histogram-Based Density Estimation, Number of Bins = 1000, Same Attractor Parameters and Iterations as (1)**
 ![Example Attractor Image](./examples/true_PDF_histogram.png)
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)

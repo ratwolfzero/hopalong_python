@@ -241,11 +241,11 @@ Examples of outputs can be found in the "Usage" section above.
 Pixel-based density approximation presents a promising alternative to histogram-based density estimation, each offering distinct advantages:
 
 - Qualitative: The pixel-based approach is well suited for visual exploration and supports fast algorithms that efficiently handle large numbers of iterations. See [Two-Pass Approach](#two-pass-approach)
-- Quantitative Analysis: The histogram-based approach excels in statistical and numerical analysis, providing an accurate estimation of probability density distributions within continuous space.
+- Quantitative Analysis: The histogram-based approach excels in statistical and numerical analysis, providing an accurate estimation of normalized density distribution within continuous space.
 
 Remarks
 
-- The pixel-based density matrix uses raw hit counts, while the histogram-based density matrix represents normalized probability densities. Both are normalized by Matplotlib's Colormap to fit within its color space. Explicitly normalizing both matrices to [0, 1] before plotting yields identical visual results.
+- The pixel-based density matrix uses raw hit counts, while the histogram-based density matrix represents normalized density values. Both are scaled by Matplotlib's Colormap to fit within its color space. Explicitly normalizing both matrices to [0, 1] before plotting yields identical visual results.
 
 - Method Invariance  
   Regardless of the density estimation technique (pixel-based or histogram-based) or the visualization settings (resolution, bin size), the intrinsic geometric structure of the attractor remains unchanged. These methods affect the density representation but do not change the shape or dynamics of the attractor, which is determined by the underlying mathematical functions.

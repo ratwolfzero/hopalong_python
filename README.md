@@ -14,8 +14,8 @@
     - [Output](#output)
   - [Features, Functionality, and Special Scenarios](#features-functionality-and-special-scenarios)
     - [Program Variants](#program-variants)
-    - [Pixel-Based Density Estimation](#pixel-based-density-estimation)
-      - [Comparison of Pixel-Based vs. Histogram-Based Density Estimation](#comparison-of-pixel-based-vs-histogram-based-density-estimation)
+    - [Pixel-Based Density Approximation](#pixel-based-density-approximation)
+      - [Comparison of Pixel-Based Density Approximation vs. Histogram-Based Density Estimation](#comparison-of-pixel-based-density-approximation-vs-histogram-based-density-estimation)
       - [Summary](#summary)
       - [Conclusions](#conclusions)
     - [Application of Copysign (Math Module) as a Signum Function](#application-of-copysign-math-module-as-a-signum-function)
@@ -89,7 +89,7 @@ Two-pass algorithm with separate calculation of:
 1. The spatial extent of the attractor trajectory (first pass).
 
 2. Direct mapping of the sequentially generated trajectory points in continuous space to a discrete pixel grid, while tracking the number of pixel hits to generate the density map (second pass).  
-For details, see [Pixel-Based Density Estimation](#pixel-based-density-estimation)
+For details, see [Pixel-Based Density Approximation](#pixel-based-approximation-of-density)
 
 Just-in-time (JIT) compilation is applied and supported by a low-complexity code structure.
 
@@ -202,7 +202,7 @@ The code for the Basic variant supports both 2D and 3D visualization. To switch 
 
 Examples of outputs can be found in the "Usage" section above.
 
-### Pixel-Based Density Estimation
+### Pixel-Based Density Approximation
 
 - **Continuous to Discrete Mapping**  
   Trajectory points, represented as floating-point coordinates in a two-dimensional continuous space, are mapped to integer pixel coordinates for visualization. Scaling factors derived from the trajectory's extents (minimum and maximum values) and the image dimensions ensure that the continuous coordinates fit within the pixel grid while preserving spatial relationships.
@@ -222,15 +222,15 @@ Examples of outputs can be found in the "Usage" section above.
 
     - Higher resolutions distribute trajectory points across more pixels, capturing finer data variations and increasing detail but reducing visual density contrast as hit counts are spread more evenly.
 
-#### Comparison of Pixel-Based vs. Histogram-Based Density Estimation
+#### Comparison of Pixel-Based Density Approximation vs. Histogram-Based Density Estimation
 
-1. **Pixel-Based Density Estimation**:
+1. **Pixel-Based Density Approximation**:
   
-   Density estimation and the creation of a density matrix (pixel grid) are carried out simultaneously by quantization and discretization, which result from the continuous to the discrete mapping, creating emergent density patterns. For the influence of image resolution, see above.
+   Quantization and discretization map continuous trajectory points directly to discrete pixel indices, simultaneously establishing coordinates and producing a density approximation. This process generates a density matrix where each pixel corresponds to a specific region in continuous space, creating emergent density patterns.
 
 2. **Histogram-Based Density Estimation**:  
 
-   NumPy's np.histogram2d(..., density=True) divides continuous space into a grid of equal-sized bins, counts trajectory points in each bin, and normalizes counts per bin by total points and bin area. This produces a density matrix representing relative point distributions for quantitative analysis.
+   Using np.histogram2d(..., density=True), this approach aggregates density over grid bins, normalizing the counts of trajectory points per bin by the total number of points and the bin area. The resulting density matrix represents relative point distributions for quantitative analysis. While the matrix does not explicitly embed coordinates, spatial information is implied by the bin edges, which define the coordinate ranges for each entry.
    - Impact of bin size:
      - Smaller bins (higher bin count) improve density precision but reduce density contrast by spreading density over more bins.
 
@@ -238,10 +238,10 @@ Examples of outputs can be found in the "Usage" section above.
 
 #### Summary
 
-Pixel-based density estimation presents a promising alternative to histogram-based density estimation, each offering distinct advantages:
+Pixel-based density approximation presents a promising alternative to histogram-based density estimation, each offering distinct advantages:
 
 - Qualitative: The pixel-based approach is well suited for visual exploration and supports fast algorithms that efficiently handle large numbers of iterations. See [Two-Pass Approach](#two-pass-approach)
-- Quantitative: The histogram-based approach excels in statistical and numerical analysis, offering a close approximation of probability density distributions within continuous space.
+- Quantitative Analysis: The histogram-based approach excels in statistical and numerical analysis, providing an accurate estimation of probability density distributions within continuous space.
 
 Remarks
 

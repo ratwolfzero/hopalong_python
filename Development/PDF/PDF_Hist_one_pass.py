@@ -67,7 +67,7 @@ def plot_trajectory_with_density(trajectory):
     ax = fig.add_subplot(1, 1, 1)
     
     # Plotting with density color mapping
-    img = ax.imshow(density.T, origin='lower', cmap='hot', extent=[xedges[0], xedges[-1], yedges[0], yedges[-1]])
+    img = ax.imshow(density.T, origin='lower', cmap='hot', extent=[xedges[0], xedges[-1], yedges[0], yedges[-1]],interpolation='none')
     
     # Add color bar using the ax argument
     cbar = fig.colorbar(img, ax=ax, location='bottom')

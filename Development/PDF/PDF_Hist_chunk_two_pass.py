@@ -79,7 +79,7 @@ def compute_pdf_histogram(a, b, c, num, chunk_size, extents, bins):
         
         # Update histogram with current chunk
         hist, _, _ = np.histogram2d(points[:, 0], points[:, 1], bins=bins,
-                                    range=[[min_x, max_x], [min_y, max_y]], density=True)
+                                    range=[[min_x, max_x], [min_y, max_y]], density=False)
         histogram += hist
 
     # Normalize to get PDF
@@ -97,7 +97,7 @@ def render_pdf_histogram(histogram, extents, params, color_map='hot'):
 
     # Plotting with density color mapping
     img = ax.imshow(histogram.T, origin="lower", cmap=color_map,
-              extent=[extents[0], extents[1], extents[2], extents[3]])
+              extent=[extents[0], extents[1], extents[2], extents[3]],interpolation='none')
 
     # Add color bar at the bottom
     cbar = fig.colorbar(img, ax=ax, location='bottom')

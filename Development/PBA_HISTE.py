@@ -2,7 +2,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 from numba import njit
 from math import copysign, sqrt, fabs
-from sklearn.metrics.pairwise import cosine_similarity
 from scipy.stats import pearsonr
 
 
@@ -69,23 +68,82 @@ def compute_trajectory_and_image(a, b, c, n, extents, image_size):
     return image
 
 
-# Compute trajectory
 @njit
 def compute_trajectory(a, b, c, num):
     x, y = np.float64(0.0), np.float64(0.0)
     trajectory = np.zeros((num, 2))
-
     for i in range(num):
         trajectory[i, 0], trajectory[i, 1] = x, y
         xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
         yy = a - x
         x, y = xx, yy
-
     return trajectory
+
+
+def compute_statistics(image, hist_density):
+    """
+    Computes statistical measures between the pixel-based and histogram-based density matrices.
+
+    Parameters:
+        image (ndarray): The pixel-based density matrix.
+        hist_density (ndarray): The histogram-based density matrix.
+
+    Returns:
+        dict: A dictionary containing the Pearson correlation and cosine similarity.
+    """
+    # Flatten matrices for comparison
+    image_flat = image.flatten()
+    hist_density_flat = hist_density.T.flatten()  # Transpose histogram matrix for alignment
     
+    # Normalize the flattened matrices
+    image_flat = (image_flat - np.min(image_flat)) / (np.max(image_flat) - np.min(image_flat))
+    hist_density_flat = (hist_density_flat - np.min(hist_density_flat)) / (np.max(hist_density_flat) - np.min(hist_density_flat))
+
+    # Pearson Correlation Coefficient
+    pearson_corr = np.corrcoef(image_flat, hist_density_flat)[0, 1]
+
+    # Cosine Similarity
+    cosine_sim = np.dot(image_flat, hist_density_flat) / (
+        np.linalg.norm(image_flat) * np.linalg.norm(hist_density_flat)
+    )
+
+    return {
+        "Pearson Correlation Coefficient": pearson_corr,
+        "Cosine Similarity": cosine_sim
+    }
+
+
+def plot_density_matrices(image, hist_density, extent, color_map='hot'):
+    """
+    Plots the pixel-based and histogram-based density matrices.
+
+    Parameters:
+        image (ndarray): The pixel-based density matrix.
+        hist_density (ndarray): The histogram-based density matrix.
+        extent (list): Extents for the plot axes [min_x, max_x, min_y, max_y].
+        color_map (str): The colormap for the plots.
+    """
+    fig, axes = plt.subplots(1, 2, figsize=(12, 6))
+
+    # Pixel-Based Density Matrix
+    im1 = axes[0].imshow(image, origin='lower', cmap=color_map, extent=extent, interpolation='none')
+    axes[0].set_title('Pixel-Based Density Matrix')
+    axes[0].set_xlabel('X')
+    axes[0].set_ylabel('Y')
+    fig.colorbar(im1, ax=axes[0], label='Density')
+
+    # Histogram-Based Density Matrix
+    im2 = axes[1].imshow(hist_density.T, origin='lower', cmap=color_map, extent=extent, interpolation='none')
+    axes[1].set_title('Histogram-Based Density Matrix')
+    axes[1].set_xlabel('X')
+    axes[1].set_ylabel('Y')
+    fig.colorbar(im2, ax=axes[1], label='Density')
+
+    plt.tight_layout()
+    plt.show()
+
 
 def main(image_size=(1000, 1000), color_map='hot'):
-    # Main execution process
     try:
         # Step 1: Get attractor parameters
         params = get_attractor_parameters()
@@ -105,54 +163,17 @@ def main(image_size=(1000, 1000), color_map='hot'):
             trajectory[:, 0], trajectory[:, 1], bins=image_size, density=True
         )
 
-        # Step 7: Define extents for visualization
-        extent = [min_x, max_x, min_y, max_y]
+        # Step 6: Compute and print statistics
+        stats = compute_statistics(image, hist_density)
+        for name, value in stats.items():
+            print(f"{name}: {value:.4f}")
 
-        # Step 8: Plot both matrices side by side
-        fig, axes = plt.subplots(1, 2, figsize=(12, 6))
-
-        # Pixel-Based Density Matrix
-        im1 = axes[0].imshow(image, origin='lower', cmap=color_map, extent=extent, interpolation='none')
-        axes[0].set_title('Pixel-Based Density Matrix')
-        axes[0].set_xlabel('X')
-        axes[0].set_ylabel('Y')
-        fig.colorbar(im1, ax=axes[0], label='Density')
-
-        # Histogram-Based Density Matrix
-        im2 = axes[1].imshow(hist_density.T, origin='lower', cmap=color_map, extent=extent, interpolation='none')
-        axes[1].set_title('Histogram-Based Density Matrix')
-        axes[1].set_xlabel('X')
-        axes[1].set_ylabel('Y')
-        fig.colorbar(im2, ax=axes[1], label='Density')
-
-       
-        # Step 9: Calculate and print statistics
-        image_flat = image.flatten()
-        hist_density_flat = hist_density.T.flatten()
-        
-        
-        # Normalize the flattened matrices
-        #image_flat = (image_flat - np.min(image_flat)) / (np.max(image_flat) - np.min(image_flat))
-        #hist_density_flat = (hist_density_flat - np.min(hist_density_flat)) / (np.max(hist_density_flat) - np.min(hist_density_flat))
-
-
-        # Pearson Correlation Coefficient
-        pearson_corr = np.corrcoef(image_flat, hist_density_flat)[0, 1]
-        print(f"Pearson Correlation Coefficient: {pearson_corr:.4f}")
-
-        # Cosine Similarity
-        cosine_sim = np.dot(image_flat, hist_density_flat) / (
-            np.linalg.norm(image_flat) * np.linalg.norm(hist_density_flat)
-        )
-        print(f"Cosine Similarity: {cosine_sim:.4f}")
-
-        # Show the plots
-        plt.tight_layout()
-        plt.show()
+        # Step 7: Plot density matrices
+        plot_density_matrices(image, hist_density, [min_x, max_x, min_y, max_y], color_map=color_map)
 
     except Exception as e:
         print(f"An error occurred: {e}")
-        
-        
+
+
 if __name__ == '__main__':
     main()

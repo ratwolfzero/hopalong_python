@@ -407,12 +407,12 @@ The Matplotlib &quot;hot&quot; colormap represents pixel hit counts as colors, s
 <p>Pixel-based density approximation presents a promising alternative to histogram-based density estimation, each offering distinct advantages:</p>
 <ul>
 <li>Qualitative: The pixel-based approach is well suited for visual exploration and supports fast algorithms that efficiently handle large numbers of iterations. See <a href="#two-pass-approach">Two-Pass Approach</a></li>
-<li>Quantitative Analysis: The histogram-based approach excels in statistical and numerical analysis, providing an accurate estimation of probability density distributions within continuous space.</li>
+<li>Quantitative Analysis: The histogram-based approach excels in statistical and numerical analysis, providing an accurate estimation of normalized density distribution within continuous space.</li>
 </ul>
 <p>Remarks</p>
 <ul>
 <li>
-<p>The pixel-based density matrix uses raw hit counts, while the histogram-based density matrix represents normalized probability densities. Both are normalized by Matplotlib's Colormap to fit within its color space. Explicitly normalizing both matrices to [0, 1] before plotting yields identical visual results.</p>
+<p>The pixel-based density matrix uses raw hit counts, while the histogram-based density matrix represents normalized density values. Both are scaled by Matplotlib's Colormap to fit within its color space. Explicitly normalizing both matrices to [0, 1] before plotting yields identical visual results.</p>
 </li>
 <li>
 <p>Method Invariance<br>

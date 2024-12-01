@@ -388,7 +388,7 @@ The Matplotlib &quot;hot&quot; colormap represents pixel hit counts as colors, s
 </li>
 <li>
 <p><strong>Histogram-Based Density Estimation</strong>:</p>
-<p>Using <code>np.histogram2d(..., density=True)</code>, this approach aggregates density over grid bins, normalizing the counts of trajectory points per bin by the total number of points and the bin area. The resulting density matrix represents relative point distributions across the entire space for quantitative analysis. While the matrix does not explicitly embed coordinates, spatial information is inferred from the bin edges, which define the coordinate ranges for each entry.</p>
+<p>Using <code>np.histogram2d(..., density=True)</code>, this approach aggregates density over grid bins, normalizing the counts of trajectory points per bin by the total number of points and the bin area. The resulting density matrix represents relative point distributions across the entire space for quantitative analysis. While the matrix does not explicitly embed coordinates, spatial information is inferred from the bin edges, which define the coordinate ranges for each entry. The center of each bin is considered a representative coordinate, and the density value reflects the concentration of points around that center.</p>
 <ul>
 <li>Impact of bin size:
 <ul>

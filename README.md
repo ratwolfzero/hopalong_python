@@ -384,6 +384,8 @@ This scenario is an ideal use case for the features of the extended program vari
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
+---
+
 ### Optional Features
 
 Execution time and resources: Measurement starts after user input and records the CPU time for the entire process, including image rendering. It also tracks the system memory used.

@@ -254,14 +254,6 @@ Remarks
 
 Considering the previously described factors, both methods effectively highlight areas with point concentrations, as illustrated in the following images.
 
-| Parameters              | Iterations       | Pearson Correlation Coefficient | Cosine Similarity |
-|-------------------------|------------------|---------------------------------|-------------------|
-| a = -2, b = 0.33, c = 0.01 | n = 10,000      | 0.3791                          | 0.3839            |
-| a = -2, b = 0.33, c = 0.01 | n = 100,000     | 0.5589                          | 0.5837            |
-| a = -2, b = 0.33, c = 0.01 | n = 1,000,000   | 0.7831                          | 0.8206            |
-| a = 2, b = 1, c = 0      | n = 200,000,000 | 0.8577                          | 0.8842            |
-
-
 Both images were rendered with `matplotlib.pyplot.imshow, interpolation='none'`
 
 **1. Pixel-Based Density Approximation, Image Size=1000x1000**

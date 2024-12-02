@@ -40,7 +40,7 @@ def get_attractor_parameters():
 
 @njit
 def compute_trajectory_extents(a, b, c, n):
-    x, y = 0.0, 0.0
+    x, y = np.float64(0.0), np.float64(0.0)
     min_x, max_x, min_y, max_y = np.inf, -np.inf, np.inf, -np.inf
     for _ in range(n):
         min_x, max_x = min(min_x, x), max(max_x, x)

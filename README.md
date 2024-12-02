@@ -18,6 +18,7 @@
       - [Comparison of Pixel-Based Density Approximation vs. Histogram-Based Density Estimation](#comparison-of-pixel-based-density-approximation-vs-histogram-based-density-estimation)
       - [Summary](#summary)
       - [Conclusions](#conclusions)
+      - [Statistical Comparison of Density Matrices](#statistical-comparison-of-density-matrices)
     - [Application of Copysign (Math Module) as a Signum Function](#application-of-copysign-math-module-as-a-signum-function)
     - [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)
     - [Optional Features](#optional-features)
@@ -271,7 +272,8 @@ Both images were rendered with `matplotlib.pyplot.imshow, interpolation='none'`
 **2. Histogram-Based Density Estimation, Number of Bins = 1000, Same Parameters and Iterations as (1)**
 ![Example Attractor Image](./examples/true_PDF_histogram.png)
 
-Statistical Comparison of Density Matrices:  
+#### Statistical Comparison of Density Matrices
+
 Pixel-Based Density Approximation vs. Histogram-Based Density Estimation
 
 | Parameters              | Iterations       | Pearson Correlation Coefficient | Cosine Similarity |

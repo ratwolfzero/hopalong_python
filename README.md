@@ -236,7 +236,7 @@ Examples of outputs can be found in the "Usage" section above.
 
 1. **Pixel-Based Density Approximation**:
   
-   This process generates a density heatmap matrix where each pixel corresponds to a specific region in continuous space, with emergent density patterns arising from the interaction between the system's dynamics and the mapping of continuous coordinates to discrete pixel indices. Impact of Image Resolution, see above.
+   This process generates a density heatmap matrix where each pixel corresponds to a specific region in continuous space, with emergent density patterns arising from the interaction between the attractors's dynamics and the mapping of continuous coordinates to discrete pixel indices. Impact of Image Resolution, see above.
 
 2. **Histogram-Based Density Estimation**:  
 

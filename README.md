@@ -279,6 +279,12 @@ Matrix Similarity Across Parameter Sets
 | a = 0.6, b = 0.5, c = 0     | n = 1,000,000   | 0.8557                          | 0.8736            |
 | a = 0.6, b = 0.5, c = 0     | n = 100,000,000 | 0.9814                          | 0.9845            |
 
+Perfect Similarity with Periodic Orbit: A 3-Cycle Example
+
+| Parameters              | Iterations       | Pearson Correlation Coefficient | Cosine Similarity |
+|-------------------------|------------------|---------------------------------|-------------------|
+| a = 5, b = 5, c = 0     | n = 1,000,000       | 1.0000                          | 1.0000            |
+
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 

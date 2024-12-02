@@ -147,6 +147,8 @@ Otherwise, please comment out the corresponding code snippets in the import sect
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
+---
+
 ## Usage
 
 ### Input
@@ -183,7 +185,10 @@ The programs generate a visual representation of the attractor trajectory as a d
 **Extended Version**
 ![Example Attractor Image](./examples/Figure_ex_2.png)
 
+
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
+
+---
 
 ## Features, Functionality, and Special Scenarios
 
@@ -203,6 +208,8 @@ The code for the Basic variant supports both 2D and 3D visualization. To switch 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
 Examples of outputs can be found in the "Usage" section above.
+
+---
 
 ### Pixel-Based Density Approximation
 
@@ -290,6 +297,8 @@ Perfect Similarity with Periodic Orbit: A 3-Cycle Example
 --> [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)  
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
+
+---
 
 ### Application of Copysign (Math Module) as a Signum Function
 
@@ -386,6 +395,8 @@ Note: Since user interactions with the plot window, such as zooming, panning, or
         plt.close(fig)
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
+
+---
 
 ## Performance Optimization  
 
@@ -485,6 +496,8 @@ Disadvantage: Trajectory points must be computed in both passes, but this trade-
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
+---
+
 ## Alternative Solutions
 
 While the two-pass approach is the primary solution, it’s valuable to consider alternative one-pass methods, each with unique trade-offs in performance, memory usage, and complexity. Here’s an overview:
@@ -522,6 +535,8 @@ Overall, the two-pass approach offers an excellent balance of speed, efficiency,
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
+---
+
 ## Recent Code Changes
 
 OPTIONAL: Using a 3D plot by mapping normalized density values along the Z-axis.
@@ -550,7 +565,9 @@ OPTIONAL: Using a 3D plot by mapping normalized density values along the Z-axis.
 
         plt.show()
     """
-[Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)  
+[Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python) 
+
+---
 
 ## Enjoy the Exploration
 
@@ -566,7 +583,7 @@ Contact: <ratwolf@duck.com>
 
 [MIT License](https://github.com/ratwolfzero/hopalong_python/blob/main/Copyright.pdf)
 
-----------------------------------------------------------------------------------------------------------------------------------------------------
+---
 
 ## References
 
@@ -587,7 +604,7 @@ ISBN-10: 3922508502, ISBN-13: 978-3922508502.
 
 [Back to Abstract](#abstract)
 
-----------------------------------------------------------------------------------------------------------------------------------------------------
+---
 
 ### References for Python Libraries and Modules
 

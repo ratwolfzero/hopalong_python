@@ -89,13 +89,15 @@ Two-pass algorithm with separate calculation of:
 1. The spatial extent of the attractor trajectory (first pass).
 
 2. Direct mapping of the sequentially generated trajectory points in continuous space to a discrete pixel grid, while tracking the number of pixel hits to generate the density map (second pass).  
-For details, see [Pixel-Based Density Approximation](#pixel-based-approximation-of-density)
+For details, see [Pixel-Based Density Approximation](#pixel-based-density-approximation)
 
 Just-in-time (JIT) compilation is applied and supported by a low-complexity code structure.
 
 For details regarding two-pass algorithm, see [Two-Pass Approach](#two-pass-approach)
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
+
+---
 
 ## Requirements  
 

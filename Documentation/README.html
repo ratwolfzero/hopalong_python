@@ -242,7 +242,7 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">â
 <p>The Python programs calculate and visualize the attractor by iterating the defined system of functions.</p>
 <p>Goal:</p>
 <ul>
-<li>Representation of the attractor as a density map to highlight point concentration.</li>
+<li>Representation of the attractor as a density heatmap to highlight point concentration.</li>
 <li>Calculation with large number of iterations at high processing speed and low memory requirements.</li>
 </ul>
 <p>Core Algorithm:</p>
@@ -252,7 +252,7 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">â
 <p>The spatial extent of the attractor trajectory (first pass).</p>
 </li>
 <li>
-<p>Direct mapping of the sequentially generated trajectory points in continuous space to a discrete pixel grid, while tracking the number of pixel hits to generate the density map (second pass).<br>
+<p>Direct mapping of the sequentially generated trajectory points in continuous space to a discrete pixel grid, while tracking the number of pixel hits to generate the density heatmap (second pass).<br>
 For details, see <a href="#pixel-based-density-approximation">Pixel-Based Density Approximation</a></p>
 </li>
 </ol>
@@ -323,7 +323,7 @@ Otherwise, please comment out the corresponding code snippets in the import sect
 </ul>
 <p>Experimenting with different values of these parameters will yield diverse and intricate visual patterns.</p>
 <h3 id="output">Output</h3>
-<p>The programs generate a visual representation of the attractor trajectory as a density map, where color intensity reflects the frequency of points visited (hit counts). Lighter areas indicate regions of higher density, highlighting the attractor's intricate structure. This density map also supports a 3D representation by mapping normalized density values along the Z-axis</p>
+<p>The programs generate a visual representation of the attractor trajectory as a density heatmap, where color intensity reflects the frequency of points visited (hit counts). Lighter areas indicate regions of higher density, highlighting the attractor's intricate structure. This density heatmap also supports a 3D representation by mapping normalized density values along the Z-axis</p>
 <p><strong>Basic Version 2D</strong>
 <img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/Figure_ex_1.png" alt="Example Attractor Image"></p>
 <p><strong>Basic Version 3D (<code>contourf3D</code>)</strong>
@@ -338,7 +338,7 @@ Otherwise, please comment out the corresponding code snippets in the import sect
 <h3 id="program-variants">Program Variants</h3>
 <ul>
 <li>
-<p>Basic: Calculates and displays the Hopalong attractor as a 2D density map with an integrated color bar.</p>
+<p>Basic: Calculates and displays the Hopalong attractor as a 2D density heatmap with an integrated color bar.</p>
 </li>
 <li>
 <p>Basic 2D/3D: Adds the ability to visualize the attractor in 3D by mapping normalized density values along the Z-axis. Users can select the visualization mode at runtime.</p>

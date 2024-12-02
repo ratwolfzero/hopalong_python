@@ -18,7 +18,7 @@
       - [Comparison of Pixel-Based Density Approximation vs. Histogram-Based Density Estimation](#comparison-of-pixel-based-density-approximation-vs-histogram-based-density-estimation)
       - [Summary](#summary)
       - [Conclusions](#conclusions)
-      - [Statistical Comparison of Density Matrices](#statistical-comparison-of-density-matrices)
+      - [Statistical Comparison of Heatmap- and Density Matrix](#statistical-comparison-of-heatmap--and-density-matrix)
     - [Application of Copysign (Math Module) as a Signum Function](#application-of-copysign-math-module-as-a-signum-function)
     - [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)
     - [Optional Features](#optional-features)
@@ -255,7 +255,7 @@ Pixel-based density approximation presents a promising alternative to histogram-
   
 Remarks
 
-- The pixel-based density heatmap uses raw hit counts, while the histogram-based density matrix represents normalized density values. Both are scaled by Matplotlib's Colormap to fit within its color space. Explicitly normalizing both matrices to [0, 1] before plotting yields identical visual results.
+- The pixel-based density heatmap matrix uses raw hit counts, while the histogram-based density matrix represents normalized density values. Both are scaled by Matplotlib's Colormap to fit within its color space. Explicitly normalizing both matrices to [0, 1] before plotting yields identical visual results.
 
 - Method Invariance (Invariant Measure)  
   Regardless of the density estimation technique (pixel-based or histogram-based) or the visualization settings (resolution, bin size), the intrinsic geometric structure of the attractor remains unchanged. These methods affect the density representation but do not change the shape or dynamics of the attractor, which is determined by the underlying mathematical functions.
@@ -273,7 +273,7 @@ Params: a = -2, b = -0.33, c = 0.01, number of Iterations: 2e8
 **2. Histogram-Based Density Estimation, Number of Bins = 1000, Same Parameters and Iterations as (1)**
 ![Example Attractor Image](./examples/true_PDF_histogram.png)
 
-#### Statistical Comparison of Density Matrices
+#### Statistical Comparison of Heatmap- and Density Matrix
 
 Pixel-Based Density Approximation vs. Histogram-Based Density Estimation
 

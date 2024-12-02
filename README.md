@@ -251,8 +251,8 @@ Examples of outputs can be found in the "Usage" section above.
 Pixel-based density approximation presents a promising alternative to histogram-based density estimation, each offering distinct advantages:
 
 - Qualitative: The pixel-based approach is well suited for visual exploration and supports fast algorithms that efficiently handle large numbers of iterations. See [Two-Pass Approach](#two-pass-approach)
-- Quantitative Analysis: The histogram-based approach excels in statistical and numerical analysis, providing an accurate estimation of normalized density distribution within continuous space.
-
+- Quantitative Analysis: The histogram-based approach excels in statistical and numerical analysis and provides a density matrix with an accurate estimate of the normalized density distribution within a continuous space.  
+  
 Remarks
 
 - The pixel-based density matrix uses raw hit counts, while the histogram-based density matrix represents normalized density values. Both are scaled by Matplotlib's Colormap to fit within its color space. Explicitly normalizing both matrices to [0, 1] before plotting yields identical visual results.
@@ -262,7 +262,7 @@ Remarks
 
 #### Conclusions
 
-Considering the previously described factors, both methods effectively highlight areas with point concentrations, as illustrated in the following images.
+Considering the previously described factors, both methods effectively highlight areas with point concentrations during visualization, as illustrated in the following images.
 
 Both images were rendered with `matplotlib.pyplot.imshow, interpolation='none'`  
 Params: a = -2, b = -0.33, c = 0.01, number of Iterations: 2e8

@@ -80,7 +80,7 @@ The Python programs calculate and visualize the attractor by iterating the defin
 
 Goal:
 
-- Representation of the attractor as a density map to highlight point concentration.
+- Representation of the attractor as a density heatmap to highlight point concentration.
 - Calculation with large number of iterations at high processing speed and low memory requirements.
 
 Core Algorithm:
@@ -89,7 +89,7 @@ Two-pass algorithm with separate calculation of:
 
 1. The spatial extent of the attractor trajectory (first pass).
 
-2. Direct mapping of the sequentially generated trajectory points in continuous space to a discrete pixel grid, while tracking the number of pixel hits to generate the density map (second pass).  
+2. Direct mapping of the sequentially generated trajectory points in continuous space to a discrete pixel grid, while tracking the number of pixel hits to generate the density heatmap (second pass).  
 For details, see [Pixel-Based Density Approximation](#pixel-based-density-approximation)
 
 Just-in-time (JIT) compilation is applied and supported by a low-complexity code structure.
@@ -172,7 +172,7 @@ Experimenting with different values of these parameters will yield diverse and i
 
 ### Output
 
-The programs generate a visual representation of the attractor trajectory as a density map, where color intensity reflects the frequency of points visited (hit counts). Lighter areas indicate regions of higher density, highlighting the attractor's intricate structure. This density map also supports a 3D representation by mapping normalized density values along the Z-axis
+The programs generate a visual representation of the attractor trajectory as a density heatmap, where color intensity reflects the frequency of points visited (hit counts). Lighter areas indicate regions of higher density, highlighting the attractor's intricate structure. This density heatmap also supports a 3D representation by mapping normalized density values along the Z-axis
 
 **Basic Version 2D**
 ![Example Attractor Image](./examples/Figure_ex_1.png)
@@ -195,7 +195,7 @@ The programs generate a visual representation of the attractor trajectory as a d
 
 ### Program Variants
 
-- Basic: Calculates and displays the Hopalong attractor as a 2D density map with an integrated color bar.
+- Basic: Calculates and displays the Hopalong attractor as a 2D density heatmap with an integrated color bar.
   
 - Basic 2D/3D: Adds the ability to visualize the attractor in 3D by mapping normalized density values along the Z-axis. Users can select the visualization mode at runtime.
   

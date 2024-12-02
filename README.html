@@ -166,7 +166,7 @@
 <li><a href="#comparison-of-pixel-based-density-approximation-vs-histogram-based-density-estimation">Comparison of Pixel-Based Density Approximation vs. Histogram-Based Density Estimation</a></li>
 <li><a href="#summary">Summary</a></li>
 <li><a href="#conclusions">Conclusions</a></li>
-<li><a href="#statistical-comparison-of-density-matrices">Statistical Comparison of Density Matrices</a></li>
+<li><a href="#statistical-comparison-of-heatmap--and-density-matrix">Statistical Comparison of Heatmap- and Density Matrix</a></li>
 </ul>
 </li>
 <li><a href="#application-of-copysign-math-module-as-a-signum-function">Application of Copysign (Math Module) as a Signum Function</a></li>
@@ -389,7 +389,7 @@ The Matplotlib &quot;hot&quot; colormap represents pixel hit counts as colors, s
 <ol>
 <li>
 <p><strong>Pixel-Based Density Approximation</strong>:</p>
-<p>This process generates a density matrix where each pixel corresponds to a specific region in continuous space, with emergent density patterns arising from the interaction between the system's dynamics and the mapping of continuous coordinates to discrete pixel indices. Impact of Image Resolution, see above.</p>
+<p>This process generates a density heatmap matrix where each pixel corresponds to a specific region in continuous space, with emergent density patterns arising from the interaction between the system's dynamics and the mapping of continuous coordinates to discrete pixel indices. Impact of Image Resolution, see above.</p>
 </li>
 <li>
 <p><strong>Histogram-Based Density Estimation</strong>:</p>
@@ -412,12 +412,12 @@ The Matplotlib &quot;hot&quot; colormap represents pixel hit counts as colors, s
 <p>Pixel-based density approximation presents a promising alternative to histogram-based density estimation, each offering distinct advantages:</p>
 <ul>
 <li>Qualitative: The pixel-based approach is well suited for visual exploration and supports fast algorithms that efficiently handle large numbers of iterations. See <a href="#two-pass-approach">Two-Pass Approach</a></li>
-<li>Quantitative Analysis: The histogram-based approach excels in statistical and numerical analysis, providing an accurate estimation of normalized density distribution within continuous space.</li>
+<li>Quantitative Analysis: The histogram-based approach excels in statistical and numerical analysis and provides a density matrix with an accurate estimate of the normalized density distribution within a continuous space.</li>
 </ul>
 <p>Remarks</p>
 <ul>
 <li>
-<p>The pixel-based density matrix uses raw hit counts, while the histogram-based density matrix represents normalized density values. Both are scaled by Matplotlib's Colormap to fit within its color space. Explicitly normalizing both matrices to [0, 1] before plotting yields identical visual results.</p>
+<p>The pixel-based density heatmap matrix uses raw hit counts, while the histogram-based density matrix represents normalized density values. Both are scaled by Matplotlib's Colormap to fit within its color space. Explicitly normalizing both matrices to [0, 1] before plotting yields identical visual results.</p>
 </li>
 <li>
 <p>Method Invariance (Invariant Measure)<br>
@@ -425,14 +425,14 @@ Regardless of the density estimation technique (pixel-based or histogram-based) 
 </li>
 </ul>
 <h4 id="conclusions">Conclusions</h4>
-<p>Considering the previously described factors, both methods effectively highlight areas with point concentrations, as illustrated in the following images.</p>
+<p>Considering the previously described factors, both methods effectively highlight areas with point concentrations during visualization, as illustrated in the following images.</p>
 <p>Both images were rendered with <code>matplotlib.pyplot.imshow, interpolation='none'</code><br>
 Params: a = -2, b = -0.33, c = 0.01, number of Iterations: 2e8</p>
 <p><strong>1. Pixel-Based Density Approximation, Image Size=1000x1000</strong>
 <img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/Figure_ex_6.png" alt="Example Attractor Image"></p>
 <p><strong>2. Histogram-Based Density Estimation, Number of Bins = 1000, Same Parameters and Iterations as (1)</strong>
 <img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/true_PDF_histogram.png" alt="Example Attractor Image"></p>
-<h4 id="statistical-comparison-of-density-matrices">Statistical Comparison of Density Matrices</h4>
+<h4 id="statistical-comparison-of-heatmap--and-density-matrix">Statistical Comparison of Heatmap- and Density Matrix</h4>
 <p>Pixel-Based Density Approximation vs. Histogram-Based Density Estimation</p>
 <table>
 <thead>

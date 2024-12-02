@@ -89,7 +89,7 @@ Two-pass algorithm with separate calculation of:
 
 1. The spatial extent of the attractor trajectory (first pass).
 
-2. Direct mapping of the sequentially generated trajectory points in continuous space to a discrete pixel grid, while tracking the number of pixel hits to generate the density heatmap (second pass).  
+2. Direct mapping of the sequentially generated trajectory points in continuous space to a discrete pixel grid, while tracking the number of pixel hits used to generate the matrix for the density heatmap (second pass).  
 For details, see [Pixel-Based Density Approximation](#pixel-based-density-approximation)
 
 Just-in-time (JIT) compilation is applied and supported by a low-complexity code structure.

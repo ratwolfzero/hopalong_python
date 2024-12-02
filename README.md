@@ -272,7 +272,7 @@ Pixel-Based Density Approximation vs. Histogram-Based Density Estimation
 | a = -2, b = -0.33, c = 0.01 | n = 1,000,000   | 0.7831                          | 0.8206            |
 | a = -2, b = -0.33, c = 0.01 | n = 200,000,000 | 0.8577                          | 0.8842            |
 
-Depending on Parametrs (Pattern)
+Parameter Dependence of Statistical Results
 
 | Parameters              | Iterations       | Pearson Correlation Coefficient | Cosine Similarity |
 |-------------------------|------------------|---------------------------------|-------------------|

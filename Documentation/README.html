@@ -252,12 +252,13 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 </li>
 <li>
 <p>Direct mapping of the sequentially generated trajectory points in continuous space to a discrete pixel grid, while tracking the number of pixel hits to generate the density map (second pass).<br>
-For details, see <a href="#pixel-based-approximation-of-density">Pixel-Based Density Approximation</a></p>
+For details, see <a href="#pixel-based-density-approximation">Pixel-Based Density Approximation</a></p>
 </li>
 </ol>
 <p>Just-in-time (JIT) compilation is applied and supported by a low-complexity code structure.</p>
 <p>For details regarding two-pass algorithm, see <a href="#two-pass-approach">Two-Pass Approach</a></p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
+<hr>
 <h2 id="requirements">Requirements</h2>
 <p>To run the programs, the following Python libraries or modules must be installed / imported:</p>
 <ul>
@@ -302,6 +303,7 @@ Otherwise, please comment out the corresponding code snippets in the import sect
     ...
 </code></pre>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
+<hr>
 <h2 id="usage">Usage</h2>
 <h3 id="input">Input</h3>
 <p>When you run the programs, you will be prompted to enter the following parameters, which are crucial for determining the behavior of the Hopalong Attractor:</p>
@@ -330,6 +332,7 @@ Otherwise, please comment out the corresponding code snippets in the import sect
 <p><strong>Extended Version</strong>
 <img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/Figure_ex_2.png" alt="Example Attractor Image"></p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
+<hr>
 <h2 id="features-functionality-and-special-scenarios">Features, Functionality, and Special Scenarios</h2>
 <h3 id="program-variants">Program Variants</h3>
 <ul>
@@ -348,6 +351,7 @@ The code for the Basic variant supports both 2D and 3D visualization. To switch 
 <p><a href="#recent-code-changes">See Recent Code Changes</a></p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <p>Examples of outputs can be found in the &quot;Usage&quot; section above.</p>
+<hr>
 <h3 id="pixel-based-density-approximation">Pixel-Based Density Approximation</h3>
 <ul>
 <li>
@@ -510,6 +514,7 @@ Pixel-Based Density Approximation vs. Histogram-Based Density Estimation</p>
 </table>
 <p>--&gt; <a href="#special-constellations-and-edge-cases-of-the-attractor">Special Constellations and Edge Cases of the Attractor</a></p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
+<hr>
 <h3 id="application-of-copysign-math-module-as-a-signum-function">Application of Copysign (Math Module) as a Signum Function</h3>
 <p>The programs leverage the <code>math.copysign</code> function, <code>copysign(x, y)</code>, which returns a float value with the magnitude (absolute value) of <em>x</em> but the sign of <em>y</em>. On platforms that support signed zeros, <code>copysign(1.0, -0.0)</code> correctly evaluates to <em>-1.0</em>.</p>
 <p>The copysign function can serve as a substitute for the standard signum function and is defined as follows:</p>
@@ -588,6 +593,7 @@ For example:</p>
 </code></pre>
 <p>This scenario is an ideal use case for the features of the extended program variant, such as pixel hit count statistics, to analyze high-density cycle behavior.</p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
+<hr>
 <h3 id="optional-features">Optional Features</h3>
 <p>Execution time and resources: Measurement starts after user input and records the CPU time for the entire process, including image rendering. It also tracks the system memory used.</p>
 <p>Note: Since user interactions with the plot window, such as zooming, panning, or mouse movements, are also measured, it is recommended to close the plot window automatically. This can be achieved using the commands <code>plt.pause(1)</code> followed by <code>plt.close(fig)</code> . As long as there is no interaction with the plot window, the pause time from <code>plt.pause()</code> is not recorded by the <code>time.process_time()</code> function.</p>
@@ -596,6 +602,7 @@ For example:</p>
     plt.close(fig)
 </code></pre>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
+<hr>
 <h2 id="performance-optimization">Performance Optimization</h2>
 <h3 id="just-in-time-compilation-jit">Just-In-Time Compilation (JIT)</h3>
 <p>The programs leverage the Numba JIT just-in-time compilation for performance optimization. This avoids the overhead of Python's interpreter, providing a significant speedup over standard Python loops. JIT compilation translates Python code into machine code at runtime, allowing for more efficient execution of loops and mathematical operations.</p>
@@ -685,6 +692,7 @@ def compute_trajectory_and_image(a, b, c, n, extents, image_size):
 _ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (2, 2)) 
 </code></pre>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
+<hr>
 <h2 id="alternative-solutions">Alternative Solutions</h2>
 <p>While the two-pass approach is the primary solution, it’s valuable to consider alternative one-pass methods, each with unique trade-offs in performance, memory usage, and complexity. Here’s an overview:</p>
 <h3 id="one-pass-approach-with-full-trajectory-caching">One-Pass Approach with Full Trajectory Caching*</h3>
@@ -717,6 +725,7 @@ Data Loss and Inaccuracy: As previously computed floating-point values are irrec
 <h3 id="recap">Recap</h3>
 <p>Overall, the two-pass approach offers an excellent balance of speed, efficiency, and simplicity, making it ideal for attractor calculations that involve large number of iterations. While the trajectory points must be computed during both passes, this method successfully avoids the drawbacks associated with alternative solutions.</p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
+<hr>
 <h2 id="recent-code-changes">Recent Code Changes</h2>
 <p>OPTIONAL: Using a 3D plot by mapping normalized density values along the Z-axis.</p>
 <pre><code>&quot;&quot;&quot;
@@ -745,6 +754,7 @@ def render_trajectory_image(image, extents, params, color_map):
 &quot;&quot;&quot;
 </code></pre>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
+<hr>
 <h2 id="enjoy-the-exploration">Enjoy the Exploration</h2>
 <ul>
 <li>

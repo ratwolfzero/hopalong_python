@@ -264,7 +264,8 @@ Remarks
 
 Considering the previously described factors, both methods effectively highlight areas with point concentrations, as illustrated in the following images.
 
-Both images were rendered with `matplotlib.pyplot.imshow, interpolation='none'` Params: a = -2, b = -0.33, c = 0.01, n = 2e8
+Both images were rendered with `matplotlib.pyplot.imshow, interpolation='none'`  
+Params: a = -2, b = -0.33, c = 0.01, number of Iterations: 2e8
 
 **1. Pixel-Based Density Approximation, Image Size=1000x1000**
 ![Example Attractor Image](./examples/Figure_ex_6.png)

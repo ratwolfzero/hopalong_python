@@ -113,28 +113,37 @@ def compute_statistics(image, hist_density):
     }
 
 
-def plot_density_matrices(image, hist_density, extent, color_map='hot'):
+def plot_density_matrices(image, hist_density, extent, color_map='hot', params=None, stats=None):
     """
-    Plots the pixel-based and histogram-based density matrices.
+    Plots the pixel-based and histogram-based density matrices with additional information in titles.
 
     Parameters:
         image (ndarray): The pixel-based density matrix.
         hist_density (ndarray): The histogram-based density matrix.
         extent (list): Extents for the plot axes [min_x, max_x, min_y, max_y].
         color_map (str): The colormap for the plots.
+        params (dict): Dictionary containing parameters 'a', 'b', 'c', 'n'.
+        stats (dict): Dictionary containing statistics such as Pearson Correlation and Cosine Similarity.
     """
-    fig, axes = plt.subplots(1, 2, figsize=(12, 6))
+    fig, axes = plt.subplots(1, 2, figsize=(14, 7))
 
     # Pixel-Based Density Matrix
+    title_pixel_based = 'Pixel-Based Density Matrix'
+    if stats:
+        title_pixel_based += f"\nPearson: {stats['Pearson Correlation Coefficient']:.4f}, " \
+                             f"Cosine: {stats['Cosine Similarity']:.4f}"
     im1 = axes[0].imshow(image, origin='lower', cmap=color_map, extent=extent, interpolation='none')
-    axes[0].set_title('Pixel-Based Density Matrix')
+    axes[0].set_title(title_pixel_based)
     axes[0].set_xlabel('X')
     axes[0].set_ylabel('Y')
     fig.colorbar(im1, ax=axes[0], label='Density')
 
     # Histogram-Based Density Matrix
+    title_histogram_based = 'Histogram-Based Density Matrix'
+    if params:
+        title_histogram_based += f"\n(a={params['a']}, b={params['b']}, c={params['c']}, n={params['n']})"
     im2 = axes[1].imshow(hist_density.T, origin='lower', cmap=color_map, extent=extent, interpolation='none')
-    axes[1].set_title('Histogram-Based Density Matrix')
+    axes[1].set_title(title_histogram_based)
     axes[1].set_xlabel('X')
     axes[1].set_ylabel('Y')
     fig.colorbar(im2, ax=axes[1], label='Density')
@@ -168,8 +177,9 @@ def main(image_size=(1000, 1000), color_map='hot'):
         for name, value in stats.items():
             print(f"{name}: {value:.4f}")
 
-        # Step 7: Plot density matrices
-        plot_density_matrices(image, hist_density, [min_x, max_x, min_y, max_y], color_map=color_map)
+        plot_density_matrices(
+        image, hist_density, [min_x, max_x, min_y, max_y], 
+        color_map=color_map, params=params, stats=stats)
 
     except Exception as e:
         print(f"An error occurred: {e}")

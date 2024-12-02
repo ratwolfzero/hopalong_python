@@ -262,7 +262,8 @@ Both images were rendered with `matplotlib.pyplot.imshow, interpolation='none'`
 **2. Histogram-Based Density Estimation, Number of Bins = 1000, Same Parameters and Iterations as (1)**
 ![Example Attractor Image](./examples/true_PDF_histogram.png)
 
-Statistical Comparison of Density Matrices: Pixel-Based Density Approximation vs. Histogram-Based Density Estimation
+Statistical Comparison of Density Matrices:  
+Pixel-Based Density Approximation vs. Histogram-Based Density Estimation
 
 | Parameters              | Iterations       | Pearson Correlation Coefficient | Cosine Similarity |
 |-------------------------|------------------|---------------------------------|-------------------|

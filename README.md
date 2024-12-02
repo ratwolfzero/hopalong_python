@@ -262,6 +262,16 @@ Both images were rendered with `matplotlib.pyplot.imshow, interpolation='none'`
 **2. Histogram-Based Density Estimation, Number of Bins = 1000, Same Parameters and Iterations as (1)**
 ![Example Attractor Image](./examples/true_PDF_histogram.png)
 
+Statistical Comparison of Pixel-Based Density Approximation vs. Histogram-Based Density Estimation
+
+| Parameters              | Iterations       | Pearson Correlation Coefficient | Cosine Similarity |
+|-------------------------|------------------|---------------------------------|-------------------|
+| a = -2, b = -0.33, c = 0.01 | n = 10,000      | 0.3791                          | 0.3839            |
+| a = -2, b = -0.33, c = 0.01 | n = 100,000     | 0.5589                          | 0.5837            |
+| a = -2, b = -0.33, c = 0.01 | n = 1,000,000   | 0.7831                          | 0.8206            |
+| a = -2, b = -0.33, c = 0.01 | n = 200,000,000 | 0.8577                          | 0.8842            |
+
+
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
 ### Application of Copysign (Math Module) as a Signum Function

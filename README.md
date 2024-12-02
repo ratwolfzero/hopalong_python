@@ -276,7 +276,7 @@ Depending on Parametrs (Pattern)
 
 | Parameters              | Iterations       | Pearson Correlation Coefficient | Cosine Similarity |
 |-------------------------|------------------|---------------------------------|-------------------|
-| a = 0.6, b = 0.5, c = 0 | n = 100,000,000     | 0.9814                          | 0.9845            |
+| a = 0.6, b = 0.5, c = 0     | n = 100,000,000 | 0.9814                          | 0.9845            |
 
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)

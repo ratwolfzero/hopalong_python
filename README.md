@@ -285,7 +285,7 @@ Perfect Similarity with Periodic Orbit: A 3-Cycle Example
 |-------------------------|------------------|---------------------------------|-------------------|
 | a = 5, b = 5, c = 0     | n = 1,000,000       | 1.0000                          | 1.0000            |
 
---> [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)
+--> [See](#special-constellations-and-edge-cases-of-the-attractor)
 
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)

@@ -262,13 +262,13 @@ Remarks
 
 #### Conclusions
 
-Considering the previously described factors, both methods effectively highlight areas with point concentrations during visualization, as illustrated in the following images.
+Considering the previously described factors, both methods effectively highlight areas with point concentrations during **visualization**, as illustrated in the following images.
 
 Both images were rendered with `matplotlib.pyplot.imshow, interpolation='none'`  
 Params: a = -2, b = -0.33, c = 0.01, number of Iterations: 2e8
 
 **1. Pixel-Based Density Approximation, Image Size=1000x1000**
-![Example Attractor Image](./examples/Figure_ex_6.png)
+![Example Attractor Image](./examples/Figure_ex_7.png)
 
 **2. Histogram-Based Density Estimation, Number of Bins = 1000, Same Parameters and Iterations as (1)**
 ![Example Attractor Image](./examples/true_PDF_histogram.png)

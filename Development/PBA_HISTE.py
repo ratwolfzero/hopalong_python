@@ -101,7 +101,7 @@ def plot_density_matrices(image, hist_density, pixel_extent, x_edges, y_edges, c
     fig, axes = plt.subplots(1, 2, figsize=(14, 7))
 
     # Pixel-Based Density Matrix
-    title_pixel_based = 'Pixel-Based Density Matrix'
+    title_pixel_based = 'Pixel-Based Heatmap Matrix'
     if stats:
         title_pixel_based += f"\nPearson: {stats['Pearson Correlation Coefficient']:.4f}, " \
                              f"Cosine: {stats['Cosine Similarity']:.4f}"

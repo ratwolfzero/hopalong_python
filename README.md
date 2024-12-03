@@ -270,7 +270,7 @@ Considering the previously described factors, both methods effectively highlight
 Both images were rendered with `matplotlib.pyplot.imshow, interpolation='none'`  
 Params: a = -2, b = -0.33, c = 0.01, number of Iterations: 2e8
 
-**Side-by-Side Comparison Image Size =1 Bin Size**
+**Side-by-Side Comparison `Image Size` = `Bin Size`**
 ![Example Attractor Image](./examples/Figure_ex_7.png)
 
 #### Statistical Comparison of Heatmap- and Density Matrix

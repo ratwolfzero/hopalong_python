@@ -52,57 +52,41 @@ def compute_trajectory_extents(a, b, c, n):
 
 
 @njit
-def compute_trajectory_and_image(a, b, c, n, extents, image_size):
+def compute_image_and_trajectory(a, b, c, n, extents, image_size):
+    # Initialize matrices and variables
     image = np.zeros(image_size, dtype=np.uint64)
+    trajectory = np.zeros((n, 2), dtype=np.float64)
     min_x, max_x, min_y, max_y = extents
     scale_x = (image_size[1] - 1) / (max_x - min_x)
     scale_y = (image_size[0] - 1) / (max_y - min_y)
-    x, y = 0.0, 0.0
-    for _ in range(n):
+
+    x, y = np.float64(0.0), np.float64(0.0)
+
+    for i in range(n):
+        # Store trajectory point
+        trajectory[i, 0], trajectory[i, 1] = x, y
+
+        # Update pixel-based image density
         px = int((x - min_x) * scale_x)
         py = int((y - min_y) * scale_y)
         image[py, px] += 1
+
+        # Compute next point in trajectory
         xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
         yy = a - x
         x, y = xx, yy
-    return image
 
-
-@njit
-def compute_trajectory(a, b, c, num):
-    x, y = np.float64(0.0), np.float64(0.0)
-    trajectory = np.zeros((num, 2))
-    for i in range(num):
-        trajectory[i, 0], trajectory[i, 1] = x, y
-        xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
-        yy = a - x
-        x, y = xx, yy
-    return trajectory
+    return image, trajectory
 
 
 def compute_statistics(image, hist_density):
-    """
-    Computes statistical measures between the pixel-based and histogram-based density matrices.
-
-    Parameters:
-        image (ndarray): The pixel-based density matrix.
-        hist_density (ndarray): The histogram-based density matrix.
-
-    Returns:
-        dict: A dictionary containing the Pearson correlation and cosine similarity.
-    """
-    # Flatten matrices for comparison
     image_flat = image.flatten()
     hist_density_flat = hist_density.T.flatten()  # Transpose histogram matrix for alignment
     
-    # Normalize the flattened matrices
     image_flat = (image_flat - np.min(image_flat)) / (np.max(image_flat) - np.min(image_flat))
     hist_density_flat = (hist_density_flat - np.min(hist_density_flat)) / (np.max(hist_density_flat) - np.min(hist_density_flat))
 
-    # Pearson Correlation Coefficient
     pearson_corr = np.corrcoef(image_flat, hist_density_flat)[0, 1]
-
-    # Cosine Similarity
     cosine_sim = np.dot(image_flat, hist_density_flat) / (
         np.linalg.norm(image_flat) * np.linalg.norm(hist_density_flat)
     )
@@ -113,18 +97,7 @@ def compute_statistics(image, hist_density):
     }
 
 
-def plot_density_matrices(image, hist_density, extent, color_map='hot', params=None, stats=None):
-    """
-    Plots the pixel-based and histogram-based density matrices with additional information in titles.
-
-    Parameters:
-        image (ndarray): The pixel-based density matrix.
-        hist_density (ndarray): The histogram-based density matrix.
-        extent (list): Extents for the plot axes [min_x, max_x, min_y, max_y].
-        color_map (str): The colormap for the plots.
-        params (dict): Dictionary containing parameters 'a', 'b', 'c', 'n'.
-        stats (dict): Dictionary containing statistics such as Pearson Correlation and Cosine Similarity.
-    """
+def plot_density_matrices(image, hist_density, extent, x_edges, y_edges, color_map, params=None, stats=None):
     fig, axes = plt.subplots(1, 2, figsize=(14, 7))
 
     # Pixel-Based Density Matrix
@@ -154,32 +127,29 @@ def plot_density_matrices(image, hist_density, extent, color_map='hot', params=N
 
 def main(image_size=(1000, 1000), color_map='hot'):
     try:
-        # Step 1: Get attractor parameters
         params = get_attractor_parameters()
-
-        # Step 2: Compute trajectory extents
         extents = compute_trajectory_extents(params['a'], params['b'], params['c'], params['n'])
-        min_x, max_x, min_y, max_y = extents
 
-        # Step 3: Compute pixel-based density matrix
-        image = compute_trajectory_and_image(params['a'], params['b'], params['c'], params['n'], extents, image_size)
+        # Compute imaage and trajectory
+        image, trajectory = compute_image_and_trajectory(
+            params['a'], params['b'], params['c'], params['n'], extents, image_size
+        )
 
-        # Step 4: Compute trajectory points
-        trajectory = compute_trajectory(params['a'], params['b'], params['c'], params['n'])
-
-        # Step 5: Compute histogram-based density matrix using np.histogram2d
+        # Create histogram-based density matrix directly from trajectory
         hist_density, x_edges, y_edges = np.histogram2d(
             trajectory[:, 0], trajectory[:, 1], bins=image_size, density=True
         )
 
-        # Step 6: Compute and print statistics
+        # Compute statistics
         stats = compute_statistics(image, hist_density)
         for name, value in stats.items():
             print(f"{name}: {value:.4f}")
 
+        # Plot results
         plot_density_matrices(
-        image, hist_density, [min_x, max_x, min_y, max_y], 
-        color_map=color_map, params=params, stats=stats)
+            image, hist_density, [extents[0], extents[1], extents[2], extents[3]],
+            x_edges, y_edges, color_map, params=params, stats=stats
+        )
 
     except Exception as e:
         print(f"An error occurred: {e}")

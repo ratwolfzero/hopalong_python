@@ -20,7 +20,7 @@
         - [Histogram-Based Estimation](#histogram-based-estimation)
       - [Summary](#summary)
       - [Conclusions](#conclusions)
-      - [Statistical Comparison of Heatmap- and Density Matrix](#statistical-comparison-of-heatmap--and-density-matrix)
+      - [Statistical Comparison of Normalized Heatmap- and Density Matrix](#statistical-comparison-of-normalized-heatmap--and-density-matrix)
     - [Application of Copysign (Math Module) as a Signum Function](#application-of-copysign-math-module-as-a-signum-function)
     - [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)
     - [Optional Features](#optional-features)
@@ -273,7 +273,7 @@ Params: a = -2, b = -0.33, c = 0.01, number of Iterations: 2e8
 **Side-by-Side Comparison `Image Size` = `Bin Size`**
 ![Example Attractor Image](./examples/Figure_ex_7.png)
 
-#### Statistical Comparison of Heatmap- and Density Matrix
+#### Statistical Comparison of Normalized Heatmap- and Density Matrix
 
 Pixel-Based Density Approximation vs. Histogram-Based Density Estimation
 

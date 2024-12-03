@@ -97,7 +97,7 @@ def compute_statistics(image, hist_density):
     }
 
 
-def plot_density_matrices(image, hist_density, extent, x_edges, y_edges, color_map, params=None, stats=None):
+def plot_density_matrices(image, hist_density, pixel_extent, x_edges, y_edges, color_map, params=None, stats=None):
     fig, axes = plt.subplots(1, 2, figsize=(14, 7))
 
     # Pixel-Based Density Matrix
@@ -105,7 +105,7 @@ def plot_density_matrices(image, hist_density, extent, x_edges, y_edges, color_m
     if stats:
         title_pixel_based += f"\nPearson: {stats['Pearson Correlation Coefficient']:.4f}, " \
                              f"Cosine: {stats['Cosine Similarity']:.4f}"
-    im1 = axes[0].imshow(image, origin='lower', cmap=color_map, extent=extent, interpolation='none')
+    im1 = axes[0].imshow(image, origin='lower', cmap=color_map, extent=pixel_extent, interpolation='none')
     axes[0].set_title(title_pixel_based)
     axes[0].set_xlabel('X')
     axes[0].set_ylabel('Y')
@@ -115,7 +115,7 @@ def plot_density_matrices(image, hist_density, extent, x_edges, y_edges, color_m
     title_histogram_based = 'Histogram-Based Density Matrix'
     if params:
         title_histogram_based += f"\n(a={params['a']}, b={params['b']}, c={params['c']}, n={params['n']})"
-    im2 = axes[1].imshow(hist_density.T, origin='lower', cmap=color_map, extent=extent, interpolation='none')
+    im2 = axes[1].imshow(hist_density.T, origin='lower', cmap=color_map, extent=[x_edges[0], x_edges[-1], y_edges[0], y_edges[-1]], interpolation='none')
     axes[1].set_title(title_histogram_based)
     axes[1].set_xlabel('X')
     axes[1].set_ylabel('Y')
@@ -125,12 +125,15 @@ def plot_density_matrices(image, hist_density, extent, x_edges, y_edges, color_m
     plt.show()
 
 
+
+
 def main(image_size=(1000, 1000), color_map='hot'):
     try:
         params = get_attractor_parameters()
         extents = compute_trajectory_extents(params['a'], params['b'], params['c'], params['n'])
+        pixel_extent = [extents[0], extents[1], extents[2], extents[3]]
 
-        # Compute imaage and trajectory
+        # Compute image and trajectory
         image, trajectory = compute_image_and_trajectory(
             params['a'], params['b'], params['c'], params['n'], extents, image_size
         )
@@ -147,12 +150,12 @@ def main(image_size=(1000, 1000), color_map='hot'):
 
         # Plot results
         plot_density_matrices(
-            image, hist_density, [extents[0], extents[1], extents[2], extents[3]],
-            x_edges, y_edges, color_map, params=params, stats=stats
+            image, hist_density, pixel_extent, x_edges, y_edges, color_map, params=params, stats=stats
         )
 
     except Exception as e:
         print(f"An error occurred: {e}")
+
 
 
 if __name__ == '__main__':

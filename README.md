@@ -268,8 +268,9 @@ Remarks
 Considering the previously described factors, both methods effectively highlight areas with point concentrations during **visualization**, as demonstrated in the following comparison panel of normalized heatmap- and histogram density matrix.
 
 The images were rendered as follows:  
-Heatmap density matrix with`matplotlib.pyplot.imshow, interpolation='none'` using the calculated trajectory extents.
-Histogram density matrix with`matplotlib.pyplot.pcolormesh, antialiased=False`using the histogram xedges and yedges.
+
+- Heatmap density matrix with`matplotlib.pyplot.imshow, interpolation='none'` using the calculated trajectory extents.
+- Histogram density matrix with`matplotlib.pyplot.pcolormesh, antialiased=False`using the histogram xedges and yedges.  
 Params: a = -2, b = -0.33, c = 0.01, number of Iterations: 2e8
 
 **Side-by-Side Comparison `Image Size` = `Bin Size`**

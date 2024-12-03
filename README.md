@@ -269,8 +269,10 @@ Considering the previously described factors, both methods effectively highlight
 
 The images were rendered as follows:  
 
-- Density heatmap matrix with`matplotlib.pyplot.imshow, interpolation='none'` using the calculated trajectory extents.
-- Histogram density matrix with`matplotlib.pyplot.pcolormesh, antialiased=False`using the histogram bin edges.
+- Density heatmap matrix with`matplotlib.pyplot.imshow, interpolation='none'`  
+using the calculated trajectory extents.
+- Histogram density matrix with`matplotlib.pyplot.pcolormesh, antialiased=False`  
+using the histogram bin edges.
 
 **Side-by-Side Comparison `Image Size` = `Bin Size` a = -2, b = -0.33, c = 0.01, number of Iterations: 2e8**
 

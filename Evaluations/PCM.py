@@ -116,7 +116,7 @@ def plot_density_matrices(image, hist_density, extent, x_edges, y_edges, color_m
     if params:
         title_histogram_based += f"\n(a={params['a']}, b={params['b']}, c={params['c']}, n={params['n']})"
     X, Y = np.meshgrid(x_edges, y_edges)
-    im2 = axes[1].pcolormesh(X, Y, hist_density.T, cmap=color_map, shading='auto')
+    im2 = axes[1].pcolormesh(X, Y, hist_density.T, cmap=color_map, shading=None, norm=None, antialiased=False)
     axes[1].set_aspect('equal')  # Set equal aspect ratio explicitly for pcolormesh
     fig.colorbar(im2, ax=axes[1], label='Density')
 

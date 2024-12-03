@@ -271,9 +271,8 @@ The images were rendered as follows:
 
 - Density heatmap matrix with`matplotlib.pyplot.imshow, interpolation='none'` using the calculated trajectory extents.
 - Histogram density matrix with`matplotlib.pyplot.pcolormesh, antialiased=False`using the histogram bin edges.
-Params: a = -2, b = -0.33, c = 0.01, number of Iterations: 2e8
 
-**Side-by-Side Comparison `Image Size` = `Bin Size`**
+**Side-by-Side Comparison `Image Size` = `Bin Size` Params: a = -2, b = -0.33, c = 0.01, number of Iterations: 2e8**
 ![Example Attractor Image](./examples/Figure_ex_8.png)
 
 #### Numreical / Statistical Comparison of Normalized Density Heatmap and Histogram Density Matrix

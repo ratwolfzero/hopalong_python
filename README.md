@@ -16,8 +16,8 @@
     - [Program Variants](#program-variants)
     - [Pixel-Based Density Approximation](#pixel-based-density-approximation)
       - [Comparison of Pixel-Based Density Approximation vs. Histogram-Based Density Estimation](#comparison-of-pixel-based-density-approximation-vs-histogram-based-density-estimation)
-        - [**Pixel-Based Density Approximation**](#pixel-based-density-approximation-1)
-        - [**Histogram-Based Density Estimation**](#histogram-based-density-estimation)
+        - [Pixel-Based Approximation](#pixel-based-approximation)
+        - [Histogram-Based Estimation](#histogram-based-estimation)
       - [Summary](#summary)
       - [Conclusions](#conclusions)
       - [Statistical Comparison of Heatmap- and Density Matrix](#statistical-comparison-of-heatmap--and-density-matrix)
@@ -188,7 +188,6 @@ The programs generate a visual representation of the attractor trajectory as a d
 **Extended Version**
 ![Example Attractor Image](./examples/Figure_ex_2.png)
 
-
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
 ---
@@ -236,11 +235,11 @@ Examples of outputs can be found in the "Usage" section above.
 
 #### Comparison of Pixel-Based Density Approximation vs. Histogram-Based Density Estimation
 
-##### **Pixel-Based Density Approximation**
+##### Pixel-Based Approximation
   
    This process generates a density heatmap matrix where each pixel corresponds to a specific region in continuous space, with emergent density patterns arising from the interaction between the attractors's dynamics and the mapping of continuous coordinates to discrete pixel indices. Impact of Image Resolution, see above.
 
-##### **Histogram-Based Density Estimation**  
+##### Histogram-Based Estimation  
 
    Using `np.histogram2d(..., density=True)`, this approach aggregates density over grid bins, normalizing the counts of trajectory points per bin by the total number of points and the bin area. The resulting density matrix represents relative point distributions across the entire space for quantitative analysis. While the matrix does not explicitly embed pixel indices, spatial information is inferred from the bin edges, which define the spatial range for each entry. The center of each bin is considered an approximate representative index, and the density value reflects the concentration of points around those indices.
 
@@ -271,7 +270,7 @@ Considering the previously described factors, both methods effectively highlight
 Both images were rendered with `matplotlib.pyplot.imshow, interpolation='none'`  
 Params: a = -2, b = -0.33, c = 0.01, number of Iterations: 2e8
 
-**1. Pixel-Based Density Approximation, Image Size=1000x1000**
+**Side-by-Side Comparison Image Size =1 Bin Size**
 ![Example Attractor Image](./examples/Figure_ex_7.png)
 
 #### Statistical Comparison of Heatmap- and Density Matrix
@@ -571,7 +570,7 @@ OPTIONAL: Using a 3D plot by mapping normalized density values along the Z-axis.
 
         plt.show()
     """
-[Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python) 
+[Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
 ---
 

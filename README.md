@@ -265,7 +265,7 @@ Remarks
 
 #### Conclusions
 
-Considering the previously described factors, both methods effectively highlight areas with point concentrations during visualization, as demonstrated in the following comparison panel of normalized heatmap- and histogram density matrix.
+Considering the previously described factors, both methods effectively highlight areas with point concentrations during **visualization**, as demonstrated in the following comparison panel of normalized heatmap- and histogram density matrix.
 
 The images were rendered as follows:  
 Heatmap density matrix with`matplotlib.pyplot.imshow, interpolation='none'` using the calculated trajectory extents.

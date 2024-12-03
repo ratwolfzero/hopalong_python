@@ -20,7 +20,7 @@
         - [Histogram-Based Estimation](#histogram-based-estimation)
       - [Summary](#summary)
       - [Conclusions](#conclusions)
-      - [Statistical Comparison of Normalized Density Heatmap and Histogram Density Matrix](#statistical-comparison-of-normalized-density-heatmap-and-histogram-density-matrix)
+      - [Numreical / Statistical Comparison of Normalized Density Heatmap and Histogram Density Matrix](#numreical--statistical-comparison-of-normalized-density-heatmap-and-histogram-density-matrix)
     - [Application of Copysign (Math Module) as a Signum Function](#application-of-copysign-math-module-as-a-signum-function)
     - [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)
     - [Optional Features](#optional-features)
@@ -276,7 +276,7 @@ Params: a = -2, b = -0.33, c = 0.01, number of Iterations: 2e8
 **Side-by-Side Comparison `Image Size` = `Bin Size`**
 ![Example Attractor Image](./examples/Figure_ex_8.png)
 
-#### Statistical Comparison of Normalized Density Heatmap and Histogram Density Matrix
+#### Numreical / Statistical Comparison of Normalized Density Heatmap and Histogram Density Matrix
 
 Matrix Similarity in Dependence on the Number of Iterations for the Images shown in the Comparison Panel
 

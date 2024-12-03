@@ -125,8 +125,6 @@ def plot_density_matrices(image, hist_density, pixel_extent, x_edges, y_edges, c
     plt.show()
 
 
-
-
 def main(image_size=(1000, 1000), color_map='hot'):
     try:
         params = get_attractor_parameters()
@@ -155,7 +153,6 @@ def main(image_size=(1000, 1000), color_map='hot'):
 
     except Exception as e:
         print(f"An error occurred: {e}")
-
 
 
 if __name__ == '__main__':

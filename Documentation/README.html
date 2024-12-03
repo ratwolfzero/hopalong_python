@@ -171,7 +171,7 @@
 </li>
 <li><a href="#summary">Summary</a></li>
 <li><a href="#conclusions">Conclusions</a></li>
-<li><a href="#statistical-comparison-of-normalized-heatmap--and-density-matrix">Statistical Comparison of Normalized Heatmap- and Density Matrix</a></li>
+<li><a href="#statistical-comparison-of-normalized-heatmap-and-density-matrix">Statistical Comparison of Normalized Heatmap and Density Matrix</a></li>
 </ul>
 </li>
 <li><a href="#application-of-copysign-math-module-as-a-signum-function">Application of Copysign (Math Module) as a Signum Function</a></li>
@@ -425,12 +425,16 @@ Regardless of the density estimation technique (pixel-based or histogram-based) 
 </li>
 </ul>
 <h4 id="conclusions">Conclusions</h4>
-<p>Considering the previously described factors, both methods effectively highlight areas with point concentrations during <strong>visualization</strong>, as illustrated in the following image with side-by-side comparison.</p>
-<p>Both images were rendered with <code>matplotlib.pyplot.imshow, interpolation='none'</code><br>
-Params: a = -2, b = -0.33, c = 0.01, number of Iterations: 2e8</p>
+<p>Considering the previously described factors, both methods effectively highlight areas of point concentrations during <strong>visualization</strong>. This is demonstrated in the following comparison panel with normalized heatmap and histogram density matrix.</p>
+<p>The images were rendered as follows:</p>
+<ul>
+<li>Heatmap density matrix with<code>matplotlib.pyplot.imshow, interpolation='none'</code> using the calculated trajectory extents.</li>
+<li>Histogram density matrix with<code>matplotlib.pyplot.pcolormesh, antialiased=False</code>using the histogram xedges and yedges.<br>
+Params: a = -2, b = -0.33, c = 0.01, number of Iterations: 2e8</li>
+</ul>
 <p><strong>Side-by-Side Comparison <code>Image Size</code> = <code>Bin Size</code></strong>
-<img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/Figure_ex_7.png" alt="Example Attractor Image"></p>
-<h4 id="statistical-comparison-of-normalized-heatmap--and-density-matrix">Statistical Comparison of Normalized Heatmap- and Density Matrix</h4>
+<img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/Figure_ex_8.png" alt="Example Attractor Image"></p>
+<h4 id="statistical-comparison-of-normalized-heatmap-and-density-matrix">Statistical Comparison of Normalized Heatmap and Density Matrix</h4>
 <p>Pixel-Based Density Approximation vs. Histogram-Based Density Estimation</p>
 <table>
 <thead>

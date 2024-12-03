@@ -243,6 +243,8 @@ Examples of outputs can be found in the "Usage" section above.
 
    Using `np.histogram2d(..., density=True)`, this approach aggregates density over grid bins, normalizing the counts of trajectory points per bin by the total number of points and the bin area. The resulting density matrix represents relative point distributions across the entire space for quantitative analysis. While the matrix does not explicitly embed pixel indices, spatial information is inferred from the bin edges, which define the spatial range for each entry. The center of each bin is considered an approximate representative index, and the density value reflects the concentration of points around those indices.
 
+   discretizes continuous space into a grid of equal-sized bins. It counts the number of points falling into each bin and calculates the density by normalizing these counts relative to the total number of points and bin area
+
 - Impact of bin size:
 
   - Smaller bins (higher bin count) improve density precision but reduce density contrast by spreading density over more bins.
@@ -254,7 +256,7 @@ Examples of outputs can be found in the "Usage" section above.
 Pixel-based density approximation presents a promising alternative to histogram-based density estimation, each offering distinct advantages:
 
 - Qualitative: The pixel-based approach is well suited for visual exploration and supports fast algorithms that efficiently handle large numbers of iterations. See [Two-Pass Approach](#two-pass-approach)
-- Quantitative Analysis: The histogram-based approach excels in statistical and numerical analysis and provides a density matrix with an accurate estimate of the normalized density distribution within a continuous space.  
+- Quantitative Analysis: The histogram-based approach excels in statistical and numerical analysis and provides a density matrix with an accurate estimate of the normalized density distribution within continuous space.  
   
 Remarks
 

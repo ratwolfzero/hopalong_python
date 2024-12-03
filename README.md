@@ -265,7 +265,7 @@ Remarks
 
 #### Conclusions
 
-Considering the previously described factors, both methods effectively highlight areas of point concentrations during **visualization**. This is demonstrated in the following comparison panel with normalized heatmap and histogram density matrix.
+Considering the previously described factors, both methods effectively highlight areas of point concentrations during **visualization**. This is demonstrated in the following comparison panel with normalized density heatmap and histogram density matrix.
 
 The images were rendered as follows:  
 

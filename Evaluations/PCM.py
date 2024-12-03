@@ -1,0 +1,200 @@
+import matplotlib.pyplot as plt
+import numpy as np
+from numba import njit
+from math import copysign, sqrt, fabs
+from scipy.stats import pearsonr
+
+
+def validate_input(prompt, input_type=float, check_positive_non_zero=False, min_value=None):
+    while True:
+        user_input = input(prompt)
+        try:
+            value = float(user_input)
+            if input_type == int and not value.is_integer():
+                print('Invalid input. Please enter an integer.')
+                continue
+            value = int(value) if input_type == int else value
+            if check_positive_non_zero and value <= 0:
+                print('Invalid input. The value must be a positive non-zero number.')
+                continue
+            if min_value is not None and value < min_value:
+                print(f'Invalid input. The value should be at least {min_value}.')
+                continue
+            return value
+        except ValueError:
+            print(f'Invalid input. Please enter a valid {input_type.__name__} value.')
+
+
+def get_attractor_parameters():
+    a = validate_input('Enter a float value for "a": ', float)
+    b = validate_input('Enter a float value for "b": ', float)
+    while True:
+        c = validate_input('Enter a float value for "c": ', float)
+        if (a == 0 and b == 0 and c == 0) or (a == 0 and c == 0):
+            print('Invalid combination of parameters. Please re-enter.')
+        else:
+            break
+    n = validate_input('Enter a positive integer value > 1000 for "n": ', int, check_positive_non_zero=True, min_value=1000)
+    return {'a': a, 'b': b, 'c': c, 'n': n}
+
+
+@njit
+def compute_trajectory_extents(a, b, c, n):
+    x, y = np.float64(0.0), np.float64(0.0)
+    min_x, max_x, min_y, max_y = np.inf, -np.inf, np.inf, -np.inf
+    for _ in range(n):
+        min_x, max_x = min(min_x, x), max(max_x, x)
+        min_y, max_y = min(min_y, y), max(max_y, y)
+        xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
+        yy = a - x
+        x, y = xx, yy
+    return min_x, max_x, min_y, max_y
+
+
+@njit
+def compute_image_and_trajectory(a, b, c, n, extents, image_size):
+    # Initialize matrices and variables
+    image = np.zeros(image_size, dtype=np.uint64)
+    trajectory = np.zeros((n, 2), dtype=np.float64)
+    min_x, max_x, min_y, max_y = extents
+    scale_x = (image_size[1] - 1) / (max_x - min_x)
+    scale_y = (image_size[0] - 1) / (max_y - min_y)
+
+    x, y = np.float64(0.0), np.float64(0.0)
+
+    for i in range(n):
+        # Store trajectory point
+        trajectory[i, 0], trajectory[i, 1] = x, y
+
+        # Update pixel-based image density
+        px = int((x - min_x) * scale_x)
+        py = int((y - min_y) * scale_y)
+        image[py, px] += 1
+
+        # Compute next point in trajectory
+        xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
+        yy = a - x
+        x, y = xx, yy
+
+    return image, trajectory
+
+
+def compute_statistics(image, hist_density):
+    image_flat = image.flatten()
+    hist_density_flat = hist_density.T.flatten()  # Transpose histogram matrix for alignment
+    
+    image_flat = (image_flat - np.min(image_flat)) / (np.max(image_flat) - np.min(image_flat))
+    hist_density_flat = (hist_density_flat - np.min(hist_density_flat)) / (np.max(hist_density_flat) - np.min(hist_density_flat))
+
+    pearson_corr = np.corrcoef(image_flat, hist_density_flat)[0, 1]
+    cosine_sim = np.dot(image_flat, hist_density_flat) / (
+        np.linalg.norm(image_flat) * np.linalg.norm(hist_density_flat)
+    )
+
+    return {
+        "Pearson Correlation Coefficient": pearson_corr,
+        "Cosine Similarity": cosine_sim
+    }
+
+"""
+def plot_density_matrices(image, hist_density, extent, x_edges, y_edges, color_map, params=None, stats=None):
+    fig, axes = plt.subplots(1, 2, figsize=(14, 7))
+
+    # Pixel-Based Density Matrix
+    title_pixel_based = 'Pixel-Based Heatmap Matrix'
+    if stats:
+        title_pixel_based += f"\nPearson: {stats['Pearson Correlation Coefficient']:.4f}, " \
+                             f"Cosine: {stats['Cosine Similarity']:.4f}"
+    im1 = axes[0].imshow(image, origin='lower', cmap=color_map, extent=extent, interpolation='none', aspect='equal')
+    axes[0].set_title(title_pixel_based)
+    axes[0].set_xlabel('X')
+    axes[0].set_ylabel('Y')
+    fig.colorbar(im1, ax=axes[0], label='Density')
+
+    # Histogram-Based Density Matrix
+    title_histogram_based = 'Histogram-Based Density Matrix'
+    if params:
+        title_histogram_based += f"\n(a={params['a']}, b={params['b']}, c={params['c']}, n={params['n']})"
+    X, Y = np.meshgrid(x_edges, y_edges)
+    im2 = axes[1].pcolormesh(X, Y, hist_density.T, cmap=color_map, shading='auto')
+    axes[1].set_aspect('equal')  # Set equal aspect ratio explicitly for pcolormesh
+    fig.colorbar(im2, ax=axes[1], label='Density')
+
+    axes[1].set_title(title_histogram_based)
+    axes[1].set_xlabel('X')
+    axes[1].set_ylabel('Y')
+
+    plt.tight_layout()
+    plt.show()
+ """
+ 
+def plot_density_matrices(image, hist_density, extent, x_edges, y_edges, color_map, params=None, stats=None):
+    fig, axes = plt.subplots(1, 2, figsize=(14, 7))
+
+    # Generate mesh grids for consistent visualization
+    X_image, Y_image = np.meshgrid(
+        np.linspace(extent[0], extent[1], image.shape[1] + 1),
+        np.linspace(extent[2], extent[3], image.shape[0] + 1)
+    )
+    X_hist, Y_hist = np.meshgrid(x_edges, y_edges)
+
+    # Pixel-Based Density Matrix
+    title_pixel_based = 'Pixel-Based Density (pcolormesh)'
+    if stats:
+        title_pixel_based += f"\nPearson: {stats['Pearson Correlation Coefficient']:.4f}, " \
+                             f"Cosine: {stats['Cosine Similarity']:.4f}"
+    im1 = axes[0].pcolormesh(X_image, Y_image, image, cmap=color_map, shading='auto')
+    axes[0].set_title(title_pixel_based)
+    axes[0].set_xlabel('X')
+    axes[0].set_ylabel('Y')
+    axes[0].set_aspect('equal')  # Ensure quadratic appearance
+    fig.colorbar(im1, ax=axes[0], label='Density')
+
+    # Histogram-Based Density Matrix
+    title_histogram_based = 'Histogram-Based Density (pcolormesh)'
+    if params:
+        title_histogram_based += f"\n(a={params['a']}, b={params['b']}, c={params['c']}, n={params['n']})"
+    im2 = axes[1].pcolormesh(X_hist, Y_hist, hist_density.T, cmap=color_map, shading='auto')
+    axes[1].set_title(title_histogram_based)
+    axes[1].set_xlabel('X')
+    axes[1].set_ylabel('Y')
+    axes[1].set_aspect('equal')  # Ensure quadratic appearance
+    fig.colorbar(im2, ax=axes[1], label='Density')
+
+    plt.tight_layout()
+    plt.show()
+
+   
+
+def main(image_size=(1000, 1000), color_map='hot'):
+    try:
+        params = get_attractor_parameters()
+        extents = compute_trajectory_extents(params['a'], params['b'], params['c'], params['n'])
+        extent = [extents[0], extents[1], extents[2], extents[3]]
+
+        # Compute image and trajectory
+        image, trajectory = compute_image_and_trajectory(
+            params['a'], params['b'], params['c'], params['n'], extents, image_size
+        )
+
+        # Create histogram-based density matrix directly from trajectory
+        hist_density, x_edges, y_edges = np.histogram2d(
+            trajectory[:, 0], trajectory[:, 1], bins=image_size, density=True
+        )
+
+        # Compute statistics
+        stats = compute_statistics(image, hist_density)
+        for name, value in stats.items():
+            print(f"{name}: {value:.4f}")
+
+        # Plot results
+        plot_density_matrices(
+            image, hist_density, extent, x_edges, y_edges, color_map, params=params, stats=stats
+        )
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+
+if __name__ == '__main__':
+    main()

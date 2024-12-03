@@ -78,7 +78,7 @@ def compute_image_and_trajectory(a, b, c, n, extents, image_size):
 
     return image, trajectory
 
-
+@njit
 def compute_statistics(image, hist_density):
     image_flat = image.flatten()
     hist_density_flat = hist_density.T.flatten()  # Transpose histogram matrix for alignment
@@ -96,7 +96,7 @@ def compute_statistics(image, hist_density):
         "Cosine Similarity": cosine_sim
     }
 
-"""
+
 def plot_density_matrices(image, hist_density, extent, x_edges, y_edges, color_map, params=None, stats=None):
     fig, axes = plt.subplots(1, 2, figsize=(14, 7))
 
@@ -126,8 +126,9 @@ def plot_density_matrices(image, hist_density, extent, x_edges, y_edges, color_m
 
     plt.tight_layout()
     plt.show()
- """
- 
+    
+    
+"""
 def plot_density_matrices(image, hist_density, extent, x_edges, y_edges, color_map, params=None, stats=None):
     fig, axes = plt.subplots(1, 2, figsize=(14, 7))
 
@@ -154,7 +155,7 @@ def plot_density_matrices(image, hist_density, extent, x_edges, y_edges, color_m
     title_histogram_based = 'Histogram-Based Density (pcolormesh)'
     if params:
         title_histogram_based += f"\n(a={params['a']}, b={params['b']}, c={params['c']}, n={params['n']})"
-    im2 = axes[1].pcolormesh(X_hist, Y_hist, hist_density.T, cmap=color_map, shading='auto')
+    im2 = axes[1].pcolormesh(X_hist, Y_hist, hist_density.T, cmap=color_map, shading=None, norm=None, antialiased=False)
     axes[1].set_title(title_histogram_based)
     axes[1].set_xlabel('X')
     axes[1].set_ylabel('Y')
@@ -163,9 +164,9 @@ def plot_density_matrices(image, hist_density, extent, x_edges, y_edges, color_m
 
     plt.tight_layout()
     plt.show()
+"""
 
    
-
 def main(image_size=(1000, 1000), color_map='hot'):
     try:
         params = get_attractor_parameters()

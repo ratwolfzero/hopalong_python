@@ -16,6 +16,8 @@
     - [Program Variants](#program-variants)
     - [Pixel-Based Density Approximation](#pixel-based-density-approximation)
       - [Comparison of Pixel-Based Density Approximation vs. Histogram-Based Density Estimation](#comparison-of-pixel-based-density-approximation-vs-histogram-based-density-estimation)
+        - [**Pixel-Based Density Approximation**](#pixel-based-density-approximation-1)
+        - [**Histogram-Based Density Estimation**](#histogram-based-density-estimation)
       - [Summary](#summary)
       - [Conclusions](#conclusions)
       - [Statistical Comparison of Heatmap- and Density Matrix](#statistical-comparison-of-heatmap--and-density-matrix)
@@ -234,17 +236,19 @@ Examples of outputs can be found in the "Usage" section above.
 
 #### Comparison of Pixel-Based Density Approximation vs. Histogram-Based Density Estimation
 
-1. **Pixel-Based Density Approximation**:
+##### **Pixel-Based Density Approximation**
   
    This process generates a density heatmap matrix where each pixel corresponds to a specific region in continuous space, with emergent density patterns arising from the interaction between the attractors's dynamics and the mapping of continuous coordinates to discrete pixel indices. Impact of Image Resolution, see above.
 
-2. **Histogram-Based Density Estimation**:  
+##### **Histogram-Based Density Estimation**  
 
    Using `np.histogram2d(..., density=True)`, this approach aggregates density over grid bins, normalizing the counts of trajectory points per bin by the total number of points and the bin area. The resulting density matrix represents relative point distributions across the entire space for quantitative analysis. While the matrix does not explicitly embed pixel indices, spatial information is inferred from the bin edges, which define the spatial range for each entry. The center of each bin is considered an approximate representative index, and the density value reflects the concentration of points around those indices.
-   - Impact of bin size:
-     - Smaller bins (higher bin count) improve density precision but reduce density contrast by spreading density over more bins.
 
-     - Larger bins (lower bin count) increase density contrast by concentrating normalized density values in fewer, larger bins but reduce precision.
+- Impact of bin size:
+
+  - Smaller bins (higher bin count) improve density precision but reduce density contrast by spreading density over more bins.
+
+  - Larger bins (lower bin count) increase density contrast by concentrating normalized density values in fewer, larger bins but reduce precision.
 
 #### Summary
 
@@ -262,16 +266,13 @@ Remarks
 
 #### Conclusions
 
-Considering the previously described factors, both methods effectively highlight areas with point concentrations during **visualization**, as illustrated in the following images.
+Considering the previously described factors, both methods effectively highlight areas with point concentrations during **visualization**, as illustrated in the following image with side-by-side comparison.
 
 Both images were rendered with `matplotlib.pyplot.imshow, interpolation='none'`  
 Params: a = -2, b = -0.33, c = 0.01, number of Iterations: 2e8
 
 **1. Pixel-Based Density Approximation, Image Size=1000x1000**
 ![Example Attractor Image](./examples/Figure_ex_7.png)
-
-**2. Histogram-Based Density Estimation, Number of Bins = 1000, Same Parameters and Iterations as (1)**
-![Example Attractor Image](./examples/true_PDF_histogram.png)
 
 #### Statistical Comparison of Heatmap- and Density Matrix
 

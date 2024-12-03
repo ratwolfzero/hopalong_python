@@ -269,16 +269,16 @@ Considering the previously described factors, both methods effectively highlight
 
 The images were rendered as follows:  
 
-- Heatmap density matrix with`matplotlib.pyplot.imshow, interpolation='none'` using the calculated trajectory extents.
+- Density heatmap matrix with`matplotlib.pyplot.imshow, interpolation='none'` using the calculated trajectory extents.
 - Histogram density matrix with`matplotlib.pyplot.pcolormesh, antialiased=False`using the histogram xedges and yedges.  
 Params: a = -2, b = -0.33, c = 0.01, number of Iterations: 2e8
 
 **Side-by-Side Comparison `Image Size` = `Bin Size`**
 ![Example Attractor Image](./examples/Figure_ex_8.png)
 
-#### Statistical Comparison of Normalized Heatmap and Density Matrix
+#### Statistical Comparison of Normalized Density Heatmap and Histogram Density Matrix
 
-Pixel-Based Density Approximation vs. Histogram-Based Density Estimation
+Matrix Similarity for the shown images in the comparison panel
 
 | Parameters              | Iterations       | Pearson Correlation Coefficient | Cosine Similarity |
 |-------------------------|------------------|---------------------------------|-------------------|

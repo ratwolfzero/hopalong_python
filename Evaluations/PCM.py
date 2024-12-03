@@ -101,7 +101,7 @@ def plot_density_matrices(image, hist_density, extent, x_edges, y_edges, color_m
     fig, axes = plt.subplots(1, 2, figsize=(14, 7))
 
     # Pixel-Based Density Matrix
-    title_pixel_based = 'Pixel-Based Heatmap Matrix'
+    title_pixel_based = 'Density Heatmap Matrix'
     if stats:
         title_pixel_based += f"\nPearson: {stats['Pearson Correlation Coefficient']:.4f}, " \
                              f"Cosine: {stats['Cosine Similarity']:.4f}"
@@ -113,7 +113,7 @@ def plot_density_matrices(image, hist_density, extent, x_edges, y_edges, color_m
     fig.colorbar(im1, ax=axes[0], label='Density')
 
     # Histogram-Based Density Matrix
-    title_histogram_based = 'Histogram-Based Density Matrix'
+    title_histogram_based = 'Histogram Density Matrix'
     if params:
         title_histogram_based += f"\n(a={params['a']}, b={params['b']}, c={params['c']}, n={params['n']})"
     X, Y = np.meshgrid(x_edges, y_edges)

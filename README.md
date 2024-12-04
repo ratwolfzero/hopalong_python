@@ -227,7 +227,7 @@ Examples of outputs can be found in the "Usage" section above.
 - **Density Tracking**  
   An image array, initialized with zeros, serves as a blank canvas. Each trajectory point, after being mapped to a pixel, increments the value at the corresponding array index. Higher hit counts in the array indicate greater density, approximating local concentrations of points. The total sum of pixel hit counts equals the number of trajectory iterations.  
 
-- **Density Heatmap Matrix**
+- **Density Heatmap Matrix**  
   The density heatmap matrix is derived from pixel-based mapping. Pixel hit counts encode the spatial distribution of trajectory point densities in continuous space. Visualization methods highlight these variations using color gradients.
 
 - **Visualization of Density Distribution**  

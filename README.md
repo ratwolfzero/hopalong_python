@@ -244,7 +244,7 @@ Examples of outputs can be found in the "Usage" section above.
 
 ##### Histogram-Based Estimation  
 
-   Using `np.histogram2d(..., density=True)`, Using np.histogram2d(..., density=True), this approach divides the continuous space into a grid of equal-sized bins and counts the number of trajectory points that fall into each bin. The counts are then normalized by the total number of points and the bin area, resulting in a density matrix that represents relative point distributions across the entire space for quantitative analysis.
+   Using `np.histogram2d(..., density=True)`, this approach divides the continuous space into a grid of equal-sized bins and counts the number of trajectory points that fall into each bin. The counts are then normalized by the total number of points and the bin area, resulting in a density matrix that represents relative point distributions across the entire space for quantitative analysis.
 
 - Impact of bin size:
 

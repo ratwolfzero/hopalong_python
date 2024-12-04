@@ -82,9 +82,10 @@ The Python programs calculate and visualize the attractor by iterating the defin
 
 Goal:
 
-- Representation of the attractor as a density heatmap to highlight point concentration.
-- Calculation with large number of iterations at high processing speed and low memory requirements.
-
+- **Visual Representation***:
+The attractor is visualized as a density heat map, where color intensity reflects areas of high or low point concentration.
+- **Efficiency**:
+Large numbers of iterations are computed efficiently, with low memory requirements and high processing speed.
 Core Algorithm:
 
 Two-pass algorithm with separate calculation of:
@@ -216,7 +217,7 @@ Examples of outputs can be found in the "Usage" section above.
 ### Pixel-Based Density Approximation
 
 - **Continuous to Discrete Mapping**  
-  Trajectory points, represented as floating-point coordinates in a two-dimensional continuous space, are mapped to integer pixel coordinates for visualization. Scaling factors derived from the trajectory's extents (minimum and maximum values) and the image dimensions ensure that the continuous coordinates fit within the pixel grid while preserving spatial relationships.
+  Trajectory points, represented as floating-point coordinates in a two-dimensional continuous space, are scaled and mapped to integer pixel coordinates for visualization. Scaling factors derived from the trajectory's extents (minimum and maximum values) and the image dimensions ensure that the continuous coordinates fit within the pixel grid while preserving spatial relationships. This mapping process creates the density heat map matrix, where pixel intensities represent aggregated hit counts.
 
 - **Integer Conversion**  
   The continuous to discrete mapping introduces quantization: closely spaced trajectory points in continuous space may map to the same pixel, resulting in multiple "hits" per pixel. This discretization aggregates local density but may reduce fine details due to grouping within the pixel grid.
@@ -280,7 +281,7 @@ using the histogram bin edges.
 
 #### Numreical / Statistical Comparison of Normalized Density Heatmap and Histogram Density Matrix
 
-Matrix Similarity in Dependence on the Number of Iterations for the Images shown in the Comparison Panel
+Matrix Similarity with Increasing Iterations
 
 | Parameters              | Iterations       | Pearson Correlation Coefficient | Cosine Similarity |
 |-------------------------|------------------|---------------------------------|-------------------|

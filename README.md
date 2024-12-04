@@ -89,7 +89,7 @@ Large numbers of iterations are computed efficiently, with low memory requiremen
 
 Core Algorithm:
 
-Two-pass algorithm with separate calculation of:
+The algorithm consists of two main passes:
 
 1. **First Pass**: Determines the spatial extent of the attractor trajectory.
 
@@ -218,7 +218,7 @@ Examples of outputs can be found in the "Usage" section above.
 ### Pixel-Based Density Approximation
 
 - **Continuous to Discrete Mapping**  
-  Trajectory points, represented as floating-point coordinates in a two-dimensional continuous space, are scaled and mapped to integer pixel coordinates for visualization. Scaling factors derived from the trajectory's extents (minimum and maximum values) and the image dimensions ensure that the continuous coordinates fit within the pixel grid while preserving spatial relationships. This mapping process creates the density heat map matrix, where pixel intensities represent aggregated hit counts.
+  Trajectory points, represented as floating-point coordinates in a two-dimensional continuous space, are scaled and mapped to integer pixel coordinates for visualization. Scaling factors derived from the trajectory's extents (minimum and maximum values) and the image dimensions ensure that the continuous coordinates fit within the pixel grid while preserving spatial relationships. This mapping process creates the density heatmap matrix, where pixel brightness corresponds to aggregated hit counts.
 
 - **Integer Conversion**  
   The continuous to discrete mapping introduces quantization: closely spaced trajectory points in continuous space may map to the same pixel, resulting in multiple "hits" per pixel. This discretization aggregates local density but may reduce fine details due to grouping within the pixel grid.

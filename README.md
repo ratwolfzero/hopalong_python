@@ -298,14 +298,14 @@ using the histogram bin edges.
 
 | Parameters              | Iterations       | Pearson Correlation Coefficient | Cosine Similarity |
 |-------------------------|------------------|---------------------------------|-------------------|
-| a = 0.6, b = 0.5, c = 0     | n = 1,000,000   | 0.8557                          | 0.8736            |
-| a = 0.6, b = 0.5, c = 0     | n = 100,000,000 | 0.9814                          | 0.9845            |
+| a = 0.6, b = 0.5, c = 0 | n = 1,000,000       | 0.8557                          | 0.8736            |
+| a = 0.6, b = 0.5, c = 0 | n = 100,000,000     | 0.9814                          | 0.9845            |
 
 **Perfect Similarity with Periodic Orbit: A 3-Cycle Example**  
 
-| Parameters                  | Iterations       | Pearson Correlation Coefficient | Cosine Similarity |
-|-------------------------    |------------------|---------------------------------|-------------------|
-| a = 5, b = 5, c = 0         | n = 1,000,000   | 1.0000                          | 1.0000            |
+| Parameters              | Iterations       | Pearson Correlation Coefficient | Cosine Similarity    |
+|-------------------------|------------------|---------------------------------|-------------------   |
+| a = 5, b = 5, c = 0     | n = 1,000,000    | 1.0000                          | 1.0000               |
 
 --> [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)  
 

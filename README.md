@@ -258,7 +258,7 @@ Pixel-based density approximation presents a promising alternative to histogram-
   
 Remarks
 
-- The density heatmap matrix contains the raw data of the hit counts, while the histogram density matrix represents normalized density values. Both are scaled by Matplotlib's colormap to match the color space.
+- The density heatmap matrix contains aggregated hit counts, while the histogram density matrix represents normalized density values. Both are scaled by Matplotlib's colormap to match the color space
 
 - Method Invariance (Invariant Measure)  
   Regardless of the density estimation technique (pixel-based or histogram-based) or the visualization settings (resolution, bin size), the intrinsic geometric structure of the attractor remains unchanged. These methods affect the density representation but do not change the shape or dynamics of the attractor, which is determined by the underlying mathematical functions.

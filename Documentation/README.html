@@ -171,7 +171,7 @@
 </li>
 <li><a href="#summary">Summary</a></li>
 <li><a href="#conclusions">Conclusions</a></li>
-<li><a href="#numreical--statistical-comparison-of-normalized-density-heatmap-and-histogram-density-matrix">Numreical / Statistical Comparison of Normalized Density Heatmap and Histogram Density Matrix</a></li>
+<li><a href="#quantitative-comparison-of-normalized-density-heatmap-and-histogram-density-matrix">Quantitative Comparison of Normalized Density Heatmap and Histogram Density Matrix</a></li>
 </ul>
 </li>
 <li><a href="#application-of-copysign-math-module-as-a-signum-function">Application of Copysign (Math Module) as a Signum Function</a></li>
@@ -247,17 +247,23 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">â
 <p>The Python programs calculate and visualize the attractor by iterating the defined system of functions.</p>
 <p>Goal:</p>
 <ul>
-<li>Representation of the attractor as a density heatmap to highlight point concentration.</li>
-<li>Calculation with large number of iterations at high processing speed and low memory requirements.</li>
-</ul>
-<p>Core Algorithm:</p>
-<p>Two-pass algorithm with separate calculation of:</p>
-<ol>
 <li>
-<p>The spatial extent of the attractor trajectory (first pass).</p>
+<p><strong>Visual Representation</strong>:
+The attractor is visualized as a density heat map, where color intensity reflects areas of high or low point concentration.</p>
 </li>
 <li>
-<p>Direct mapping of the sequentially generated trajectory points in continuous space to a discrete pixel grid, while tracking the number of pixel hits used to generate the matrix for the density heatmap (second pass).<br>
+<p><strong>Efficiency</strong>:
+Large numbers of iterations are computed efficiently, with low memory requirements and high processing speed.</p>
+</li>
+</ul>
+<p>Core Algorithm:</p>
+<p>The algorithm consists of two main passes:</p>
+<ol>
+<li>
+<p><strong>First Pass</strong>: Determines the spatial extent of the attractor trajectory.</p>
+</li>
+<li>
+<p><strong>Second pass</strong>: Maps the sequentially generated trajectory points in continuous space directly to a discrete pixel grid, keeping track of the number of pixel hits used to generate the density heatmap matrix.
 For details, see <a href="#pixel-based-density-approximation">Pixel-Based Density Approximation</a></p>
 </li>
 </ol>
@@ -362,7 +368,7 @@ The code for the Basic variant supports both 2D and 3D visualization. To switch 
 <ul>
 <li>
 <p><strong>Continuous to Discrete Mapping</strong><br>
-Trajectory points, represented as floating-point coordinates in a two-dimensional continuous space, are mapped to integer pixel coordinates for visualization. Scaling factors derived from the trajectory's extents (minimum and maximum values) and the image dimensions ensure that the continuous coordinates fit within the pixel grid while preserving spatial relationships.</p>
+Trajectory points, represented as floating-point coordinates in a two-dimensional continuous space, are scaled and mapped to integer pixel coordinates for visualization. Scaling factors derived from the trajectory's extents (minimum and maximum values) and the image dimensions ensure that the continuous coordinates fit within the pixel grid while preserving spatial relationships. This mapping process creates the density heatmap matrix, where pixel brightness corresponds to aggregated hit counts.</p>
 </li>
 <li>
 <p><strong>Integer Conversion</strong><br>
@@ -435,8 +441,8 @@ using the histogram bin edges.</li>
 </ul>
 <p><strong>Visual Side-by-Side Comparison <code>Image Size</code> = <code>Bin Size</code> a = -2, b = -0.33, c = 0.01, # of Iterations: 2e8</strong></p>
 <p><img src="file:////Users/ralf/Projects/Python/hopalong_python/examples/Figure_ex_8.png" alt="Example Attractor Image"></p>
-<h4 id="numreical--statistical-comparison-of-normalized-density-heatmap-and-histogram-density-matrix">Numreical / Statistical Comparison of Normalized Density Heatmap and Histogram Density Matrix</h4>
-<p>Matrix Similarity in Dependence on the Number of Iterations for the Images shown in the Comparison Panel</p>
+<h4 id="quantitative-comparison-of-normalized-density-heatmap-and-histogram-density-matrix">Quantitative Comparison of Normalized Density Heatmap and Histogram Density Matrix</h4>
+<p>Matrix Similarity with Increasing Iterations</p>
 <table>
 <thead>
 <tr>

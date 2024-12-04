@@ -286,6 +286,7 @@ using the histogram bin edges.
 #### Quantitative Comparison of Normalized Density Heatmap and Histogram Density Matrix
 
 Matrix Similarity with Increasing Iterations
+**Matrix Similarity with Increasing Iterations**  
 
 | Parameters              | Iterations       | Pearson Correlation Coefficient | Cosine Similarity |
 |-------------------------|------------------|---------------------------------|-------------------|
@@ -294,44 +295,23 @@ Matrix Similarity with Increasing Iterations
 | a = -2, b = -0.33, c = 0.01 | n = 1,000,000   | 0.7831                          | 0.8206            |
 | a = -2, b = -0.33, c = 0.01 | n = 200,000,000 | 0.8577                          | 0.8842            |
 
-Matrix Similarity Across Parameter Sets
+**Matrix Similarity Across Parameter Sets** 
 
 | Parameters              | Iterations       | Pearson Correlation Coefficient | Cosine Similarity |
 |-------------------------|------------------|---------------------------------|-------------------|
 | a = 0.6, b = 0.5, c = 0     | n = 1,000,000   | 0.8557                          | 0.8736            |
 | a = 0.6, b = 0.5, c = 0     | n = 100,000,000 | 0.9814                          | 0.9845            |
+| —                       | —                | —                               | —                 |
+| —                       | —                | —                               | —                 |
 
-Perfect Similarity with Periodic Orbit: A 3-Cycle Example
+**Perfect Similarity with Periodic Orbit: A 3-Cycle Example**  
 
-<table>
-  <thead>
-    <tr>
-      <th>Parameters</th>
-      <th>Iterations</th>
-      <th>Pearson Correlation Coefficient</th>
-      <th>Cosine Similarity</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td colspan="4"><strong>Matrix Similarity with Increasing Iterations</strong></td>
-    </tr>
-    <tr>
-      <td>a = -2, b = -0.33, c = 0.01</td>
-      <td>n = 10,000</td>
-      <td>0.3791</td>
-      <td>0.3839</td>
-    </tr>
-    <tr>
-      <td>a = -2, b = -0.33, c = 0.01</td>
-      <td>n = 100,000</td>
-      <td>0.5589</td>
-      <td>0.5837</td>
-    </tr>
-    <!-- Add more rows here -->
-  </tbody>
-</table>
-
+| Parameters              | Iterations       | Pearson Correlation Coefficient | Cosine Similarity |
+|-------------------------|------------------|---------------------------------|-------------------|
+| a = 5, b = 5, c = 0     | n = 1,000,000       | 1.0000                          | 1.0000            |
+| —                       | —                | —                               | —                 |
+| —                       | —                | —                               | —                 |
+| —                       | —                | —                               | —                 |
 
 
 --> [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)  

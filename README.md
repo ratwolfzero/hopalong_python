@@ -82,10 +82,11 @@ The Python programs calculate and visualize the attractor by iterating the defin
 
 Goal:
 
-- **Visual Representation***:
+- **Visual Representation**:
 The attractor is visualized as a density heat map, where color intensity reflects areas of high or low point concentration.
 - **Efficiency**:
 Large numbers of iterations are computed efficiently, with low memory requirements and high processing speed.
+
 Core Algorithm:
 
 Two-pass algorithm with separate calculation of:

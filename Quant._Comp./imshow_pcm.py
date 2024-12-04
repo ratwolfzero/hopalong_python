@@ -128,45 +128,6 @@ def plot_density_matrices(image, hist_density, extent, x_edges, y_edges, color_m
 
     plt.tight_layout()
     plt.show()
-    
-    
-"""
-def plot_density_matrices(image, hist_density, extent, x_edges, y_edges, color_map, params=None, stats=None):
-    fig, axes = plt.subplots(1, 2, figsize=(14, 7))
-
-    # Generate mesh grids for consistent visualization
-    X_image, Y_image = np.meshgrid(
-        np.linspace(extent[0], extent[1], image.shape[1] + 1),
-        np.linspace(extent[2], extent[3], image.shape[0] + 1)
-    )
-    X_hist, Y_hist = np.meshgrid(x_edges, y_edges)
-
-    # Pixel-Based Density Matrix
-    title_pixel_based = 'Pixel-Based Density (pcolormesh)'
-    if stats:
-        title_pixel_based += f"\nPearson: {stats['Pearson Correlation Coefficient']:.4f}, " \
-                             f"Cosine: {stats['Cosine Similarity']:.4f}"
-    im1 = axes[0].pcolormesh(X_image, Y_image, image, cmap=color_map, shading='auto')
-    axes[0].set_title(title_pixel_based)
-    axes[0].set_xlabel('X')
-    axes[0].set_ylabel('Y')
-    axes[0].set_aspect('equal')  # Ensure quadratic appearance
-    fig.colorbar(im1, ax=axes[0], label='Density')
-
-    # Histogram-Based Density Matrix
-    title_histogram_based = 'Histogram-Based Density (pcolormesh)'
-    if params:
-        title_histogram_based += f"\n(a={params['a']}, b={params['b']}, c={params['c']}, n={params['n']})"
-    im2 = axes[1].pcolormesh(X_hist, Y_hist, hist_density.T, cmap=color_map, shading=None, norm=None, antialiased=False)
-    axes[1].set_title(title_histogram_based)
-    axes[1].set_xlabel('X')
-    axes[1].set_ylabel('Y')
-    axes[1].set_aspect('equal')  # Ensure quadratic appearance
-    fig.colorbar(im2, ax=axes[1], label='Density')
-
-    plt.tight_layout()
-    plt.show()
-"""
 
    
 def main(image_size=(1000, 1000), color_map='hot'):

@@ -15,6 +15,8 @@
   - [Features, Functionality, and Special Scenarios](#features-functionality-and-special-scenarios)
     - [Program Variants](#program-variants)
     - [Pixel-Based Density Approximation](#pixel-based-density-approximation)
+        - [Pixel-Based Approximation](#pixel-based-approximation)
+        - [Histogram-Based Estimation](#histogram-based-estimation)
       - [Summary](#summary)
       - [Conclusions](#conclusions)
       - [Quantitative Comparison of Normalized Density Heatmap and Histogram Density Matrix](#quantitative-comparison-of-normalized-density-heatmap-and-histogram-density-matrix)
@@ -238,11 +240,11 @@ Examples of outputs can be found in the "Usage" section above.
 
 - #### Comparison of Pixel-Based Density Approximation vs. Histogram-Based Density Estimation
 
-  - ##### Pixel-Based Approximation
+  ##### Pixel-Based Approximation
   
    This process generates a density heatmap matrix where each pixel corresponds to a specific region in continuous space, with emergent density patterns arising from the interaction between the attractors' dynamics and the mapping of continuous coordinates to discrete pixel indices. Impact of Image Resolution, see above.
 
-  - ##### Histogram-Based Estimation  
+  ##### Histogram-Based Estimation  
 
    Using `np.histogram2d(..., density=True)`, this approach divides the continuous space into a grid of equal-sized bins and counts the number of trajectory points that fall into each bin. The counts are then normalized by the total number of points and the bin area, resulting in a density matrix representing relative point distributions across the entire space for quantitative analysis.
 

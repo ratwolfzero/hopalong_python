@@ -307,7 +307,6 @@ Perfect Similarity with Periodic Orbit: A 3-Cycle Example
 |-------------------------|------------------|---------------------------------|-------------------|
 | a = 5, b = 5, c = 0     | n = 1,000,000       | 1.0000                          | 1.0000            |
 
-
 | Context                                  | Parameters              | Iterations       | Pearson Correlation Coefficient | Cosine Similarity |
 |------------------------------------------|-------------------------|------------------|---------------------------------|-------------------|
 | Matrix Similarity with Increasing Iterations | a = -2, b = -0.33, c = 0.01 | n = 10,000      | 0.3791                          | 0.3839            |
@@ -317,6 +316,7 @@ Perfect Similarity with Periodic Orbit: A 3-Cycle Example
 | Matrix Similarity Across Parameter Sets | a = 0.6, b = 0.5, c = 0     | n = 1,000,000   | 0.8557                          | 0.8736            |
 |                                          | a = 0.6, b = 0.5, c = 0     | n = 100,000,000 | 0.9814                          | 0.9845            |
 | Perfect Similarity with Periodic Orbit  | a = 5, b = 5, c = 0         | n = 1,000,000   | 1.0000                          | 1.0000            |
+
 
 --> [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)  
 

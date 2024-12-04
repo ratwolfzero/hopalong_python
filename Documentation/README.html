@@ -368,15 +368,16 @@ The code for the Basic variant supports both 2D and 3D visualization. To switch 
 <ul>
 <li>
 <p><strong>Continuous to Discrete Mapping</strong><br>
-Trajectory points, represented as floating-point coordinates in a two-dimensional continuous space, are scaled and mapped to integer pixel coordinates for visualization. Scaling factors derived from the trajectory's extents (minimum and maximum values) and the image dimensions ensure that the continuous coordinates fit within the pixel grid while preserving spatial relationships. This mapping process creates the density heatmap matrix, where pixel brightness corresponds to aggregated hit counts.</p>
+Trajectory points, represented as floating-point coordinates in a two-dimensional continuous space, are scaled and mapped to integer pixel coordinates for visualization. Scaling factors derived from the trajectory's extents (minimum and maximum values) and the image dimensions ensure that the continuous coordinates fit within the pixel grid while preserving spatial relationships.</p>
 </li>
 <li>
 <p><strong>Integer Conversion</strong><br>
-The continuous to discrete mapping introduces quantization: closely spaced trajectory points in continuous space may map to the same pixel, resulting in multiple &quot;hits&quot; per pixel. This discretization aggregates local density but may reduce fine details due to grouping within the pixel grid.</p>
+The integer conversion in the continuous to discrete mapping leads to a quantization: closely spaced trajectory points in continuous space may map to the same pixel, resulting in multiple &quot;hits&quot; per pixel. This discretization aggregates local density but may reduce fine details due to grouping within the pixel grid.</p>
 </li>
 <li>
 <p><strong>Density Tracking</strong><br>
 An image array, initialized with zeros, serves as a blank canvas. Each trajectory point, after being mapped to a pixel, increments the value at the corresponding array index. Higher hit counts in the array indicate greater density, approximating local concentrations of points. The total sum of pixel hit counts equals the number of trajectory iterations.</p>
+<p>The mapping process described in the above sections creates the density heatmap matrix.</p>
 </li>
 <li>
 <p><strong>Visualization of Density Distribution</strong><br>

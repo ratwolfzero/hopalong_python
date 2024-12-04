@@ -84,6 +84,7 @@ Goal:
 
 - **Visual Representation**:
 The attractor is visualized as a density heat map, where color intensity reflects areas of high or low point concentration.
+
 - **Efficiency**:
 Large numbers of iterations are computed efficiently, with low memory requirements and high processing speed.
 

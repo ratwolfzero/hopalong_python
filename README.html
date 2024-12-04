@@ -377,7 +377,10 @@ The integer conversion in the continuous to discrete mapping leads to a quantiza
 <li>
 <p><strong>Density Tracking</strong><br>
 An image array, initialized with zeros, serves as a blank canvas. Each trajectory point, after being mapped to a pixel, increments the value at the corresponding array index. Higher hit counts in the array indicate greater density, approximating local concentrations of points. The total sum of pixel hit counts equals the number of trajectory iterations.</p>
-<p>The mapping process described in the above sections creates the density heatmap matrix.</p>
+</li>
+<li>
+<p><strong>Density Heatmap Matrix</strong><br>
+The density heatmap matrix is derived from continuous to discrete mapping. Pixel hit counts encode the spatial distribution of trajectory point densities in continuous space. Visualization methods highlight these variations using color gradients.</p>
 </li>
 <li>
 <p><strong>Visualization of Density Distribution</strong><br>

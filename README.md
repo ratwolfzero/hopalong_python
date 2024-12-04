@@ -294,7 +294,7 @@ using the histogram bin edges.
 | a = -2, b = -0.33, c = 0.01 | n = 1,000,000   | 0.7831                          | 0.8206            |
 | a = -2, b = -0.33, c = 0.01 | n = 200,000,000 | 0.8577                          | 0.8842            |
 
-**Matrix Similarity Across Parameter Sets**
+**Matrix Similarity Across Parameter Sets**  
 
 | Parameters              | Iterations       | Pearson Correlation Coefficient | Cosine Similarity |
 |-------------------------|------------------|---------------------------------|-------------------|
@@ -305,7 +305,7 @@ using the histogram bin edges.
 
 | Parameters              | Iterations       | Pearson Correlation Coefficient | Cosine Similarity |
 |-------------------------|------------------|---------------------------------|-------------------|
-| a = 5, b = 5, c = 0     | n = 1,000,000       | 1.0000                          | 1.0000            |
+| a = 5, b = 5, c = 0         | n = 1,000,000   | 1.0000                          | 1.0000            |
 
 --> [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)  
 

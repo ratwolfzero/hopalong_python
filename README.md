@@ -219,19 +219,19 @@ Examples of outputs can be found in the "Usage" section above.
 ### Pixel-Based Density Approximation
 
 - **Continuous to Discrete Mapping**  
-  Trajectory points, represented as floating-point coordinates in a two-dimensional continuous space, are scaled and mapped to integer pixel coordinates for visualization. Scaling factors derived from the trajectory's extents (minimum and maximum values) and the image dimensions ensure that the continuous coordinates fit within the pixel grid while preserving spatial relationships.
+   Trajectory points, represented as floating-point coordinates in a two-dimensional continuous space, are scaled and mapped to integer pixel coordinates for visualization. Scaling factors derived from the trajectory's extents (minimum and maximum values) and the image dimensions ensure the continuous coordinates fit within the pixel grid while preserving spatial relationships.
 
 - **Integer Conversion**  
-  The integer conversion in the continuous to discrete mapping leads to a quantization: closely spaced trajectory points in continuous space may map to the same pixel, resulting in multiple "hits" per pixel. This discretization aggregates local density but may reduce fine details due to grouping within the pixel grid.
+   The integer conversion in the continuous to discrete mapping leads to a quantization: closely spaced trajectory points in continuous space may map to the same pixel, resulting in multiple "hits" per pixel. This discretization aggregates local density but may reduce fine details due to grouping within the pixel grid.
 
 - **Density Tracking**  
-  An image array, initialized with zeros, serves as a blank canvas. Each trajectory point, after being mapped to a pixel, increments the value at the corresponding array index. Higher hit counts in the array indicate greater density, approximating local concentrations of points. The total sum of pixel hit counts equals the number of trajectory iterations.  
+  An image array, initialized with zeros, serves as a blank canvas. Each trajectory point, after being mapped to a pixel, increments the value at the corresponding array index. Higher hit counts in the array indicate greater density, approximating local concentrations of points. The total sum of pixel hit counts equals the number of trajectory iterations.
 
 - **Density Heatmap Matrix**  
-  The density heatmap matrix is derived from continuous to discrete mapping. Pixel hit counts encode the spatial distribution of trajectory point densities in continuous space. Visualization methods highlight these variations using color gradients.
+   The density heatmap matrix is derived from continuous to discrete mapping. Pixel hit counts encode the spatial distribution of trajectory point densities in continuous space. Visualization methods highlight these variations using color gradients.
 
 - **Visualization of Density Distribution**  
-  The Matplotlib "hot" colormap represents pixel hit counts as colors, scaled to span the full range of the colormap. Darker colors correspond to lower densities, and lighter colors to higher densities, creating a gradient that highlights areas of activity.
+   The Matplotlib "hot" colormap represents pixel hit counts as colors, scaled to span the full range of the colormap. Darker colors correspond to lower densities and lighter to higher densities, creating a gradient that highlights areas of activity.
 
   - Impact of Image Resolution:
   
@@ -243,11 +243,11 @@ Examples of outputs can be found in the "Usage" section above.
 
 ##### Pixel-Based Approximation
   
-   This process generates a density heatmap matrix where each pixel corresponds to a specific region in continuous space, with emergent density patterns arising from the interaction between the attractors's dynamics and the mapping of continuous coordinates to discrete pixel indices. Impact of Image Resolution, see above.
+   This process generates a density heatmap matrix where each pixel corresponds to a specific region in continuous space, with emergent density patterns arising from the interaction between the attractors' dynamics and the mapping of continuous coordinates to discrete pixel indices. Impact of Image Resolution, see above.
 
 ##### Histogram-Based Estimation  
 
-   Using `np.histogram2d(..., density=True)`, this approach divides the continuous space into a grid of equal-sized bins and counts the number of trajectory points that fall into each bin. The counts are then normalized by the total number of points and the bin area, resulting in a density matrix that represents relative point distributions across the entire space for quantitative analysis.
+   Using `np.histogram2d(..., density=True)`, this approach divides the continuous space into a grid of equal-sized bins and counts the number of trajectory points that fall into each bin. The counts are then normalized by the total number of points and the bin area, resulting in a density matrix representing relative point distributions across the entire space for quantitative analysis.
 
 - Impact of bin size:
 

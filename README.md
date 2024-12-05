@@ -12,6 +12,7 @@
   - [Usage](#usage)
     - [Input](#input)
     - [Output](#output)
+    - [Basic Version 3D (`contourf3D`) \& Basic Version 3D (`contour3D`)](#basic-version-3d-contourf3d--basic-version-3d-contour3d)
   - [Features, Functionality, and Special Scenarios](#features-functionality-and-special-scenarios)
     - [Program Variants](#program-variants)
     - [Pixel-Based Density Approximation](#pixel-based-density-approximation)
@@ -182,9 +183,10 @@ The programs generate a visual representation of the attractor trajectory as a d
 **Basic Version 2D**
 ![Example Attractor Image](./examples/Figure_ex_1.png)
 
-| **Basic Version 3D (`contourf3D`)**                        | **Basic Version 3D (`contour3D`)**  
-|------------------------------------------------------------|------------------------------------------------------------|
-|![Example Attractor Image 1](./examples/Figure_ex_1_1.png)  ![Example Attractor Image 2](./examples/Figure_ex_1_2.png)                      |
+### Basic Version 3D (`contourf3D`) & Basic Version 3D (`contour3D`)
+
+| ![Example Attractor Image 1](./examples/Figure_ex_1_1.png) | ![Example Attractor Image 2](./examples/Figure_ex_1_2.png) |
+|------------------------------------------------------------|------------------------------------------------------------|                 |
 
 **Extended Version**
 ![Example Attractor Image](./examples/Figure_ex_2.png)

@@ -2,7 +2,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 from numba import njit
 from math import copysign, sqrt, fabs
-from scipy.stats import pearsonr
 
 
 def validate_input(prompt, input_type=float, check_positive_non_zero=False, min_value=None):

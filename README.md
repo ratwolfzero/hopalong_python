@@ -184,8 +184,8 @@ The programs generate a visual representation of the attractor trajectory as a d
 
 <!-- markdownlint-disable MD033 -->
 <p align="center">
-  <img src="./examples/Figure_ex_1_1.png" alt="Example Attractor Image 1" width="55%">
-  <img src="./examples/Figure_ex_1_2.png" alt="Example Attractor Image 2" width="55%">
+  <img src="./examples/Figure_ex_1_1.png" alt="Example Attractor Image 1" width="50%">
+  <img src="./examples/Figure_ex_1_2.png" alt="Example Attractor Image 2" width="50%">
 </p>
 <!-- markdownlint-enable MD033 -->
 

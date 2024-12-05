@@ -191,6 +191,12 @@ The programs generate a visual representation of the attractor trajectory as a d
 **Extended Version**
 ![Example Attractor Image](./examples/Figure_ex_2.png)
 
+<p align="center">
+  <img src="./examples/Figure_ex_1_1.png" alt="Example Attractor Image 1" width="45%">
+  <img src="./examples/Figure_ex_1_2.png" alt="Example Attractor Image 2" width="45%">
+</p>
+
+
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
 ---

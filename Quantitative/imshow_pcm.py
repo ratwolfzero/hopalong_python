@@ -78,7 +78,7 @@ def compute_image_and_trajectory(a, b, c, n, extents, image_size):
 
     return image, trajectory
 
-@njit
+
 def compute_statistics(image, hist_density):
     image_flat = image.flatten()
     hist_density_flat = hist_density.T.flatten()  # Transpose histogram matrix for alignment

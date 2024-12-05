@@ -15,6 +15,7 @@
   - [Features, Functionality, and Special Scenarios](#features-functionality-and-special-scenarios)
     - [Program Variants](#program-variants)
     - [Pixel-Based Density Approximation](#pixel-based-density-approximation)
+      - [Comparison of Pixel-Based Density Approximation vs. Histogram-Based Density Estimation](#comparison-of-pixel-based-density-approximation-vs-histogram-based-density-estimation)
         - [Pixel-Based Approximation](#pixel-based-approximation)
         - [Histogram-Based Estimation](#histogram-based-estimation)
       - [Summary](#summary)
@@ -238,7 +239,7 @@ Examples of outputs can be found in the "Usage" section above.
 
     - Higher resolutions distribute trajectory points across more pixels, capturing finer data variations and increasing detail but reducing visual density contrast as hit counts are spread more evenly.
 
-- #### Comparison of Pixel-Based Density Approximation vs. Histogram-Based Density Estimation
+  #### Comparison of Pixel-Based Density Approximation vs. Histogram-Based Density Estimation
 
   ##### Pixel-Based Approximation
   

@@ -43,7 +43,7 @@
 ## Abstract
 
 ### Historical Context
-
+<!-- markdownlint-disable MD033 -->
 The "*Hopalong*"<top>*<top> attractor, authored by Barry Martin of Aston University in Birmingham, England [[2](#references)],  
 was popularized by A.K. Dewdney in the September 1986 issue of *Scientific American*. In Germany, it gained further recognition through a translation titled "*HÜPFER*" in *Spektrum der Wissenschaft* [[3](#references)].  
 <sub>*Nicknamed by A.K. Dewdney.</sub>  

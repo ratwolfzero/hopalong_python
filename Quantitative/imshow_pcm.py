@@ -52,7 +52,7 @@ def compute_trajectory_extents(a, b, c, n):
 
 
 @njit
-def compute_image_and_trajectory(a, b, c, n, extents, image_size):
+def compute_trajectory_image(a, b, c, n, extents, image_size):
     # Initialize matrices and variables
     image = np.zeros(image_size, dtype=np.uint64)
     trajectory = np.zeros((n, 2), dtype=np.float64)
@@ -137,7 +137,7 @@ def main(image_size=(1000, 1000), color_map='hot'):
         extent = [extents[0], extents[1], extents[2], extents[3]]
 
         # Compute image and trajectory
-        image, trajectory = compute_image_and_trajectory(
+        image, trajectory = compute_trajectory_image(
             params['a'], params['b'], params['c'], params['n'], extents, image_size
         )
 

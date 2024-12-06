@@ -3,9 +3,6 @@ import numpy as np
 from numba import njit
 from math import copysign, sqrt, fabs
 from scipy.spatial.distance import jensenshannon
-from skimage.metrics import structural_similarity
-from scipy.stats import wasserstein_distance
-from scipy.spatial.distance import cosine
 
 
 def validate_input(prompt, input_type=float, check_positive_non_zero=False, min_value=None):
@@ -83,24 +80,10 @@ def compute_trajectory_image(a, b, c, n, extents, image_size):
 
 
 # Statistical functions
-
-
 def jensen_shannon_divergence(image, hist_density):
     image_norm = image.flatten() / np.sum(image)
     hist_norm = hist_density.T.flatten() / np.sum(hist_density)
     return jensenshannon(image_norm, hist_norm)**2
-
-
-def structural_similarity_index(image, hist_density):
-    return structural_similarity(image, hist_density.T, data_range=image.max() - image.min())
-
-
-def earth_movers_distance(image, hist_density):
-    return wasserstein_distance(image.flatten(), hist_density.T.flatten())
-
-
-def scipy_cosine_similarity(image, hist_density):
-    return 1 - cosine(image.flatten(), hist_density.T.flatten())
 
 
 def compute_statistics(image, hist_density):
@@ -108,19 +91,13 @@ def compute_statistics(image, hist_density):
     cosine_sim = np.dot(image.flatten(), hist_density.T.flatten()) / (
         np.linalg.norm(image.flatten()) * np.linalg.norm(hist_density.T.flatten()))
     
-    
-    JSD = jensen_shannon_divergence(image, hist_density)
-    ssim = structural_similarity_index(image, hist_density)
-    emd = earth_movers_distance(image, hist_density)
-    scipycs = scipy_cosine_similarity(image, hist_density)
+    jsd = jensen_shannon_divergence(image, hist_density)
 
     return {
         "Pearson Correlation Coefficient": pearson_corr,
         "Cosine Similarity": cosine_sim,
-        "Jensen-Shannon Divergence": JSD,
-        "Structural Similarity Index": ssim,
-        "Earth Mover's Distance": emd,
-        "SciPy Cosine Similarity": scipycs,
+        "Jensen-Shannon Divergence": jsd,
+        
     }
 
 

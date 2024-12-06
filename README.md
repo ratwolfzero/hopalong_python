@@ -286,34 +286,33 @@ using the histogram bin edges.
 
 #### Quantitative Comparison of Normalized Density Heatmap and Histogram Density Matrix*
 
-**Matrix Similarity with Increasing Iterations**  
+**Matrix Similarity Across Parameter Sets**  
 
-| Parameters                | Iterations       | PCC      | CS       | JSD     |
-|---------------------------|------------------|----------|----------|---------|
-| a = -2, b = -0.33, c = 0.01 | n = 10,000      | 0.3791   | 0.3839   | 0.4352  |
-| a = -2, b = -0.33, c = 0.01 | n = 100,000     | 0.5589   | 0.5837   | 0.2745  |
-| a = -2, b = -0.33, c = 0.01 | n = 1,000,000   | 0.7831   | 0.8206   | 0.1078  |
-| a = -2, b = -0.33, c = 0.01 | n = 200,000,000 | 0.8577   | 0.8842   | 0.0662  |
+| Parameters                | Iterations       | PCC      | CS       |
+|---------------------------|------------------|----------|----------|
+| a = -2, b = -0.33, c = 0.01 | n = 10,000      | 0.3791   | 0.3839   |
+| a = -2, b = -0.33, c = 0.01 | n = 100,000     | 0.5589   | 0.5837   |
+| a = -2, b = -0.33, c = 0.01 | n = 1,000,000   | 0.7831   | 0.8206   |
+| a = -2, b = -0.33, c = 0.01 | n = 200,000,000 | 0.8577   | 0.8842   |
 
 **Matrix Similarity Across Parameter Sets**  
 
- Parameters                | Iterations       | PCC      | CS       | JSD     |
-|---------------------------|------------------|----------|----------|---------|
-| a = 0.6, b = 0.5, c = 0   | n = 1,000,000    | 0.8557   | 0.8736   | 0.0496  |
-| a = 0.6, b = 0.5, c = 0   | n = 100,000,000  | 0.9814   | 0.9845   | 0.0105  |
+| Parameters                | Iterations       | PCC      | CS       |
+|---------------------------|------------------|----------|----------|
+| a = 0.6, b = 0.5, c = 0   | n = 1,000,000    | 0.8557   | 0.8736   |
+| a = 0.6, b = 0.5, c = 0   | n = 100,000,000  | 0.9814   | 0.9845   |
 
 **Matrix Similarity with Periodic Orbit: A 3-Cycle Example**  
 
- Parameters                | Iterations       | PCC      | CS       | JSD     |
-|---------------------------|------------------|----------|----------|---------|
-| a = 5, b = 5, c = 0       | n = 1,000,000    | 1.0000   | 1.0000   | 0.0000  |
+| Parameters                | Iterations       | PCC      | CS       |
+|---------------------------|------------------|----------|----------|
+| a = 5, b = 5, c = 0       | n = 1,000,000    | 1.0000   | 1.0000   |
 
 --> [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)
 
 <sub>
 *PCC:  Pearson Correlation Coefficient,  
-CS:    Cosine Similarity,  
-JSD:   Jensen-Shannon Divergence  
+CS:    Cosine Similarity
 </sub>
 <br>
 </br>

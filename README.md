@@ -288,32 +288,33 @@ using the histogram bin edges.
 
 **Matrix Similarity with Increasing Iterations**  
 
-| Parameters              | Iterations       | PCC      | CS       | SSIM    |
-|-------------------------|------------------|----------|----------|---------|
-| a = -2, b = -0.33, c = 0.01 | n = 10,000      | 0.3791   | 0.3839   | 0.8637  |
-| a = -2, b = -0.33, c = 0.01 | n = 100,000     | 0.5589   | 0.5837   | 0.7849  |
-| a = -2, b = -0.33, c = 0.01 | n = 1,000,000   | 0.7831   | 0.8206   | 0.4855  |
-| a = -2, b = -0.33, c = 0.01 | n = 200,000,000 | 0.8577   | 0.8842   | 0.4471  |
+| Parameters              | Iterations       | PCC      | CS       | SSIM    | JSD     |
+|-------------------------|------------------|----------|----------|---------|---------|
+| a = -2, b = -0.33, c = 0.01 | n = 10,000      | 0.3791   | 0.3839   | 0.8637  | 0.4352  |
+| a = -2, b = -0.33, c = 0.01 | n = 100,000     | 0.5589   | 0.5837   | 0.7849  | 0.2745  |
+| a = -2, b = -0.33, c = 0.01 | n = 1,000,000   | 0.7831   | 0.8206   | 0.4855  | 0.1078  |
+| a = -2, b = -0.33, c = 0.01 | n = 200,000,000 | 0.8577   | 0.8842   | 0.4471  | 0.0662  |
 
 **Matrix Similarity Across Parameter Sets**  
 
-| Parameters              | Iterations       | PCC      | CS       | SSIM    |
-|-------------------------|------------------|----------|----------|---------|
-| a = 0.6, b = 0.5, c = 0 | n = 1,000,000       | 0.8557   | 0.8736   | 0.8392  |
-| a = 0.6, b = 0.5, c = 0 | n = 100,000,000     | 0.9814   | 0.9845   | 0.7755  |
+| Parameters              | Iterations       | PCC      | CS       | SSIM    | JSD     |
+|-------------------------|------------------|----------|----------|---------|---------|
+| a = 0.6, b = 0.5, c = 0 | n = 1,000,000       | 0.8557   | 0.8736   | 0.8392  | 0.0496  |
+| a = 0.6, b = 0.5, c = 0 | n = 100,000,000     | 0.9814   | 0.9845   | 0.7755  | 0.0105  |
 
 **Perfect Similarity with Periodic Orbit: A 3-Cycle Example**  
 
-| Parameters              | Iterations       | PCC      | CS       | SSIM    |
-|-------------------------|------------------|----------|----------|---------|
-| a = 5, b = 5, c = 0     | n = 1,000,000    | 1.0000   | 1.0000   | 1.0000  |
+| Parameters              | Iterations       | PCC      | CS       | SSIM    | JSD     |
+|-------------------------|------------------|----------|----------|---------|---------|
+| a = 5, b = 5, c = 0     | n = 1,000,000    | 1.0000   | 1.0000   | 1.0000  | 0.0000     |
 
 --> [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)
 
 <sub>
-* PCC:  Pearson Correlation Coefficient,  
-CS:   Cosine Similarity,  
-SSIM: Structural Similarity Index
+*PCC:  Pearson Correlation Coefficient,  
+CS:    Cosine Similarity,  
+SSIM:  Structural Similarity Index  
+JSD:   Jensen-Shannon Divergence  
 </sub>
 <br>
 </br>

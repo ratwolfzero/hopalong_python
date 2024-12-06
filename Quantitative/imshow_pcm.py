@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from numba import njit
 from math import copysign, sqrt, fabs
-from scipy.spatial.distance import jensenshannon
+
 
 
 def validate_input(prompt, input_type=float, check_positive_non_zero=False, min_value=None):
@@ -99,24 +99,18 @@ def cosine_similarity(image, hist_density):
         np.linalg.norm(image.flatten()) * np.linalg.norm(hist_density.T.flatten())
     )
 
-# Jensen-Shannon Divergence function
-def jensen_shannon_divergence(image, hist_density):
-    image_norm = image.flatten() / np.sum(image)
-    hist_norm = hist_density.T.flatten() / np.sum(hist_density)
-    return jensenshannon(image_norm, hist_norm)
 
-
-# Compute all statistics function
+# Compute statistics
 def compute_statistics(image, hist_density):
     pearson_corr = pearson_correlation(image, hist_density)
     cosine_sim = cosine_similarity(image, hist_density)
-    jsd = jensen_shannon_divergence(image, hist_density)
+    
 
     return {
         "Pearson Correlation Coefficient": pearson_corr,
         "Cosine Similarity": cosine_sim,
-        "Jensen-Shannon Divergence": jsd,
     }
+
 
 # Plot results
 def plot_density_matrices(image, hist_density, extent, x_edges, y_edges, color_map, params=None, stats=None):
@@ -127,8 +121,7 @@ def plot_density_matrices(image, hist_density, extent, x_edges, y_edges, color_m
     title_pixel_based = 'Density Heatmap Matrix'
     if stats:
         title_pixel_based += f"\nPearson: {stats['Pearson Correlation Coefficient']:.4f}, " \
-                             f"Cosine: {stats['Cosine Similarity']:.4f}, " \
-                             f"JSD: {stats['Jensen-Shannon Divergence']:.4f}"
+                             f"Cosine: {stats['Cosine Similarity']:.4f}"
         
     image = image/np.max(image)                         
     im1 = axes[0].imshow(image, origin='lower', cmap=color_map, extent=extent, interpolation='none', aspect='equal')

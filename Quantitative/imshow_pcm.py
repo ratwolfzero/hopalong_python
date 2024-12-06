@@ -5,6 +5,7 @@ from math import copysign, sqrt, fabs
 from scipy.spatial.distance import jensenshannon
 from skimage.metrics import structural_similarity
 from scipy.stats import wasserstein_distance
+from scipy.spatial.distance import cosine
 
 
 def validate_input(prompt, input_type=float, check_positive_non_zero=False, min_value=None):
@@ -98,15 +99,21 @@ def earth_movers_distance(image, hist_density):
     return wasserstein_distance(image.flatten(), hist_density.T.flatten())
 
 
+def scipy_cosine_similarity(image, hist_density):
+    return 1 - cosine(image.flatten(), hist_density.T.flatten())
+
+
 def compute_statistics(image, hist_density):
     pearson_corr = np.corrcoef(image.flatten(), hist_density.T.flatten())[0, 1]
     cosine_sim = np.dot(image.flatten(), hist_density.T.flatten()) / (
         np.linalg.norm(image.flatten()) * np.linalg.norm(hist_density.T.flatten())
     )
     
+    
     jsd = jensen_shannon_divergence(image, hist_density)
     ssim = structural_similarity_index(image, hist_density)
     emd = earth_movers_distance(image, hist_density)
+    scipycs = scipy_cosine_similarity(image, hist_density)
 
     return {
         "Pearson Correlation Coefficient": pearson_corr,
@@ -114,6 +121,7 @@ def compute_statistics(image, hist_density):
         "Jensen-Shannon Divergence": jsd,
         "Structural Similarity Index": ssim,
         "Earth Mover's Distance": emd,
+        "SciPy Cosine Similarity": scipycs,
     }
 
 

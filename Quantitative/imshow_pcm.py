@@ -115,6 +115,7 @@ def plot_density_matrices(image, hist_density, extent, x_edges, y_edges, color_m
     title_histogram_based = 'Histogram Density Matrix'
     if params:
         title_histogram_based += f"\n(a={params['a']}, b={params['b']}, c={params['c']}, n={params['n']})"
+        
     X, Y = np.meshgrid(x_edges, y_edges)
     hist_density=hist_density/np.max(hist_density)
     im2 = axes[1].pcolormesh(X, Y, hist_density.T, cmap=color_map, shading=None, norm=None, antialiased=False)

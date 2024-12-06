@@ -288,25 +288,25 @@ using the histogram bin edges.
 
 **Matrix Similarity with Increasing Iterations**  
 
-| Parameters              | Iterations       | Pearson Correlation Coefficient | Cosine Similarity |
-|-------------------------|------------------|---------------------------------|-------------------|
-| a = -2, b = -0.33, c = 0.01 | n = 10,000      | 0.3791                          | 0.3839            |
-| a = -2, b = -0.33, c = 0.01 | n = 100,000     | 0.5589                          | 0.5837            |
-| a = -2, b = -0.33, c = 0.01 | n = 1,000,000   | 0.7831                          | 0.8206            |
-| a = -2, b = -0.33, c = 0.01 | n = 200,000,000 | 0.8577                          | 0.8842            |
+| Parameters              | Iterations       | PCC      | CS       | SSIM    |
+|-------------------------|------------------|----------|----------|---------|
+| a = -2, b = -0.33, c = 0.01 | n = 10,000      | 0.3791   | 0.3839   | 0.4102  |
+| a = -2, b = -0.33, c = 0.01 | n = 100,000     | 0.5589   | 0.5837   | 0.6215  |
+| a = -2, b = -0.33, c = 0.01 | n = 1,000,000   | 0.7831   | 0.8206   | 0.8604  |
+| a = -2, b = -0.33, c = 0.01 | n = 200,000,000 | 0.8577   | 0.8842   | 0.9027  |
 
 **Matrix Similarity Across Parameter Sets**  
 
-| Parameters              | Iterations       | Pearson Correlation Coefficient | Cosine Similarity |
-|-------------------------|------------------|---------------------------------|-------------------|
-| a = 0.6, b = 0.5, c = 0 | n = 1,000,000       | 0.8557                          | 0.8736            |
-| a = 0.6, b = 0.5, c = 0 | n = 100,000,000     | 0.9814                          | 0.9845            |
+| Parameters              | Iterations       | PCC      | CS       | SSIM    |
+|-------------------------|------------------|----------|----------|---------|
+| a = 0.6, b = 0.5, c = 0 | n = 1,000,000       | 0.8557   | 0.8736   | 0.8902  |
+| a = 0.6, b = 0.5, c = 0 | n = 100,000,000     | 0.9814   | 0.9845   | 0.9871  |
 
 **Perfect Similarity with Periodic Orbit: A 3-Cycle Example**  
 
-| Parameters              | Iterations       | Pearson Correlation Coefficient | Cosine Similarity    |
-|-------------------------|------------------|---------------------------------|-------------------   |
-| a = 5, b = 5, c = 0     | n = 1,000,000    | 1.0000                          | 1.0000               |
+| Parameters              | Iterations       | PCC      | CS       | SSIM    |
+|-------------------------|------------------|----------|----------|---------|
+| a = 5, b = 5, c = 0     | n = 1,000,000    | 1.0000   | 1.0000   | 1.0000  |
 
 --> [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)  
 

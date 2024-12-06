@@ -79,25 +79,33 @@ def compute_trajectory_image(a, b, c, n, extents, image_size):
     return image, trajectory
 
 
-# Statistical functions
+# Pearson Correlation Coefficient function
+def pearson_correlation(image, hist_density):
+    return np.corrcoef(image.flatten(), hist_density.T.flatten())[0, 1]
+
+# Cosine Similarity function
+def cosine_similarity(image, hist_density):
+    return np.dot(image.flatten(), hist_density.T.flatten()) / (
+        np.linalg.norm(image.flatten()) * np.linalg.norm(hist_density.T.flatten())
+    )
+
+# Jensen-Shannon Divergence function
 def jensen_shannon_divergence(image, hist_density):
     image_norm = image.flatten() / np.sum(image)
     hist_norm = hist_density.T.flatten() / np.sum(hist_density)
     return jensenshannon(image_norm, hist_norm)**2
 
 
+# Compute all statistics function
 def compute_statistics(image, hist_density):
-    pearson_corr = np.corrcoef(image.flatten(), hist_density.T.flatten())[0, 1]
-    cosine_sim = np.dot(image.flatten(), hist_density.T.flatten()) / (
-        np.linalg.norm(image.flatten()) * np.linalg.norm(hist_density.T.flatten()))
-    
+    pearson_corr = pearson_correlation(image, hist_density)
+    cosine_sim = cosine_similarity(image, hist_density)
     jsd = jensen_shannon_divergence(image, hist_density)
 
     return {
         "Pearson Correlation Coefficient": pearson_corr,
         "Cosine Similarity": cosine_sim,
         "Jensen-Shannon Divergence": jsd,
-        
     }
 
 

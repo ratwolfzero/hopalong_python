@@ -133,7 +133,6 @@ def plot_density_matrices(image, hist_density, extent, x_edges, y_edges, color_m
     if stats:
         title_pixel_based += f"\nPearson: {stats['Pearson Correlation Coefficient']:.4f}, " \
                              f"Cosine: {stats['Cosine Similarity']:.4f}, " \
-                             f"SSIM: {stats['Structural Similarity Index']:.4f}, " \
                              f"JSD: {stats['Jensen-Shannon Divergence']:.4f}"
         
     image = image/np.max(image)                         

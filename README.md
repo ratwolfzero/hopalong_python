@@ -313,7 +313,7 @@ using the histogram bin edges.
 <sub>
 *PCC:  Pearson Correlation Coefficient,  
 CS:    Cosine Similarity,  
-SSIM:  Structural Similarity Index  
+SSIM:  Structural Similarity Index,  
 JSD:   Jensen-Shannon Divergence  
 </sub>
 <br>

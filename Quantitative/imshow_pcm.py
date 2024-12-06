@@ -4,7 +4,6 @@ from numba import njit
 from math import copysign, sqrt, fabs
 
 
-
 def validate_input(prompt, input_type=float, check_positive_non_zero=False, min_value=None):
     while True:
         user_input = input(prompt)
@@ -80,11 +79,11 @@ def compute_trajectory_image(a, b, c, n, extents, image_size):
 
     return image, trajectory
 
+
 # Create histogram-based density matrix directly from trajectory
 def create_histogram_density_matrix(trajectory, image_size):
     hist_density, x_edges, y_edges = np.histogram2d(
-        trajectory[:, 0], trajectory[:, 1], bins=image_size, density=True
-    )
+        trajectory[:, 0], trajectory[:, 1], bins=image_size, density=True)
     return hist_density, x_edges, y_edges
 
 
@@ -104,8 +103,6 @@ def cosine_similarity(image, hist_density):
 def compute_statistics(image, hist_density):
     pearson_corr = pearson_correlation(image, hist_density)
     cosine_sim = cosine_similarity(image, hist_density)
-    
-
     return {
         "Pearson Correlation Coefficient": pearson_corr,
         "Cosine Similarity": cosine_sim,

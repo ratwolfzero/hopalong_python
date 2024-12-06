@@ -2,6 +2,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 from numba import njit
 from math import copysign, sqrt, fabs
+from scipy.spatial.distance import jensenshannon
+from skimage.metrics import structural_similarity
+from scipy.stats import wasserstein_distance
 
 
 def validate_input(prompt, input_type=float, check_positive_non_zero=False, min_value=None):
@@ -78,21 +81,56 @@ def compute_trajectory_image(a, b, c, n, extents, image_size):
     return image, trajectory
 
 
-def compute_statistics(image, hist_density):
-    image_flat = image.flatten()
-    hist_density_flat = hist_density.T.flatten()  # Transpose histogram matrix for alignment
-    
-    image_flat = (image_flat - np.min(image_flat)) / (np.max(image_flat) - np.min(image_flat))
-    hist_density_flat = (hist_density_flat - np.min(hist_density_flat)) / (np.max(hist_density_flat) - np.min(hist_density_flat))
+# New statistical functions
+def mean_absolute_error(image, hist_density):
+    return np.mean(np.abs(image.flatten() - hist_density.T.flatten()))
 
-    pearson_corr = np.corrcoef(image_flat, hist_density_flat)[0, 1]
-    cosine_sim = np.dot(image_flat, hist_density_flat) / (
-        np.linalg.norm(image_flat) * np.linalg.norm(hist_density_flat)
+
+def root_mean_square_error(image, hist_density):
+    return np.sqrt(np.mean((image.flatten() - hist_density.T.flatten())**2))
+
+
+def jensen_shannon_divergence(image, hist_density):
+    image_norm = image.flatten() / np.sum(image)
+    hist_norm = hist_density.T.flatten() / np.sum(hist_density)
+    return jensenshannon(image_norm, hist_norm)**2
+
+
+def structural_similarity_index(image, hist_density):
+    return structural_similarity(image, hist_density.T, data_range=image.max() - image.min())
+
+
+def intersection_over_union(image, hist_density):
+    image_norm = image.flatten() / np.sum(image)
+    hist_norm = hist_density.T.flatten() / np.sum(hist_density)
+    return np.sum(np.minimum(image_norm, hist_norm)) / np.sum(np.maximum(image_norm, hist_norm))
+
+
+def earth_movers_distance(image, hist_density):
+    return wasserstein_distance(image.flatten(), hist_density.T.flatten())
+
+
+def compute_statistics(image, hist_density):
+    pearson_corr = np.corrcoef(image.flatten(), hist_density.T.flatten())[0, 1]
+    cosine_sim = np.dot(image.flatten(), hist_density.T.flatten()) / (
+        np.linalg.norm(image.flatten()) * np.linalg.norm(hist_density.T.flatten())
     )
+    mae = mean_absolute_error(image, hist_density)
+    rmse = root_mean_square_error(image, hist_density)
+    jsd = jensen_shannon_divergence(image, hist_density)
+    ssim = structural_similarity_index(image, hist_density)
+    iou = intersection_over_union(image, hist_density)
+    emd = earth_movers_distance(image, hist_density)
 
     return {
         "Pearson Correlation Coefficient": pearson_corr,
-        "Cosine Similarity": cosine_sim
+        "Cosine Similarity": cosine_sim,
+        "Mean Absolute Error": mae,
+        "Root Mean Square Error": rmse,
+        "Jensen-Shannon Divergence": jsd,
+        "Structural Similarity Index": ssim,
+        "Intersection Over Union": iou,
+        "Earth Mover's Distance": emd,
     }
 
 
@@ -101,9 +139,11 @@ def plot_density_matrices(image, hist_density, extent, x_edges, y_edges, color_m
 
     # Pixel-Based Density Matrix
     title_pixel_based = 'Density Heatmap Matrix'
+    title_pixel_based = 'Density Heatmap Matrix'
     if stats:
         title_pixel_based += f"\nPearson: {stats['Pearson Correlation Coefficient']:.4f}, " \
-                             f"Cosine: {stats['Cosine Similarity']:.4f}"
+                             f"Cosine: {stats['Cosine Similarity']:.4f}, " \
+                             f"SSIM: {stats['Structural Similarity Index']:.4f}"
     image = image/np.max(image)                         
     im1 = axes[0].imshow(image, origin='lower', cmap=color_map, extent=extent, interpolation='none', aspect='equal')
     axes[0].set_title(title_pixel_based)

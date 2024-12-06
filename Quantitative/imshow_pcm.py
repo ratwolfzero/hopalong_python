@@ -109,7 +109,7 @@ def compute_statistics(image, hist_density):
         np.linalg.norm(image.flatten()) * np.linalg.norm(hist_density.T.flatten()))
     
     
-    Jsd = jensen_shannon_divergence(image, hist_density)
+    JSD = jensen_shannon_divergence(image, hist_density)
     ssim = structural_similarity_index(image, hist_density)
     emd = earth_movers_distance(image, hist_density)
     scipycs = scipy_cosine_similarity(image, hist_density)
@@ -117,7 +117,7 @@ def compute_statistics(image, hist_density):
     return {
         "Pearson Correlation Coefficient": pearson_corr,
         "Cosine Similarity": cosine_sim,
-        "Jensen-Shannon Divergence": Jsd,
+        "Jensen-Shannon Divergence": JSD,
         "Structural Similarity Index": ssim,
         "Earth Mover's Distance": emd,
         "SciPy Cosine Similarity": scipycs,

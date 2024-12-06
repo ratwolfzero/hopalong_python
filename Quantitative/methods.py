@@ -104,7 +104,7 @@ def earth_movers_distance(image, hist_density):
     return wasserstein_distance(image.flatten(), hist_density.T.flatten())
 
 
-# Updated compute_statistics
+# Compute_statistics
 def compute_statistics(image, hist_density):
     pearson_corr = np.corrcoef(image.flatten(), hist_density.T.flatten())[0, 1]
     cosine_sim = np.dot(image.flatten(), hist_density.T.flatten()) / (
@@ -135,7 +135,8 @@ def plot_density_matrices(image, hist_density, extent, x_edges, y_edges, color_m
     title_pixel_based = 'Density Heatmap Matrix'
     if stats:
         title_pixel_based += f"\nPearson: {stats['Pearson Correlation Coefficient']:.4f}, " \
-                             f"Cosine: {stats['Cosine Similarity']:.4f}"
+                             f"Cosine: {stats['Cosine Similarity']:.4f}, " \
+                             f"SSIM: {stats['Structural Similarity Index']:.4f}"
         
     image = image / np.max(image)
     im1 = axes[0].imshow(image, origin='lower', cmap=color_map, extent=extent, interpolation='none', aspect='equal')

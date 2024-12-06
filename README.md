@@ -313,7 +313,8 @@ PCC:  Pearson Correlation Coefficient
 CS:   Cosine Similarity  
 SSIM: Structural Similarity Index
 </sub>
-
+<b>
+</b>
 --> [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)  
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)

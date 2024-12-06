@@ -78,6 +78,12 @@ def compute_trajectory_image(a, b, c, n, extents, image_size):
 
     return image, trajectory
 
+def create_histogram_density_matrix(trajectory, image_size):
+    hist_density, x_edges, y_edges = np.histogram2d(
+        trajectory[:, 0], trajectory[:, 1], bins=image_size, density=True
+    )
+    return hist_density, x_edges, y_edges
+
 
 # Pearson Correlation Coefficient function
 def pearson_correlation(image, hist_density):
@@ -158,9 +164,7 @@ def main(image_size=(1000, 1000), color_map='hot'):
         )
 
         # Create histogram-based density matrix directly from trajectory
-        hist_density, x_edges, y_edges = np.histogram2d(
-            trajectory[:, 0], trajectory[:, 1], bins=image_size, density=True
-        )
+        hist_density, x_edges, y_edges = create_histogram_density_matrix(trajectory, image_size)
 
         # Compute statistics
         stats = compute_statistics(image, hist_density)

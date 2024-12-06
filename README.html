@@ -453,8 +453,9 @@ using the histogram bin edges.</li>
 <tr>
 <th>Parameters</th>
 <th>Iterations</th>
-<th>Pearson Correlation Coefficient</th>
-<th>Cosine Similarity</th>
+<th>PCC</th>
+<th>CS</th>
+<th>SSIM</th>
 </tr>
 </thead>
 <tbody>
@@ -463,24 +464,28 @@ using the histogram bin edges.</li>
 <td>n = 10,000</td>
 <td>0.3791</td>
 <td>0.3839</td>
+<td>0.8637</td>
 </tr>
 <tr>
 <td>a = -2, b = -0.33, c = 0.01</td>
 <td>n = 100,000</td>
 <td>0.5589</td>
 <td>0.5837</td>
+<td>0.7849</td>
 </tr>
 <tr>
 <td>a = -2, b = -0.33, c = 0.01</td>
 <td>n = 1,000,000</td>
 <td>0.7831</td>
 <td>0.8206</td>
+<td>0.4855</td>
 </tr>
 <tr>
 <td>a = -2, b = -0.33, c = 0.01</td>
 <td>n = 200,000,000</td>
 <td>0.8577</td>
 <td>0.8842</td>
+<td>0.4471</td>
 </tr>
 </tbody>
 </table>
@@ -490,8 +495,9 @@ using the histogram bin edges.</li>
 <tr>
 <th>Parameters</th>
 <th>Iterations</th>
-<th>Pearson Correlation Coefficient</th>
-<th>Cosine Similarity</th>
+<th>PCC</th>
+<th>CS</th>
+<th>SSIM</th>
 </tr>
 </thead>
 <tbody>
@@ -500,12 +506,14 @@ using the histogram bin edges.</li>
 <td>n = 1,000,000</td>
 <td>0.8557</td>
 <td>0.8736</td>
+<td>0.8392</td>
 </tr>
 <tr>
 <td>a = 0.6, b = 0.5, c = 0</td>
 <td>n = 100,000,000</td>
 <td>0.9814</td>
 <td>0.9845</td>
+<td>0.7755</td>
 </tr>
 </tbody>
 </table>
@@ -515,8 +523,9 @@ using the histogram bin edges.</li>
 <tr>
 <th>Parameters</th>
 <th>Iterations</th>
-<th>Pearson Correlation Coefficient</th>
-<th>Cosine Similarity</th>
+<th>PCC</th>
+<th>CS</th>
+<th>SSIM</th>
 </tr>
 </thead>
 <tbody>
@@ -525,10 +534,18 @@ using the histogram bin edges.</li>
 <td>n = 1,000,000</td>
 <td>1.0000</td>
 <td>1.0000</td>
+<td>1.0000</td>
 </tr>
 </tbody>
 </table>
 <p>--&gt; <a href="#special-constellations-and-edge-cases-of-the-attractor">Special Constellations and Edge Cases of the Attractor</a></p>
+<sub>
+PCC:  Pearson Correlation Coefficient,  
+CS:   Cosine Similarity,  
+SSIM: Structural Similarity Index
+</sub>
+<br>
+</br>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <hr>
 <h3 id="application-of-copysign-math-module-as-a-signum-function">Application of Copysign (Math Module) as a Signum Function</h3>

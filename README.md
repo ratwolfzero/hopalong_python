@@ -318,8 +318,6 @@ SSIM: Structural Similarity Index
 <br>
 </br>
 
-
-
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
 ---

@@ -302,7 +302,7 @@ using the histogram bin edges.
 | a = 0.6, b = 0.5, c = 0   | n = 1,000,000    | 0.8557   | 0.8736   | 0.0496  |
 | a = 0.6, b = 0.5, c = 0   | n = 100,000,000  | 0.9814   | 0.9845   | 0.0105  |
 
-**Perfect Similarity with Periodic Orbit: A 3-Cycle Example**  
+**Matrix Similarity with Periodic Orbit: A 3-Cycle Example**  
 
  Parameters                | Iterations       | PCC      | CS       | JSD     |
 |---------------------------|------------------|----------|----------|---------|

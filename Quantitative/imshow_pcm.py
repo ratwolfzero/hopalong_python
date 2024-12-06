@@ -38,6 +38,7 @@ def get_attractor_parameters():
     return {'a': a, 'b': b, 'c': c, 'n': n}
 
 
+# Compute trajectory extents
 @njit
 def compute_trajectory_extents(a, b, c, n):
     x, y = np.float64(0.0), np.float64(0.0)
@@ -51,6 +52,7 @@ def compute_trajectory_extents(a, b, c, n):
     return min_x, max_x, min_y, max_y
 
 
+# Compute image and trajectory
 @njit
 def compute_trajectory_image(a, b, c, n, extents, image_size):
     # Initialize matrices and variables
@@ -78,7 +80,7 @@ def compute_trajectory_image(a, b, c, n, extents, image_size):
 
     return image, trajectory
 
-
+# Create histogram-based density matrix directly from trajectory
 def create_histogram_density_matrix(trajectory, image_size):
     hist_density, x_edges, y_edges = np.histogram2d(
         trajectory[:, 0], trajectory[:, 1], bins=image_size, density=True
@@ -116,7 +118,7 @@ def compute_statistics(image, hist_density):
         "Jensen-Shannon Divergence": jsd,
     }
 
-
+# Plot results
 def plot_density_matrices(image, hist_density, extent, x_edges, y_edges, color_map, params=None, stats=None):
     fig, axes = plt.subplots(1, 2, figsize=(14, 7))
 
@@ -157,6 +159,8 @@ def plot_density_matrices(image, hist_density, extent, x_edges, y_edges, color_m
 def main(image_size=(1000, 1000), color_map='hot'):
     try:
         params = get_attractor_parameters()
+        
+        # Compute trajectory extents
         extents = compute_trajectory_extents(params['a'], params['b'], params['c'], params['n'])
         extent = [extents[0], extents[1], extents[2], extents[3]]
 

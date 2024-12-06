@@ -103,7 +103,7 @@ def cosine_similarity(image, hist_density):
 def jensen_shannon_divergence(image, hist_density):
     image_norm = image.flatten() / np.sum(image)
     hist_norm = hist_density.T.flatten() / np.sum(hist_density)
-    return jensenshannon(image_norm, hist_norm)**2
+    return jensenshannon(image_norm, hist_norm)
 
 
 # Compute all statistics function
@@ -159,7 +159,7 @@ def plot_density_matrices(image, hist_density, extent, x_edges, y_edges, color_m
 def main(image_size=(1000, 1000), color_map='hot'):
     try:
         params = get_attractor_parameters()
-        
+
         # Compute trajectory extents
         extents = compute_trajectory_extents(params['a'], params['b'], params['c'], params['n'])
         extent = [extents[0], extents[1], extents[2], extents[3]]

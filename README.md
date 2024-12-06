@@ -315,6 +315,7 @@ SSIM: Structural Similarity Index
 </sub>
 <br>
 </br>
+
 --> [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)  
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)

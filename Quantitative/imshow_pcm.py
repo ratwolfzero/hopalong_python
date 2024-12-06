@@ -78,6 +78,7 @@ def compute_trajectory_image(a, b, c, n, extents, image_size):
 
     return image, trajectory
 
+
 def create_histogram_density_matrix(trajectory, image_size):
     hist_density, x_edges, y_edges = np.histogram2d(
         trajectory[:, 0], trajectory[:, 1], bins=image_size, density=True
@@ -88,6 +89,7 @@ def create_histogram_density_matrix(trajectory, image_size):
 # Pearson Correlation Coefficient function
 def pearson_correlation(image, hist_density):
     return np.corrcoef(image.flatten(), hist_density.T.flatten())[0, 1]
+
 
 # Cosine Similarity function
 def cosine_similarity(image, hist_density):

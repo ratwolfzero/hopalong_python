@@ -81,13 +81,7 @@ def compute_trajectory_image(a, b, c, n, extents, image_size):
     return image, trajectory
 
 
-# New statistical functions
-def mean_absolute_error(image, hist_density):
-    return np.mean(np.abs(image.flatten() - hist_density.T.flatten()))
-
-
-def root_mean_square_error(image, hist_density):
-    return np.sqrt(np.mean((image.flatten() - hist_density.T.flatten())**2))
+# Statistical functions
 
 
 def jensen_shannon_divergence(image, hist_density):
@@ -100,12 +94,6 @@ def structural_similarity_index(image, hist_density):
     return structural_similarity(image, hist_density.T, data_range=image.max() - image.min())
 
 
-def intersection_over_union(image, hist_density):
-    image_norm = image.flatten() / np.sum(image)
-    hist_norm = hist_density.T.flatten() / np.sum(hist_density)
-    return np.sum(np.minimum(image_norm, hist_norm)) / np.sum(np.maximum(image_norm, hist_norm))
-
-
 def earth_movers_distance(image, hist_density):
     return wasserstein_distance(image.flatten(), hist_density.T.flatten())
 
@@ -115,21 +103,16 @@ def compute_statistics(image, hist_density):
     cosine_sim = np.dot(image.flatten(), hist_density.T.flatten()) / (
         np.linalg.norm(image.flatten()) * np.linalg.norm(hist_density.T.flatten())
     )
-    mae = mean_absolute_error(image, hist_density)
-    rmse = root_mean_square_error(image, hist_density)
+    
     jsd = jensen_shannon_divergence(image, hist_density)
     ssim = structural_similarity_index(image, hist_density)
-    iou = intersection_over_union(image, hist_density)
     emd = earth_movers_distance(image, hist_density)
 
     return {
         "Pearson Correlation Coefficient": pearson_corr,
         "Cosine Similarity": cosine_sim,
-        "Mean Absolute Error": mae,
-        "Root Mean Square Error": rmse,
         "Jensen-Shannon Divergence": jsd,
         "Structural Similarity Index": ssim,
-        "Intersection Over Union": iou,
         "Earth Mover's Distance": emd,
     }
 

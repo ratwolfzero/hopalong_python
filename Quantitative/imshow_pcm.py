@@ -100,7 +100,7 @@ def cosine_similarity(image, hist_density):
     )
 
 
-# Compute statistic
+# Compute statistics
 def compute_statistics(image, hist_density):
     pearson_corr = pearson_correlation(image, hist_density)
     cosine_sim = cosine_similarity(image, hist_density)

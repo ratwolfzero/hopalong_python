@@ -282,7 +282,7 @@ using the histogram bin edges.
 
 **Visual Side-by-Side Comparison `Image Size` = `Bin Size` a = -2, b = -0.33, c = 0.01, # of Iterations: 2e8**
 
-![Example Attractor Image](./examples/Figure_ex_8.png)
+![Example Attractor Image](./Documentation/Figure_5.png)
 
 #### Quantitative Comparison of Normalized Density Heatmap and Histogram Density Matrix*
 
@@ -390,9 +390,9 @@ The pixel hit count simplifies to n / 3, where *n* is the number of iterations.
 
 The 3-cycle structure dominates, with "high-density cycles" clustering along the attractor's extent boundaries.
 
-![Example Attractor Image](./examples/Figure_ex_3.png)
-![Example Attractor Image](./examples/Figure_ex_4.png)
-![Example Attractor Image](./examples/Figure_ex_5.png)
+![Example Attractor Image](./Documentation/Figure_6.png)
+![Example Attractor Image](./Documentation/Figure_7.png)
+![Example Attractor Image](./Documentation/Figure_8.png)
 
 **Visualization Recommendation:**
 

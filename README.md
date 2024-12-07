@@ -286,7 +286,7 @@ using the histogram bin edges.
 
 #### Quantitative Comparison of Normalized Density Heatmap and Histogram Density Matrix*
 
-**Matrix similarity with increasing iterations**  
+**Matrix Similarity with Increasing Iterations**  
 
 | Parameters                | Iterations       | PCC      | CS       |
 |---------------------------|------------------|----------|----------|

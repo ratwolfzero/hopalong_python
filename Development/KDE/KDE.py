@@ -60,10 +60,10 @@ def plot_trajectory_with_density(trajectory):
     
     # Perform KDE on the data with reduced bandwidth
     xy = np.vstack([x, y])
-    kde = gaussian_kde(xy, bw_method=0.02)  # Adjust bw_method to control smoothing
+    kde = gaussian_kde(xy, bw_method=0.01)  # Adjust bw_method to control smoothing
     
     # Create a finer grid for sharper results
-    grid_size = 500  # Increase grid resolution
+    grid_size = 1000  # Increase grid resolution
     xmin, xmax = np.min(x), np.max(x)
     ymin, ymax = np.min(y), np.max(y)
     xgrid = np.linspace(xmin, xmax, grid_size)

@@ -55,8 +55,8 @@ def compute_trajectory(a, b, c, num):
 
 
 def plot_trajectory_with_density(trajectory):
-    x = trajectory[:, 1]
-    y = trajectory[:, 0]
+    x = trajectory[:, 0]
+    y = trajectory[:, 1]
     
     # Perform KDE on the data with reduced bandwidth
     xy = np.vstack([x, y])
@@ -72,11 +72,13 @@ def plot_trajectory_with_density(trajectory):
     grid_coords = np.vstack([X.ravel(), Y.ravel()])
     Z = kde(grid_coords).reshape(X.shape)
     
+
     # Plot the KDE density
     fig = plt.figure(figsize=(8, 8), facecolor='gainsboro')
     ax = fig.add_subplot(1, 1, 1)
-    img = ax.imshow(Z.T, origin='lower', cmap='hot', extent=[xmin, xmax, ymin, ymax])
-    
+    ax.set_aspect('equal')
+    img = ax.pcolormesh(X, Y, Z, shading='auto', cmap='hot')  # Use pcolormesh for proper alignment
+
     # Add color bar
     cbar = fig.colorbar(img, ax=ax, location='bottom')
     cbar.set_label('Density')  # Title for colorbar

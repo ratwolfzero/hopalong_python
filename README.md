@@ -180,16 +180,16 @@ Experimenting with different values of these parameters will yield diverse and i
 The programs generate a visual representation of the attractor trajectory as a density heatmap, where color intensity reflects the frequency of points visited (hit counts). Lighter areas indicate regions of higher density, highlighting the attractor's intricate structure. The generated density heatmap matrix also supports a 3D representation by mapping normalized density values along the Z-axis.
 
 **Basic Version 2D**
-![Example Attractor Image](./Documentation/Figure_ex_1.png)
+![Example Attractor Image](./Documentation/Figure_1.png)
 
 **Basic Version 3D `ax.contourf3D`**
-![Example Attractor Image](./examples/Figure_ex_1_1.png)
+![Example Attractor Image](./Documentation/Figure_2.png)
 
 **Basic Version 3D `ax.contour3D`**
-![Example Attractor Image](./examples/Figure_ex_1_2.png)
+![Example Attractor Image](./Documentation/Figure_3.png)
 
 **Extended Version**
-![Example Attractor Image](./examples/Figure_ex_2.png)
+![Example Attractor Image](./Documentation/Figure_4.png)
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 

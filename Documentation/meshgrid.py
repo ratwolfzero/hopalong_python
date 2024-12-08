@@ -10,6 +10,7 @@ X, Y = np.meshgrid(x_edges, y_edges)
 fig = plt.figure(figsize=(8, 8),facecolor='gainsboro')
 plt.plot(X, Y, 'o', c='blue', markersize=8)
 
+plt.title('Meshgrid Demo')
 plt.xlabel('X')
 plt.ylabel('Y')
 plt.show()

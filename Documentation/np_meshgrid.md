@@ -10,13 +10,14 @@ X, Y = np.meshgrid(x_edges, y_edges)
 
 Results in:
 
-X = [[1, 2, 3],      # x-coordinates repeated for each row
-     [1, 2, 3],
+X = [[1, 2, 3],  # x-coordinates repeated for each row
+     [1, 2, 3],  
      [1, 2, 3]]
 
-Y = [[4, 4, 4],      # y-coordinates repeated for each column
-     [5, 5, 5],
+Y = [[4, 4, 4],  # y-coordinates repeated for each column
+     [5, 5, 5],  
      [6, 6, 6]]
+
 Visualization
 
 The output grids X and Y define a grid of points:

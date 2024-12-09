@@ -225,7 +225,8 @@ Examples of outputs can be found in the "Usage" section above.
    The integer conversion in the continuous to discrete mapping leads to a quantization: closely spaced trajectory points in continuous space may map to the same pixel, resulting in multiple "hits" per pixel. This discretization aggregates local density but may reduce fine details due to grouping within the pixel grid.
 
 - **Density Tracking**  
-  An image array, initialized with zeros, serves as a blank canvas. Each trajectory point, after being mapped to a pixel, increments the value at the corresponding array index. The resulting array is referred to as the **Density Heatmap Matrix**. Pixel hit counts encode the spatial distribution of trajectory point densities in continuous space. Higher hit counts indicate greater density. The total sum of pixel hit counts equals the number of trajectory iterations.
+  An image array, initialized with zeros, serves as a blank canvas. Each trajectory point, after being mapped to a pixel, increments the value at the corresponding array index. The resulting array is referred to as the  
+  **Density Heatmap Matrix**. Pixel hit counts encode the spatial distribution of trajectory point densities in continuous space. Higher hit counts indicate greater density. The total sum of pixel hit counts equals the number of trajectory iterations.
 
 - **Visualization of Density Distribution**  
    The Matplotlib "hot" colormap represents pixel hit counts as colors, scaled to span the full range of the colormap. Darker colors correspond to lower densities and lighter to higher densities, creating a gradient that highlights areas of activity.

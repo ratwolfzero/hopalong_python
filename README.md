@@ -264,7 +264,8 @@ Remarks
 
 - The density heatmap matrix contains aggregated hit counts, while the histogram density matrix represents normalized density values. Both are scaled by Matplotlib's colormap to match the color space
 
-- Regardless of the density estimation technique (pixel-based or histogram-based) or the visualization settings (resolution, bin size), the intrinsic geometric structure (shape) and true dynamics of the attractor remain unchanged. These methods affect the density representation but not the attractor itself, which is determined by the underlying mathematical functions.
+- Method Invariance (Invariant Measure)  
+  Regardless of the density estimation techniques or visualization settings (resolution, bin size), the intrinsic geometric structure (shape) and true dynamics of the attractor remain unchanged. These techniques affect the density representation but not the attractor itself, which is determined by the underlying mathematical functions.
 
 #### Conclusions
 

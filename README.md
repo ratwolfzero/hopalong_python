@@ -222,7 +222,7 @@ Examples of outputs can be found in the "Usage" section above.
    Trajectory points, represented as floating-point coordinates in a two-dimensional continuous space, are scaled and mapped to integer pixel coordinates for visualization. Scaling factors derived from the trajectory's extents and the image dimensions ensure the continuous coordinates fit within the pixel grid while preserving spatial relationships.
 
 - **Integer Conversion**  
-   The integer conversion in the continuous to discrete mapping leads to a quantization: closely spaced trajectory points in continuous space may map to the same pixel, resulting in multiple "hits" per pixel. This discretization aggregates local density but may reduce fine details due to grouping within the pixel grid.
+   The integer conversion within the continuous to discrete mapping leads to a quantization: closely spaced trajectory points in continuous space may map to the same pixel, resulting in multiple "hits" per pixel. This discretization aggregates local density but may reduce fine details due to grouping within the pixel grid.
 
 - **Density Tracking**  
   An image array, initialized with zeros, serves as a blank canvas. Each trajectory point, after being mapped to a pixel, increments the value at the corresponding array index. The resulting array is referred to as the  

@@ -269,7 +269,7 @@ For details, see <a href="#pixel-based-density-approximation">Pixel-Based Densit
 </li>
 </ol>
 <p>Just-in-time (JIT) compilation is applied and supported by a low-complexity code structure.</p>
-<p>For details regarding two-pass algorithm, see <a href="#two-pass-approach">Two-Pass Approach</a></p>
+<p>For details regarding two-pass strategy, see <a href="#two-pass-approach">Two-Pass Approach</a></p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>
 <hr>
 <h2 id="requirements">Requirements</h2>
@@ -638,16 +638,16 @@ For example:</p>
 <p>Advantages:</p>
 <ul>
 <li>
-<p>Memory Efficiency: The two-pass approach reduces memory requirements by recalculating trajectory points, eliminating the need for large-scale caching.</p>
+<p>Memory Efficiency: The two-pass approach recalculates trajectory points instead of caching them, reducing memory requirements.</p>
 </li>
 <li>
-<p>JIT Compatibility: The simple, sequential structure is well-suited for Just-In-Time (JIT) compilation, enhancing execution speed.</p>
+<p>Optimized for JIT Compilation: The straightforward, sequential structure is well-suited for Just-in-Time (JIT) compilation, resulting in faster execution.</p>
 </li>
 <li>
-<p>Scalability: As the number of iterations grows, the two-pass approach’s efficiency in memory usage and processing speed becomes much more advantageous.</p>
+<p>Scalable Performance: As the number of iterations grows, the two-pass approach maintains efficiency in both memory usage and processing speed.</p>
 </li>
 </ul>
-<p>Disadvantage: Trajectory points must be computed in both passes, but this trade-off is minimal. As the number of iterations increases, the benefits of memory efficiency and processing speed outweigh this drawback.</p>
+<p>Trade-Off: The trajectory points are computed twice — once for extent calculation and once for pixel mapping. However, it is outweighed by the memory and performance benefits.</p>
 <h3 id="two-pass-code-section">Two-Pass Code Section</h3>
 <pre><code>@njit #njit is an alias for nopython=True
 def compute_trajectory_extents(a, b, c, n):

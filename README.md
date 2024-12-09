@@ -449,7 +449,7 @@ Advantages:
   
 - Scalable Performance: As the number of iterations grows, the two-pass approach maintains efficiency in both memory usage and processing speed.
 
-Disadvantage: Trajectory points must be computed in both passes, but this trade-off is minimal. As the number of iterations increases, the benefits of memory efficiency and processing speed outweigh this drawback.
+Trade-Off: The trajectory points are computed twice — once for extent calculation and once for pixel mapping. However, it is outweighed by the memory and performance benefits.
 
 ### Two-Pass Code Section
 

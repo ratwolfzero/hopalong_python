@@ -729,7 +729,7 @@ Full caching requires substantial memory allocation, especially for high iterati
 </li>
 </ul>
 <h3 id="one-pass-approach-with-limited-memory-usage-chunked-or-no-caching">One-Pass Approach with Limited Memory Usage (Chunked or No Caching)*</h3>
-<p>Description: These approaches attempt to reduce memory consumption by either processing the trajectory in chunks or not caching trajectory points at all. However, since the full trajectory extents are unknown at the outset, each variation faces the same limitation: pixel mappings require recalculating because trajectory extents change (floating points in continuous space).</p>
+<p>Description: These approaches attempt to reduce memory consumption by either processing the trajectory in chunks or not caching trajectory points at all. However, since the full trajectory extents are unknown at the outset, each variation faces the same limitation: pixel mappings require recalculating as the trajectory's range in continuous space will generally evolve, except in edge cases.</p>
 <p>Chunked: The trajectory is divided into manageable chunks, each cached temporarily.<br>
 No Caching: Points are computed and mapped to pixels directly without storing them.</p>
 <ul>

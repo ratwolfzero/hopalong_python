@@ -94,7 +94,7 @@ The algorithm consists of two main passes:
 
 - **First Pass**: Determines the spatial extent of the attractor trajectory.
 
-- **Second pass**: Maps the sequentially generated trajectory points in continuous space directly to a discrete pixel grid, keeping track of the number of pixel hits used to generate the density heatmap matrix.
+- **Second Pass**: Maps the sequentially generated trajectory points in continuous space directly to a discrete pixel grid, keeping track of the number of pixel hits used to generate the density heatmap matrix.
 For details, see [Pixel-Based Density Approximation](#pixel-based-density-approximation)
 
 Just-in-time (JIT) compilation is applied and supported by a low-complexity code structure.

@@ -443,11 +443,11 @@ By separating the extent calculation (first pass) from the trajectory point to p
 
 Advantages:
 
-- Memory Efficiency: The two-pass approach reduces memory requirements by recalculating trajectory points, eliminating the need for large-scale caching.  
+- Memory Efficiency: The two-pass approach recalculates trajectory points instead of caching them, reducing memory requirements.
   
-- JIT Compatibility: The simple, sequential structure is well-suited for Just-In-Time (JIT) compilation, enhancing execution speed.  
+- Optimized for JIT Compilation: The straightforward, sequential structure is well-suited for Just-in-Time (JIT) compilation, resulting in faster execution.
   
-- Scalability: As the number of iterations grows, the two-pass approach’s efficiency in memory usage and processing speed becomes much more advantageous.
+- Scalable Performance: As the number of iterations grows, the two-pass approach maintains efficiency in both memory usage and processing speed.
 
 Disadvantage: Trajectory points must be computed in both passes, but this trade-off is minimal. As the number of iterations increases, the benefits of memory efficiency and processing speed outweigh this drawback.
 

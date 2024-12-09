@@ -259,7 +259,7 @@ Large numbers of iterations are computed efficiently, with low memory requiremen
 </ul>
 <p>Core Algorithm:</p>
 <p>The algorithm consists of two main passes:</p>
-<ol>
+<ul>
 <li>
 <p><strong>First Pass</strong>: Determines the spatial extent of the attractor trajectory.</p>
 </li>
@@ -267,7 +267,7 @@ Large numbers of iterations are computed efficiently, with low memory requiremen
 <p><strong>Second pass</strong>: Maps the sequentially generated trajectory points in continuous space directly to a discrete pixel grid, keeping track of the number of pixel hits used to generate the density heatmap matrix.
 For details, see <a href="#pixel-based-density-approximation">Pixel-Based Density Approximation</a></p>
 </li>
-</ol>
+</ul>
 <p>Just-in-time (JIT) compilation is applied and supported by a low-complexity code structure.</p>
 <p>For details regarding two-pass strategy, see <a href="#two-pass-approach">Two-Pass Approach</a></p>
 <p><a href="#calculate--visualize-the-hopalong-attractor-with-python">Back to Table of Contents</a></p>

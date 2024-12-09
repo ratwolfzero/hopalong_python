@@ -532,7 +532,7 @@ Description: This method computes all trajectory points in a single pass and sto
 - Advantages: Leveraging NumPy’s vectorized operations, this approach efficiently computes and maps points in a single pass, potentially increasing performance.
   
 - Disadvantages:  
-Full caching requires substantial memory, especially for high iteration counts. This may lead to performance issues from system memory swapping or even memory overflow.
+Full caching requires substantial memory allocation, especially for high iteration counts. This may lead to performance issues from system memory swapping or even memory overflow.
 
 ### One-Pass Approach with Limited Memory Usage (Chunked or No Caching)*
 

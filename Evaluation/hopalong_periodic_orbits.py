@@ -15,7 +15,7 @@ def custom_sign(x):
 def compute_hopalong(x, y, a, b, c, iterations):
     # Iterate the Hopalong attractor equations
     for n in range(iterations - 1):
-        x[n + 1] = y[n] - np.sign(x[n]) * np.sqrt(abs(b * x[n] - c))
+        x[n + 1] = y[n] - custom_sign(x[n]) * np.sqrt(abs(b * x[n] - c))
         y[n + 1] = a - x[n]
     return x, y
 

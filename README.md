@@ -377,7 +377,7 @@ y_{n+1} = p - x_n
 \large
 $$
 
-With p>0, the system settles into a 3-cycle:  *(0,0)→(0,p)→(p,p)→(0,0)*.
+With $p\neq 0$, the system settles into a 3-cycle:  *(0,0)→(0,p)→(p,p)→(0,0)*.
 
 The pixel hit count simplifies to n / 3, where *n* is the number of iterations.
 

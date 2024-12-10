@@ -30,8 +30,8 @@ def plot_hopalong(x, y, a, b, c):
 
 def main():
     # Define local parameters
-    a = -1
-    b = -1
+    a = 5
+    b = 5
     c = 0
     iterations = 1000000
 

@@ -228,7 +228,7 @@ Examples of outputs can be found in the "Usage" section above.
   An image array, initialized with zeros, serves as a blank canvas. Each trajectory point, after being mapped to a pixel, increments the value at the corresponding array index. The resulting array is referred to as the  
   **Density Heatmap Matrix**. Pixel hit counts encode the spatial distribution of trajectory point densities in continuous space. Higher hit counts indicate greater density.  
   
-  Note: The total sum of pixel hit counts equals the number of trajectory iterations, as each iteration contributes one pixel, which may be hit multiple times, to the density hetmap matrix.
+  Note: The total sum of pixel hit counts equals the number of trajectory iterations, as each iteration contributes one pixel, which may be hit multiple times, to the density heatmap matrix.
 
 - **Visualization of Density Distribution**  
    The Matplotlib "hot" colormap represents pixel hit counts as colors, scaled to span the full range of the colormap. Darker colors correspond to lower densities and lighter to higher densities, creating a gradient that highlights areas of activity.

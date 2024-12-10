@@ -159,7 +159,7 @@ Otherwise, please comment out the corresponding code snippets in the import sect
 
 ### Input
 
-When you run the programs, you will be prompted to enter the following parameters, which are crucial for determining the behavior of the Hopalong Attractor:
+When you run the programs, you will be prompted to enter the following parameters, which determine the behavior of the Hopalong Attractor:
 
 - **a (float or integer)**: The first parameter affecting the attractor's dynamics.
 - **b (float or integer)**: The second parameter affecting the attractor's dynamics.
@@ -388,7 +388,8 @@ The pixel hit count simplifies to n / 3, where *n* is the number of iterations.
 
 **Observations:**  
 
-The 3-cycle structure dominates, with "high-density cycles" clustering along the attractor's extent boundaries.
+The 3-cycle structure dominates, with "high-density cycles" clustering along the attractor's extent boundaries.  
+Note: Variations in the signs of ***a*** and ***b*** may lead to mirrored or symmetrical trajectories.
 
 ![Example Attractor Image](./Documentation/Figure_6.png)
 ![Example Attractor Image](./Documentation/Figure_7.png)

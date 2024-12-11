@@ -311,8 +311,7 @@ using the histogram bin edges.
 
 --> [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)
 
-**PCC:  Pearson Correlation Coefficient*,  
-*CS:   Cosine Similarity*
+**PCC: Pearson Correlation Coefficient, CS: Cosine Similarity*
 
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)

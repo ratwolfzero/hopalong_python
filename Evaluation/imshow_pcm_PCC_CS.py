@@ -87,6 +87,13 @@ def create_histogram_density_matrix(trajectory, image_size):
     return hist_density, x_edges, y_edges
 
 
+# Normalize matrices to a common range (0-1)
+def normalize(matrix):
+    min_val = np.min(matrix)
+    max_val = np.max(matrix)
+    return (matrix - min_val) / (max_val - min_val)
+
+
 # Pearson Correlation Coefficient function
 def pearson_correlation(image, hist_density):
     return np.corrcoef(image.flatten(), hist_density.T.flatten())[0, 1]
@@ -113,15 +120,17 @@ def compute_statistics(image, hist_density):
 def plot_density_matrices(image, hist_density, extent, x_edges, y_edges, color_map, params=None, stats=None):
     fig, axes = plt.subplots(1, 2, figsize=(14, 7))
 
+    normalized_image = normalize(image)
+    normalized_hist_density = normalize(hist_density.T)
+
     # Pixel-Based Density Matrix
-    title_pixel_based = 'Density Heatmap Matrix'
     title_pixel_based = 'Density Heatmap Matrix'
     if stats:
         title_pixel_based += f"\nPearson: {stats['Pearson Correlation Coefficient']:.4f}, " \
                              f"Cosine: {stats['Cosine Similarity']:.4f}"
         
-    image = image/np.max(image)                         
-    im1 = axes[0].imshow(image, origin='lower', cmap=color_map, extent=extent, interpolation='none', aspect='equal')
+    #image = image/np.max(image)                         
+    im1 = axes[0].imshow(normalized_image, origin='lower', cmap=color_map, extent=extent, interpolation='none', aspect='equal')
     axes[0].set_title(title_pixel_based)
     axes[0].set_xlabel('X')
     axes[0].set_ylabel('Y')
@@ -133,8 +142,8 @@ def plot_density_matrices(image, hist_density, extent, x_edges, y_edges, color_m
         title_histogram_based += f"\n(a={params['a']}, b={params['b']}, c={params['c']}, n={params['n']})"
         
     X, Y = np.meshgrid(x_edges, y_edges)
-    hist_density=hist_density/np.max(hist_density)
-    im2 = axes[1].pcolormesh(X, Y, hist_density.T, cmap=color_map, shading=None, norm=None, antialiased=False)
+    #hist_density=hist_density/np.max(hist_density)
+    im2 = axes[1].pcolormesh(X, Y, normalized_hist_density, cmap=color_map, shading=None, norm=None, antialiased=False)
     axes[1].set_aspect('equal')  # Set equal aspect ratio explicitly for pcolormesh
     fig.colorbar(im2, ax=axes[1], label='Density')
 

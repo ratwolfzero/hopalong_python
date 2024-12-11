@@ -77,6 +77,7 @@ def create_histogram_density_matrix(trajectory, image_size):
         trajectory[:, 0], trajectory[:, 1], bins=image_size, density=True)
     return hist_density, x_edges, y_edges
 
+
 # Add noise to a matrix
 def add_noise(matrix, noise_type='gaussian', noise_level=0.1):
     noisy_matrix = matrix.copy()
@@ -98,15 +99,18 @@ def add_noise(matrix, noise_type='gaussian', noise_level=0.1):
         noisy_matrix *= speckle_noise
     return np.clip(noisy_matrix, 0, None)
 
+
 # Normalize matrices to a common range (0-1)
 def normalize(matrix):
     min_val = np.min(matrix)
     max_val = np.max(matrix)
     return (matrix - min_val) / (max_val - min_val)
 
+
 # Pearson Correlation Coefficient function
 def pearson_correlation(image, hist_density):
     return np.corrcoef(image.flatten(), hist_density.T.flatten())[0, 1]
+
 
 # Cosine Similarity function
 def cosine_similarity(image, hist_density):
@@ -117,6 +121,7 @@ def cosine_similarity(image, hist_density):
 # Structural Similarity Index (SSIM) function
 def structural_similarity_index(image, hist_density):
     return ssim(image, hist_density, data_range=1.0)
+
 
 # Compute statistics
 def compute_statistics(image, hist_density):
@@ -158,6 +163,7 @@ def plot_density_matrices(image, hist_density, extent, x_edges, y_edges, color_m
     axes[1].set_ylabel('Y')
     plt.tight_layout()
     plt.show()
+
 
 # Main function
 def main(image_size=(1000, 1000), color_map='hot', noise_type='gaussian', noise_level=0.3):

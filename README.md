@@ -289,29 +289,31 @@ using the histogram bin edges.
 
 **Matrix Similarity with Increasing Iterations**  
 
-| Parameters                | Iterations       | PCC      | CS       |
-|---------------------------|------------------|----------|----------|
-| a = -2, b = -0.33, c = 0.01 | n = 10,000      | 0.3791   | 0.3839   |
-| a = -2, b = -0.33, c = 0.01 | n = 100,000     | 0.5589   | 0.5837   |
-| a = -2, b = -0.33, c = 0.01 | n = 1,000,000   | 0.7831   | 0.8206   |
-| a = -2, b = -0.33, c = 0.01 | n = 200,000,000 | 0.8577   | 0.8842   |
+| Parameters                | Iterations       | PCC      | CS       | SSIM    |
+|---------------------------|------------------|----------|----------|---------|
+| a = -2, b = -0.33, c = 0.01 | n = 10,000      | 0.3791   | 0.3839   | 0.9170 |
+| a = -2, b = -0.33, c = 0.01 | n = 100,000     | 0.5589   | 0.5837   | 0.8041 |
+| a = -2, b = -0.33, c = 0.01 | n = 1,000,000   | 0.7831   | 0.8206   | 0.7564  |
+| a = -2, b = -0.33, c = 0.01 | n = 200,000,000 | 0.8577   | 0.8842   | 0.8505  |
 
 **Matrix Similarity Across Parameter Sets**  
 
-| Parameters                | Iterations       | PCC      | CS       |
-|---------------------------|------------------|----------|----------|
-| a = 0.6, b = 0.5, c = 0   | n = 1,000,000    | 0.8557   | 0.8736   |
-| a = 0.6, b = 0.5, c = 0   | n = 100,000,000  | 0.9814   | 0.9845   |
+| Parameters                | Iterations       | PCC      | CS       | SSIM    |
+|---------------------------|------------------|----------|----------|---------|
+| a = 0.6, b = 0.5, c = 0   | n = 10,000       | 0.4172   | 0.4219   | 0.9440  |
+| a = 0.6, b = 0.5, c = 0   | n = 100,000      | 0.5650   | 0.5877   | 0.8665  |
+| a = 0.6, b = 0.5, c = 0   | n = 1,000,000    | 0.8557   | 0.8736   | 0.9048  |
+| a = 0.6, b = 0.5, c = 0   | n = 200,000,000  | 0.9814   | 0.9845   | 0.9441  |
 
 **Matrix Similarity with Periodic Orbit: A 3-Cycle Example**  
 
-| Parameters                | Iterations       | PCC      | CS       |
-|---------------------------|------------------|----------|----------|
-| a = 5, b = 5, c = 0       | n = 1,000,000    | 1.0000   | 1.0000   |
+| Parameters                | Iterations       | PCC      | CS       | SSIM    |
+|---------------------------|------------------|----------|----------|---------|
+| a = 5, b = 5, c = 0       | n = 1,000,000    | 1.0000   | 1.0000   | 1.0000  |
 
 --> [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor)
 
-**PCC: Pearson Correlation Coefficient, CS: Cosine Similarity*
+**PCC: Pearson Correlation Coefficient, CS: Cosine Similarity, SSIM: Structural Similarity Index*
 
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)

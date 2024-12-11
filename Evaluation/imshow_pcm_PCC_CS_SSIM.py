@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy import signal
 from skimage.metrics import structural_similarity as ssim
 from numba import njit
 from math import copysign, sqrt, fabs

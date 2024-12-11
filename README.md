@@ -37,6 +37,7 @@
     - [Recap](#recap)
   - [Recent Code Changes](#recent-code-changes)
   - [Enjoy the Exploration](#enjoy-the-exploration)
+    - [Copyright © 2024 Ralf Becker, Nuremberg](#copyright--2024-ralf-becker-nuremberg)
   - [References](#references)
     - [References for Python Libraries and Modules](#references-for-python-libraries-and-modules)
 
@@ -602,7 +603,8 @@ You can try `ax.contourf3D` (Filled Contours) or `ax.contour3D` (Unfilled Contou
 
 [Also check out my simpler Rust version](https://github.com/ratwolfzero/hopalong)
 
-Copyright © 2024 Ralf Becker, Nuremberg  
+### Copyright © 2024 Ralf Becker, Nuremberg  
+
 Contact: <ratwolf@duck.com>  
 
 [MIT License](https://github.com/ratwolfzero/hopalong_python/blob/main/Copyright.pdf)

@@ -160,7 +160,7 @@ def plot_density_matrices(image, hist_density, extent, x_edges, y_edges, color_m
     plt.show()
 
 # Main function
-def main(image_size=(1000, 1000), color_map='hot', noise_type='gaussian', noise_level=0.1):
+def main(image_size=(1000, 1000), color_map='hot', noise_type='gaussian', noise_level=0.03):
     try:
         params = get_attractor_parameters()
         extents = compute_trajectory_extents(params['a'], params['b'], params['c'], params['n'])

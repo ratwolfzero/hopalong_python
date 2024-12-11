@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy import signal
 from skimage.metrics import structural_similarity as ssim
 from numba import njit
 from math import copysign, sqrt, fabs
@@ -166,7 +165,7 @@ def plot_density_matrices(image, hist_density, extent, x_edges, y_edges, color_m
 
 
 # Main function
-def main(image_size=(1000, 1000), color_map='hot', noise_type='gaussian', noise_level=0.3):
+def main(image_size=(1000, 1000), color_map='hot', noise_type='gaussian', noise_level=0.05):
     try:
         params = get_attractor_parameters()
         extents = compute_trajectory_extents(params['a'], params['b'], params['c'], params['n'])

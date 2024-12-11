@@ -128,8 +128,7 @@ def plot_density_matrices(image, hist_density, extent, x_edges, y_edges, color_m
     if stats:
         title_pixel_based += f"\nPearson: {stats['Pearson Correlation Coefficient']:.4f}, " \
                              f"Cosine: {stats['Cosine Similarity']:.4f}"
-        
-    #image = image/np.max(image)                         
+                              
     im1 = axes[0].imshow(normalized_image, origin='lower', cmap=color_map, extent=extent, interpolation='none', aspect='equal')
     axes[0].set_title(title_pixel_based)
     axes[0].set_xlabel('X')
@@ -142,7 +141,7 @@ def plot_density_matrices(image, hist_density, extent, x_edges, y_edges, color_m
         title_histogram_based += f"\n(a={params['a']}, b={params['b']}, c={params['c']}, n={params['n']})"
         
     X, Y = np.meshgrid(x_edges, y_edges)
-    #hist_density=hist_density/np.max(hist_density)
+
     im2 = axes[1].pcolormesh(X, Y, normalized_hist_density, cmap=color_map, shading=None, norm=None, antialiased=False)
     axes[1].set_aspect('equal')  # Set equal aspect ratio explicitly for pcolormesh
     fig.colorbar(im2, ax=axes[1], label='Density')

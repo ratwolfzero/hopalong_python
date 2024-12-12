@@ -79,7 +79,7 @@ $$
 
 ### Computational Approach
 
-The available Python programs calculate and visualize the attractor by iterating the described system of functions.
+The available Python programs calculate and visualize the attractor by iterating the described function system.
 
 Goal:
 

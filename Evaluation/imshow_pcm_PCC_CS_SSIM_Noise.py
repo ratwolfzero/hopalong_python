@@ -62,14 +62,20 @@ def compute_trajectory_image(a, b, c, n, extents, image_size):
 
     for i in range(n):
         trajectory[i, 0], trajectory[i, 1] = x, y
-        px = np.uint64(round((x - min_x) * scale_x))
-        py = np.uint64(round((y - min_y) * scale_y))
-        if 0 <= px < image_size[1] and 0 <= py < image_size[0]:
-            image[py, px] += 1
 
-        xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
-        yy = a - x
-        x, y = xx, yy
+        # Map trajectory points to image pixel coordinates
+        px = round((x - min_x) * scale_x)
+        py = round((y - min_y) * scale_y)
+
+    # Bounds check to ensure indices are within the image
+        if 0 <= px < image_size[1] and 0 <= py < image_size[0]:
+            image[py, px] += 1  # Respecting row/column convention, update # of hits
+
+            # Update the trajectory "on the fly"
+            xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
+            yy = a-x
+            x = xx
+            y = yy
     return image, trajectory
 
 # Create histogram-based density matrix directly from trajectory

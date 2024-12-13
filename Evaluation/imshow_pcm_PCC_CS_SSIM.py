@@ -67,16 +67,19 @@ def compute_trajectory_image(a, b, c, n, extents, image_size):
         # Store trajectory point
         trajectory[i, 0], trajectory[i, 1] = x, y
 
-        # Update pixel-based image density
-        px = np.uint64(round((x - min_x) * scale_x))
-        py = np.uint64(round((y - min_y) * scale_y))
-        if 0 <= px < image_size[1] and 0 <= py < image_size[0]:
-            image[py, px] += 1
+        # Map trajectory points to image pixel coordinates
+        px = round((x - min_x) * scale_x)
+        py = round((y - min_y) * scale_y)
 
-        # Compute next point in trajectory
-        xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
-        yy = a - x
-        x, y = xx, yy
+    # Bounds check to ensure indices are within the image
+        if 0 <= px < image_size[1] and 0 <= py < image_size[0]:
+            image[py, px] += 1  # Respecting row/column convention, update # of hits
+
+            # Update the trajectory "on the fly"
+            xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
+            yy = a-x
+            x = xx
+            y = yy
     return image, trajectory
     
 

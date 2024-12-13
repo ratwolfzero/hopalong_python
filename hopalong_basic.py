@@ -102,7 +102,7 @@ def compute_trajectory_and_image(a, b, c, n, extents, image_size):
         # map trajectory points to image pixel coordinates
         px = np.uint64(round((x - min_x) * scale_x))
         py = np.uint64(round((y - min_y) * scale_y))
-        # populate the image arrayy "on the fly" with each computed point
+        # populate the image array "on the fly" with each computed point
         # Bounds check to ensure indices are within the image
         if 0 <= px < image_size[1] and 0 <= py < image_size[0]:
             image[py, px] += 1  # respecting row/column convention, update # of hits

@@ -87,13 +87,12 @@ _ = compute_trajectory_extents(1.0, 1.0, 1.0, 2)
 @njit
 def compute_trajectory_and_image(a, b, c, n, extents, image_size):
     # Compute the trajectory and populate the image with trajectory points
-    img_width, img_height = image_size
-    image = np.zeros((img_height, img_width), dtype=np.uint64)
+    image = np.zeros(image_size, dtype=np.uint64)
     
     # pre-compute image scale factors
     min_x, max_x, min_y, max_y = extents
-    scale_x = (img_width - 1) / (max_x - min_x)
-    scale_y = (img_height - 1) / (max_y - min_y)
+    scale_x = (image_size[1] - 1) / (max_x - min_x) # column
+    scale_y = (image_size[0] - 1) / (max_y - min_y) # row
     
     x = np.float64(0.0)
     y = np.float64(0.0)
@@ -105,7 +104,7 @@ def compute_trajectory_and_image(a, b, c, n, extents, image_size):
         # populate the image array "on the fly" with each computed point
         # Bounds check to ensure indices are within the image
         if 0 <= px < image_size[1] and 0 <= py < image_size[0]:
-            image[py, px] += 1  # respecting row/column convention, , update # of hits
+            image[py, px] += 1  # respecting row/column convention, update # of hits
 
         # Update the trajectory "on the fly"
         xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))

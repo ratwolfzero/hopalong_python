@@ -68,10 +68,9 @@ def compute_trajectory_image(a, b, c, n, extents, image_size):
         trajectory[i, 0], trajectory[i, 1] = x, y
 
         # Update pixel-based image density
-        px = np.uint64(round((x - min_x) * scale_x))
-        py = np.uint64(round((y - min_y) * scale_y))
-        if 0 <= px < image_size[1] and 0 <= py < image_size[0]:
-            image[py, px] += 1
+        px = int((x - min_x) * scale_x)
+        py = int((y - min_y) * scale_y)
+        image[py, px] += 1
 
         # Compute next point in trajectory
         xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
@@ -198,3 +197,4 @@ def main(image_size=(1000, 1000), color_map='hot'):
 
 if __name__ == '__main__':
     main()
+    

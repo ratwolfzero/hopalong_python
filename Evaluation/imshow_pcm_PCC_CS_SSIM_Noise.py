@@ -4,6 +4,7 @@ from skimage.metrics import structural_similarity as ssim
 from numba import njit
 from math import copysign, sqrt, fabs
 
+
 def validate_input(prompt, input_type=float, check_positive_non_zero=False, min_value=None):
     while True:
         user_input = input(prompt)

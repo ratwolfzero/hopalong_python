@@ -376,7 +376,7 @@ The code for the Basic variant supports both 2D and 3D visualization. To switch 
 Trajectory points, represented as floating-point coordinates in a two-dimensional continuous space, are scaled and mapped to integer pixel coordinates for visualization. Scaling factors derived from the trajectory's extents and the image dimensions ensure the continuous coordinates fit within the pixel grid while preserving spatial relationships.</p>
 </li>
 <li>
-<p><strong>Integer Conversion</strong><br>
+<p><strong>Integer Conversion by Rounding to Nearest Integer</strong><br>
 The integer conversion within the continuous to discrete mapping leads to a quantization: closely spaced trajectory points in continuous space may map to the same pixel, resulting in multiple &quot;hits&quot; per pixel. This discretization aggregates local density but may reduce fine details due to grouping within the pixel grid.</p>
 </li>
 <li>

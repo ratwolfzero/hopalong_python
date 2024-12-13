@@ -78,6 +78,7 @@ def compute_trajectory_image(a, b, c, n, extents, image_size):
             y = yy
     return image, trajectory
 
+
 # Create histogram-based density matrix directly from trajectory
 def create_histogram_density_matrix(trajectory, image_size):
     hist_density, x_edges, y_edges = np.histogram2d(

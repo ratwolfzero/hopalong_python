@@ -145,7 +145,7 @@ def render_trajectory_image(image, extents, params, color_map, mode='2D'):
         
         fig = plt.figure(figsize=(8, 8))
         ax = fig.add_subplot(111, projection='3d')
-        ax.contour3D(x, y, z, levels=100, cmap=color_map)
+        ax.contourf3D(x, y, z, levels=100, cmap=color_map)
         
         ax.set_title(f'Hopalong Attractor - 3D Density (Z) Plot\nParams: a={params["a"]}, b={params["b"]}, c={params["c"]}, n={params["n"]:_}')
         ax.set_xlabel('X')

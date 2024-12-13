@@ -49,6 +49,7 @@ def get_attractor_parameters():
         else:
             break
     n = validate_input('Enter a positive integer value > 1000 for "n": ', int, check_positive_non_zero=True, min_value=1000)
+
     return {'a': a, 'b': b, 'c': c, 'n': n}
 
 
@@ -80,6 +81,7 @@ def compute_trajectory_extents(a, b, c, n):
         y = yy
 
     return min_x, max_x, min_y, max_y
+
 # Dummy call to ensure the function is pre-compiled by the JIT compiler before it's called by the interpreter.
 _ = compute_trajectory_extents(1.0, 1.0, 1.0, 2)
 

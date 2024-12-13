@@ -49,6 +49,7 @@ def get_attractor_parameters():
         else:
             break
     n = validate_input('Enter a positive integer value > 1000 for "n": ', int, check_positive_non_zero=True, min_value=1000)
+
     return {'a': a, 'b': b, 'c': c, 'n': n}
 
 
@@ -155,6 +156,7 @@ def render_trajectory_image(image, extents, params, color_map, mode='2D'):
         plt.show()
     else:
         print("Invalid mode. Please choose '2D' or '3D'.")
+        
 
 def main(image_size=(1000, 1000), color_map='hot', mode='2D'):
     # Main execution process

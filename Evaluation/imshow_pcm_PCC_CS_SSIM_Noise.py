@@ -114,13 +114,11 @@ def normalize(matrix):
     max_val = np.max(matrix)
     return (matrix - min_val) / (max_val - min_val)
 
-
-# Pearson Correlation Coefficient function
+# Pearson Correlation Coefficient (PCC) function
 def pearson_correlation(image, hist_density):
     return np.corrcoef(image.flatten(), hist_density.T.flatten())[0, 1]
 
-
-# Cosine Similarity function
+# Cosine Similarity (CS) function
 def cosine_similarity(image, hist_density):
     return np.dot(image.flatten(), hist_density.T.flatten()) / (
         np.linalg.norm(image.flatten()) * np.linalg.norm(hist_density.T.flatten())
@@ -128,47 +126,60 @@ def cosine_similarity(image, hist_density):
 
 # Structural Similarity Index (SSIM) function
 def structural_similarity_index(image, hist_density):
-    return ssim(image, hist_density, data_range=1.0)
-
+    # Normalize both matrices for SSIM
+    norm_image = normalize(image)
+    norm_hist_density = normalize(hist_density)
+    return ssim(norm_image, norm_hist_density.T, data_range=1.0)
 
 # Compute statistics
 def compute_statistics(image, hist_density):
-    normalized_image = normalize(image)
-    normalized_hist_density = normalize(hist_density.T)
-    ssim_value = structural_similarity_index(normalized_image, normalized_hist_density)
+    # Compute similarity metrics
+    ssim_value = structural_similarity_index(image, hist_density)
     pearson_corr = pearson_correlation(image, hist_density)
     cosine_sim = cosine_similarity(image, hist_density)
+
     return {
         "Structural Similarity Index (SSIM)": ssim_value,
         "Pearson Correlation Coefficient": pearson_corr,
         "Cosine Similarity": cosine_sim,
     }
 
+
 # Plot results
 def plot_density_matrices(image, hist_density, extent, x_edges, y_edges, color_map, params=None, stats=None):
     fig, axes = plt.subplots(1, 2, figsize=(14, 7))
-    normalized_image = normalize(image)
-    normalized_hist_density = normalize(hist_density.T)
+
+    norm_image = normalize(image)
+    norm_hist_density = normalize(hist_density)
+
+    # Pixel-Based Density Matrix
     title_pixel_based = 'Density Heatmap Matrix'
     if stats:
         title_pixel_based += f"\n(Pearson: {stats['Pearson Correlation Coefficient']:.4f}, " \
                          f"Cosine: {stats['Cosine Similarity']:.4f}, " \
                          f"SSIM: {stats['Structural Similarity Index (SSIM)']:.4f})"
-    im1 = axes[0].imshow(normalized_image, origin='lower', cmap=color_map, extent=extent, interpolation='none', aspect='equal')
+                                 
+    im1 = axes[0].imshow(norm_image, origin='lower', cmap=color_map, extent=extent, interpolation='none', aspect='equal')
     axes[0].set_title(title_pixel_based)
     axes[0].set_xlabel('X')
     axes[0].set_ylabel('Y')
     fig.colorbar(im1, ax=axes[0], label='Density')
+
+    # Histogram-Based Density Matrix
     title_histogram_based = 'Histogram Density Matrix'
     if params:
         title_histogram_based += f"\n(a={params['a']}, b={params['b']}, c={params['c']}, n={params['n']})"
+        
     X, Y = np.meshgrid(x_edges, y_edges)
-    im2 = axes[1].pcolormesh(X, Y, normalized_hist_density, cmap=color_map, shading=None, norm=None, antialiased=False)
-    axes[1].set_aspect('equal')
+    
+    im2 = axes[1].pcolormesh(X, Y, norm_hist_density.T, cmap=color_map, shading=None, norm=None, antialiased=False)
+    axes[1].set_aspect('equal')  # Set equal aspect ratio explicitly for pcolormesh
     fig.colorbar(im2, ax=axes[1], label='Density')
+
     axes[1].set_title(title_histogram_based)
     axes[1].set_xlabel('X')
     axes[1].set_ylabel('Y')
+
     plt.tight_layout()
     plt.show()
 

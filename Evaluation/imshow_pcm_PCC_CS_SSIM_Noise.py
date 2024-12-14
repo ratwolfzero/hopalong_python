@@ -67,7 +67,7 @@ def compute_trajectory_image(a, b, c, n, extents, image_size):
         px = round((x - min_x) * scale_x)
         py = round((y - min_y) * scale_y)
 
-    # Bounds check to ensure indices are within the image
+        # Bounds check to ensure indices are within the image
         if 0 <= px < image_size[1] and 0 <= py < image_size[0]:
             image[py, px] += 1  # Respecting row/column convention, update # of hits
 

@@ -108,11 +108,11 @@ def compute_trajectory_and_image(a, b, c, n, extents, image_size):
         if 0 <= px < image_size[1] and 0 <= py < image_size[0]:
             image[py, px] += 1  # Respecting row/column convention, update # of hits
 
-            # Update the trajectory "on the fly"
-            xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
-            yy = a-x
-            x = xx
-            y = yy
+        # Update the trajectory "on the fly"
+        xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
+        yy = a-x
+        x = xx
+        y = yy
 
     return image
 

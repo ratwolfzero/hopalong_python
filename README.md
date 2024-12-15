@@ -450,6 +450,8 @@ Advantages:
 
 Trade-Off: The trajectory points are computed twice — once for extent calculation and once for pixel mapping. However, it is outweighed by the memory and performance benefits.
 
+Note: The historical approach from `Dewdney's algorithm` with intermediate variables is used. Due to the internal optimization by Numba's JIT, there is no loss of performance.
+
 ### Two-Pass Code Section
 
     @njit #njit is an alias for nopython=True

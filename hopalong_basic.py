@@ -100,7 +100,7 @@ def compute_trajectory_and_image(a, b, c, n, extents, image_size):
     y = np.float64(0.0)
     
     for _ in range(n):
-        # Map trajectory points to image pixel coordinates
+        # Map trajectory points to image pixel coordinates, rounding to nearest integer
         px = round((x - min_x) * scale_x)
         py = round((y - min_y) * scale_y)
 

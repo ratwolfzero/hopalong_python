@@ -287,6 +287,8 @@ using the histogram bin edges.
 
 #### Quantitative Comparison of Normalized Density Heatmap and Histogram Density Matrix*
 
+<sub>**PCC: Pearson Correlation Coefficient, CS: Cosine Similarity, SSIM: Structural Similarity Index*</sub>
+
 **Matrix Similarity with Increasing Iterations**  
 
 | Parameters                | Iterations       | PCC      | CS       | SSIM    |

@@ -205,6 +205,8 @@ The programs generate a visual representation of the attractor trajectory as a d
 - Basic 2D/3D: Adds the ability to visualize the attractor in 3D by mapping normalized density values along the Z-axis. Users can select the visualization mode at runtime.
   
 - Extended: Incorporates all features of the Basic version (except the color bar) and includes additional statistics as well as a visualization of the pixel hit count distribution.
+
+Examples of outputs can be found in the "Usage" section above.
   
 **Note:**  
 The code for the Basic variant supports both 2D and 3D visualization. To switch modes, comment out the relevant `render_trajectory_image function` .Alternatively, use the 2D/3D variant to select the visualization mode during runtime.
@@ -212,8 +214,6 @@ The code for the Basic variant supports both 2D and 3D visualization. To switch 
 [See Recent Code Changes](#recent-code-changes)
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
-
-Examples of outputs can be found in the "Usage" section above.
 
 ---
 

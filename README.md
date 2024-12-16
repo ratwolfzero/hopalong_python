@@ -507,13 +507,12 @@ Note: The historical approach based on `Dewdney's algorithm` using intermediate 
 
             # Bounds check to ensure indices are within the image
             if 0 <= px < image_size[1] and 0 <= py < image_size[0]:
-                image[py, px] += 1  # Respecting row/column convention, update # of hits
-
-            # Update the trajectory "on the fly"
-            xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
-            yy = a-x
-            x = xx
-            y = yy
+            # Update the the image and trajectory "on the fly"    
+                image[py, px] += 1  # Respecting row/column convention, accumulate # of hits
+        xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
+        yy = a-x
+        x = xx
+        y = yy
         
         return image
 

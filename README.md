@@ -307,7 +307,7 @@ using the histogram bin edges.
 | a = 0.6, b = 0.5, c = 0   | n = 1,000,000    | 0.9257   | 0.9349   | 0.9521  |
 | a = 0.6, b = 0.5, c = 0   | n = 200,000,000  | 0.9924   | 0.9935   | 0.9789  |
 
-**Matrix Similarity with Periodic Orbit: A 3-Cycle Example** --> [Special Constellations and Edge Cases of the Attractor](#special-constellations-and-edge-cases-of-the-attractor) 
+**Matrix Similarity with Periodic Orbit: A 3-Cycle Example** --> [Special Constellations and Edge Cases](#special-constellations-and-edge-cases-of-the-attractor)
 
 | Parameters                | Iterations       | PCC      | CS       | SSIM    |
 |---------------------------|------------------|----------|----------|---------|

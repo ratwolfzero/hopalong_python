@@ -313,7 +313,6 @@ using the histogram bin edges.
 |---------------------------|------------------|----------|----------|---------|
 | a = 5, b = 5, c = 0       | n = 1,000,000    | 1.0000   | 1.0000   | 1.0000  |
 
-
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
 ---

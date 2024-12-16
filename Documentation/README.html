@@ -670,7 +670,7 @@ For example:</p>
 </li>
 </ul>
 <p>Trade-Off: The trajectory points are computed twice — once for extent calculation and once for pixel mapping. However, it is outweighed by the memory and performance benefits.</p>
-<p>Note: The historical approach from <code>Dewdney's algorithm</code> with intermediate variables is used. Due to the internal optimization by Numba's JIT, there is no loss of performance.</p>
+<p>Note: The historical approach based on <code>Dewdney's algorithm</code> using intermediate variables is applied. Due to the internal optimization by the Numba JIT compiler, this approach does not incur any performance loss.</p>
 <h3 id="two-pass-code-section">Two-Pass Code Section</h3>
 <pre><code>@njit #njit is an alias for nopython=True
 def compute_trajectory_extents(a, b, c, n):

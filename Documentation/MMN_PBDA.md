@@ -23,7 +23,7 @@ $$
 D_{uv} = 0, \quad \text{for all} \quad u \in [0, W-1], \, v \in [0, H-1]
 $$  
 
-D<sub>uv</sub> represents the density at pixel (u, v).
+  D<sub>uv</sub> represents the density at pixel (u, v).
   
 ---
 

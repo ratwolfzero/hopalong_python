@@ -22,6 +22,8 @@ Let's define the following:
   D_{uv} = 0, \quad \text{for all} \, u \in [0, W-1], \, v \in [0, H-1]
   $$
 
+.
+
 ---
 
 ## 1. Continuous to Discrete Mapping
@@ -64,7 +66,7 @@ where δ is the Kronecker delta function:
   0 & \text{if } a \neq b
   \end{cases}
   $$
-  
+
 ---
 
 ## 3. Total Hit Count

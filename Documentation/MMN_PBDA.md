@@ -19,7 +19,7 @@ Let's define the following:
 * **D**: The Density Heatmap Matrix is defined as:
 
   $$
-  D_{uv} = 0, \quad \text{for all} \, u \in [0, W-1], \, v \in [0, H-1]
+  D_{uv} = 0, \quad \text{for all} \quad u \in [0, W-1], \, v \in [0, H-1]
   $$  
   
 ---

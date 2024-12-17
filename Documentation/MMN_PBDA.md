@@ -28,7 +28,7 @@ $$
 
 where `round()` represents rounding to the nearest integer.
 
-## 2. Density Trackin
+## 2. Density Tracking
 
 The Density Heatmap Matrix D is updated as follows:
 

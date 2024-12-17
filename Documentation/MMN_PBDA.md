@@ -22,8 +22,8 @@ Let's define the following:
   D_{uv} = 0, \quad \text{for all} \, u \in [0, W-1], \, v \in [0, H-1]
   $$
 
-.
-  
+---
+
 ## 1. Continuous to Discrete Mapping
 
 The mapping from continuous coordinates (x<sub>i</sub>, y<sub>i</sub>) to discrete pixel coordinates (u<sub>i</sub>, v<sub>i</sub>) is given by:

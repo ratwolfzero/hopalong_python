@@ -649,8 +649,6 @@ ISBN-10: 3922508502, ISBN-13: 978-3922508502.
 
 ## Index
 
-<!-- markdownlint-disable MD033 -->
-
 ### Mathematical Notation for Pixel-Based Density Approximation
 
 Let's define the following:

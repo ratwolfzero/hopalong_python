@@ -9,9 +9,11 @@ Let's define the following:
 * **x<sub>min</sub>, x<sub>max</sub>, y<sub>min</sub>, y<sub>max</sub>**: Minimum and maximum x and y values of the trajectory points, respectively.
 * **W, H**: Width and height of the image (in pixels).
 * **S<sub>x</sub>, S<sub>y</sub>**: Scaling factors for x and y coordinates, calculated as:
+
   $$
   S_x = \frac{W}{x_{\text{max}} - x_{\text{min}}}, \quad S_y = \frac{H}{y_{\text{max}} - y_{\text{min}}}
   $$
+  
 * **p<sub>i</sub>**: The pixel coordinates corresponding to trajectory point t<sub>i</sub>, p<sub>i</sub> = (u<sub>i</sub>, v<sub>i</sub>), where u<sub>i</sub> and v<sub>i</sub> are integer pixel indices.
 * **D**: The Density Heatmap Matrix, a W x H matrix initialized with zeros. D<sub>uv</sub> represents the density at pixel (u, v).
 

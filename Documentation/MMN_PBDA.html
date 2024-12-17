@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Mathematical Notation for Pixel-Based Density Approximation</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <!-- markdownlint-disable MD033 -->
+<h1 id="mathematical-notation-for-pixel-based-density-approximation">Mathematical Notation for Pixel-Based Density Approximation</h1>
+<p>Let's define the following:</p>
+<ul>
+<li><strong>T</strong>: Set of trajectory points, T = {t<sub>1</sub>, t<sub>2</sub>, ..., t<sub>n</sub>}, where n is the number of trajectory points.</li>
+<li><strong>t<sub>i</sub></strong>: The i-th trajectory point, represented as a 2D vector in continuous space, t<sub>i</sub> = (x<sub>i</sub>, y<sub>i</sub>), where x<sub>i</sub> and y<sub>i</sub> are floating-point coordinates.</li>
+<li><strong>x<sub>min</sub>, x<sub>max</sub>, y<sub>min</sub>, y<sub>max</sub></strong>: Minimum and maximum x and y values of the trajectory points, respectively.</li>
+<li><strong>W, H</strong>: Width and height of the image (in pixels).</li>
+<li><strong>S<sub>x</sub>, S<sub>y</sub></strong>: Scaling factors for x and y coordinates, calculated as:
+<ul>
+<li>S<sub>x</sub> = W / (x<sub>max</sub> - x<sub>min</sub>)</li>
+<li>S<sub>y</sub> = H / (y<sub>max</sub> - y<sub>min</sub>)</li>
+</ul>
+</li>
+<li><strong>p<sub>i</sub></strong>: The pixel coordinates corresponding to trajectory point t<sub>i</sub>, p<sub>i</sub> = (u<sub>i</sub>, v<sub>i</sub>), where u<sub>i</sub> and v<sub>i</sub> are integer pixel indices.</li>
+<li><strong>D</strong>: The Density Heatmap Matrix, a W x H matrix initialized with zeros. D<sub>uv</sub> represents the density at pixel (u, v).</li>
+</ul>
+<h2 id="1-continuous-to-discrete-mapping">1. Continuous to Discrete Mapping</h2>
+<p>The mapping from continuous coordinates (x<sub>i</sub>, y<sub>i</sub>) to discrete pixel coordinates (u<sub>i</sub>, v<sub>i</sub>) is given by:</p>
+<ul>
+<li>u<sub>i</sub> = round(S<sub>x</sub> * (x<sub>i</sub> - x<sub>min</sub>))</li>
+<li>v<sub>i</sub> = round(S<sub>y</sub> * (y<sub>i</sub> - y<sub>min</sub>))</li>
+</ul>
+<p>where <code>round()</code> represents rounding to the nearest integer.</p>
+<h2 id="2-density-tracking">2. Density Tracking</h2>
+<p>The Density Heatmap Matrix D is updated as follows:</p>
+<p>For each trajectory point t<sub>i</sub>:</p>
+<p>D<sub>u<sub>i</sub>,v<sub>i</sub></sub> = D<sub>u<sub>i</sub>,v<sub>i</sub></sub> + 1</p>
+<p>This can be expressed more formally as:</p>
+<p>D<sub>uv</sub> = Σ<sub>i=1 to n</sub> δ(u - round(S<sub>x</sub> <em>(x<sub>i</sub> - x<sub>min</sub>)))</em> δ(v - round(S<sub>y</sub> * (y<sub>i</sub> - y<sub>min</sub>)))</p>
+<p>where δ is the Kronecker delta function:</p>
+<p>δ(a, b) = { 1 if a = b
+{ 0 if a ≠ b</p>
+<h2 id="3-total-hit-count">3. Total Hit Count</h2>
+<p>The sum of all elements in the Density Heatmap Matrix equals the number of trajectory points:</p>
+<p>Σ<sub>u=0 to W-1</sub> Σ<sub>v=0 to H-1</sub> D<sub>uv</sub> = n</p>
+<p>This confirms that each trajectory point contributes one &quot;hit&quot; to the heatmap, although multiple points may hit the same pixel.</p>
+
+            
+            
+        </body>
+        </html>

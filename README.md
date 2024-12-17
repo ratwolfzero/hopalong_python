@@ -670,7 +670,9 @@ $$
 
 $$
 D_{uv} = 0, \quad \text{for all} \quad u \in [0, W-1], \, v \in [0, H-1]
-$$  
+$$
+
+---
 
 #### Continuous to Discrete Mapping
 
@@ -684,6 +686,8 @@ v_i = \text{round}(S_y \cdot (y_i - y_{\text{min}}))
 $$
 
 where `round()` represents rounding to the nearest integer.
+
+---
 
 #### Density Tracking  
   
@@ -710,6 +714,8 @@ $$
 0 & \text{if } a \neq b
 \end{cases}+
 $$
+
+---
 
 #### Total Hit Count  
 

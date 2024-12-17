@@ -40,8 +40,8 @@
     - [Copyright © 2024 Ralf Becker, Nuremberg](#copyright--2024-ralf-becker-nuremberg)
   - [References](#references)
     - [References for Python Libraries and Modules](#references-for-python-libraries-and-modules)
-  - [Index](#index)
-    - [Mathematical Notations for Pixel-Based Density Approximation](#mathematical-notations-for-pixel-based-density-approximation)
+  - [Mathematical Appendix](#mathematical-appendix)
+    - [Notations for Pixel-Based Density Approximation](#notations-for-pixel-based-density-approximation)
       - [Continuous to Discrete Mapping](#continuous-to-discrete-mapping)
       - [Density Tracking](#density-tracking)
       - [Total Hit Count](#total-hit-count)
@@ -647,9 +647,9 @@ ISBN-10: 3922508502, ISBN-13: 978-3922508502.
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
-## Index
+## Mathematical Appendix
 
-### Mathematical Notations for Pixel-Based Density Approximation
+### Notations for Pixel-Based Density Approximation
 
 **Let's define the following:**
 

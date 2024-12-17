@@ -673,16 +673,17 @@ $$
 
   The mapping from continuous coordinates (x<sub>i</sub>, y<sub>i</sub>) to discrete pixel coordinates (u<sub>i</sub>, v<sub>i</sub>) is given by:
 
-  $$
-  u_i = \text{round}(S_x \cdot (x_i - x_{\text{min}}))
-  $$
-  $$
-  v_i = \text{round}(S_y \cdot (y_i - y_{\text{min}}))
-  $$
+$$
+u_i = \text{round}(S_x \cdot (x_i - x_{\text{min}}))
+$$
+$$
+v_i = \text{round}(S_y \cdot (y_i - y_{\text{min}}))
+$$
 
   where `round()` represents rounding to the nearest integer.
 
 - Density Tracking  
+  
   The Density Heatmap Matrix D is updated as follows:
 
   For each trajectory point t<sub>i</sub>:

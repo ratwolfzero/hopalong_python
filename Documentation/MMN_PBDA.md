@@ -22,6 +22,8 @@ Let's define the following:
 $$
 D_{uv} = 0, \quad \text{for all} \quad u \in [0, W-1], \, v \in [0, H-1]
 $$  
+
+* **D**: The Density Heatmap Matrix, a W x H matrix initialized with zeros. D<sub>uv</sub> represents the density at pixel (u, v).
   
 ---
 

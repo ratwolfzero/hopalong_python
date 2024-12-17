@@ -73,7 +73,7 @@ def compute_trajectory_image(a, b, c, n, extents, image_size):
 
         # Bounds check to ensure indices are within the image
         if 0 <= px < image_size[1] and 0 <= py < image_size[0]:
-        # Update the the image and trajectory "on the fly"    
+        # Update the image and trajectory "on the fly"    
             image[py, px] += 1  # Respecting row/column convention, accumulate # of hits
         xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
         yy = a-x

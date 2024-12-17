@@ -653,7 +653,7 @@ ISBN-10: 3922508502, ISBN-13: 978-3922508502.
 
 **Let's define the following:**
 
-- **T**: Set of trajectory points, T = {t<sub>1</sub>, t<sub>2</sub>, ..., t<sub>n</sub>}, where n is the number of trajectory points.
+- **T**: Set of trajectory points, T = {t<sub>1</sub>, t<sub>2</sub>, ..., t<sub>N</sub>}, where N is the number of trajectory points.
 - **t<sub>i</sub>**: The i-th trajectory point, represented as a 2D vector in continuous space, t<sub>i</sub> = (x<sub>i</sub>, y<sub>i</sub>), where x<sub>i</sub> and y<sub>i</sub> are floating-point coordinates.
 - **x<sub>min</sub>, x<sub>max</sub>, y<sub>min</sub>, y<sub>max</sub>**: Minimum and maximum x and y values of the trajectory points, respectively.
 - **W, H**: Width and height of the image (in pixels).
@@ -702,7 +702,7 @@ $$
 This can be expressed more formally as:
 
 $$
-D_{uv} = \sum_{i=1}^n \delta \Big( u - \text{round}(S_x \cdot (x_i - x_{\text{min}})) \Big) \cdot \delta \Big( v - \text{round}(S_y \cdot (y_i - y_{\text{min}})) \Big)
+D_{uv} = \sum_{i=1}^N \delta \Big( u - \text{round}(S_x \cdot (x_i - x_{\text{min}})) \Big) \cdot \delta \Big( v - \text{round}(S_y \cdot (y_i - y_{\text{min}})) \Big)
 $$
 
 where δ is the Kronecker delta function:
@@ -722,7 +722,9 @@ $$
 The sum of all elements in the Density Heatmap Matrix equals the number of trajectory points:
 
 $$
-\sum_{u=0}^{W-1} \sum_{v=0}^{H-1} D_{uv} = n
+\sum_{u=0}^{W-1} \sum_{v=0}^{H-1} D_{uv} = N
 $$
 
 This confirms that each trajectory point contributes one "hit" to the heatmap, although multiple points may hit the same pixel.
+
+The total sum of pixel hit counts equals the number of trajectory iterations, as each iteration contributes one pixel, which may be hit multiple times, to the density heatmap matrix

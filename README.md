@@ -41,7 +41,6 @@
   - [References](#references)
     - [References for Python Libraries and Modules](#references-for-python-libraries-and-modules)
   - [Index](#index)
-    - [Mathematical Notation for Pixel-Based Density Approximation](#mathematical-notation-for-pixel-based-density-approximation)
     - [Continuous to Discrete Mapping](#continuous-to-discrete-mapping)
     - [Density Tracking](#density-tracking)
     - [Total Hit Count](#total-hit-count)
@@ -649,7 +648,7 @@ ISBN-10: 3922508502, ISBN-13: 978-3922508502.
 
 ## Index
 
-### Mathematical Notation for Pixel-Based Density Approximation
+Mathematical Notation for Pixel-Based Density Approximation
 
 Let's define the following:
 

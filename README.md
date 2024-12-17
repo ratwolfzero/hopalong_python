@@ -41,9 +41,7 @@
   - [References](#references)
     - [References for Python Libraries and Modules](#references-for-python-libraries-and-modules)
   - [Index](#index)
-    - [Continuous to Discrete Mapping](#continuous-to-discrete-mapping)
-    - [Density Tracking](#density-tracking)
-    - [Total Hit Count](#total-hit-count)
+    - [Mathematical Notation for Pixel-Based Density Approximation](#mathematical-notation-for-pixel-based-density-approximation)
 
 ## Abstract
 
@@ -648,7 +646,7 @@ ISBN-10: 3922508502, ISBN-13: 978-3922508502.
 
 ## Index
 
-Mathematical Notation for Pixel-Based Density Approximation
+### Mathematical Notation for Pixel-Based Density Approximation
 
 Let's define the following:
 
@@ -671,9 +669,7 @@ $$
 D_{uv} = 0, \quad \text{for all} \quad u \in [0, W-1], \, v \in [0, H-1]
 $$  
 
----
-
-### Continuous to Discrete Mapping
+- Continuous to Discrete Mapping
 
 The mapping from continuous coordinates (x<sub>i</sub>, y<sub>i</sub>) to discrete pixel coordinates (u<sub>i</sub>, v<sub>i</sub>) is given by:
 
@@ -686,9 +682,7 @@ The mapping from continuous coordinates (x<sub>i</sub>, y<sub>i</sub>) to discre
 
 where `round()` represents rounding to the nearest integer.
 
----
-
-### Density Tracking
+- Density Tracking
 
 The Density Heatmap Matrix D is updated as follows:
 
@@ -711,12 +705,10 @@ where δ is the Kronecker delta function:
   \begin{cases}
   1 & \text{if } a = b \\
   0 & \text{if } a \neq b
-  \end{cases}
+  \end{cases}+
   $$
 
----
-
-### Total Hit Count
+- Total Hit Count
 
 The sum of all elements in the Density Heatmap Matrix equals the number of trajectory points:
 

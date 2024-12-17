@@ -2,7 +2,7 @@
   "sections" : [
     {
       "type" : "plain",
-      "contents" : "\n$$\n\\large\n\\begin{cases}\nx_{n+1} = y_n - \\text{sgn}(x_n) \\sqrt{\\lvert b x_n - c \\rvert} \\\\\ny_{n+1} = a - x_n\n\\end{cases}\n\\large\n$$\n\n\n$$\n\\large\n\\begin{cases}\nx_{n+1} = y_n - \\text{sgn}(x_n) \\sqrt{\\lvert p x_n \\rvert} \\\\\ny_{n+1} = p - x_n\n\\end{cases}\n\\large\n$$\n\n$$\n\\text{copysign}(1.0,x) =\n\\begin{cases}\n+1.0  & \\text{if } & \\text{x } & \\text{is} &\\text{positive}, & \\text{+0.0} & or &\\text{infinity} \\\\\n-1.0 & \\text{if } & \\text{x } & \\text{is} &\\text{negative}, & \\text{-0.0} & or &\\text{negative infinity}\n\\end{cases}\n$$\n"
+      "contents" : "\n$$\n\\large\n\\begin{cases}\nx_{n+1} = y_n - \\text{sgn}(x_n) \\sqrt{\\lvert b x_n - c \\rvert} \\\\\ny_{n+1} = a - x_n\n\\end{cases}\n\\large\n$$\n\n\n$$\n\\large\n\\begin{cases}\nx_{n+1} = y_n - \\text{sgn}(x_n) \\sqrt{\\lvert p x_n \\rvert} \\\\\ny_{n+1} = p - x_n\n\\end{cases}\n\\large\n$$\n\n$$\n\\text{copysign}(1.0,x) =\n\\begin{cases}\n+1.0  & \\text{if } & \\text{x } & \\text{is} &\\text{positive}, & \\text{+0.0} & or &\\text{infinity} \\\\\n-1.0 & \\text{if } & \\text{x } & \\text{is} &\\text{negative}, & \\text{-0.0} & or &\\text{negative infinity}\n\\end{cases}\n$$\n\n\n$$\n S_x = \\frac{W}{x_{\\text{max}} - x_{\\text{min}}}, \\quad S_y = \\frac{H}{y_{\\text{max}} - y_{\\text{min}}}\n$$\n\n$$\nu_i = \\text{round}(S_x \\cdot (x_i - x_{\\text{min}}))\n$$\n$$\nv_i = \\text{round}(S_y \\cdot (y_i - y_{\\text{min}}))\n$$\n\n$$\nD_{u_i, v_i} = D_{u_i, v_i} + 1\n$$\n\n"
     }
   ],
   "metadata" : {

@@ -21,12 +21,12 @@ Let's define the following:
 
 The mapping from continuous coordinates (x<sub>i</sub>, y<sub>i</sub>) to discrete pixel coordinates (u<sub>i</sub>, v<sub>i</sub>) is given by:
 
-$$
-u_i = \text{round}(S_x \cdot (x_i - x_{\text{min}}))
-$$
-$$
-v_i = \text{round}(S_y \cdot (y_i - y_{\text{min}}))
-$$
+  $$
+  u_i = \text{round}(S_x \cdot (x_i - x_{\text{min}}))
+  $$
+  $$
+  v_i = \text{round}(S_y \cdot (y_i - y_{\text{min}}))
+  $$
 
 where `round()` represents rounding to the nearest integer.
 
@@ -36,32 +36,32 @@ The Density Heatmap Matrix D is updated as follows:
 
 For each trajectory point t<sub>i</sub>:
 
-$$
-D_{u_i, v_i} = D_{u_i, v_i} + 1
-$$
+  $$
+  D_{u_i, v_i} = D_{u_i, v_i} + 1
+  $$
 
 This can be expressed more formally as:
 
-$$
-D_{uv} = \sum_{i=1}^n \delta \Big( u - \text{round}(S_x \cdot (x_i - x_{\text{min}})) \Big) \cdot \delta \Big( v - \text{round}(S_y \cdot (y_i - y_{\text{min}})) \Big)
-$$
+  $$
+  D_{uv} = \sum_{i=1}^n \delta \Big( u - \text{round}(S_x \cdot (x_i - x_{\text{min}})) \Big) \cdot \delta \Big( v - \text{round}(S_y \cdot (y_i - y_{\text{min}})) \Big)
+  $$
 
 where δ is the Kronecker delta function:
 
-$$
-\delta(a, b) =
-\begin{cases}
-1 & \text{if } a = b \\
-0 & \text{if } a \neq b
-\end{cases}
-$$
+  $$
+  \delta(a, b) =
+  \begin{cases}
+  1 & \text{if } a = b \\
+  0 & \text{if } a \neq b
+  \end{cases}
+  $$
 
 ## 3. Total Hit Count
 
 The sum of all elements in the Density Heatmap Matrix equals the number of trajectory points:
 
-$$
-\sum_{u=0}^{W-1} \sum_{v=0}^{H-1} D_{uv} = n
-$$
+  $$
+  \sum_{u=0}^{W-1} \sum_{v=0}^{H-1} D_{uv} = n
+  $$
 
 This confirms that each trajectory point contributes one "hit" to the heatmap, although multiple points may hit the same pixel.

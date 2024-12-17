@@ -709,11 +709,10 @@ where `round()` represents rounding to the nearest integer.
   $$
 
 - Total Hit Count
-
   The sum of all elements in the Density Heatmap Matrix equals the number of trajectory points:
 
-  $$
-  \sum_{u=0}^{W-1} \sum_{v=0}^{H-1} D_{uv} = n
-  $$
+$$
+\sum_{u=0}^{W-1} \sum_{v=0}^{H-1} D_{uv} = n
+$$
 
   This confirms that each trajectory point contributes one "hit" to the heatmap, although multiple points may hit the same pixel.

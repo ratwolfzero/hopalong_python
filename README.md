@@ -683,30 +683,29 @@ $$
 where `round()` represents rounding to the nearest integer.
 
 - Density Tracking
-
   The Density Heatmap Matrix D is updated as follows:
 
   For each trajectory point t<sub>i</sub>:
 
-  $$
-  D_{u_i, v_i} = D_{u_i, v_i} + 1
-  $$
+$$
+D_{u_i, v_i} = D_{u_i, v_i} + 1
+$$
 
   This can be expressed more formally as:
 
-  $$
-  D_{uv} = \sum_{i=1}^n \delta \Big( u - \text{round}(S_x \cdot (x_i - x_{\text{min}})) \Big) \cdot \delta \Big( v - \text{round}(S_y \cdot (y_i - y_{\text{min}})) \Big)
-  $$
+$$
+D_{uv} = \sum_{i=1}^n \delta \Big( u - \text{round}(S_x \cdot (x_i - x_{\text{min}})) \Big) \cdot \delta \Big( v - \text{round}(S_y \cdot (y_i - y_{\text{min}})) \Big)
+$$
 
   where δ is the Kronecker delta function:
 
-  $$
-  \delta(a, b) =
-  \begin{cases}
-  1 & \text{if } a = b \\
-  0 & \text{if } a \neq b
-  \end{cases}+
-  $$
+$$
+\delta(a, b) =
+\begin{cases}
+1 & \text{if } a = b \\
+0 & \text{if } a \neq b
+\end{cases}+
+$$
 
 - Total Hit Count
   The sum of all elements in the Density Heatmap Matrix equals the number of trajectory points:

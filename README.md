@@ -719,12 +719,8 @@ $$
 
 #### Total Hit Count  
 
-The sum of all elements in the Density Heatmap Matrix equals the number of trajectory points:
+The sum of all elements in the Density Heatmap Matrix >0 equals the total number of hits on pixels, which corresponds to the number of trajectory points **N** and the number of iterations **n** with each iteration contributing at least one "hit" to the heatmap.
 
 $$
 \sum_{u=0}^{W-1} \sum_{v=0}^{H-1} D_{uv} = N
 $$
-
-This confirms that each trajectory point contributes one "hit" to the heatmap, although multiple points may hit the same pixel.
-
-The total sum of pixel hit counts equals the number of trajectory iterations, as each iteration contributes one pixel, which may be hit multiple times, to the density heatmap matrix

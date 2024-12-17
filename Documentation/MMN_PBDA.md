@@ -14,7 +14,7 @@ Let's define the following:
   S_x = \frac{W}{x_{\text{max}} - x_{\text{min}}}, \quad S_y = \frac{H}{y_{\text{max}} - y_{\text{min}}}
   $$
   
-* **p<sub>i</sub>**: The pixel coordinates corresponding to trajectory point t<sub>i</sub>,  
+* **p<sub>i</sub>**: The pixel coordinates corresponding to trajectory point t<sub>i</sub>  
   p<sub>i</sub> = (u<sub>i</sub>, v<sub>i</sub>), where u<sub>i</sub> and v<sub>i</sub> are integer pixel indices.  
   
 * **D**: The Density Heatmap Matrix is defined as:

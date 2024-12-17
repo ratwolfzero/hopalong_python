@@ -165,7 +165,7 @@
 p<sub>i</sub> = (u<sub>i</sub>, v<sub>i</sub>), where u<sub>i</sub> and v<sub>i</sub> are integer pixel indices.</p>
 </li>
 <li>
-<p><strong>D</strong>: The Density Heatmap Matrix is defined as:</p>
+<p><strong>D</strong>: The Density Heatmap Matrix, as W x H matrix initialized with zeros, D<sub>uv</sub> represents the density at pixel (u, v):</p>
 </li>
 </ul>
 <p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>D</mi><mrow><mi>u</mi><mi>v</mi></mrow></msub><mo>=</mo><mn>0</mn><mo separator="true">,</mo><mspace width="1em"/><mtext>for all</mtext><mspace width="1em"/><mi>u</mi><mo>∈</mo><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mi>W</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo separator="true">,</mo><mtext> </mtext><mi>v</mi><mo>∈</mo><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mi>H</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">D_{uv} = 0, \quad \text{for all} \quad u \in [0, W-1], \, v \in [0, H-1]

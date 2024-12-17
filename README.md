@@ -663,7 +663,7 @@ $$
 - **p<sub>i</sub>**: The pixel coordinates corresponding to trajectory point t<sub>i</sub>  
   p<sub>i</sub> = (u<sub>i</sub>, v<sub>i</sub>), where u<sub>i</sub> and v<sub>i</sub> are integer pixel indices.  
   
-- **D**: The Density Heatmap Matrix, as W x H matrix initialized with zeros, D<sub>uv</sub> represents the density at pixel (u, v):
+- **D**: The Density Heatmap Matrix, a W x H matrix initialized with zeros, D<sub>uv</sub> represents the density at pixel (u, v):
 
 $$
 D_{uv} = 0, \quad \text{for all} \quad u \in [0, W-1], \, v \in [0, H-1]
@@ -680,7 +680,7 @@ $$
   v_i = \text{round}(S_y \cdot (y_i - y_{\text{min}}))
   $$
 
-where `round()` represents rounding to the nearest integer.
+  where `round()` represents rounding to the nearest integer.
 
 - Density Tracking
   The Density Heatmap Matrix D is updated as follows:

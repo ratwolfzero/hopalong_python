@@ -37,6 +37,8 @@ The mapping from continuous coordinates (x<sub>i</sub>, y<sub>i</sub>) to discre
 
 where `round()` represents rounding to the nearest integer.
 
+---
+
 ## 2. Density Tracking
 
 The Density Heatmap Matrix D is updated as follows:
@@ -62,6 +64,8 @@ where δ is the Kronecker delta function:
   0 & \text{if } a \neq b
   \end{cases}
   $$
+  
+---
 
 ## 3. Total Hit Count
 

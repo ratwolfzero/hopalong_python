@@ -17,7 +17,7 @@ Let's define the following:
 * **p<sub>i</sub>**: The pixel coordinates corresponding to trajectory point t<sub>i</sub>, p<sub>i</sub> = (u<sub>i</sub>, v<sub>i</sub>), where u<sub>i</sub> and v<sub>i</sub> are integer pixel indices.
 
 * **D**: The Density Heatmap Matrix is defined as:
-
+.
   $$
   D_{uv} = 0, \quad \text{for all} \, u \in [0, W-1], \, v \in [0, H-1]
   $$

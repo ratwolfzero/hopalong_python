@@ -712,7 +712,7 @@ $$
 \begin{cases}
 1 & \text{if } a = b \\
 0 & \text{if } a \neq b
-\end{cases}+
+\end{cases}
 $$
 
 ---

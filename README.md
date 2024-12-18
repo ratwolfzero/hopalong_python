@@ -710,10 +710,10 @@ $$
 where δ is the Kronecker delta function, principally defined as follows:
 
 $$
-\delta(i, j) =
+\delta(k, m) =
 \begin{cases}
-1 & \text{if } i = j \\
-0 & \text{if } i \neq j
+1 & \text{if } k = m \\
+0 & \text{if } k \neq m
 \end{cases}
 $$
 

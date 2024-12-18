@@ -727,7 +727,7 @@ $$
 \sum_{u=0}^{W-1} \sum_{v=0}^{H-1} D_{uv} = N
 $$
 
-[Back to Pixel-Based Density Approcximation](#pixel-based-density-approximation)
+[Back to Pixel-Based Density Approximation](#pixel-based-density-approximation)
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 

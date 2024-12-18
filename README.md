@@ -721,7 +721,7 @@ $$
 
 #### Total Hit Count  
 
-The sum of all non-zero elements in the Density Heatmap Matrix equals the total number of hits on pixels, which corresponds to the number of trajectory points **N** and the number of iterations **n**, with each iteration contributing at least one "hit" to the heatmap.
+The sum of all non-zero elements in the Density Heatmap Matrix equals the total number of hits on pixels, which corresponds to the number of trajectory points **N** and the number of iterations **n**, with each iteration contributing one pixel—potentially hit multiple times—to the density heatmap matrix.
 
 $$
 \sum_{u=0}^{W-1} \sum_{v=0}^{H-1} D_{uv} = N

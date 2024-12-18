@@ -707,13 +707,13 @@ $$
 D_{uv} = \sum_{i=1}^N \delta \Big( u - \text{round}(S_x \cdot (x_i - x_{\text{min}})) \Big) \cdot \delta \Big( v - \text{round}(S_y \cdot (y_i - y_{\text{min}})) \Big)
 $$
 
-where δ is the Kronecker delta function, specifically defined in this context as:
+where δ is the Kronecker delta function, principally defined as follows:
 
 $$
-\delta(u, v) =
+\delta(a, b) =
 \begin{cases}
-1 & \text{if } u = v \\
-0 & \text{if } u \neq v
+1 & \text{if } a = b \\
+0 & \text{if } a \neq b
 \end{cases}
 $$
 

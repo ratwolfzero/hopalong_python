@@ -730,6 +730,3 @@ $$
 [Back to Pixel-Based Density Approximation](#pixel-based-density-approximation)
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
-
-
-[def]: #mathematical-appendix

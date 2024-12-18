@@ -726,3 +726,5 @@ The sum of all non-zero elements in the Density Heatmap Matrix equals the total 
 $$
 \sum_{u=0}^{W-1} \sum_{v=0}^{H-1} D_{uv} = N
 $$
+
+[Back to Pixel-Based Density Approcximation](#pixel-based-density-approximation)

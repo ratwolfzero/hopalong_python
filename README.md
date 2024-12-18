@@ -236,7 +236,7 @@ The code for the Basic variant supports both 2D and 3D visualization. To switch 
   
   Note: The total sum of pixel hit counts equals the number of trajectory iterations, as each iteration contributes one pixel, which may be hit multiple times, to the density heatmap matrix.
 
- For mathematical definition, see:[Mathematical-Appendix:](#mathematical-appendix)
+  For mathematical definition, see:[Mathematical-Appendix:][def]
 
 - **Visualization of Density Distribution**  
    The Matplotlib "hot" colormap represents pixel hit counts as colors, scaled to span the full range of the colormap. Darker colors correspond to lower densities and lighter to higher densities, creating a gradient that highlights areas of activity.
@@ -730,3 +730,6 @@ $$
 [Back to Pixel-Based Density Approcximation](#pixel-based-density-approximation)
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
+
+
+[def]: #mathematical-appendix

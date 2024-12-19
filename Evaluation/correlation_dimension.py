@@ -36,6 +36,7 @@ def get_attractor_parameters():
     n = validate_input('Enter a positive integer value > 1000 for "n": ', int, check_positive_non_zero=True, min_value=1000)
     return {'a': a, 'b': b, 'c': c, 'n': n}
 
+
 # Compute trajectory extents
 @njit
 def compute_trajectory_extents(a, b, c, n):
@@ -48,6 +49,7 @@ def compute_trajectory_extents(a, b, c, n):
         yy = a - x
         x, y = xx, yy
     return min_x, max_x, min_y, max_y
+
 
 # Compute trajectory image
 @njit
@@ -69,6 +71,7 @@ def compute_trajectory_image(a, b, c, n, extents, image_size):
 
     return image
 
+
 # Compute correlation integral with optimized approach
 @njit
 def compute_correlation_integral(image, r):
@@ -82,6 +85,7 @@ def compute_correlation_integral(image, r):
                                                     max(0, y - r):min(y + r + 1, image.shape[1])])
                 total_pairs += kernel_size ** 2
     return count / total_pairs if total_pairs > 0 else 0
+
 
 # Estimate correlation dimension
 def estimate_correlation_dimension(image, r_values):
@@ -97,28 +101,11 @@ def estimate_correlation_dimension(image, r_values):
 
     return slope, correlations  # Return both dimension and correlations
 
-# Plot trajectory heatmap
-def plot_trajectory_heatmap(image, extents):
-    plt.imshow(image, extent=(extents[0], extents[1], extents[2], extents[3]), origin='lower', cmap='hot')
-    plt.title('Trajectory Heatmap')
-    plt.colorbar()
-    plt.xlabel('x')
-    plt.ylabel('y')
-    plt.show()
-
-# Plot correlation integral
-def plot_correlation_integral(r_values, correlations):
-    plt.loglog(r_values, correlations, marker='o')
-    plt.title('Correlation Integral')
-    plt.xlabel('r')
-    plt.ylabel('C(r)')
-    plt.grid(True, which='both')
-    plt.show()
 
 # Display results
 def display_results(r_values, correlations, correlation_dimension, image, extents):
     # Plot both results in subplots
-    fig, axes = plt.subplots(1, 2, figsize=(15, 6))
+    fig, axes = plt.subplots(1, 2, figsize=(16, 8))
 
     # Plot attractor heatmap
     ax1 = axes[0]
@@ -140,6 +127,7 @@ def display_results(r_values, correlations, correlation_dimension, image, extent
     plt.show()
 
     print(f"Correlation Dimension: {correlation_dimension:.4f}")
+
 
 # Main function
 def main():

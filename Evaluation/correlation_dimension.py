@@ -103,7 +103,7 @@ def plot_correlation_integral(r_values, correlations):
     plt.xlabel('r')
     plt.ylabel('C(r)')
     plt.title('Correlation Integral')
-    plt.grid(True)
+    plt.grid(True, which='both')
     plt.show()
 
 # Main function

@@ -97,14 +97,49 @@ def estimate_correlation_dimension(image, r_values):
 
     return slope, correlations  # Return both dimension and correlations
 
-# Plot results
+# Plot trajectory heatmap
+def plot_trajectory_heatmap(image, extents):
+    plt.imshow(image, extent=(extents[0], extents[1], extents[2], extents[3]), origin='lower', cmap='hot')
+    plt.title('Trajectory Heatmap')
+    plt.colorbar()
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.show()
+
+# Plot correlation integral
 def plot_correlation_integral(r_values, correlations):
     plt.loglog(r_values, correlations, marker='o')
+    plt.title('Correlation Integral')
     plt.xlabel('r')
     plt.ylabel('C(r)')
-    plt.title('Correlation Integral')
     plt.grid(True, which='both')
     plt.show()
+
+# Display results
+def display_results(r_values, correlations, correlation_dimension, image, extents):
+    # Plot both results in subplots
+    fig, axes = plt.subplots(1, 2, figsize=(15, 6))
+
+    # Plot attractor heatmap
+    ax1 = axes[0]
+    ax1.imshow(image, extent=(extents[0], extents[1], extents[2], extents[3]), origin='lower', cmap='hot')
+    ax1.set_title('Trajectory Heatmap')
+    ax1.set_xlabel('x')
+    ax1.set_ylabel('y')
+
+    # Plot correlation integral
+    ax2 = axes[1]
+    ax2.loglog(r_values, correlations, marker='o')
+    ax2.set_title('Correlation Integral')
+    ax2.set_xlabel('r')
+    ax2.set_ylabel('C(r)')
+    ax2.grid(True, which='both')
+
+    # Show the combined plot
+    plt.tight_layout()
+    plt.show()
+
+    print(f"Correlation Dimension: {correlation_dimension:.4f}")
 
 # Main function
 def main():
@@ -115,16 +150,11 @@ def main():
 
     image = compute_trajectory_image(params['a'], params['b'], params['c'], params['n'], extents, image_size)
 
-    # Diagnostic plot for trajectory
-    plt.imshow(image, extent=(extents[0], extents[1], extents[2], extents[3]), origin='lower', cmap='hot')
-    plt.title('Trajectory Heatmap')
-    plt.colorbar()
-    plt.show()
-
+    # Compute correlation dimension and correlation integral
     correlation_dimension, correlations = estimate_correlation_dimension(image, r_values)
-    print(f"Correlation Dimension: {correlation_dimension:.4f}")
 
-    plot_correlation_integral(r_values, correlations)
+    # Plot and display results
+    display_results(r_values, correlations, correlation_dimension, image, extents)
 
 if __name__ == '__main__':
     main()

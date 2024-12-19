@@ -36,7 +36,6 @@ def get_attractor_parameters():
     n = validate_input('Enter a positive integer value > 1000 for "n": ', int, check_positive_non_zero=True, min_value=1000)
     return {'a': a, 'b': b, 'c': c, 'n': n}
 
-
 # Compute trajectory extents
 @njit
 def compute_trajectory_extents(a, b, c, n):
@@ -49,7 +48,6 @@ def compute_trajectory_extents(a, b, c, n):
         yy = a - x
         x, y = xx, yy
     return min_x, max_x, min_y, max_y
-
 
 # Compute trajectory image
 @njit
@@ -71,36 +69,47 @@ def compute_trajectory_image(a, b, c, n, extents, image_size):
 
     return image
 
-
-# Compute correlation integral with optimized approach
 @njit
 def compute_correlation_integral(image, r):
     count = 0
-    total_pairs = 0
-    kernel_size = 2 * r + 1
+    total_points = np.sum(image)
+    total_pairs = total_points * (total_points - 1)  # Maximum number of pairs
+
     for x in range(image.shape[0]):
         for y in range(image.shape[1]):
             if image[x, y] > 0:
-                count += image[x, y] * np.sum(image[max(0, x - r):min(x + r + 1, image.shape[0]),
-                                                    max(0, y - r):min(y + r + 1, image.shape[1])])
-                total_pairs += kernel_size ** 2
+                for dx in range(-r, r + 1):
+                    for dy in range(-r, r + 1):
+                        if dx**2 + dy**2 <= r**2:  # True circular check
+                            nx, ny = x + dx, y + dy
+                            if 0 <= nx < image.shape[0] and 0 <= ny < image.shape[1]:
+                                count += image[x, y] * image[nx, ny]
+
     return count / total_pairs if total_pairs > 0 else 0
 
 
-# Estimate correlation dimension
+# Adjust the r_values and log-log fitting
 def estimate_correlation_dimension(image, r_values):
     correlations = []
+    total_points = np.sum(image)
+    if total_points < 2:
+        raise ValueError("Insufficient points in the image to compute correlations.")
+    
     for r in r_values:
         correlation = compute_correlation_integral(image, int(r))
         correlations.append(correlation)
 
-    # Fit a power law to the correlation integral
-    log_r = np.log(r_values)
-    log_correlations = np.log(correlations)
+    # Replace zero correlations with a small positive number
+    correlations = np.array(correlations)
+    correlations[correlations <= 0] = 1e-10
+
+    # Perform log-log fitting for correlation dimension
+    valid = correlations > 0  # Ensure only positive values are used
+    log_r = np.log(r_values[valid])
+    log_correlations = np.log(correlations[valid])
     slope, intercept = np.polyfit(log_r, log_correlations, 1)
 
-    return slope, correlations  # Return both dimension and correlations
-
+    return slope, correlations
 
 # Display results
 def display_results(r_values, correlations, correlation_dimension, image, extents):
@@ -127,7 +136,6 @@ def display_results(r_values, correlations, correlation_dimension, image, extent
     plt.show()
 
     print(f"Correlation Dimension: {correlation_dimension:.4f}")
-
 
 # Main function
 def main():

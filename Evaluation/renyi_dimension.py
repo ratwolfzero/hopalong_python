@@ -49,7 +49,7 @@ def compute_trajectory_extents(a, b, c, n):
         x, y = xx, yy
     return min_x, max_x, min_y, max_y
 
-# Compute trajectory image
+# Compute image and trajectory
 @njit
 def compute_trajectory_image(a, b, c, n, extents, image_size):
     image = np.zeros(image_size, dtype=np.uint64)
@@ -69,62 +69,64 @@ def compute_trajectory_image(a, b, c, n, extents, image_size):
 
     return image
 
-# Compute correlation integral with optimized approach
-@njit
-def compute_correlation_integral(image, r):
-    count = 0
-    total_pairs = 0
-    kernel_size = 2 * r + 1
-    for x in range(image.shape[0]):
-        for y in range(image.shape[1]):
-            if image[x, y] > 0:
-                count += image[x, y] * np.sum(image[max(0, x - r):min(x + r + 1, image.shape[0]),
-                                                    max(0, y - r):min(y + r + 1, image.shape[1])])
-                total_pairs += kernel_size ** 2
-    return count / total_pairs if total_pairs > 0 else 0
+# Normalize the density matrix
+def normalize(matrix):
+    min_val = np.min(matrix)
+    max_val = np.max(matrix)
+    return (matrix - min_val) / (max_val - min_val)
 
-# Estimate correlation dimension
-def estimate_correlation_dimension(image, r_values):
-    correlations = []
-    for r in r_values:
-        correlation = compute_correlation_integral(image, int(r))
-        correlations.append(correlation)
+# Compute Rényi dimension
+def compute_renyi_dimension(image, q_values):
+    results = {}
+    normalized_image = normalize(image)
+    total_pixels = np.sum(normalized_image)
+    probabilities = normalized_image / total_pixels
 
-    # Fit a power law to the correlation integral
-    log_r = np.log(r_values)
-    log_correlations = np.log(correlations)
-    slope, intercept = np.polyfit(log_r, log_correlations, 1)
-
-    return slope, correlations  # Return both dimension and correlations
+    for q in q_values:
+        if q == 1:
+            # Special case for q=1 (Shannon entropy)
+            entropy = -np.sum(probabilities * np.log(probabilities + 1e-10))
+            renyi_dimension = entropy
+        else:
+            renyi_sum = np.sum(probabilities**q)
+            renyi_dimension = (1 / (1 - q)) * np.log(renyi_sum)
+        results[q] = renyi_dimension
+    return results
 
 # Plot results
-def plot_correlation_integral(r_values, correlations):
-    plt.loglog(r_values, correlations, marker='o')
-    plt.xlabel('r')
-    plt.ylabel('C(r)')
-    plt.title('Correlation Integral')
-    plt.grid(True)
+def plot_density_and_renyi(image, renyi_results, q_values, params):
+    fig, ax = plt.subplots(1, 2, figsize=(16, 8))
+
+    # Plot density matrix
+    ax[0].imshow(image, origin='lower', cmap='hot', aspect='auto')
+    ax[0].set_title(f"Density Matrix\n(a={params['a']}, b={params['b']}, c={params['c']}, n={params['n']})")
+    ax[0].set_xlabel("X")
+    ax[0].set_ylabel("Y")
+
+    # Plot Rényi dimension
+    ax[1].plot(q_values, list(renyi_results.values()), marker='o', linestyle='--')
+    ax[1].set_title("Rényi Dimension")
+    ax[1].set_xlabel("q")
+    ax[1].set_ylabel("D_q")
+    ax[1].grid(True)
+
+    plt.tight_layout()
     plt.show()
 
 # Main function
-def main():
+def main(image_size=(500, 500), q_values=None):
+    if q_values is None:
+        q_values = np.linspace(0.5, 3.0, 10)
+
     params = get_attractor_parameters()
     extents = compute_trajectory_extents(params['a'], params['b'], params['c'], params['n'])
-    image_size = (1000, 1000)  # Increased resolution
-    r_values = np.logspace(0, 2, 20)  # Adjusted range for r_values
+    density_matrix = compute_trajectory_image(params['a'], params['b'], params['c'], params['n'], extents, image_size)
+    renyi_results = compute_renyi_dimension(density_matrix, q_values)
 
-    image = compute_trajectory_image(params['a'], params['b'], params['c'], params['n'], extents, image_size)
+    for q, d_q in renyi_results.items():
+        print(f"q = {q:.2f}, Rényi Dimension (D_q) = {d_q:.4f}")
 
-    # Diagnostic plot for trajectory
-    plt.imshow(image, extent=(extents[0], extents[1], extents[2], extents[3]), origin='lower', cmap='hot')
-    plt.title('Trajectory Heatmap')
-    plt.colorbar()
-    plt.show()
-
-    correlation_dimension, correlations = estimate_correlation_dimension(image, r_values)
-    print(f"Correlation Dimension: {correlation_dimension:.4f}")
-
-    plot_correlation_integral(r_values, correlations)
+    plot_density_and_renyi(density_matrix, renyi_results, q_values, params)
 
 if __name__ == '__main__':
     main()

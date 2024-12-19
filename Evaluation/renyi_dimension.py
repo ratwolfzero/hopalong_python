@@ -70,12 +70,14 @@ def compute_trajectory_image(a, b, c, n, extents, image_size):
     return image
 
 # Normalize the density matrix
+@njit
 def normalize(matrix):
     min_val = np.min(matrix)
     max_val = np.max(matrix)
     return (matrix - min_val) / (max_val - min_val)
 
 # Compute Rényi dimension
+@njit
 def compute_renyi_dimension(image, q_values):
     results = {}
     normalized_image = normalize(image)

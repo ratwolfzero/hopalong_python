@@ -147,7 +147,7 @@ def compute_statistics(image, hist_density):
 
 # Plot results
 def plot_density_matrices(image, hist_density, extent, x_edges, y_edges, color_map, params=None, stats=None):
-    fig, axes = plt.subplots(1, 2, figsize=(14, 7))
+    fig, axes = plt.subplots(1, 2, figsize=(16, 8))
 
     norm_image = normalize(image)
     norm_hist_density = normalize(hist_density)

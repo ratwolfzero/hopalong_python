@@ -89,7 +89,7 @@ def compute_correlation_integral(image, r):
 
     return count / total_pairs if total_pairs > 0 else 0
 """
-@njit
+@njit(parallel=True)
 def compute_correlation_integral(image, r):
     count = 0
     total_points = np.sum(image)

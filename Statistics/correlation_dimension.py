@@ -51,6 +51,7 @@ def compute_trajectory_extents(a, b, c, n):
         x, y = xx, yy
     return min_x, max_x, min_y, max_y
 
+
 # Compute trajectory image
 @njit
 def compute_trajectory_image(a, b, c, n, extents, image_size):
@@ -135,6 +136,7 @@ def estimate_correlation_dimension(image, r_values):
     slope, intercept = np.polyfit(log_r, log_correlations, 1)
 
     return slope, correlations
+
 
 # Display results
 def display_results(r_values, correlations, correlation_dimension, image, extents):

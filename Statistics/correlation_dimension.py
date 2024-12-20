@@ -167,7 +167,7 @@ def display_results(r_values, correlations, correlation_dimension, image, extent
 def main():
     params = get_attractor_parameters()
     extents = compute_trajectory_extents(params['a'], params['b'], params['c'], params['n'])
-    image_size = (1000, 1000)  # Increased resolution
+    image_size = (1000, 1000)  
     r_values = np.logspace(0, 2, 20)  # Adjusted range for r_values
 
     image = compute_trajectory_image(params['a'], params['b'], params['c'], params['n'], extents, image_size)

@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from numba import njit
+from numba import njit, prange
 from math import copysign, sqrt, fabs
 
 
@@ -100,13 +100,13 @@ def compute_correlation_integral(image, r):
     total_points = np.sum(image)
     total_pairs = total_points * (total_points - 1)
 
-    for x in range(image.shape[0]):
+    for x in prange(image.shape[0]):
         for y in range(image.shape[1]):
             if image[x, y] > 0:
                 # Calculate the range only once
-                for dx in range(-r, r + 1):
+                for dx in prange(-r, r + 1):
                     dy_limit = int(sqrt(r**2 - dx**2))  # Calculate max dy for current dx
-                    for dy in range(-dy_limit, dy_limit + 1):
+                    for dy in prange(-dy_limit, dy_limit + 1):
                         nx, ny = x + dx, y + dy
                         if 0 <= nx < image.shape[0] and 0 <= ny < image.shape[1]:
                             count += image[x, y] * image[nx, ny]

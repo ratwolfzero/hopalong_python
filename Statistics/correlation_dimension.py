@@ -143,7 +143,7 @@ def display_results(r_values, correlations, correlation_dimension, image, extent
     # Plot both results in subplots
     fig, axes = plt.subplots(1, 2, figsize=(16, 8))
 
-    title_heatmap = 'Trajectory Heatmap'
+    title_heatmap = 'Density Heatmap Matrix'
     if params:
         title_heatmap += f"\n a={params['a']}, b={params['b']}, c={params['c']}, n={params['n']}"
 

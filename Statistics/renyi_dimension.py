@@ -99,7 +99,7 @@ def plot_density_and_renyi(image, renyi_results, q_values, params):
 
     # Plot density matrix
     ax[0].imshow(image, origin='lower', cmap='hot', aspect='auto')
-    ax[0].set_title(f"Density Matrix\n(a={params['a']}, b={params['b']}, c={params['c']}, n={params['n']})")
+    ax[0].set_title(f"Density Heatmap Matrix\n a={params['a']}, b={params['b']}, c={params['c']}, n={params['n']}")
     ax[0].set_xlabel("X")
     ax[0].set_ylabel("Y")
 

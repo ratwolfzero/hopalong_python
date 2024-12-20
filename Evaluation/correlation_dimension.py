@@ -126,7 +126,9 @@ def display_results(r_values, correlations, correlation_dimension, image, extent
     # Plot correlation integral
     ax2 = axes[1]
     ax2.loglog(r_values, correlations, marker='o')
-    ax2.set_title('Correlation Integral')
+    title = 'Correlation Integral'
+    title += f"\nCorrelation Dimension: {correlation_dimension:.4f} "
+    ax2.set_title(title)
     ax2.set_xlabel('r')
     ax2.set_ylabel('C(r)')
     ax2.grid(True, which='both')
@@ -135,7 +137,6 @@ def display_results(r_values, correlations, correlation_dimension, image, extent
     plt.tight_layout()
     plt.show()
 
-    print(f"Correlation Dimension: {correlation_dimension:.4f}")
 
 # Main function
 def main():

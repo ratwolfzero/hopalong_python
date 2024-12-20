@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from numba import njit
 from math import copysign, sqrt, fabs
 
+
 # Input validation
 def validate_input(prompt, input_type=float, check_positive_non_zero=False, min_value=None):
     while True:
@@ -22,7 +23,7 @@ def validate_input(prompt, input_type=float, check_positive_non_zero=False, min_
             return value
         except ValueError:
             print(f'Invalid input. Please enter a valid {input_type.__name__} value.')
-
+        
 # Get attractor parameters
 def get_attractor_parameters():
     a = validate_input('Enter a float value for "a": ', float)
@@ -35,6 +36,7 @@ def get_attractor_parameters():
             break
     n = validate_input('Enter a positive integer value > 1000 for "n": ', int, check_positive_non_zero=True, min_value=1000)
     return {'a': a, 'b': b, 'c': c, 'n': n}
+
 
 # Compute trajectory extents
 @njit
@@ -68,7 +70,7 @@ def compute_trajectory_image(a, b, c, n, extents, image_size):
         x, y = xx, yy
 
     return image
-
+"""
 @njit
 def compute_correlation_integral(image, r):
     count = 0
@@ -84,6 +86,25 @@ def compute_correlation_integral(image, r):
                             nx, ny = x + dx, y + dy
                             if 0 <= nx < image.shape[0] and 0 <= ny < image.shape[1]:
                                 count += image[x, y] * image[nx, ny]
+
+    return count / total_pairs if total_pairs > 0 else 0
+"""
+@njit
+def compute_correlation_integral(image, r):
+    count = 0
+    total_points = np.sum(image)
+    total_pairs = total_points * (total_points - 1)
+
+    for x in range(image.shape[0]):
+        for y in range(image.shape[1]):
+            if image[x, y] > 0:
+                # Calculate the range only once
+                for dx in range(-r, r + 1):
+                    dy_limit = int(sqrt(r**2 - dx**2))  # Calculate max dy for current dx
+                    for dy in range(-dy_limit, dy_limit + 1):
+                        nx, ny = x + dx, y + dy
+                        if 0 <= nx < image.shape[0] and 0 <= ny < image.shape[1]:
+                            count += image[x, y] * image[nx, ny]
 
     return count / total_pairs if total_pairs > 0 else 0
 

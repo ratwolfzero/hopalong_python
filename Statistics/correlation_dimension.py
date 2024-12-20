@@ -139,14 +139,18 @@ def estimate_correlation_dimension(image, r_values):
 
 
 # Display results
-def display_results(r_values, correlations, correlation_dimension, image, extents):
+def display_results(r_values, correlations, correlation_dimension, image, extents, params=None):
     # Plot both results in subplots
     fig, axes = plt.subplots(1, 2, figsize=(16, 8))
+
+    title_heatmap = 'Trajectory Heatmap'
+    if params:
+        title_heatmap += f"\n a={params['a']}, b={params['b']}, c={params['c']}, n={params['n']}"
 
     # Plot attractor heatmap
     ax1 = axes[0]
     ax1.imshow(image, extent=(extents[0], extents[1], extents[2], extents[3]), origin='lower', cmap='hot')
-    ax1.set_title('Trajectory Heatmap')
+    ax1.set_title(title_heatmap)
     ax1.set_xlabel('x')
     ax1.set_ylabel('y')
 
@@ -178,7 +182,7 @@ def main():
     correlation_dimension, correlations = estimate_correlation_dimension(image, r_values)
 
     # Plot and display results
-    display_results(r_values, correlations, correlation_dimension, image, extents)
+    display_results(r_values, correlations, correlation_dimension, image, extents, params=params)
 
 if __name__ == '__main__':
     main()

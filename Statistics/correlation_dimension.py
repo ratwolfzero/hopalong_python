@@ -160,8 +160,8 @@ def display_results(r_values, correlations, correlation_dimension, image, extent
     #title = 'Correlation Integral'
     title  = f"\nCorrelation Dimension: {correlation_dimension:.4f} "
     ax2.set_title(title)
-    ax2.set_xlabel('r')
-    ax2.set_ylabel('Correlation Integral C(r)')
+    ax2.set_xlabel('Radius r'fontsize=16)
+    ax2.set_ylabel('Correlation Integral C(r)', fontsize=16)
     ax2.grid(True, which='both')
 
     # Show the combined plot

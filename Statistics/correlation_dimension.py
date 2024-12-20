@@ -71,6 +71,8 @@ def compute_trajectory_image(a, b, c, n, extents, image_size):
 
     return image
 
+
+"""
 @njit(parallel=True)
 def compute_correlation_integral(image, r):
     count = 0
@@ -88,9 +90,9 @@ def compute_correlation_integral(image, r):
                                 count += image[x, y] * image[nx, ny]
 
     return count / total_pairs if total_pairs > 0 else 0
-
-
 """
+
+
 @njit(parallel=True)
 def compute_correlation_integral(image, r):
     count = 0
@@ -109,7 +111,6 @@ def compute_correlation_integral(image, r):
                             count += image[x, y] * image[nx, ny]
 
     return count / total_pairs if total_pairs > 0 else 0
-"""
 
 
 # Adjust the r_values and log-log fitting

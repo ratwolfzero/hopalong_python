@@ -157,11 +157,11 @@ def display_results(r_values, correlations, correlation_dimension, image, extent
     # Plot correlation integral
     ax2 = axes[1]
     ax2.loglog(r_values, correlations, marker='o')
-    title = 'Correlation Integral'
-    title += f"\nCorrelation Dimension: {correlation_dimension:.4f} "
+    #title = 'Correlation Integral'
+    title  = f"\nCorrelation Dimension: {correlation_dimension:.4f} "
     ax2.set_title(title)
     ax2.set_xlabel('r')
-    ax2.set_ylabel('C(r)')
+    ax2.set_ylabel('Correlation Integral C(r)')
     ax2.grid(True, which='both')
 
     # Show the combined plot

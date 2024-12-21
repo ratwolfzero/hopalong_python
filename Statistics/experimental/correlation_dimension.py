@@ -132,6 +132,7 @@ def compute_correlation_integral(image, r):
 
     return count / total_pairs if total_pairs > 0 else 0
 
+
 """
 # Adjust the r_values and log-log fitting
 def estimate_correlation_dimension(image, r_values):
@@ -156,6 +157,7 @@ def estimate_correlation_dimension(image, r_values):
 
     return slope, correlations
 """
+
 
 # Adjust the r_values and log-log fitting
 def estimate_correlation_dimension(image, r_values):

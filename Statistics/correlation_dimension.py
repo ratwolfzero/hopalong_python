@@ -113,7 +113,7 @@ def compute_correlation_integral(image, r):
 
     return count / total_pairs if total_pairs > 0 else 0
 
-
+"""
 # Adjust the r_values and log-log fitting
 def estimate_correlation_dimension(image, r_values):
     correlations = []
@@ -133,6 +133,29 @@ def estimate_correlation_dimension(image, r_values):
     valid = correlations > 0  # Ensure only positive values are used
     log_r = np.log(r_values[valid])
     log_correlations = np.log(correlations[valid])
+    slope, intercept = np.polyfit(log_r, log_correlations, 1)
+
+    return slope, correlations
+"""
+
+# Adjust the r_values and log-log fitting
+def estimate_correlation_dimension(image, r_values):
+    correlations = []
+    total_points = np.sum(image)
+    if total_points < 2:
+        raise ValueError("Insufficient points in the image to compute correlations.")
+    
+    for r in r_values:
+        correlation = compute_correlation_integral(image, int(r))
+        correlations.append(correlation)
+
+    # Replace zero or near-zero correlations with a small positive value
+    correlations = np.array(correlations)
+    correlations[correlations <= 1e-10] = 1e-10  # Ensure all values are above the threshold
+
+    # Perform log-log fitting for correlation dimension
+    log_r = np.log(r_values)
+    log_correlations = np.log(correlations)
     slope, intercept = np.polyfit(log_r, log_correlations, 1)
 
     return slope, correlations

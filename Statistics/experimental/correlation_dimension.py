@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from numba import njit, prange
 from math import copysign, sqrt, fabs
+from scipy.spatial.distance import pdist
 
 
 # Input validation
@@ -92,6 +93,24 @@ def compute_correlation_integral(image, r):
 
     return count / total_pairs if total_pairs > 0 else 0
 """
+
+
+def get_r_values_from_distances(image, num_points=20, r_fraction_min= 1, r_fraction_max=100):
+    # Find all the points in the image where there are non-zero values
+    points = np.array(np.nonzero(image)).T
+
+    # Calculate pairwise distances between points
+    
+    distances = pdist(points)
+
+    # Get the minimum and maximum distances between points
+    r_min = np.min(distances) * r_fraction_min  # Small fraction of the smallest distance
+    r_max = np.max(distances) * r_fraction_max  # Fraction of the largest distance
+
+    # Log-spaced values between r_min and r_max (broader range for better scaling)
+    r_values = np.logspace(np.log10(r_min), np.log10(r_max), num_points)
+    
+    return r_values
 
 
 @njit(parallel=True)
@@ -197,7 +216,8 @@ def main():
     params = get_attractor_parameters()
     extents = compute_trajectory_extents(params['a'], params['b'], params['c'], params['n'])
     image_size = (1000, 1000)  
-    r_values = np.logspace(0, 2, 20)  # Adjusted range for r_values
+    #r_values = np.logspace(0, 2, 20)  # Adjusted range for r_values
+    r_values = get_r_values_from_distances(extents)
 
     image = compute_trajectory_image(params['a'], params['b'], params['c'], params['n'], extents, image_size)
 

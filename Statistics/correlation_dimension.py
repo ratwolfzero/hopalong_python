@@ -101,7 +101,7 @@ def compute_correlation_integral(image, r):
     total_pairs = total_points * (total_points - 1)
 
     for x in prange(image.shape[0]):
-        for y in range(image.shape[1]):
+        for y in prange(image.shape[1]):
             if image[x, y] > 0:
                 # Calculate the range only once
                 for dx in prange(-r, r + 1):

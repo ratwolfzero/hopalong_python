@@ -1,0 +1,4 @@
+.DS_Store
+*.nbc
+*.nbi
+**/__pycache__/

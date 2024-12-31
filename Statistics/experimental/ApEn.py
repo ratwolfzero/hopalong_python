@@ -1,7 +1,6 @@
-import time
 import random
 import math
- 
+
  
 def approx_entropy(time_series, run_length, filter_level) -> float:
     """
@@ -48,7 +47,7 @@ def generate_random_numbers(count, lower, upper):
         random_numbers.append(random.randint(lower, upper))
     return random_numbers
  
-# Generate 1000 random numbers in the range [0, 1]
+# Generate random numbers
 numbers = generate_random_numbers(
     count=600,
     lower=1,

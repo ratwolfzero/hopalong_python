@@ -613,7 +613,7 @@ Copyright © 2024 Ralf Becker, Nuremberg
 Email: <ratwolf@duck.com>  
 
 The full text of the MIT License can be found at:
-[MIT License](./LICENSE.txt)
+[MIT License](./LICENSE)
 
 ---
 

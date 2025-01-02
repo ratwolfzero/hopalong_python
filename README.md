@@ -18,7 +18,7 @@
       - [Comparison of Pixel-Based Density Approximation vs. Histogram-Based Density Estimation](#comparison-of-pixel-based-density-approximation-vs-histogram-based-density-estimation)
         - [Pixel-Based Approximation](#pixel-based-approximation)
         - [Histogram-Based Estimation](#histogram-based-estimation)
-      - [Visualization of Accumulated Density Distribution](#visualization-of-accumulated-density-distribution)
+      - [Visualization of Aggregated Density Distribution](#visualization-of-aggregated-density-distribution)
       - [Summary](#summary)
       - [Conclusions](#conclusions)
     - [Application of Copysign (Math Module) as a Signum Function](#application-of-copysign-math-module-as-a-signum-function)
@@ -260,7 +260,7 @@ The code for the Basic variant supports both 2D and 3D visualization. To switch 
 
   - Larger bins (lower bin count) increase density contrast by concentrating normalized density values in fewer, larger bins but reduce precision.
 
-#### Visualization of Accumulated Density Distribution
+#### Visualization of Aggregated Density Distribution
 
 The Matplotlib "hot" colormap represents pixel hit counts (in pixel-based density approximation) and histogram bin counts (in histogram-based density estimation) as colors, scaled to span the full range of the colormap. Darker colors correspond to lower densities, while lighter colors correspond to higher densities, creating a gradient that highlights areas of activity.
 

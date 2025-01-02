@@ -1,7 +1,7 @@
 import random
 import math
 
- 
+#https://en.wikipedia.org/wiki/Approximate_entropy 
 def approx_entropy(time_series, run_length, filter_level) -> float:
     """
     Approximate entropy

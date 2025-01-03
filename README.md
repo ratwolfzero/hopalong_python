@@ -316,7 +316,7 @@ The images were rendered as follows:
 |---------------------------|------------------|----------|----------|---------|
 | a = 5, b = 5, c = 0       | n = 1,000,000    | 1.0000   | 1.0000   | 1.0000  |
 
-Note: Kernel Density Estimation (KDE) was not analyzed in this study due to its high computational cost, particularly with large pixel grids and extensive iterations.
+Note: Kernel Density Estimation (KDE) was not analyzed in this study due to its high computational cost, particularly with large pixel grids and extensive iterations. While smoothing the heatmap density matrix using scipy.ndimage.gaussian_filter can enhance visualization, it alters the pixel hit counts and was therefore not applied here.
 
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 

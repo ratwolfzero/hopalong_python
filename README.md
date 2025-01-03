@@ -316,6 +316,8 @@ The images were rendered as follows:
 |---------------------------|------------------|----------|----------|---------|
 | a = 5, b = 5, c = 0       | n = 1,000,000    | 1.0000   | 1.0000   | 1.0000  |
 
+Note: Kernel Density Estimation (KDE) was not analyzed in this study due to its high computational cost, particularly with large pixel grids and extensive iterations.
+
 [Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
 
 ---

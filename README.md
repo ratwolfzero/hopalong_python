@@ -241,7 +241,7 @@ The code for the Basic variant supports both 2D and 3D visualization. To switch 
 
 ##### Pixel-Based Approximation
   
-   This ***generative method*** creates a density heatmap matrix by mapping trajectory points directly to discrete pixels. Each pixel corresponds to a specific region in continuous space, with emergent density patterns arising from the interaction between the attractor's dynamics and the discretization process.
+This ***generative method*** creates a density heatmap matrix by mapping trajectory points directly to discrete pixels. Each pixel corresponds to a specific region in continuous space, with emergent density patterns arising from the interaction between the attractor's dynamics and the discretization process.
 
 - Impact of Image Resolution:
   
@@ -251,7 +251,7 @@ The code for the Basic variant supports both 2D and 3D visualization. To switch 
 
 ##### Histogram-Based Estimation  
 
-   Using `np.histogram2d(..., density=True)`, this ***analytic method*** divides the continuous space into a grid of equal-area bins and counts the number of trajectory points that fall into each bin. The counts are then normalized by the total number of points and the bin area, resulting in a density matrix representing relative point distributions across the entire space for quantitative analysis. The density patterns, similar to the pixel-based approach, arise from the interplay between the attractor's dynamics and the bin grid configuration.
+Using `np.histogram2d(..., density=True)`, this ***analytic method*** divides the continuous space into a grid of equal-area bins and counts the number of trajectory points that fall into each bin. The counts are then normalized by the total number of points and the bin area, resulting in a density matrix representing relative point distributions across the entire space for quantitative analysis. The density patterns, similar to the pixel-based approach, arise from the interplay between the attractor's dynamics and the bin grid configuration.
 
 - Impact of bin size:
 

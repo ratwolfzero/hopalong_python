@@ -225,10 +225,10 @@ The code for the Basic variant supports both 2D and 3D visualization. To switch 
 ### Pixel-Based Density Approximation
 
 - **Continuous to Discrete Mapping**  
-   Trajectory points, represented as floating-point coordinates in a two-dimensional continuous space, are scaled and mapped to integer pixel coordinates for visualization. Scaling factors derived from the trajectory's extents and the image dimensions ensure the continuous coordinates fit within the pixel grid while preserving spatial relationships.
+  Trajectory points, represented as floating-point coordinates in a two-dimensional continuous space, are scaled and mapped to integer pixel coordinates for visualization. Scaling factors derived from the trajectory's extents and the image dimensions ensure the continuous coordinates fit within the pixel grid while preserving spatial relationships.
 
 - **Integer Conversion by Rounding to Nearest Integer**  
-   The integer conversion within the continuous-to-discrete mapping introduces quantization. Closely spaced trajectory points in continuous space may map to the same pixel due to the quantization of coordinates, resulting in multiple "hits" per pixel. Together with the preceding steps, this constitutes the discretization process, aggregating local density within the pixel grid. However, it may reduce fine details due to the grouping effect imposed by the pixel grid.
+  Integer conversion during continuous-to-discrete mapping introduces quantization, where closely spaced trajectory points may map to the same pixel due to the quantization of coordinates. Together with the preceding steps, this forms the discretization process, aggregating local density within the pixel grid. However, the grouping effect may reduce fine details.
 
 - **Tracking of Density Aggregation**  
   An image array, initialized with zeros, serves as a blank canvas for recording density. Each trajectory point, after being mapped to a pixel, increments the value at the corresponding array index. The resulting array is referred to as the **Density Heatmap Matrix**. Pixel hit counts encode the spatial distribution of trajectory point densities in continuous space. Higher hit counts indicate greater density.  

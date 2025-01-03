@@ -275,7 +275,7 @@ Pixel-based density approximation presents a promising alternative to histogram-
 
 Both the pixel-based density approximation (heatmap) and histogram-based density estimation effectively highlight areas of point concentrations during **visualization**. This is demonstrated in the following comparison panel showcasing a normalized density heatmap and histogram density matrix, along with a quantitative comparison.
 
-For consistency, image size and bin size were both set to 1000 × 1000 pixels, with each pixel representing an area in continuous space, analogous to a bin in a density estimation process. This ensures a direct one-to-one mapping between image resolution and bin resolution, facilitating meaningful visual and quantitative comparisons
+For consistency, both the image resolution and the number of bins were set to 1000 × 1000. This ensures that the pixel grid and the bin grid have the same number of elements, allowing for meaningful visual and quantitative comparisons between the two methods.
 
 The images were rendered as follows:
 

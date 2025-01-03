@@ -21,7 +21,7 @@ def hopalong_attractor(a, b, c, n):
 
 # Generate Hopalong attractor data
 a, b, c = 2, 1.0, 0
-n = 10000000
+n = 1000000
 real_data = hopalong_attractor(a, b, c, n)
 
 # --- GAN Components ---
@@ -60,7 +60,7 @@ class Discriminator(nn.Module):
 latent_dim = 2  # Dimensionality of random input (z)
 data_dim = 2    # Dimensionality of Hopalong attractor points
 lr = 0.0002
-epochs = 1000000
+epochs = 100000
 batch_size = 64
 
 # --- Model Initialization ---
@@ -134,3 +134,11 @@ plt.legend()
 plt.tight_layout()
 plt.show()
 
+# Assuming you stored losses during training
+plt.plot(d_loss, label="Discriminator Loss")
+plt.plot(g_loss, label="Generator Loss")
+plt.xlabel("Epochs")
+plt.ylabel("Loss")
+plt.legend()
+plt.title("GAN Training Losses")
+plt.show()

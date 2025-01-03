@@ -241,7 +241,7 @@ The code for the Basic variant supports both 2D and 3D visualization. To switch 
 
 ##### Pixel-Based Approximation
   
-   This ***generative method*** creates a density heatmap matrix by directly mapping trajectory points to discrete pixels where each pixel corresponds to a specific region in continuous space, with emergent density patterns arising from the interaction between the attractor's dynamics and the mapping of continuous coordinates to discrete pixel indices.
+   This ***generative method*** creates a density heatmap matrix by mapping trajectory points directly to discrete pixels. Each pixel corresponds to a specific region in continuous space, with emergent density patterns arising from the interaction between the attractor's dynamics and the discretization process.
 
 - Impact of Image Resolution:
   

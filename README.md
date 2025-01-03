@@ -231,7 +231,7 @@ The code for the Basic variant supports both 2D and 3D visualization. To switch 
    The integer conversion within the continuous to discrete mapping introduces quantization. Closely spaced trajectory points in continuous space may map to the same pixel due to the quantization of coordinates, resulting in multiple "hits" per pixel. Together with the preceding steps, it constitutes the discretization process and aggregates local density within the pixel grid. However, it may reduce fine details due to the grouping effect imposed by the pixel grid.
 
 - **Tracking of Density Aggregation**  
-  An image array, initialized with zeros, serves as a blank canvas. Each trajectory point, after being mapped to a pixel, increments the value at the corresponding array index. The resulting array is referred to as the  
+  An image array, initialized with zeros, serves as a blank canvas for recording density. Each trajectory point, after being mapped to a pixel, increments the value at the corresponding array index. The resulting array is referred to as the  
   **Density Heatmap Matrix**. Pixel hit counts encode the spatial distribution of trajectory point densities in continuous space. Higher hit counts indicate greater density.  
   
   Note: The total sum of pixel hit counts equals the number of trajectory iterations, as each iteration contributes one pixel, which may be hit multiple times, to the density heatmap matrix.

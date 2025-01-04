@@ -285,7 +285,7 @@ The images were rendered as follows:
 **Visual Side-by-Side Comparison**  
 **Parameters**: a = -2, b = -0.33, c = 0.01  
 **Number of Iterations**: 2 × 10^8  
-**Image Size / Bins Size**: 1000 × 1000  
+**Image size (pixels) / bin size (bins)**: 1000 × 1000  
 
 ![Example Attractor Image](./Documentation/Figure_5.png)  
 

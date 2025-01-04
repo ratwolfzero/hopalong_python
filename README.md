@@ -279,8 +279,8 @@ For consistency, both the image resolution and the number of bins were set to 10
 
 The images were rendered as follows:
 
-- **Density Heatmap Matrix**: Using `matplotlib.pyplot.imshow` with `interpolation='none'` to ensure no smoothing, and the trajectory extents calculated during iterations.  
-- **Histogram Density Matrix**: Using `matplotlib.pyplot.pcolormesh` with `antialiased=False` to maintain bin accuracy, defined by histogram bin edges.  
+- **Density Heatmap Matrix**: using `matplotlib.pyplot.imshow` with the trajectory extents calculated during iterations. The interpolation='none' parameter ensures that no smoothing is applied, preserving the discrete pixel values.
+- **Histogram Density Matrix**: using `matplotlib.pyplot.pcolormesh` with the bin edges calculated from `numpy.histogram2d`. The antialiased=False parameter ensures that the discrete bin boundaries are preserved during visualization.
 
 **Visual Side-by-Side Comparison**  
 **Parameters**: a = -2, b = -0.33, c = 0.01  

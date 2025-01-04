@@ -269,7 +269,7 @@ Pixel-based density approximation presents a promising alternative to histogram-
 
 - Qualitative: The pixel-based approach is well-suited for visual exploration and supports fast algorithms that efficiently handle large numbers of iterations. This efficiency arises from its ability to directly update the density heatmap matrix sequentially. For details, see [Two-Pass Approach](#two-pass-approach).
   
-- Quantitative: The histogram-based approach is ideal for generating a density matrix that accurately estimates the normalized density distribution in continuous space. However, it typically requires caching all data points in advance for precise binning and normalization, leading to significant memory usage. Sequential processing seems to be quite demanding.
+- Quantitative: The histogram-based approach is ideal for generating a density matrix that accurately estimates the normalized density distribution in continuous space. However, it usually requires caching all data points in advance to ensure accurate binning and normalization, which results in significant memory consumption. Sequential processing seems possible but quite challenging.
 
 #### Conclusions
 

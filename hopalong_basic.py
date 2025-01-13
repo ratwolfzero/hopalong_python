@@ -107,10 +107,13 @@ _ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (2, 2))
 
 
 # Plot Setup
-def setup_plot(ax, title, xlabel, ylabel):
-    ax.set_title(title)
-    ax.set_xlabel(xlabel)
-    ax.set_ylabel(ylabel)
+def setup_plot(ax, title=None, xlabel=None, ylabel=None):
+    if title:
+        ax.set_title(title)
+    if xlabel:
+        ax.set_xlabel(xlabel)
+    if ylabel:
+        ax.set_ylabel(ylabel)
 
 
 # Create colorbar
@@ -134,7 +137,7 @@ def render_trajectory_image(image, extents, params, color_map):
     setup_plot(ax, title, 'X (Cartesian)', 'Y (Cartesian)')
 
     colorbar(image, fig, ax, img)
-    
+
     plt.tight_layout()
     plt.show()
     #plt.pause(1)

@@ -107,10 +107,17 @@ _ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (2, 2))
 
 
 # Plot Setup
-def setup_plot(ax, title, xlabel, ylabel):
-    ax.set_title(title)
-    ax.set_xlabel(xlabel)
-    ax.set_ylabel(ylabel)
+def setup_plot(ax, title=None, xlabel=None, ylabel=None, zlabel=None, elev=None, azim=None):
+    if title:
+        ax.set_title(title)
+    if xlabel:
+        ax.set_xlabel(xlabel)
+    if ylabel:
+        ax.set_ylabel(ylabel)
+    if zlabel and hasattr(ax, 'set_zlabel'):  # Only set zlabel for 3D axes
+        ax.set_zlabel(zlabel)
+    if elev is not None and azim is not None and hasattr(ax, 'view_init'):  # Only set view for 3D axes
+        ax.view_init(elev=elev, azim=azim)
 
 
 # Create colorbar
@@ -134,11 +141,10 @@ def render_2d_image(image, extents, params, color_map):
     setup_plot(ax, title, 'X (Cartesian)', 'Y (Cartesian)')
 
     colorbar(image, fig, ax, img)
+    
     plt.tight_layout()
     plt.show()
-    #plt.pause(1)
-    #plt.close(fig)
-
+    
     
 # Render 3D
 def render_3d_image(image, extents, params, color_map):
@@ -149,14 +155,11 @@ def render_3d_image(image, extents, params, color_map):
     
     fig = plt.figure(figsize=(8, 8))
     ax = fig.add_subplot(111, projection='3d')
-    
     ax.contourf3D(x, y, z, levels=100, cmap=color_map)
 
     title = f'Hopalong Attractor - 3D Density (Z) Plot\nParams: a={params["a"]}, b={params["b"]}, c={params["c"]}, n={params["n"]:_}'
-    setup_plot(ax, title, 'X', 'Y')
+    setup_plot(ax, title=title, xlabel='X', ylabel='Y', zlabel='Z', elev=75, azim=-95)
 
-    ax.set_zlabel('Z')
-    ax.view_init(elev=75, azim=-95)
     plt.show()
     
 

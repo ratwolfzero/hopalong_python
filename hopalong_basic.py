@@ -134,6 +134,7 @@ def render_trajectory_image(image, extents, params, color_map):
     setup_plot(ax, title, 'X (Cartesian)', 'Y (Cartesian)')
 
     colorbar(image, fig, ax, img)
+    
     plt.tight_layout()
     plt.show()
     #plt.pause(1)

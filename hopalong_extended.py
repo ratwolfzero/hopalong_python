@@ -141,32 +141,43 @@ def calculate_hit_metrics(img):
     return hit_metrics
 
 
+def setup_plot(ax, title=None, xlabel=None, ylabel=None):
+    if title:
+        ax.set_title(title)
+    if xlabel:
+        ax.set_xlabel(xlabel)
+    if ylabel:
+        ax.set_ylabel(ylabel)
+
+
 def render_trajectory_image(ax, img, extents, params, color_map):
-    ax.imshow(img, origin='lower', cmap=color_map, extent=extents,interpolation='none')
-    ax.set_title(
-        'Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, n={n:_}'.format(**params))
-    ax.set_xlabel('X (Cartesian)')
-    ax.set_ylabel('Y (Cartesian)')
+    ax.imshow(img, origin='lower', cmap=color_map, extent=extents, interpolation='none')
+
+    title = 'Hopalong Attractor@ratwolf@2024\nParams: a={a}, b={b}, c={c}, n={n:_}'.format(**params)
+    setup_plot(ax, title=title, xlabel='X (Cartesian)', ylabel='Y (Cartesian)')
 
 
 def plot_hit_metrics(ax, hit_metrics, scale='log'):
-    ax.plot(hit_metrics['hit'], hit_metrics['count'], 'o-', color='navy', markersize=1, linewidth=0.6)
-    ax.set_xlabel('# of hits (n)')
-    ax.set_ylabel('# of pixels hit n-times')
-
+    ax.plot(
+        hit_metrics['hit'], hit_metrics['count'],
+        'o-', color='navy', markersize=1, linewidth=0.6
+    )
+    
     title_text = (
-        f'Distribution of pixel hit count. \n'
-        f'{hit_metrics['hit_pixel']} pixels out of {hit_metrics['img_points']} image pixels = {hit_metrics['hit_ratio']}% have been hit at least one time. \n'
-        f'The highest number of pixels with the same number of hits is {np.max(hit_metrics['count'])} with {hit_metrics['hit_for_max_count']} hits. \n'
-        f'The highest number of hits is {np.max(hit_metrics['hit'])} with {hit_metrics['count_for_max_hit']} pixels hit')
-
+        f'Distribution of pixel hit count.\n'
+        f'{hit_metrics["hit_pixel"]} pixels out of {hit_metrics["img_points"]} image pixels = {hit_metrics["hit_ratio"]}% have been hit at least one time.\n'
+        f'The highest number of pixels with the same number of hits is {np.max(hit_metrics["count"])} with {hit_metrics["hit_for_max_count"]} hits.\n'
+        f'The highest number of hits is {np.max(hit_metrics["hit"])} with {hit_metrics["count_for_max_hit"]} pixels hit.'
+    )
+    
+    setup_plot(ax, title=title_text, xlabel='# of hits (n)', ylabel='# of pixels hit n-times')
+    
     ax.set_title(title_text, fontsize=10)
     ax.set_xscale(scale)
     ax.set_yscale(scale)
-    ax.set_xlim(left=0.9)
     ax.set_ylim(bottom=0.9)
-    ax.set_facecolor('lightgrey')
-    ax.grid(True, which='both')
+    ax.set_facecolor('lightgrey')  
+    ax.grid(True, which='both')  
 
 
 def visualize_trajectory_image_and_hit_metrics(img, extents, params, color_map, hit_metrics):

@@ -534,12 +534,12 @@ While the two-pass approach is the primary solution, it’s valuable to consider
 
 ### One-Pass Approach with Full Trajectory Caching*
 
-Description: This method computes all trajectory points in a single pass and stores them in memory, enabling efficient calculation of trajectory extents and mapping to image pixels.  
+Description:
+This method computes trajectory points in a single pass and stores them in memory. Subsequent steps use vectorized operations to calculate trajectory extents and efficiently map points to image pixels, optimizing each task for performance.
 
-- Advantages: Leveraging NumPy’s vectorized operations, this approach efficiently computes and maps points in a single pass, potentially increasing performance.
+- Advantages: Vectorized operations enable efficient mapping and extent calculation. Separating these steps allows per-point tasks, like pixel population, to benefit from further optimization using Numba, ensuring both clarity and high performance.
   
-- Disadvantages:  
-Full caching requires substantial memory allocation, especially for high iteration counts. This may lead to performance issues from system memory swapping or even memory overflow.
+- Disadvantages: Full caching requires substantial memory allocation, especially for high iteration counts. This may lead to performance issues from system memory swapping or even memory overflow.
 
 ### One-Pass Approach with Limited Memory Usage (Chunked or No Caching)*
 

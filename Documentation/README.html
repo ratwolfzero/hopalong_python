@@ -753,14 +753,14 @@ _ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (2, 2))
 <h2 id="alternative-solutions">Alternative Solutions</h2>
 <p>While the two-pass approach is the primary solution, it’s valuable to consider alternative one-pass methods, each with unique trade-offs in performance, memory usage, and complexity. Here’s an overview:</p>
 <h3 id="one-pass-approach-with-full-trajectory-caching">One-Pass Approach with Full Trajectory Caching*</h3>
-<p>Description: This method computes all trajectory points in a single pass and stores them in memory, enabling efficient calculation of trajectory extents and mapping to image pixels.</p>
+<p>Description:
+This method computes trajectory points in a single pass and stores them in memory. Subsequent steps use vectorized operations to calculate trajectory extents and efficiently map points to image pixels, optimizing each task for performance.</p>
 <ul>
 <li>
-<p>Advantages: Leveraging NumPy’s vectorized operations, this approach efficiently computes and maps points in a single pass, potentially increasing performance.</p>
+<p>Advantages: Vectorized operations enable efficient mapping and extent calculation. Separating these steps allows per-point tasks, like pixel population, to benefit from further optimization using Numba, ensuring both clarity and high performance.</p>
 </li>
 <li>
-<p>Disadvantages:<br>
-Full caching requires substantial memory allocation, especially for high iteration counts. This may lead to performance issues from system memory swapping or even memory overflow.</p>
+<p>Disadvantages: Full caching requires substantial memory allocation, especially for high iteration counts. This may lead to performance issues from system memory swapping or even memory overflow.</p>
 </li>
 </ul>
 <h3 id="one-pass-approach-with-limited-memory-usage-chunked-or-no-caching">One-Pass Approach with Limited Memory Usage (Chunked or No Caching)*</h3>

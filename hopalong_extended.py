@@ -43,13 +43,13 @@ def get_attractor_parameters():
 @njit #njit is an alias for nopython=True
 def compute_trajectory_extents(a, b, c, n):
     # Dynamically compute and track the minimum and maximum extents of the trajectory over 'n' iterations.
-    x = np.float64(0.0)
-    y = np.float64(0.0)
+    x = 0.0
+    y = 0.0
 
-    min_x = np.inf  # ensure that the initial minimum is determined correctly
-    max_x = -np.inf # ensure that the initial maximum is determined correctly
-    min_y = np.inf
-    max_y = -np.inf
+    min_x = float('inf')  # ensure that the initial minimum is determined correctly
+    max_x = float('-inf') # ensure that the initial maximum is determined correctly
+    min_y = float('inf')
+    max_y = float('-inf')
 
     for _ in range(n):
     # selective min/max update using direct comparisons avoiding min/max function
@@ -62,11 +62,8 @@ def compute_trajectory_extents(a, b, c, n):
         if y > max_y:
             max_y = y
         # signum function respecting the behavior of floating point numbers according to IEEE 754 (signed zero)
-        xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
-        yy = a-x
-        x = xx
-        y = yy
-
+        x, y = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a-x
+           
     return min_x, max_x, min_y, max_y
 
 # Dummy call to ensure the function is pre-compiled by the JIT compiler before it's called by the interpreter.
@@ -83,8 +80,8 @@ def compute_trajectory_and_image(a, b, c, n, extents, image_size):
     scale_x = (image_size[1] - 1) / (max_x - min_x) # column
     scale_y = (image_size[0] - 1) / (max_y - min_y) # row
     
-    x = np.float64(0.0)
-    y = np.float64(0.0)
+    x = 0.0
+    y = 0.0
     
     for _ in range(n):
         # Map trajectory points to image pixel coordinates, rounding to nearest integer
@@ -95,11 +92,8 @@ def compute_trajectory_and_image(a, b, c, n, extents, image_size):
         if 0 <= px < image_size[1] and 0 <= py < image_size[0]:
         # populate the image and calculate trajectory "on the fly"    
             image[py, px] += 1  # Respecting row/column convention, accumulate # of hits
-        xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
-        yy = a-x
-        x = xx
-        y = yy
-
+        x, y = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a-x
+        
     return image
 
 # Dummy call to ensure the function is pre-compiled by the JIT compiler before it's called by the interpreter.

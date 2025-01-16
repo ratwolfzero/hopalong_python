@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from numba import njit
 from math import copysign, sqrt, fabs
 
+
 def validate_input(prompt, input_type=float, check_positive_non_zero=False, min_value=None):
     # Prompt for and return user input validated by type and specific checks.
     while True:
@@ -86,11 +87,13 @@ def compute_trajectory_image(a, b, c, n, extents, image_size):
 
     return image
 
+
 # Normalize the density matrix
 def normalize(matrix):
     min_val = np.min(matrix)
     max_val = np.max(matrix)
     return (matrix - min_val) / (max_val - min_val)
+
 
 # Compute Rényi dimension
 def compute_renyi_dimension(image, q_values):
@@ -109,6 +112,7 @@ def compute_renyi_dimension(image, q_values):
             renyi_dimension = (1 / (1 - q)) * np.log(renyi_sum)
         results[q] = renyi_dimension
     return results
+
 
 # Plot results
 def plot_density_and_renyi(image, renyi_results, q_values, params, extents):
@@ -130,6 +134,7 @@ def plot_density_and_renyi(image, renyi_results, q_values, params, extents):
 
     plt.tight_layout()
     plt.show()
+
 
 # Main function
 def main(image_size=(500, 500), q_values=None):

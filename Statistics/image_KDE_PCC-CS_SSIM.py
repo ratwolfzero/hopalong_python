@@ -70,7 +70,6 @@ def compute_trajectory_extents(a, b, c, n):
 _ = compute_trajectory_extents(1.0, 1.0, 1.0, 2)
 
 
-
 @njit
 def compute_trajectory_image(a, b, c, n, extents, image_size):
     image = np.zeros(image_size, dtype=np.uint64)

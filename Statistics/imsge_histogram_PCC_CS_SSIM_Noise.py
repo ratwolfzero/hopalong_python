@@ -102,11 +102,10 @@ def create_histogram_density_matrix(trajectory, image_size):
     hist_density, x_edges, y_edges = np.histogram2d(
         trajectory[:, 0], trajectory[:, 1], bins=image_size, density=True)
     return hist_density, x_edges, y_edges
+    
 
-
-# Add noise to a matrix
 def add_noise(matrix, noise_type='gaussian', noise_level=0.1):
-    noisy_matrix = matrix.copy()
+    noisy_matrix = matrix.astype(np.float64)  # Convert matrix to float64 for compatibility
     if noise_type == 'gaussian':
         gaussian_noise = np.random.normal(loc=0, scale=noise_level * np.max(matrix), size=matrix.shape)
         noisy_matrix += gaussian_noise
@@ -123,7 +122,7 @@ def add_noise(matrix, noise_type='gaussian', noise_level=0.1):
     elif noise_type == 'speckle':
         speckle_noise = np.random.normal(loc=1, scale=noise_level, size=matrix.shape)
         noisy_matrix *= speckle_noise
-    return np.clip(noisy_matrix, 0, None)
+    return np.clip(noisy_matrix, 0, None).astype(matrix.dtype)  # Convert back to original dtype if needed
 
 
 # Normalize matrices to a common range (0-1)
@@ -211,10 +210,12 @@ def main(image_size=(1000, 1000), color_map='hot', noise_type='gaussian', noise_
         image, trajectory = compute_trajectory_image(
             params['a'], params['b'], params['c'], params['n'], extents, image_size
         )
-        hist_density, x_edges, y_edges = create_histogram_density_matrix(trajectory, image_size)
 
         if noise_type:
-            hist_density = add_noise(hist_density, noise_type=noise_type, noise_level=noise_level)
+            image = add_noise(image, noise_type=noise_type, noise_level=noise_level)
+
+        hist_density, x_edges, y_edges = create_histogram_density_matrix(trajectory, image_size)
+
 
         stats = compute_statistics(image, hist_density)
 

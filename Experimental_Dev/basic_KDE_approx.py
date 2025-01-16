@@ -8,62 +8,49 @@ import resource
 
 
 def validate_input(prompt, input_type=float, check_positive_non_zero=False, min_value=None):
-    # Prompt for and return user input validated by type and positive/non-zero checks.
+    # Prompt for and return user input validated by type and specific checks.
     while True:
-        user_input = input(prompt)
         try:
-            # Parse input as float first to handle scientific notation
-            value = float(user_input)
-            
-            # Ensure the input is an integer, if expected
+            value = float(input(prompt))
             if input_type == int:
                 if not value.is_integer():
-                    print('Invalid input. Please enter an integer.')
-                    continue
+                    raise ValueError('Please enter an integer.')
                 value = int(value)
-
-            # Check if input is a positive non-zero value
             if check_positive_non_zero and value <= 0:
-                print('Invalid input. The value must be a positive non-zero number.')
-                continue
-
-            # Then, check minimum value
+                raise ValueError('The value must be positive and non-zero.')
             if min_value is not None and value < min_value:
-                print(f'Invalid input. The value should be at least {min_value}.')
-                continue
-
+                raise ValueError(f'The value must be at least {min_value}.')
             return value
-        except ValueError:
-            print(f'Invalid input. Please enter a valid {input_type.__name__} value.')
-
+        except ValueError as e:
+            print(f'Invalid input. Please enter a valid {input_type.__name__} value. ({e})')
+            
+            
+def validate_attractor_parameters(a, b, c):
+    while a == 0 and c == 0:
+        print('Invalid combination of parameters: a=0, b=0, c=0 or a=0, b=any, c=0')
+        c = validate_input('Enter a float value for "c": ')
+    return a, b, c
+            
 
 def get_attractor_parameters():
-    a = validate_input('Enter a float value for "a": ', float)
-    b = validate_input('Enter a float value for "b": ', float)
-    while True:
-        c = validate_input('Enter a float value for "c": ', float)
-        if (a == 0 and b == 0 and c == 0) or (a == 0 and c == 0):
-            print('Invalid combination of parameters. The following combinations are not allowed:\n'
-                  '- a = 0, b = 0, c = 0\n'
-                  '- a = 0, b = any value, c = 0\n'
-                  'Please enter different values.')
-        else:
-            break
-    n = validate_input('Enter a positive integer value > 1000 for "n": ', int, check_positive_non_zero=True, min_value=1000)
-    
+    a = validate_input('Enter a float value for "a": ')
+    b = validate_input('Enter a float value for "b": ')
+    c = validate_input('Enter a float value for "c": ')
+    a, b, c = validate_attractor_parameters(a, b, c)
+    n = validate_input('Enter a positive integer value > 1000 for "n": ', int, True, 1000)
     return {'a': a, 'b': b, 'c': c, 'n': n}
 
 
 @njit #njit is an alias for nopython=True
 def compute_trajectory_extents(a, b, c, n):
     # Dynamically compute and track the minimum and maximum extents of the trajectory over 'n' iterations.
-    x = np.float64(0.0)
-    y = np.float64(0.0)
+    x = 0.0
+    y = 0.0
 
-    min_x = np.inf  # ensure that the initial minimum is determined correctly
-    max_x = -np.inf # ensure that the initial maximum is determined correctly
-    min_y = np.inf
-    max_y = -np.inf
+    min_x = float('inf')  # ensure that the initial minimum is determined correctly
+    max_x = float('-inf') # ensure that the initial maximum is determined correctly
+    min_y = float('inf')
+    max_y = float('-inf')
 
     for _ in range(n):
     # selective min/max update using direct comparisons avoiding min/max function
@@ -76,15 +63,13 @@ def compute_trajectory_extents(a, b, c, n):
         if y > max_y:
             max_y = y
         # signum function respecting the behavior of floating point numbers according to IEEE 754 (signed zero)
-        xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
-        yy = a-x
-        x = xx
-        y = yy
-        
+        x, y = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a-x
+           
     return min_x, max_x, min_y, max_y
 
 # Dummy call to ensure the function is pre-compiled by the JIT compiler before it's called by the interpreter.
 _ = compute_trajectory_extents(1.0, 1.0, 1.0, 2)
+
 
 
 @njit
@@ -97,8 +82,8 @@ def compute_trajectory_and_image(a, b, c, n, extents, image_size):
     scale_x = (image_size[1] - 1) / (max_x - min_x) # column
     scale_y = (image_size[0] - 1) / (max_y - min_y) # row
     
-    x = np.float64(0.0)
-    y = np.float64(0.0)
+    x = 0.0
+    y = 0.0
     
     for _ in range(n):
         # Map trajectory points to image pixel coordinates, rounding to nearest integer
@@ -109,10 +94,7 @@ def compute_trajectory_and_image(a, b, c, n, extents, image_size):
         if 0 <= px < image_size[1] and 0 <= py < image_size[0]:
         # populate the image and calculate trajectory "on the fly"    
             image[py, px] += 1  # Respecting row/column convention, accumulate # of hits
-        xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
-        yy = a-x
-        x = xx
-        y = yy
+        x, y = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a-x
         
     return image
 

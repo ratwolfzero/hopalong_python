@@ -6,49 +6,68 @@ from math import copysign, sqrt, fabs
 
 
 def validate_input(prompt, input_type=float, check_positive_non_zero=False, min_value=None):
+    # Prompt for and return user input validated by type and specific checks.
     while True:
-        user_input = input(prompt)
         try:
-            value = float(user_input)
-            if input_type == int and not value.is_integer():
-                print('Invalid input. Please enter an integer.')
-                continue
-            value = int(value) if input_type == int else value
+            value = float(input(prompt))
+            if input_type == int:
+                if not value.is_integer():
+                    raise ValueError('Please enter an integer.')
+                value = int(value)
             if check_positive_non_zero and value <= 0:
-                print('Invalid input. Please enter a positive non-zero number.')
-                continue
+                raise ValueError('The value must be positive and non-zero.')
             if min_value is not None and value < min_value:
-                print(f'Invalid input. The value should be at least {min_value}.')
-                continue
+                raise ValueError(f'The value must be at least {min_value}.')
             return value
-        except ValueError:
-            print(f'Invalid input. Please enter a valid {input_type.__name__} value.')
+        except ValueError as e:
+            print(f'Invalid input. Please enter a valid {input_type.__name__} value. ({e})')
+            
+            
+def validate_attractor_parameters(a, b, c):
+    while a == 0 and c == 0:
+        print('Invalid combination of parameters: a=0, b=0, c=0 or a=0, b=any, c=0')
+        c = validate_input('Enter a float value for "c": ')
+    return a, b, c
+            
 
 def get_attractor_parameters():
-    a = validate_input('Enter a float value for "a": ', float)
-    b = validate_input('Enter a float value for "b": ', float)
-    while True:
-        c = validate_input('Enter a float value for "c": ', float)
-        if (a == 0 and b == 0 and c == 0) or (a == 0 and c == 0):
-            print('Invalid combination of parameters. Please re-enter.')
-        else:
-            break
-    n = validate_input('Enter a positive integer value > 1000 for "n": ', int, check_positive_non_zero=True, min_value=1000)
+    a = validate_input('Enter a float value for "a": ')
+    b = validate_input('Enter a float value for "b": ')
+    c = validate_input('Enter a float value for "c": ')
+    a, b, c = validate_attractor_parameters(a, b, c)
+    n = validate_input('Enter a positive integer value > 1000 for "n": ', int, True, 1000)
     return {'a': a, 'b': b, 'c': c, 'n': n}
-    
 
-# Compute trajectory extents
-@njit
+
+@njit #njit is an alias for nopython=True
 def compute_trajectory_extents(a, b, c, n):
-    x, y = np.float64(0.0), np.float64(0.0)
-    min_x, max_x, min_y, max_y = np.inf, -np.inf, np.inf, -np.inf
+    # Dynamically compute and track the minimum and maximum extents of the trajectory over 'n' iterations.
+    x = 0.0
+    y = 0.0
+
+    min_x = float('inf')  # ensure that the initial minimum is determined correctly
+    max_x = float('-inf') # ensure that the initial maximum is determined correctly
+    min_y = float('inf')
+    max_y = float('-inf')
+
     for _ in range(n):
-        min_x, max_x = min(min_x, x), max(max_x, x)
-        min_y, max_y = min(min_y, y), max(max_y, y)
-        xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
-        yy = a - x
-        x, y = xx, yy
+    # selective min/max update using direct comparisons avoiding min/max function
+        if x < min_x:
+            min_x = x
+        if x > max_x:
+            max_x = x
+        if y < min_y:
+            min_y = y
+        if y > max_y:
+            max_y = y
+        # signum function respecting the behavior of floating point numbers according to IEEE 754 (signed zero)
+        x, y = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a-x
+           
     return min_x, max_x, min_y, max_y
+
+# Dummy call to ensure the function is pre-compiled by the JIT compiler before it's called by the interpreter.
+_ = compute_trajectory_extents(1.0, 1.0, 1.0, 2)
+
     
 
 # Compute image and trajectory
@@ -61,7 +80,8 @@ def compute_trajectory_image(a, b, c, n, extents, image_size):
     scale_x = (image_size[1] - 1) / (max_x - min_x)
     scale_y = (image_size[0] - 1) / (max_y - min_y)
 
-    x, y = np.float64(0.0), np.float64(0.0)
+    x = 0.0
+    y = 0.0
 
     for i in range(n):
         # Store trajectory point
@@ -75,10 +95,7 @@ def compute_trajectory_image(a, b, c, n, extents, image_size):
         if 0 <= px < image_size[1] and 0 <= py < image_size[0]:
         # populate the image and calculate trajectory "on the fly"    
             image[py, px] += 1  # Respecting row/column convention, accumulate # of hits
-        xx = y - copysign(1.0, x) * sqrt(fabs(b * x - c))
-        yy = a-x
-        x = xx
-        y = yy
+        x, y = y - copysign(1.0, x) * sqrt(fabs(b * x - c)), a-x
         
     return image, trajectory
     

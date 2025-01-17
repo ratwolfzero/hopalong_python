@@ -539,7 +539,7 @@ Description: These approaches aim to reduce memory usage by either processing th
 
 - Advantages: Significantly reduces memory usage.
   
-- Disadvantages:
+- Disadvantages:  
   Data Loss and Inaccuracy: Previously computed floating-point values are irrecoverably mapped to integer pixel coordinates, making it impossible to retrieve the exact values for remapping. This leads to data loss and inconsistencies.
 
 *This also applies analogously to any versions that only process floating point values.

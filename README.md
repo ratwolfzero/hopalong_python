@@ -535,15 +535,12 @@ This method computes trajectory points in a single pass and stores them in memor
 
 ### One-Pass Approach with Limited Memory Usage (Chunked or No Caching)*
 
-Description: These approaches attempt to reduce memory consumption by either processing the trajectory in chunks or not caching trajectory points at all. However, since the full trajectory extents are unknown at the outset, each variation faces the same limitation: pixel mappings require recalculating as the trajectory's range in continuous space will generally evolve, except in edge cases.
+Description: These approaches aim to reduce memory usage by either processing the trajectory in chunks (temporarily cached) or directly computing and mapping points to pixels without storing them. However, without knowing the full trajectory extents upfront, previously mapped pixels may require recalculation as the trajectory range in continuous space generally evolves, except in edge cases.
 
-Chunked: The trajectory is divided into manageable chunks, each cached temporarily.  
-No Caching: Points are computed and mapped to pixels directly without storing them.  
-
-- Advantages: Limits memory usage.
-
-- Disadvantages: Both approaches become impractical due to the following major limitations:
-Data Loss and Inaccuracy: As previously computed floating-point values are irrecoverably mapped to integer pixel coordinates, it becomes impossible to retrieve the exact values for remapping, leading to data loss and inconsistencies.  
+- Advantages: Significantly reduces memory usage.
+  
+- Disadvantages:
+  Data Loss and Inaccuracy: Previously computed floating-point values are irrecoverably mapped to integer pixel coordinates, making it impossible to retrieve the exact values for remapping. This leads to data loss and inconsistencies.
 
 *This also applies analogously to any versions that only process floating point values.
 

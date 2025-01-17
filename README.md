@@ -549,7 +549,7 @@ Data Loss and Inaccuracy: As previously computed floating-point values are irrec
 
 ### Potentially Other, More Sophisticated Solutions
 
-No other one-pass methods offering significant advantages have been identified at this time. More sophisticated solutions would also contradict the minimum complexity design approach unless a significant performance improvement in calculations with a high number of iterations makes them worth considering.
+No other feasible alternative one-pass methods offering substantial advantages have been identified at this time.
 
 ### Recap
 

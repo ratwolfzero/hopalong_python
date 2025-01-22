@@ -52,7 +52,7 @@
 ### Historical Context
 
 The "*Hopalong*"<top>*<top> attractor, authored by Barry Martin of Aston University in Birmingham, England [[2](#references)],  
-was popularized by A.K. Dewdney in the September 1986 issue of *Scientific American*. In Germany, it gained further recognition through a translation titled "*HÜPFER*" in *Spektrum der Wissenschaft* [[3](#references)].  
+was popularized by A.K. Dewdney in the September 1986 issue of *Scientific American*. It gained further notoriety in Germany through an algorithm called ***“HÜPFER”*** in ***Spektrum der Wissenschaft*** [[3](#references)].  
 <sub>*Nicknamed by A.K. Dewdney.</sub>  
 
 ### The Hopalong Attractor Functions

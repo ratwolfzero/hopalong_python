@@ -1,10 +1,10 @@
 <!--markdownlint-disable MD033 MD041-->
 
-# Calculate & Visualize the Hopalong Attractor with Python
+# Pixel-Based Density Approximation: Hopalong Attractor (Python)
 
 ![Header Image](./Documentation/Figure_0.png)
   
-- [Calculate \& Visualize the Hopalong Attractor with Python](#calculate--visualize-the-hopalong-attractor-with-python)
+- [Pixel-Based Density Approximation: Hopalong Attractor (Python)](#pixel-based-density-approximation-hopalong-attractor-python)
   - [Abstract](#abstract)
     - [Historical Context](#historical-context)
     - [The Hopalong Attractor Functions](#the-hopalong-attractor-functions)

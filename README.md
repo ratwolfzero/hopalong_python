@@ -108,7 +108,7 @@ Just-in-time (JIT) compilation is applied and supported by a low-complexity code
 
 For details regarding two-pass strategy, see [Two-Pass Approach](#two-pass-approach)
 
-[Back to Table of Contents](Pixel-Based Density Approximation: Hopalong Attractor (Python))
+[Back to Table of Contents](#pixel-based-density-approximation-hopalong-attractor-python)
 
 ---
 
@@ -162,7 +162,7 @@ Otherwise, please comment out the corresponding code fragments in the import sec
             #calculate_and_display_resource_usage(start_time, end_time)
         ...
 
-[Back to Table of Contents](Pixel-Based Density Approximation: Hopalong Attractor (Python))
+[Back to Table of Contents](#pixel-based-density-approximation-hopalong-attractor-python)
 
 ---
 
@@ -202,7 +202,7 @@ The programs generate a visual representation of the attractor trajectory as a d
 **Extended Version**
 ![Extended Version](./Documentation/Figure_4.png)
 
-[Back to Table of Contents](Pixel-Based Density Approximation: Hopalong Attractor (Python))
+[Back to Table of Contents](#pixel-based-density-approximation-hopalong-attractor-python)
 
 ---
 
@@ -218,7 +218,7 @@ The programs generate a visual representation of the attractor trajectory as a d
 
 Examples of outputs can be found in the "Usage" section above.
 
-[Back to Table of Contents](Pixel-Based Density Approximation: Hopalong Attractor (Python))
+[Back to Table of Contents](#pixel-based-density-approximation-hopalong-attractor-python)
 
 ---
 
@@ -319,7 +319,7 @@ The images were rendered as follows:
 | ------------------- | ------------- | ------ | ------ | ------ |
 | a = 5, b = 5, c = 0 | n = 1,000,000 | 1.0000 | 1.0000 | 1.0000 |
 
-[Back to Table of Contents](Pixel-Based Density Approximation: Hopalong Attractor (Python))
+[Back to Table of Contents](#pixel-based-density-approximation-hopalong-attractor-python)
 
 ---
 
@@ -406,7 +406,7 @@ For example:
 
 This scenario is an ideal use case for the features of the extended program variant, such as pixel hit count statistics, to analyze high-density cycle behavior.
 
-[Back to Table of Contents](Pixel-Based Density Approximation: Hopalong Attractor (Python))
+[Back to Table of Contents](#pixel-based-density-approximation-hopalong-attractor-python)
 
 ---
 
@@ -420,7 +420,7 @@ Note: Since user interactions with the plot window, such as zooming, panning, or
         plt.pause(1)
         plt.close(fig)
 
-[Back to Table of Contents](Pixel-Based Density Approximation: Hopalong Attractor (Python))
+[Back to Table of Contents](#pixel-based-density-approximation-hopalong-attractor-python)
 
 ---
 
@@ -438,7 +438,7 @@ Dummy calls are preliminary invocations of JIT-compiled functions that prompt th
 
 The parallel loop function `prange` from the Numba library is not suitable for cross-iteration dependencies, such as those encountered when iterating recursive functions. While it is possible to restructure the second pass to use prange for populating the image array, this could introduce race conditions—situations where multiple threads access and modify shared data simultaneously, leading to inconsistent or unpredictable results. Therefore, this approach was not implemented.
 
-[Back to Table of Contents](Pixel-Based Density Approximation: Hopalong Attractor (Python))
+[Back to Table of Contents](#pixel-based-density-approximation-hopalong-attractor-python)
 
 ### Two-Pass Approach
 
@@ -551,7 +551,7 @@ No other feasible alternative one-pass methods offering substantial advantages h
 
 Overall, the two-pass approach offers an excellent balance of speed, efficiency, and simplicity, making it ideal for attractor calculations that involve large number of iterations. While the trajectory points must be computed during both passes, this method successfully avoids the drawbacks associated with alternative solutions.
 
-[Back to Table of Contents](Pixel-Based Density Approximation: Hopalong Attractor (Python))
+[Back to Table of Contents](#pixel-based-density-approximation-hopalong-attractor-python)
 
 ---
 
@@ -613,7 +613,7 @@ ISBN-10: 3922508502, ISBN-13: 978-3922508502.
 6. [Python Time Module](https://docs.python.org/3/library/time.html#module-time): Time access and conversions.
 7. [Python Resource Module](https://docs.python.org/3/library/resource.html): Interface for getting and setting resource limits.
 
-[Back to Table of Contents](Pixel-Based Density Approximation: Hopalong Attractor (Python))
+[Back to Table of Contents](#pixel-based-density-approximation-hopalong-attractor-python)
 
 ## Mathematical Appendix
 

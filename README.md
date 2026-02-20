@@ -1,6 +1,6 @@
 <!--markdownlint-disable MD033 MD041-->
 
-# Hopalong Attractor; Pixel-Based Density Approximation
+# Hopalong Attractor: Pixel-Based Density Approximation
 
 ![Header Image](./Documentation/Figure_0.png)
   

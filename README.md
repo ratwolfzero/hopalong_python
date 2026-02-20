@@ -1,6 +1,6 @@
 <!--markdownlint-disable MD033 MD041-->
 
-# Hopalong Attractor: Pixel-Based Density Approximation
+# Pixel-Based Density Approximation: Hopalong Attractor (Python)
 
 ![Header Image](./Documentation/Figure_0.png)
   
@@ -108,7 +108,7 @@ Just-in-time (JIT) compilation is applied and supported by a low-complexity code
 
 For details regarding two-pass strategy, see [Two-Pass Approach](#two-pass-approach)
 
-[Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
+[Back to Table of Contents](Pixel-Based Density Approximation: Hopalong Attractor (Python))
 
 ---
 
@@ -162,7 +162,7 @@ Otherwise, please comment out the corresponding code fragments in the import sec
             #calculate_and_display_resource_usage(start_time, end_time)
         ...
 
-[Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
+[Back to Table of Contents](Pixel-Based Density Approximation: Hopalong Attractor (Python))
 
 ---
 
@@ -202,7 +202,7 @@ The programs generate a visual representation of the attractor trajectory as a d
 **Extended Version**
 ![Extended Version](./Documentation/Figure_4.png)
 
-[Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
+[Back to Table of Contents](Pixel-Based Density Approximation: Hopalong Attractor (Python))
 
 ---
 
@@ -218,7 +218,7 @@ The programs generate a visual representation of the attractor trajectory as a d
 
 Examples of outputs can be found in the "Usage" section above.
 
-[Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
+[Back to Table of Contents](Pixel-Based Density Approximation: Hopalong Attractor (Python))
 
 ---
 
@@ -296,30 +296,30 @@ The images were rendered as follows:
 
 **Matrix Similarity with Increasing Iterations**  
 
-| Parameters                | Iterations       | PCC      | CS       | SSIM    |
-|---------------------------|------------------|----------|----------|---------|
-| a = -2, b = -0.33, c = 0.01 | n = 10,000      | 0.6217   | 0.6246  | 0.9462 |
-| a = -2, b = -0.33, c = 0.01 | n = 100,000     | 0.8453   | 0.8540  | 0.9015  |
-| a = -2, b = -0.33, c = 0.01 | n = 1,000,000   | 0.9204   | 0.9342  | 0.8853  |
-| a = -2, b = -0.33, c = 0.01 | n = 200,000,000 | 0.9712   | 0.9766  | 0.9520  |
+| Parameters                  | Iterations      | PCC    | CS     | SSIM   |
+| --------------------------- | --------------- | ------ | ------ | ------ |
+| a = -2, b = -0.33, c = 0.01 | n = 10,000      | 0.6217 | 0.6246 | 0.9462 |
+| a = -2, b = -0.33, c = 0.01 | n = 100,000     | 0.8453 | 0.8540 | 0.9015 |
+| a = -2, b = -0.33, c = 0.01 | n = 1,000,000   | 0.9204 | 0.9342 | 0.8853 |
+| a = -2, b = -0.33, c = 0.01 | n = 200,000,000 | 0.9712 | 0.9766 | 0.9520 |
 
 **Matrix Similarity Across Parameter Sets**  
 
-| Parameters                | Iterations       | PCC      | CS       | SSIM    |
-|---------------------------|------------------|----------|----------|---------|
-| a = -2, b = -0.33, c = 0.01 | n = 200,000,000 | 0.9712   | 0.9766  | 0.9520  |
-| a = -1.7, b = -0.3, c = 0.7 | n = 200,000,000 | 0.9576   | 0.9717  | 0.9293  |
-| a = 0.6, b = 0.5, c = 0     | n = 200,000,000 | 0.9924   | 0.9935  | 0.9789  |
-| a = 0.7, b = 0.4, c = 0     | n = 200,000,000 | 0.9914   | 0.9944  | 0.9280  |
-| a = -55, b = -1, c = -42    | n = 200,000,000 | 0.9780   | 0.9809  | 0.9877  |
+| Parameters                  | Iterations      | PCC    | CS     | SSIM   |
+| --------------------------- | --------------- | ------ | ------ | ------ |
+| a = -2, b = -0.33, c = 0.01 | n = 200,000,000 | 0.9712 | 0.9766 | 0.9520 |
+| a = -1.7, b = -0.3, c = 0.7 | n = 200,000,000 | 0.9576 | 0.9717 | 0.9293 |
+| a = 0.6, b = 0.5, c = 0     | n = 200,000,000 | 0.9924 | 0.9935 | 0.9789 |
+| a = 0.7, b = 0.4, c = 0     | n = 200,000,000 | 0.9914 | 0.9944 | 0.9280 |
+| a = -55, b = -1, c = -42    | n = 200,000,000 | 0.9780 | 0.9809 | 0.9877 |
 
 **Matrix Similarity with Periodic Orbit: A 3-Cycle Example** --> [Special Constellations and Edge Cases](#special-constellations-and-edge-cases-of-the-attractor)
 
-| Parameters                | Iterations       | PCC      | CS       | SSIM    |
-|---------------------------|------------------|----------|----------|---------|
-| a = 5, b = 5, c = 0       | n = 1,000,000    | 1.0000   | 1.0000   | 1.0000  |
+| Parameters          | Iterations    | PCC    | CS     | SSIM   |
+| ------------------- | ------------- | ------ | ------ | ------ |
+| a = 5, b = 5, c = 0 | n = 1,000,000 | 1.0000 | 1.0000 | 1.0000 |
 
-[Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
+[Back to Table of Contents](Pixel-Based Density Approximation: Hopalong Attractor (Python))
 
 ---
 
@@ -406,7 +406,7 @@ For example:
 
 This scenario is an ideal use case for the features of the extended program variant, such as pixel hit count statistics, to analyze high-density cycle behavior.
 
-[Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
+[Back to Table of Contents](Pixel-Based Density Approximation: Hopalong Attractor (Python))
 
 ---
 
@@ -420,7 +420,7 @@ Note: Since user interactions with the plot window, such as zooming, panning, or
         plt.pause(1)
         plt.close(fig)
 
-[Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
+[Back to Table of Contents](Pixel-Based Density Approximation: Hopalong Attractor (Python))
 
 ---
 
@@ -438,7 +438,7 @@ Dummy calls are preliminary invocations of JIT-compiled functions that prompt th
 
 The parallel loop function `prange` from the Numba library is not suitable for cross-iteration dependencies, such as those encountered when iterating recursive functions. While it is possible to restructure the second pass to use prange for populating the image array, this could introduce race conditions—situations where multiple threads access and modify shared data simultaneously, leading to inconsistent or unpredictable results. Therefore, this approach was not implemented.
 
-[Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
+[Back to Table of Contents](Pixel-Based Density Approximation: Hopalong Attractor (Python))
 
 ### Two-Pass Approach
 
@@ -515,7 +515,7 @@ Trade-Off: The trajectory points are computed twice — once for extent calculat
     # Dummy call to ensure the function is pre-compiled by the JIT compiler before it's called by the interpreter.
     _ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (2, 2))
 
-[Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
+[Back to Table of Contents](Pixel-Based Density Approximation: Hopalong Attractor (Python))
 
 ---
 
@@ -551,13 +551,13 @@ No other feasible alternative one-pass methods offering substantial advantages h
 
 Overall, the two-pass approach offers an excellent balance of speed, efficiency, and simplicity, making it ideal for attractor calculations that involve large number of iterations. While the trajectory points must be computed during both passes, this method successfully avoids the drawbacks associated with alternative solutions.
 
-[Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
+[Back to Table of Contents](Pixel-Based Density Approximation: Hopalong Attractor (Python))
 
 ---
 
 ## Recent Code Changes
 
-[Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
+[Back to Table of Contents](Pixel-Based Density Approximation: Hopalong Attractor (Python))
 
 ---
 
@@ -613,7 +613,7 @@ ISBN-10: 3922508502, ISBN-13: 978-3922508502.
 6. [Python Time Module](https://docs.python.org/3/library/time.html#module-time): Time access and conversions.
 7. [Python Resource Module](https://docs.python.org/3/library/resource.html): Interface for getting and setting resource limits.
 
-[Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
+[Back to Table of Contents](Pixel-Based Density Approximation: Hopalong Attractor (Python))
 
 ## Mathematical Appendix
 
@@ -704,4 +704,4 @@ $$
 
 [Back to Pixel-Based Density Approximation](#pixel-based-density-approximation)
 
-[Back to Table of Contents](#calculate--visualize-the-hopalong-attractor-with-python)
+[Back to Table of Contents](Pixel-Based Density Approximation: Hopalong Attractor (Python))

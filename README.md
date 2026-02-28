@@ -2,6 +2,8 @@
 
 # Pixel-Based Density Approximation: Hopalong Attractor (Python)
 
+[![DOI](https://zenodo.org/badge/915892006.svg)](https://doi.org/10.5281/zenodo.18811880)
+
 ![Header Image](./Documentation/Figure_0.png)
   
 - [Pixel-Based Density Approximation: Hopalong Attractor (Python)](#pixel-based-density-approximation-hopalong-attractor-python)

@@ -517,7 +517,7 @@ Trade-Off: The trajectory points are computed twice — once for extent calculat
     # Dummy call to ensure the function is pre-compiled by the JIT compiler before it's called by the interpreter.
     _ = compute_trajectory_and_image(1.0, 1.0, 1.0, 2, (-1, 0, 0, 1), (2, 2))
 
-[Back to Table of Contents](Pixel-Based Density Approximation: Hopalong Attractor (Python))
+[Back to Table of Contents](#pixel-based-density-approximation-hopalong-attractor-python)
 
 ---
 
